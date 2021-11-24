@@ -10,7 +10,7 @@ import difflib
 
 dbt_string = """-- macro used to create this file can be found at:
 -- {github_path}
-{{{{ {function} }}}}
+{{{{ dbt-arc-functions.{function} }}}}
 """
 
 
