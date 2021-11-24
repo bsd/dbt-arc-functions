@@ -1,8 +1,0 @@
-version: 2
-sources:
-  - name: frakture_facebook
-    database: bsd-vera
-    schema: src_frakture
-    tables:
-        - name: facebook_bizman_hdx_ad_summary_by_date_pivot
-        - name: facebook_bizman_hdx_message
