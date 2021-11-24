@@ -1,5 +1,5 @@
 {% macro create_stg_supermetrics_yahoo_dsp_paidmedia_impressions_daily_roundup(
-       source_name='supermetrics_yahoo_dsp',
+       source_name='supermetrics_yahoo_dsp_paidmedia',
        source_table_name='alldates_VDSP_AD') 
 %}
 SELECT  DISTINCT SAFE_CAST(ad_summary_by_date.ad_id AS STRING) AS message_id
