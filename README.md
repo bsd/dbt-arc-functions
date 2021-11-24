@@ -4,6 +4,8 @@ Functions used across clients using dbt in Analytics Reporting Cloud.
 
 ## Currently available products
 
+Look [here in macros](https://github.com/bsd/dbt-arc-functions/tree/main/macros) for products we currently support.
+
 ### Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
 - Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
