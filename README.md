@@ -1,9 +1,8 @@
 # dbt ARC Functions
 
-## Description
-
 Functions used across clients using dbt in Analytics Reporting Cloud.
 
+## Currently available products
 
 ### Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
