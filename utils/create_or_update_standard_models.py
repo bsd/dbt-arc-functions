@@ -130,6 +130,8 @@ def process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, cr
                 os.makedirs(destination_path)
             for _, _, files in os.walk(source_path):
                 for file in files:
+                    if not file.endswith('.sql'):
+                        continue
                     source_file_path = path.join(source_path, file)
                     with open(source_file_path, 'r') as f:
                         destination_file_path = path.join(destination_path, file)
