@@ -74,6 +74,22 @@ def overwrite_choice(source_file_path, output, destination_file_path):
     return overwrite == 'o'
 
 
+def extract_dependencies(output, destination_file_path, dependencies_regex):
+    with open(destination_file_path, 'r') as d:
+        dependencies = dependencies_regex.findall(d.read())
+    if not dependencies: return output
+    print("Would you like to keep these dependencies?")
+    print(*dependencies)
+    add_dependencies = None
+    while add_dependencies not in ('a', 'i'):
+        print("Enter a to (a)dd dependencies or i to (i)gnore them.")
+        add_dependencies = input()
+    if add_dependencies == 'a':
+        for dependency in dependencies:
+            output = dependency + output
+    return output
+
+
 def write_new_file_choice(output, destination_file_path):
     print(f"\nYou do not have a model at {destination_file_path}\n")
     print("Here is the standard model in arc-dbt-functions:\n")
@@ -89,6 +105,7 @@ def write_new_file_choice(output, destination_file_path):
 def process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, create, destination):
     model_types = ['sources', 'staging', 'marts']
     rx = re.compile(r"\{%\s+macro\s+(.*?)\s+%\}", re.DOTALL)
+    dependencies_regex = re.compile(r"--\s+depends_on:\s+.*\n")
     git_prepend = "https://github.com/bsd/dbt-arc-functions/blob/main/macros"
 
     for source in sources_wanted:
@@ -125,6 +142,7 @@ def process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, cr
                             output_formatted = [line + '\n' for line in output.split('\n')][:-1]
                             if not overwrite_choice(source_file_path, output_formatted, destination_file_path):
                                 continue
+                            output = extract_dependencies(output,destination_file_path,dependencies_regex)
                         if not path.exists(destination_file_path) and not create:
                             if not write_new_file_choice(output, destination_file_path):
                                 continue
