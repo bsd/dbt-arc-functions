@@ -1,5 +1,5 @@
 {% macro create_stg_supermetrics_yahoo_dsp_paidmedia_campaigns(
-       source_name='supermetrics_yahoo_dsp',
+       source_name='supermetrics_yahoo_dsp_paidmedia',
        source_table_name='alldates_VDSP_AD') 
 %}
 SELECT  DISTINCT SAFE_CAST(ad.line_id AS STRING) AS campaign_id
