@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
 # todo: add support for non-sql, non-macro files
-# todo: add support for keeping your dependencies (i.e. "-- depends_on: " lines from up top
 
 import os
 import re
