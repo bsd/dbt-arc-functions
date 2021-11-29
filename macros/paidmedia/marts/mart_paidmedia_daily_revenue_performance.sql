@@ -6,9 +6,11 @@
     transactions='stg_paidmedia_transactions_sourced_daily_rollup_unioned',
     subscribes='stg_paidmedia_subscribes_daily_rollup_unioned') %}
 SELECT
-      campaigns.message_id,
+      COALESCE(campaigns.message_id, impressions.message_id),
       campaigns.campaign_id,
-      campaigns.channel,
+      COALESCE(campaigns.channel,
+               REGEXP_EXTRACT(impressions._dbt_source_relation, 
+                              'stg_[a-z]+_([a-z_]+)_paidmedia')),
       campaigns.campaign_name,
       impressions.date_timestamp,
       impressions.total_impressions,
