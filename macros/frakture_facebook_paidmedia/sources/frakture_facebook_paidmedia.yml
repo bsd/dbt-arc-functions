@@ -1,0 +1,6 @@
+version: 2
+sources:
+  - name: frakture_facebook_paidmedia
+    database: "{{ var('database') }}"
+    schema: src_frakture
+    tables: "{{ var('sources').frakture_facebook_paidmedia.tables }}"
