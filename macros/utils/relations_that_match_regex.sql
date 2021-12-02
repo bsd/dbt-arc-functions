@@ -1,4 +1,4 @@
-{% macro relations_that_match_regex(regex,is_source=False,source_name='',schema_to_search='staging') %}
+{% macro dbt_arc_functions.relations_that_match_regex(regex,is_source=False,source_name='',schema_to_search='staging') %}
     {% set re = modules.re %}
     {% set relation_names = [] %}
     {% set relations = []%}
