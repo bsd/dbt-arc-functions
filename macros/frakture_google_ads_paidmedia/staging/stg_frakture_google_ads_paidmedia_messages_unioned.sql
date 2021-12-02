@@ -1,5 +1,5 @@
 {% macro create_stg_frakture_google_ads_paidmedia_messages_unioned() %}
-{% set relations = relations_that_match_regex('^google_ads_[A-Za-z0-9]{3}_message$',
+{% set relations = dbt_arc_functions.relations_that_match_regex('^google_ads_[A-Za-z0-9]{3}_message$',
   is_source=True,
   source_name='frakture_google_ads',
   schema_to_search='src_frakture') 
