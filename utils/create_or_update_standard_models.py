@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # coding: utf-8
-# todo: add support for non-sql, non-macro files
 
 import os
 import re
@@ -54,7 +53,7 @@ def overwrite_choice(source_file_path, output, destination_file_path):
         d_text = d.readlines()
         differences = list(difflib.unified_diff(
             d_text, output, fromfile=destination_file_path,
-            tofile=source_file_path, lineterm=''))
+            tofile=source_file_path, lineterm='\n'))
         if not differences:
             print(f"No differences between {destination_file_path} and {source_file_path}, skipping.")
             return False
@@ -116,7 +115,8 @@ def process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, cr
                 print(f"Weird, {model_type} is not one of our standard model types. Going to skip.")
                 continue
             source_path = path.join(macros_path, source, model_type)
-            destination_path = path.join(destination, model_type, source)
+            destination_path = path.join(destination, model_type, source) if model_type != 'sources' else path.join(
+                destination, model_type)
             if path.exists(destination_path) and create:
                 print("\nThis directory: {} already exists and I don't want to overwrite anything in create mode."
                       .format(destination_path))
@@ -129,21 +129,27 @@ def process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, cr
                 os.makedirs(destination_path)
             for _, _, files in os.walk(source_path):
                 for file in files:
-                    if not file.endswith('.sql'):
+                    if not (file.endswith('.sql') or file.endswith('.yml')):
                         continue
                     source_file_path = path.join(source_path, file)
                     with open(source_file_path, 'r') as f:
                         destination_file_path = path.join(destination_path, file)
                         content = f.read()
-                        function = rx.search(content).group(1) if rx.search(content) else None
-                        github_path = '/'.join([git_prepend, source, model_type, file])
-                        output = dbt_string.format(github_path=github_path,
-                                                   function=function)
+                        if file.endswith('.sql'):
+                            function = rx.search(content).group(1) if rx.search(content) else None
+                            github_path = '/'.join([git_prepend, source, model_type, file])
+                            output = dbt_string.format(github_path=github_path,
+                                                       function=function)
+                        else:
+                            output = content
                         if path.exists(destination_file_path) and not create:
-                            output_formatted = [line + '\n' for line in output.split('\n')][:-1]
+                            output_formatted = [line + ('\n' if i < len(output.split('\n')) else '') for i, line in
+                                                enumerate(output.split('\n'))]
+                            output_formatted = output_formatted[:-1] if file.endswith('.sql') else output_formatted[
+                                -1] = output_formatted[-1][:-1]
                             if not overwrite_choice(source_file_path, output_formatted, destination_file_path):
                                 continue
-                            output = extract_dependencies(output,destination_file_path,dependencies_regex)
+                            output = extract_dependencies(output, destination_file_path, dependencies_regex)
                         if not path.exists(destination_file_path) and not create:
                             if not write_new_file_choice(output, destination_file_path):
                                 continue
