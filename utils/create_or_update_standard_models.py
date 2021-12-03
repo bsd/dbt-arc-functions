@@ -101,22 +101,24 @@ def write_new_file_choice(output, destination_file_path):
 
 
 def process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, create, destination):
-    model_types = ['sources', 'staging', 'marts']
+    sources_path = path.join('..', 'sources')
+    model_types = [sources_path, 'staging', 'marts']
     rx = re.compile(r"\{%\s+macro\s+(.*?)\s+%\}", re.DOTALL)
     dependencies_regex = re.compile(r"--\s+depends_on:\s+.*\n")
     git_prepend = "https://github.com/bsd/dbt-arc-functions/blob/main/macros"
-
     for source in sources_wanted:
         if source not in list_of_sources:
             print(f'Sorry, {source} is not in the list of sources above')
             continue
-        for model_type in os.listdir(path.join(macros_path, source)):
+        list_of_models = os.listdir(path.join(macros_path, source))
+        list_of_models.append(sources_path)
+        for model_type in list_of_models:
             if model_type not in model_types:
                 print(f"Weird, {model_type} is not one of our standard model types. Going to skip.")
                 continue
-            source_path = path.join(macros_path, source, model_type)
-            destination_path = path.join(destination, model_type, source) if model_type != 'sources' else path.join(
-                destination, model_type)
+            source_path = sources_path if model_type == sources_path else path.join(macros_path, source, model_type)
+            destination_path = path.join(destination, model_type, source) if model_type != sources_path else path.join(
+                destination, 'sources')
             if path.exists(destination_path) and create:
                 print("\nThis directory: {} already exists and I don't want to overwrite anything in create mode."
                       .format(destination_path))
@@ -129,7 +131,7 @@ def process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, cr
                 os.makedirs(destination_path)
             for _, _, files in os.walk(source_path):
                 for file in files:
-                    if not (file.endswith('.sql') or file.endswith('.yml')):
+                    if not (file.endswith('.sql') or file == f"{source}.yml"):
                         continue
                     source_file_path = path.join(source_path, file)
                     with open(source_file_path, 'r') as f:
@@ -145,8 +147,8 @@ def process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, cr
                         if path.exists(destination_file_path) and not create:
                             output_formatted = [line + ('\n' if i < len(output.split('\n')) else '') for i, line in
                                                 enumerate(output.split('\n'))]
-                            output_formatted = output_formatted[:-1] if file.endswith('.sql') else output_formatted[
-                                -1] = output_formatted[-1][:-1]
+                            if file.endswith('.sql'): output_formatted = output_formatted[:-1]
+                            else: output_formatted[-1] = output_formatted[-1][:-1]
                             if not overwrite_choice(source_file_path, output_formatted, destination_file_path):
                                 continue
                             output = extract_dependencies(output, destination_file_path, dependencies_regex)
