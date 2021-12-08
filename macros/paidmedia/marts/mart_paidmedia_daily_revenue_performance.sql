@@ -29,6 +29,8 @@ SELECT
       transactions.new_monthly_gifts,
       transactions.total_monthly_revenue,
       transactions.total_monthly_gifts,
+      transactions.campaign,
+      transactions.audience,
       subscribes.subscribes
 FROM {{ ref(campaigns) }} campaigns
 FULL JOIN {{ ref(impressions) }} impressions
