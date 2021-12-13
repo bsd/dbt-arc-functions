@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 # TODO: give option of removing comments
-# params['ParentTest']['test'].yaml_add_eol_comment('some comment', key='new_key', column=40) # column is optional
 
 
 from os import path
