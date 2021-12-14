@@ -1,4 +1,7 @@
+# utils
+## Table of Contents
 - [utils](#utils)
+  - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [Order of Usage](#order-of-usage)
   - [Function explanations](#function-explanations)
@@ -18,8 +21,6 @@
     - [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
       - [Usage:](#usage-4)
       - [Plain English what it does:](#plain-english-what-it-does-4)
-
-# utils
 
 ## Description
 
