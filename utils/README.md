@@ -31,30 +31,40 @@ That said, it's highly recommended that you do this in a virtual environment man
 
 ### add_dependencies.py
 
-**Usage:** `python add_dependencies.py`
+#### Usage:
+`python add_dependencies.py`
 
-**Plain English what it does:** Our table structures are build dynamically using macros _after_ dbt does its automatic generation of the [Directed Acyclic Graph (DAG.)](https://docs.getdbt.com/docs/introduction#:~:text=dbt%20builds%20a%20directed%20acyclic,predecessor%20of%20the%20current%20model.) This means that we have to inject little `-- depends_on:` code blocks at the top of our models to let them know what previous tables they depend on. This is a pain in the butt to do manually, so this program runs dbt over and over again until it stops suggesting `-- depends_on:` blocks to add to the top of your model.
+#### Plain English what it does: 
+Our table structures are build dynamically using macros _after_ dbt does its automatic generation of the [Directed Acyclic Graph (DAG.)](https://docs.getdbt.com/docs/introduction#:~:text=dbt%20builds%20a%20directed%20acyclic,predecessor%20of%20the%20current%20model.) This means that we have to inject little `-- depends_on:` code blocks at the top of our models to let them know what previous tables they depend on. This is a pain in the butt to do manually, so this program runs dbt over and over again until it stops suggesting `-- depends_on:` blocks to add to the top of your model.
 
 ### compile_sources.py
 
-**Usage:**
+#### Usage:
 
-**Plain English what it does:**
+
+#### Plain English what it does:
+
 
 ### create_macros_from_sql.py
 
-**Usage:**
+#### Usage:
 
-**Plain English what it does:**
+
+#### Plain English what it does:
+
 
 ### create_or_update_standard_models.py
 
-**Usage:**
+#### Usage:
 
-**Plain English what it does:**
+
+#### Plain English what it does:
+
 
 ### first_run_dbt_project_and_profiles_fixer.py
 
-**Usage:**
+#### Usage:
 
-**Plain English what it does:**
+
+#### Plain English what it does:
+
