@@ -7,19 +7,19 @@
   - [Function explanations](#function-explanations)
     - [Before you start](#before-you-start)
     - [add_dependencies.py](#add_dependenciespy)
-      - [Usage:](#usage)
-      - [Plain English what it does:](#plain-english-what-it-does)
+      - [Usage](#usage)
+      - [Plain English what it does](#plain-english-what-it-does)
     - [compile_sources.py](#compile_sourcespy)
-      - [Usage:](#usage-1)
+      - [Usage](#usage-1)
       - [Plain English what it does:](#plain-english-what-it-does-1)
     - [create_macros_from_sql.py](#create_macros_from_sqlpy)
-      - [Usage:](#usage-2)
+      - [Usage](#usage-2)
       - [Plain English what it does:](#plain-english-what-it-does-2)
     - [create_or_update_standard_models.py](#create_or_update_standard_modelspy)
-      - [Usage:](#usage-3)
+      - [Usage](#usage-3)
       - [Plain English what it does:](#plain-english-what-it-does-3)
     - [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
-      - [Usage:](#usage-4)
+      - [Usage](#usage-4)
       - [Plain English what it does:](#plain-english-what-it-does-4)
 
 ## Description
@@ -52,15 +52,15 @@ That said, it's highly recommended that you do this in a virtual environment man
 
 ### add_dependencies.py
 
-#### Usage:
+#### Usage
 `python add_dependencies.py`
 
-#### Plain English what it does: 
+#### Plain English what it does
 Our table structures are build dynamically using macros _after_ dbt does its automatic generation of the [Directed Acyclic Graph (DAG.)](https://docs.getdbt.com/docs/introduction#:~:text=dbt%20builds%20a%20directed%20acyclic,predecessor%20of%20the%20current%20model.) This means that we have to inject little `-- depends_on:` code blocks at the top of our models to let them know what previous tables they depend on. This is a pain in the butt to do manually, so this program runs dbt over and over again until it stops suggesting `-- depends_on:` blocks to add to the top of your model.
 
 ### compile_sources.py
 
-#### Usage:
+#### Usage
 `python compile_sources.py`
 
 #### Plain English what it does:
@@ -68,7 +68,7 @@ Generally, we try and roll up all of our source tables from a single data provid
 
 ### create_macros_from_sql.py
 
-#### Usage:
+#### Usage
 `python create_macros_from_sql.py`
 
 #### Plain English what it does:
@@ -76,7 +76,7 @@ When you're prototyping building out a set of models, it's easiest to do that in
 
 ### create_or_update_standard_models.py
 
-#### Usage:
+#### Usage
 `python create_or_update_standard_models.py`
 
 #### Plain English what it does:
@@ -84,7 +84,7 @@ This function allows you to build out models based on the sources we've used bef
 
 ### first_run_dbt_project_and_profiles_fixer.py
 
-#### Usage:
+#### Usage
 `python first_run_dbt_project_and_profiles_fixer.py`
 
 #### Plain English what it does:
