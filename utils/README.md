@@ -40,31 +40,34 @@ Our table structures are build dynamically using macros _after_ dbt does its aut
 ### compile_sources.py
 
 #### Usage:
-
+`python compile_sources.py`
 
 #### Plain English what it does:
-
+Generally, we try and roll up all of our source tables from a single data provider into a single view so we can select from that as a source. Sometimes, that isn't possible. In those cases, we need to build out a list of tables to select from. This function builds out that list of tables for you.
 
 ### create_macros_from_sql.py
 
 #### Usage:
-
+`python create_macros_from_sql.py`
 
 #### Plain English what it does:
-
+When you're prototyping building out a set of models, it's easiest to do that in plain SQL. Going from plain SQL to functional macros that you can reuse in different projects is a pain. This script does that for you.
 
 ### create_or_update_standard_models.py
 
 #### Usage:
-
+`python create_or_update_standard_models.py`
 
 #### Plain English what it does:
-
+This function allows you to build out models based on the sources we've used before ([found here.](https://github.com/bsd/dbt-arc-functions/tree/main/macros)) This function will build a set of models in the desired project.
 
 ### first_run_dbt_project_and_profiles_fixer.py
 
 #### Usage:
-
+`python first_run_dbt_project_and_profiles_fixer.py`
 
 #### Plain English what it does:
+The first time you boot up a dbt project, there are a lot of variables you have to set by hand in dbt_project.yml and profiles.yml; this script does all that set up for you. You'll need to have a valid BigQuery credentials.json file to be able to run the dbt project locally, so good idea to get that together before running this script.
 
+If you'd like to know how to generate a credentials json go [here](https://docs.getdbt.com/tutorial/setting-up#generate-bigquery-credentials). If you'd like to understand why you need credentials to use the CLI go [here](https://docs.getdbt.com/tutorial/create-a-project-dbt-cli
+).
