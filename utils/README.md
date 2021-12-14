@@ -1,3 +1,23 @@
+- [utils](#utils)
+  - [Description](#description)
+  - [Order of Usage](#order-of-usage)
+  - [Function explanations](#function-explanations)
+    - [Before you start](#before-you-start)
+    - [add_dependencies.py](#add_dependenciespy)
+      - [Usage:](#usage)
+      - [Plain English what it does:](#plain-english-what-it-does)
+    - [compile_sources.py](#compile_sourcespy)
+      - [Usage:](#usage-1)
+      - [Plain English what it does:](#plain-english-what-it-does-1)
+    - [create_macros_from_sql.py](#create_macros_from_sqlpy)
+      - [Usage:](#usage-2)
+      - [Plain English what it does:](#plain-english-what-it-does-2)
+    - [create_or_update_standard_models.py](#create_or_update_standard_modelspy)
+      - [Usage:](#usage-3)
+      - [Plain English what it does:](#plain-english-what-it-does-3)
+    - [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
+      - [Usage:](#usage-4)
+      - [Plain English what it does:](#plain-english-what-it-does-4)
 
 # utils
 
