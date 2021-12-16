@@ -3,23 +3,26 @@
 - [utils](#utils)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
-  - [Order of Usage](#order-of-usage)
-  - [Function explanations](#function-explanations)
+  - [main.py](#mainpy)
     - [Before you start](#before-you-start)
+    - [Usage](#usage)
+    - [About](#about)
+    - [Order of scripts used by main.py](#order-of-scripts-used-by-mainpy)
+  - [Scripts explanations](#scripts-explanations)
     - [add_dependencies.py](#add_dependenciespy)
-      - [Usage](#usage)
+      - [Usage](#usage-1)
       - [Plain English what it does](#plain-english-what-it-does)
     - [compile_sources.py](#compile_sourcespy)
-      - [Usage](#usage-1)
+      - [Usage](#usage-2)
       - [Plain English what it does](#plain-english-what-it-does-1)
     - [create_macros_from_sql.py](#create_macros_from_sqlpy)
-      - [Usage](#usage-2)
+      - [Usage](#usage-3)
       - [Plain English what it does](#plain-english-what-it-does-2)
     - [create_or_update_standard_models.py](#create_or_update_standard_modelspy)
-      - [Usage](#usage-3)
+      - [Usage](#usage-4)
       - [Plain English what it does](#plain-english-what-it-does-3)
     - [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
-      - [Usage](#usage-4)
+      - [Usage](#usage-5)
       - [Plain English what it does](#plain-english-what-it-does-4)
 
 ## Description
@@ -32,16 +35,9 @@ The tools are meant to be run on a dbt project repo right after running [dbt ini
  
 The utils are mean to be used in a certain order, which is outlined below. Below that, I will walk through what each function does.
 
-That said, you can use the utils after initial set up at any time if you need to, say, add sources to a project, update your standard models, etc. It's on the todo list to create a driver function that runs all of the functions in the correct order.
+That said, you can use the utils after initial set up at any time if you need to, say, add sources to a project, update your standard models, etc.
 
-## Order of Usage
-
-1. first_run_dbt_project_and_profiles_fixer.py
-2. create_or_update_standard_models.py
-3. compile_sources.py
-4. add_dependencies.py
-
-## Function explanations
+## main.py
 
 ### Before you start
 
@@ -49,6 +45,21 @@ You'll need to install the required packages to run these scripts. This can be a
 `pip install -r requirements.txt`
 
 That said, it's highly recommended that you do this in a virtual environment managed with a tool like [Anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or [pipenv](https://pipenv.pypa.io/en/latest/). If you don't know what any of the above means... you'll probably be ok just installing these packages with pip, but it might mess up other dependencies so... you've been warned.
+
+### Usage
+`python main.py`
+
+### About
+`main.py` Is the first function you should run when spinning up a new dbt project. It will run an number of scripts that will update .yml files, create .sql models, and generally get your project working in short order.
+
+### Order of scripts used by main.py
+
+1. first_run_dbt_project_and_profiles_fixer.py
+2. create_or_update_standard_models.py
+3. compile_sources.py
+4. add_dependencies.py
+
+## Scripts explanations
 
 ### add_dependencies.py
 
