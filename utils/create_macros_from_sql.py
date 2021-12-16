@@ -50,9 +50,11 @@ def loop_through_files_in_dir(directory):
             with open(os.path.join(directory, 'macros', file_name), 'w') as f:
                 f.write(output)
 
-
-if __name__ == '__main__':
+def main():
     directory = input(
         'Please enter either the relative or absolute path of the directory that you want to convert to macros:\n')
     mk_macros_dir(directory)
     loop_through_files_in_dir(directory)
+
+if __name__ == '__main__':
+    main()

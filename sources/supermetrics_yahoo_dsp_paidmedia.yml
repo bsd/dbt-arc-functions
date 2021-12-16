@@ -2,7 +2,7 @@ version: 2
 sources:
   - name: supermetrics_yahoo_dsp_paidmedia
     database: "{{ var('database') }}"
-    schema: src_supermetrics_yahoo_dsp_indivisible_test
+    schema: src_supermetrics_yahoo_dsp
     tables:
         - name: alldates_VDSP_AD
         - name: alldates_VDSP_CAMPAIGN

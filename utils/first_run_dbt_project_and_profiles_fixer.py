@@ -4,6 +4,7 @@
 
 
 from os import path
+from shutil import rmtree
 
 import ruamel.yaml
 
@@ -35,6 +36,20 @@ profile_choice_helptext = """If you'd like to use another path than {profile}, e
  (We recommend to press return.)
 """
 
+packages_yml = {
+    "packages": [
+        {
+            "package": "dbt-labs/dbt_utils",
+            "version": "0.7.4"
+        },
+        {
+            "git": "https://github.com/bsd/dbt-arc-functions.git",
+            "revision": "main"
+        }
+    ]
+}
+
+
 def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml):
     with open(dbt_project, 'r') as f:
         content = f.read()
@@ -50,7 +65,7 @@ def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml)
     if 'vars' in dbt_project_yml:
         dbt_project['vars']['database'] = project_name
     else:
-        dbt_project_yml['vars']= variables
+        dbt_project_yml['vars'] = variables
     standard_models = {'staging': {
         'materialized': 'view',
         'schema': 'staging'},
@@ -70,9 +85,10 @@ def copy_or_keep_credentials(credentials_location):
     profile_location = path.join(path.expanduser('~'), '.dbt', file)
     while choice not in ('r', 'c'):
         choice = input(
-            copy_or_keep_credentials_helptext.format(file_location=credentials_location, profile_location=profile_location))
+            copy_or_keep_credentials_helptext.format(file_location=credentials_location,
+                                                     profile_location=profile_location))
     if choice == 'c':
-        with open(credentials_location,'r') as f:
+        with open(credentials_location, 'r') as f:
             content = f.read()
         with open(profile_location, 'w') as f:
             f.write(content)
@@ -80,7 +96,7 @@ def copy_or_keep_credentials(credentials_location):
     return credentials_location
 
 
-def update_profile_yml(project_name, yaml):
+def update_profile_yml(project_id, project_id_underscore, yaml):
     choice = ''
     while choice not in ('y', 'n'):
         choice = input(run_locally_helptext)
@@ -95,7 +111,7 @@ def update_profile_yml(project_name, yaml):
                      'outputs': {'dev': {'type': 'bigquery',
                                          'method': 'service-account',
                                          'keyfile': credentials_location,
-                                         'project': project_name,
+                                         'project': project_id,
                                          'dataset': dbt_username,
                                          'threads': 10,
                                          'timeout_seconds': 300,
@@ -109,11 +125,12 @@ def update_profile_yml(project_name, yaml):
         content = f.read()
         profile_yml = yaml.load(content)
 
-    profile_yml[project_name_underscore] = profile_entry
+    profile_yml[project_id_underscore] = profile_entry
     copy_choice = inplace_or_copy("profile")
     file, extension = path.splitext(profile)
-    with open(file + copy_choice + extension,'w') as f:
+    with open(file + copy_choice + extension, 'w') as f:
         yaml.dump(profile_yml, f)
+    return credentials_location
 
 
 def inplace_or_copy(filetype):
@@ -123,13 +140,36 @@ def inplace_or_copy(filetype):
     return '_copy' if choice == 'c' else ''
 
 
-if __name__ == '__main__':
-    dbt_project = input("Please enter the full path of the dbt_project.yml you'd like to modify:\n")
-    project_name = input("\nPlease enter the name of the Google Project (should look like bsd-projectname):\n")
-    project_name_underscore = project_name.replace('-', '_')
+def write_packages_yml(dbt_packages_path, yaml):
+    if not path.exists(dbt_packages_path):
+        with open(dbt_packages_path, 'w') as f:
+            yaml.dump(packages_yml, f)
+    else:
+        if input(f"Would you like to replace packages.yml with:\n{packages_yml}\n(y/n)\n") == 'y':
+            with open(dbt_packages_path, 'w') as f:
+                yaml.dump(packages_yml, f)
+
+
+def main():
+    dbt_project_path = input("Please enter the full path of the dbt_project.yml you'd like to modify:\n")
+    path.dirname(dbt_project_path)
+    project_id = input("\nPlease enter the name of the Google Project (should look like bsd-projectname):\n")
+    project_id_underscore = project_id.replace('-', '_')
     yaml = ruamel.yaml.YAML()
     yaml.indent(mapping=4, sequence=4, offset=2)
     yaml.preserve_quotes = True
-    update_dbt_project(dbt_project, project_name, project_name_underscore, yaml)
-    update_profile_yml(project_name, yaml)
+    update_dbt_project(dbt_project_path, project_id, project_id_underscore, yaml)
+    dbt_base_path = path.dirname(dbt_project_path)
+    dbt_packages_path = path.join(dbt_base_path, 'packages.yml')
+    write_packages_yml(dbt_packages_path, yaml)
+    dbt_example_path = path.join(dbt_base_path, 'models', 'example')
+    if path.exists(dbt_example_path):
+        if input("\nCan I delete 'models/example'? (y/n)\n") == 'y':
+            rmtree(dbt_example_path)
+    dbt_credentials_path = update_profile_yml(project_id, project_id_underscore, yaml)
     print("Program terminated successfully!")
+    return dbt_project_path, project_id, yaml, dbt_credentials_path
+
+
+if __name__ == '__main__':
+    main()

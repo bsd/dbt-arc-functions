@@ -28,13 +28,13 @@ def get_destination():
     destination_path = ''
     while not destination_path and not (destination_path.endswith(path.join('..', 'models'))
                                         or destination_path.endswith(path.join('dbt-arc-functions', 'models'))):
-        print("\nPlease enter the absolute relative path where you'd like to create standard models:")
+        print("\nPlease enter the absolute or relative path where you'd like to create standard models:")
         destination_path = input()
     return destination_path
 
 
 def get_list_of_sources(macros_path):
-    list_of_sources = [dir for dir in os.listdir(macros_path) if path.isdir(path.join(macros_path, dir))]
+    list_of_sources = [directory for directory in os.listdir(macros_path) if path.isdir(path.join(macros_path, directory))]
     return list_of_sources
 
 
@@ -100,7 +100,7 @@ def write_new_file_choice(output, destination_file_path):
     return yes == 'y'
 
 
-def process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, create, destination):
+def process_sources(sources_wanted, list_of_sources, macros_path, create, destination):
     sources_path = path.join('..', 'sources')
     model_types = [sources_path, 'staging', 'marts']
     rx = re.compile(r"\{%\s+macro\s+(.*?)\s+%\}", re.DOTALL)
@@ -119,7 +119,7 @@ def process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, cr
             source_path = sources_path if model_type == sources_path else path.join(macros_path, source, model_type)
             destination_path = path.join(destination, model_type, source) if model_type != sources_path else path.join(
                 destination, 'sources')
-            if path.exists(destination_path) and create:
+            if path.exists(destination_path) and create and not destination_path.endswith('sources'):
                 print("\nThis directory: {} already exists and I don't want to overwrite anything in create mode."
                       .format(destination_path))
                 continue
@@ -127,7 +127,7 @@ def process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, cr
                 print("\nThis directory: {} doesn't exist and I don't want to make directories in update mode."
                       .format(destination_path))
                 continue
-            elif create:
+            elif create and not path.exists(destination_path):
                 os.makedirs(destination_path)
             for _, _, files in os.walk(source_path):
                 for file in files:
@@ -155,21 +155,24 @@ def process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, cr
                         if not path.exists(destination_file_path) and not create:
                             if not write_new_file_choice(output, destination_file_path):
                                 continue
-                        if function:
+                        if output:
                             with open(destination_file_path, 'w') as tf:
                                 tf.writelines(output)
                                 print(destination_file_path + " created successfully!")
 
-
-if __name__ == '__main__':
+def main(dbt_models_path=''):
     macros_path = path.join('..', 'macros')
     create = get_create_or_update()
     try:
-        destination = get_destination()
+        if not dbt_models_path:
+            dbt_models_path = get_destination()
         list_of_sources = get_list_of_sources(macros_path)
         sources_wanted = get_sources_wanted(list_of_sources)
-        process_sources(sources_wanted, list_of_sources, dbt_string, macros_path, create, destination)
+        process_sources(sources_wanted, list_of_sources, macros_path, create, dbt_models_path)
     except Exception as e:
         print(e)
         pass
     print('\nProgram terminated successfully!\n')
+
+if __name__ == '__main__':
+    main()
