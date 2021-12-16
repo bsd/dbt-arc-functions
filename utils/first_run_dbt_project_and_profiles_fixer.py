@@ -44,7 +44,7 @@ packages_yml = {
         },
         {
             "git": "https://github.com/bsd/dbt-arc-functions.git",
-            "revision": "main"
+            "revision": "v1.0.0"
         }
     ]
 }
