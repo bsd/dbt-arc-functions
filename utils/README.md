@@ -54,10 +54,10 @@ That said, it's highly recommended that you do this in a virtual environment man
 
 ### Order of scripts used by main.py
 
-1. first_run_dbt_project_and_profiles_fixer.py
-2. create_or_update_standard_models.py
-3. compile_sources.py
-4. add_dependencies.py
+1. [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
+2. [create_or_update_standard_models.py](#create_or_update_standard_modelspy)
+3. [compile_sources.py](#compile_sourcespy)
+4. [add_dependencies.py](#add_dependenciespy)
 
 ## Scripts explanations
 
