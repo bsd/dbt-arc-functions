@@ -11,6 +11,7 @@ SELECT SAFE_CAST(ad_summary.message_id AS STRING) AS message_id,    SAFE_CAST(ad
     SAFE_CAST(ad_summary.attributed_recurring_revenue  AS numeric) AS total_monthly_revenue,
     SAFE_CAST(ad_summary.attributed_recurring_transactions  AS int) AS total_monthly_gifts,
     SAFE_CAST(ad_summary.campaign  AS STRING) AS campaign,
+SAFE_CAST(ad_summary.campaign_label  AS STRING) AS campaign_label,
     SAFE_CAST(ad_summary.audience  AS STRING) AS audience
  FROM  {{ ref(reference_name) }} ad_summary
 {% endmacro %}

@@ -30,6 +30,7 @@ SELECT
       transactions.total_monthly_revenue,
       transactions.total_monthly_gifts,
       transactions.campaign,
+      transactions.campaign_label,
       transactions.audience,
       subscribes.subscribes
 FROM {{ ref(campaigns) }} campaigns
