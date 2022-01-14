@@ -1,0 +1,7 @@
+version: 2
+sources:
+  - name: frakture_global_message_paidmedia
+    database: "{{ var('database') }}"
+    schema: src_frakture
+    tables: 
+      - name: global_message_summary_by_date
