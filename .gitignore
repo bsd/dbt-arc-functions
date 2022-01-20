@@ -6,3 +6,4 @@ logs/
 *.ipynb*
 .idea*
 .vscode*
+__pycache__
