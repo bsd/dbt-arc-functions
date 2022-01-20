@@ -49,7 +49,8 @@ To install, run:
 `pip install pipenv`
 
 Then, run:
-```pipenv install
+```
+pipenv install
 pipenv shell
 ```
 
