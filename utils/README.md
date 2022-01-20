@@ -42,9 +42,18 @@ That said, you can use the utils after initial set up at any time if you need to
 ### Before you start
 
 You'll need to install the required packages to run these scripts. This can be accomplished by running:
-`pip install -r requirements.txt`
 
-That said, it's highly recommended that you do this in a virtual environment managed with a tool like [Anaconda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or [pipenv](https://pipenv.pypa.io/en/latest/). If you don't know what any of the above means... you'll probably be ok just installing these packages with pip, but it might mess up other dependencies so... you've been warned.
+I recommend [pipenv](https://pipenv.pypa.io/en/latest/) for this as ruamel doesn't play nicely with Anaconda. 
+
+To install, run:
+`pip install pipenv`
+
+Then, run:
+```pipenv install
+pipenv shell
+```
+
+This will get you into an environment ready made to run these files.
 
 ### Usage
 `python main.py`
