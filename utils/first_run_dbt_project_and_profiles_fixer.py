@@ -40,7 +40,7 @@ packages_yml = {
     "packages": [
         {
             "package": "dbt-labs/dbt_utils",
-            "version": "0.7.4"
+            "version": "0.8.0"
         },
         {
             "git": "https://github.com/bsd/dbt-arc-functions.git",
