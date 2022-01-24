@@ -1,0 +1,7 @@
+version: 2
+sources:
+  - name: frakture_global_transactions
+    database: bsd-vera
+    schema: src_frakture
+    tables:
+        - name: transaction_summary
