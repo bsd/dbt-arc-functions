@@ -36,7 +36,7 @@ profile_choice_helptext = """If you'd like to use another path than {profile}, e
  (We recommend to press return.)
 """
 
-packages_yml = {
+packages_dict = {
     "packages": [
         {
             "package": "dbt-labs/dbt_utils",
@@ -49,6 +49,10 @@ packages_yml = {
     ]
 }
 
+revision_choice_helptext = """Your current active branch is {active_branch_name}.
+If you'd like to use another branch in packages.yml, enter it here. Else, press return.
+(We recommend to press return.)
+"""
 
 def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml):
     with open(dbt_project, 'r') as f:
@@ -140,15 +144,26 @@ def inplace_or_copy(filetype):
     return '_copy' if choice == 'c' else ''
 
 
-def write_packages_yml(dbt_packages_path, yaml):
+def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
+    revision_choice = input(revision_choice_helptext_choice_helptext.format(
+        active_branch_name=active_branch_name))
+    revision = revision_choice if revision_choice else active_branch_name
+    packages_dict['packages'][1]['revision'] = revision
     if not path.exists(dbt_packages_path):
         with open(dbt_packages_path, 'w') as f:
-            yaml.dump(packages_yml, f)
+            yaml.dump(packages_dict, f)
     else:
-        if input(f"Would you like to replace packages.yml with:\n{packages_yml}\n(y/n)\n") == 'y':
+        if input(f"Would you like to replace packages.yml with:\n{packages_dict}\n(y/n)\n") == 'y':
             with open(dbt_packages_path, 'w') as f:
-                yaml.dump(packages_yml, f)
+                yaml.dump(packages_dict, f)
 
+def get_active_branch_name():
+    head_dir = path.join(".." , ".git" , "HEAD")
+    with open(head_dir,"r") as f: content = f.read().splitlines()
+
+    for line in content:
+        if line[0:4] == "ref:":
+            return line.partition("refs/heads/")[2]
 
 def main():
     dbt_project_path = input("Please enter the full path of the dbt_project.yml you'd like to modify:\n")
@@ -161,7 +176,8 @@ def main():
     update_dbt_project(dbt_project_path, project_id, project_id_underscore, yaml)
     dbt_base_path = path.dirname(dbt_project_path)
     dbt_packages_path = path.join(dbt_base_path, 'packages.yml')
-    write_packages_yml(dbt_packages_path, yaml)
+    active_branch_name = get_active_branch_name()
+    write_packages_yml(dbt_packages_path, active_branch_name, yaml)
     dbt_example_path = path.join(dbt_base_path, 'models', 'example')
     if path.exists(dbt_example_path):
         if input("\nCan I delete 'models/example'? (y/n)\n") == 'y':

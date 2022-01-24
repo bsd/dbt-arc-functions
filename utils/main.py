@@ -20,6 +20,7 @@ def main():
     compile_sources.main(dbt_project_path, dbt_credentials_path, project_id, yaml, dbt_models_sources_path)
     print("\nRunning add_dependencies.py\n")
     add_dependencies.main(dbt_base_path)
+    print("\nWow, it all actually ran! Congratulations, you should be able to run this repo now.\n")
 
 
 if __name__ == '__main__':
