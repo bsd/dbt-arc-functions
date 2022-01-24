@@ -145,7 +145,7 @@ def inplace_or_copy(filetype):
 
 
 def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
-    revision_choice = input(revision_choice_helptext_choice_helptext.format(
+    revision_choice = input(revision_choice_helptext.format(
         active_branch_name=active_branch_name))
     revision = revision_choice if revision_choice else active_branch_name
     packages_dict['packages'][1]['revision'] = revision
