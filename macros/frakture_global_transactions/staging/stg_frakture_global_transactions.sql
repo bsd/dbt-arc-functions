@@ -1,5 +1,5 @@
 {% macro create_stg_frakture_global_transactions(
-    source_name='frakture_global_transactions_conversions',
+    source_name='frakture_global_transactions',
     source_table_name='transaction_summary') %}
 SELECT
   REGEXP_EXTRACT(transaction_bot_id,'([A-Za-z_]+)_[a-z0-9]{3}') AS source_crm,
