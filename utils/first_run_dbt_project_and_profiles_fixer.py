@@ -54,6 +54,7 @@ If you'd like to use another branch in packages.yml, enter it here. Else, press 
 (We recommend to press return.)
 """
 
+
 def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml):
     with open(dbt_project, 'r') as f:
         content = f.read()
@@ -157,13 +158,16 @@ def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
             with open(dbt_packages_path, 'w') as f:
                 yaml.dump(packages_dict, f)
 
+
 def get_active_branch_name():
-    head_dir = path.join(".." , ".git" , "HEAD")
-    with open(head_dir,"r") as f: content = f.read().splitlines()
+    head_dir = path.join("..", ".git", "HEAD")
+    with open(head_dir, "r") as f:
+        content = f.read().splitlines()
 
     for line in content:
         if line[0:4] == "ref:":
             return line.partition("refs/heads/")[2]
+
 
 def main():
     dbt_project_path = input("Please enter the full path of the dbt_project.yml you'd like to modify:\n")
