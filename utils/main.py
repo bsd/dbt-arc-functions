@@ -21,7 +21,7 @@ def main():
     print("\nRunning compile_sources.py\n")
     compile_sources.main(dbt_project_path, dbt_credentials_path, project_id, yaml, dbt_models_sources_path)
     print("\nRunning delete_schemas.py\n")
-    delete_schemas.main(dbt_credentials_path,dbt_username)
+    delete_schemas.main(dbt_credentials_path, dbt_username)
     print("\nRunning add_dependencies.py\n")
     add_dependencies.main(dbt_base_path)
     print("\nWow, it all actually ran! Congratulations, you should be able to run this repo now.\n")
