@@ -134,7 +134,7 @@ def update_profile_yml(project_id, project_id_underscore, yaml):
     file, extension = path.splitext(profile)
     with open(file + copy_choice + extension, 'w') as f:
         yaml.dump(profile_yml, f)
-    return credentials_location
+    return credentials_location, username
 
 
 def inplace_or_copy(filetype):
@@ -182,9 +182,9 @@ def main():
     if path.exists(dbt_example_path):
         if input("\nCan I delete 'models/example'? (y/n)\n") == 'y':
             rmtree(dbt_example_path)
-    dbt_credentials_path = update_profile_yml(project_id, project_id_underscore, yaml)
+    dbt_credentials_path, username = update_profile_yml(project_id, project_id_underscore, yaml)
     print("Program terminated successfully!")
-    return dbt_project_path, project_id, yaml, dbt_credentials_path
+    return dbt_project_path, project_id, yaml, dbt_credentials_path, username
 
 
 if __name__ == '__main__':
