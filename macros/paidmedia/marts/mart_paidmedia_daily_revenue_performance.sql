@@ -32,6 +32,7 @@ SELECT
       transactions.campaign,
       transactions.campaign_label,
       transactions.audience,
+      transactions.appeal,
       subscribes.subscribes
 FROM {{ ref(campaigns) }} campaigns
 FULL JOIN {{ ref(impressions) }} impressions
