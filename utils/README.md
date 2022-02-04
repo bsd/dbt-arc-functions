@@ -21,9 +21,12 @@
     - [create_or_update_standard_models.py](#create_or_update_standard_modelspy)
       - [Usage](#usage-4)
       - [Plain English what it does](#plain-english-what-it-does-3)
-    - [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
+    - [delete_schemas.py](#delete_schemaspy)
       - [Usage](#usage-5)
       - [Plain English what it does](#plain-english-what-it-does-4)
+    - [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
+      - [Usage](#usage-6)
+      - [Plain English what it does](#plain-english-what-it-does-5)
 
 ## Description
 
@@ -67,7 +70,8 @@ This will get you into an environment ready made to run these files.
 1. [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
 2. [create_or_update_standard_models.py](#create_or_update_standard_modelspy)
 3. [compile_sources.py](#compile_sourcespy)
-4. [add_dependencies.py](#add_dependenciespy)
+4. [delete_schemas.py](#delete_schemaspy)
+5. [add_dependencies.py](#add_dependenciespy)
 
 ## Scripts explanations
 
@@ -108,6 +112,16 @@ When you're prototyping building out a set of models, it's easiest to do that in
 
 #### Plain English what it does
 This function allows you to build out models based on the sources we've used before ([found here.](https://github.com/bsd/dbt-arc-functions/tree/main/macros)) This function will build a set of models in the desired project.
+
+---
+
+### delete_schemas.py
+
+#### Usage
+`python delete_schemas.py`
+
+#### Plain English what it does
+This function deletes the specific schemas that your dbt profile has created so that you can start from a clean slate. This is particularly useful in our configuration because we use regex to roll up names of tables, and if you have old, unused tables in your schema this can cause unforseen errors.
 
 ---
 
