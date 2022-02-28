@@ -13,6 +13,7 @@ SELECT
                REGEXP_EXTRACT(impressions._dbt_source_relation, 
                               'stg_[a-z]+_([a-z_]+)_paidmedia')) 
                                        AS channel,
+      campaigns.channel_type,
       campaigns.campaign_name,
       impressions.date_timestamp,
       impressions.total_impressions,
