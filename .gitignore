@@ -7,3 +7,4 @@ logs/
 .idea*
 .vscode*
 __pycache__
+dbt_packages/
