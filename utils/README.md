@@ -12,21 +12,24 @@
     - [add_dependencies.py](#add_dependenciespy)
       - [Usage](#usage-1)
       - [Plain English what it does](#plain-english-what-it-does)
-    - [compile_sources.py](#compile_sourcespy)
+    - [clone_all_tables_and_views_in_schema.ipynb](#clone_all_tables_and_views_in_schemaipynb)
       - [Usage](#usage-2)
       - [Plain English what it does](#plain-english-what-it-does-1)
-    - [create_macros_from_sql.py](#create_macros_from_sqlpy)
+    - [compile_sources.py](#compile_sourcespy)
       - [Usage](#usage-3)
       - [Plain English what it does](#plain-english-what-it-does-2)
-    - [create_or_update_standard_models.py](#create_or_update_standard_modelspy)
+    - [create_macros_from_sql.py](#create_macros_from_sqlpy)
       - [Usage](#usage-4)
       - [Plain English what it does](#plain-english-what-it-does-3)
-    - [delete_schemas.py](#delete_schemaspy)
+    - [create_or_update_standard_models.py](#create_or_update_standard_modelspy)
       - [Usage](#usage-5)
       - [Plain English what it does](#plain-english-what-it-does-4)
-    - [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
+    - [delete_schemas.py](#delete_schemaspy)
       - [Usage](#usage-6)
       - [Plain English what it does](#plain-english-what-it-does-5)
+    - [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
+      - [Usage](#usage-7)
+      - [Plain English what it does](#plain-english-what-it-does-6)
 
 ## Description
 
@@ -84,6 +87,20 @@ This will get you into an environment ready made to run these files.
 Our table structures are build dynamically using macros _after_ dbt does its automatic generation of the [Directed Acyclic Graph (DAG.)](https://docs.getdbt.com/docs/introduction#:~:text=dbt%20builds%20a%20directed%20acyclic,predecessor%20of%20the%20current%20model.) This means that we have to inject little `-- depends_on:` code blocks at the top of our models to let them know what previous tables they depend on. This is a pain in the butt to do manually, so this program runs dbt over and over again until it stops suggesting `-- depends_on:` blocks to add to the top of your model.
 
 ---
+
+### clone_all_tables_and_views_in_schema.ipynb
+
+#### Usage
+Suggest you run this as a notebook in VertexAI Workbench as it will handle credentials for you.
+
+#### Plain English what it does
+Sometimes it's helpful to clone all the tables in one schema (say a `prod_rep` schema) to another (say a `dbt_your_username_rep` schema) for testing purposes, especially when you're upgrading versions of dbt and want to do a `dbt run` but don't want it to make new versions of all your incremental models. Clones in BQ are very nice because they're basically free.
+
+Read more here:
+[Introduction to table clones](https://cloud.google.com/bigquery/docs/table-clones-intro)
+
+---
+
 
 ### compile_sources.py
 
