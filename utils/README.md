@@ -94,6 +94,8 @@ Our table structures are build dynamically using macros _after_ dbt does its aut
 Suggest you run this as a notebook in VertexAI Workbench as it will handle credentials for you.
 
 #### Plain English what it does
+NOTE: Table clones are quite slow when tables are partitioned. Each table clone takes about the same amount of time, but with a partitioned table the script functionally has to make thousands of clones.
+
 Sometimes it's helpful to clone all the tables in one schema (say a `prod_rep` schema) to another (say a `dbt_your_username_rep` schema) for testing purposes, especially when you're upgrading versions of dbt and want to do a `dbt run` but don't want it to make new versions of all your incremental models. Clones in BQ are very nice because they're basically free.
 
 Read more here:
