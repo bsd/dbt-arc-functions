@@ -14,6 +14,7 @@ SELECT DISTINCT
     SAFE_CAST(subject AS STRING) AS email_subject,
     SAFE_CAST(campaign_name AS STRING) AS campaign_name
 FROM {{ ref(reference_name) }}
+{% endmacro %}
 
 
  
