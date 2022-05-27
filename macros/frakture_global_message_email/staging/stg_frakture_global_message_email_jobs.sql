@@ -15,9 +15,3 @@ SELECT DISTINCT
     SAFE_CAST(campaign_name AS STRING) AS campaign_name
 FROM {{ ref(reference_name) }}
 {% endmacro %}
-
-
- 
-
-
-
