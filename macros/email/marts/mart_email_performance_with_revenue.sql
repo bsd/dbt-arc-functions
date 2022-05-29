@@ -33,6 +33,11 @@ SELECT jobs.message_id,
     transactions.one_time_gifts,
     transactions.new_monthly_revenue,
     transactions.new_monthly_gifts,
+    transactions.campaign,
+    transactions.campaign_label,
+    transactions.message_set,
+    transactions.audience,
+    transactions.appeal
 FROM {{ ref(jobs) }} jobs
 FULL JOIN {{ ref(bounces) }} bounces
 USING (message_id)
