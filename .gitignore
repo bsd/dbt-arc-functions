@@ -3,7 +3,7 @@ target/
 dbt_modules/
 logs/
 .DS_Store
-*.ipynb*
+.ipynb_checkpoints
 .idea*
 .vscode*
 __pycache__
