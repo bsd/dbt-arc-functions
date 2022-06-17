@@ -24,12 +24,15 @@
     - [create_or_update_standard_models.py](#create_or_update_standard_modelspy)
       - [Usage](#usage-5)
       - [Plain English what it does](#plain-english-what-it-does-4)
-    - [delete_schemas.py](#delete_schemaspy)
+    - [create_views_from_stitch_datasets.ipynb](#create_views_from_stitch_datasetsipynb)
       - [Usage](#usage-6)
       - [Plain English what it does](#plain-english-what-it-does-5)
-    - [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
+    - [delete_schemas.py](#delete_schemaspy)
       - [Usage](#usage-7)
       - [Plain English what it does](#plain-english-what-it-does-6)
+    - [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
+      - [Usage](#usage-8)
+      - [Plain English what it does](#plain-english-what-it-does-7)
 
 ## Description
 
@@ -131,6 +134,16 @@ When you're prototyping building out a set of models, it's easiest to do that in
 
 #### Plain English what it does
 This function allows you to build out models based on the sources we've used before ([found here.](https://github.com/bsd/dbt-arc-functions/tree/main/macros)) This function will build a set of models in the desired project.
+
+---
+
+### create_views_from_stitch_datasets.ipynb
+
+#### Usage
+We suggest you run this as a notebook in VertexAI Workbench as it will handle credentials for you.
+
+#### Plain English what it does
+Our Stitch data all goes to a single Google Cloud Project and therefore BigQuery database. You're going to want to access that data from the client-specific GCP Projects and BigQuery databases. This script finds all datasets in the `bsd-stitch` BigQuery database that match the client shortname (i.e. `oxfam` for Oxfam, `msf` for Doctors Without Borders) and offers to copy each one of them over to the client-BigQuery instance as a dataset full of views. The dataset name willl be `src_stitch_{the_name_of_dataset_in_stitch_bq_instance}`
 
 ---
 
