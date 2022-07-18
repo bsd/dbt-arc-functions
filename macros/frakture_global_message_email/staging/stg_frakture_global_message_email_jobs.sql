@@ -1,6 +1,6 @@
 {% macro create_stg_frakture_global_message_email_jobs(
     reference_name='stg_frakture_global_message_email_summary_by_date') %}
-SELECT DISTINCT 
+WITH BASE AS (SELECT 
    SAFE_CAST(message_id AS STRING) AS message_id,
    SAFE_CAST(campaign_id AS STRING) AS campaign_id,
 ## to do: extract from name and from email from the "from_name" value and split
@@ -13,5 +13,7 @@ SELECT DISTINCT
     SAFE_CAST(label AS STRING) AS email_name,
     SAFE_CAST(subject AS STRING) AS email_subject,
     SAFE_CAST(campaign_name AS STRING) AS campaign_name
-FROM {{ ref(reference_name) }}
+FROM {{ ref(reference_name) }})
+
+SELECT DISTINCT * FROM BASE
 {% endmacro %}
