@@ -3,7 +3,6 @@
 SELECT DISTINCT 
    SAFE_CAST(message_id AS STRING) AS message_id,
    SAFE_CAST(campaign_id AS STRING) AS campaign_id,
-## to do: extract from name and from email from the "from_name" value and split
     SAFE_CAST(from_name AS STRING) AS from_name,
     SAFE_CAST(from_name AS STRING) AS from_email,
     SAFE_CAST(publish_date AS TIMESTAMP) AS best_guess_timestamp,
