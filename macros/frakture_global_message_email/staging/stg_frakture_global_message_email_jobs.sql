@@ -1,6 +1,6 @@
 {% macro create_stg_frakture_global_message_email_jobs(
-    reference_name='stg_frakture_global_message_email_summary_by_date') %}
-SELECT DISTINCT 
+    reference_name='stg_frakture_global_message_email_message_unioned') %}
+SELECT 
    SAFE_CAST(message_id AS STRING) AS message_id,
    SAFE_CAST(campaign_id AS STRING) AS campaign_id,
     SAFE_CAST(from_name AS STRING) AS from_name,

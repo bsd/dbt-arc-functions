@@ -1,7 +1,6 @@
 {% macro create_stg_frakture_global_message_email_transactions_sourced_rollup(
-    reference_name='stg_frakture_global_message_email_summary_by_date') %}
+    reference_name='stg_frakture_global_message_email_summary_unioned') %}
 SELECT SAFE_CAST(message_id AS STRING) AS message_id,   
-SAFE_CAST(publish_date AS TIMESTAMP) AS date_timestamp, 
     SAFE_CAST(attributed_revenue AS numeric) AS total_revenue,
     SAFE_CAST(attributed_transactions AS int) AS total_gifts,
     SAFE_CAST(origin_person_count AS int) AS total_donors,  -- doesn't seem available in Frakture ad_summary tables
