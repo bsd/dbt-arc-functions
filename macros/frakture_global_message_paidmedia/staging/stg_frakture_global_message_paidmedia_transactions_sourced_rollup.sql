@@ -1,6 +1,7 @@
 {% macro create_stg_frakture_global_message_paidmedia_transactions_sourced_rollup(
     reference_name='stg_frakture_global_message_paidmedia_ad_summary_by_date') %}
-SELECT SAFE_CAST(ad_summary.message_id AS STRING) AS message_id,    SAFE_CAST(ad_summary.date AS TIMESTAMP) AS date_timestamp,
+SELECT SAFE_CAST(ad_summary.message_id AS STRING) AS message_id,
+    SAFE_CAST(ad_summary.date AS TIMESTAMP) AS date_timestamp,
     SAFE_CAST(ad_summary.attributed_revenue AS numeric) AS total_revenue,
     SAFE_CAST(ad_summary.attributed_transactions AS int) AS total_gifts,
     SAFE_CAST(ad_summary.origin_person_count AS int) AS total_donors,  -- doesn't seem available in Frakture ad_summary tables
