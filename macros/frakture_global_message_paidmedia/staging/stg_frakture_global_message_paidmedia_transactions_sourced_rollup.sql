@@ -14,6 +14,7 @@ SELECT SAFE_CAST(ad_summary.message_id AS STRING) AS message_id,
     SAFE_CAST(ad_summary.campaign  AS STRING) AS campaign,
     SAFE_CAST(ad_summary.campaign_label  AS STRING) AS campaign_label,
     SAFE_CAST(ad_summary.audience  AS STRING) AS audience,
-    SAFE_CAST(ad_summary.appeal AS STRING) AS appeal
+    SAFE_CAST(ad_summary.appeal AS STRING) AS appeal,
+    SAFE_CAST(ad_summary.final_primary_source_code as STRING) as source_code
  FROM  {{ ref(reference_name) }} ad_summary
 {% endmacro %}
