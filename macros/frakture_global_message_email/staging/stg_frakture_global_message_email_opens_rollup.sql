@@ -1,6 +1,7 @@
 {% macro create_stg_frakture_global_message_email_opens_rollup(
-    reference_name='stg_frakture_global_message_email_summary_by_date') %}
-SELECT DISTINCT SAFE_CAST(message_id AS STRING) AS message_id,
-  SAFE_CAST(impressions AS INT) AS opens
+    reference_name='stg_frakture_global_message_email_summary') %}
+SELECT SAFE_CAST(message_id AS STRING) AS message_id,
+  SUM(SAFE_CAST(impressions AS INT)) AS opens
 FROM {{ ref(reference_name) }} 
+GROUP BY 1
 {% endmacro %}

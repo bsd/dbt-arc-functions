@@ -10,13 +10,13 @@ SELECT jobs.message_id,
     jobs.from_name,
     jobs.from_email,
     jobs.campaign_name,
-    jobs.campaign_id,
     jobs.best_guess_timestamp,
     jobs.scheduled_timestamp,
     jobs.pickup_timestamp,
     jobs.delivered_timestamp,
     jobs.email_name,
     jobs.email_subject,
+    jobs.source_code,
     recipients.recipients,
     opens.opens,
     clicks.clicks,
@@ -32,12 +32,7 @@ SELECT jobs.message_id,
     transactions.one_time_revenue,
     transactions.one_time_gifts,
     transactions.new_monthly_revenue,
-    transactions.new_monthly_gifts,
-    transactions.campaign,
-    transactions.campaign_label,
-    transactions.message_set,
-    transactions.audience,
-    transactions.appeal
+    transactions.new_monthly_gifts
 FROM {{ ref(jobs) }} jobs
 FULL JOIN {{ ref(bounces) }} bounces
 USING (message_id)
