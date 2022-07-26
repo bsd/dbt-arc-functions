@@ -1,5 +1,5 @@
 {% macro create_stg_frakture_global_message_email_transactions_sourced_rollup(
-    reference_name='stg_frakture_global_message_email_summary_unioned') %}
+    reference_name='stg_frakture_global_message_email_summary') %}
 SELECT SAFE_CAST(message_id AS STRING) AS message_id,   
     SUM(SAFE_CAST(attributed_revenue AS numeric)) AS total_revenue,
     SUM(SAFE_CAST(attributed_transactions AS int)) AS total_gifts,
