@@ -27,7 +27,7 @@ Look [here in utils](https://github.com/bsd/dbt-arc-functions/tree/main/utils) f
 
 3. Make changes and test them, check the boxes below:
 
-[]- Test that the project still successfully dbt compile 
+-[x] Test that the project still successfully dbt compile 
 
 [] Test branch on a development branch of an existing client (ideally the one that raised the bug)
 
