@@ -29,7 +29,7 @@ Look [here in utils](https://github.com/bsd/dbt-arc-functions/tree/main/utils) f
 
 - [ ] Test that the project still successfully dbt compile 
 
-- [ ] Test branch on a development branch of an existing client (ideally the one that raised the bug)
+- [ ] Test branch on a development branch of an existing client (ideally the one that raised the bug) x
 
 - [ ] do this by changing revision of the package to the branch name in `packages.yml` file in dbt
 
