@@ -25,7 +25,7 @@ Look [here in utils](https://github.com/bsd/dbt-arc-functions/tree/main/utils) f
 
 2. Create new branch
 
-3. Make changes and test them, check the boxes below:
+3. Make changes and test them, COPY tests below to PR description tick them:
 
 - [ ] Test that the project still successfully dbt compile 
 
