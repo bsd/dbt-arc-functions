@@ -1,4 +1,7 @@
 # utils
+
+Look [here](https://bluestate.atlassian.net/wiki/spaces/ATeam/pages/2986049548/Technical+introduction+to+ARC#Utils) for an intro to why these utils exist!
+
 ## Table of Contents
 - [utils](#utils)
   - [Table of Contents](#table-of-contents)
