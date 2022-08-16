@@ -2,6 +2,8 @@
 
 Functions used across clients using dbt in Analytics Reporting Cloud.
 
+Wonder why this repo exists? Look [here](https://bluestate.atlassian.net/wiki/spaces/ATeam/pages/2986049548/Technical+introduction+to+ARC#Data-transformation)!
+
 ## Currently available products
 
 Look [here in macros](https://github.com/bsd/dbt-arc-functions/tree/main/macros) for products we currently support.
