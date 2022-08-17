@@ -19,6 +19,6 @@ SELECT
     SUM(COALESCE(total_gifts,0)) AS total_gifts
 FROM {{ ref(reference_1_name) }}
 WHERE date_timestamp IS NOT NULL
-GROUP BY 1,2
+GROUP BY 1,2, 3
 
 {% endmacro %}
