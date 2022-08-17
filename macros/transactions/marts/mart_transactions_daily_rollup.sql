@@ -11,6 +11,9 @@ SELECT
   COALESCE(channel, channel_from_source_code) AS channel_best_guess,
   campaign,
   audience,
+  crm_entity,
+  source_code_entity,
+  coalesce(crm_entity,source_code_entity) as best_guess_entity
   SUM(amount) AS total_amount,
   SUM(CASE
       WHEN recurring_revenue THEN amount
@@ -36,5 +39,8 @@ GROUP BY
   5,
   6,
   7,
-  8
+  8,
+  9,
+    10,
+    11
 {% endmacro %}
