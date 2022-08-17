@@ -20,13 +20,13 @@ SELECT
     ELSE
     0
   END
-    ) total_recurring_revenue,
+    ) as total_recurring_revenue,
   SUM(CASE
       WHEN new_recurring_revenue THEN amount
     ELSE
     0
   END
-    ) total_new_recurring_revenue,
+    ) as total_new_recurring_revenue,
   COUNT(DISTINCT person_id) AS number_of_donors,
   COUNT(transaction_id_in_source_crm) AS number_of_transactions
 FROM
