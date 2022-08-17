@@ -13,7 +13,10 @@ SELECT
   audience,
   crm_entity,
   source_code_entity,
-  coalesce(crm_entity,source_code_entity) as best_guess_entity,
+  case when (crm_entity is not null and source_code_entity is not null)
+          then CONCAT(crm_entity,'-', source_code_entity)
+          else COALESCE(crm_entity,source_code_entity) END
+          as best_guess_entity,
   SUM(amount) AS total_amount,
   SUM(CASE
       WHEN recurring_revenue THEN amount

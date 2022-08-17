@@ -20,7 +20,10 @@ SELECT jobs.message_id,
     jobs.source_code,
     campaigns.crm_entity,
     campaigns.source_code_entity,
-    COALESCE(campaigns.crm_entity, campaigns.source_code_entity) as best_guess_entity,
+    case when (campaigns.crm_entity is not null and campaigns.source_code_entity is not null)
+          then CONCAT(campaigns.crm_entity,'-', campaigns.source_code_entity)
+          else COALESCE(campaigns.crm_entity,campaigns.source_code_entity) END
+          as best_guess_entity,
     recipients.recipients,
     opens.opens,
     clicks.clicks,
