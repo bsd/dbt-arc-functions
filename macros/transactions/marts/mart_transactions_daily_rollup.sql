@@ -13,7 +13,7 @@ SELECT
   audience,
   crm_entity,
   source_code_entity,
-  coalesce(crm_entity,source_code_entity) as best_guess_entity
+  coalesce(crm_entity,source_code_entity) as best_guess_entity,
   SUM(amount) AS total_amount,
   SUM(CASE
       WHEN recurring_revenue THEN amount
