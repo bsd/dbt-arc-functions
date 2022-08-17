@@ -40,7 +40,7 @@ SELECT jobs.message_id,
 FROM {{ ref(jobs) }} jobs
 FULL JOIN {{ ref(bounces) }} bounces
 USING (message_id)
-FULL JOIN {{ ref(campaigns) }}
+FULL JOIN {{ ref(campaigns) }} campaigns
 USING (message_id)
 FULL JOIN {{ ref(clicks) }} clicks
 USING (message_id)
