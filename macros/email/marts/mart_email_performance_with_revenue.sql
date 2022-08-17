@@ -24,6 +24,7 @@ SELECT jobs.message_id,
           then CONCAT(campaigns.crm_entity,'-', campaigns.source_code_entity)
           else COALESCE(campaigns.crm_entity,campaigns.source_code_entity) END
           as best_guess_entity,
+    campaigns.audience,
     recipients.recipients,
     opens.opens,
     clicks.clicks,
