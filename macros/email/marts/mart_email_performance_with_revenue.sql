@@ -20,7 +20,7 @@ SELECT jobs.message_id,
     jobs.source_code,
     campaigns.crm_entity,
     campaigns.source_code_entity,
-    COALESCE(campaigns.crm_entity,source_code_entity) as best_guess_entity
+    COALESCE(campaigns.crm_entity,source_code_entity) as best_guess_entity,
     recipients.recipients,
     opens.opens,
     clicks.clicks,

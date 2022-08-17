@@ -17,7 +17,7 @@ SELECT
       campaigns.campaign_name,
       campaigns.crm_entity,
       campaigns.source_code_entity,
-      COALESCE(campaigns.crm_entity,source_code_entity) as best_guess_entity
+      COALESCE(campaigns.crm_entity,source_code_entity) as best_guess_entity,
       impressions.date_timestamp,
       impressions.total_impressions,
       impressions.unique_impressions,
