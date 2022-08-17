@@ -20,7 +20,7 @@ SELECT jobs.message_id,
     jobs.source_code,
     campaigns.crm_entity,
     campaigns.source_code_entity,
-    COALESCE(campaigns.crm_entity,source_code_entity) as best_guess_entity,
+    COALESCE(campaigns.crm_entity, campaigns.source_code_entity) as best_guess_entity,
     recipients.recipients,
     opens.opens,
     clicks.clicks,
@@ -40,7 +40,7 @@ SELECT jobs.message_id,
 FROM {{ ref(jobs) }} jobs
 FULL JOIN {{ ref(bounces) }} bounces
 USING (message_id)
-FULL JOIN {{ ref(campaigns)}}
+FULL JOIN {{ ref(campaigns) }}
 USING (message_id)
 FULL JOIN {{ ref(clicks) }} clicks
 USING (message_id)
