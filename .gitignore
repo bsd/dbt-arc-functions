@@ -8,3 +8,4 @@ logs/
 .vscode*
 __pycache__
 dbt_packages/
+.sqlfluff

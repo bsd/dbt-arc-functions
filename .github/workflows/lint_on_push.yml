@@ -1,0 +1,24 @@
+name: lint dbt project on push
+
+on:
+  push:
+    branches-ignore:
+      - 'main'
+
+jobs:
+# this job runs SQLFluff with a specific set of rules
+  # note the dialect is set to Snowflake, so make that specific to your setup
+  # details on linter rules: https://docs.sqlfluff.com/en/stable/rules.html
+  lint_project:
+    name: Run SQLFluff linter
+    runs-on: ubuntu-latest
+  
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-python@v2"
+        with:
+          python-version: "3.9"
+      - name: Install SQLFluff
+        run: "pip install sqlfluff==0.13.1"
+      - name: Lint project
+        run: "sqlfluff lint macros --dialect bigquery --rules L019,L020,L021,L022"
