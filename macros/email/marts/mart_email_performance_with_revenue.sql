@@ -1,5 +1,6 @@
 {% macro create_mart_email_performance_with_revenue(
     jobs='stg_email_jobs_unioned',
+    campaigns='stg_email_campaigns_unioned',
     bounces='stg_email_bounces_rollup_unioned',
     clicks='stg_email_clicks_rollup_unioned',
     opens='stg_email_opens_rollup_unioned',
@@ -17,6 +18,13 @@ SELECT jobs.message_id,
     jobs.email_name,
     jobs.email_subject,
     jobs.source_code,
+    campaigns.crm_entity,
+    campaigns.source_code_entity,
+    case when (campaigns.crm_entity is not null and campaigns.source_code_entity is not null)
+          then CONCAT(campaigns.crm_entity,'-', campaigns.source_code_entity)
+          else COALESCE(campaigns.crm_entity,campaigns.source_code_entity) END
+          as best_guess_entity,
+    campaigns.audience,
     recipients.recipients,
     opens.opens,
     clicks.clicks,
@@ -35,6 +43,8 @@ SELECT jobs.message_id,
     transactions.new_monthly_gifts
 FROM {{ ref(jobs) }} jobs
 FULL JOIN {{ ref(bounces) }} bounces
+USING (message_id)
+FULL JOIN {{ ref(campaigns) }} campaigns
 USING (message_id)
 FULL JOIN {{ ref(clicks) }} clicks
 USING (message_id)

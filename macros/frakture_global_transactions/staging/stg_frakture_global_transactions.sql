@@ -15,7 +15,9 @@ SELECT
   campaign AS campaign,
   channel AS channel,
   audience AS audience,
-  source_code_channel AS channel_from_source_code,
+  safe_cast(transaction_bot_id as STRING) as crm_entity,
+  safe_cast(affiliation as STRING) as source_code_entity,
+  source_code_channel AS channel_from_source_code
 FROM
   {{ source(source_name,source_table_name) }}
 {% endmacro %}

@@ -4,19 +4,21 @@
 SELECT 
     TIMESTAMP_TRUNC(best_guess_timestamp,DAY) as date_timestamp,
     'email' AS channel,
+    best_guess_entity,
     SUM(COALESCE(total_revenue,0)) AS total_revenue,
     SUM(COALESCE(total_gifts,0)) AS total_gifts
 FROM {{ ref(reference_0_name) }}
 WHERE TIMESTAMP_TRUNC(best_guess_timestamp,DAY) IS NOT NULL
-GROUP BY 1,2
+GROUP BY 1,2, 3
 UNION ALL
 SELECT
     date_timestamp,
     channel,
+    best_guess_entity,
     SUM(COALESCE(total_revenue,0)) AS total_revenue,
     SUM(COALESCE(total_gifts,0)) AS total_gifts
 FROM {{ ref(reference_1_name) }}
 WHERE date_timestamp IS NOT NULL
-GROUP BY 1,2
+GROUP BY 1,2, 3
 
 {% endmacro %}

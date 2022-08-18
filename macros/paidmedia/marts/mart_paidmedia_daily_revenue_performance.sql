@@ -15,6 +15,12 @@ SELECT
                                        AS channel,
       campaigns.channel_type,
       campaigns.campaign_name,
+      campaigns.crm_entity,
+      campaigns.source_code_entity,
+      case when (campaigns.crm_entity is not null and campaigns.source_code_entity is not null)
+          then CONCAT(campaigns.crm_entity,'-', campaigns.source_code_entity)
+          else COALESCE(campaigns.crm_entity,campaigns.source_code_entity) END
+          as best_guess_entity,
       impressions.date_timestamp,
       impressions.total_impressions,
       impressions.unique_impressions,
