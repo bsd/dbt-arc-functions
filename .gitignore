@@ -1,10 +1,4 @@
-
-target/
-dbt_modules/
-logs/
-.DS_Store
-.ipynb_checkpoints
-.idea*
-.vscode*
-__pycache__
-dbt_packages/
+.dbtenv/
+requirements.txt
+.sqlfluff
+.sqlfluffignore
