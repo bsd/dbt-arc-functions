@@ -3,3 +3,5 @@ requirements.txt
 .sqlfluff
 .sqlfluffignore
 .vscode/settings.json
+target/
+dbt_modules/
