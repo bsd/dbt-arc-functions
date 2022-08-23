@@ -8,6 +8,6 @@ case when crm_campaign is not null
       then crm_campaign 
       else source_code_campaign END 
       AS campaign_name
-FROM {{ ref(reference_name) }})
+FROM {{ ref(reference_name) }}
 
 {% endmacro %}
