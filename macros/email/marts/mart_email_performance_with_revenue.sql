@@ -1,6 +1,6 @@
 {% macro create_mart_email_performance_with_revenue(
     jobs='stg_email_jobs_unioned',
-    campaigns='stg_email_campaigns_unioned',
+    campaigns='stg_email_campaigns_rollup_unioned',
     campaign_dates='stg_email_campaign_dates_rollup_unioned',
     bounces='stg_email_bounces_rollup_unioned',
     clicks='stg_email_clicks_rollup_unioned',
