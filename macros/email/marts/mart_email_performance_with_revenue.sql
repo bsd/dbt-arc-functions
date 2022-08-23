@@ -17,12 +17,6 @@ SELECT jobs.message_id,
     jobs.delivered_timestamp,
     jobs.email_name,
     jobs.email_subject,
-    jobs.crm_campaign,
-    jobs.source_code_campaign,
-    case when jobs.crm_campaign is not null 
-                then jobs.crm_campaign 
-                else jobs.source_code_campaign END 
-                AS campaign_name,
     jobs.source_code,
     campaigns.crm_entity,
     campaigns.source_code_entity,
@@ -31,6 +25,12 @@ SELECT jobs.message_id,
           else COALESCE(campaigns.crm_entity,campaigns.source_code_entity) END
           AS best_guess_entity,
     campaigns.audience,
+    campaigns.crm_campaign,
+    campaigns.source_code_campaign,
+    case when campaigns.crm_campaign is not null 
+                then campaigns.crm_campaign 
+                else campaigns.source_code_campaign END 
+                AS campaign_name,
     recipients.recipients,
     opens.opens,
     clicks.clicks,
