@@ -17,13 +17,19 @@ SELECT jobs.message_id,
     jobs.delivered_timestamp,
     jobs.email_name,
     jobs.email_subject,
+    jobs.crm_campaign,
+    jobs.source_code_campaign,
+    case when jobs.crm_campaign is not null 
+                then jobs.crm_campaign 
+                else jobs.source_code_campaign END 
+                AS best_guess_campaign,
     jobs.source_code,
     campaigns.crm_entity,
     campaigns.source_code_entity,
     case when (campaigns.crm_entity is not null and campaigns.source_code_entity is not null)
           then CONCAT(campaigns.crm_entity,'-', campaigns.source_code_entity)
           else COALESCE(campaigns.crm_entity,campaigns.source_code_entity) END
-          as best_guess_entity,
+          AS best_guess_entity,
     campaigns.audience,
     recipients.recipients,
     opens.opens,
