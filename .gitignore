@@ -7,3 +7,9 @@ target/
 dbt_modules/
 logs/
 dbt_packages/
+.ipynb_checkpoints
+.idea*
+.vscode*
+__pycache__
+.DStore
+*.DStore
