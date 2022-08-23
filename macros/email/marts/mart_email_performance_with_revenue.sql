@@ -27,7 +27,7 @@ SELECT jobs.message_id,
           else COALESCE(campaigns.crm_entity,campaigns.source_code_entity) END
           AS best_guess_entity,
     campaigns.audience,
-    coalesce(campaigns.campaign_name, campaigns_dates.campaign_name) as campaign_name,
+    coalesce(campaigns.campaign_name, campaign_dates.campaign_name) as campaign_name,
     recipients.recipients,
     opens.opens,
     clicks.clicks,
@@ -60,5 +60,5 @@ USING (message_id)
 FULL JOIN {{ ref(unsubscribes) }} unsubscribes
 USING (message_id)
 FULL JOIN {{ ref(campaign_dates)}} campaign_dates
-ON campaigns.campaign_name = campaigns_dates.campaign_name
+ON campaigns.campaign_name = campaign_dates.campaign_name
 {% endmacro %}
