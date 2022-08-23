@@ -60,5 +60,5 @@ USING (message_id)
 FULL JOIN {{ ref(unsubscribes) }} unsubscribes
 USING (message_id)
 FULL JOIN {{ ref(campaign_dates)}} campaign_dates
-USING (campaign_name)
+ON campaigns.campaign_name = campaigns_dates.campaign_name
 {% endmacro %}
