@@ -27,7 +27,7 @@ SELECT jobs.message_id,
           else COALESCE(campaigns.crm_entity,campaigns.source_code_entity) END
           AS best_guess_entity,
     campaigns.audience,
-    coalesce(campaigns.campaign_name, campaign_dates.campaign_name) as campaign_name,
+    COALESCE(campaigns.campaign_name, campaign_dates.campaign_name) as campaign_name,
     recipients.recipients,
     opens.opens,
     clicks.clicks,
