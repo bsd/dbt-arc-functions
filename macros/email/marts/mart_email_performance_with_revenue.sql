@@ -1,6 +1,7 @@
 {% macro create_mart_email_performance_with_revenue(
     jobs='stg_email_jobs_unioned',
     campaigns='stg_email_campaigns_unioned',
+    campaign_dates='stg_email_campaign_dates_rollup_unioned',
     bounces='stg_email_bounces_rollup_unioned',
     clicks='stg_email_clicks_rollup_unioned',
     opens='stg_email_opens_rollup_unioned',
@@ -14,6 +15,8 @@ SELECT jobs.message_id,
     jobs.scheduled_timestamp,
     jobs.pickup_timestamp,
     jobs.delivered_timestamp,
+    campaign_dates.campaign_start_timestamp,
+    campaign_dates.campaign_latest_timestamp,
     jobs.email_name,
     jobs.email_subject,
     jobs.source_code,
@@ -24,12 +27,7 @@ SELECT jobs.message_id,
           else COALESCE(campaigns.crm_entity,campaigns.source_code_entity) END
           AS best_guess_entity,
     campaigns.audience,
-    campaigns.crm_campaign,
-    campaigns.source_code_campaign,
-    case when campaigns.crm_campaign is not null 
-                then campaigns.crm_campaign 
-                else campaigns.source_code_campaign END 
-                AS campaign_name,
+    coalesce(campaigns.campaign_name, campaigns_dates.campaign_name) as campaign_name,
     recipients.recipients,
     opens.opens,
     clicks.clicks,
@@ -61,4 +59,6 @@ FULL JOIN {{ ref(transactions) }}  transactions
 USING (message_id)
 FULL JOIN {{ ref(unsubscribes) }} unsubscribes
 USING (message_id)
+FULL JOIN {{ ref(campaign_dates)}} campaign_dates
+USING (campaign_name)
 {% endmacro %}
