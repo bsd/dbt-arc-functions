@@ -5,3 +5,5 @@ requirements.txt
 .vscode/settings.json
 target/
 dbt_modules/
+logs/
+dbt_packages/
