@@ -22,7 +22,7 @@ SELECT jobs.message_id,
     case when jobs.crm_campaign is not null 
                 then jobs.crm_campaign 
                 else jobs.source_code_campaign END 
-                AS best_guess_campaign,
+                AS campaign_name,
     jobs.source_code,
     campaigns.crm_entity,
     campaigns.source_code_entity,
