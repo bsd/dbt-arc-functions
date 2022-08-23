@@ -11,7 +11,7 @@ SELECT
     SAFE_CAST(label AS STRING) AS email_name,
     SAFE_CAST(subject AS STRING) AS email_subject,
     SAFE_CAST(campaign_name AS STRING) AS crm_campaign,
-    SAFE_CAST(campaign_label AS STRING) AS source_code_campaign,
+    SAFE_CAST(coalesce(campaign,campaign_label) AS STRING) AS source_code_campaign,
     SAFE_CAST(final_primary_source_code as STRING) as source_code
 FROM {{ ref(reference_name) }}
 {% endmacro %}
