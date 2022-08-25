@@ -10,7 +10,6 @@ SELECT
     SAFE_CAST(NULL AS TIMESTAMP) AS delivered_timestamp,
     SAFE_CAST(label AS STRING) AS email_name,
     SAFE_CAST(subject AS STRING) AS email_subject,
-    SAFE_CAST(campaign_name AS STRING) AS campaign_name,
     SAFE_CAST(final_primary_source_code as STRING) as source_code
 FROM {{ ref(reference_name) }}
 {% endmacro %}
