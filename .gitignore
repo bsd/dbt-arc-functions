@@ -1,5 +1,4 @@
 .dbtenv/
-requirements.txt
 .sqlfluff
 .sqlfluffignore
 .vscode/settings.json
@@ -11,5 +10,6 @@ dbt_packages/
 .idea*
 .vscode*
 __pycache__
-.DStore
-*.DStore
+.DS_Store
+*.DS_Store
+
