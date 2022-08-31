@@ -4,6 +4,7 @@ SELECT DISTINCT message_id,
     crm_entity,
     source_code_entity,
     audience,
+    recurtype,
     COALESCE(crm_campaign,source_code_campaign) AS campaign_name
 FROM {{ ref(reference_name) }}
 {% endmacro %}
