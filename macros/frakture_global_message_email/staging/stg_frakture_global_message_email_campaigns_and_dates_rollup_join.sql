@@ -1,5 +1,5 @@
 {% macro create_stg_frakture_global_message_email_campaigns_and_dates_rollup_join(
-    campaigns='stg_frakture_global_message_email_campaigns_rollup'
+    campaigns='stg_frakture_global_message_email_campaigns_rollup',
     campaign_dates='stg_frakture_global_message_email_campaign_dates_rollup'
     ) %}
 SELECT DISTINCT campaigns.message_id,
