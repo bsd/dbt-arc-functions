@@ -51,6 +51,8 @@ SELECT jobs.message_id,
 FROM {{ ref(jobs) }} jobs
 FULL JOIN {{ ref(bounces) }} bounces
 USING (message_id)
+FULL JOIN {{ ref(campaigns) }} campaigns
+USING (message_id)
 FULL JOIN {{ ref(clicks) }} clicks
 USING (message_id)
 FULL JOIN {{ ref(actions) }} actions
@@ -63,8 +65,6 @@ FULL JOIN {{ ref(transactions) }}  transactions
 USING (message_id)
 FULL JOIN {{ ref(unsubscribes) }} unsubscribes
 USING (message_id)
-LEFT JOIN {{ ref(campaigns) }} campaigns
-USING (message_id)
-LEFT JOIN {{ ref(campaign_dates)}} campaign_dates
+FULL JOIN {{ ref(campaign_dates)}} campaign_dates
 ON campaigns.campaign_name = campaign_dates.campaign_name
 {% endmacro %}
