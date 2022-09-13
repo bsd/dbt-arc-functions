@@ -47,7 +47,9 @@ SELECT jobs.message_id,
     transactions.one_time_revenue,
     transactions.one_time_gifts,
     transactions.new_monthly_revenue,
-    transactions.new_monthly_gifts
+    transactions.new_monthly_gifts,
+    transactions.total_monthly_revenue,
+    transactions.total_monthly_gifts
 FROM {{ ref(jobs) }} jobs
 FULL JOIN {{ ref(bounces) }} bounces
 USING (message_id)
