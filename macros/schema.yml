@@ -2,11 +2,26 @@ version: 2
 
 macros:
   - name: create_mart_combined_email_paidmedia_daily_revenue_performance
-    description: A macro that unions the mart_paidmedia model and the mart_email model
+    description: a macro that unions two tables
     arguments:
       - name: reference_0_name
         type: string
         description: the name of the email model
-      - name: reference_0_name
+      - name: reference_1_name
         type: string
         description: the name of the paidmedia model
+
+models:
+  - name: mart_combined_email_paidmedia_daily_revenue_performance
+    description: a model that unions the mart_paidmedia model and the mart_email model
+    columns:
+    - name: channel
+      description: bot name from frakture
+    - name: best_guess_entity
+      description: > 
+        concatenates the bot label and the entity-related source code together. 
+        aim is to identify multiple accounts from the same channel.
+    - name: total_revenue
+      description: sum of all revenue
+    - name: total_gifts
+      description: count of transactions
