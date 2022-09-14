@@ -1,0 +1,12 @@
+version: 2
+
+macros:
+  - name: create_mart_combined_email_paidmedia_daily_revenue_performance
+    description: A macro that unions the mart_paidmedia model and the mart_email model
+    arguments:
+      - name: reference_0_name
+        type: string
+        description: the name of the email model
+      - name: reference_0_name
+        type: string
+        description: the name of the paidmedia model
