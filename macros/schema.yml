@@ -15,13 +15,13 @@ models:
   - name: mart_combined_email_paidmedia_daily_revenue_performance
     description: a model that unions the mart_paidmedia model and the mart_email model
     columns:
-    - name: channel
-      description: bot name from frakture
-    - name: best_guess_entity
-      description: > 
-        concatenates the bot label and the entity-related source code together. 
-        aim is to identify multiple accounts from the same channel.
-    - name: total_revenue
-      description: sum of all revenue
-    - name: total_gifts
-      description: count of transactions
+      - name: channel
+        description: bot name from frakture
+      - name: best_guess_entity
+        description: > 
+          concatenates the bot label and the entity-related source code together. 
+          aim is to identify multiple accounts from the same channel.
+      - name: total_revenue
+        description: sum of all revenue
+      - name: total_gifts
+        description: count of transactions
