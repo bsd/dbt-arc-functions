@@ -5,6 +5,7 @@ SELECT DISTINCT message_id,
     source_code_entity,
     audience,
     recurtype,
+    test_group,
     campaign_category,
     COALESCE(crm_campaign,source_code_campaign) AS campaign_name
 FROM {{ ref(reference_name) }}
