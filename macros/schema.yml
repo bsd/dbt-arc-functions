@@ -10,6 +10,19 @@ macros:
       - name: reference_1_name
         type: string
         description: the name of the paidmedia model
+  - name: create_mart_email_performance_with_revenue
+    description: a macro that builds the ARC email reporting table 
+    arguments:
+      - name: jobs
+      - name: campaigns
+      - name: campaign_dates
+      - name: bounces
+      - name: clicks
+      - name: opens
+      - name: actions
+      - name: recipients
+      - name: transactions
+      - name: unsubscribes
 
 models:
   - name: mart_combined_email_paidmedia_daily_revenue_performance
@@ -25,3 +38,82 @@ models:
         description: sum of all revenue
       - name: total_gifts
         description: count of transactions
+  - name: mart_email_performance_with_revenue
+    description: a model that rolls up email performance KPIs by email name, showing a date
+    columns:
+      - name: message_id
+        description:
+      - name: from_name
+        description:
+      - name: from_email
+        description:
+      - name: best_guess_timestamp
+        description:        
+      - name: scheduled_timestamp
+        description:
+      - name: pickup_timestamp
+        description:
+      - name: delivered_timestamp
+        description:
+      - name: campaign_start_timestamp
+        description:        
+      - name: campaign_latest_timestamp
+        description:
+      - name: email_name
+        description:
+      - name: email_subject
+        description:
+      - name: source_code
+        description:        
+      - name: crm_entity
+        description:
+      - name: source_code_entity
+        description:
+      - name: best_guess_entity
+        description:
+      - name: audience
+        description:        
+      - name: campaign_category
+        description:
+      - name: campaign_name
+        description:
+      - name: recurtype
+        description:
+      - name: recipients
+        description:        
+      - name: opens
+        description:
+      - name: clicks
+        description:
+      - name: actions
+        description:
+      - name: total_bounces
+        description:        
+      - name: block_bounces
+        description:
+      - name: tech_bounces
+        description:
+      - name: soft_bounces
+        description:
+      - name: unknown_bounces
+        description:        
+      - name: unsubscribes
+        description:
+      - name: total_revenue
+        description:
+      - name: total_gifts
+        description:
+      - name: total_donors
+        description:        
+      - name: one_time_revenue
+        description:
+      - name: one_time_gifts
+        description:
+      - name: new_monthly_revenue
+        description:
+      - name: new_monthly_gifts
+        description: 
+      - name: total_monthly_revenue
+        description: 
+      - name: total_monthly_gifts
+        description: 
