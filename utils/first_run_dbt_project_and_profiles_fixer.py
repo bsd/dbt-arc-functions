@@ -6,6 +6,7 @@
 from os import path
 from shutil import rmtree
 
+import git
 import ruamel.yaml
 
 credentials_helptext = """
@@ -160,13 +161,16 @@ def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
 
 
 def get_active_branch_name():
-    head_dir = path.join("..", ".git", "HEAD")
-    with open(head_dir, "r") as f:
-        content = f.read().splitlines()
-
-    for line in content:
-        if line[0:4] == "ref:":
-            return line.partition("refs/heads/")[2]
+    repo = git.Repo(search_parent_directories=True)
+    current_commit = repo.commit()
+    revision = None
+    for tag in repo.tags:
+        if current_commit == tag.commit:
+            revision = str(tag)
+            break
+    else:
+        revision = repo.active_branch.name
+    return revision
 
 
 def main():
