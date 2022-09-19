@@ -162,6 +162,7 @@ def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
 
 def get_active_branch_name():
     repo = git.Repo(search_parent_directories=True)
+    current_commit = repo.commit()
     revision = None
     for tag in repo.tags:
         if current_commit == tag.commit:
