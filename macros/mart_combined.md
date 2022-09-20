@@ -10,4 +10,4 @@
   - **total_revenue**: sum of all revenue
   - **total_gifts**: count of transactions
 
-{% endocs %}
+{% enddocs %}
