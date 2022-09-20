@@ -87,10 +87,11 @@ models:
         description: count of email total clicks
       - name: actions
         description: > 
-        count of email total actions; 
-        in Actionkit, count of entries in core_action table minus donations, unsubscribe, and incompletes
-        in EveryAction, FormSubmissionCount; 
-        in EngagingNetworks, Advocacy Count
+          count of email total actions 
+          in Actionkit, count of entries in core_action table
+          minus donations, unsubscribe, and incompletes
+          in EveryAction, FormSubmissionCount; 
+          in EngagingNetworks, Advocacy Count
       - name: total_bounces
         description: count of total bounces        
       - name: block_bounces
