@@ -2,7 +2,7 @@ version: 2
 
 macros:
   - name: create_mart_combined_email_paidmedia_daily_revenue_performance
-    description: a macro that unions two tables
+    description: '{{doc ("mart_combined")}}'
     arguments:
       - name: reference_0_name
         type: string
@@ -11,7 +11,7 @@ macros:
         type: string
         description: the name of the paidmedia model
   - name: create_mart_email_performance_with_revenue
-    description: a macro that builds the ARC email reporting table '{{ doc("mart_email") }}'
+    description: '{{ doc("mart_email") }}'
     arguments:
       - name: jobs
       - name: campaigns
