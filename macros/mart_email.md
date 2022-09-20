@@ -99,4 +99,4 @@ models:
       - name: total_monthly_gifts
         description: count of total recurring transactions
 
-{% end docs %}
+{% enddocs %}
