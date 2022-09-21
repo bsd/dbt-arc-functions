@@ -21,16 +21,14 @@
   - **audience**: parsed segment of frakture source code field "audience"
   - **campaign_category**: parsed segment of frakture source code field "message_set"
   - **campaign_name**: coalesce of campaign name field from CRM or parsed segment of frakture source code field "campaign"
-  -  **recurtype**: parsed segment of frakture source code field "recurtype"; a flag for triggered vs bulk email
+  - **recurtype**: parsed segment of frakture source code field "recurtype"; a flag for triggered vs bulk email
   - **recipients**: count of email total sends        
   - **opens**: count of email total opens
   - **clicks**: count of email total clicks
-  - **actions**
-      count of email total actions 
-      in Actionkit, count of entries in core_action table
-      minus donations, unsubscribe, and incompletes
-      in EveryAction, FormSubmissionCount; 
-      in EngagingNetworks, Advocacy Count
+  - **actions**:
+      - Actionkit: count of email total actions, ,or count of entries in core_action table minus donations, unsubscribe, and incompletes
+      - in EveryAction: FormSubmissionCount 
+      - in EngagingNetworks: Advocacy Count
   - **total_bounces**: count of total bounces        
   - **block_bounces**
   - **tech_bounces**
