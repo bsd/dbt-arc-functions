@@ -27,8 +27,8 @@
   - **clicks**: count of email total clicks
   - **actions**:
       - Actionkit: count of email total actions, ,or count of entries in core_action table minus donations, unsubscribe, and incompletes
-      - in EveryAction: FormSubmissionCount 
-      - in EngagingNetworks: Advocacy Count
+      - EveryAction: FormSubmissionCount 
+      - EngagingNetworks: Advocacy Count
   - **total_bounces**: count of total bounces        
   - **block_bounces**
   - **tech_bounces**
