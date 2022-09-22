@@ -20,6 +20,7 @@ macros:
       - name: clicks
       - name: opens
       - name: actions
+      - name: complaints
       - name: recipients
       - name: transactions
       - name: unsubscribes
