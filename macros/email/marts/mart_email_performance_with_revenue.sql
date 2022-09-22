@@ -6,6 +6,7 @@
     clicks='stg_email_clicks_rollup_unioned',
     opens='stg_email_opens_rollup_unioned',
     actions='stg_email_actions_rollup_unioned',
+    complaints='stg_email_complaints_rollup_unioned',
     recipients='stg_email_recipients_rollup_unioned',
     transactions='stg_email_transactions_sourced_rollup_unioned',
     unsubscribes='stg_email_unsubscribes_rollup_unioned') %}
@@ -35,6 +36,7 @@ SELECT jobs.message_id,
     opens.opens,
     clicks.clicks,
     actions.actions,
+    complaints.complaints,
     bounces.total_bounces,
     bounces.block_bounces,
     bounces.tech_bounces,
@@ -58,6 +60,8 @@ USING (message_id)
 FULL JOIN {{ ref(clicks) }} clicks
 USING (message_id)
 FULL JOIN {{ ref(actions) }} actions
+USING (message_id)
+FULL JOIN {{ ref(complaints) }} complaints
 USING (message_id)
 FULL JOIN {{ ref(opens) }} opens
 USING (message_id)
