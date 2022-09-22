@@ -1,0 +1,25 @@
+version: 2
+
+macros:
+  - name: create_mart_combined_email_paidmedia_daily_revenue_performance
+    description: '{{doc ("mart_combined")}}'
+    arguments:
+      - name: reference_0_name
+        type: string
+        description: the name of the email model
+      - name: reference_1_name
+        type: string
+        description: the name of the paidmedia model
+  - name: create_mart_email_performance_with_revenue
+    description: '{{ doc("mart_email") }}'
+    arguments:
+      - name: jobs
+      - name: campaigns
+      - name: campaign_dates
+      - name: bounces
+      - name: clicks
+      - name: opens
+      - name: actions
+      - name: recipients
+      - name: transactions
+      - name: unsubscribes
