@@ -29,6 +29,7 @@
       - Actionkit: count of email total actions, ,or count of entries in core_action table minus donations, unsubscribe, and incompletes
       - EveryAction: FormSubmissionCount 
       - EngagingNetworks: Advocacy Count
+  - **complaints**: count of total spam complaints
   - **total_bounces**: count of total bounces        
   - **block_bounces**
   - **tech_bounces**
