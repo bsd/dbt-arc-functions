@@ -6,6 +6,7 @@ SAFE_CAST(concat_date AS DATE) AS date_month,
 SAFE_CAST(max_recipients AS INT) AS max_recipients,
 SAFE_CAST(max_delivered as INT) AS max_delivered
 FROM  {{ ref(reference_name) }} mart_email
+WHERE concat_date is not null
 
 {% endmacro %}
 
