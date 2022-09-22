@@ -23,3 +23,9 @@ macros:
       - name: recipients
       - name: transactions
       - name: unsubscribes
+   - name: create_mart_email_list_size_by_month_date
+    description: '{{ doc("mart_email_listsize") }}'
+    arguments:
+      - name: reference_name
+        type: string
+        description: staging table that pulls from mart_email_performance_with_revenue
