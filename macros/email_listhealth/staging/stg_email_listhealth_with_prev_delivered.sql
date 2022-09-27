@@ -1,4 +1,4 @@
-{% macro create_mart_email_listhealth_by_month(
+{% macro create_stg_email_listhealth_with_prev_delivered(
     reference_name='stg_email_listhealth_by_year_and_month_concat'
 ) %}
 SELECT
