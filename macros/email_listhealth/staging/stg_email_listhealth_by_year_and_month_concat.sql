@@ -4,9 +4,11 @@
 SELECT
 CONCAT(extract_year,'-',extract_month,'-01') as concat_date,
 max_recipients,
-max_delivered
+max_delivered,
+total_hard_bounces,
+total_unsubscribes,
+total_complaints
 FROM  {{ ref(reference_name) }} mart_email
 
 {% endmacro %}
-
 

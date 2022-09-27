@@ -5,7 +5,7 @@ SELECT SAFE_CAST(message_id AS STRING) AS message_id,
   SUM(SAFE_CAST(0 AS INT)) AS block_bounces,
   SUM(SAFE_CAST(0 AS INT)) AS tech_bounces,
   SUM(SAFE_CAST(soft_bounces AS INT)) AS soft_bounces,
-  SUM(SAFE_CAST(hard_bounces AS INT)) AS unknown_bounces
+  SUM(SAFE_CAST(hard_bounces AS INT)) AS hard_bounces
 FROM {{ ref(reference_name) }} 
 GROUP BY 1
 {% endmacro %}
