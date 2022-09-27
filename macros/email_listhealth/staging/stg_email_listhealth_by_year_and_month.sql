@@ -1,4 +1,4 @@
-{% macro create_stg_email_list_size_year_and_month(
+{% macro create_stg_email_listhealth_year_and_month(
     reference_name='mart_email_performance_with_revenue'
 ) %}
 SELECT

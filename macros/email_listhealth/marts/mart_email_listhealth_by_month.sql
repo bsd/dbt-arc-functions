@@ -1,5 +1,5 @@
 {% macro create_mart_email_listhealth_by_month(
-    reference_name='stg_email_list_size_by_year_and_month_concat'
+    reference_name='stg_email_listhealth_by_year_and_month_concat'
 ) %}
 SELECT
 SAFE_CAST(concat_date AS DATE) AS date_month,
