@@ -5,7 +5,7 @@ SELECT
 date_month,
 max_recipients,
 max_delivered,
-SAFE_CAST(delivered_prev_month as INT) as delivered_prev_month,
+CAST(delivered_prev_month as INT) as delivered_prev_month,
 CAST(max_delivered AS INT) - CAST(delivered_prev_month as INT) as diff_delivered_prev_month,
 total_unsubscribes,
 total_hard_bounces,
