@@ -24,7 +24,7 @@ macros:
       - name: recipients
       - name: transactions
       - name: unsubscribes
-  - name: create_mart_email_health_by_month_date
+  - name: create_mart_email_listhealth_by_month
     description: '{{ doc("mart_email_listhealth") }}'
     arguments:
       - name: reference_name
