@@ -5,6 +5,6 @@ SELECT SAFE_CAST(message_id AS STRING) AS message_id,
   SAFE_CAST(0 AS INT) AS block_bounces,
   SAFE_CAST(0 AS INT) AS tech_bounces,
   SAFE_CAST(email_summary.email_soft_bounces AS INT) AS soft_bounces,
-  SAFE_CAST(email_summary.email_hard_bounces AS INT) AS unknown_bounces
+  SAFE_CAST(email_summary.email_hard_bounces AS INT) AS hard_bounces
 FROM  {{ ref(reference_name) }} email_summary
 {% endmacro %}
