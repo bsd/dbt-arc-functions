@@ -6,4 +6,3 @@
 %}
 SELECT DISTINCT * FROM {{ var("relations") }}
 WHERE remote_person_id IS NOT NULL
-{% endmacro %}
