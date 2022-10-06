@@ -4,5 +4,5 @@
   source_name='frakture_timeline_email',
   schema_to_search='src_frakture') 
 %}
-SELECT DISTINCT * FROM ({{ dbt_utils.union_relations(relations) }})
+{{ dbt_utils.union_relations(relations) }}
 {% endmacro %}
