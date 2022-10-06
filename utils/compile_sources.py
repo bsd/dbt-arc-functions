@@ -35,6 +35,14 @@ source_regex_mappings = {
                    r'^everyaction_[A-Za-z0-9]{3}_message$'
                    ]
     },
+     'frakture_timeline_email.yml': {
+        'schema': 'src_frakture',
+        'tables': [r'^everyaction_[A-Za-z0-9]{3}_per_person_message_stat$',
+                   r'^everyaction_[A-Za-z0-9]{3}_person$',
+                   r'^sfmc_[A-Za-z0-9]{3}_person$',
+                   r'^sfmc_[A-Za-z0-9]{3}_person$'
+                   ]
+    },
 }
 
 credentials_helptext = """
