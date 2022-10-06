@@ -4,5 +4,5 @@
   source_name='frakture_timeline_email',
   schema_to_search='src_frakture') 
 %}
-{{ dbt_utils.union_relations(relations) }}
-{% endmacro %}
+SELECT DISTINCT * FROM {{ var("relations") }}
+WHERE remote_person_id IS NOT NULL
