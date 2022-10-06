@@ -5,5 +5,4 @@
   schema_to_search='src_frakture') 
 %}
 SELECT DISTINCT * FROM ({{ dbt_utils.union_relations(relations) }})
-WHERE message_id IS NOT NULL
 {% endmacro %}
