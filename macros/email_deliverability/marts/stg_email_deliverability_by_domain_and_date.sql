@@ -21,7 +21,7 @@ SELECT
     unsubscribes.unsubscribes
 FROM {{ ref(jobs) }} jobs
 LEFT JOIN {{ ref(details) }} details
-USING(person_id)
+ON details.person_id = jobs.person_id
 FULL JOIN {{ ref(bounces) }} bounces
 ON jobs.message_id = bounces.message_id
 AND jobs.sent_date = bounces.sent_date
