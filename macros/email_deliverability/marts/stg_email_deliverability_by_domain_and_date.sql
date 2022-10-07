@@ -11,7 +11,20 @@ SELECT
     jobs.sent_date,
     jobs.message_id,
     details.email_domain,
-     END AS domain_category,
+    CASE WHEN lower(details.email_domain) LIKE 'live.%' THEN 'Microsoft' 
+    WHEN lower(details.email_domain) LIKE 'hotmail.%' THEN 'Microsoft' 
+    WHEN lower(details.email_domain) LIKE 'outlook.%' THEN 'Microsoft' 
+    WHEN lower(details.email_domain) LIKE 'msn.%' THEN 'Microsoft'
+    WHEN lower(details.email_domain) LIKE 'gmail.com' THEN 'Google'
+    WHEN lower(details.email_domain) LIKE 'googlemail.com' THEN 'Google'  
+    WHEN lower(details.email_domain) LIKE 'gmail.com' THEN 'Google'
+    WHEN lower(details.email_domain) LIKE 'yahoo.%' THEN 'Yahoo'
+    WHEN lower(details.email_domain) LIKE 'myyahoo.%' THEN 'Yahoo'
+    WHEN lower(details.email_domain) LIKE 'me.com' THEN 'Apple'
+    WHEN lower(details.email_domain) LIKE 'icloud.com' THEN 'Apple'
+    WHEN lower(details.email_domain) LIKE 'mac.com' THEN 'Apple'
+    ELSE 'Other'
+    END AS domain_category,
     recipients.recipients,
     opens.opens,
     clicks.clicks,
