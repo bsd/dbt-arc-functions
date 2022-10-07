@@ -29,7 +29,7 @@ SELECT
     opens.opens,
     clicks.clicks,
     actions.actions,
-    (bounces.soft_bounces + bounces.hard_bounces) AS total_bounces
+    (bounces.soft_bounces + bounces.hard_bounces) AS total_bounces,
     bounces.soft_bounces,
     bounces.hard_bounces,
     unsubscribes.unsubscribes
