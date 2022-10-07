@@ -36,19 +36,25 @@ FROM {{ ref(jobs) }} jobs
 LEFT JOIN {{ ref(bounces) }} bounces
 ON jobs.message_id = bounces.message_id
 AND jobs.sent_date = bounces.sent_date
+AND jobs.email_domain = bounces.email_domain
 LEFT JOIN {{ ref(clicks) }} clicks
 ON jobs.message_id = clicks.message_id
 AND jobs.sent_date = clicks.sent_date
+AND jobs.email_domain = clicks.email_domain
 LEFT JOIN {{ ref(actions) }} actions
 ON jobs.message_id = actions.message_id
 AND jobs.sent_date = actions.sent_date
+AND jobs.email_domain = actions.email_domain
 LEFT JOIN {{ ref(opens) }} opens
 ON jobs.message_id = opens.message_id
 AND jobs.sent_date = opens.sent_date
+AND jobs.email_domain = opens.email_domain
 LEFT JOIN {{ ref(recipients) }}  recipients
 ON jobs.message_id = recipients.message_id
 AND jobs.sent_date = recipients.sent_date
+AND jobs.email_domain = recipients.email_domain
 LEFT JOIN {{ ref(unsubscribes) }} unsubscribes
 ON jobs.message_id = unsubscribes.message_id
 AND jobs.sent_date = unsubscribes.sent_date
+AND jobs.email_domain = unsubscribes.email_domain
 {% endmacro %}
