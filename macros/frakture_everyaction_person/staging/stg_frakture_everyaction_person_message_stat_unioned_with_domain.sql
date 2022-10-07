@@ -1,6 +1,6 @@
 {% macro create_stg_frakture_everyaction_person_message_stat_unioned_with_domain(
   person_stat='stg_frakture_everyaction_person_message_stat_unioned',
-    person='stg_frakture_everyaction_person_table_unioned') %}
+  person='stg_frakture_everyaction_person_table_unioned') %}
 SELECT
 person_stat.*,
 person.email_domain
