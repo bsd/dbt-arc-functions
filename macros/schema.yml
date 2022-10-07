@@ -30,3 +30,16 @@ macros:
       - name: reference_name
         type: string
         description: staging table that pulls from mart_email_performance_with_revenue
+   - name: create_mart_email_deliverability_by_domain_and_date
+    description: '{{ doc("mart_email_deliverability_by_domain_and_date") }}'
+    arguments:
+      - arguments:
+        - name: jobs
+        - name: details
+        - name: bounces
+        - name: clicks
+        - name: opens
+        - name: actions
+        - name: recipients
+        - name: transactions
+        - name: unsubscribes
