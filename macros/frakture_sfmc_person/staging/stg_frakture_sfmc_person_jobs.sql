@@ -7,5 +7,5 @@
   person.email_domain
 FROM  {{ ref(person_stat) }} person_stat 
 LEFT JOIN {{ ref(person) }} person
-ON person_stat.person_id = person.person_id
+ON person_stat.remote_person_id = person.remote_person_id
 {% endmacro %}
