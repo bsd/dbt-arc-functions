@@ -1,4 +1,4 @@
-{% macro create_stg_email_deliverability_by_domain_and_date(
+{% macro create_mart_email_deliverability_by_domain_and_date(
     details='stg_email_deliverability_person_details_unioned',
     jobs='stg_email_deliverability_person_jobs_distinct_unioned',
     bounces='stg_email_deliverability_person_bounces_daily_rollup_unioned',
