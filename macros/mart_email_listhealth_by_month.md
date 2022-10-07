@@ -1,4 +1,4 @@
-{% docs mart_email_listhealth %}
+{% docs mart_email_listhealth_by_month %}
 
 ## model: mart_email_listhealth_by_month
 ### description: a model that pulls in aggregate list stats from mart_email_performance_with_revenue by month and also pulls in previous month's data in order to create a running "diff"

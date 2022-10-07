@@ -2,7 +2,7 @@ version: 2
 
 macros:
   - name: create_mart_combined_email_paidmedia_daily_revenue_performance
-    description: '{{doc ("mart_combined")}}'
+    description: '{{doc ("mart_combined_email_paidmedia_daily_revenue_performance")}}'
     arguments:
       - name: reference_0_name
         type: string
@@ -11,7 +11,7 @@ macros:
         type: string
         description: the name of the paidmedia model
   - name: create_mart_email_performance_with_revenue
-    description: '{{ doc("mart_email") }}'
+    description: '{{ doc("mart_email_performance_with_revenue") }}'
     arguments:
       - name: jobs
       - name: campaigns
@@ -25,7 +25,7 @@ macros:
       - name: transactions
       - name: unsubscribes
   - name: create_mart_email_listhealth_by_month
-    description: '{{ doc("mart_email_listhealth") }}'
+    description: '{{ doc("mart_email_listhealth_by_month") }}'
     arguments:
       - name: reference_name
         type: string
