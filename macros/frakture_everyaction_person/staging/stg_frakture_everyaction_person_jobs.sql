@@ -1,11 +1,8 @@
 {% macro create_stg_frakture_everyaction_person_jobs(
-    person_stat='stg_frakture_everyaction_person_message_stat_unioned',
-    person='stg_frakture_everyaction_person_table_unioned'
+    reference_name='stg_frakture_everyaction_person_message_stat_unioned_with_domain'
     ) %}
-  SELECT SAFE_CAST(person_stat.message_id AS STRING) AS message_id,
-  SAFE_CAST(person_stat.sent_ts as DATE) AS sent_date,
-  person.email_domain
-FROM  {{ ref(person_stat) }} person_stat 
-LEFT JOIN {{ ref(person) }} person
-ON person_stat.remote_person_id = person.remote_person_id
+  SELECT SAFE_CAST(message_id AS STRING) AS message_id,
+  SAFE_CAST(sent_ts as DATE) AS sent_date,
+  SAFE_CAST(person.email_domain as STRING) as email_domain
+FROM  {{ ref(reference_name) }} 
 {% endmacro %}

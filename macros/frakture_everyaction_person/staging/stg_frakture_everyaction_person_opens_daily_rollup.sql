@@ -1,9 +1,9 @@
 {% macro create_stg_frakture_everyaction_person_opens_daily_rollup(
-    reference_name='stg_frakture_everyaction_person_message_stat_unioned') %}
+    reference_name='stg_frakture_everyaction_person_message_stat_unioned_with_domain') %}
 SELECT 
   SAFE_CAST(sent_ts as DATE) AS sent_date,
   SAFE_CAST(message_id AS STRING) AS message_id,
-  SAFE_CAST(remote_person_id AS STRING) AS person_id,
+  SAFE_CAST(email_domain as STRING) as email_domain,
   SUM(SAFE_CAST(opened AS INT)) as opens
 FROM  {{ ref(reference_name) }} 
 GROUP BY 1, 2, 3
