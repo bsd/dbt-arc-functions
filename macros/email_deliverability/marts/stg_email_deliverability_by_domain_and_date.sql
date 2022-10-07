@@ -10,12 +10,13 @@
 SELECT
     jobs.sent_date,
     jobs.message_id,
-    details.domain_name,
+    details.email_domain,
+     END AS domain_category,
     recipients.recipients,
     opens.opens,
     clicks.clicks,
     actions.actions,
-    bounces.total_bounces,
+    (bounces.soft_bounces + bounces.hard_bounces) AS total_bounces
     bounces.soft_bounces,
     bounces.hard_bounces,
     unsubscribes.unsubscribes
