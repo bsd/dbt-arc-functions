@@ -1,6 +1,0 @@
-version: 2
-sources:
-  - name: frakture_timeline_email
-    database: "{{ var('database') }}"
-    schema: src_frakture
-    tables: "{{ var('sources').frakture_timeline_email.tables }}"
