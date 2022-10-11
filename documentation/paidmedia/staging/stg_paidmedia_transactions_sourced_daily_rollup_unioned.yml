@@ -1,0 +1,7 @@
+# TODO Write documentation for stg_paidmedia_transactions_sourced_daily_rollup_unioned [documentation]
+#  file can be found at [documentation/paidmedia/staging/stg_paidmedia_transactions_sourced_daily_rollup_unioned.yml](../blob/main/documentation/paidmedia/staging/stg_paidmedia_transactions_sourced_daily_rollup_unioned.yml)
+version: 2
+
+models:
+  - name: stg_paidmedia_transactions_sourced_daily_rollup_unioned
+    description: Please replace this default description.

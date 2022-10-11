@@ -1,0 +1,7 @@
+# TODO Write documentation for relations_that_match_regex [documentation]
+#  file can be found at [documentation/utils/relations_that_match_regex.yml](../blob/main/documentation/utils/relations_that_match_regex.yml)
+version: 2
+
+models:
+  - name: relations_that_match_regex
+    description: Please replace this default description.

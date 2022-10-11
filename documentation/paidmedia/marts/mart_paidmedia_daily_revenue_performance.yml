@@ -1,0 +1,7 @@
+# TODO Write documentation for mart_paidmedia_daily_revenue_performance [documentation]
+#  file can be found at [documentation/paidmedia/marts/mart_paidmedia_daily_revenue_performance.yml](../blob/main/documentation/paidmedia/marts/mart_paidmedia_daily_revenue_performance.yml)
+version: 2
+
+models:
+  - name: mart_paidmedia_daily_revenue_performance
+    description: Please replace this default description.

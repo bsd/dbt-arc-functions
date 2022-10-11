@@ -1,0 +1,7 @@
+# TODO Write documentation for stg_supermetrics_yahoo_dsp_paidmedia_impressions_daily_rollup [documentation]
+#  file can be found at [documentation/supermetrics_yahoo_dsp_paidmedia/staging/stg_supermetrics_yahoo_dsp_paidmedia_impressions_daily_rollup.yml](../blob/main/documentation/supermetrics_yahoo_dsp_paidmedia/staging/stg_supermetrics_yahoo_dsp_paidmedia_impressions_daily_rollup.yml)
+version: 2
+
+models:
+  - name: stg_supermetrics_yahoo_dsp_paidmedia_impressions_daily_rollup
+    description: Please replace this default description.

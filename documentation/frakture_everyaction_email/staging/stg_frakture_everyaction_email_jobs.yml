@@ -1,0 +1,7 @@
+# TODO Write documentation for stg_frakture_everyaction_email_jobs [documentation]
+#  file can be found at [documentation/frakture_everyaction_email/staging/stg_frakture_everyaction_email_jobs.yml](../blob/main/documentation/frakture_everyaction_email/staging/stg_frakture_everyaction_email_jobs.yml)
+version: 2
+
+models:
+  - name: stg_frakture_everyaction_email_jobs
+    description: Please replace this default description.
