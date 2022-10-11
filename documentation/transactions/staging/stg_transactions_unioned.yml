@@ -1,0 +1,7 @@
+# TODO Write documentation for stg_transactions_unioned [documentation]
+#  file can be found at [documentation/transactions/staging/stg_transactions_unioned.yml](../blob/main/documentation/transactions/staging/stg_transactions_unioned.yml)
+version: 2
+
+models:
+  - name: stg_transactions_unioned
+    description: Please replace this default description.

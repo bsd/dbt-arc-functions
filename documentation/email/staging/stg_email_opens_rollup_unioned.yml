@@ -1,0 +1,7 @@
+# TODO Write documentation for stg_email_opens_rollup_unioned [documentation]
+#  file can be found at [documentation/email/staging/stg_email_opens_rollup_unioned.yml](../blob/main/documentation/email/staging/stg_email_opens_rollup_unioned.yml)
+version: 2
+
+models:
+  - name: stg_email_opens_rollup_unioned
+    description: Please replace this default description.

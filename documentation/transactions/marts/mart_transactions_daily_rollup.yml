@@ -1,0 +1,7 @@
+# TODO Write documentation for mart_transactions_daily_rollup [documentation]
+#  file can be found at [documentation/transactions/marts/mart_transactions_daily_rollup.yml](../blob/main/documentation/transactions/marts/mart_transactions_daily_rollup.yml)
+version: 2
+
+models:
+  - name: mart_transactions_daily_rollup
+    description: Please replace this default description.

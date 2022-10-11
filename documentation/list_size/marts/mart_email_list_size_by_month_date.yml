@@ -1,0 +1,7 @@
+# TODO Write documentation for mart_email_list_size_by_month_date [documentation]
+#  file can be found at [documentation/list_size/marts/mart_email_list_size_by_month_date.yml](../blob/main/documentation/list_size/marts/mart_email_list_size_by_month_date.yml)
+version: 2
+
+models:
+  - name: mart_email_list_size_by_month_date
+    description: Please replace this default description.

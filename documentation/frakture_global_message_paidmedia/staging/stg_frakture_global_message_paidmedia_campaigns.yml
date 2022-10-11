@@ -1,0 +1,7 @@
+# TODO Write documentation for stg_frakture_global_message_paidmedia_campaigns [documentation]
+#  file can be found at [documentation/frakture_global_message_paidmedia/staging/stg_frakture_global_message_paidmedia_campaigns.yml](../blob/main/documentation/frakture_global_message_paidmedia/staging/stg_frakture_global_message_paidmedia_campaigns.yml)
+version: 2
+
+models:
+  - name: stg_frakture_global_message_paidmedia_campaigns
+    description: Please replace this default description.

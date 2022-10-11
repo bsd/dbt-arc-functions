@@ -1,0 +1,7 @@
+# TODO Write documentation for stg_frakture_global_message_email_campaigns_rollup [documentation]
+#  file can be found at [documentation/frakture_global_message_email/staging/stg_frakture_global_message_email_campaigns_rollup.yml](../blob/main/documentation/frakture_global_message_email/staging/stg_frakture_global_message_email_campaigns_rollup.yml)
+version: 2
+
+models:
+  - name: stg_frakture_global_message_email_campaigns_rollup
+    description: Please replace this default description.
