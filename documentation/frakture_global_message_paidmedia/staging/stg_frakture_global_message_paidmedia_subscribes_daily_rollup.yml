@@ -1,0 +1,7 @@
+# TODO Write documentation for stg_frakture_global_message_paidmedia_subscribes_daily_rollup [documentation]
+#  file can be found at [documentation/frakture_global_message_paidmedia/staging/stg_frakture_global_message_paidmedia_subscribes_daily_rollup.yml](../blob/main/documentation/frakture_global_message_paidmedia/staging/stg_frakture_global_message_paidmedia_subscribes_daily_rollup.yml)
+version: 2
+
+models:
+  - name: stg_frakture_global_message_paidmedia_subscribes_daily_rollup
+    description: Please replace this default description.

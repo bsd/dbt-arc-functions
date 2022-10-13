@@ -1,0 +1,7 @@
+# TODO Write documentation for stg_frakture_global_transactions [documentation]
+#  file can be found at [documentation/frakture_global_transactions/staging/stg_frakture_global_transactions.yml](../blob/main/documentation/frakture_global_transactions/staging/stg_frakture_global_transactions.yml)
+version: 2
+
+models:
+  - name: stg_frakture_global_transactions
+    description: Please replace this default description.
