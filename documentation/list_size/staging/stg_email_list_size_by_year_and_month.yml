@@ -1,5 +1,8 @@
 # TODO Write documentation for stg_email_list_size_by_year_and_month [documentation]
-#  file can be found at [documentation/list_size/staging/stg_email_list_size_by_year_and_month.yml](../blob/main/documentation/list_size/staging/stg_email_list_size_by_year_and_month.yml)
+#  Github main branch URL:
+#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/list_size/staging/stg_email_list_size_by_year_and_month.yml
+#  Where to find in dbt-arc-functions local directory:
+#  documentation/list_size/staging/stg_email_list_size_by_year_and_month.yml
 version: 2
 
 models:

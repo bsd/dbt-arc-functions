@@ -1,5 +1,8 @@
 # TODO Write documentation for relations_that_match_regex [documentation]
-#  file can be found at [documentation/utils/relations_that_match_regex.yml](../blob/main/documentation/utils/relations_that_match_regex.yml)
+#  Github main branch URL:
+#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/utils/relations_that_match_regex.yml
+#  Where to find in dbt-arc-functions local directory:
+#  documentation/utils/relations_that_match_regex.yml
 version: 2
 
 models:
