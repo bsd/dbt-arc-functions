@@ -1,5 +1,8 @@
 # TODO Write documentation for stg_email_campaigns_rollup_unioned [documentation]
-#  file can be found at [documentation/email/staging/stg_email_campaigns_rollup_unioned.yml](../blob/main/documentation/email/staging/stg_email_campaigns_rollup_unioned.yml)
+#  Github main branch URL:
+#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/email/staging/stg_email_campaigns_rollup_unioned.yml
+#  Where to find in dbt-arc-functions local directory:
+#  documentation/email/staging/stg_email_campaigns_rollup_unioned.yml
 version: 2
 
 models:

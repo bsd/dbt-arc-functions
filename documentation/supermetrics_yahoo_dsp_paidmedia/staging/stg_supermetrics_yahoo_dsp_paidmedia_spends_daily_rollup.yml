@@ -1,5 +1,8 @@
 # TODO Write documentation for stg_supermetrics_yahoo_dsp_paidmedia_spends_daily_rollup [documentation]
-#  file can be found at [documentation/supermetrics_yahoo_dsp_paidmedia/staging/stg_supermetrics_yahoo_dsp_paidmedia_spends_daily_rollup.yml](../blob/main/documentation/supermetrics_yahoo_dsp_paidmedia/staging/stg_supermetrics_yahoo_dsp_paidmedia_spends_daily_rollup.yml)
+#  Github main branch URL:
+#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/supermetrics_yahoo_dsp_paidmedia/staging/stg_supermetrics_yahoo_dsp_paidmedia_spends_daily_rollup.yml
+#  Where to find in dbt-arc-functions local directory:
+#  documentation/supermetrics_yahoo_dsp_paidmedia/staging/stg_supermetrics_yahoo_dsp_paidmedia_spends_daily_rollup.yml
 version: 2
 
 models:

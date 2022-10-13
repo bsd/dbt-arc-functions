@@ -1,5 +1,8 @@
 # TODO Write documentation for mart_combined_email_paidmedia_daily_revenue_performance [documentation]
-#  file can be found at [documentation/combined_email_paidmedia/marts/mart_combined_email_paidmedia_daily_revenue_performance.yml](../blob/main/documentation/combined_email_paidmedia/marts/mart_combined_email_paidmedia_daily_revenue_performance.yml)
+#  Github main branch URL:
+#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/combined_email_paidmedia/marts/mart_combined_email_paidmedia_daily_revenue_performance.yml
+#  Where to find in dbt-arc-functions local directory:
+#  documentation/combined_email_paidmedia/marts/mart_combined_email_paidmedia_daily_revenue_performance.yml
 version: 2
 
 models:
