@@ -8,7 +8,7 @@ MAX(recipients) AS max_recipients,
 MAX(recipients - total_bounces) AS max_delivered,
 SUM(unsubscribes) as total_unsubscribes,
 SUM(hard_bounces) as total_hard_bounces,
-sum(complaints) as total_complaints
+SUM(complaints) as total_complaints
 FROM  {{ ref(reference_name) }} mart_email
 GROUP BY 1, 2
 
