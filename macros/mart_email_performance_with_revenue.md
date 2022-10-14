@@ -1,4 +1,4 @@
-{% docs mart_email %}
+{% docs mart_email_performance_with_revenue %}
 
 ## model: mart_email_performance_with_revenue
 ### description: a model that rolls up email performance KPIs by email name, showing a date

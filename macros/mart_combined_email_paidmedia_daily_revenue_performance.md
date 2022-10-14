@@ -1,4 +1,4 @@
-{% docs mart_combined %}
+{% docs mart_combined_email_paidmedia_daily_revenue_performance %}
 
 ## model: mart_combined_email_paidmedia_daily_revenue_performance
 ### description: a model that unions the mart_paidmedia model and the mart_email model
