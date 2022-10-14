@@ -4,7 +4,7 @@ SELECT
   SAFE_CAST(sent_ts as DATE) AS sent_date,
   SAFE_CAST(message_id AS STRING) AS message_id,
   SAFE_CAST(email_domain as STRING) as email_domain,
-  SUM(SAFE_CAST(received AS INT)) as recipients
+  SUM(SAFE_CAST(0 AS INT)) as recipients
 FROM  {{ ref(reference_name) }} 
 GROUP BY 1, 2, 3
 {% endmacro %}
