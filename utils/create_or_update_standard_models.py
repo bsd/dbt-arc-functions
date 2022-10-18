@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
 # TODO add function which checks if documentation exists for current sql
+# TODO add docstrings for each function
 import os
 import re
 from os import path
