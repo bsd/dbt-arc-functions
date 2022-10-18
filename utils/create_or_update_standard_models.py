@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+# TODO add function which checks if documentation exists for current sql
 import os
 import re
 from os import path
@@ -31,6 +31,10 @@ def get_destination():
         print("\nPlease enter the absolute or relative path where you'd like to create standard models:")
         destination_path = input()
     return destination_path
+
+def check_if_docs_exist(source_path, file):
+    print(source_path,file)
+    docs_path = source_path.replace('macros','documentation').replace('sql','yml')
 
 
 def get_list_of_sources(macros_path):
@@ -159,6 +163,9 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                             with open(destination_file_path, 'w') as tf:
                                 tf.writelines(output)
                                 print(destination_file_path + " created successfully!")
+                        if check_if_docs_exist(source_file_path,file):
+                            continue
+
 
 def main(dbt_models_path=''):
     macros_path = path.join('..', 'macros')
