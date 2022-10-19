@@ -34,9 +34,8 @@ def get_destination():
     return destination_path
 
 def check_if_docs_exist(source_path, file):
-    print(source_path,file)
     docs_path = source_path.replace('macros','documentation').replace('sql','yml')
-
+    return os.path.exists(docs_path)
 
 def get_list_of_sources(macros_path):
     list_of_sources = [directory for directory in os.listdir(macros_path) if path.isdir(path.join(macros_path, directory))]
@@ -106,6 +105,14 @@ def write_new_file_choice(output, destination_file_path):
 
 
 def process_sources(sources_wanted, list_of_sources, macros_path, create, destination):
+    """
+    :param sources_wanted: list of standard models that a client wants to copy to their dbt repo
+    :param list_of_sources: list of available standard models within dbt-arc-functions
+    :param macros_path: path of the macros folders
+    :param create: whether a client wants to create standard models (false if they want to update)
+    :param destination: destination dbt repo where client would like to create/update standard models
+    :return: None
+    """
     sources_path = path.join('..', 'sources')
     model_types = [sources_path, 'staging', 'marts']
     rx = re.compile(r"\{%\s+macro\s+(.*?)\s+%\}", re.DOTALL)
