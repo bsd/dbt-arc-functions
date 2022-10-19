@@ -33,9 +33,6 @@ def get_destination():
         destination_path = input()
     return destination_path
 
-def check_if_docs_exist(source_path, file):
-    docs_path = source_path.replace('macros','documentation').replace('sql','yml')
-    return os.path.exists(docs_path)
 
 def get_list_of_sources(macros_path):
     list_of_sources = [directory for directory in os.listdir(macros_path) if path.isdir(path.join(macros_path, directory))]
@@ -113,6 +110,7 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
     :param destination: destination dbt repo where client would like to create/update standard models
     :return: None
     """
+    # TODO this function is very large and therefore hard to parse, break into smaller chunks
     sources_path = path.join('..', 'sources')
     model_types = [sources_path, 'staging', 'marts']
     rx = re.compile(r"\{%\s+macro\s+(.*?)\s+%\}", re.DOTALL)
@@ -125,6 +123,7 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
         list_of_models = os.listdir(path.join(macros_path, source))
         list_of_models.append(sources_path)
         for model_type in list_of_models:
+            # TODO break this out into separate function
             if model_type not in model_types:
                 print(f"Weird, {model_type} is not one of our standard model types. Going to skip.")
                 continue
@@ -142,12 +141,14 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
             elif create and not path.exists(destination_path):
                 os.makedirs(destination_path)
             for _, _, files in os.walk(source_path):
+                # TODO break this out into separate function
                 for file in files:
                     if not (file.endswith('.sql') or file == f"{source}.yml"):
                         continue
                     source_file_path = path.join(source_path, file)
                     with open(source_file_path, 'r') as f:
                         destination_file_path = path.join(destination_path, file)
+                        docs_file_path = source_path.replace('macros', 'documentation').replace('sql', 'yml')
                         content = f.read()
                         if file.endswith('.sql'):
                             function = rx.search(content).group(1) if rx.search(content) else None
@@ -171,8 +172,7 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                             with open(destination_file_path, 'w') as tf:
                                 tf.writelines(output)
                                 print(destination_file_path + " created successfully!")
-                        if check_if_docs_exist(source_file_path,file):
-                            continue
+
 
 
 def main(dbt_models_path=''):
