@@ -12,6 +12,15 @@ SELECT SAFE_CAST(ad_summary.message_id AS STRING) AS message_id,
     SAFE_CAST(ad_summary.attributed_recurring_revenue  AS numeric) AS total_monthly_revenue,
     SAFE_CAST(ad_summary.attributed_recurring_transactions  AS int) AS total_monthly_gifts,
     SAFE_CAST(ad_summary.goal  AS STRING) AS objective,
+    SAFE_CAST(ad_summary.type AS STRING) as channel_type,
+    CASE WHEN REGEXP_CONTAINS(ad_summary.type,'(?i)search')=True THEN 'search'
+    CASE WHEN REGEXP_CONTAINS(ad_summary.type,'(?i)ad')=True THEN 'search'
+    WHEN REGEXP_CONTAINS(ad_summary.type,'(?i)display')=True THEN 'display'
+    WHEN REGEXP_CONTAINS(ad_summary.type,'(?i)video')=True THEN 'display'
+    WHEN ad_summary.channel IN ('ad') THEN 'search'
+    WHEN ad_summary.channel IN ('facebook_ad', 'promoted_tweet') THEN 'social'
+    ELSE CONCAT(ad_summary.channel, ' - ', ad_summary.type) 
+    END AS channel_category
     SAFE_CAST(ad_summary.campaign  AS STRING) AS campaign,
     SAFE_CAST(ad_summary.campaign_label  AS STRING) AS campaign_label,
     SAFE_CAST(ad_summary.audience  AS STRING) AS audience,
