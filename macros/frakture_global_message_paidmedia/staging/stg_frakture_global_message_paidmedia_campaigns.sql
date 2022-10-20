@@ -6,9 +6,9 @@ SELECT DISTINCT SAFE_CAST(campaign_id AS STRING) AS campaign_id,
     WHEN REGEXP_CONTAINS(type,'(?i)ad')=True THEN 'search'
     WHEN REGEXP_CONTAINS(type,'(?i)display')=True THEN 'display'
     WHEN REGEXP_CONTAINS(type,'(?i)video')=True THEN 'display'
-    WHEN ad_summary.channel IN ('ad') THEN 'search'
-    WHEN ad_summary.channel IN ('facebook_ad', 'promoted_tweet') THEN 'social'
-    ELSE CONCAT(ad_summary.channel, ' - ', ad_summary.type) 
+    WHEN channel IN ('ad') THEN 'search'
+    WHEN channel IN ('facebook_ad', 'promoted_tweet') THEN 'social'
+    ELSE CONCAT(channel, ' - ', type) 
   END AS channel_category,
   SAFE_CAST(channel AS STRING) AS channel,
   SAFE_CAST(type AS STRING) AS channel_type,
