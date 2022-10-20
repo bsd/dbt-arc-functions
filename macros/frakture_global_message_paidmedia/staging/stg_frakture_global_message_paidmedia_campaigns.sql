@@ -1,6 +1,6 @@
 {% macro create_stg_frakture_global_message_paidmedia_campaigns(
     reference_name='stg_frakture_global_message_paidmedia_ad_summary_by_date') %}
-SELECT SELECT DISTINCT SAFE_CAST(campaign_id AS STRING) AS campaign_id,
+SELECT DISTINCT SAFE_CAST(campaign_id AS STRING) AS campaign_id,
   SAFE_CAST(message_id AS STRING) AS message_id,
     CASE WHEN REGEXP_CONTAINS(type,'(?i)search')=True THEN 'search'
     WHEN REGEXP_CONTAINS(type,'(?i)ad')=True THEN 'search'
