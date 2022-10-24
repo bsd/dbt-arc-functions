@@ -1,4 +1,4 @@
-{% macro create_mart_transactions_daily_rollup(
+{% macro create_mart_transactions_hourly_rollup(
     reference_name='stg_transactions_unioned') %}
 SELECT
   best_guess_message_id,
