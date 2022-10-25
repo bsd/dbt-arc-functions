@@ -170,7 +170,6 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
             elif create and not path.exists(destination_path):
                 os.makedirs(destination_path)
             for _, _, files in os.walk(source_path):
-                # TODO break this out into separate function
                 for file in files:
                     if file.endswith('.sql') or file == f"{source}.yml":
                         source_file_path = path.join(source_path, file)
