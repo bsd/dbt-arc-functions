@@ -133,6 +133,13 @@ def write_to_file(file_path,destination_path,file,source,model_type,create):
                 print(destination_file_path + " created successfully!")
 
 
+def delete_non_standard_model_choice(destination_file_path):
+    """
+    This gets the user's choice to delete a file not found in standard models folder
+    :param destination_file_path: file path to model not found in standard models
+    :return: None
+    """
+
 def process_sources(sources_wanted, list_of_sources, macros_path, create, destination):
     """
     :param sources_wanted: list of standard models that a client wants to copy to their dbt repo
@@ -179,6 +186,12 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                             docs_file = file.replace('sql','yml')
                             docs_file_path = path.join(docs_path,docs_file)
                             write_to_file(docs_file_path,destination_path,docs_file,source,model_type,create)
+            for _,_, files in os.walk(destination_path):
+                for file in files:
+                    destination_file_path = path.join(destination_path,file)
+                    source_file_path = path.join(source_file_path)
+                    if not os.path.exists(source_file_path):
+                        delete_non_standard_model_choice(destination_file_path)
 
 
 def main(dbt_models_path=''):
