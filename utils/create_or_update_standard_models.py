@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
+# TODO add function which checks if documentation exists for current sql
+# TODO add docstrings for each function
 import os
 import re
 from os import path
@@ -50,7 +51,7 @@ def get_sources_wanted(list_of_sources):
 
 def overwrite_choice(source_file_path, output, destination_file_path):
     with open(destination_file_path, 'r') as d:
-        d_text = d.readlines()
+        d_text = list(filter(lambda x: not x.startswith('-- depends_on:'),d.readlines()))
         differences = list(difflib.unified_diff(
             d_text, output, fromfile=destination_file_path,
             tofile=source_file_path, lineterm='\n'))
@@ -99,13 +100,51 @@ def write_new_file_choice(output, destination_file_path):
         yes = input()
     return yes == 'y'
 
-
-def process_sources(sources_wanted, list_of_sources, macros_path, create, destination):
-    sources_path = path.join('..', 'sources')
-    model_types = [sources_path, 'staging', 'marts']
+def write_to_file(file_path,destination_path,file,source,model_type,create):
     rx = re.compile(r"\{%\s+macro\s+(.*?)\s+%\}", re.DOTALL)
     dependencies_regex = re.compile(r"--\s+depends_on:\s+.*\n")
     git_prepend = "https://github.com/bsd/dbt-arc-functions/blob/main/macros"
+    destination_file_path = path.join(destination_path, file)
+    with open(file_path, 'r') as f:
+        content = f.read()
+        if file.endswith('.sql'):
+            function = rx.search(content).group(1) if rx.search(content) else None
+            github_path = '/'.join([git_prepend, source, model_type, file])
+            output = dbt_string.format(github_path=github_path,
+                                       function=function)
+        else:
+            output = content
+        if path.exists(destination_file_path) and not create:
+            output_formatted = [line + ('\n' if i < len(output.split('\n')) else '') for i, line in
+                                enumerate(output.split('\n'))]
+            if file.endswith('.sql'):
+                output_formatted = output_formatted[:-1]
+            else:
+                output_formatted[-1] = output_formatted[-1][:-1]
+            if not overwrite_choice(file_path, output_formatted, destination_file_path):
+                return
+            output = extract_dependencies(output, destination_file_path, dependencies_regex)
+        if not path.exists(destination_file_path) and not create:
+            if not write_new_file_choice(output, destination_file_path):
+                return
+        if output:
+            with open(destination_file_path, 'w') as tf:
+                tf.writelines(output)
+                print(destination_file_path + " created successfully!")
+
+
+def process_sources(sources_wanted, list_of_sources, macros_path, create, destination):
+    """
+    :param sources_wanted: list of standard models that a client wants to copy to their dbt repo
+    :param list_of_sources: list of available standard models within dbt-arc-functions
+    :param macros_path: path of the macros folders
+    :param create: whether a client wants to create standard models (false if they want to update)
+    :param destination: destination dbt repo where client would like to create/update standard models
+    :return: None
+    """
+    # TODO this function is very large and therefore hard to parse, break into smaller chunks
+    sources_path = path.join('..', 'sources')
+    model_types = [sources_path, 'staging', 'marts']
     for source in sources_wanted:
         if source not in list_of_sources:
             print(f'Sorry, {source} is not in the list of sources above')
@@ -113,6 +152,7 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
         list_of_models = os.listdir(path.join(macros_path, source))
         list_of_models.append(sources_path)
         for model_type in list_of_models:
+            # TODO break this out into separate function
             if model_type not in model_types:
                 print(f"Weird, {model_type} is not one of our standard model types. Going to skip.")
                 continue
@@ -131,34 +171,15 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                 os.makedirs(destination_path)
             for _, _, files in os.walk(source_path):
                 for file in files:
-                    if not (file.endswith('.sql') or file == f"{source}.yml"):
-                        continue
-                    source_file_path = path.join(source_path, file)
-                    with open(source_file_path, 'r') as f:
-                        destination_file_path = path.join(destination_path, file)
-                        content = f.read()
-                        if file.endswith('.sql'):
-                            function = rx.search(content).group(1) if rx.search(content) else None
-                            github_path = '/'.join([git_prepend, source, model_type, file])
-                            output = dbt_string.format(github_path=github_path,
-                                                       function=function)
-                        else:
-                            output = content
-                        if path.exists(destination_file_path) and not create:
-                            output_formatted = [line + ('\n' if i < len(output.split('\n')) else '') for i, line in
-                                                enumerate(output.split('\n'))]
-                            if file.endswith('.sql'): output_formatted = output_formatted[:-1]
-                            else: output_formatted[-1] = output_formatted[-1][:-1]
-                            if not overwrite_choice(source_file_path, output_formatted, destination_file_path):
-                                continue
-                            output = extract_dependencies(output, destination_file_path, dependencies_regex)
-                        if not path.exists(destination_file_path) and not create:
-                            if not write_new_file_choice(output, destination_file_path):
-                                continue
-                        if output:
-                            with open(destination_file_path, 'w') as tf:
-                                tf.writelines(output)
-                                print(destination_file_path + " created successfully!")
+                    if file.endswith('.sql') or file == f"{source}.yml":
+                        source_file_path = path.join(source_path, file)
+                        write_to_file(source_file_path,destination_path,file,source,model_type,create)
+                        if file.endswith('sql'):
+                            docs_path = source_path.replace('macros','documentation')
+                            docs_file = file.replace('sql','yml')
+                            docs_file_path = path.join(docs_path,docs_file)
+                            write_to_file(docs_file_path,destination_path,docs_file,source,model_type,create)
+
 
 def main(dbt_models_path=''):
     macros_path = path.join('..', 'macros')
