@@ -4,5 +4,5 @@ sources:
     database: "{{ var('database') }}"
     schema: src_supermetrics_yahoo_dsp
     tables:
-        - name: alldates_VDSP_AD
-        - name: alldates_VDSP_CAMPAIGN
+      - name: alldates_VDSP_AD
+      - name: alldates_VDSP_CAMPAIGN
