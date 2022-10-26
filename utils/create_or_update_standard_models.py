@@ -119,7 +119,8 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
         if path.exists(destination_file_path) and not create:
             output_formatted = [line + ('\n' if i < len(output.split('\n')) else '') for i, line in
                                 enumerate(output.split('\n'))]
-            output_formatted = output_formatted[:-1]
+            if output_formatted[-1].strip() == '':
+                output_formatted = output_formatted[:-1]
             if not overwrite_choice(file_path, output_formatted, destination_file_path):
                 return
             output = extract_dependencies(output, destination_file_path, dependencies_regex)
