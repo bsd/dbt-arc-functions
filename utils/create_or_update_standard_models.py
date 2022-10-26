@@ -119,10 +119,7 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
         if path.exists(destination_file_path) and not create:
             output_formatted = [line + ('\n' if i < len(output.split('\n')) else '') for i, line in
                                 enumerate(output.split('\n'))]
-            if file.endswith('.sql'):
-                output_formatted = output_formatted[:-1]
-            else:
-                output_formatted[-1] = output_formatted[-1][:-1]
+            output_formatted = output_formatted[:-1]
             if not overwrite_choice(file_path, output_formatted, destination_file_path):
                 return
             output = extract_dependencies(output, destination_file_path, dependencies_regex)
@@ -141,9 +138,11 @@ def delete_non_standard_model_choice(destination_file_path):
     :param destination_file_path: file path to model not found in standard models
     :return: None
     """
+    print('---------')
     with open(destination_file_path, 'r') as f:
         for line in f.readlines():
             print(line)
+    print('---------')
     print(f"Model exists at {destination_file_path}")
     print("File contents printed above. This file does not exist in the standard models.")
     print("Should I delete this model?")
@@ -204,11 +203,11 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
             for _, _, files in os.walk(destination_path):
                 for file in files:
                     destination_file_path = path.join(destination_path, file)
-                    source_file_path = path.join(source_file_path)
+                    source_file_path = path.join(source_path,file)
                     docs_path = source_path.replace('macros', 'documentation')
                     docs_file = file.replace('sql', 'yml')
                     docs_file_path = path.join(docs_path, docs_file)
-                    if not os.path.exists(source_file_path) and not os.path.exists(docs_file_path):
+                    if (not os.path.exists(source_file_path)) and (not os.path.exists(docs_file_path)):
                         delete_non_standard_model_choice(destination_file_path)
 
 
