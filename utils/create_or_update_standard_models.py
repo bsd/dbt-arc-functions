@@ -51,7 +51,7 @@ def get_sources_wanted(list_of_sources):
 
 def overwrite_choice(source_file_path, output, destination_file_path):
     with open(destination_file_path, 'r') as d:
-        d_text = d.readlines()
+        d_text = list(filter(lambda x: not x.startswith('-- depends_on:'),d.readlines()))
         differences = list(difflib.unified_diff(
             d_text, output, fromfile=destination_file_path,
             tofile=source_file_path, lineterm='\n'))
