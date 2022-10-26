@@ -205,7 +205,10 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                 for file in files:
                     destination_file_path = path.join(destination_path, file)
                     source_file_path = path.join(source_file_path)
-                    if not os.path.exists(source_file_path):
+                    docs_path = source_path.replace('macros', 'documentation')
+                    docs_file = file.replace('sql', 'yml')
+                    docs_file_path = path.join(docs_path, docs_file)
+                    if not os.path.exists(source_file_path) and not os.path.exists(docs_file_path):
                         delete_non_standard_model_choice(destination_file_path)
 
 
