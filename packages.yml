@@ -1,3 +1,0 @@
-packages:
-  - package: brooklyn-data/dbt_artifacts
-    version: 2.1.1
