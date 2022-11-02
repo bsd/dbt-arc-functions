@@ -8,6 +8,7 @@ from shutil import rmtree
 
 import git
 import ruamel.yaml
+import requests
 
 credentials_helptext = """
 If you'd like to know how to generate a credentials json go here: 
@@ -55,6 +56,10 @@ If you'd like to use another branch in packages.yml, enter it here. Else, press 
 (We recommend to press return.)
 """
 
+dbt_artifacts_choice_helptext="""Would you like to add dbt-artifacts to this repo?
+dbt-artifacts produces useful artifacts in your BigQuery instance which allow you to track recent dbt runs.
+
+"""
 
 def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml):
     with open(dbt_project, 'r') as f:
@@ -146,11 +151,18 @@ def inplace_or_copy(filetype):
     return '_copy' if choice == 'c' else ''
 
 
+def get_dbt_artifacts_with_revision():
+    r = requests.get(url='https://api.github.com/repos/brooklyn-data/dbt_artifacts/releases')
+    revision = r.json()[0]['tag_name']
+    package_with_revision = {'package':'dbt-artifacts','revision':revision}
+    return package_with_revision
+
 def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
     revision_choice = input(revision_choice_helptext.format(
         active_branch_name=active_branch_name))
     revision = revision_choice if revision_choice else active_branch_name
     packages_dict['packages'][1]['revision'] = revision
+
     if not path.exists(dbt_packages_path):
         with open(dbt_packages_path, 'w') as f:
             yaml.dump(packages_dict, f)
