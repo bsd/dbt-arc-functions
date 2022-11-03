@@ -1,5 +1,5 @@
 {% macro create_stg_frakture_actionkit_email_transactions_sourced_rollup(
-    email_summary='stg_frakture_actionkit_email_summary_unioned'
+    email_summary='stg_frakture_actionkit_email_summary_unioned',
     transactions='stg_frakture_actionkit_transactions_summary_unioned'
     ) %}
 
