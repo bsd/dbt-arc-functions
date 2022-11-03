@@ -5,5 +5,5 @@
   schema_to_search='src_frakture') 
 %}
 SELECT DISTINCT * FROM ({{ dbt_utils.union_relations(relations) }})
-WHERE order_status = 'complete'
+WHERE lower(order_status) = 'completed'
 {% endmacro %}
