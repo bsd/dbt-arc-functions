@@ -1,0 +1,6 @@
+version: 2
+sources:
+  - name: frakture_actionkit_email
+    database: "{{ var('database') }}"
+    schema: src_frakture
+    tables: "{{ var('sources').frakture_actionkit_email.tables }}"
