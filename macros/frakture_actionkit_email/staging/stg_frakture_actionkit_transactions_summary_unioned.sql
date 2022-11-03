@@ -1,4 +1,4 @@
-{% macro create_stg_frakture_actionkit_email_summary_unioned() %}
+{% macro create_stg_frakture_actionkit_transactions_summary_unioned() %}
 {% set relations = dbt_arc_functions.relations_that_match_regex('^actionkit_[A-Za-z0-9]{3}_transaction$',
   is_source=True,
   source_name='frakture_actionkit_email',
