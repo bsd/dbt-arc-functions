@@ -13,6 +13,7 @@ SELECT
                REGEXP_EXTRACT(impressions._dbt_source_relation, 
                               'stg_[a-z]+_([a-z_]+)_paidmedia')) 
                                        AS channel,
+      campaigns.channel_category,
       campaigns.channel_type,
       campaigns.campaign_name,
       campaigns.crm_entity,
@@ -36,6 +37,7 @@ SELECT
       transactions.new_monthly_gifts,
       transactions.total_monthly_revenue,
       transactions.total_monthly_gifts,
+      transactions.objective,
       transactions.campaign,
       transactions.campaign_label,
       transactions.audience,
