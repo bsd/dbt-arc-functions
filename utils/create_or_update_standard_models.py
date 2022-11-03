@@ -2,10 +2,10 @@
 # coding: utf-8
 # TODO add function which checks if documentation exists for current sql
 # TODO add docstrings for each function
+import difflib
 import os
 import re
 from os import path
-import difflib
 
 dbt_string = """-- macro used to create this file can be found at:
 -- {github_path}
@@ -35,7 +35,8 @@ def get_destination():
 
 
 def get_list_of_sources(macros_path):
-    list_of_sources = [directory for directory in os.listdir(macros_path) if path.isdir(path.join(macros_path, directory))]
+    list_of_sources = [directory for directory in os.listdir(macros_path) if
+                       path.isdir(path.join(macros_path, directory))]
     return list_of_sources
 
 
@@ -51,7 +52,7 @@ def get_sources_wanted(list_of_sources):
 
 def overwrite_choice(source_file_path, output, destination_file_path):
     with open(destination_file_path, 'r') as d:
-        d_text = list(filter(lambda x: not x.startswith('-- depends_on:'),d.readlines()))
+        d_text = list(filter(lambda x: not x.startswith('-- depends_on:'), d.readlines()))
         differences = list(difflib.unified_diff(
             d_text, output, fromfile=destination_file_path,
             tofile=source_file_path, lineterm='\n'))
@@ -100,7 +101,8 @@ def write_new_file_choice(output, destination_file_path):
         yes = input()
     return yes == 'y'
 
-def write_to_file(file_path,destination_path,file,source,model_type,create):
+
+def write_to_file(file_path, destination_path, file, source, model_type, create):
     rx = re.compile(r"\{%\s+macro\s+(.*?)\s+%\}", re.DOTALL)
     dependencies_regex = re.compile(r"--\s+depends_on:\s+.*\n")
     git_prepend = "https://github.com/bsd/dbt-arc-functions/blob/main/macros"
@@ -117,10 +119,8 @@ def write_to_file(file_path,destination_path,file,source,model_type,create):
         if path.exists(destination_file_path) and not create:
             output_formatted = [line + ('\n' if i < len(output.split('\n')) else '') for i, line in
                                 enumerate(output.split('\n'))]
-            if file.endswith('.sql'):
+            if output_formatted[-1].strip() == '':
                 output_formatted = output_formatted[:-1]
-            else:
-                output_formatted[-1] = output_formatted[-1][:-1]
             if not overwrite_choice(file_path, output_formatted, destination_file_path):
                 return
             output = extract_dependencies(output, destination_file_path, dependencies_regex)
@@ -131,6 +131,28 @@ def write_to_file(file_path,destination_path,file,source,model_type,create):
             with open(destination_file_path, 'w') as tf:
                 tf.writelines(output)
                 print(destination_file_path + " created successfully!")
+
+
+def delete_non_standard_model_choice(destination_file_path):
+    """
+    This gets the user's choice to delete a file not found in standard models folder
+    :param destination_file_path: file path to model not found in standard models
+    :return: None
+    """
+    print('---------')
+    with open(destination_file_path, 'r') as f:
+        for line in f.readlines():
+            print(line)
+    print('---------')
+    print(f"Model exists at {destination_file_path}")
+    print("File contents printed above. This file does not exist in the standard models.")
+    print("Should I delete this model?")
+    yes = None
+    while yes not in ('y', 'n'):
+        print("Enter y for (y)es or n for (n)o:")
+        yes = input()
+    if yes == 'y':
+        os.remove(destination_file_path)
 
 
 def process_sources(sources_wanted, list_of_sources, macros_path, create, destination):
@@ -173,12 +195,21 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                 for file in files:
                     if file.endswith('.sql') or file == f"{source}.yml":
                         source_file_path = path.join(source_path, file)
-                        write_to_file(source_file_path,destination_path,file,source,model_type,create)
+                        write_to_file(source_file_path, destination_path, file, source, model_type, create)
                         if file.endswith('sql'):
-                            docs_path = source_path.replace('macros','documentation')
-                            docs_file = file.replace('sql','yml')
-                            docs_file_path = path.join(docs_path,docs_file)
-                            write_to_file(docs_file_path,destination_path,docs_file,source,model_type,create)
+                            docs_path = source_path.replace('macros', 'documentation')
+                            docs_file = file.replace('sql', 'yml')
+                            docs_file_path = path.join(docs_path, docs_file)
+                            write_to_file(docs_file_path, destination_path, docs_file, source, model_type, create)
+            for _, _, files in os.walk(destination_path):
+                for file in files:
+                    destination_file_path = path.join(destination_path, file)
+                    source_file_path = path.join(source_path,file)
+                    docs_path = source_path.replace('macros', 'documentation')
+                    docs_file = file.replace('sql', 'yml')
+                    docs_file_path = path.join(docs_path, docs_file)
+                    if (not os.path.exists(source_file_path)) and (not os.path.exists(docs_file_path)):
+                        delete_non_standard_model_choice(destination_file_path)
 
 
 def main(dbt_models_path=''):
@@ -194,6 +225,7 @@ def main(dbt_models_path=''):
         print(e)
         pass
     print('\nProgram terminated successfully!\n')
+
 
 if __name__ == '__main__':
     main()

@@ -4,4 +4,4 @@ sources:
     database: "{{ var('database') }}"
     schema: src_frakture
     tables:
-        - name: transaction_summary
+      - name: transaction_summary
