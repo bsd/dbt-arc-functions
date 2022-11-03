@@ -9,15 +9,15 @@ SELECT
     SUM(SAFE_CAST(transactions.amount AS numeric)) AS total_revenue,
     COUNT(DISTINCT transactions.remote_transaction_id) AS total_gifts,
     COUNT(DISTINCT transactions.remote_person_id) AS total_donors, 
-    SUM(CASE WHEN transactions.is_recurring = 0 then transactions.amount end) AS one_time_revenue,
-    COUNT(CASE WHEN transactions.is_recurring = 0 then transactions.remote_transaction_id end) AS one_time_gifts,
+    SUM(CASE WHEN transactions.is_recurring = '0' then transactions.amount end) AS one_time_revenue,
+    COUNT(CASE WHEN transactions.is_recurring = '0' then transactions.remote_transaction_id end) AS one_time_gifts,
     SUM(CASE WHEN transactions.recurring_number = 1 then transactions.amount end) AS new_monthly_revenue,
     COUNT(CASE WHEN transactions.recurring_number = 1 then transactions.remote_transaction_id end) AS new_monthly_gifts,
-    SUM(CASE WHEN transactions.is_recurring = 1 then transactions.amount end) AS total_monthly_revenue,
-    COUNT(CASE WHEN transactions.is_recurring = 1 then transactions.remote_transaction_id end) AS total_monthly_gifts
+    SUM(CASE WHEN transactions.is_recurring = '1' then transactions.amount end) AS total_monthly_revenue,
+    COUNT(CASE WHEN transactions.is_recurring = '1' then transactions.remote_transaction_id end) AS total_monthly_gifts
  FROM  {{ ref(email_summary) }} email_summary
  FULL OUTER JOIN {{ ref(transactions) }} transactions 
- WHERE email_summary.remote_id = transactions.remote_message_id
+ ON CAST(email_summary.remote_id as STRING) = CAST(transactions.remote_message_id as STRING)
  GROUP BY 1 )
 
 SELECT 
