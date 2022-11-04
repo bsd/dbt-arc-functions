@@ -25,6 +25,7 @@ SELECT
     SAFE_CAST(total_revenue as NUMERIC) AS total_revenue,
     SAFE_CAST(total_gifts as INT) AS total_gifts,
     SAFE_CAST(total_donors as INT) AS total_donors,
+    SAFE_CAST(one_time_gifts as INT) AS one_time_gifts,
     SAFE_CAST(one_time_revenue as NUMERIC) AS one_time_revenue,
     SAFE_CAST(new_monthly_revenue  AS numeric) AS new_monthly_revenue,
     SAFE_CAST(new_monthly_gifts  AS int) AS new_monthly_gifts,
