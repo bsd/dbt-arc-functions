@@ -1,6 +1,6 @@
 {% macro create_stg_frakture_actionkit_email_jobs(
     reference_name='stg_frakture_actionkit_email_summary_unioned') %}
-SELECT SAFE_CAST(message_id AS STRING) AS message_id,
+SELECT DISTINCT SAFE_CAST(message_id AS STRING) AS message_id,
     SAFE_CAST(from_name AS STRING) AS from_name,
     SAFE_CAST(from_email AS STRING) AS from_email,
     SAFE_CAST(publish_date AS TIMESTAMP) AS best_guess_timestamp,
