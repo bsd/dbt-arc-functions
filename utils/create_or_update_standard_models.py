@@ -5,10 +5,11 @@
 import difflib
 import os
 import re
-from os import path
-import ruamel.yaml
 import sys
+from os import path
 from pprint import pprint
+
+import ruamel.yaml
 
 dbt_string = """-- macro used to create this file can be found at:
 -- {github_path}
@@ -50,7 +51,7 @@ def get_sources_wanted(list_of_sources):
     sources_wanted = input()
     print()
     sources_wanted = list(set([source.strip()
-                          for source in sources_wanted.split(',')]))
+                               for source in sources_wanted.split(',')]))
     return sources_wanted
 
 
@@ -175,7 +176,7 @@ def create_or_update_docs(docs_path, destination_path):
         while choice not in ['y', 'n']:
             choice = input("Type y for (y)es or n for (n)o:\n")
         if choice == 'y':
-            with open(schema_path,'w') as f:
+            with open(schema_path, 'w') as f:
                 yaml.dump(schema_dict, f)
         return
     if docs_model == schema_dict['models'][existing_model_index]:
@@ -187,16 +188,16 @@ def create_or_update_docs(docs_path, destination_path):
         print("Your existing in the schema file for this model")
         print("is different than the one in our documentation.")
         print("Here's what exists in our documentation but not your schema file:")
-        pprint(schema_dict_model_set-docs_model_set)
+        pprint(schema_dict_model_set - docs_model_set)
         print("Here's what exists in your schema file but not our documentation:")
-        pprint(docs_model_set-schema_dict_model_set)
+        pprint(docs_model_set - schema_dict_model_set)
         print("Would you like to update your schema file to match our documentation?")
         choice = None
         while choice not in ['y', 'n']:
             choice = input("Type y for (y)es or n for (n)o:\n")
         if choice == 'y':
             schema_dict['models'][existing_model_index] = docs_model
-            with open(schema_path,'w') as f:
+            with open(schema_path, 'w') as f:
                 yaml.dump(schema_dict, f)
         return
 
