@@ -22,6 +22,7 @@ SELECT
           then CONCAT(campaigns.crm_entity,'-', campaigns.source_code_entity)
           else COALESCE(campaigns.crm_entity,campaigns.source_code_entity) END
           as best_guess_entity,
+      campaigns.preview_url,
       impressions.date_timestamp,
       impressions.total_impressions,
       impressions.unique_impressions,
