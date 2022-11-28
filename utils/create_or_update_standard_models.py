@@ -5,7 +5,11 @@
 import difflib
 import os
 import re
+import sys
 from os import path
+from pprint import pprint
+
+import ruamel.yaml
 
 dbt_string = """-- macro used to create this file can be found at:
 -- {github_path}
@@ -46,18 +50,21 @@ def get_sources_wanted(list_of_sources):
     print("\nYou can just add one or input a comma separated list (no brackets or quotes necessary): ")
     sources_wanted = input()
     print()
-    sources_wanted = list(set([source.strip() for source in sources_wanted.split(',')]))
+    sources_wanted = list(set([source.strip()
+                               for source in sources_wanted.split(',')]))
     return sources_wanted
 
 
 def overwrite_choice(source_file_path, output, destination_file_path):
     with open(destination_file_path, 'r') as d:
-        d_text = list(filter(lambda x: not x.startswith('-- depends_on:'), d.readlines()))
+        d_text = list(filter(lambda x: not x.startswith(
+            '-- depends_on:'), d.readlines()))
         differences = list(difflib.unified_diff(
             d_text, output, fromfile=destination_file_path,
             tofile=source_file_path, lineterm='\n'))
         if not differences:
-            print(f"No differences between {destination_file_path} and {source_file_path}, skipping.")
+            print(
+                f"No differences between {destination_file_path} and {source_file_path}, skipping.")
             return False
         print(
             f'\nThere are differences between your model at:\n{destination_file_path} and the standard model at:\n{source_file_path}')
@@ -77,7 +84,8 @@ def overwrite_choice(source_file_path, output, destination_file_path):
 def extract_dependencies(output, destination_file_path, dependencies_regex):
     with open(destination_file_path, 'r') as d:
         dependencies = dependencies_regex.findall(d.read())
-    if not dependencies: return output
+    if not dependencies:
+        return output
     print("Would you like to keep these dependencies?")
     print(*dependencies)
     add_dependencies = None
@@ -94,7 +102,8 @@ def write_new_file_choice(output, destination_file_path):
     print(f"\nYou do not have a model at {destination_file_path}\n")
     print("Here is the standard model in arc-dbt-functions:\n")
     print(*output, sep='')
-    print(f"Would you like to create a model with this content at {destination_file_path}?\n")
+    print(
+        f"Would you like to create a model with this content at {destination_file_path}?\n")
     yes = None
     while yes not in ('y', 'n'):
         print("Enter y for (y)es or n for (n)o:")
@@ -110,7 +119,8 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
     with open(file_path, 'r') as f:
         content = f.read()
         if file.endswith('.sql'):
-            function = rx.search(content).group(1) if rx.search(content) else None
+            function = rx.search(content).group(
+                1) if rx.search(content) else None
             github_path = '/'.join([git_prepend, source, model_type, file])
             output = dbt_string.format(github_path=github_path,
                                        function=function)
@@ -123,7 +133,8 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
                 output_formatted = output_formatted[:-1]
             if not overwrite_choice(file_path, output_formatted, destination_file_path):
                 return
-            output = extract_dependencies(output, destination_file_path, dependencies_regex)
+            output = extract_dependencies(
+                output, destination_file_path, dependencies_regex)
         if not path.exists(destination_file_path) and not create:
             if not write_new_file_choice(output, destination_file_path):
                 return
@@ -131,6 +142,64 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
             with open(destination_file_path, 'w') as tf:
                 tf.writelines(output)
                 print(destination_file_path + " created successfully!")
+
+
+def create_or_update_docs(docs_path, destination_path):
+    yaml = ruamel.yaml.YAML()
+    yaml.indent(mapping=4, sequence=4, offset=2)
+    yaml.preserve_quotes = True
+    schema_path = path.join(destination_path, 'schema.yml')
+    if not path.exists(schema_path):
+        schema_dict = {'version': 2, 'models': []}
+    else:
+        with open(schema_path, 'r') as f:
+            content = f.read()
+            schema_dict = yaml.load(content)
+    with open(docs_path, 'r') as f:
+        content = f.read()
+        docs_dict = yaml.load(content)
+    docs_model = docs_dict['models'][0]
+    model_name = docs_model['name']
+    for i, model in enumerate(schema_dict['models']):
+        if model['name'] == model_name:
+            existing_model_index = i
+            break
+    else:
+        schema_dict['models'].append(docs_model)
+        print(
+            f"\nCan we add docs for the current model to your schema.yml in {destination_path}?")
+        print("This is the data we'd add to your schema.yml:")
+        pprint(docs_model)
+        print("\nThe resultant yaml would look like this:")
+        yaml.dump(schema_dict, sys.stdout)
+        choice = None
+        while choice not in ['y', 'n']:
+            choice = input("Type y for (y)es or n for (n)o:\n")
+        if choice == 'y':
+            with open(schema_path, 'w') as f:
+                yaml.dump(schema_dict, f)
+        return
+    if docs_model == schema_dict['models'][existing_model_index]:
+        return
+    else:
+        docs_model_set = set(docs_model)
+        schema_dict_model_set = set(
+            schema_dict['models'][existing_model_index])
+        print("Your existing in the schema file for this model")
+        print("is different than the one in our documentation.")
+        print("Here's what exists in our documentation but not your schema file:")
+        pprint(schema_dict_model_set - docs_model_set)
+        print("Here's what exists in your schema file but not our documentation:")
+        pprint(docs_model_set - schema_dict_model_set)
+        print("Would you like to update your schema file to match our documentation?")
+        choice = None
+        while choice not in ['y', 'n']:
+            choice = input("Type y for (y)es or n for (n)o:\n")
+        if choice == 'y':
+            schema_dict['models'][existing_model_index] = docs_model
+            with open(schema_path, 'w') as f:
+                yaml.dump(schema_dict, f)
+        return
 
 
 def delete_non_standard_model_choice(destination_file_path):
@@ -176,9 +245,11 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
         for model_type in list_of_models:
             # TODO break this out into separate function
             if model_type not in model_types:
-                print(f"Weird, {model_type} is not one of our standard model types. Going to skip.")
+                print(
+                    f"Weird, {model_type} is not one of our standard model types. Going to skip.")
                 continue
-            source_path = sources_path if model_type == sources_path else path.join(macros_path, source, model_type)
+            source_path = sources_path if model_type == sources_path else path.join(
+                macros_path, source, model_type)
             destination_path = path.join(destination, model_type, source) if model_type != sources_path else path.join(
                 destination, 'sources')
             if path.exists(destination_path) and create and not destination_path.endswith('sources'):
@@ -195,20 +266,23 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                 for file in files:
                     if file.endswith('.sql') or file == f"{source}.yml":
                         source_file_path = path.join(source_path, file)
-                        write_to_file(source_file_path, destination_path, file, source, model_type, create)
+                        write_to_file(source_file_path, destination_path,
+                                      file, source, model_type, create)
                         if file.endswith('sql'):
-                            docs_path = source_path.replace('macros', 'documentation')
+                            docs_path = source_path.replace(
+                                'macros', 'documentation')
                             docs_file = file.replace('sql', 'yml')
                             docs_file_path = path.join(docs_path, docs_file)
-                            write_to_file(docs_file_path, destination_path, docs_file, source, model_type, create)
+                            create_or_update_docs(docs_file_path, destination_path)
             for _, _, files in os.walk(destination_path):
                 for file in files:
                     destination_file_path = path.join(destination_path, file)
-                    source_file_path = path.join(source_path,file)
+                    source_file_path = path.join(source_path, file)
                     docs_path = source_path.replace('macros', 'documentation')
                     docs_file = file.replace('sql', 'yml')
                     docs_file_path = path.join(docs_path, docs_file)
-                    if (not os.path.exists(source_file_path)) and (not os.path.exists(docs_file_path)):
+                    if (not os.path.exists(source_file_path)) and (not os.path.exists(docs_file_path) and (
+                            file != 'schema.yml')):
                         delete_non_standard_model_choice(destination_file_path)
 
 
@@ -220,7 +294,8 @@ def main(dbt_models_path=''):
             dbt_models_path = get_destination()
         list_of_sources = get_list_of_sources(macros_path)
         sources_wanted = get_sources_wanted(list_of_sources)
-        process_sources(sources_wanted, list_of_sources, macros_path, create, dbt_models_path)
+        process_sources(sources_wanted, list_of_sources,
+                        macros_path, create, dbt_models_path)
     except Exception as e:
         print(e)
         pass
