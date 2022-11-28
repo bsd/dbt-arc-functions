@@ -5,3 +5,4 @@ sources:
     schema: src_frakture
     tables:
       - name: global_message_summary_by_date
+      - name: global_message

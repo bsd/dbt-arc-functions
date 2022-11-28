@@ -10,20 +10,15 @@ macros:
       - name: reference_1_name
         type: string
         description: the name of the paidmedia model
-  - name: create_mart_email_performance_with_revenue
-    description: '{{ doc("mart_email_performance_with_revenue") }}'
+  - name: create_mart_paidmedia_daily_revenue_performance
+    description: '{{ doc("mart_paidmedia_daily_revenue_performance") }}'
     arguments:
-      - name: jobs
       - name: campaigns
-      - name: campaign_dates
-      - name: bounces
+      - name: impressions
       - name: clicks
-      - name: opens
-      - name: actions
-      - name: complaints
-      - name: recipients
+      - name: spends
       - name: transactions
-      - name: unsubscribes
+      - name: subscribes
   - name: create_mart_email_listhealth_by_month
     description: '{{ doc("mart_email_listhealth_by_month") }}'
     arguments:
