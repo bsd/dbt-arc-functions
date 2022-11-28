@@ -1,0 +1,10 @@
+# TODO Write documentation for stg_paidmedia_goals_monthly_actuals_rollup [documentation]
+#  Github main branch URL:
+#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/email/marts/stg_paidmedia_goals_monthly_actuals_rollup.yml
+#  Where to find in dbt-arc-functions local directory:
+#  documentation/email/marts/stg_paidmedia_goals_monthly_actuals_rollup.yml
+version: 2
+
+models:
+  - name: stg_paidmedia_goals_monthly_actuals_rollup
+    description: Please replace this default description.

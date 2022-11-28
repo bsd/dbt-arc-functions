@@ -1,0 +1,10 @@
+# TODO Write documentation for stg_adhoc_google_spreadsheets_paidmedia_monthly_goals [documentation]
+#  Github main branch URL:
+#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/email/marts/stg_adhoc_google_spreadsheets_paidmedia_monthly_goals.yml
+#  Where to find in dbt-arc-functions local directory:
+#  documentation/email/marts/stg_adhoc_google_spreadsheets_paidmedia_monthly_goals.yml
+version: 2
+
+models:
+  - name: stg_adhoc_google_spreadsheets_paidmedia_monthly_goals
+    description: Please replace this default description.
