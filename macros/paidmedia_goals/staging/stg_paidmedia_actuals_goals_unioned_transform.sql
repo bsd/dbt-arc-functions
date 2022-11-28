@@ -1,5 +1,5 @@
-{% macro create_stg_paidmedia_actuals_goals_join_transform(
-    reference_name='stg_paidmedia_actuals_goals_join') %}
+{% macro create_stg_paidmedia_actuals_goals_unioned_transform(
+    reference_name='stg_paidmedia_actuals_goals_unioned') %}
 SELECT
      month_year,
      case when regexp_contains(channel, 'soc') = true then 'Social'
