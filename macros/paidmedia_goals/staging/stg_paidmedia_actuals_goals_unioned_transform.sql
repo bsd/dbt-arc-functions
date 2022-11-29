@@ -29,8 +29,8 @@ SELECT
         else platform end as platform,
       sum(actual_spend) as actual_spend,
       sum(actual_revenue) as actual_revenue,
-      sum(actual_donations) as actual_donations
-      sum(projected_revenue) as projected_revenue
+      sum(actual_donations) as actual_donations,
+      sum(projected_revenue) as projected_revenue,
       sum(projected_spend) as projected_spend
 FROM {{ ref(reference_name) }} 
 GROUP BY 1, 2, 3, 4
