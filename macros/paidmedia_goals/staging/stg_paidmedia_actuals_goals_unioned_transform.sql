@@ -27,6 +27,7 @@ SELECT
       when regexp_contains(platform, 'yt') = true then 'Google'
       when regexp_contains(platform, 'linked') = true then 'LinkedIn'
       when regexp_contains(platform, 'yahoo') = true then 'Yahoo'
+      when platform = 'ad' then 'Bing'
         else platform end as platform,
       sum(actual_spend) as actual_spend,
       sum(actual_revenue) as actual_revenue,
