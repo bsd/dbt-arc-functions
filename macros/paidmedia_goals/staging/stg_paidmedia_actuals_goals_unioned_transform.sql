@@ -2,6 +2,7 @@
     reference_name='stg_paidmedia_actuals_goals_unioned') %}
 SELECT
      month_year,
+     PARSE_DATE('%B %Y', month_year) as month_year_date,
      case when regexp_contains(channel, 'soc') = true then 'Social'
      when regexp_contains(platform, 'soc') = true then 'Social'
      when regexp_contains(channel, 'sear') = true then 'Search'
@@ -33,5 +34,5 @@ SELECT
       sum(projected_revenue) as projected_revenue,
       sum(projected_spend) as projected_spend
 FROM {{ ref(reference_name) }} 
-GROUP BY 1, 2, 3, 4
+GROUP BY 1, 2, 3, 4, 5
 {% endmacro %}
