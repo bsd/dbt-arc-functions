@@ -12,28 +12,28 @@ Look [here](https://bluestate.atlassian.net/wiki/spaces/ATeam/pages/2986049548/T
     - [About](#about)
     - [Order of scripts used by main.py](#order-of-scripts-used-by-mainpy)
   - [Scripts explanations](#scripts-explanations)
-    - [add_dependencies.py](#add_dependenciespy)
+    - [add\_dependencies.py](#add_dependenciespy)
       - [Usage](#usage-1)
       - [Plain English what it does](#plain-english-what-it-does)
-    - [clone_all_tables_and_views_in_schema.ipynb](#clone_all_tables_and_views_in_schemaipynb)
+    - [clone\_all\_tables\_and\_views\_in\_schema.ipynb](#clone_all_tables_and_views_in_schemaipynb)
       - [Usage](#usage-2)
       - [Plain English what it does](#plain-english-what-it-does-1)
-    - [compile_sources.py](#compile_sourcespy)
+    - [compile\_sources.py](#compile_sourcespy)
       - [Usage](#usage-3)
       - [Plain English what it does](#plain-english-what-it-does-2)
-    - [create_macros_from_sql.py](#create_macros_from_sqlpy)
+    - [create\_macros\_from\_sql.py](#create_macros_from_sqlpy)
       - [Usage](#usage-4)
       - [Plain English what it does](#plain-english-what-it-does-3)
-    - [create_or_update_standard_models.py](#create_or_update_standard_modelspy)
+    - [create\_or\_update\_standard\_models.py](#create_or_update_standard_modelspy)
       - [Usage](#usage-5)
       - [Plain English what it does](#plain-english-what-it-does-4)
-    - [create_views_from_stitch_datasets.ipynb](#create_views_from_stitch_datasetsipynb)
+    - [create\_views\_from\_stitch\_datasets.ipynb](#create_views_from_stitch_datasetsipynb)
       - [Usage](#usage-6)
       - [Plain English what it does](#plain-english-what-it-does-5)
-    - [delete_schemas.py](#delete_schemaspy)
+    - [delete\_schemas.py](#delete_schemaspy)
       - [Usage](#usage-7)
       - [Plain English what it does](#plain-english-what-it-does-6)
-    - [first_run_dbt_project_and_profiles_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
+    - [first\_run\_dbt\_project\_and\_profiles\_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
       - [Usage](#usage-8)
       - [Plain English what it does](#plain-english-what-it-does-7)
 
@@ -136,7 +136,7 @@ When you're prototyping building out a set of models, it's easiest to do that in
 `python create_or_update_standard_models.py`
 
 #### Plain English what it does
-This function allows you to build out models based on the sources we've used before ([found here.](https://github.com/bsd/dbt-arc-functions/tree/main/macros)) This function will build a set of models in the desired project.
+This function allows you to build out models based on the sources we've used before ([found here.](https://github.com/bsd/dbt-arc-functions/tree/main/macros)) This function will build a set of models in the desired project, by generating sql files that reference macros within a folder structure recognized by dbt.
 
 ---
 
