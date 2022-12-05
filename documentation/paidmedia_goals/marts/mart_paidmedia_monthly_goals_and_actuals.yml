@@ -1,0 +1,10 @@
+# TODO Write documentation for mart_paidmedia_monthly_goals_and_actuals [documentation]
+#  Github main branch URL:
+#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/email/marts/mart_paidmedia_monthly_goals_and_actuals.yml
+#  Where to find in dbt-arc-functions local directory:
+#  documentation/email/marts/mart_paidmedia_monthly_goals_and_actuals.yml
+version: 2
+
+models:
+  - name: mart_paidmedia_monthly_goals_and_actuals
+    description: Please replace this default description.

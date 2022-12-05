@@ -37,3 +37,5 @@ macros:
       - name: recipients
       - name: transactions
       - name: unsubscribes
+  - name: create_mart_paidmedia_monthly_goals_and_actuals
+    description: '{{ doc("mart_paidmedia_monthly_goals_and_actuals") }}'
