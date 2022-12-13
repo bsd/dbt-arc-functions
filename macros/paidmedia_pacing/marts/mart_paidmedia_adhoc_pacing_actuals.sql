@@ -1,5 +1,5 @@
 {% macro create_mart_paidmedia_adhoc_pacing_actuals(
-    reference_name='stg_paidmedia_adhoc_pacing_actuals_rollup_join') %}
+    reference_name='stg_paidmedia_pacing_actuals_campaigns_rollup_join') %}
 
 SELECT 
 date_day,
