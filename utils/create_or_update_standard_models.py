@@ -188,9 +188,9 @@ def create_or_update_docs(docs_path, destination_path):
         print("Your existing in the schema file for this model")
         print("is different than the one in our documentation.")
         print("Here's what exists in our documentation but not your schema file:")
-        pprint(schema_dict_model_set - docs_model_set)
+        print(schema_dict_model_set - docs_model_set)
         print("Here's what exists in your schema file but not our documentation:")
-        pprint(docs_model_set - schema_dict_model_set)
+        print(docs_model_set - schema_dict_model_set)
         print("Would you like to update your schema file to match our documentation?")
         choice = None
         while choice not in ['y', 'n']:
