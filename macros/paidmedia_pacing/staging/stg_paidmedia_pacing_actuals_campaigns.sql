@@ -4,10 +4,9 @@
 SELECT
 campaign_name,
 channel as platform,
-max(best_guess_entity),
-max(objective),
+max(objective) as objective,
 max(channel_category) as channel,
-max(channel_type)
+max(channel_type) as channel_type
 FROM {{ ref(reference_name) }}
 GROUP BY 1, 2
 
