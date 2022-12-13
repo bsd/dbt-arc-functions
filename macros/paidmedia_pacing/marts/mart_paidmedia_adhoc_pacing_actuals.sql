@@ -16,7 +16,7 @@ campaign_name,
 actual_spend,
 actual_revenue
 
- FROM {{ref('reference_name')}}
+ FROM {{ref(reference_name)}}
 
 
 {% endmacro %}
