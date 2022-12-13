@@ -5,12 +5,11 @@
 
 SELECT
 rollups.date_day,
-rollups.platform,
-rollups.campaign_name,
-campaigns.best_guess_entity,
 campaigns.objective,
 campaigns.channel,
+rollups.platform,
 campaigns.channel_type,
+rollups.campaign_name,
 rollups.actual_spend,
 rollups.actual_revenue
 

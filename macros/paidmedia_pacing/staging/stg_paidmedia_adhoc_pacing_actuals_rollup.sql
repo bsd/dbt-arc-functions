@@ -8,7 +8,6 @@ channel_category as channel,
 channel_type,
 channel as platform,
 campaign_name,
-audience
 sum(spend_amount) as actual_spend,
 sum(total_revenue) as actual_revenue
 
