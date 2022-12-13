@@ -3,7 +3,7 @@
 
 SELECT
 campaign_name,
-platform,
+channel as platform,
 max(best_guess_entity),
 max(objective),
 max(channel_category) as channel,
