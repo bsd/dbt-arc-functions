@@ -13,8 +13,8 @@ rollups.campaign_name,
 rollups.actual_spend,
 rollups.actual_revenue
 
-FROM {{ref('rollups')}} rollups
-LEFT JOIN {{ref('campaigns')}} campaigns
+FROM {{ref(rollups)}} rollups
+LEFT JOIN {{ref(campaigns)}} campaigns
 on lower(rollups.campaign_name) = lower(campaign.campaign_id)
 and lower(rollups.platform) = lower(campaign.platform)
 

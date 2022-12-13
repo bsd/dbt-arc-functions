@@ -8,7 +8,7 @@ max(best_guess_entity),
 max(objective),
 max(channel_category) as channel,
 max(channel_type)
-FROM {{ref('reference_name')}}
+FROM {{ ref(reference_name) }}
 GROUP BY 1, 2
 
 

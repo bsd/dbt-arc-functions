@@ -7,7 +7,7 @@ campaign_name,
 sum(spend_amount) as actual_spend,
 sum(total_revenue) as actual_revenue
 
-FROM {{ref('reference_name')}}
+FROM {{ref(reference_name)}}
 GROUP BY 1, 2, 3
 
 
