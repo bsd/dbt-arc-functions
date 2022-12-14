@@ -11,7 +11,7 @@ date_trunc(date_day, YEAR) as date_year,
 objective,
 channel,
 channel_type,
-platform,
+case when platform = 'ad' then 'bing_ad' else platform end as platform,
 campaign_name,
 actual_spend,
 actual_revenue
