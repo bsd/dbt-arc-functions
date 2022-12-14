@@ -15,7 +15,7 @@ rollups.actual_revenue
 
 FROM {{ref(rollups)}} rollups
 LEFT JOIN {{ref(campaigns)}} campaigns
-on lower(rollups.campaign_name) = lower(campaigns.campaign_id)
+on lower(rollups.campaign_name) = lower(campaigns.campaign_name)
 and lower(rollups.platform) = lower(campaigns.platform)
 
 {% endmacro %}
