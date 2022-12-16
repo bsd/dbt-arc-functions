@@ -273,7 +273,10 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                                 'macros', 'documentation')
                             docs_file = file.replace('sql', 'yml')
                             docs_file_path = path.join(docs_path, docs_file)
-                            create_or_update_docs(docs_file_path, destination_path)
+                            if os.path.exists(docs_file_path):
+                                create_or_update_docs(docs_file_path, destination_path)
+                            else:
+                                print(f"\nNo documentation exists for this model, consider adding some at {docs_file_path}!\n")
             for _, _, files in os.walk(destination_path):
                 for file in files:
                     destination_file_path = path.join(destination_path, file)
