@@ -169,7 +169,7 @@ def create_or_update_docs(docs_path, destination_path):
         print(
             f"\nCan we add docs for the current model to your schema.yml in {destination_path}?")
         print("This is the data we'd add to your schema.yml:")
-        pprint(docs_model)
+        print(docs_model)
         print("\nThe resultant yaml would look like this:")
         yaml.dump(schema_dict, sys.stdout)
         choice = None
@@ -188,9 +188,9 @@ def create_or_update_docs(docs_path, destination_path):
         print("Your existing in the schema file for this model")
         print("is different than the one in our documentation.")
         print("Here's what exists in our documentation but not your schema file:")
-        pprint(schema_dict_model_set - docs_model_set)
+        print(schema_dict_model_set - docs_model_set)
         print("Here's what exists in your schema file but not our documentation:")
-        pprint(docs_model_set - schema_dict_model_set)
+        print(docs_model_set - schema_dict_model_set)
         print("Would you like to update your schema file to match our documentation?")
         choice = None
         while choice not in ['y', 'n']:
@@ -273,7 +273,10 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                                 'macros', 'documentation')
                             docs_file = file.replace('sql', 'yml')
                             docs_file_path = path.join(docs_path, docs_file)
-                            create_or_update_docs(docs_file_path, destination_path)
+                            if os.path.exists(docs_file_path):
+                                create_or_update_docs(docs_file_path, destination_path)
+                            else:
+                                print(f"\nNo documentation exists for this model, consider adding some at {docs_file_path}!\n")
             for _, _, files in os.walk(destination_path):
                 for file in files:
                     destination_file_path = path.join(destination_path, file)
