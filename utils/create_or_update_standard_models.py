@@ -18,6 +18,14 @@ dbt_string = """-- macro used to create this file can be found at:
 
 
 def get_create_or_update():
+    """Get a boolean indicating whether to create or update standard models.
+
+    Prompts the user to enter 'c' to create new standard models or 'u' to update standard models. If the user
+    enters an invalid input, the function will continue to prompt until a valid input is provided.
+
+    Returns:
+        A boolean indicating whether to create (True) or update (False) standard models.
+    """
     print("\nFirst thing's first, do you want to create a new set of standard models or update an existing set?")
     create = None
     while create not in ('c', 'u'):
@@ -27,6 +35,14 @@ def get_create_or_update():
 
 
 def get_destination():
+    """Get the absolute or relative path to create models.
+
+    Prompts the user to enter the absolute or relative path where they would like to create models. The function
+    will continue to prompt until a valid path is provided.
+
+    Returns:
+        The absolute or relative path where the models will be created.
+    """
     print("\nNow, what's the absolute or relative path where you'd like to create models?")
     print("This is usually the 'models' folder of the target repo.")
     print("This script will not let you create models in the current repo.")
@@ -39,12 +55,31 @@ def get_destination():
 
 
 def get_list_of_sources(macros_path):
+    """Get a list of sources in the specified macros path.
+
+    Args:
+        macros_path: The path to the dbt macros.
+
+    Returns:
+        A list of directories in the macros path.
+    """
     list_of_sources = [directory for directory in os.listdir(macros_path) if
                        path.isdir(path.join(macros_path, directory))]
     return list_of_sources
 
 
 def get_sources_wanted(list_of_sources):
+    """Get a list of sources wanted for the dbt project.
+
+    Prompts the user to enter a comma-separated list of sources they want to use in their dbt project. The function
+    will remove any duplicates and return a list of the selected sources.
+
+    Args:
+        list_of_sources: A list of available sources.
+
+    Returns:
+        A list of selected sources.
+    """
     print("\nWhich set of standard models would you like to use in this dbt project? Here's the list:")
     [print(source) for source in list_of_sources]
     print("\nYou can just add one or input a comma separated list (no brackets or quotes necessary): ")
@@ -56,6 +91,22 @@ def get_sources_wanted(list_of_sources):
 
 
 def overwrite_choice(source_file_path, output, destination_file_path):
+    """Determine whether to overwrite a destination file with a source file.
+
+    Compares the contents of the source file and the destination file, and prompts the user to decide whether to
+    overwrite the destination file with the source file. If the files are identical, the function returns False without
+    prompting the user.
+
+    Args:
+        source_file_path: The path to the source file.
+        output: The contents of the source file as a list of strings.
+        destination_file_path: The path to the destination file.
+
+    Returns:
+        A boolean indicating whether to overwrite the destination file (True) or keep the destination file (False).
+    """
+    # function implementation goes here
+
     with open(destination_file_path, 'r') as d:
         d_text = list(filter(lambda x: not x.startswith(
             '-- depends_on:'), d.readlines()))
@@ -82,6 +133,16 @@ def overwrite_choice(source_file_path, output, destination_file_path):
 
 
 def extract_dependencies(output, destination_file_path, dependencies_regex):
+    """Extract dependencies from a destination file.
+
+    Args:
+        output: The list of strings representing the output file.
+        destination_file_path: The path to the destination file.
+        dependencies_regex: The regular expression to use for extracting dependencies.
+
+    Returns:
+        A list of dependencies extracted from the destination file.
+    """
     with open(destination_file_path, 'r') as d:
         dependencies = dependencies_regex.findall(d.read())
     if not dependencies:
@@ -99,6 +160,18 @@ def extract_dependencies(output, destination_file_path, dependencies_regex):
 
 
 def write_new_file_choice(output, destination_file_path):
+    """Determine whether to write a new file from a source file.
+
+    Prompts the user to decide whether to write a new file at the specified destination path using the contents of the
+    source file.
+
+    Args:
+        output: The contents of the source file as a list of strings.
+        destination_file_path: The path to the destination file.
+
+    Returns:
+        A boolean indicating whether to write a new file at the destination path (True) or skip writing the file (False).
+    """
     print(f"\nYou do not have a model at {destination_file_path}\n")
     print("Here is the standard model in arc-dbt-functions:\n")
     print(*output, sep='')
@@ -112,6 +185,11 @@ def write_new_file_choice(output, destination_file_path):
 
 
 def write_to_file(file_path, destination_path, file, source, model_type, create):
+    """Write a list of strings to a file at the specified destination path.
+
+    Args:
+        destination_file_path: The path to the destination file.
+    """
     rx = re.compile(r"\{%\s+macro\s+(.*?)\s+%\}", re.DOTALL)
     dependencies_regex = re.compile(r"--\s+depends_on:\s+.*\n")
     git_prepend = "https://github.com/bsd/dbt-arc-functions/blob/main/macros"
@@ -145,6 +223,17 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
 
 
 def create_or_update_docs(docs_path, destination_path):
+    """Create or update documentation for standard models.
+
+    Processes each model file in the specified documentation path, determining whether to overwrite or create new files
+    at the destination path. If a file already exists at the destination path, it will be overwritten if there are
+    differences between the source file and the destination file. If a file does not exist at the destination path,
+    a new file will be created.
+
+    Args:
+        docs_path: The path to the documentation directory.
+        destination_path: The path to the destination directory for the processed models.
+    """
     yaml = ruamel.yaml.YAML()
     yaml.indent(mapping=4, sequence=4, offset=2)
     yaml.preserve_quotes = True
@@ -290,6 +379,17 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
 
 
 def main(dbt_models_path=''):
+    """Create or update standard models in a dbt project.
+
+    Prompts the user to choose whether to create new standard models or update existing standard models in a dbt project.
+    The user is also prompted to enter the absolute or relative path where the models should be created or updated.
+    The user is then prompted to select the sources they want to use for the dbt project. Finally, the selected sources
+    are processed, creating or updating the standard models at the specified path.
+
+    Args:
+        dbt_models_path: The path to the dbt models directory. If not provided, the user will be prompted to enter the
+            path.
+    """
     macros_path = path.join('..', 'macros')
     create = get_create_or_update()
     try:

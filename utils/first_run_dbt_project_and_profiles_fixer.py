@@ -63,6 +63,15 @@ Enter y for (y)es and n for (n)o. (We recommend y):
 
 
 def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml):
+    """
+    Updates the `dbt_project.yml` file with the project name, removes the `my_new_project` model, adds a `database` variable and adds the standard model directory structure.
+
+    :param dbt_project: Path to the `dbt_project.yml` file
+    :param project_name: Name of the project
+    :param project_name_underscore: Name of the project with underscores
+    :param yaml: YAML object
+    :return: None
+    """
     with open(dbt_project, 'r') as f:
         content = f.read()
         dbt_project_yml = yaml.load(content)
@@ -92,6 +101,12 @@ def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml)
 
 
 def copy_or_keep_credentials(credentials_location):
+    """
+    Copies or keeps the given credentials file at the specified location.
+
+    :param credentials_location: The location of the credentials file.
+    :return: The location of the copied or kept credentials file.
+    """
     choice = ''
     _, file = path.split(credentials_location)
     profile_location = path.join(path.expanduser('~'), '.dbt', file)
@@ -109,6 +124,15 @@ def copy_or_keep_credentials(credentials_location):
 
 
 def update_profile_yml(project_id, project_id_underscore, yaml):
+    """
+    Updates the `profiles.yml` file for the project.
+
+    :param project_id: Name of the project
+    :param project_id_underscore: Name of the project with underscores
+    :yaml: YAML object
+    
+    :return: None
+    """
     choice = '' if __name__ == '__main__' else 'y'
     while choice not in ('y', 'n'):
         choice = input(run_locally_helptext)
@@ -146,6 +170,12 @@ def update_profile_yml(project_id, project_id_underscore, yaml):
 
 
 def inplace_or_copy(filetype):
+    """
+    Prompts the user to choose between replacing the existing file or making a copy of the file.
+
+    :param filetype: Type of file to be replaced or copied
+    :return: '_copy' if the user wants to make a copy, else an empty string
+    """
     choice = ''
     while choice not in ('r', 'c'):
         choice = input(inplace_or_copy_helptext.format(filename=filetype))
@@ -153,6 +183,13 @@ def inplace_or_copy(filetype):
 
 
 def get_dbt_artifacts_with_version():
+    """
+    Get the latest version of dbt-artifacts from Github releases API.
+
+    Returns:
+    dict: Dictionary containing package name and version in the format:
+    {'package': 'brooklyn-data/dbt_artifacts', 'version': 'x.x.x'}
+    """
     r = requests.get(url='https://api.github.com/repos/brooklyn-data/dbt_artifacts/releases')
     version: str = r.json()[0]['tag_name']
     package_with_version = {'package': 'brooklyn-data/dbt_artifacts', 'version': version}
@@ -160,6 +197,11 @@ def get_dbt_artifacts_with_version():
 
 
 def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
+    """
+    Write a 'packages.yml' file to the given `dbt_packages_path` with the current revision set to the given
+    `active_branch_name`. The `yaml` object is used to dump the `packages_dict` to the file. If a 'packages.yml'
+    file already exists at the given path, the user is prompted to confirm whether they want to replace the file.
+    """
     packages_dict = packages_dict_template.copy()
     revision_choice = input(revision_choice_helptext.format(
         active_branch_name=active_branch_name))
@@ -180,6 +222,12 @@ def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
 
 
 def get_active_branch_name():
+    """Get the name of the current active branch for the current repository. If the current commit is a tag,
+    returns the name of the tag.
+    
+    Returns:
+        str: The name of the current active branch or tag.
+    """
     repo = git.Repo(search_parent_directories=True)
     current_commit = repo.commit()
     for tag in repo.tags:
@@ -192,6 +240,16 @@ def get_active_branch_name():
 
 
 def main():
+    """
+    main
+
+    This function modifies an existing dbt_project.yml file by changing the name, adding a package and a model, updating the
+    credentials file reference in the profile.yml file, and deleting the 'models/example' folder.
+
+    :param: None
+    :return: tuple of str - a string path to the modified dbt_project.yml file, the project id, a YAML object, the path to the
+    credentials file, and the dbt username
+    """
     dbt_project_path = input("Please enter the full path of the dbt_project.yml you'd like to modify:\n")
     path.dirname(dbt_project_path)
     project_id = input("\nPlease enter the name of the Google Project (should look like bsd-projectname):\n")
