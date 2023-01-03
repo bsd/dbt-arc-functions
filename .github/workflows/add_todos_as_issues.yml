@@ -1,4 +1,4 @@
-name: Create issues from TODOs
+name: Create issues from T ODOs
 
 on:
   workflow_dispatch:
