@@ -8,3 +8,13 @@ version: 2
 models:
   - name: stg_frakture_global_message_paidmedia_spends_daily_rollup
     description: Please replace this default description.
+    columns:
+      - name: message_id
+        description: ""
+
+      - name: date_timestamp
+        description: ""
+
+      - name: spend_amount
+        description: ""
+

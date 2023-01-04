@@ -8,3 +8,19 @@ version: 2
 models:
   - name: stg_supermetrics_yahoo_dsp_paidmedia_campaigns
     description: Please replace this default description.
+    columns:
+      - name: campaign_id
+        description: ""
+
+      - name: message_id
+        description: ""
+
+      - name: channel
+        description: ""
+
+      - name: channel_type
+        description: ""
+
+      - name: campaign_name
+        description: ""
+

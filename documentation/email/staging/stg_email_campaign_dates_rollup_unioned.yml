@@ -8,3 +8,16 @@ version: 2
 models:
   - name: stg_email_campaign_dates_rollup_unioned
     description: Please replace this default description.
+    columns:
+      - name: _dbt_source_relation
+        description: ""
+
+      - name: campaign_name
+        description: ""
+
+      - name: campaign_start_timestamp
+        description: ""
+
+      - name: campaign_latest_timestamp
+        description: ""
+

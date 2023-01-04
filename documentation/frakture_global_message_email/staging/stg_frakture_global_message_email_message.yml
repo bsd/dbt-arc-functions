@@ -8,3 +8,61 @@ version: 2
 models:
   - name: stg_frakture_global_message_email_message
     description: Please replace this default description.
+    columns:
+      - name: message_id
+        description: ""
+
+      - name: channel
+        description: ""
+
+      - name: channel_label
+        description: ""
+
+      - name: type
+        description: ""
+
+      - name: status
+        description: ""
+
+      - name: publish_date
+        description: ""
+
+      - name: campaign_id
+        description: ""
+
+      - name: bot_id
+        description: ""
+
+      - name: submodule
+        description: ""
+
+      - name: remote_id
+        description: ""
+
+      - name: do_not_attribute
+        description: ""
+
+      - name: label
+        description: ""
+
+      - name: subject
+        description: ""
+
+      - name: campaign_name
+        description: ""
+
+      - name: from_name
+        description: ""
+
+      - name: preview_url
+        description: ""
+
+      - name: primary_source_code
+        description: ""
+
+      - name: primary_source_code_override
+        description: ""
+
+      - name: final_primary_source_code
+        description: ""
+

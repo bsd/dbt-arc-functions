@@ -8,3 +8,4 @@ version: 2
 models:
   - name: stg_email_complaints_rollup_unioned
     description: Please replace this default description.
+    columns:

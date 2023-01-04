@@ -8,3 +8,91 @@ version: 2
 models:
   - name: mart_paidmedia_daily_revenue_performance
     description: Please replace this default description.
+    columns:
+      - name: message_id
+        description: ""
+
+      - name: campaign_id
+        description: ""
+
+      - name: channel
+        description: ""
+
+      - name: channel_type
+        description: ""
+
+      - name: campaign_name
+        description: ""
+
+      - name: crm_entity
+        description: ""
+
+      - name: source_code_entity
+        description: ""
+
+      - name: best_guess_entity
+        description: ""
+
+      - name: date_timestamp
+        description: ""
+
+      - name: total_impressions
+        description: ""
+
+      - name: unique_impressions
+        description: ""
+
+      - name: total_clicks
+        description: ""
+
+      - name: unique_clicks
+        description: ""
+
+      - name: spend_amount
+        description: ""
+
+      - name: total_revenue
+        description: ""
+
+      - name: total_gifts
+        description: ""
+
+      - name: total_donors
+        description: ""
+
+      - name: one_time_revenue
+        description: ""
+
+      - name: one_time_gifts
+        description: ""
+
+      - name: new_monthly_revenue
+        description: ""
+
+      - name: new_monthly_gifts
+        description: ""
+
+      - name: total_monthly_revenue
+        description: ""
+
+      - name: total_monthly_gifts
+        description: ""
+
+      - name: campaign
+        description: ""
+
+      - name: campaign_label
+        description: ""
+
+      - name: audience
+        description: ""
+
+      - name: appeal
+        description: ""
+
+      - name: source_code
+        description: ""
+
+      - name: subscribes
+        description: ""
+
