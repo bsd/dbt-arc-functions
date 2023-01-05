@@ -8,3 +8,181 @@ version: 2
 models:
   - name: stg_frakture_global_message_paidmedia_ad_summary_by_date
     description: Please replace this default description.
+    columns:
+      - name: message_id
+        description: ""
+
+      - name: date
+        description: ""
+
+      - name: bot_id
+        description: ""
+
+      - name: bot_path
+        description: ""
+
+      - name: bot_label
+        description: ""
+
+      - name: bot_nickname
+        description: ""
+
+      - name: channel
+        description: ""
+
+      - name: channel_label
+        description: ""
+
+      - name: type
+        description: ""
+
+      - name: status
+        description: ""
+
+      - name: publish_date
+        description: ""
+
+      - name: campaign_id
+        description: ""
+
+      - name: submodule
+        description: ""
+
+      - name: remote_id
+        description: ""
+
+      - name: do_not_attribute
+        description: ""
+
+      - name: sent
+        description: ""
+
+      - name: impressions
+        description: ""
+
+      - name: clicks
+        description: ""
+
+      - name: engagements
+        description: ""
+
+      - name: actions
+        description: ""
+
+      - name: leads
+        description: ""
+
+      - name: total_actions
+        description: ""
+
+      - name: unique_actions
+        description: ""
+
+      - name: unsubscribes
+        description: ""
+
+      - name: complaints
+        description: ""
+
+      - name: soft_bounces
+        description: ""
+
+      - name: hard_bounces
+        description: ""
+
+      - name: blocked
+        description: ""
+
+      - name: transactions
+        description: ""
+
+      - name: revenue
+        description: ""
+
+      - name: spend
+        description: ""
+
+      - name: attributed_revenue
+        description: ""
+
+      - name: attributed_transactions
+        description: ""
+
+      - name: attributed_revenue_day_1
+        description: ""
+
+      - name: attributed_transactions_day_1
+        description: ""
+
+      - name: attributed_revenue_day_6
+        description: ""
+
+      - name: attributed_transactions_day_6
+        description: ""
+
+      - name: attributed_recurring_revenue
+        description: ""
+
+      - name: attributed_recurring_transactions
+        description: ""
+
+      - name: attributed_initial_recurring_revenue
+        description: ""
+
+      - name: attributed_initial_recurring_transactions
+        description: ""
+
+      - name: attributed_subsequent_recurring_revenue
+        description: ""
+
+      - name: attributed_subsequent_recurring_transactions
+        description: ""
+
+      - name: attributed_min_amount
+        description: ""
+
+      - name: origin_person_count
+        description: ""
+
+      - name: recurtype
+        description: ""
+
+      - name: appeal
+        description: ""
+
+      - name: campaign_label
+        description: ""
+
+      - name: audience
+        description: ""
+
+      - name: label
+        description: ""
+
+      - name: subject
+        description: ""
+
+      - name: campaign_name
+        description: ""
+
+      - name: campaign
+        description: ""
+
+      - name: account_prefix
+        description: ""
+
+      - name: from_name
+        description: ""
+
+      - name: preview_url
+        description: ""
+
+      - name: primary_source_code
+        description: ""
+
+      - name: primary_source_code_override
+        description: ""
+
+      - name: final_primary_source_code
+        description: ""
+

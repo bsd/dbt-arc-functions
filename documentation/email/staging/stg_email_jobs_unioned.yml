@@ -8,3 +8,37 @@ version: 2
 models:
   - name: stg_email_jobs_unioned
     description: Please replace this default description.
+    columns:
+      - name: _dbt_source_relation
+        description: ""
+
+      - name: message_id
+        description: ""
+
+      - name: from_name
+        description: ""
+
+      - name: from_email
+        description: ""
+
+      - name: best_guess_timestamp
+        description: ""
+
+      - name: scheduled_timestamp
+        description: ""
+
+      - name: pickup_timestamp
+        description: ""
+
+      - name: delivered_timestamp
+        description: ""
+
+      - name: email_name
+        description: ""
+
+      - name: email_subject
+        description: ""
+
+      - name: source_code
+        description: ""
+

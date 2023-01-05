@@ -8,3 +8,13 @@ version: 2
 models:
   - name: stg_frakture_global_message_paidmedia_subscribes_daily_rollup
     description: Please replace this default description.
+    columns:
+      - name: message_id
+        description: ""
+
+      - name: date_timestamp
+        description: ""
+
+      - name: subscribes
+        description: ""
+

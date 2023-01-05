@@ -8,3 +8,22 @@ version: 2
 models:
   - name: stg_frakture_global_message_email_bounces_rollup
     description: Please replace this default description.
+    columns:
+      - name: message_id
+        description: ""
+
+      - name: total_bounces
+        description: ""
+
+      - name: block_bounces
+        description: ""
+
+      - name: tech_bounces
+        description: ""
+
+      - name: soft_bounces
+        description: ""
+
+      - name: unknown_bounces
+        description: ""
+
