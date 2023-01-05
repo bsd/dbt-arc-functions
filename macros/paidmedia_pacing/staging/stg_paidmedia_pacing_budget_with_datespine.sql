@@ -5,10 +5,7 @@ with base as (
 SELECT 
 -- create date_day field that generates date array from start_date to end_date
 generate_date_array(start_date, end_date) as date_day,
-start_date,
-end_date,
 campaign_name,
-budget as total_budget, 
 -- divide budget by days_in_campaign to get daily budget
 budget/date_diff(end_date, start_date, day) as daily_budget,
 description -- duplicate description for each day
@@ -16,12 +13,16 @@ description -- duplicate description for each day
 
 )
 
-SELECT * FROM base
--- cross join with unnested date_day array and duplicate the remaining fields within the base table for each date
+
+SELECT 
+date_day, 
+campaign_name,
+daily_budget
+ FROM base
+-- cross join with unnested date_day array to create a row for each day
 CROSS JOIN UNNEST(date_day) as date_day
 -- filter out dates that are outside of the campaign start and end dates
 WHERE date_day >= start_date AND date_day <= end_date
-
 
 
 {% endmacro %} 
