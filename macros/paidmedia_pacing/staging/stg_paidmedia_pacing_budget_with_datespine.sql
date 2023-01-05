@@ -10,20 +10,19 @@ end_date,
 campaign_name,
 budget as total_budget, 
 -- divide budget by days_in_campaign to get daily budget
-budget/datediff(end_date, start_date) as daily_budget,
+budget/date_diff(end_date, start_date, day) as daily_budget,
 description -- duplicate description for each day
  FROM {{ source('adhoc_google_spreadsheets_paidmedia_pacing','spreadsheet_paidmedia_pacing_budget') }}
 
-
-{% endmacro %} 
 )
 
-
-
 SELECT * FROM base
--- cross join with date_day to create a row for each day in the campaign
-CROSS JOIN UNNEST(date_day) as date_day 
+-- cross join with unnested date_day array and duplicate the remaining fields within the base table for each date
+CROSS JOIN UNNEST(date_day) as date_day
 -- filter out dates that are outside of the campaign start and end dates
 WHERE date_day >= start_date AND date_day <= end_date
 
+
+
+{% endmacro %} 
 
