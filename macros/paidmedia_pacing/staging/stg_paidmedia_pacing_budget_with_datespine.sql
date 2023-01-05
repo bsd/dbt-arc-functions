@@ -7,7 +7,7 @@ SELECT
 generate_date_array(start_date, end_date) as date_day,
 campaign_name,
 -- divide budget by days_in_campaign to get daily budget
-budget/date_diff(end_date, start_date, day) as daily_budget,
+SAFE_DIVIDE(budget , date_diff(end_date, start_date, day)) as daily_budget,
 description -- duplicate description for each day
  FROM {{ source('adhoc_google_spreadsheets_paidmedia_pacing','spreadsheet_paidmedia_pacing_budget') }}
 
