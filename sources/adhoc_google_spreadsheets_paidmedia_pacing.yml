@@ -1,0 +1,7 @@
+version: 2
+sources:
+  - name: adhoc_google_spreadsheets_paidmedia_pacing
+    database: "{{ var('database') }}"
+    schema: adhoc_reporting
+    tables:
+      - name: spreadsheet_paidmedia_pacing_budget
