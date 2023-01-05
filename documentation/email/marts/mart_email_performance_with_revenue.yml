@@ -7,40 +7,40 @@ version: 2
 
 models:
   - name: mart_email_performance_with_revenue
-    description: Please replace this default description.
+    description: Mart rolling up email performance across all vendors for this client. The grain of this table is email.
     columns:
       - name: message_id
-        description: ""
+        description: "Unique ID for email, coming either directly from CRM or a data intermediary like Frakture or Stitch."
 
       - name: from_name
-        description: ""
+        description: "Name that appears in 'From' line on email client. NOT the email address, that is from_email."
 
       - name: from_email
-        description: ""
+        description: "Email address that appears in 'From' line on email client."
 
       - name: best_guess_timestamp
-        description: ""
+        description: "Our best guess of when an email is was sent. This will vary between CRMs, but is usually some COALESCE of other timestamps."
 
       - name: scheduled_timestamp
-        description: ""
+        description: "From the CRM, not always included. When an email was scheduled to be sent."
 
       - name: pickup_timestamp
-        description: ""
+        description: "From the CRM, not always included. When an email was picked up by the mailing software to be sent."
 
       - name: delivered_timestamp
-        description: ""
+        description: "From the CRM, not always included. When an email was delivered to a client."
 
       - name: campaign_start_timestamp
-        description: ""
+        description: "The first timestamp from a given campaign. Derived field, usually MIN() of a campaign's timestamps."
 
       - name: campaign_latest_timestamp
-        description: ""
+        description: "The first timestamp from a given campaign. Derived field, usually MAX() of a campaign's timestamps."
 
       - name: email_name
-        description: ""
+        description: "Depending on the CRM, this is usually the internal name of an email for the CRM software."
 
       - name: email_subject
-        description: ""
+        description: "The subject line an end-user will see in their email client."
 
       - name: source_code
         description: ""
