@@ -10,8 +10,8 @@ actuals.daily_spend,
 budget.daily_budget,
 budget.total_budget - actuals.daily_spend as remaining_budget,
 budget.total_budget,
-budget.start_date,
-budget.end_date,
+budget.campaign_start_date,
+budget.campaign_end_date,
 budget.descriptions
 
 FROM {{ref(actuals)}} actuals
