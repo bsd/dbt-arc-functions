@@ -3,6 +3,8 @@
 with base as (
 
 SELECT 
+campaign_start_date,
+campaign_end_date,
 generate_date_array(campaign_start_date, campaign_end_date) as date_day,
 campaign_name,
 SAFE_DIVIDE(budget , date_diff(campaign_end_date, campaign_start_date, day)) as daily_budget,
