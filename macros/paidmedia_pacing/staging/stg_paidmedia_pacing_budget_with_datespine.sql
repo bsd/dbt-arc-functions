@@ -1,4 +1,4 @@
-{% macro create_stg_adhoc_pacing_budget_with_datespine() %}
+{% macro create_stg_paidmedia_pacing_budget_with_datespine() %}
 
 with base as (
 
