@@ -12,7 +12,7 @@ budget.total_budget - actuals.daily_spend as remaining_budget,
 budget.total_budget,
 budget.start_date,
 budget.end_date,
-budget.description
+budget.descriptions
 
 FROM {{ref(actuals)}} actuals
 FULL OUTER JOIN {{ref(budget)}} budget

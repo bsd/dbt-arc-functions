@@ -5,11 +5,11 @@
 
 SELECT 
 datespine.date_day,
-details.start_date,
-details.end_date,
+details.campaign_start_date,
+details.campaign_end_date,
 datespine.campaign_name,
 datespine.daily_budget,
-details.description,
+details.descriptions,
 details.budget as total_budget
 
 FROM {{ref(datespine)}} datespine

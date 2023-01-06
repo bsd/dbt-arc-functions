@@ -5,14 +5,14 @@
 
 SELECT
 daily.date_day,
-daily.start_date,
-daily.end_date,
+daily.campaign_start_date,
+daily.campaign_end_date,
 daily.campaign_name,
 daily.daily_spend,
 daily.daily_budget,
 daily.remaining_budget,
 daily.total_budget,
-daily.description,
+daily.descriptions,
 jobs.channel,
 jobs.channel_category,
 jobs.channel_type,
