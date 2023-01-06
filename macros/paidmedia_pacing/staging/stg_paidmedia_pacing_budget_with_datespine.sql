@@ -9,7 +9,7 @@ campaign_name,
 -- divide budget by days_in_campaign to get daily budget
 SAFE_DIVIDE(budget , date_diff(end_date, start_date, day)) as daily_budget,
 description -- duplicate description for each day
- FROM {{ source('adhoc_google_spreadsheets_paidmedia_pacing','spreadsheet_paidmedia_pacing_budget') }}
+FROM {{ ref('stg_adhoc_google_spreadsheets_paidmedia_pacing_budget') }}
 
 )
 
