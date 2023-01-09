@@ -1,8 +1,3 @@
-# TODO Write documentation for mart_email_performance_with_revenue [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/email/marts/mart_email_performance_with_revenue.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/email/marts/mart_email_performance_with_revenue.yml
 version: 2
 
 models:
@@ -64,53 +59,53 @@ models:
         description: "A code that says what kind of recurrence schedule the email is on, originating in the CRM/email software or our data processor."
 
       - name: recipients
-        description: ""
+        description: "Number of recipients of this email."
 
       - name: opens
-        description: ""
+        description: "Number of opens of this email."
 
       - name: clicks
-        description: ""
+        description: "Number of clicks of this email."
 
       - name: actions
-        description: ""
+        description: "Number of actions of this email."
 
       - name: total_bounces
-        description: ""
+        description: "Number of total_bounces of this email."
 
       - name: block_bounces
-        description: ""
+        description: "Number of block_bounces of this email."
 
       - name: tech_bounces
-        description: ""
+        description: "Number of tech_bounces of this email."
 
       - name: soft_bounces
-        description: ""
+        description: "Number of soft_bounces of this email."
 
       - name: unknown_bounces
-        description: ""
+        description: "Number of unknown_bounces of this email."
 
       - name: unsubscribes
-        description: ""
+        description: "Number of unsubscribes of this email."
 
       - name: total_revenue
-        description: ""
+        description: "total_revenue from this email."
 
       - name: total_gifts
-        description: ""
+        description: "total_gifts from this email."
 
       - name: total_donors
-        description: ""
+        description: "total_donors from this email."
 
       - name: one_time_revenue
-        description: ""
+        description: "one_time_revenue from this email."
 
       - name: one_time_gifts
-        description: ""
+        description: "one_time_gifts from this email."
 
       - name: new_monthly_revenue
-        description: ""
+        description: "new_monthly_revenue from this email."
 
       - name: new_monthly_gifts
-        description: ""
+        description: "new_monthly_gifts from this email."
 
