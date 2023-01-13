@@ -1,116 +1,111 @@
-# TODO Write documentation for mart_email_performance_with_revenue [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/email/marts/mart_email_performance_with_revenue.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/email/marts/mart_email_performance_with_revenue.yml
 version: 2
 
 models:
   - name: mart_email_performance_with_revenue
-    description: Please replace this default description.
+    description: Mart rolling up email performance across all vendors for this client. The grain of this table is email.
     columns:
       - name: message_id
-        description: ""
+        description: "Unique ID for email, coming either directly from CRM or a data intermediary like Frakture or Stitch."
 
       - name: from_name
-        description: ""
+        description: "Name that appears in 'From' line on email client. NOT the email address, that is from_email."
 
       - name: from_email
-        description: ""
+        description: "Email address that appears in 'From' line on email client."
 
       - name: best_guess_timestamp
-        description: ""
+        description: "Our best guess of when an email is was sent. This will vary between CRMs, but is usually some COALESCE of other timestamps."
 
       - name: scheduled_timestamp
-        description: ""
+        description: "From the CRM, not always included. When an email was scheduled to be sent."
 
       - name: pickup_timestamp
-        description: ""
+        description: "From the CRM, not always included. When an email was picked up by the mailing software to be sent."
 
       - name: delivered_timestamp
-        description: ""
+        description: "From the CRM, not always included. When an email was delivered to a client."
 
       - name: campaign_start_timestamp
-        description: ""
+        description: "The first timestamp from a given campaign. Derived field, usually MIN() of a campaign's timestamps."
 
       - name: campaign_latest_timestamp
-        description: ""
+        description: "The first timestamp from a given campaign. Derived field, usually MAX() of a campaign's timestamps."
 
       - name: email_name
-        description: ""
+        description: "Depending on the CRM, this is usually the internal name of an email for the CRM software."
 
       - name: email_subject
-        description: ""
+        description: "The subject line an end-user will see in their email client."
 
       - name: source_code
-        description: ""
+        description: "Source Code associated with this particular email. These are usually processed to attribute revenue to particular emails."
 
       - name: crm_entity
-        description: ""
+        description: "The CRM software from which this email was generated/sent out."
 
       - name: source_code_entity
-        description: ""
+        description: "The entity from which this was sent out based on the source code."
 
       - name: best_guess_entity
-        description: ""
+        description: "Our best guess of which entity this was sent out. In many cases this is a concatenation of crm and source code entities."
 
       - name: audience
-        description: ""
+        description: "The intended audience for an email. Audiences can overlap with one another."
 
       - name: campaign_name
-        description: ""
+        description: "The name of the campaign under which the email was sent. This is usually defined in the CRM/email software."
 
       - name: recurtype
-        description: ""
+        description: "A code that says what kind of recurrence schedule the email is on, originating in the CRM/email software or our data processor."
 
       - name: recipients
-        description: ""
+        description: "Number of recipients of this email."
 
       - name: opens
-        description: ""
+        description: "Number of opens of this email."
 
       - name: clicks
-        description: ""
+        description: "Number of clicks of this email."
 
       - name: actions
-        description: ""
+        description: "Number of actions of this email."
 
       - name: total_bounces
-        description: ""
+        description: "Number of total_bounces of this email."
 
       - name: block_bounces
-        description: ""
+        description: "Number of block_bounces of this email."
 
       - name: tech_bounces
-        description: ""
+        description: "Number of tech_bounces of this email."
 
       - name: soft_bounces
-        description: ""
+        description: "Number of soft_bounces of this email."
 
       - name: unknown_bounces
-        description: ""
+        description: "Number of unknown_bounces of this email."
 
       - name: unsubscribes
-        description: ""
+        description: "Number of unsubscribes of this email."
 
       - name: total_revenue
-        description: ""
+        description: "total_revenue from this email."
 
       - name: total_gifts
-        description: ""
+        description: "total_gifts from this email."
 
       - name: total_donors
-        description: ""
+        description: "total_donors from this email."
 
       - name: one_time_revenue
-        description: ""
+        description: "one_time_revenue from this email."
 
       - name: one_time_gifts
-        description: ""
+        description: "one_time_gifts from this email."
 
       - name: new_monthly_revenue
-        description: ""
+        description: "new_monthly_revenue from this email."
 
       - name: new_monthly_gifts
-        description: ""
+        description: "new_monthly_gifts from this email."
 
