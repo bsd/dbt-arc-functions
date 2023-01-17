@@ -12,7 +12,7 @@ budget.daily_budget,
 budget.total_budget - actuals.daily_spend as remaining_budget,
 COALESCE(actuals.cumulative_spend / budget.total_budget, 0) as spend_pace,
 COALESCE(budget.cumulative_budget / budget.total_budget, 0) as budget_pace,
-budget.cumulative_budget
+budget.cumulative_budget,
 budget.total_budget,
 budget.campaign_start_date,
 budget.campaign_end_date,
