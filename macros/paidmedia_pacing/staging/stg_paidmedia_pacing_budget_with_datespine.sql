@@ -7,7 +7,7 @@ campaign_start_date,
 campaign_end_date,
 generate_date_array(campaign_start_date, campaign_end_date) as date_day,
 campaign_name,
-SAFE_DIVIDE(budget , date_diff(campaign_end_date, campaign_start_date, day)) as daily_budget,
+SAFE_DIVIDE(budget , (date_diff(campaign_end_date, campaign_start_date, day)+1)) as daily_budget,
 descriptions 
 FROM {{ ref('stg_adhoc_google_spreadsheets_paidmedia_pacing_budget') }}
 
