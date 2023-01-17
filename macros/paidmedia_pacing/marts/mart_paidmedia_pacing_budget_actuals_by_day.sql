@@ -9,7 +9,7 @@ daily.campaign_start_date,
 daily.campaign_end_date,
 daily.campaign_name,
 daily.daily_spend,
-daily.cumulative_spend
+daily.cumulative_spend,
 daily.daily_budget,
 daily.remaining_budget,
 daily.total_budget,
