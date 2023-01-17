@@ -7,8 +7,10 @@ SELECT
 COALESCE(actuals.date_day, budget.date_day) as date_day,
 COALESCE(actuals.campaign_name, budget.campaign_name) as campaign_name,
 actuals.daily_spend,
+actuals.cumulative_spend,
 budget.daily_budget,
 budget.total_budget - actuals.daily_spend as remaining_budget,
+COALESCE(actuals.cumulative_spend / budget.total_budget, 0) as pace,
 budget.total_budget,
 budget.campaign_start_date,
 budget.campaign_end_date,
@@ -18,6 +20,5 @@ FROM {{ref(actuals)}} actuals
 FULL OUTER JOIN {{ref(budget)}} budget
 ON actuals.date_day = budget.date_day
 and actuals.campaign_name = budget.campaign_name
-
 
 {% endmacro %}
