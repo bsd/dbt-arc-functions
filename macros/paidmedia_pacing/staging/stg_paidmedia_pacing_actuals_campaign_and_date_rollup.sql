@@ -10,13 +10,33 @@ FROM {{ref(reference_name)}}
 
 )
 
+, daily_spend as (
+
 SELECT
 date_day,
 campaign_name,
-sum(spend_amount) as daily_spend,
-sum(spend_amount) over (partition by campaign_name order by date_day) as cumulative_spend
+sum(spend_amount) as daily_spend
 
 FROM safe_casting
-GROUP BY 1, 2
+GROUP BY 1, 2)
+
+, cumulative_spend as (
+SELECT 
+date_day,
+campaign_name,
+sum(spend_amount) over (partition by campaign_name order by date_day) as cumulative_spend
+from safe_casting
+
+)
+
+SELECT
+daily_spend.date_day,
+daily_spend.campaign_name,
+daily_spend.daily_spend,
+cumulative_spend.cumulative_spend
+from daily_spend 
+full outer join cumulative_spend
+on daily_spend.date_day = cumulative_spend.date_day
+and daily_spend.campaign_name = cumulative_spend.campaign_name
 
 {% endmacro %}
