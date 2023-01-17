@@ -9,6 +9,7 @@ details.campaign_start_date,
 details.campaign_end_date,
 datespine.campaign_name,
 datespine.daily_budget,
+sum(datespine.daily_budget) over (partition by datespine.campaign_name order by datespine.date_day) as cumulative_budget,
 details.descriptions,
 details.budget as total_budget
 
