@@ -3,6 +3,8 @@
     daily='stg_paidmedia_actuals_budget_by_day_and_campaign_join'
 ) %}
 
+
+with base as (
 SELECT
 daily.date_day,
 daily.campaign_start_date,
@@ -25,7 +27,9 @@ FROM {{ref(daily)}} daily
 LEFT JOIN {{ref(jobs)}} jobs
 ON daily.campaign_name = jobs.campaign_name
 WHERE daily.campaign_name IS NOT NULL
-and daily.campaign_start_date IS NOT NULL
+and daily.campaign_start_date IS NOT NULL)
+
+select distinct * from base
 
 
 {% endmacro %}
