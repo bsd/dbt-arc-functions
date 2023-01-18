@@ -25,6 +25,7 @@ FROM {{ref(daily)}} daily
 LEFT JOIN {{ref(jobs)}} jobs
 ON daily.campaign_name = jobs.campaign_name
 WHERE daily.campaign_name IS NOT NULL
+and daily.campaign_start_date IS NOT NULL
 
 
 {% endmacro %}
