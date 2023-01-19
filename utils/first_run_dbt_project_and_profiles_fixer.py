@@ -42,7 +42,7 @@ packages_dict_template = {
     "packages": [
         {
             "package": "dbt-labs/dbt_utils",
-            "version": "0.8.0"
+            "version": "1.0.0"
         },
         {
             "git": "https://github.com/bsd/dbt-arc-functions.git",
@@ -51,9 +51,9 @@ packages_dict_template = {
     ]
 }
 
-revision_choice_helptext = """Your current active branch is {active_branch_name}.
-If you'd like to use another branch in packages.yml, enter it here. Else, press return.
-(We recommend to press return.)
+revision_choice_helptext = """Your current active branch of dbt-arc-functions is {active_branch_name}.
+For packages.yml file, if you'd like to reference another branch, or an updated revision of the repository, (for example, v4.5.0), enter it here.
+Else, press return. (If you don't know what to do, press return.)
 """
 
 dbt_artifacts_choice_helptext = """Would you like to add dbt-artifacts to this repo?
