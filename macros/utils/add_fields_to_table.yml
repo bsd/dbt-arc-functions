@@ -1,0 +1,14 @@
+version: 2
+
+macros:
+  - name: add_fields_to_table
+    description: A macro that allows you to create a model that will not error if the source data does not contain a field in our models. It will iterate through each field listed and if it does not exist in the table that is referenced, then it will still create the field in the model and insert nulls.
+    docs:
+      show: true
+    arguments: 
+      - name: fields list
+        type: list
+        description: list of fields you desire to include in the model, regardless of whether they exist in source/ref
+      - name: table_name
+        type: string
+        description: name of table you want to pull from
