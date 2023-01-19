@@ -65,6 +65,7 @@ def get_list_of_sources(macros_path):
     """
     list_of_sources = [directory for directory in os.listdir(macros_path) if
                        path.isdir(path.join(macros_path, directory))]
+    list_of_sources.sort()
     return list_of_sources
 
 
