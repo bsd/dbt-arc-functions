@@ -26,7 +26,7 @@ def main():
     print("\nRunning add_dependencies.py\n")
     add_dependencies.main(dbt_base_path)
     print("\nRunning add_github_actions_workflows.py\n")
-    add_github_actions_workflows.main(dbt_base_path)
+    add_github_actions_workflows.main(dbt_base_path,yaml)
     print("\nWow, it all actually ran! Congratulations, you should be able to run this repo now.\n")
 
 
