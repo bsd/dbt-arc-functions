@@ -55,9 +55,11 @@ def load_workflow_yml(workflow_yml_path, yaml):
 
 
 def convert_cloud_job_url_to_api_run_url(dbt_cloud_job_url):
-    dbt_cloud_job_url = dbt_cloud_job_url.replace("next/","")
-    dbt_cloud_job_url = dbt_cloud_job_url.replace("deploy/", "api/v2/accounts/")
-    dbt_cloud_api_run_url = re.sub(r"projects/\d+/","",dbt_cloud_job_url) + "/run/"
+    dbt_cloud_job_url = dbt_cloud_job_url.replace("next/", "")
+    dbt_cloud_job_url = dbt_cloud_job_url.replace(
+        "deploy/", "api/v2/accounts/")
+    dbt_cloud_api_run_url = re.sub(
+        r"projects/\d+/", "", dbt_cloud_job_url) + "/run/"
     return dbt_cloud_api_run_url
 
 
