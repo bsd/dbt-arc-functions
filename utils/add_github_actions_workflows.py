@@ -1,7 +1,8 @@
-import ruamel.yaml
 import os
 import re
 from copy import deepcopy
+
+import ruamel.yaml
 
 starting_prompt = """You'll need to do some setup to have this util run.
 
