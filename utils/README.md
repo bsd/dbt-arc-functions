@@ -15,28 +15,29 @@ Look [here](https://bluestate.atlassian.net/wiki/spaces/ATeam/pages/2986049548/T
     - [add\_dependencies.py](#add_dependenciespy)
       - [Usage](#usage-1)
       - [Plain English what it does](#plain-english-what-it-does)
-    - [clone\_all\_tables\_and\_views\_in\_schema.ipynb](#clone_all_tables_and_views_in_schemaipynb)
+    - [add\_github\_actions\_workflows.py](#add_github_actions_workflowspy)
       - [Usage](#usage-2)
       - [Plain English what it does](#plain-english-what-it-does-1)
-    - [compile\_sources.py](#compile_sourcespy)
+    - [clone\_all\_tables\_and\_views\_in\_schema.ipynb](#clone_all_tables_and_views_in_schemaipynb)
       - [Usage](#usage-3)
       - [Plain English what it does](#plain-english-what-it-does-2)
-    - [create\_macros\_from\_sql.py](#create_macros_from_sqlpy)
+    - [compile\_sources.py](#compile_sourcespy)
       - [Usage](#usage-4)
       - [Plain English what it does](#plain-english-what-it-does-3)
-    - [create\_or\_update\_standard\_models.py](#create_or_update_standard_modelspy)
+    - [create\_macros\_from\_sql.py](#create_macros_from_sqlpy)
       - [Usage](#usage-5)
       - [Plain English what it does](#plain-english-what-it-does-4)
-    - [create\_views\_from\_stitch\_datasets.ipynb](#create_views_from_stitch_datasetsipynb)
+    - [create\_or\_update\_standard\_models.py](#create_or_update_standard_modelspy)
       - [Usage](#usage-6)
       - [Plain English what it does](#plain-english-what-it-does-5)
-    - [delete\_schemas.py](#delete_schemaspy)
+    - [create\_views\_from\_stitch\_datasets.ipynb](#create_views_from_stitch_datasetsipynb)
       - [Usage](#usage-7)
       - [Plain English what it does](#plain-english-what-it-does-6)
-    - [first\_run\_dbt\_project\_and\_profiles\_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
+    - [delete\_schemas.py](#delete_schemaspy)
       - [Usage](#usage-8)
       - [Plain English what it does](#plain-english-what-it-does-7)
     - [process\_model\_documentation\_codegen\_output.ipynb](#process_model_documentation_codegen_outputipynb)
+    - [first\_run\_dbt\_project\_and\_profiles\_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
       - [Usage](#usage-9)
       - [Plain English what it does](#plain-english-what-it-does-8)
 
@@ -84,6 +85,8 @@ This will get you into an environment ready made to run these files.
 3. [compile_sources.py](#compile_sourcespy)
 4. [delete_schemas.py](#delete_schemaspy)
 5. [add_dependencies.py](#add_dependenciespy)
+6. [add_github_actions_workflows.py](#add_github_actions_workflowspy)
+
 
 ## Scripts explanations
 
@@ -94,6 +97,16 @@ This will get you into an environment ready made to run these files.
 
 #### Plain English what it does
 Our table structures are build dynamically using macros _after_ dbt does its automatic generation of the [Directed Acyclic Graph (DAG.)](https://docs.getdbt.com/docs/introduction#:~:text=dbt%20builds%20a%20directed%20acyclic,predecessor%20of%20the%20current%20model.) This means that we have to inject little `-- depends_on:` code blocks at the top of our models to let them know what previous tables they depend on. This is a pain in the butt to do manually, so this program runs dbt over and over again until it stops suggesting `-- depends_on:` blocks to add to the top of your model.
+
+---
+
+### add_github_actions_workflows.py
+
+#### Usage
+`python add_github_actions_workflows.py`
+
+#### Plain English what it does
+We'd like to automate as much of our build process as possible. This script allows us to add Github Actions Workflows to all new projects. Github Actions is a CI/CD tool which is integrated into Github.
 
 ---
 
