@@ -3,6 +3,7 @@ import create_or_update_standard_models
 import compile_sources
 import add_dependencies
 import delete_schemas
+import add_github_actions_workflows
 from os import path
 
 
@@ -24,6 +25,8 @@ def main():
     delete_schemas.main(dbt_credentials_path, dbt_username)
     print("\nRunning add_dependencies.py\n")
     add_dependencies.main(dbt_base_path)
+    print("\nRunning add_github_actions_workflows.py\n")
+    add_github_actions_workflows.main(dbt_base_path,yaml)
     print("\nWow, it all actually ran! Congratulations, you should be able to run this repo now.\n")
 
 
