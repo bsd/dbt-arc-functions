@@ -36,6 +36,7 @@ Look [here](https://bluestate.atlassian.net/wiki/spaces/ATeam/pages/2986049548/T
     - [delete\_schemas.py](#delete_schemaspy)
       - [Usage](#usage-8)
       - [Plain English what it does](#plain-english-what-it-does-7)
+    - [process\_model\_documentation\_codegen\_output.ipynb](#process_model_documentation_codegen_outputipynb)
     - [first\_run\_dbt\_project\_and\_profiles\_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
       - [Usage](#usage-9)
       - [Plain English what it does](#plain-english-what-it-does-8)
@@ -185,3 +186,23 @@ The first time you boot up a dbt project, there are a lot of variables you have 
 
 If you'd like to know how to generate a credentials json go [here](https://docs.getdbt.com/tutorial/setting-up#generate-bigquery-credentials). If you'd like to understand why you need credentials to use the CLI go [here](https://docs.getdbt.com/tutorial/create-a-project-dbt-cli
 ).
+
+---
+
+### process_model_documentation_codegen_output.ipynb
+
+#### Usage
+We suggest using this locally after you've run codegen locally.
+
+#### Plain English what it does
+This function allows you to process the output of the dbt-codegen package to add documentation skeletons to documentation in the `dbt-arc-functions/documentation` folder.
+
+Firstly, you'll have to have a working repo using the macro that you want to document. The model has to compile and run for this function to work. Additionally you'll have to have the codegen package installed in the working repo:
+https://hub.getdbt.com/dbt-labs/codegen/latest/
+
+Then, either in the web IDE or locally, run generate model yaml. Instructions can be found here:
+https://github.com/dbt-labs/dbt-codegen#generate_model_yaml-source
+
+Save the output from the above function to a file and insert that file's name into the `codegen_output` variable in cell 2 of `process_model_documentation_codegen_output.ipynb`. 
+
+Finally, run all cells in the notebook. Examine the changes in the files and, if you're satisfied, commit and push changes to Github.
