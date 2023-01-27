@@ -13,12 +13,6 @@ If you've never done this before, it's worth talking to an engineer.
 Here are the docs if you'd like to try on your own:
 https://docs.getdbt.com/docs/get-started/getting-started/set-up-dbt-cloud
 
-Third, you need to set up an environment in dbt Cloud. Here are docs:
-https://docs.getdbt.com/docs/get-started/getting-started/building-your-first-project/schedule-a-job#create-a-deployment-environment
-
-Fourth, you need to create a job in dbt Cloud. Here are docs:
-https://docs.getdbt.com/docs/get-started/getting-started/building-your-first-project/schedule-a-job#create-and-run-a-job
-
 Finally, you'll need your dbt Cloud API key.
 You can find it at the bottom of this page:
 https://cloud.getdbt.com/next/settings/profile
@@ -34,6 +28,30 @@ Please press return when you've done this.
 prompt_dbt_cloud_job_url = """Now please go to your cloud job in dbt Cloud, copy the URL, paste it here, and press return.
 It should look something like this: https://cloud.getdbt.com/next/deploy/1713/projects/150080/jobs/121379
 """
+prompt_create_environment_and_job = """Now we're going to create a {environment} workflow. This will be run everytime you {trigger}.
+
+First, you need to set up an {environment} environment in dbt Cloud. Here are docs:
+https://docs.getdbt.com/docs/get-started/getting-started/building-your-first-project/schedule-a-job#create-a-deployment-environment
+
+Give it the name {environment}, and set the Environment Type to Deployment. Set dataset to {environment}.
+
+Now, you need to create a job in dbt Cloud. Here are docs:
+https://docs.getdbt.com/docs/get-started/getting-started/building-your-first-project/schedule-a-job#create-and-run-a-job
+
+Set the Job Name to {environment}.
+Set the Environment to {environment}.
+You might additionally want to add a Schedule to run on, especially if this is prod.
+This is all the way at the bottom, under Triggers.
+Hit Save.
+"""
+merge_string = """push:
+    branches: [ main ]
+"""
+pr_string = """pull_request:"""
+trigger_dict = {
+    'prod': {'trigger': 'merge', 'trigger_string': merge_string},
+    'dev': {'trigger': 'pr', 'trigger_string': pr_string}
+}
 
 
 def get_dbt_base_path():
@@ -64,13 +82,14 @@ def convert_cloud_job_url_to_api_run_url(dbt_cloud_job_url):
     return dbt_cloud_api_run_url
 
 
-def create_dbt_rom_yml_from_template(
-        dbt_rom_yml_template, dbt_cloud_api_run_url):
-    dbt_rom_yml = deepcopy(dbt_rom_yml_template)
-    dbt_rom_yml['jobs']['dbt_run']['steps'][0]['run'] = dbt_rom_yml['jobs']['dbt_run']['steps'][0]['run'].replace('{dbt_cloud_api_run_url}',
+def create_dbt_run_yml_from_template(
+        dbt_run_yml_template, dbt_cloud_api_run_url, trigger_yml):
+    dbt_run_yml = deepcopy(dbt_run_yml_template)
+    dbt_run_yml['jobs']['dbt_run']['steps'][0]['run'] = dbt_run_yml['jobs']['dbt_run']['steps'][0]['run'].replace('{dbt_cloud_api_run_url}',
                                                                                                                   dbt_cloud_api_run_url
                                                                                                                   )
-    return dbt_rom_yml
+    dbt_run_yml['on'] = trigger_yml
+    return dbt_run_yml
 
 
 def create_workflow_path_and_folders(dbt_base_path, workflow_filename):
@@ -89,25 +108,37 @@ def write_workflow(workflow_path, workflow_yml, yaml):
         yaml.dump(workflow_yml, f)
 
 
+def create_dbt_run_workflow(environment, dbt_base_path, yaml):
+    environment_dict = trigger_dict[environment]
+    trigger, trigger_string = environment_dict['trigger'], environment_dict['trigger_string']
+    input(prompt_create_environment_and_job.format(
+        environment=environment, trigger=trigger))
+    dbt_run_filename = 'dbt_run_on_trigger.yml'
+    dbt_run_yml_path = os.path.join('yml_files', dbt_run_filename)
+    dbt_run_yml_template = load_workflow_yml(dbt_run_yml_path, yaml)
+    dbt_cloud_job_url = input(prompt_dbt_cloud_job_url)
+    dbt_cloud_api_run_url = convert_cloud_job_url_to_api_run_url(
+        dbt_cloud_job_url)
+    trigger_yml = yaml.load(trigger_string)
+    dbt_run_yml = create_dbt_run_yml_from_template(
+        dbt_run_yml_template, dbt_cloud_api_run_url, trigger_yml)
+    dbt_trigger_filename = dbt_run_filename.replace('trigger', trigger)
+    dbt_run_path = create_workflow_path_and_folders(
+        dbt_base_path, dbt_trigger_filename)
+    write_workflow(dbt_run_path, dbt_run_yml, yaml)
+    print("\n*** Workflow successfully created! ***\n")
+
+
 def main(dbt_base_path='', yaml=None):
     if not dbt_base_path:
         dbt_base_path = get_dbt_base_path()
     if not yaml:
         yaml = initialize_yaml()
-    dbt_rom_filename = 'dbt_run_on_merge.yml'
-    dbt_rom_yml_path = os.path.join('yml_files', dbt_rom_filename)
-    dbt_rom_yml_template = load_workflow_yml(dbt_rom_yml_path, yaml)
     input(starting_prompt)
     input(prompt_api_added_to_secrets)
-    dbt_cloud_job_url = input(prompt_dbt_cloud_job_url)
-    dbt_cloud_api_run_url = convert_cloud_job_url_to_api_run_url(
-        dbt_cloud_job_url)
-    dbt_rom_yml = create_dbt_rom_yml_from_template(
-        dbt_rom_yml_template, dbt_cloud_api_run_url)
-    dbt_rom_path = create_workflow_path_and_folders(
-        dbt_base_path, dbt_rom_filename)
-    write_workflow(dbt_rom_path, dbt_rom_yml, yaml)
-    print("\nWorkflow successfully created!")
+    create_dbt_run_workflow('prod', dbt_base_path, yaml)
+    create_dbt_run_workflow('dev', dbt_base_path, yaml)
+    print("\n***add_github_actions_workflows.py terminated successfully!***\n")
 
 
 if __name__ == '__main__':
