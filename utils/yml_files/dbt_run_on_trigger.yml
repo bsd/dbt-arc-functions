@@ -8,13 +8,9 @@ jobs:
   dbt_run:
     runs-on: ubuntu-latest
     steps:
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
     - name: Run dbt cloud job
       run: |
-        RESPONSE=$(curl -v -H "Authorization:Token ${{ secrets.DBTCLOUDAPIKEY }}" -H "Content-Type:application/json" -d '{"cause":"Triggered by Github Actions","git_branch":"${{ steps.extract_branch.outputs.branch }}"}' {dbt_cloud_api_run_url})
+        RESPONSE=$(curl -v -H "Authorization:Token ${{ secrets.DBTCLOUDAPIKEY }}" -H "Content-Type:application/json" -d '{"cause":"Triggered by Github Actions","git_branch":"${{ github.head_ref || github.ref_name }}"}' {dbt_cloud_api_run_url})
         STATUSCODE=$(echo "$RESPONSE" | jq '.status.code')
         echo "$RESPONSE" | jq '.status.user_message'
         if [[ $STATUSCODE != 200 ]]; then echo "$RESPONSE" && bash -c "exit 1"; fi

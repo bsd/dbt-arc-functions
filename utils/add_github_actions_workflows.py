@@ -85,7 +85,7 @@ def convert_cloud_job_url_to_api_run_url(dbt_cloud_job_url):
 def create_dbt_run_yml_from_template(
         dbt_run_yml_template, dbt_cloud_api_run_url, trigger_yml):
     dbt_run_yml = deepcopy(dbt_run_yml_template)
-    dbt_run_yml['jobs']['dbt_run']['steps'][1]['run'] = dbt_run_yml['jobs']['dbt_run']['steps'][1]['run'].replace('{dbt_cloud_api_run_url}',
+    dbt_run_yml['jobs']['dbt_run']['steps'][0]['run'] = dbt_run_yml['jobs']['dbt_run']['steps'][0]['run'].replace('{dbt_cloud_api_run_url}',
                                                                                                                   dbt_cloud_api_run_url
                                                                                                                   )
     dbt_run_yml['on'] = trigger_yml
