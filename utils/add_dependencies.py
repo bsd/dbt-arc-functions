@@ -29,7 +29,7 @@ def main(dbt_base_path):
         try:
             process = subprocess.run(bash_command, capture_output=True, shell=True)
             if process.returncode != 0:
-                click.echo("Could not find profile named [name of the profile]")
+                click.echo("Could not find profile YAML file for this project in directory ~/.dbt/profiles.yml")
                 return
             output = process.stdout.decode()
         except subprocess.CalledProcessError as e:
