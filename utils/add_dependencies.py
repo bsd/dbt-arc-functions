@@ -28,6 +28,9 @@ def main(dbt_base_path):
         run_count += 1
         try:
             process = subprocess.run(bash_command, capture_output=True, shell=True)
+            if process.returncode != 0:
+                click.echo("Could not find profile named [name of the profile]")
+                return
             output = process.stdout.decode()
         except subprocess.CalledProcessError as e:
             if "Could not find profile named" in e.stderr.decode():
