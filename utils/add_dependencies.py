@@ -29,25 +29,24 @@ def main(dbt_base_path):
         try:
             process = subprocess.run(bash_command, capture_output=True, shell=True)
             output = process.stdout.decode()
-            matches = re.findall(r"(-- depends_on: .*?}}).*?called by model [a-z_]+ \((.*?)\)", output, re.DOTALL)
-            for dependency, filename in matches:
-                with open(path.join(dbt_base_path, filename), 'r') as f:
-                    content = f.read()
-                with open(path.join(dbt_base_path, filename), 'w') as f:
-                    content = dependency + '\n' + content
-                    f.write(content)
-                    click.echo(f"\nUpdated the file: {filename}\nWith: {dependency}")
-            if not matches:
-                matches = re.findall(r'Syntax error: Expected "\(" or keyword SELECT or keyword WITH but got ";"', output)
-                if matches: click.echo("\nWe have to run again to process some intermediate table builds.\n")
-            if run_count >= 10:
-                click.echo("\nThis program will break now because dbt run has happened 10 times and we're still getting errors.\n")
         except subprocess.CalledProcessError as e:
             if "Could not find profile" in e.stderr.decode():
-                click.echo("Could not find profile named. Please check if you have a dbt profile installed locally.")
+                click.echo("Could not find dbt profile named. Please check if you have a dbt profile installed locally for this project.")
                 return
-            else:
-                raise e
+            raise e
+        matches = re.findall(r"(-- depends_on: .*?}}).*?called by model [a-z_]+ \((.*?)\)", output, re.DOTALL)
+        for dependency, filename in matches:
+            with open(path.join(dbt_base_path, filename), 'r') as f:
+                content = f.read()
+            with open(path.join(dbt_base_path, filename), 'w') as f:
+                content = dependency + '\n' + content
+                f.write(content)
+                click.echo(f"\nUpdated the file: {filename}\nWith: {dependency}")
+        if not matches:
+            matches = re.findall(r'Syntax error: Expected "\(" or keyword SELECT or keyword WITH but got ";"', output)
+            if matches: click.echo("\nWe have to run again to process some intermediate table builds.\n")
+        if run_count >= 10:
+            click.echo("\nThis program will break now because dbt run has happened 10 times and we're still getting errors.\n")
     click.echo(output)
         
 
