@@ -10,11 +10,19 @@ def check_dbt_installed():
     except:
         return False
 
+def check_profiles_file():
+    if not path.exists(path.expanduser('~/.dbt/profiles.yml')):
+        click.echo("Could not find the profiles.yml file in the ~/.dbt/ directory. Please check that it exists.")
+        return False
+    return True
+
 @click.command()
 @click.option('--dbt_base_path', default='', help='The base directory of your dbt project as an absolute path')
 def main(dbt_base_path):
     if not check_dbt_installed():
         click.echo("dbt is not installed. Please install dbt before running this script.")
+        return
+    if not check_profiles_file():
         return
     if not dbt_base_path:
         dbt_base_path = click.prompt("Please enter the base directory of your dbt project as an absolute path")
@@ -51,7 +59,6 @@ def main(dbt_base_path):
         if run_count >= 10:
             click.echo("\nThis program will break now because dbt run has happened 10 times and we're still getting errors.\n")
     click.echo(output)
-        
 
 if __name__ == '__main__':
     main()
