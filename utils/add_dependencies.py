@@ -31,7 +31,7 @@ def main(dbt_base_path):
             output = process.stdout.decode()
         except subprocess.CalledProcessError as e:
             if "Could not find profile" in e.stderr.decode():
-                click.echo("Could not find dbt profile named. Please check if you have a dbt profile installed locally for this project.")
+                click.echo("Could not find dbt profile named [name of the profile]. Please check if you have a dbt profile installed locally for this project.")
                 return
             raise e
         matches = re.findall(r"(-- depends_on: .*?}}).*?called by model [a-z_]+ \((.*?)\)", output, re.DOTALL)
