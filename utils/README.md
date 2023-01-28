@@ -36,10 +36,12 @@ Look [here](https://bluestate.atlassian.net/wiki/spaces/ATeam/pages/2986049548/T
     - [delete\_schemas.py](#delete_schemaspy)
       - [Usage](#usage-8)
       - [Plain English what it does](#plain-english-what-it-does-7)
-    - [process\_model\_documentation\_codegen\_output.ipynb](#process_model_documentation_codegen_outputipynb)
     - [first\_run\_dbt\_project\_and\_profiles\_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
       - [Usage](#usage-9)
       - [Plain English what it does](#plain-english-what-it-does-8)
+    - [process\_model\_documentation\_codegen\_output.ipynb](#process_model_documentation_codegen_outputipynb)
+      - [Usage](#usage-10)
+      - [Plain English what it does](#plain-english-what-it-does-9)
 
 ## Description
 
@@ -93,7 +95,9 @@ This will get you into an environment ready made to run these files.
 ### add_dependencies.py
 
 #### Usage
-`python add_dependencies.py`
+`python add_dependencies.py` (this will run you through the script step by step)
+
+`python add_dependencies.py --dbt_base_path "/path/to/dbt/project"` (this will run the script with the path you provide in one step)
 
 #### Plain English what it does
 Our table structures are build dynamically using macros _after_ dbt does its automatic generation of the [Directed Acyclic Graph (DAG.)](https://docs.getdbt.com/docs/introduction#:~:text=dbt%20builds%20a%20directed%20acyclic,predecessor%20of%20the%20current%20model.) This means that we have to inject little `-- depends_on:` code blocks at the top of our models to let them know what previous tables they depend on. This is a pain in the butt to do manually, so this program runs dbt over and over again until it stops suggesting `-- depends_on:` blocks to add to the top of your model.
