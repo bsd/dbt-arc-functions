@@ -44,11 +44,11 @@ def main(dbt_base_path):
                 click.echo("\nThis program will break now because dbt run has happened 10 times and we're still getting errors.\n")
         except:
             subprocess.CalledProcessError as e:
-                if "Could not find profile" in e.stderr.decode():
-                    click.echo("Could not find profile named. Please check if you have a dbt profile installed locally.")
-                    return
-                else:
-                    raise e
+            if "Could not find profile" in e.stderr.decode():
+                click.echo("Could not find profile named. Please check if you have a dbt profile installed locally.")
+                return
+            else:
+                raise e
     click.echo(output)
         
 
