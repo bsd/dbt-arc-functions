@@ -42,8 +42,7 @@ def main(dbt_base_path):
                 if matches: click.echo("\nWe have to run again to process some intermediate table builds.\n")
             if run_count >= 10:
                 click.echo("\nThis program will break now because dbt run has happened 10 times and we're still getting errors.\n")
-        except:
-            subprocess.CalledProcessError as e:
+        except subprocess.CalledProcessError as e:
             if "Could not find profile" in e.stderr.decode():
                 click.echo("Could not find profile named. Please check if you have a dbt profile installed locally.")
                 return
