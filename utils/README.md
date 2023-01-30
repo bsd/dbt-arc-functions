@@ -36,10 +36,12 @@ Look [here](https://bluestate.atlassian.net/wiki/spaces/ATeam/pages/2986049548/T
     - [delete\_schemas.py](#delete_schemaspy)
       - [Usage](#usage-8)
       - [Plain English what it does](#plain-english-what-it-does-7)
-    - [process\_model\_documentation\_codegen\_output.ipynb](#process_model_documentation_codegen_outputipynb)
     - [first\_run\_dbt\_project\_and\_profiles\_fixer.py](#first_run_dbt_project_and_profiles_fixerpy)
       - [Usage](#usage-9)
       - [Plain English what it does](#plain-english-what-it-does-8)
+    - [process\_model\_documentation\_codegen\_output.ipynb](#process_model_documentation_codegen_outputipynb)
+      - [Usage](#usage-10)
+      - [Plain English what it does](#plain-english-what-it-does-9)
 
 ## Description
 
@@ -107,6 +109,8 @@ Our table structures are build dynamically using macros _after_ dbt does its aut
 
 #### Plain English what it does
 We'd like to automate as much of our build process as possible. This script allows us to add Github Actions Workflows to all new projects. Github Actions is a CI/CD tool which is integrated into Github.
+
+This script is a utility to automate the setup of a dbt project in Github and dbt Cloud. It prompts the user to ensure they have a working dbt repository in Github, a dbt Cloud project set up, and their dbt Cloud API key. It then prompts the user to add their API key as a secret to their Github repository, and to provide the URL of their dbt Cloud job. The script then creates a workflow in Github Actions, with the trigger set to either a merge to the main branch or a pull request, depending on whether the environment is set to 'prod' or 'dev'.
 
 ---
 
