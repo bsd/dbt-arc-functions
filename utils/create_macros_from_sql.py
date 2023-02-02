@@ -11,6 +11,7 @@ def mk_macros_dir(directory):
 
 
 def loop_through_files_in_dir(directory):
+#TODO fix low code quality in this function
     for file_name in os.listdir(directory):
         if file_name.endswith('.sql'):
             with open(os.path.join(directory, file_name), 'r') as f:
