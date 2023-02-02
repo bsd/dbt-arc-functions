@@ -77,9 +77,7 @@ def convert_cloud_job_url_to_api_run_url(dbt_cloud_job_url):
     dbt_cloud_job_url = dbt_cloud_job_url.replace("next/", "")
     dbt_cloud_job_url = dbt_cloud_job_url.replace(
         "deploy/", "api/v2/accounts/")
-    dbt_cloud_api_run_url = re.sub(
-        r"projects/\d+/", "", dbt_cloud_job_url) + "/run/"
-    return dbt_cloud_api_run_url
+    return re.sub(r"projects/\d+/", "", dbt_cloud_job_url) + "/run/"
 
 
 def create_dbt_run_yml_from_template(
@@ -99,8 +97,7 @@ def create_workflow_path_and_folders(dbt_base_path, workflow_filename):
     workflow_folder_path = os.path.join(github_folder_path, "workflows")
     if not os.path.exists(workflow_folder_path):
         os.mkdir(workflow_folder_path)
-    workflow_path = os.path.join(workflow_folder_path, workflow_filename)
-    return workflow_path
+    return os.path.join(workflow_folder_path, workflow_filename)
 
 
 def write_workflow(workflow_path, workflow_yml, yaml):
