@@ -7,7 +7,7 @@ def check_dbt_installed():
     try:
         subprocess.run(["dbt", "--version"], capture_output=True, check=True)
         return True
-    except:
+    except Exception:
         return False
 
 def check_profiles_file():
