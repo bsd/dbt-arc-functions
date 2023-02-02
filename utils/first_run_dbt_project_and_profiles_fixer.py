@@ -156,7 +156,7 @@ def update_profile_yml(project_id, project_id_underscore, yaml):
 
     profile = path.join(path.expanduser('~'), '.dbt', 'profiles.yml')
     profile_choice = input(profile_choice_helptext.format(profile=profile))
-    profile = profile_choice if profile_choice else profile
+    profile = profile_choice or profile
     with open(profile, 'r') as f:
         content = f.read()
         profile_yml = yaml.load(content)
@@ -192,9 +192,7 @@ def get_dbt_artifacts_with_version():
     """
     r = requests.get(url='https://api.github.com/repos/brooklyn-data/dbt_artifacts/releases')
     version: str = r.json()[0]['tag_name']
-    package_with_version = {'package': 'brooklyn-data/dbt_artifacts', 'version': version}
-    return package_with_version
-
+    return {'package': 'brooklyn-data/dbt_artifacts', 'version': version}
 
 def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
     """
@@ -205,7 +203,7 @@ def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
     packages_dict = packages_dict_template.copy()
     revision_choice = input(revision_choice_helptext.format(
         active_branch_name=active_branch_name))
-    revision = revision_choice if revision_choice else active_branch_name
+    revision = revision_choice or active_branch_name
     packages_dict['packages'][1]['revision'] = revision
     dbt_artifacts_choice = None
     while dbt_artifacts_choice not in ('y', 'n'):
@@ -215,10 +213,9 @@ def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
     if not path.exists(dbt_packages_path):
         with open(dbt_packages_path, 'w') as f:
             yaml.dump(packages_dict, f)
-    else:
-        if input(f"Would you like to replace packages.yml with:\n{packages_dict}\n(y/n)\n") == 'y':
-            with open(dbt_packages_path, 'w') as f:
-                yaml.dump(packages_dict, f)
+    elif input(f"Would you like to replace packages.yml with:\n{packages_dict}\n(y/n)\n") == 'y':
+        with open(dbt_packages_path, 'w') as f:
+            yaml.dump(packages_dict, f)
 
 
 def get_active_branch_name():
@@ -230,13 +227,10 @@ def get_active_branch_name():
     """
     repo = git.Repo(search_parent_directories=True)
     current_commit = repo.commit()
-    for tag in repo.tags:
-        if current_commit == tag.commit:
-            revision = str(tag)
-            break
-    else:
-        revision = repo.active_branch.name
-    return revision
+    return next(
+        (str(tag) for tag in repo.tags if current_commit == tag.commit),
+        repo.active_branch.name,
+    )
 
 
 def main():
@@ -263,9 +257,11 @@ def main():
     active_branch_name = get_active_branch_name()
     write_packages_yml(dbt_packages_path, active_branch_name, yaml)
     dbt_example_path = path.join(dbt_base_path, 'models', 'example')
-    if path.exists(dbt_example_path):
-        if input("\nCan I delete 'models/example'? (y/n)\n") == 'y':
-            rmtree(dbt_example_path)
+    if (
+        path.exists(dbt_example_path)
+        and input("\nCan I delete 'models/example'? (y/n)\n") == 'y'
+    ):
+        rmtree(dbt_example_path)
     dbt_credentials_path, dbt_username = update_profile_yml(project_id, project_id_underscore, yaml)
     print("Program terminated successfully!")
     return dbt_project_path, project_id, yaml, dbt_credentials_path, dbt_username

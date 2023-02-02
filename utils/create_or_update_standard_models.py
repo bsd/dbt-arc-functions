@@ -47,8 +47,13 @@ def get_destination():
     print("This is usually the 'models' folder of the target repo.")
     print("This script will not let you create models in the current repo.")
     destination_path = ''
-    while not destination_path and not (destination_path.endswith(path.join('..', 'models'))
-                                        or destination_path.endswith(path.join('dbt-arc-functions', 'models'))):
+    while (
+        not destination_path
+        and not destination_path.endswith(path.join('..', 'models'))
+        and not destination_path.endswith(
+            path.join('dbt-arc-functions', 'models')
+        )
+    ):
         print("\nPlease enter the absolute or relative path where you'd like to create standard models:")
         destination_path = input()
     return destination_path
@@ -86,8 +91,7 @@ def get_sources_wanted(list_of_sources):
     print("\nYou can just add one or input a comma separated list (no brackets or quotes necessary): ")
     sources_wanted = input()
     print()
-    sources_wanted = list(set([source.strip()
-                               for source in sources_wanted.split(',')]))
+    sources_wanted = list({source.strip() for source in sources_wanted.split(',')})
     return sources_wanted
 
 
@@ -198,8 +202,7 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
     with open(file_path, 'r') as f:
         content = f.read()
         if file.endswith('.sql'):
-            function = rx.search(content).group(
-                1) if rx.search(content) else None
+            function = rx.search(content)[1] if rx.search(content) else None
             github_path = '/'.join([git_prepend, source, model_type, file])
             output = dbt_string.format(github_path=github_path,
                                        function=function)
@@ -214,13 +217,16 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
                 return
             output = extract_dependencies(
                 output, destination_file_path, dependencies_regex)
-        if not path.exists(destination_file_path) and not create:
-            if not write_new_file_choice(output, destination_file_path):
-                return
+        if (
+            not path.exists(destination_file_path)
+            and not create
+            and not write_new_file_choice(output, destination_file_path)
+        ):
+            return
         if output:
             with open(destination_file_path, 'w') as tf:
                 tf.writelines(output)
-                print(destination_file_path + " created successfully!")
+                print(f"{destination_file_path} created successfully!")
 
 
 def create_or_update_docs(docs_path, destination_path):
@@ -258,9 +264,11 @@ def create_or_update_docs(docs_path, destination_path):
         schema_dict['models'].append(docs_model)
         print(
             f"\nCan we add docs for the current model to your schema.yml in {destination_path}?")
-        print("This is the data we'd add to your schema.yml:")
-        print(docs_model)
-        print("\nThe resultant yaml would look like this:")
+        _extracted_from_create_or_update_docs_36(
+            "This is the data we'd add to your schema.yml:",
+            docs_model,
+            "\nThe resultant yaml would look like this:",
+        )
         yaml.dump(schema_dict, sys.stdout)
         choice = None
         while choice not in ['y', 'n']:
@@ -269,15 +277,15 @@ def create_or_update_docs(docs_path, destination_path):
             with open(schema_path, 'w') as f:
                 yaml.dump(schema_dict, f)
         return
-    if docs_model == schema_dict['models'][existing_model_index]:
-        return
-    else:
+    if docs_model != schema_dict['models'][existing_model_index]:
         docs_model_set = set(docs_model)
         schema_dict_model_set = set(
             schema_dict['models'][existing_model_index])
-        print("Your existing in the schema file for this model")
-        print("is different than the one in our documentation.")
-        print("Here's what exists in our documentation but not your schema file:")
+        _extracted_from_create_or_update_docs_36(
+            "Your existing in the schema file for this model",
+            "is different than the one in our documentation.",
+            "Here's what exists in our documentation but not your schema file:",
+        )
         print(schema_dict_model_set - docs_model_set)
         print("Here's what exists in your schema file but not our documentation:")
         print(docs_model_set - schema_dict_model_set)
@@ -289,7 +297,14 @@ def create_or_update_docs(docs_path, destination_path):
             schema_dict['models'][existing_model_index] = docs_model
             with open(schema_path, 'w') as f:
                 yaml.dump(schema_dict, f)
-        return
+    return
+
+
+# TODO Rename this here and in `create_or_update_docs`
+def _extracted_from_create_or_update_docs_36(arg0, arg1, arg2):
+    print(arg0)
+    print(arg1)
+    print(arg2)
 
 
 def delete_non_standard_model_choice(destination_file_path):
@@ -300,7 +315,7 @@ def delete_non_standard_model_choice(destination_file_path):
     """
     print('---------')
     with open(destination_file_path, 'r') as f:
-        for line in f.readlines():
+        for line in f:
             print(line)
     print('---------')
     print(f"Model exists at {destination_file_path}")
@@ -343,8 +358,9 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
             destination_path = path.join(destination, model_type, source) if model_type != sources_path else path.join(
                 destination, 'sources')
             if path.exists(destination_path) and create and not destination_path.endswith('sources'):
-                print("\nThis directory: {} already exists and I don't want to overwrite anything in create mode."
-                      .format(destination_path))
+                print(
+                    f"\nThis directory: {destination_path} already exists and I don't want to overwrite anything in create mode."
+                )
                 continue
             elif not path.exists(destination_path) and not create:
                 print("\nThis directory: {} doesn't exist and I don't want to make directories in update mode."

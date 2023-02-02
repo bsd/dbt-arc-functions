@@ -30,12 +30,11 @@ def main(credentials_path='', dbt_username=''):
     if not dbt_username.startswith('dbt_'):
         prepend_choice = input(prepend_helptext.format(username=dbt_username))
         if prepend_choice == 'y':
-            dbt_username = 'dbt_' + dbt_username
+            dbt_username = f'dbt_{dbt_username}'
     print(function_helptext)
     client = get_client(credentials_path)
-    datasets = list(client.list_datasets())  # Make an API request.
-    project = client.project
-    if datasets:
+    if datasets := list(client.list_datasets()):
+        project = client.project
         print(f"\nSchemas in project {project} with prepend {dbt_username}:")
         for dataset in datasets:
             if dataset.dataset_id.startswith(dbt_username):
