@@ -1,8 +1,3 @@
-# TODO Write documentation for stg_frakture_global_message_email_jobs [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/frakture_global_message_email/staging/stg_frakture_global_message_email_jobs.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/frakture_global_message_email/staging/stg_frakture_global_message_email_jobs.yml
 version: 2
 
 models:
@@ -10,32 +5,32 @@ models:
     description: Please replace this default description.
     columns:
       - name: message_id
-        description: ""
+        description: "Unique ID for email from Frakture."
 
       - name: from_name
-        description: ""
+        description: "Name that appears in 'From' line on email client. NOT the email address, that is from_email."
 
       - name: from_email
-        description: ""
+        description: "Email address that appears in 'From' line on email client."
 
       - name: best_guess_timestamp
-        description: ""
+        description: "Timestamp from Frakture's 'publish_date' field."
 
       - name: scheduled_timestamp
-        description: ""
+        description: "Frakture does not provide this, so set to NULL"
 
       - name: pickup_timestamp
-        description: ""
+        description: "Frakture does not provide this, so set to NULL"
 
       - name: delivered_timestamp
-        description: ""
+        description: "Frakture does not provide this, so set to NULL"
 
       - name: email_name
-        description: ""
+        description: "Internal name for the email, from Frakture's 'label' field."
 
       - name: email_subject
-        description: ""
+        description: "The subject line an end-user will see in their email client."
 
       - name: source_code
-        description: ""
+        description: "Source Code associated with this particular email. From Frakture's 'final_primary_source_code' field."
 
