@@ -1,5 +1,5 @@
-{% macro create_stg_frakture_global_message_email_jobs(
-    reference_name='stg_frakture_global_message_email_message') %}
+{% macro create_stg_stitch_sfmc_email_jobs(
+    reference_name='stg_stitch_sfmc_email_message') %}
 SELECT 
    DISTINCT SAFE_CAST(message_id AS STRING) AS message_id,
     SAFE_CAST(REGEXP_EXTRACT(from_name, "\".*?\"") AS STRING) AS from_name,
