@@ -1,0 +1,8 @@
+version: 2
+sources:
+  - name: stitch_sfmc_email
+    database: "{{ var('database') }}"
+    schema: src_stitch_sfmc_authorized
+    tables:
+      - name: 
+    
