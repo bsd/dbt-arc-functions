@@ -8,3 +8,112 @@ version: 2
 models:
   - name: stg_frakture_actionkit_transactions_summary_unioned
     description: Please replace this default description.
+    columns:
+      - name: _dbt_source_relation
+        description: ""
+
+      - name: remote_transaction_id
+        description: ""
+
+      - name: remote_person_id
+        description: ""
+
+      - name: ts
+        description: ""
+
+      - name: amount
+        description: ""
+
+      - name: recurs
+        description: ""
+
+      - name: recurring_number
+        description: ""
+
+      - name: refund_amount
+        description: ""
+
+      - name: source_code
+        description: ""
+
+      - name: email_hash_v1
+        description: ""
+
+      - name: actionkit_order_id
+        description: ""
+
+      - name: actionkit_transaction_type
+        description: ""
+
+      - name: actionkit_account
+        description: ""
+
+      - name: payment_method
+        description: ""
+
+      - name: is_recurring
+        description: ""
+
+      - name: actionkit_recurring_id
+        description: ""
+
+      - name: source
+        description: ""
+
+      - name: ts_eastern
+        description: ""
+
+      - name: pledge_id
+        description: ""
+
+      - name: order_id
+        description: ""
+
+      - name: remote_page_id
+        description: ""
+
+      - name: remote_page_name
+        description: ""
+
+      - name: page_id
+        description: ""
+
+      - name: page_title
+        description: ""
+
+      - name: page_name
+        description: ""
+
+      - name: pledge_start_date
+        description: ""
+
+      - name: frequency
+        description: ""
+
+      - name: giving_level_code
+        description: ""
+
+      - name: transaction_status
+        description: ""
+
+      - name: order_status
+        description: ""
+
+      - name: recurring_status
+        description: ""
+
+      - name: actionkit_overall_status
+        description: ""
+
+      - name: mailing_notes
+        description: ""
+
+      - name: remote_message_id
+        description: ""
+
+      - name: page_tags
+        description: ""
+
+      - name: page_tag_ids
+        description: ""
+
