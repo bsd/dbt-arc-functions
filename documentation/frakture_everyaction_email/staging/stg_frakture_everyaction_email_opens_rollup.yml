@@ -8,3 +8,10 @@ version: 2
 models:
   - name: stg_frakture_everyaction_email_opens_rollup
     description: Please replace this default description.
+    columns:
+      - name: message_id
+        description: ""
+
+      - name: opens
+        description: ""
+

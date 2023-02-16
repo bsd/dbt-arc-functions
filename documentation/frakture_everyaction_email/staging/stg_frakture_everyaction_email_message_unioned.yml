@@ -8,3 +8,52 @@ version: 2
 models:
   - name: stg_frakture_everyaction_email_message_unioned
     description: Please replace this default description.
+    columns:
+      - name: _dbt_source_relation
+        description: ""
+
+      - name: message_id
+        description: ""
+
+      - name: bot_id
+        description: ""
+
+      - name: submodule
+        description: ""
+
+      - name: remote_id
+        description: ""
+
+      - name: account_id
+        description: ""
+
+      - name: channel
+        description: ""
+
+      - name: publish_date
+        description: ""
+
+      - name: label
+        description: ""
+
+      - name: subject
+        description: ""
+
+      - name: from_name
+        description: ""
+
+      - name: from_email
+        description: ""
+
+      - name: campaign_name
+        description: ""
+
+      - name: campaign_id
+        description: ""
+
+      - name: adset_name
+        description: ""
+
+      - name: adset_id
+        description: ""
+
