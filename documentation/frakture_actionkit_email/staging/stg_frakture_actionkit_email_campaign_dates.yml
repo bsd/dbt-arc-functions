@@ -8,3 +8,13 @@ version: 2
 models:
   - name: stg_frakture_actionkit_email_campaign_dates
     description: Please replace this default description.
+    columns:
+      - name: campaign_timestamp
+        description: ""
+
+      - name: crm_campaign
+        description: ""
+
+      - name: source_code_campaign
+        description: ""
+
