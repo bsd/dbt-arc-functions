@@ -8,3 +8,37 @@ version: 2
 models:
   - name: stg_frakture_everyaction_email_jobs
     description: Please replace this default description.
+    columns:
+      - name: message_id
+        description: ""
+
+      - name: campaign_id
+        description: ""
+
+      - name: from_name
+        description: ""
+
+      - name: from_email
+        description: ""
+
+      - name: best_guess_timestamp
+        description: ""
+
+      - name: scheduled_timestamp
+        description: ""
+
+      - name: pickup_timestamp
+        description: ""
+
+      - name: delivered_timestamp
+        description: ""
+
+      - name: email_name
+        description: ""
+
+      - name: email_subject
+        description: ""
+
+      - name: campaign_name
+        description: ""
+
