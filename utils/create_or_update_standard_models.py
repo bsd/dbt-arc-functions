@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # coding: utf-8
-# TODO add function which checks if documentation exists for current sql file
+
 # TODO add inline comments to clarify what each function does
 # TODO object oriented rewrite with classes for each function
 

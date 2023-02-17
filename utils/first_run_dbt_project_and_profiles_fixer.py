@@ -62,7 +62,7 @@ Enter y for (y)es and n for (n)o. (We recommend y):
 """
 
 
-def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml):
+def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml, dbt_artifacts_choice):
     """
     Updates the `dbt_project.yml` file with the project name, removes the `my_new_project` model, adds a `database` variable and adds the standard model directory structure.
 
@@ -94,6 +94,8 @@ def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml)
             'materialized': 'table',
             'schema': 'marts'}}
     dbt_project_yml['models'][project_name_underscore] = standard_models
+    if dbt_artifacts_choice == 'y':
+        dbt_project_yml['on-run-end'] = ["{% if target.name == 'default' %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"]
     copy_choice = inplace_or_copy("dbt_project")
     file, extension = path.splitext(dbt_project)
     with open(file + copy_choice + extension, 'w') as f:
@@ -194,7 +196,7 @@ def get_dbt_artifacts_with_version():
     version: str = r.json()[0]['tag_name']
     return {'package': 'brooklyn-data/dbt_artifacts', 'version': version}
 
-def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
+def write_packages_yml(dbt_packages_path, active_branch_name, yaml, dbt_artifacts_choice):
     """
     Write a 'packages.yml' file to the given `dbt_packages_path` with the current revision set to the given
     `active_branch_name`. The `yaml` object is used to dump the `packages_dict` to the file. If a 'packages.yml'
@@ -205,9 +207,6 @@ def write_packages_yml(dbt_packages_path, active_branch_name, yaml):
         active_branch_name=active_branch_name))
     revision = revision_choice or active_branch_name
     packages_dict['packages'][1]['revision'] = revision
-    dbt_artifacts_choice = None
-    while dbt_artifacts_choice not in ('y', 'n'):
-        dbt_artifacts_choice = input(dbt_artifacts_choice_helptext)
     if dbt_artifacts_choice == 'y':
         packages_dict['packages'].append(get_dbt_artifacts_with_version())
     if not path.exists(dbt_packages_path):
@@ -251,11 +250,14 @@ def main():
     yaml = ruamel.yaml.YAML()
     yaml.indent(mapping=4, sequence=4, offset=2)
     yaml.preserve_quotes = True
-    update_dbt_project(dbt_project_path, project_id, project_id_underscore, yaml)
+    dbt_artifacts_choice = None
+    while dbt_artifacts_choice not in ('y', 'n'):
+        dbt_artifacts_choice = input(dbt_artifacts_choice_helptext)
+    update_dbt_project(dbt_project_path, project_id, project_id_underscore, yaml, dbt_artifacts_choice)
     dbt_base_path = path.dirname(dbt_project_path)
     dbt_packages_path = path.join(dbt_base_path, 'packages.yml')
     active_branch_name = get_active_branch_name()
-    write_packages_yml(dbt_packages_path, active_branch_name, yaml)
+    write_packages_yml(dbt_packages_path, active_branch_name, yaml, dbt_artifacts_choice)
     dbt_example_path = path.join(dbt_base_path, 'models', 'example')
     if (
         path.exists(dbt_example_path)
