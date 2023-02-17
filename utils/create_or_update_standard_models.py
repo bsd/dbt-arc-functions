@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # coding: utf-8
-# TODO add function which checks if documentation exists for current sql
-# TODO add docstrings for each function
+# TODO add function which checks if documentation exists for current sql file
+# TODO add inline comments to clarify what each function does
+# TODO object oriented rewrite with classes for each function
+
 import difflib
 import os
 import re
@@ -264,11 +266,9 @@ def create_or_update_docs(docs_path, destination_path):
         schema_dict['models'].append(docs_model)
         print(
             f"\nCan we add docs for the current model to your schema.yml in {destination_path}?")
-        _extracted_from_create_or_update_docs_36(
-            "This is the data we'd add to your schema.yml:",
-            docs_model,
-            "\nThe resultant yaml would look like this:",
-        )
+        print("This is the data we'd add to your schema.yml:")
+        print(docs_model
+        print("The resultant yaml would look like this:")
         yaml.dump(schema_dict, sys.stdout)
         choice = None
         while choice not in ['y', 'n']:
@@ -281,10 +281,9 @@ def create_or_update_docs(docs_path, destination_path):
         docs_model_set = set(docs_model)
         schema_dict_model_set = set(
             schema_dict['models'][existing_model_index])
-        _extracted_from_create_or_update_docs_36(
-            "Your existing in the schema file for this model",
-            "is different than the one in our documentation.",
-            "Here's what exists in our documentation but not your schema file:",
+        print("Your existing in the schema file for this model"
+            "\nis different than the one in our documentation."
+            "\nHere's what exists in our documentation but not your schema file:"
         )
         print(schema_dict_model_set - docs_model_set)
         print("Here's what exists in your schema file but not our documentation:")
@@ -300,13 +299,6 @@ def create_or_update_docs(docs_path, destination_path):
     return
 
 
-# TODO Rename this here and in `create_or_update_docs`
-def _extracted_from_create_or_update_docs_36(arg0, arg1, arg2):
-    print(arg0)
-    print(arg1)
-    print(arg2)
-
-
 def delete_non_standard_model_choice(destination_file_path):
     """
     This gets the user's choice to delete a file not found in standard models folder
@@ -315,7 +307,7 @@ def delete_non_standard_model_choice(destination_file_path):
     """
     print('---------')
     with open(destination_file_path, 'r') as f:
-        for line in f:
+        for line in f.readlines():
             print(line)
     print('---------')
     print(f"Model exists at {destination_file_path}")
@@ -327,7 +319,6 @@ def delete_non_standard_model_choice(destination_file_path):
         yes = input()
     if yes == 'y':
         os.remove(destination_file_path)
-
 
 def process_sources(sources_wanted, list_of_sources, macros_path, create, destination):
     """
