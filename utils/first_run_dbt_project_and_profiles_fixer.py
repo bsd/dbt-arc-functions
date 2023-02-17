@@ -84,7 +84,7 @@ def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml)
             del dbt_project_yml['models']['my_new_project']
     variables = {'database': project_name}
     if 'vars' in dbt_project_yml:
-        dbt_project['vars']['database'] = project_name
+        dbt_project_yml['vars']['database'] = project_name
     else:
         dbt_project_yml['vars'] = variables
     standard_models = {'staging': {
