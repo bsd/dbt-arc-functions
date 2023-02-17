@@ -75,7 +75,7 @@ def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml,
     """
     with open(dbt_project, 'r') as f:
         content = f.read()
-        dbt_project_yml = ruamel.yaml.safe_load(content)
+        dbt_project_yml = yaml.load(content)
 
     dbt_project_yml['name'] = project_name_underscore
     dbt_project_yml['profile'] = project_name_underscore
@@ -100,7 +100,7 @@ def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml,
     copy_choice = inplace_or_copy("dbt_project")
     file, extension = path.splitext(dbt_project)
     with open(file + copy_choice + extension, 'w') as f:
-        ruamel.yaml.dump(dbt_project_yml, f)
+        yaml.dump(dbt_project_yml, f)
 
 
 def copy_or_keep_credentials(credentials_location):
