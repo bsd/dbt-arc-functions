@@ -267,7 +267,7 @@ def create_or_update_docs(docs_path, destination_path):
         print(
             f"\nCan we add docs for the current model to your schema.yml in {destination_path}?")
         print("This is the data we'd add to your schema.yml:")
-        print(docs_model
+        print(docs_model)
         print("The resultant yaml would look like this:")
         yaml.dump(schema_dict, sys.stdout)
         choice = None
