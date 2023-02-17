@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-# TODO: give option of removing comments
-# TODO: in cases where the dbt project name doesn't match up to expectations, give option to change it
+# TODO: give option of removing comments from the profiles.yml file
 
 
 from os import path
