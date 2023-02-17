@@ -130,7 +130,7 @@ def update_profile_yml(project_id, project_id_underscore, yaml):
     """
     Updates the `profiles.yml` file for the project.
 
-    :param project_id: Name of the project
+    :param project_id: Name of the bigquery project
     :param project_id_underscore: Name of the project with underscores
     :yaml: YAML object
     
