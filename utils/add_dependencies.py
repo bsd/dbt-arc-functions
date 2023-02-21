@@ -54,12 +54,12 @@ def main(dbt_base_path):
                     project in local directory ~/.dbt/profiles.yml")
                 return
             output = process.stdout.decode()
-        except subprocess.CalledProcessError as e:
-            if "Could not find profile named" in e.stderr.decode():
+        except subprocess.CalledProcessError as Error:
+            if "Could not find profile named" in Error.stderr.decode():
                 click.echo(
                     "Could not find dbt profile named [name of the profile]. Please check if you have a dbt profile installed locally for this project.")
                 return
-            raise e
+            raise Error
         matches = re.findall(
             r"(-- depends_on: .*?}}).*?called by model [a-z_]+ \((.*?)\)", output, re.DOTALL)
         for dependency, filename in matches:
@@ -83,4 +83,4 @@ def main(dbt_base_path):
 
 
 if __name__ == '__main__':
-    main()
+    main(dbt_base_path)
