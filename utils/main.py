@@ -1,10 +1,10 @@
+from os import path
 import first_run_dbt_project_and_profiles_fixer
 import create_or_update_standard_models
 import compile_sources
 import add_dependencies
 import delete_schemas
 import add_github_actions_workflows
-from os import path
 
 
 def main():
