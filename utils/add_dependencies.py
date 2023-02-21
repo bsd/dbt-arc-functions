@@ -29,13 +29,13 @@ def check_profiles_file():
 @click.option('--dbt_base_path', default='/path/to/your/dbt/project', 
               help='The base directory of your dbt project as an absolute path')
 def main(dbt_base_path):
-    """
+    """ This function writes dependency strings to the top of dbt models.
     
     Args:
-        dbt_base_path (path): 
+        dbt_base_path (path): the path to your dbt project locally
 
     Raises:
-        called_process_error: 
+        called_process_error: an error is called if you do not have the dbt project installed correctly
     """
     if not check_dbt_installed():
         click.echo(

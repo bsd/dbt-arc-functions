@@ -1,3 +1,5 @@
+""" This script will add a dbt run workflow to your dbt repo in Github. """
+
 import os
 import re
 from copy import deepcopy
