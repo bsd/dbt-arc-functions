@@ -50,7 +50,8 @@ def main(dbt_base_path):
                 bash_command, capture_output=True, shell=True, check=False)
             if process.returncode != 0:
                 click.echo(
-                    "Could not find profile YAML file for this project in local directory ~/.dbt/profiles.yml")
+                    "Could not find profile YAML file for this \
+                    project in local directory ~/.dbt/profiles.yml")
                 return
             output = process.stdout.decode()
         except subprocess.CalledProcessError as e:
