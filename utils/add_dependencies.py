@@ -10,7 +10,7 @@ import re
 
 def check_dbt_installed():
     try:
-        subprocess.run(["dbt", "--version"], capture_output=True, check=True)
+        subprocess.run(["dbt", "--version"], capture_output=True, check=False)
         return True
     except Exception:
         return False
@@ -19,14 +19,24 @@ def check_dbt_installed():
 def check_profiles_file():
     if not path.exists(path.expanduser('~/.dbt/profiles.yml')):
         click.echo(
-            "Could not find the profiles.yml file in the ~/.dbt/ directory. Please check that it exists.")
+            "Could not find the profiles.yml file in the ~/.dbt/ directory.\
+            Please check that it exists.")
         return False
     return True
 
 
 @click.command()
-@click.option('--dbt_base_path', default='', help='The base directory of your dbt project as an absolute path')
+@click.option('--dbt_base_path', default='/path/to/your/dbt/project', 
+              help='The base directory of your dbt project as an absolute path')
 def main(dbt_base_path):
+    """
+    
+    Args:
+        dbt_base_path (path): 
+
+    Raises:
+        called_process_error: 
+    """
     if not check_dbt_installed():
         click.echo(
             "dbt is not installed. Please install dbt before running this script.")
@@ -39,7 +49,7 @@ def main(dbt_base_path):
     bash_command = f"cd {dbt_base_path} ;dbt run"
     matches = [["dependency", "filename"]]
     process = subprocess.run(
-        f"cd {dbt_base_path} ;dbt deps", capture_output=True, shell=True)
+        f"cd {dbt_base_path} ;dbt deps", capture_output=True, shell=True, check=False)
     output = process.stdout.decode()
     click.echo(output)
     run_count = 0
@@ -54,12 +64,12 @@ def main(dbt_base_path):
                     project in local directory ~/.dbt/profiles.yml")
                 return
             output = process.stdout.decode()
-        except subprocess.CalledProcessError as Error:
-            if "Could not find profile named" in Error.stderr.decode():
+        except subprocess.CalledProcessError as called_process_error:
+            if "Could not find profile named" in called_process_error.stderr.decode():
                 click.echo(
                     "Could not find dbt profile named [name of the profile]. Please check if you have a dbt profile installed locally for this project.")
                 return
-            raise Error
+            raise called_process_error
         matches = re.findall(
             r"(-- depends_on: .*?}}).*?called by model [a-z_]+ \((.*?)\)", output, re.DOTALL)
         for dependency, filename in matches:
@@ -72,15 +82,17 @@ def main(dbt_base_path):
                     f"\nUpdated the file: {filename}\nWith: {dependency}")
         if not matches:
             matches = re.findall(
-                r'Syntax error: Expected "\(" or keyword SELECT or keyword WITH but got ";"', output)
+                r'Syntax error: Expected "\
+                (" or keyword SELECT or keyword WITH but got ";"', output)
             if matches:
                 click.echo(
                     "\nWe have to run again to process some intermediate table builds.\n")
         if run_count >= 10:
             click.echo(
-                "\nThis program will break now because dbt run has happened 10 times and we're still getting errors.\n")
+                "\nThis program will break now because dbt run has happened\
+                10 times and we're still getting errors.\n")
     click.echo(output)
 
 
 if __name__ == '__main__':
-    main(dbt_base_path)
+    main()
