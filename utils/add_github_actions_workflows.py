@@ -190,8 +190,8 @@ def main(dbt_base_path='', yaml=None):
         dbt_base_path = get_dbt_base_path()
     if not yaml:
         yaml = initialize_yaml()
-    input(starting_prompt)
-    input(prompt_api_added_to_secrets)
+    input(STARTING_PROMPT)
+    input(PROMPT_API_ADDED_TO_SECRETS)
     create_dbt_run_workflow('prod', dbt_base_path, yaml)
     create_dbt_run_workflow('dev', dbt_base_path, yaml)
     print("\n***add_github_actions_workflows.py terminated successfully!***\n")
