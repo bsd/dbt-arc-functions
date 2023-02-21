@@ -9,8 +9,6 @@ import os
 import re
 import sys
 from os import path
-from pprint import pprint
-
 import ruamel.yaml
 
 dbt_string = """-- macro used to create this file can be found at:
@@ -300,6 +298,7 @@ def create_or_update_docs(docs_path, destination_path):
 
 
 def delete_non_standard_model_choice(destination_file_path):
+    # sourcery skip: use-file-iterator
     """
     This gets the user's choice to delete a file not found in standard models folder
     :param destination_file_path: file path to model not found in standard models
@@ -354,8 +353,9 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                 )
                 continue
             elif not path.exists(destination_path) and not create:
-                print("\nThis directory: {} doesn't exist and I don't want to make directories in update mode."
-                      .format(destination_path))
+                print(
+                    f"\nThis directory: {destination_path} doesn't exist and I don't want to make directories in update mode."
+                )
                 continue
             elif create and not path.exists(destination_path):
                 os.makedirs(destination_path)
@@ -409,7 +409,6 @@ def main(dbt_models_path=''):
                         macros_path, create, dbt_models_path)
     except Exception as e:
         print(e)
-        pass
     print('\nProgram terminated successfully!\n')
 
 
