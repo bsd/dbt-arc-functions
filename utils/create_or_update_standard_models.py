@@ -1,6 +1,9 @@
+""" This script creates dbt models that call macros in this project, 
+    in the client project dbt repository. It generates SQL files that match up to the files in
+    the macros folder here. """
+
 #!/usr/bin/env python3
 # coding: utf-8
-
 # TODO add inline comments to clarify what each function does
 # TODO object oriented rewrite with classes for each function
 
@@ -11,7 +14,7 @@ import sys
 from os import path
 import ruamel.yaml
 
-dbt_string = """-- macro used to create this file can be found at:
+DBT_STRING = """-- macro used to create this file can be found at:
 -- {github_path}
 {{{{ dbt_arc_functions.{function} }}}}
 """
@@ -19,10 +22,8 @@ dbt_string = """-- macro used to create this file can be found at:
 
 def get_create_or_update():
     """Get a boolean indicating whether to create or update standard models.
-
     Prompts the user to enter 'c' to create new standard models or 'u' to update standard models. If the user
     enters an invalid input, the function will continue to prompt until a valid input is provided.
-
     Returns:
         A boolean indicating whether to create (True) or update (False) standard models.
     """
@@ -87,7 +88,8 @@ def get_sources_wanted(list_of_sources):
         A list of selected sources.
     """
     print("\nWhich set of standard models would you like to use in this dbt project? Here's the list:")
-    [print(source) for source in list_of_sources]
+    for source in list_of_sources:
+        print(source)
     print("\nYou can just add one or input a comma separated list (no brackets or quotes necessary): ")
     sources_wanted = input()
     print()
@@ -112,7 +114,7 @@ def overwrite_choice(source_file_path, output, destination_file_path):
     """
     # function implementation goes here
 
-    with open(destination_file_path, 'r') as d:
+    with open(destination_file_path, 'r', encoding='utf-8') as d:
         d_text = list(filter(lambda x: not x.startswith(
             '-- depends_on:'), d.readlines()))
         differences = list(difflib.unified_diff(
@@ -148,7 +150,7 @@ def extract_dependencies(output, destination_file_path, dependencies_regex):
     Returns:
         A list of dependencies extracted from the destination file.
     """
-    with open(destination_file_path, 'r') as d:
+    with open(destination_file_path, 'r', encoding='utf-8') as d:
         dependencies = dependencies_regex.findall(d.read())
     if not dependencies:
         return output
@@ -167,15 +169,17 @@ def extract_dependencies(output, destination_file_path, dependencies_regex):
 def write_new_file_choice(output, destination_file_path):
     """Determine whether to write a new file from a source file.
 
-    Prompts the user to decide whether to write a new file at the specified destination path using the contents of the
-    source file.
+    Prompts the user to decide whether to write a new file at the specified 
+        destination path using the contents of the
+        source file.
 
     Args:
         output: The contents of the source file as a list of strings.
         destination_file_path: The path to the destination file.
 
     Returns:
-        A boolean indicating whether to write a new file at the destination path (True) or skip writing the file (False).
+        A boolean indicating whether to write a new file at the destination path (True)
+        or skip writing the file (False).
     """
     print(f"\nYou do not have a model at {destination_file_path}\n")
     print("Here is the standard model in arc-dbt-functions:\n")
@@ -199,12 +203,12 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
     dependencies_regex = re.compile(r"--\s+depends_on:\s+.*\n")
     git_prepend = "https://github.com/bsd/dbt-arc-functions/blob/main/macros"
     destination_file_path = path.join(destination_path, file)
-    with open(file_path, 'r') as f:
+    with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
         if file.endswith('.sql'):
             function = rx.search(content)[1] if rx.search(content) else None
             github_path = '/'.join([git_prepend, source, model_type, file])
-            output = dbt_string.format(github_path=github_path,
+            output = DBT_STRING.format(github_path=github_path,
                                        function=function)
         else:
             output = content
@@ -224,7 +228,7 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
         ):
             return
         if output:
-            with open(destination_file_path, 'w') as tf:
+            with open(destination_file_path, 'w', encoding='utf-8') as tf:
                 tf.writelines(output)
                 print(f"{destination_file_path} created successfully!")
 
@@ -232,10 +236,12 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
 def create_or_update_docs(docs_path, destination_path):
     """Create or update documentation for standard models.
 
-    Processes each model file in the specified documentation path, determining whether to overwrite or create new files
-    at the destination path. If a file already exists at the destination path, it will be overwritten if there are
-    differences between the source file and the destination file. If a file does not exist at the destination path,
-    a new file will be created.
+    Processes each model file in the specified documentation path, 
+        determining whether to overwrite or create new files
+    at the destination path. If a file already exists at the destination path, 
+        it will be overwritten if there are
+    differences between the source file and the destination file. If a file does not exist
+        at the destination path, a new file will be created.
 
     Args:
         docs_path: The path to the documentation directory.
@@ -248,10 +254,10 @@ def create_or_update_docs(docs_path, destination_path):
     if not path.exists(schema_path):
         schema_dict = {'version': 2, 'models': []}
     else:
-        with open(schema_path, 'r') as f:
+        with open(schema_path, 'r', encoding='utf-8') as f:
             content = f.read()
             schema_dict = yaml.load(content)
-    with open(docs_path, 'r') as f:
+    with open(docs_path, 'r', encoding='utf-8') as f:
         content = f.read()
         docs_dict = yaml.load(content)
     docs_model = docs_dict['models'][0]
@@ -272,7 +278,7 @@ def create_or_update_docs(docs_path, destination_path):
         while choice not in ['y', 'n']:
             choice = input("Type y for (y)es or n for (n)o:\n")
         if choice == 'y':
-            with open(schema_path, 'w') as f:
+            with open(schema_path, 'w', encoding='utf-8') as f:
                 yaml.dump(schema_dict, f)
         return
     if docs_model != schema_dict['models'][existing_model_index]:
@@ -305,7 +311,7 @@ def delete_non_standard_model_choice(destination_file_path):
     :return: None
     """
     print('---------')
-    with open(destination_file_path, 'r') as f:
+    with open(destination_file_path, 'r', encoding='utf-8') as f:
         for line in f.readlines():
             print(line)
     print('---------')
@@ -325,7 +331,8 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
     :param list_of_sources: list of available standard models within dbt-arc-functions
     :param macros_path: path of the macros folders
     :param create: whether a client wants to create standard models (false if they want to update)
-    :param destination: destination dbt repo where client would like to create/update standard models
+    :param destination: destination dbt repo where client 
+        would like to create/update standard models
     :return: None
     """
     # TODO this function is very large and therefore hard to parse, break into smaller chunks
@@ -345,14 +352,16 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                 continue
             source_path = sources_path if model_type == sources_path else path.join(
                 macros_path, source, model_type)
-            destination_path = path.join(destination, model_type, source) if model_type != sources_path else path.join(
+            destination_path = path.join(
+                destination, model_type, source) if model_type != sources_path else path.join(
                 destination, 'sources')
-            if path.exists(destination_path) and create and not destination_path.endswith('sources'):
+            if path.exists(
+                destination_path) and create and not destination_path.endswith('sources'):
                 print(
                     f"\nThis directory: {destination_path} already exists and I don't want to overwrite anything in create mode."
                 )
                 continue
-            elif not path.exists(destination_path) and not create:
+            if not path.exists(destination_path) and not create:
                 print(
                     f"\nThis directory: {destination_path} doesn't exist and I don't want to make directories in update mode."
                 )
@@ -389,10 +398,13 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
 def main(dbt_models_path=''):
     """Create or update standard models in a dbt project.
 
-    Prompts the user to choose whether to create new standard models or update existing standard models in a dbt project.
-    The user is also prompted to enter the absolute or relative path where the models should be created or updated.
-    The user is then prompted to select the sources they want to use for the dbt project. Finally, the selected sources
-    are processed, creating or updating the standard models at the specified path.
+    Prompts the user to choose whether to create new standard models or
+        update existing standard models in a dbt project.
+    The user is also prompted to enter the absolute or relative path 
+        where the models should be created or updated.
+    The user is then prompted to select the sources they want to use for 
+        the dbt project. Finally, the selected sources  are processed,
+        creating or updating the standard models at the specified path.
 
     Args:
         dbt_models_path: The path to the dbt models directory. If not provided, the user will be prompted to enter the
@@ -407,8 +419,8 @@ def main(dbt_models_path=''):
         sources_wanted = get_sources_wanted(list_of_sources)
         process_sources(sources_wanted, list_of_sources,
                         macros_path, create, dbt_models_path)
-    except Exception as e:
-        print(e)
+    except Exception as exception_noted:
+        print(exception_noted)
     print('\nProgram terminated successfully!\n')
 
 
