@@ -264,7 +264,7 @@ def main():
     yaml.preserve_quotes = True
     dbt_artifacts_choice = None
     while dbt_artifacts_choice not in ('y', 'n'):
-        dbt_artifacts_choice = input(dbt_artifacts_choice_helptext)
+        dbt_artifacts_choice = input(DBT_ARTIFACTS_CHOICE_HELPTEXT)
     update_dbt_project(dbt_project_path, project_id, project_id_underscore, yaml, dbt_artifacts_choice)
     dbt_base_path = path.dirname(dbt_project_path)
     dbt_packages_path = path.join(dbt_base_path, 'packages.yml')
