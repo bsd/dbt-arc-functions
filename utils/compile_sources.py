@@ -73,7 +73,7 @@ def load_dbt_project_yml(dbt_project_path, yaml):
     :param yaml: The instance of the ruamel.yaml.YAML class.
     :return: A dictionary containing the content of the dbt_project.yml file.
     """
-    with open(dbt_project_path, 'r') as f:
+    with open(dbt_project_path, 'r', encoding='utf-8') as f:
         content = f.read()
         return yaml.load(content)
 
@@ -97,7 +97,7 @@ def get_project_id(dbt_credentials_path):
     :param dbt_credentials_path: The file path of the BigQuery credentials file.
     :return: The project ID as a string.
     """
-    with open(dbt_credentials_path, 'r') as f:
+    with open(dbt_credentials_path, 'r', encoding='utf-8') as f:
         return json.load(f)['project_id']
 
 
@@ -187,7 +187,7 @@ def main(
     dbt_project_yml = add_sources_to_yml(dbt_project_yml, dbt_models_sources_path, client)
     copy_choice = inplace_or_copy("dbt_project")
     file, extension = os.path.splitext(dbt_project_path)
-    with open(file + copy_choice + extension, 'w') as f:
+    with open(file + copy_choice + extension, 'w', encoding='utf-8') as f:
         yaml.dump(dbt_project_yml, f)
 
 
