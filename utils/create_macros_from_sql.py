@@ -1,3 +1,5 @@
+""" This is a python script that creates jinja macros from SQL. """
+
 import os
 import re
 
@@ -9,11 +11,27 @@ source_pattern = re.compile(r"\{\{\s*source\(\s*('\w+')\s*,\s*('\w+')\s*\)\s*\}\
 
 
 def mk_macros_dir(directory):
+    """Creates a directory named 'macros' in the specified directory if it doesn't exist.
+    Args:
+        directory (str): the path to the directory where the 'macros' directory will be created 
+    """
     # Create the 'macros' directory if it doesn't exist
     if not os.path.exists(os.path.join(directory, 'macros')):
         os.mkdir(os.path.join(directory, 'macros'))
 
 def loop_through_files_in_dir(directory):
+    """
+    Loops through all the files in the specified directory, 
+        and processes only the ones with '.sql' extension.
+    For each file, reads its content, removes 'depends_on' lines, 
+        and creates a jinja macro with the file name as the macro name.
+    The macro takes arguments that correspond to any references or sources in the SQL code, 
+        which are replaced with jinja macro calls.
+    The resulting jinja macro is written to a file in the 'macros' directory 
+        with the same name as the SQL file.
+    Args:
+        directory (str): the path to the directory containing the SQL files.
+    """
 # Loop through all the files in the given directory
     for file_name in os.listdir(directory):
         # Process only .sql files
@@ -81,8 +99,14 @@ def loop_through_files_in_dir(directory):
                 f.write(output)
 
 def main():
+    """The main function of the script, which prompts the user to enter 
+        the path to the directory containing the SQL files.
+    Calls mk_macros_dir() to create the 'macros' directory, 
+        and loop_through_files_in_dir() to process the SQL files and create jinja macros.
+    """
     directory = input(
-        'Please enter either the relative or absolute path of the directory that you want to convert to macros:\n')
+        'Please enter either the relative or absolute path of the\
+            directory that you want to convert to macros:\n')
     mk_macros_dir(directory)
     loop_through_files_in_dir(directory)
 
