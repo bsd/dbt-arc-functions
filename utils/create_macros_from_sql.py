@@ -36,7 +36,7 @@ def loop_through_files_in_dir(directory):
     for file_name in os.listdir(directory):
         # Process only .sql files
         if file_name.endswith('.sql'):
-            with open(os.path.join(directory, file_name), 'r') as f:
+            with open(os.path.join(directory, file_name), 'r', encoding='utf-8') as f:
                 # Read the content of the file
                 text = f.read()
                 # Remove the 'depends_on' lines
@@ -94,7 +94,7 @@ def loop_through_files_in_dir(directory):
                     output += text
                     # Add the end macro tag to the output
                     output += f'\n{{% endmacro %}}'
-            with open(os.path.join(directory, 'macros', file_name), 'w') as f:
+            with open(os.path.join(directory, 'macros', file_name), 'w', encoding='utf-8') as f:
                  # Write the output to the file
                 f.write(output)
 
