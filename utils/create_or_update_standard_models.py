@@ -22,12 +22,13 @@ DBT_STRING = """-- macro used to create this file can be found at:
 
 def get_create_or_update():
     """Get a boolean indicating whether to create or update standard models.
-    Prompts the user to enter 'c' to create new standard models or 'u' to update standard models. If the user
-    enters an invalid input, the function will continue to prompt until a valid input is provided.
+    Prompts the user to enter 'c' to create new standard models or 'u' to update standard models. 
+        If the user enters an invalid input, the function will continue to prompt 
+            until a valid input is provided.
     Returns:
         A boolean indicating whether to create (True) or update (False) standard models.
     """
-    print("\nFirst thing's first, do you want to create a new set of standard models or update an existing set?")
+    print("\nDo you want to create a new set of standard models or update an existing set?")
     create = None
     while create not in ('c', 'u'):
         print("Enter c to (c)reate new standard models or u to (u)pdate standard models.")
@@ -38,7 +39,8 @@ def get_create_or_update():
 def get_destination():
     """Get the absolute or relative path to create models.
 
-    Prompts the user to enter the absolute or relative path where they would like to create models. The function
+    Prompts the user to enter the absolute or relative path 
+    where they would like to create models. The function
     will continue to prompt until a valid path is provided.
 
     Returns:
@@ -78,7 +80,8 @@ def get_list_of_sources(macros_path):
 def get_sources_wanted(list_of_sources):
     """Get a list of sources wanted for the dbt project.
 
-    Prompts the user to enter a comma-separated list of sources they want to use in their dbt project. The function
+    Prompts the user to enter a comma-separated list of sources 
+    they want to use in their dbt project. The function
     will remove any duplicates and return a list of the selected sources.
 
     Args:
@@ -100,8 +103,10 @@ def get_sources_wanted(list_of_sources):
 def overwrite_choice(source_file_path, output, destination_file_path):
     """Determine whether to overwrite a destination file with a source file.
 
-    Compares the contents of the source file and the destination file, and prompts the user to decide whether to
-    overwrite the destination file with the source file. If the files are identical, the function returns False without
+    Compares the contents of the source file and the destination file, 
+    and prompts the user to decide whether to
+    overwrite the destination file with the source file. 
+    If the files are identical, the function returns False without
     prompting the user.
 
     Args:
@@ -110,9 +115,9 @@ def overwrite_choice(source_file_path, output, destination_file_path):
         destination_file_path: The path to the destination file.
 
     Returns:
-        A boolean indicating whether to overwrite the destination file (True) or keep the destination file (False).
+        A boolean indicating whether to overwrite the destination file (True) 
+        or keep the destination file (False).
     """
-    # function implementation goes here
 
     with open(destination_file_path, 'r', encoding='utf-8') as d:
         d_text = list(filter(lambda x: not x.startswith(
@@ -298,7 +303,7 @@ def create_or_update_docs(docs_path, destination_path):
             choice = input("Type y for (y)es or n for (n)o:\n")
         if choice == 'y':
             schema_dict['models'][existing_model_index] = docs_model
-            with open(schema_path, 'w') as f:
+            with open(schema_path, 'w', encoding='utf-8') as f:
                 yaml.dump(schema_dict, f)
     return
 
@@ -345,7 +350,6 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
         list_of_models = os.listdir(path.join(macros_path, source))
         list_of_models.append(sources_path)
         for model_type in list_of_models:
-            # TODO break this out into separate function
             if model_type not in model_types:
                 print(
                     f"Weird, {model_type} is not one of our standard model types. Going to skip.")
@@ -407,8 +411,8 @@ def main(dbt_models_path=''):
         creating or updating the standard models at the specified path.
 
     Args:
-        dbt_models_path: The path to the dbt models directory. If not provided, the user will be prompted to enter the
-            path.
+        dbt_models_path: The path to the dbt models directory. 
+            If not provided, the user will be prompted to enter the path.
     """
     macros_path = path.join('..', 'macros')
     create = get_create_or_update()
