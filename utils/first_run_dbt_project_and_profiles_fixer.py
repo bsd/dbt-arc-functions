@@ -203,9 +203,12 @@ def get_dbt_artifacts_with_version():
 
 def write_packages_yml(dbt_packages_path, active_branch_name, yaml, dbt_artifacts_choice):
     """
-    Write a 'packages.yml' file to the given `dbt_packages_path` with the current revision set to the given
-    `active_branch_name`. The `yaml` object is used to dump the `packages_dict` to the file. If a 'packages.yml'
-    file already exists at the given path, the user is prompted to confirm whether they want to replace the file.
+    Write a 'packages.yml' file to the given `dbt_packages_path`
+    with the current revision set to the given
+    `active_branch_name`. The `yaml` object is 
+    used to dump the `packages_dict` to the file. 
+    If a 'packages.yml' file already exists at the given path, 
+    the user is prompted to confirm whether they want to replace the file.
     """
     packages_dict = packages_dict_template.copy()
     revision_choice = input(REVISION_CHOICE_HELPTEXT.format(
