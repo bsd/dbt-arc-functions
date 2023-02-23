@@ -77,7 +77,7 @@ def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml,
     :param project_name_underscore: Name of the project with underscores
     :param yaml: YAML object
     """
-    with open(dbt_project, 'r', encoding='utc-8') as f:
+    with open(dbt_project, 'r', encoding='utf-8') as f:
         content = f.read()
         dbt_project_yml = yaml.load(content)
 
@@ -103,7 +103,7 @@ def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml,
         dbt_project_yml['on-run-end'] = ["{% if target.name == 'default' %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"]
     copy_choice = inplace_or_copy("dbt_project")
     file, extension = path.splitext(dbt_project)
-    with open(file + copy_choice + extension, 'w', encoding='utc-8') as f:
+    with open(file + copy_choice + extension, 'w', encoding='utf-8') as f:
         yaml.dump(dbt_project_yml, f)
 
 
@@ -122,9 +122,9 @@ def copy_or_keep_credentials(credentials_location):
             COPY_OR_KEEP_CREDENTIALS_HELPTEXT.format(file_location=credentials_location,
                                                      profile_location=profile_location))
     if choice == 'c':
-        with open(credentials_location, 'r', encoding='utc-8') as f:
+        with open(credentials_location, 'r', encoding='utf-8') as f:
             content = f.read()
-        with open(profile_location, 'w', encoding='utc-8') as f:
+        with open(profile_location, 'w', encoding='utf-8') as f:
             f.write(content)
         return profile_location
     return credentials_location
@@ -164,14 +164,14 @@ def update_profile_yml(project_id, project_id_underscore, yaml):
     profile = path.join(path.expanduser('~'), '.dbt', 'profiles.yml')
     profile_choice = input(PROFILE_CHOICE_HELPTEXT.format(profile=profile))
     profile = profile_choice or profile
-    with open(profile, 'r', encoding='utc-8') as f:
+    with open(profile, 'r', encoding='utf-8') as f:
         content = f.read()
         profile_yml = yaml.load(content)
 
     profile_yml[project_id_underscore] = profile_entry
     copy_choice = inplace_or_copy("profile")
     file, extension = path.splitext(profile)
-    with open(file + copy_choice + extension, 'w', encoding='utc-8') as f:
+    with open(file + copy_choice + extension, 'w', encoding='utf-8') as f:
         yaml.dump(profile_yml, f)
     return credentials_location, dbt_username
 
@@ -218,10 +218,10 @@ def write_packages_yml(dbt_packages_path, active_branch_name, yaml, dbt_artifact
     if dbt_artifacts_choice == 'y':
         packages_dict['packages'].append(get_dbt_artifacts_with_version())
     if not path.exists(dbt_packages_path):
-        with open(dbt_packages_path, 'w', encoding='utc-8') as f:
+        with open(dbt_packages_path, 'w', encoding='utf-8') as f:
             yaml.dump(packages_dict, f)
     elif input(f"Would you like to replace packages.yml with:\n{packages_dict}\n(y/n)\n") == 'y':
-        with open(dbt_packages_path, 'w', encoding='utc-8') as f:
+        with open(dbt_packages_path, 'w', encoding='utf-8') as f:
             yaml.dump(packages_dict, f)
 
 
