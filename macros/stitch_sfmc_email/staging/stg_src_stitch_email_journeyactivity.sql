@@ -11,6 +11,6 @@
         ,activityexternalkey as activity_external_key
         ,journeyactivityobjectid as journey_activity_object_id
         ,activitytype as activity_type
-         from {{ref(relations)}}
+         from ({{ dbt_utils.union_relations(relations) }})
 
 {% endmacro %}

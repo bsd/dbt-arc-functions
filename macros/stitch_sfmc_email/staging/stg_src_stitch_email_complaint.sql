@@ -16,6 +16,6 @@ select distinct
         ,CAST(isunique AS BOOL) as is_unique
         ,domain
 
-    from {{ref(relations)}}
+    from ({{ dbt_utils.union_relations(relations) }})
 
 {% endmacro %}

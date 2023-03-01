@@ -18,6 +18,6 @@ SELECT distinct
     ,CAST(SubscriberID AS INT64) as subscriber_id
     ,SubscriberKey as subscriber_key
     ,SubscriberType as subscriber_type
-    from {{ref(relations)}}
+    from ({{ dbt_utils.union_relations(relations) }})
 
 {% endmacro %}

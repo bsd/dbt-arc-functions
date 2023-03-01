@@ -22,6 +22,6 @@ Select distinct
         triggeredsendcustomerkey as triggered_send_customer_key
 
 
-    from {{ref(relations)}}
+    from ({{ dbt_utils.union_relations(relations) }})
 
 {% endmacro %}

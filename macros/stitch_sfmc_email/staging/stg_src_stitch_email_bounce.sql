@@ -26,6 +26,6 @@ Select DISTINCT
     ,triggerersenddefinitionobjectID as triggerrer_send_definition_object_id
     ,CAST(triggeredsendcustomerkey as STRING) as triggered_send_customer_key
     , _sdc_received_at  as recieved_at
-    from {{ref(relations)}}
+    from ({{ dbt_utils.union_relations(relations) }})
 
 {% endmacro %}

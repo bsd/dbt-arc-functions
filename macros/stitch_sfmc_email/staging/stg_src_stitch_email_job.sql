@@ -57,6 +57,6 @@ SELECT distinct
     ,CAST(deduplicatebyemail AS BOOL) as deduplicated_by_email
     ,triggerersenddefinitionobjectid as triggerrer_send_definition_object_id
     ,triggeredsendcustomerkey as triggered_send_customer_key
-    from {{ref(relations)}}
+    from ({{ dbt_utils.union_relations(relations) }})
 
 {% endmacro %}

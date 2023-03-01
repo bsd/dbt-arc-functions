@@ -16,6 +16,6 @@ Select DISTINCT
         ,datetime(CAST(CONCAT(Substr(eventdate,0,22)," America/New_York") as timestamp), "America/New_York") as event_dt
         ,CAST(isunique AS BOOL) as is_unique
         ,domain
-    from {{ref(relations)}}
+    from ({{ dbt_utils.union_relations(relations) }})
 
 {% endmacro %}

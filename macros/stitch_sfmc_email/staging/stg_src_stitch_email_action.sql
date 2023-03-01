@@ -19,6 +19,6 @@ SELECT distinct
     ,TriggererSendDefinitionObjectID as triggerrer_send_definition_object_id
     ,TriggeredSendCustomerKey as triggered_send_customer_key
 
-    from {{ref(relations)}}
+    from ({{ dbt_utils.union_relations(relations) }})
 
 {% endmacro %}

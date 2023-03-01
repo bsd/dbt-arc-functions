@@ -25,6 +25,6 @@ Select DISTINCT
         ,journeystatus as journey_status
 
 
-     from {{ref(relations)}}
+     from ({{ dbt_utils.union_relations(relations) }})
 
 {% endmacro %}
