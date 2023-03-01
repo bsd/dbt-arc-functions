@@ -1,7 +1,7 @@
 {% macro create_stg_stitch_sfmc_email_clicks_rollup(
-    reference_name='stg_stitch_sfmc_email_summary') %}
-SELECT SAFE_CAST(message_id AS STRING) AS message_id,  
-  SUM(SAFE_CAST(clicks AS INT)) AS clicks
+    reference_name='stg_src_stitch_email_click') %}
+Select SAFE_CAST(job_id AS string) as message_id,
+        count(*) as clicks
 FROM {{ ref(reference_name) }} 
 GROUP BY 1
 {% endmacro %}

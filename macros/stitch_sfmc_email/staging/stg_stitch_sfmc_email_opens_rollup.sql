@@ -1,7 +1,7 @@
 {% macro create_stg_stitch_sfmc_email_opens_rollup(
-    reference_name='stg_stitch_sfmc_email_summary') %}
+    reference_name='stg_src_stitch_email_open') %}
 SELECT SAFE_CAST(message_id AS STRING) AS message_id,
-  SUM(SAFE_CAST(impressions AS INT)) AS opens
+  SAFE_CAST(count(*)) AS opens
 FROM {{ ref(reference_name) }} 
 GROUP BY 1
 {% endmacro %}

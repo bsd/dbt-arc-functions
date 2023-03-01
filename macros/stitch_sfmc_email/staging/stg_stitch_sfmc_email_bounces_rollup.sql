@@ -1,11 +1,14 @@
 {% macro create_stg_stitch_sfmc_email_bounces_rollup(
-    reference_name='stg_stitch_sfmc_email_summary') %}
-SELECT SAFE_CAST(message_id AS STRING) AS message_id,
- SUM(SAFE_CAST(hard_bounces + soft_bounces AS INT)) AS total_bounces,
-  SUM(SAFE_CAST(0 AS INT)) AS block_bounces,
-  SUM(SAFE_CAST(0 AS INT)) AS tech_bounces,
-  SUM(SAFE_CAST(soft_bounces AS INT)) AS soft_bounces,
-  SUM(SAFE_CAST(hard_bounces AS INT)) AS hard_bounces
-FROM {{ ref(reference_name) }} 
+    reference_name='stg_src_stitch_email_bounce') %}
+SELECT
+SAFE_CAST(job_id AS string) as message_id,
+SUM(CASE WHEN bounce_category_id = '1' THEN 1 ELSE 0 END) AS hard_bounce,
+SUM(CASE WHEN bounce_category_id = '2' THEN 1 ELSE 0 END) AS soft_bounce,
+SUM(CASE WHEN bounce_category_id = '3' THEN 1 ELSE 0 END) AS block_bounce,
+SUM(CASE WHEN bounce_category_id = '5' THEN 1 ELSE 0 END) AS tech_bounce,
+SUM(CASE WHEN bounce_category_id = '4' THEN 1 ELSE 0 END) AS unknown_bounce,
+SUM(CASE WHEN bounce_category_id = '1' THEN 1
+WHEN bounce_category_id = '2' THEN 1 END) as total_bounces
+FROM {{ ref(reference_name) }}
 GROUP BY 1
 {% endmacro %}
