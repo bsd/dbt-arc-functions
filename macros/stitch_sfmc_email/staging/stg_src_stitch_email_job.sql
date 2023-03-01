@@ -1,8 +1,8 @@
 {% macro create_stg_src_stitch_email_job() %}
-{% set relations= dbt_arc_functions.relations_that_match_regex('^job$')}
+{% set relations= dbt_arc_functions.relations_that_match_regex('^job$')
     is_source=True,
   source_name='stitch_sfmc_email',
-  schema_to_search='src_stitch_sfmc_authorized')
+  schema_to_search='src_stitch_sfmc_authorized' %}
 
 SELECT distinct
     CAST(__jobid_ AS INT64) as job_id
