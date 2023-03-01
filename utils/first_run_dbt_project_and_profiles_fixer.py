@@ -50,7 +50,7 @@ packages_dict_template = {
         },
         {
             "git": "https://github.com/bsd/dbt-arc-functions.git",
-            "revision": "v1.0.0"
+            "revision": "v4.5.0"
         }
     ]
 }
