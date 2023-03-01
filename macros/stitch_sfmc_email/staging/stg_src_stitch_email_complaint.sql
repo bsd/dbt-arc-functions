@@ -1,5 +1,5 @@
 {% macro create_stg_src_stitch_email_complaint() %}
-{% set relations= dbt_arc_functions.relations_that_match_regex('^complaint$')
+{% set relations= dbt_arc_functions.relations_that_match_regex('^complaint$'),
     is_source=True,
   source_name='stitch_sfmc_email',
   schema_to_search='src_stitch_sfmc_authorized' %}
