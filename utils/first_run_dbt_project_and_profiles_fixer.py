@@ -47,6 +47,10 @@ packages_dict_template = {
         {
             "package": "dbt-labs/dbt_utils",
             "version": "1.0.0"
+        },
+        {
+            "git": "https://github.com/bsd/dbt-arc-functions.git",
+            "revision": "v1.0.0"
         }
     ]
 }
@@ -197,17 +201,17 @@ def get_dbt_artifacts_with_version():
     version: str = github_response.json()[0]['tag_name']
     return {'package': 'brooklyn-data/dbt_artifacts', 'version': version}
 
-
-def get_dbt_arc_functions_with_version():
-    """
-    Get the latest version of dbt-arc-functions from Github releases API.
-
-    Returns:
-    dict: Dictionary containing package name and revision.
-    """
-    github_response = requests.get(url='https://api.github.com/repos/bsd/dbt-arc-functions/releases', timeout=60)
-    version: str = github_response.json()[0]['tag_name']
-    return {'package': 'https://github.com/bsd/dbt-arc-functions.git', 'revision': version}
+# TODO test this function and incorporate it into the main script
+# def get_dbt_arc_functions_with_version():
+#    """
+#    Get the latest version of dbt-arc-functions from Github releases API.
+#
+#    Returns:
+#    dict: Dictionary containing package name and revision.
+#    """
+#    github_response = requests.get(url='https://api.github.com/repos/bsd/dbt-arc-functions/releases', timeout=60)
+#    version: str = github_response.json()[0]['tag_name']
+#    return {'package': 'https://github.com/bsd/dbt-arc-functions.git', 'revision': version}
 
 
 def write_packages_yml(dbt_packages_path, active_branch_name, yaml, dbt_artifacts_choice):
