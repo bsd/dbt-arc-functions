@@ -15,14 +15,3 @@ sources:
       - name: smsmessagetracking
       - name: unsubscribe
 
-    schema: src_stitch_fundraiseup_authorized
-    tables:
-      - name: recent_transactions
-
-    schema: src_stitch_bbcrm_authorized
-    tables:
-      - name: constituencies
-      - name: constituents
-      - name: interactions
-      - name: revenue
-      - name: smartfieldsfirst
