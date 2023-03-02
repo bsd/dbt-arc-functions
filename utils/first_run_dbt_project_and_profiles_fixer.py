@@ -80,6 +80,8 @@ def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml,
     :param project_name_underscore: Name of the project with underscores
     :param yaml: YAML object
     """
+    # TODO: add a check to see if the dbt_project.yml file is already updated
+    # TODO: check if user supplied a valid path to the dbt_project.yml file
     with open(dbt_project, 'r', encoding='utf-8') as f:
         # loads the dbt_project.yml file
         content = f.read()
@@ -90,8 +92,8 @@ def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml,
     dbt_project_yml['profile'] = project_name_underscore
     # assigns the profile name to the profile key in the dbt_project.yml file
     if 'my_new_project' in dbt_project_yml['models']:
-        # checks if the my_new_project model is in the dbt_project.yml file and asks if it can be removed
-        remove_new_project = input('\nCan I remove my_new_project from dbt_project? [y/n]\n')
+        remove_new_project = input(
+            '\nCan I remove my_new_project from dbt_project? [y/n]\n')
         if remove_new_project == 'y':
             del dbt_project_yml['models']['my_new_project']
     variables = {'database': project_name}
@@ -111,11 +113,13 @@ def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml,
     dbt_project_yml['models'][project_name_underscore] = standard_models
     # adds dbt-artifacts to the on-run-end hook
     if dbt_artifacts_choice == 'y':
-        dbt_project_yml['on-run-end'] = ["{% if target.name == 'default' %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"]
+        dbt_project_yml['on-run-end'] = [
+            "{% if target.name == 'default' %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"]
     copy_choice = inplace_or_copy("dbt_project")
     file, extension = path.splitext(dbt_project)
     with open(file + copy_choice + extension, 'w', encoding='utf-8') as f:
-        yaml.dump(dbt_project_yml, f)
+        # width is set to a large number to avoid line breaks
+        yaml.dump(dbt_project_yml, f, width=50000)
 
 
 def copy_or_keep_credentials(credentials_location):
@@ -148,7 +152,7 @@ def update_profile_yml(project_id, project_id_underscore, yaml):
     :param project_id: Name of the bigquery project
     :param project_id_underscore: Name of the project with underscores
     :yaml: YAML object
-    
+
     :return: None
     """
     choice = '' if __name__ == '__main__' else 'y'
@@ -159,8 +163,8 @@ def update_profile_yml(project_id, project_id_underscore, yaml):
         return '', ''
     # if the user wants to run locally, ask them for the credentials file location
     credentials_location = input(CREDENTIALS_HELPTEXT)
-    username = input("What's your company email address? Will assume username to be that.\n")
-    # assumes the username is the first part of the email address
+    username = input(
+        "What's your company email address? Will assume username to be that.\n")
     dbt_username = f"dbt_{username.split('@')[0]}"
 
     # copy the credentials file to the .dbt folder
@@ -213,7 +217,8 @@ def get_dbt_artifacts_with_version():
     dict: Dictionary containing package name and version in the format:
     {'package': 'brooklyn-data/dbt_artifacts', 'version': 'x.x.x'}
     """
-    github_response = requests.get(url='https://api.github.com/repos/brooklyn-data/dbt_artifacts/releases', timeout=60)
+    github_response = requests.get(
+        url='https://api.github.com/repos/brooklyn-data/dbt_artifacts/releases', timeout=60)
     version: str = github_response.json()[0]['tag_name']
     return {'package': 'brooklyn-data/dbt_artifacts', 'version': version}
 
@@ -261,7 +266,7 @@ def get_active_branch_name():
     """Get the name of the current active branch for the current repository.
     If the current commit is a tag,
     returns the name of the tag.
-    
+
     Returns:
         str: The name of the current active branch or tag.
     """
@@ -289,11 +294,13 @@ def main():
             the project id, a YAML object, the path to the credentials file, 
             and the dbt username
     """
-    dbt_project_path = input("Please enter the full path of the dbt_project.yml you'd like to modify:\n")
+    dbt_project_path = input(
+        "Please enter the full path of the dbt_project.yml you'd like to modify:\n")
     # get the path to the dbt project directory
     path.dirname(dbt_project_path)
     # get the project id from the user
-    project_id = input("\nPlease enter the name of the Google Project (should look like bsd-projectname):\n")
+    project_id = input(
+        "\nPlease enter the name of the Google Project (should look like bsd-projectname):\n")
     # replace dashes with underscores in the project id
     project_id_underscore = project_id.replace('-', '_')
     # initialize the YAML object
