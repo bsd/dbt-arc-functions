@@ -35,7 +35,6 @@ Enter r for replace or c for copy:
 """
 
 COPY_OR_KEEP_CREDENTIALS_HELPTEXT = """
-COPY_OR_KEEP_CREDENTIALS_HELPTEXT = """
 Would you like to create a reference to your credentials file here {file_location}
  or create a copy in {profile_location}
  Enter r to reference where it is or c to copy to profiles (we recommend c):
