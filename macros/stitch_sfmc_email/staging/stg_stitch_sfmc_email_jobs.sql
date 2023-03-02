@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_email_job(
-    reference_name='stg_src_stitch_sfmc_email_job') %}
+    reference_name='stg_src_stitch_email_job') %}
 SELECT 
    DISTINCT SAFE_CAST(job_id AS STRING) AS message_id,
     SAFE_CAST(email_id as STRING) AS email_id,
