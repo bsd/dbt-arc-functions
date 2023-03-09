@@ -407,8 +407,8 @@ def create_or_update_readme(dbt_models_path, list_of_sources):
     dbt_base_path = os.path.join(*dbt_base_path_parts)
     readme_path = os.path.join(dbt_base_path, 'README.md')
     proposed_readme_string = ""
-    proposed_readme_string += f'#{name_of_project}\n\n'
-    proposed_readme_string += '##Standard Models from dbt-arc-functions\n\n'
+    proposed_readme_string += f'# {name_of_project}\n\n'
+    proposed_readme_string += '## Standard Models from dbt-arc-functions\n\n'
     set_of_existing_models = set()
     marts_path = os.path.join(dbt_models_path, 'marts')
     staging_path = os.path.join(dbt_models_path, 'staging')
