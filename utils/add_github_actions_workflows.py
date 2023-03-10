@@ -184,7 +184,8 @@ def create_dbt_run_workflow(environment, dbt_base_path, yaml):
     """Create a GitHub workflow YAML file for running a DBT job on a trigger.
 
     Args:
-        environment (str): The environment to create the workflow for. Must be one of the keys in the `trigger_dict` dictionary.
+        environment (str): The environment to create the workflow for. 
+            Must be one of the keys in the `trigger_dict` dictionary.
         dbt_base_path (str): The base path of the DBT project.
         yaml (yaml): A YAML instance used to parse and dump YAML data.
 

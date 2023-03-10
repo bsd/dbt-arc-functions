@@ -1,6 +1,5 @@
 """ This module compiles and generates a sources YML in dbt based on a regex match """
 
-#!/usr/bin/env python
 # coding: utf-8
 # TODO: Make source_regex_mappings into an external json file
 
