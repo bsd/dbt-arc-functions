@@ -57,7 +57,7 @@ def loop_through_files_in_dir(directory):
                             output += f'\n    reference_name={references[0]},'
                             # Replace the reference in the text
                             text = ref_pattern.sub(
-                                f'{{{{ ref(reference_name) }}}}', text, 1)
+                                '{{ ref(reference_name) }}', text, 1)
                         # Handle the case where there are multiple references
                         else:
                             for i, reference_name in enumerate(references):
@@ -75,7 +75,7 @@ def loop_through_files_in_dir(directory):
                             output += f'\n    source_table_name={sources[0][1]},'
                             # Replace the source in the text
                             text = source_pattern.sub(
-                                f'{{{{ source(source_name,source_table_name) }}}}', text, 1)
+                                '{{ source(source_name,source_table_name) }}', text, 1)
                         # Handle the case where there are multiple sources
                         else:
                             # Loop through the sources
@@ -98,11 +98,11 @@ def loop_through_files_in_dir(directory):
                     # Remove the last comma from the output if it exists
                     output = output[:-1] if output.endswith(',') else output
                     # Add the macro closing tag to the output
-                    output += f') %}}\n'
+                    output += ') %}\n'
                     # Add the text to the output
                     output += text
                     # Add the end macro tag to the output
-                    output += f'\n{{% endmacro %}}'
+                    output += '\n{% endmacro %}'
             with open(os.path.join(directory, 'macros', file_name), 'w', encoding='utf-8') as f:
                 # Write the output to the file
                 f.write(output)
