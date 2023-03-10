@@ -25,6 +25,25 @@ def check_profiles_file():
         raise FileNotFoundError
 
 
+def run_dbt_subprocess(bash_command: str) -> str:
+    try:
+        process = subprocess.run(
+            bash_command, capture_output=True, shell=True, check=False)
+        if process.returncode != 0:
+            click.echo(
+                "Could not find profile YAML file for this \
+                project in local directory ~/.dbt/profiles.yml")
+            raise subprocess.CalledProcessError
+        return process.stdout.decode()
+    except subprocess.CalledProcessError as called_process_error:
+        if "Could not find profile named" in called_process_error.stderr.decode():
+            click.echo(
+                "Could not find dbt profile named [name of the profile]. "
+                "Please check if you have a dbt profile installed locally for this project.")
+            return
+        raise called_process_error
+
+
 @click.command()
 @click.option('--dbt_base_path', default='/path/to/your/dbt/project',
               help='The base directory of your dbt project as an absolute path')
@@ -59,22 +78,7 @@ def main(dbt_base_path):
                 10 times and we're still getting errors.\n")
             break
         run_count += 1
-        try:
-            process = subprocess.run(
-                bash_command, capture_output=True, shell=True, check=False)
-            if process.returncode != 0:
-                click.echo(
-                    "Could not find profile YAML file for this \
-                    project in local directory ~/.dbt/profiles.yml")
-                return
-            output = process.stdout.decode()
-        except subprocess.CalledProcessError as called_process_error:
-            if "Could not find profile named" in called_process_error.stderr.decode():
-                click.echo(
-                    "Could not find dbt profile named [name of the profile]. "
-                    "Please check if you have a dbt profile installed locally for this project.")
-                return
-            raise called_process_error
+        output = run_dbt_subprocess(bash_command)
         matches = re.findall(
             r"(-- depends_on: .*?}}).*?called by model [a-z_]+ \((.*?)\)",
             output,
