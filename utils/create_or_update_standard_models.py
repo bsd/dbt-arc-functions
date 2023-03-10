@@ -131,7 +131,8 @@ def overwrite_choice(source_file_path, output, destination_file_path):
                 f"No differences between {destination_file_path} and {source_file_path}, skipping.")
             return False
         print(
-            f'\nThere are differences between your model at:\n{destination_file_path} and the standard model at:\n{source_file_path}')
+            '\nThere are differences between your model at:\n{destination_file_path} '
+            f'and the standard model at:\n{source_file_path}')
         print("Here is your current model:\n")
         print(*d_text, sep='')
         print("Here is the standard model in arc-dbt-functions:\n")
@@ -382,7 +383,8 @@ def process_sources(
             if path.exists(
                     destination_path) and create and not destination_path.endswith('sources'):
                 print(
-                    f"\nThis directory: {destination_path} already exists and I don't want to overwrite anything in create mode."
+                    f"\nThis directory: {destination_path} already exists "
+                    "and I don't want to overwrite anything in create mode."
                 )
                 continue
             if not path.exists(destination_path) and not create:
