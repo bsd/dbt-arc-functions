@@ -342,6 +342,77 @@ def delete_non_standard_model_choice(destination_file_path):
         os.remove(destination_file_path)
 
 
+def create_models_and_docs_from_folder(source_path,source,destination_path,model_type,create):
+    for _, _, files in os.walk(source_path):
+        for file in files:
+            if file.endswith('.sql') or file == f"{source}.yml":
+                source_file_path = path.join(source_path, file)
+                write_to_file(source_file_path, destination_path,
+                                file, source, model_type, create)
+                if file.endswith('sql'):
+                    docs_path = source_path.replace(
+                        'macros', 'documentation')
+                    docs_file = file.replace('sql', 'yml')
+                    docs_file_path = path.join(docs_path, docs_file)
+                    if os.path.exists(docs_file_path):
+                        create_or_update_docs(
+                            docs_file_path, destination_path)
+                    else:
+                        print(
+                            f"\nNo documentation exists for this model, consider adding some at {docs_file_path}!\n")
+
+def delete_non_standard_models(destination_path,source_path):
+    for _, _, files in os.walk(destination_path):
+        for file in files:
+            destination_file_path = path.join(destination_path, file)
+            source_file_path = path.join(source_path, file)
+            docs_path = source_path.replace('macros', 'documentation')
+            docs_file = file.replace('sql', 'yml')
+            docs_file_path = path.join(docs_path, docs_file)
+            if (not os.path.exists(source_file_path)) and (
+                    not os.path.exists(docs_file_path) and (file != 'schema.yml')):
+                delete_non_standard_model_choice(destination_file_path)
+
+
+def loop_through_list_of_models(
+        list_of_models,
+        model_types,
+        sources_path,
+        macros_path,
+        source,
+        destination,
+        create):
+    for model_type in list_of_models:
+        if model_type not in model_types:
+            print(
+                f"Weird, {model_type} is not one of our standard model types. Going to skip.")
+            continue
+        source_path = sources_path if model_type == sources_path else path.join(
+            macros_path, source, model_type)
+        destination_path = path.join(
+            destination,
+            model_type,
+            source) if model_type != sources_path else path.join(
+            destination,
+            'sources')
+        if path.exists(
+                destination_path) and create and not destination_path.endswith('sources'):
+            print(
+                f"\nThis directory: {destination_path} already exists "
+                "and I don't want to overwrite anything in create mode."
+            )
+            continue
+        if not path.exists(destination_path) and not create:
+            print(
+                f"\nThis directory: {destination_path} doesn't exist and I don't want to make directories in update mode."
+            )
+            continue
+        elif create and not path.exists(destination_path):
+            os.makedirs(destination_path)
+        create_models_and_docs_from_folder(source_path,source,destination_path,model_type,create)
+        delete_non_standard_models(destination_path,source_path)
+
+
 def loop_through_sources_wanted(
         sources_wanted,
         list_of_sources,
@@ -356,60 +427,14 @@ def loop_through_sources_wanted(
             continue
         list_of_models = os.listdir(path.join(macros_path, source))
         list_of_models.append(sources_path)
-        for model_type in list_of_models:
-            if model_type not in model_types:
-                print(
-                    f"Weird, {model_type} is not one of our standard model types. Going to skip.")
-                continue
-            source_path = sources_path if model_type == sources_path else path.join(
-                macros_path, source, model_type)
-            destination_path = path.join(
-                destination,
-                model_type,
-                source) if model_type != sources_path else path.join(
-                destination,
-                'sources')
-            if path.exists(
-                    destination_path) and create and not destination_path.endswith('sources'):
-                print(
-                    f"\nThis directory: {destination_path} already exists "
-                    "and I don't want to overwrite anything in create mode."
-                )
-                continue
-            if not path.exists(destination_path) and not create:
-                print(
-                    f"\nThis directory: {destination_path} doesn't exist and I don't want to make directories in update mode."
-                )
-                continue
-            elif create and not path.exists(destination_path):
-                os.makedirs(destination_path)
-            for _, _, files in os.walk(source_path):
-                for file in files:
-                    if file.endswith('.sql') or file == f"{source}.yml":
-                        source_file_path = path.join(source_path, file)
-                        write_to_file(source_file_path, destination_path,
-                                      file, source, model_type, create)
-                        if file.endswith('sql'):
-                            docs_path = source_path.replace(
-                                'macros', 'documentation')
-                            docs_file = file.replace('sql', 'yml')
-                            docs_file_path = path.join(docs_path, docs_file)
-                            if os.path.exists(docs_file_path):
-                                create_or_update_docs(
-                                    docs_file_path, destination_path)
-                            else:
-                                print(
-                                    f"\nNo documentation exists for this model, consider adding some at {docs_file_path}!\n")
-            for _, _, files in os.walk(destination_path):
-                for file in files:
-                    destination_file_path = path.join(destination_path, file)
-                    source_file_path = path.join(source_path, file)
-                    docs_path = source_path.replace('macros', 'documentation')
-                    docs_file = file.replace('sql', 'yml')
-                    docs_file_path = path.join(docs_path, docs_file)
-                    if (not os.path.exists(source_file_path)) and (
-                            not os.path.exists(docs_file_path) and (file != 'schema.yml')):
-                        delete_non_standard_model_choice(destination_file_path)
+        loop_through_list_of_models(
+            list_of_models,
+            model_types,
+            sources_path,
+            macros_path,
+            source,
+            destination,
+            create)
 
 
 def process_sources(
