@@ -428,7 +428,7 @@ def create_or_update_readme(dbt_models_path, list_of_sources):
             tofile='Our proposed readme', lineterm='\n'))
     if not differences:
         return
-    print(f"We'd like to proposed a new README for your project.\n")
+    print("We'd like to propose a new README for your project.\n")
     print("*****Here is your current README:*****\n")
     print(current_readme_string)
     print("*****Here is our proposed README:*****\n")
