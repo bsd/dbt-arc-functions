@@ -11,9 +11,10 @@ import re
 def check_dbt_installed():
     try:
         subprocess.run(["dbt", "--version"], capture_output=True, check=False)
-        return True
-    except Exception:
-        return False
+    except subprocess.CalledProcessError as e:
+        click.echo(
+            "dbt is not installed. Please install dbt before running this script.")
+        raise e
 
 
 def check_profiles_file():
@@ -21,8 +22,7 @@ def check_profiles_file():
         click.echo(
             "Could not find the profiles.yml file in the ~/.dbt/ directory.\
             Please check that it exists.")
-        return False
-    return True
+        raise FileNotFoundError
 
 
 @click.command()
@@ -37,12 +37,8 @@ def main(dbt_base_path):
     Raises:
         called_process_error: an error is called if you do not have the dbt project installed correctly
     """
-    if not check_dbt_installed():
-        click.echo(
-            "dbt is not installed. Please install dbt before running this script.")
-        return
-    if not check_profiles_file():
-        return
+    check_dbt_installed()
+    check_profiles_file()
     if not dbt_base_path:
         dbt_base_path = click.prompt(
             "Please enter the base directory of your dbt project as an absolute path")
@@ -56,7 +52,12 @@ def main(dbt_base_path):
     output = process.stdout.decode()
     click.echo(output)
     run_count = 0
-    while matches and run_count < 10:
+    while matches:
+        if run_count > 10:
+            click.echo(
+                "\nThis program will break now because dbt run has happened\
+                10 times and we're still getting errors.\n")
+            break
         run_count += 1
         try:
             process = subprocess.run(
@@ -70,7 +71,8 @@ def main(dbt_base_path):
         except subprocess.CalledProcessError as called_process_error:
             if "Could not find profile named" in called_process_error.stderr.decode():
                 click.echo(
-                    "Could not find dbt profile named [name of the profile]. Please check if you have a dbt profile installed locally for this project.")
+                    "Could not find dbt profile named [name of the profile]. "
+                    "Please check if you have a dbt profile installed locally for this project.")
                 return
             raise called_process_error
         matches = re.findall(
@@ -92,10 +94,6 @@ def main(dbt_base_path):
             if matches:
                 click.echo(
                     "\nWe have to run again to process some intermediate table builds.\n")
-        if run_count >= 10:
-            click.echo(
-                "\nThis program will break now because dbt run has happened\
-                10 times and we're still getting errors.\n")
     click.echo(output)
 
 
