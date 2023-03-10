@@ -342,13 +342,18 @@ def delete_non_standard_model_choice(destination_file_path):
         os.remove(destination_file_path)
 
 
-def create_models_and_docs_from_folder(source_path,source,destination_path,model_type,create):
+def create_models_and_docs_from_folder(
+        source_path,
+        source,
+        destination_path,
+        model_type,
+        create):
     for _, _, files in os.walk(source_path):
         for file in files:
             if file.endswith('.sql') or file == f"{source}.yml":
                 source_file_path = path.join(source_path, file)
                 write_to_file(source_file_path, destination_path,
-                                file, source, model_type, create)
+                              file, source, model_type, create)
                 if file.endswith('sql'):
                     docs_path = source_path.replace(
                         'macros', 'documentation')
@@ -361,7 +366,8 @@ def create_models_and_docs_from_folder(source_path,source,destination_path,model
                         print(
                             f"\nNo documentation exists for this model, consider adding some at {docs_file_path}!\n")
 
-def delete_non_standard_models(destination_path,source_path):
+
+def delete_non_standard_models(destination_path, source_path):
     for _, _, files in os.walk(destination_path):
         for file in files:
             destination_file_path = path.join(destination_path, file)
@@ -409,8 +415,9 @@ def loop_through_list_of_models(
             continue
         elif create and not path.exists(destination_path):
             os.makedirs(destination_path)
-        create_models_and_docs_from_folder(source_path,source,destination_path,model_type,create)
-        delete_non_standard_models(destination_path,source_path)
+        create_models_and_docs_from_folder(
+            source_path, source, destination_path, model_type, create)
+        delete_non_standard_models(destination_path, source_path)
 
 
 def loop_through_sources_wanted(
