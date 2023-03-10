@@ -342,25 +342,14 @@ def delete_non_standard_model_choice(destination_file_path):
         os.remove(destination_file_path)
 
 
-def process_sources(
+def loop_through_sources_wanted(
         sources_wanted,
         list_of_sources,
         macros_path,
+        sources_path,
+        model_types,
         create,
         destination):
-    """
-    :param sources_wanted: list of standard models that a client wants to copy to their dbt repo
-    :param list_of_sources: list of available standard models within dbt-arc-functions
-    :param macros_path: path of the macros folders
-    :param create: whether a client wants to create standard models (false if they want to update)
-    :param destination: destination dbt repo where client
-        would like to create/update standard models
-    :return: None
-    """
-    # TODO this function is very large and therefore hard to parse, break into
-    # smaller chunks
-    sources_path = path.join('..', 'sources')
-    model_types = [sources_path, 'staging', 'marts']
     for source in sources_wanted:
         if source not in list_of_sources:
             print(f'Sorry, {source} is not in the list of sources above')
@@ -421,6 +410,35 @@ def process_sources(
                     if (not os.path.exists(source_file_path)) and (
                             not os.path.exists(docs_file_path) and (file != 'schema.yml')):
                         delete_non_standard_model_choice(destination_file_path)
+
+
+def process_sources(
+        sources_wanted,
+        list_of_sources,
+        macros_path,
+        create,
+        destination):
+    """
+    :param sources_wanted: list of standard models that a client wants to copy to their dbt repo
+    :param list_of_sources: list of available standard models within dbt-arc-functions
+    :param macros_path: path of the macros folders
+    :param create: whether a client wants to create standard models (false if they want to update)
+    :param destination: destination dbt repo where client
+        would like to create/update standard models
+    :return: None
+    """
+    # TODO this function is very large and therefore hard to parse, break into
+    # smaller chunks
+    sources_path = path.join('..', 'sources')
+    model_types = [sources_path, 'staging', 'marts']
+    loop_through_sources_wanted(
+        sources_wanted,
+        list_of_sources,
+        macros_path,
+        sources_path,
+        model_types,
+        create,
+        destination)
 
 
 def create_or_update_readme(dbt_models_path, list_of_sources):
