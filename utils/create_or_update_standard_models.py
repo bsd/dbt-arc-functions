@@ -1,4 +1,4 @@
-""" This script creates dbt models that call macros in this project, 
+""" This script creates dbt models that call macros in this project,
     in the client project dbt repository. It generates SQL files that match up to the files in
     the macros folder here. """
 
@@ -23,8 +23,8 @@ DBT_STRING = """-- macro used to create this file can be found at:
 
 def get_create_or_update():
     """Get a boolean indicating whether to create or update standard models.
-    Prompts the user to enter 'c' to create new standard models or 'u' to update standard models. 
-        If the user enters an invalid input, the function will continue to prompt 
+    Prompts the user to enter 'c' to create new standard models or 'u' to update standard models.
+        If the user enters an invalid input, the function will continue to prompt
             until a valid input is provided.
     Returns:
         A boolean indicating whether to create (True) or update (False) standard models.
@@ -40,7 +40,7 @@ def get_create_or_update():
 def get_destination():
     """Get the absolute or relative path to create models.
 
-    Prompts the user to enter the absolute or relative path 
+    Prompts the user to enter the absolute or relative path
     where they would like to create models. The function
     will continue to prompt until a valid path is provided.
 
@@ -81,7 +81,7 @@ def get_list_of_sources(macros_path):
 def get_sources_wanted(list_of_sources):
     """Get a list of sources wanted for the dbt project.
 
-    Prompts the user to enter a comma-separated list of sources 
+    Prompts the user to enter a comma-separated list of sources
     they want to use in their dbt project. The function
     will remove any duplicates and return a list of the selected sources.
 
@@ -97,16 +97,17 @@ def get_sources_wanted(list_of_sources):
     print("\nYou can just add one or input a comma separated list (no brackets or quotes necessary): ")
     sources_wanted = input()
     print()
-    sources_wanted = list({source.strip() for source in sources_wanted.split(',')})
+    sources_wanted = list({source.strip()
+                          for source in sources_wanted.split(',')})
     return sources_wanted
 
 
 def overwrite_choice(source_file_path, output, destination_file_path):
     """Determine whether to overwrite a destination file with a source file.
 
-    Compares the contents of the source file and the destination file, 
+    Compares the contents of the source file and the destination file,
     and prompts the user to decide whether to
-    overwrite the destination file with the source file. 
+    overwrite the destination file with the source file.
     If the files are identical, the function returns False without
     prompting the user.
 
@@ -116,7 +117,7 @@ def overwrite_choice(source_file_path, output, destination_file_path):
         destination_file_path: The path to the destination file.
 
     Returns:
-        A boolean indicating whether to overwrite the destination file (True) 
+        A boolean indicating whether to overwrite the destination file (True)
         or keep the destination file (False).
     """
 
@@ -175,7 +176,7 @@ def extract_dependencies(output, destination_file_path, dependencies_regex):
 def write_new_file_choice(output, destination_file_path):
     """Determine whether to write a new file from a source file.
 
-    Prompts the user to decide whether to write a new file at the specified 
+    Prompts the user to decide whether to write a new file at the specified
         destination path using the contents of the
         source file.
 
@@ -199,7 +200,13 @@ def write_new_file_choice(output, destination_file_path):
     return yes == 'y'
 
 
-def write_to_file(file_path, destination_path, file, source, model_type, create):
+def write_to_file(
+        file_path,
+        destination_path,
+        file,
+        source,
+        model_type,
+        create):
     """Write a list of strings to a file at the specified destination path.
 
     Args:
@@ -219,11 +226,14 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
         else:
             output = content
         if path.exists(destination_file_path) and not create:
-            output_formatted = [line + ('\n' if i < len(output.split('\n')) else '') for i, line in
-                                enumerate(output.split('\n'))]
+            output_formatted = [line + ('\n' if i < len(output.split('\n')) else '')
+                                for i, line in enumerate(output.split('\n'))]
             if output_formatted[-1].strip() == '':
                 output_formatted = output_formatted[:-1]
-            if not overwrite_choice(file_path, output_formatted, destination_file_path):
+            if not overwrite_choice(
+                    file_path,
+                    output_formatted,
+                    destination_file_path):
                 return
             output = extract_dependencies(
                 output, destination_file_path, dependencies_regex)
@@ -242,9 +252,9 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
 def create_or_update_docs(docs_path, destination_path):
     """Create or update documentation for standard models.
 
-    Processes each model file in the specified documentation path, 
+    Processes each model file in the specified documentation path,
         determining whether to overwrite or create new files
-    at the destination path. If a file already exists at the destination path, 
+    at the destination path. If a file already exists at the destination path,
         it will be overwritten if there are
     differences between the source file and the destination file. If a file does not exist
         at the destination path, a new file will be created.
@@ -291,10 +301,10 @@ def create_or_update_docs(docs_path, destination_path):
         docs_model_set = set(docs_model)
         schema_dict_model_set = set(
             schema_dict['models'][existing_model_index])
-        print("Your existing in the schema file for this model"
+        print(
+            "Your existing in the schema file for this model"
             "\nis different than the one in our documentation."
-            "\nHere's what exists in our documentation but not your schema file:"
-        )
+            "\nHere's what exists in our documentation but not your schema file:")
         print(schema_dict_model_set - docs_model_set)
         print("Here's what exists in your schema file but not our documentation:")
         print(docs_model_set - schema_dict_model_set)
@@ -331,17 +341,24 @@ def delete_non_standard_model_choice(destination_file_path):
     if yes == 'y':
         os.remove(destination_file_path)
 
-def process_sources(sources_wanted, list_of_sources, macros_path, create, destination):
+
+def process_sources(
+        sources_wanted,
+        list_of_sources,
+        macros_path,
+        create,
+        destination):
     """
     :param sources_wanted: list of standard models that a client wants to copy to their dbt repo
     :param list_of_sources: list of available standard models within dbt-arc-functions
     :param macros_path: path of the macros folders
     :param create: whether a client wants to create standard models (false if they want to update)
-    :param destination: destination dbt repo where client 
+    :param destination: destination dbt repo where client
         would like to create/update standard models
     :return: None
     """
-    # TODO this function is very large and therefore hard to parse, break into smaller chunks
+    # TODO this function is very large and therefore hard to parse, break into
+    # smaller chunks
     sources_path = path.join('..', 'sources')
     model_types = [sources_path, 'staging', 'marts']
     for source in sources_wanted:
@@ -358,10 +375,13 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
             source_path = sources_path if model_type == sources_path else path.join(
                 macros_path, source, model_type)
             destination_path = path.join(
-                destination, model_type, source) if model_type != sources_path else path.join(
-                destination, 'sources')
+                destination,
+                model_type,
+                source) if model_type != sources_path else path.join(
+                destination,
+                'sources')
             if path.exists(
-                destination_path) and create and not destination_path.endswith('sources'):
+                    destination_path) and create and not destination_path.endswith('sources'):
                 print(
                     f"\nThis directory: {destination_path} already exists and I don't want to overwrite anything in create mode."
                 )
@@ -385,9 +405,11 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                             docs_file = file.replace('sql', 'yml')
                             docs_file_path = path.join(docs_path, docs_file)
                             if os.path.exists(docs_file_path):
-                                create_or_update_docs(docs_file_path, destination_path)
+                                create_or_update_docs(
+                                    docs_file_path, destination_path)
                             else:
-                                print(f"\nNo documentation exists for this model, consider adding some at {docs_file_path}!\n")
+                                print(
+                                    f"\nNo documentation exists for this model, consider adding some at {docs_file_path}!\n")
             for _, _, files in os.walk(destination_path):
                 for file in files:
                     destination_file_path = path.join(destination_path, file)
@@ -395,8 +417,8 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                     docs_path = source_path.replace('macros', 'documentation')
                     docs_file = file.replace('sql', 'yml')
                     docs_file_path = path.join(docs_path, docs_file)
-                    if (not os.path.exists(source_file_path)) and (not os.path.exists(docs_file_path) and (
-                            file != 'schema.yml')):
+                    if (not os.path.exists(source_file_path)) and (
+                            not os.path.exists(docs_file_path) and (file != 'schema.yml')):
                         delete_non_standard_model_choice(destination_file_path)
 
 
@@ -422,10 +444,10 @@ def create_or_update_readme(dbt_models_path, list_of_sources):
     with open(readme_path, "r") as f:
         current_readme_string = f.read()
     differences = list(difflib.unified_diff(
-            current_readme_string.split('\n'), 
-            proposed_readme_string.split('\n'), 
-            fromfile='Your current readme',
-            tofile='Our proposed readme', lineterm='\n'))
+        current_readme_string.split('\n'),
+        proposed_readme_string.split('\n'),
+        fromfile='Your current readme',
+        tofile='Our proposed readme', lineterm='\n'))
     if not differences:
         return
     print("We'd like to propose a new README for your project.\n")
@@ -436,7 +458,8 @@ def create_or_update_readme(dbt_models_path, list_of_sources):
     print("*****Here are the differences between the two files:*****\n")
     print(*differences, sep='\n')
     print('\n\n*****Would you like to overwrite your current README?*****')
-    overwrite_choice = input("Only an answer of 'yes' will overwrite your README:\n")
+    overwrite_choice = input(
+        "Only an answer of 'yes' will overwrite your README:\n")
     if overwrite_choice == 'yes':
         with open(readme_path, 'w') as f:
             f.write(proposed_readme_string)
@@ -447,14 +470,14 @@ def main(dbt_models_path=''):
 
     Prompts the user to choose whether to create new standard models or
         update existing standard models in a dbt project.
-    The user is also prompted to enter the absolute or relative path 
+    The user is also prompted to enter the absolute or relative path
         where the models should be created or updated.
-    The user is then prompted to select the sources they want to use for 
+    The user is then prompted to select the sources they want to use for
         the dbt project. Finally, the selected sources  are processed,
         creating or updating the standard models at the specified path.
 
     Args:
-        dbt_models_path: The path to the dbt models directory. 
+        dbt_models_path: The path to the dbt models directory.
             If not provided, the user will be prompted to enter the path.
     """
     macros_path = path.join('..', 'macros')

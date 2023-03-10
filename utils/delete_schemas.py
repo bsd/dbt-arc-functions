@@ -6,12 +6,14 @@ from google.oauth2 import service_account
 
 def get_client(credentials_path):
     credentials = service_account.Credentials.from_service_account_file(
-        credentials_path, scopes=["https://www.googleapis.com/auth/cloud-platform"],
+        credentials_path, scopes=["https://www.googleapis.com/auth/cloud-platform"], )
+    return bigquery.Client(
+        credentials=credentials,
+        project=credentials.project_id,
     )
-    return bigquery.Client(credentials=credentials, project=credentials.project_id, )
 
 
-function_helptext = """\nSometimes it helps to delete existing personal dbt schemas before doing a 
+function_helptext = """\nSometimes it helps to delete existing personal dbt schemas before doing a
 dbt build to delete outdated tables and views"""
 
 prepend_helptext = """\ndbt user schemas usually start with 'dbt_'.
@@ -22,9 +24,11 @@ Enter y for (y)es or n for (n)o:\n
 
 def main(credentials_path='', dbt_username=''):
     if not credentials_path:
-        credentials_path = input("\nPlease enter the path to your BigQuery credentials JSON:\n")
+        credentials_path = input(
+            "\nPlease enter the path to your BigQuery credentials JSON:\n")
     if not dbt_username:
-        dbt_username = input("\nPlease enter your dbt username OR your bluestate email:\n")
+        dbt_username = input(
+            "\nPlease enter your dbt username OR your bluestate email:\n")
         if '@bluestate.co' in dbt_username:
             dbt_username = dbt_username.split('@')[0]
     if not dbt_username.startswith('dbt_'):
@@ -43,8 +47,9 @@ def main(credentials_path='', dbt_username=''):
                     'Enter yes to delete the schema (no other input but yes will delete the schema):\n')
                 if delete_choice == 'yes':
                     client.delete_dataset(
-                        dataset.dataset_id, delete_contents=True, not_found_ok=True
-                    )
+                        dataset.dataset_id,
+                        delete_contents=True,
+                        not_found_ok=True)
 
 
 if __name__ == '__main__':

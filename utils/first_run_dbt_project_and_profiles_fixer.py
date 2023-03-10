@@ -1,11 +1,12 @@
-"""This creates a project YAML and dbt_profiles YAML 
+"""This creates a project YAML and dbt_profiles YAML
 and cleans up the dbt project so that it's ready"""
 
 #!/usr/bin/env python
 # coding: utf-8
 # TODO: give option of removing comments from the profiles.yml file
 # TODO: give option of removing comments from the dbt_project.yml file
-# TODO: give option of using a more updated version of dbt in the dbt_project.yml file
+# TODO: give option of using a more updated version of dbt in the
+# dbt_project.yml file
 
 
 from os import path
@@ -16,7 +17,7 @@ import requests
 import ruamel.yaml
 
 CREDENTIALS_HELPTEXT = """
-If you'd like to know how to generate a credentials json go here: 
+If you'd like to know how to generate a credentials json go here:
 https://docs.getdbt.com/tutorial/setting-up#generate-bigquery-credentials
 
 If you'd like to understand why you need credentials to use the CLI go here:
@@ -40,7 +41,7 @@ Would you like to create a reference to your credentials file here {file_locatio
  Enter r to reference where it is or c to copy to profiles (we recommend c):
 """
 
-PROFILE_CHOICE_HELPTEXT = """If you'd like to use another path than {profile}, 
+PROFILE_CHOICE_HELPTEXT = """If you'd like to use another path than {profile},
 enter it here. Else, press return.(We recommend to press return.)
 """
 
@@ -57,7 +58,8 @@ packages_dict_template = {
     ]
 }
 
-# TODO: ask user if they want their active branch or the latest release of dbt-arc-functions
+# TODO: ask user if they want their active branch or the latest release of
+# dbt-arc-functions
 REVISION_CHOICE_HELPTEXT = """Your current active branch of dbt-arc-functions is {active_branch_name}.
 For packages.yml file, if you'd like to reference another branch, or an updated revision of the repository, (for example, v4.5.0), enter it here.
 Else, press return. (If you don't know what to do, press return.)
@@ -69,10 +71,15 @@ Enter y for (y)es and n for (n)o. (We recommend y):
 """
 
 
-def update_dbt_project(dbt_project, project_name, project_name_underscore, yaml, dbt_artifacts_choice):
+def update_dbt_project(
+        dbt_project,
+        project_name,
+        project_name_underscore,
+        yaml,
+        dbt_artifacts_choice):
     """
     Updates the `dbt_project.yml` file with the project name,
-        removes the `my_new_project` model, adds a `database` variable 
+        removes the `my_new_project` model, adds a `database` variable
         and adds the standard model directory structure.
 
     :param dbt_project: Path to the `dbt_project.yml` file
@@ -134,8 +141,9 @@ def copy_or_keep_credentials(credentials_location):
     profile_location = path.join(path.expanduser('~'), '.dbt', file)
     while choice not in ('r', 'c'):
         choice = input(
-            COPY_OR_KEEP_CREDENTIALS_HELPTEXT.format(file_location=credentials_location,
-                                                     profile_location=profile_location))
+            COPY_OR_KEEP_CREDENTIALS_HELPTEXT.format(
+                file_location=credentials_location,
+                profile_location=profile_location))
     if choice == 'c':
         with open(credentials_location, 'r', encoding='utf-8') as f:
             content = f.read()
@@ -156,12 +164,14 @@ def update_profile_yml(project_id, project_id_underscore, yaml):
     :return: None
     """
     choice = '' if __name__ == '__main__' else 'y'
-    # if the script is being run from the command line, ask the user if they want to run locally
+    # if the script is being run from the command line, ask the user if they
+    # want to run locally
     while choice not in ('y', 'n'):
         choice = input(RUN_LOCALLY_HELPTEXT)
     if choice == 'n':
         return '', ''
-    # if the user wants to run locally, ask them for the credentials file location
+    # if the user wants to run locally, ask them for the credentials file
+    # location
     credentials_location = input(CREDENTIALS_HELPTEXT)
     username = input(
         "What's your company email address? Will assume username to be that.\n")
@@ -218,7 +228,8 @@ def get_dbt_artifacts_with_version():
     {'package': 'brooklyn-data/dbt_artifacts', 'version': 'x.x.x'}
     """
     github_response = requests.get(
-        url='https://api.github.com/repos/brooklyn-data/dbt_artifacts/releases', timeout=60)
+        url='https://api.github.com/repos/brooklyn-data/dbt_artifacts/releases',
+        timeout=60)
     version: str = github_response.json()[0]['tag_name']
     return {'package': 'brooklyn-data/dbt_artifacts', 'version': version}
 
@@ -232,22 +243,28 @@ def get_dbt_artifacts_with_version():
 #    """
 #    github_response = requests.get(url='https://api.github.com/repos/bsd/dbt-arc-functions/releases', timeout=60)
 #    version: str = github_response.json()[0]['tag_name']
-#    return {'package': 'https://github.com/bsd/dbt-arc-functions.git', 'revision': version}
+# return {'package': 'https://github.com/bsd/dbt-arc-functions.git',
+# 'revision': version}
 
 
-def write_packages_yml(dbt_packages_path, active_branch_name, yaml, dbt_artifacts_choice):
+def write_packages_yml(
+        dbt_packages_path,
+        active_branch_name,
+        yaml,
+        dbt_artifacts_choice):
     """
     Write a 'packages.yml' file to the given `dbt_packages_path`
     with the current revision set to the given
-    `active_branch_name`. The `yaml` object is 
-    used to dump the `packages_dict` to the file. 
-    If a 'packages.yml' file already exists at the given path, 
+    `active_branch_name`. The `yaml` object is
+    used to dump the `packages_dict` to the file.
+    If a 'packages.yml' file already exists at the given path,
     the user is prompted to confirm whether they want to replace the file.
     """
     packages_dict = packages_dict_template.copy()
     revision_choice = input(REVISION_CHOICE_HELPTEXT.format(
         active_branch_name=active_branch_name))
-    # if the user enters a revision, use that, otherwise use the active branch name
+    # if the user enters a revision, use that, otherwise use the active branch
+    # name
     revision = revision_choice or active_branch_name
     # set the revision for the dbt-arc-functions package
     packages_dict['packages'][1]['revision'] = revision
@@ -284,14 +301,14 @@ def main():
     """
     main
 
-    This function modifies an existing dbt_project.yml file by changing the name, 
+    This function modifies an existing dbt_project.yml file by changing the name,
         adding a package and a model, updating the
-        credentials file reference in the profile.yml file, 
+        credentials file reference in the profile.yml file,
         and deleting the 'models/example' folder.
 
     :param: None
-    :return: tuple of str - a string path to the modified dbt_project.yml file, 
-            the project id, a YAML object, the path to the credentials file, 
+    :return: tuple of str - a string path to the modified dbt_project.yml file,
+            the project id, a YAML object, the path to the credentials file,
             and the dbt username
     """
     dbt_project_path = input(
@@ -309,12 +326,18 @@ def main():
     yaml.indent(mapping=4, sequence=4, offset=2)
     # set the YAML object to preserve quotes
     yaml.preserve_quotes = True
-    # adds dbt_artifacts package to the dbt_project.yml file if the user wants it
+    # adds dbt_artifacts package to the dbt_project.yml file if the user wants
+    # it
     dbt_artifacts_choice = None
     while dbt_artifacts_choice not in ('y', 'n'):
         dbt_artifacts_choice = input(DBT_ARTIFACTS_CHOICE_HELPTEXT)
     # update the dbt_project.yml file
-    update_dbt_project(dbt_project_path, project_id, project_id_underscore, yaml, dbt_artifacts_choice)
+    update_dbt_project(
+        dbt_project_path,
+        project_id,
+        project_id_underscore,
+        yaml,
+        dbt_artifacts_choice)
     # get the path to the dbt project directory
     dbt_base_path = path.dirname(dbt_project_path)
     # get the path to the packages.yml file
@@ -322,7 +345,11 @@ def main():
     # get the name of the active branch of dbt-arc-functions
     active_branch_name = get_active_branch_name()
     # write the packages.yml file
-    write_packages_yml(dbt_packages_path, active_branch_name, yaml, dbt_artifacts_choice)
+    write_packages_yml(
+        dbt_packages_path,
+        active_branch_name,
+        yaml,
+        dbt_artifacts_choice)
     # get the path to the models/example folder
     dbt_example_path = path.join(dbt_base_path, 'models', 'example')
     if (
@@ -331,7 +358,8 @@ def main():
     ):
         rmtree(dbt_example_path)
     # update the profile.yml file
-    dbt_credentials_path, dbt_username = update_profile_yml(project_id, project_id_underscore, yaml)
+    dbt_credentials_path, dbt_username = update_profile_yml(
+        project_id, project_id_underscore, yaml)
     print("Program terminated successfully!")
     return dbt_project_path, project_id, yaml, dbt_credentials_path, dbt_username
 

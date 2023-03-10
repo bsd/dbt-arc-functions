@@ -26,11 +26,11 @@ def check_profiles_file():
 
 
 @click.command()
-@click.option('--dbt_base_path', default='/path/to/your/dbt/project', 
+@click.option('--dbt_base_path', default='/path/to/your/dbt/project',
               help='The base directory of your dbt project as an absolute path')
 def main(dbt_base_path):
     """ This function writes dependency strings to the top of dbt models.
-    
+
     Args:
         dbt_base_path (path): the path to your dbt project locally
 
@@ -49,7 +49,10 @@ def main(dbt_base_path):
     bash_command = f"cd {dbt_base_path} ;dbt run"
     matches = [["dependency", "filename"]]
     process = subprocess.run(
-        f"cd {dbt_base_path} ;dbt deps", capture_output=True, shell=True, check=False)
+        f"cd {dbt_base_path} ;dbt deps",
+        capture_output=True,
+        shell=True,
+        check=False)
     output = process.stdout.decode()
     click.echo(output)
     run_count = 0
@@ -71,7 +74,9 @@ def main(dbt_base_path):
                 return
             raise called_process_error
         matches = re.findall(
-            r"(-- depends_on: .*?}}).*?called by model [a-z_]+ \((.*?)\)", output, re.DOTALL)
+            r"(-- depends_on: .*?}}).*?called by model [a-z_]+ \((.*?)\)",
+            output,
+            re.DOTALL)
         for dependency, filename in matches:
             with open(path.join(dbt_base_path, filename), 'r') as f:
                 content = f.read()

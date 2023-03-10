@@ -91,13 +91,13 @@ def convert_cloud_job_url_to_api_run_url(dbt_cloud_job_url):
     Converts a dbt Cloud job URL to a URL that can be used to trigger a dbt Cloud API run.
 
     Args:
-        dbt_cloud_job_url (str): A string representing the URL of a dbt Cloud job. 
+        dbt_cloud_job_url (str): A string representing the URL of a dbt Cloud job.
         The URL should have the following format:
         https://cloud.getdbt.com/<account_name>/deploy/<deployment_id>/projects/
             <project_id>/jobs/<job_id>
 
     Returns:
-        str: A string representing the URL of a dbt Cloud API run that 
+        str: A string representing the URL of a dbt Cloud API run that
         can be triggered using the URL returned by this method.
         The URL should have the following format:
         https://cloud.getdbt.com/api/v2/accounts/<account_id>/runs/<run_id>/
@@ -111,18 +111,18 @@ def convert_cloud_job_url_to_api_run_url(dbt_cloud_job_url):
 def create_dbt_run_yml_from_template(
         dbt_run_yml_template, dbt_cloud_api_run_url, trigger_yml):
     """
-    Creates a new dbt run YAML configuration file by copying a template YAML file 
+    Creates a new dbt run YAML configuration file by copying a template YAML file
     and replacing placeholders with actual values.
 
     Args:
         dbt_run_yml_template: A dictionary that represents the dbt run YAML configuration template.
         dbt_cloud_api_run_url: A string that represents the URL
             of the dbt Cloud job run API endpoint.
-        trigger_yml: A dictionary that represents the YAML configuration 
+        trigger_yml: A dictionary that represents the YAML configuration
             for the GitHub Actions trigger.
 
     Returns:
-        A dictionary that represents the new dbt run YAML configuration file 
+        A dictionary that represents the new dbt run YAML configuration file
         with placeholders replaced with actual values.
 
     Raises:
@@ -130,17 +130,16 @@ def create_dbt_run_yml_from_template(
         KeyError: If any of the required keys is missing from the input dictionary.
 
     Examples:
-        dbt_run_yml_template = {'jobs': {'dbt_run': 
+        dbt_run_yml_template = {'jobs': {'dbt_run':
                                 {'steps': [{'run': 'dbt run --models source:table1+table2'}]}}}
-        dbt_cloud_api_run_url = 
+        dbt_cloud_api_run_url =
             'https://cloud.getdbt.com/api/v2/accounts/1234/projects/acme/jobs/5678/runs/91011/'
         trigger_yml = {'push': {'branches': ['main']}}
         dbt_run_yml = create_dbt_run_yml_from_template(dbt_run_yml_template, dbt_cloud_api_run_url, trigger_yml)
     """
     dbt_run_yml = deepcopy(dbt_run_yml_template)
-    dbt_run_yml['jobs']['dbt_run']['steps'][0]['run'] = dbt_run_yml['jobs']['dbt_run']['steps'][0]['run'].replace('{dbt_cloud_api_run_url}',
-                                                                                                                  dbt_cloud_api_run_url
-                                                                                                                  )
+    dbt_run_yml['jobs']['dbt_run']['steps'][0]['run'] = dbt_run_yml['jobs']['dbt_run']['steps'][0]['run'].replace(
+        '{dbt_cloud_api_run_url}', dbt_cloud_api_run_url)
     dbt_run_yml['on'] = trigger_yml
     return dbt_run_yml
 
@@ -214,9 +213,9 @@ def create_dbt_run_workflow(environment, dbt_base_path, yaml):
 
 def main(dbt_base_path='', yaml=None):
     """
-    The main() function is the entry point for the script. It prompts the user to start the script, 
-    initializes the yaml library and calls create_dbt_run_workflow() function 
-    for both production and development environments to create their respective workflows. 
+    The main() function is the entry point for the script. It prompts the user to start the script,
+    initializes the yaml library and calls create_dbt_run_workflow() function
+    for both production and development environments to create their respective workflows.
     Finally, it prints a termination message.
 
     Args:
