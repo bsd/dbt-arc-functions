@@ -459,8 +459,6 @@ def process_sources(
         would like to create/update standard models
     :return: None
     """
-    # TODO this function is very large and therefore hard to parse, break into
-    # smaller chunks
     sources_path = path.join('..', 'sources')
     model_types = [sources_path, 'staging', 'marts']
     loop_through_sources_wanted(
