@@ -1,7 +1,6 @@
 """This creates a project YAML and dbt_profiles YAML
 and cleans up the dbt project so that it's ready"""
 
-#!/usr/bin/env python
 # coding: utf-8
 # TODO: give option of removing comments from the profiles.yml file
 # TODO: give option of removing comments from the dbt_project.yml file
@@ -61,7 +60,10 @@ packages_dict_template = {
 # TODO: ask user if they want their active branch or the latest release of
 # dbt-arc-functions
 REVISION_CHOICE_HELPTEXT = """Your current active branch of dbt-arc-functions is {active_branch_name}.
-For packages.yml file, if you'd like to reference another branch, or an updated revision of the repository, (for example, v4.5.0), enter it here.
+
+For packages.yml file, if you'd like to reference another branch, or an updated revision of the repository,
+    (for example, v4.5.0), enter it here.
+
 Else, press return. (If you don't know what to do, press return.)
 """
 
