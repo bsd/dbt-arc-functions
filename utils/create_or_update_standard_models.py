@@ -11,6 +11,7 @@ import difflib
 import os
 import re
 import sys
+from pathlib import Path
 from os import path
 import ruamel.yaml
 
@@ -399,6 +400,48 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
                         delete_non_standard_model_choice(destination_file_path)
 
 
+def create_or_update_readme(dbt_models_path, list_of_sources):
+    dbt_path_parts = Path(dbt_models_path).parts
+    name_of_project = dbt_path_parts[-2]
+    dbt_base_path_parts = dbt_path_parts[:-1]
+    dbt_base_path = os.path.join(*dbt_base_path_parts)
+    readme_path = os.path.join(dbt_base_path, 'README.md')
+    proposed_readme_string = ""
+    proposed_readme_string += f'# {name_of_project}\n\n'
+    proposed_readme_string += '## Standard Models from dbt-arc-functions\n\n'
+    set_of_existing_models = set()
+    marts_path = os.path.join(dbt_models_path, 'marts')
+    staging_path = os.path.join(dbt_models_path, 'staging')
+    set_of_existing_models.update(os.listdir(marts_path))
+    set_of_existing_models.update(os.listdir(staging_path))
+    list_of_existing_models = list(set_of_existing_models)
+    list_of_existing_models.sort
+    for model in list_of_existing_models:
+        if model in list_of_sources:
+            proposed_readme_string += f"- {model}\n"
+    with open(readme_path, "r") as f:
+        current_readme_string = f.read()
+    differences = list(difflib.unified_diff(
+            current_readme_string.split('\n'), 
+            proposed_readme_string.split('\n'), 
+            fromfile='Your current readme',
+            tofile='Our proposed readme', lineterm='\n'))
+    if not differences:
+        return
+    print("We'd like to propose a new README for your project.\n")
+    print("*****Here is your current README:*****\n")
+    print(current_readme_string)
+    print("*****Here is our proposed README:*****\n")
+    print(proposed_readme_string)
+    print("*****Here are the differences between the two files:*****\n")
+    print(*differences, sep='\n')
+    print('\n\n*****Would you like to overwrite your current README?*****')
+    overwrite_choice = input("Only an answer of 'yes' will overwrite your README:\n")
+    if overwrite_choice == 'yes':
+        with open(readme_path, 'w') as f:
+            f.write(proposed_readme_string)
+
+
 def main(dbt_models_path=''):
     """Create or update standard models in a dbt project.
 
@@ -425,6 +468,7 @@ def main(dbt_models_path=''):
                         macros_path, create, dbt_models_path)
     except Exception as exception_noted:
         print(exception_noted)
+    create_or_update_readme(dbt_models_path, list_of_sources)
     print('\nProgram terminated successfully!\n')
 
 
