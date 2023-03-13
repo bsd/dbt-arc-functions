@@ -7,7 +7,7 @@ import os
 import re
 import json
 
-import ruamel.yaml
+from utils import initialize_yaml
 from google.cloud import bigquery
 from google.oauth2 import service_account
 
@@ -180,9 +180,7 @@ def main(
     if not project_id:
         project_id = get_project_id(dbt_credentials_path)
     if not yaml:
-        yaml = ruamel.yaml.YAML()
-        yaml.indent(mapping=4, sequence=4, offset=2)
-        yaml.preserve_quotes = True
+        yaml = initialize_yaml()
     dbt_project_yml = load_dbt_project_yml(dbt_project_path, yaml)
     set_database(dbt_project_yml, project_id)
     client = get_client(dbt_credentials_path)

@@ -29,11 +29,6 @@ def run_dbt_subprocess(bash_command: str) -> str:
     try:
         process = subprocess.run(
             bash_command, capture_output=True, shell=True, check=False)
-        if process.returncode != 0:
-            click.echo(
-                "Could not find profile YAML file for this \
-                project in local directory ~/.dbt/profiles.yml")
-            raise subprocess.CalledProcessError
         return process.stdout.decode()
     except subprocess.CalledProcessError as called_process_error:
         if "Could not find profile named" in called_process_error.stderr.decode():
@@ -44,10 +39,7 @@ def run_dbt_subprocess(bash_command: str) -> str:
         raise called_process_error
 
 
-@click.command()
-@click.option('--dbt_base_path', default='/path/to/your/dbt/project',
-              help='The base directory of your dbt project as an absolute path')
-def main(dbt_base_path):
+def main(dbt_base_path=None):
     """ This function writes dependency strings to the top of dbt models.
 
     Args:
@@ -93,8 +85,8 @@ def main(dbt_base_path):
                     f"\nUpdated the file: {filename}\nWith: {dependency}")
         if not matches:
             matches = re.findall(
-                r'Syntax error: Expected "\
-                (" or keyword SELECT or keyword WITH but got ";"', output)
+                r'Syntax error: Expected "\(" or keyword SELECT or keyword WITH but got ";"',
+                output)
             if matches:
                 click.echo(
                     "\nWe have to run again to process some intermediate table builds.\n")

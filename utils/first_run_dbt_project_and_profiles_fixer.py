@@ -10,10 +10,10 @@ and cleans up the dbt project so that it's ready"""
 
 from os import path
 from shutil import rmtree
+from utils import initialize_yaml
 
 import git
 import requests
-import ruamel.yaml
 
 CREDENTIALS_HELPTEXT = """
 If you'd like to know how to generate a credentials json go here:
@@ -128,7 +128,7 @@ def update_dbt_project(
     file, extension = path.splitext(dbt_project)
     with open(file + copy_choice + extension, 'w', encoding='utf-8') as f:
         # width is set to a large number to avoid line breaks
-        yaml.dump(dbt_project_yml, f, width=50000)
+        yaml.dump(dbt_project_yml, f)
 
 
 def copy_or_keep_credentials(credentials_location):
@@ -323,11 +323,7 @@ def main():
     # replace dashes with underscores in the project id
     project_id_underscore = project_id.replace('-', '_')
     # initialize the YAML object
-    yaml = ruamel.yaml.YAML()
-    # set the indentation for the YAML object
-    yaml.indent(mapping=4, sequence=4, offset=2)
-    # set the YAML object to preserve quotes
-    yaml.preserve_quotes = True
+    yaml = initialize_yaml()
     # adds dbt_artifacts package to the dbt_project.yml file if the user wants
     # it
     dbt_artifacts_choice = None

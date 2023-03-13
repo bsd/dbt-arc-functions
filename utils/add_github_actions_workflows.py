@@ -4,7 +4,7 @@ import os
 import re
 from copy import deepcopy
 
-import ruamel.yaml
+from utils import initialize_yaml
 
 STARTING_PROMPT = """You'll need to do some setup to have this util run.
 
@@ -68,14 +68,6 @@ def get_dbt_base_path():
         of their dbt project as an absolute path and returns it."""
     return input(
         "Please enter the base directory of your dbt project as an absolute path:\n")
-
-
-def initialize_yaml():
-    """This function initializes and returns the ruamel.yaml object."""
-    yaml = ruamel.yaml.YAML()
-    yaml.indent(mapping=4, sequence=4, offset=2)
-    yaml.preserve_quotes = True
-    return yaml
 
 
 def load_workflow_yml(workflow_yml_path, yaml):

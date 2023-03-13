@@ -5,6 +5,7 @@
 # coding: utf-8
 # TODO add inline comments to clarify what each function does
 # TODO object oriented rewrite with classes for each function
+# TODO README script not correctly alphabetizing
 
 import difflib
 import os
@@ -12,7 +13,7 @@ import re
 import sys
 from pathlib import Path
 from os import path
-import ruamel.yaml
+from utils import initialize_yaml
 
 DBT_STRING = """-- macro used to create this file can be found at:
 -- {github_path}
@@ -263,9 +264,7 @@ def create_or_update_docs(docs_path, destination_path):
         docs_path: The path to the documentation directory.
         destination_path: The path to the destination directory for the processed models.
     """
-    yaml = ruamel.yaml.YAML()
-    yaml.indent(mapping=4, sequence=4, offset=2)
-    yaml.preserve_quotes = True
+    yaml = initialize_yaml()
     schema_path = path.join(destination_path, 'schema.yml')
     if not path.exists(schema_path):
         schema_dict = {'version': 2, 'models': []}
