@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """This script will add the dependencies to the models in your dbt project."""
 
 # TODO to add_dependencies for no version check
@@ -93,5 +94,12 @@ def main(dbt_base_path=None):
     click.echo(output)
 
 
+@click.command()
+@click.option('--dbt_base_path', default='/path/to/your/dbt/project', 
+              help='The base directory of your dbt project as an absolute path')
+def command_line_main(dbt_base_path):
+    main(dbt_base_path)
+
+
 if __name__ == '__main__':
-    main()
+    command_line_main()
