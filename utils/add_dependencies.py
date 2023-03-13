@@ -95,7 +95,7 @@ def main(dbt_base_path=None):
 
 
 @click.command()
-@click.option('--dbt_base_path', default='/path/to/your/dbt/project', 
+@click.option('--dbt_base_path', default='/path/to/your/dbt/project',
               help='The base directory of your dbt project as an absolute path')
 def command_line_main(dbt_base_path):
     main(dbt_base_path)
