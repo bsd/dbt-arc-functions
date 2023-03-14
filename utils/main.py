@@ -10,7 +10,7 @@ import add_github_actions_workflows
 
 
 def main():
-    """ 
+    """
     This is the main function that runs all the other functions in the utils folder.
     """
     print("Running first_run_dbt_project_and_profiles_fixer.py\n")
