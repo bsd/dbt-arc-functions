@@ -30,7 +30,7 @@
     FROM (SELECT *,
                 row_number() over (
                     partition by REVENUE_ID order by SFMC_UpdateDate desc) as row_num
-                    from bsd-arc-uusa.src_stitch_bbcrm_authorized.revenue
+                    from {{ ref('stg_src_stitch_sfmc_bbcrm_transactions') }}
                 ) as revenue_rows
         WHERE row_num = 1
 )
@@ -61,7 +61,7 @@
                , 'Fundraise Up - Direct'          as REVENUE_PLATFORM
                , CAST(sfmc_insert_dt as STRING)   as SFMC_DateAdded
                , CAST(sfmc_updated_dt as STRING)  as SFMC_UpdateDate
-          FROM bsd-arc-uusa.src_stitch_fundraiseup_authorized.recent_transactions
+          FROM {{ ref('stg_src_stitch_sfmc_recent_transactions') }}
 ), incremental_fru as (
     select *
     from fru
