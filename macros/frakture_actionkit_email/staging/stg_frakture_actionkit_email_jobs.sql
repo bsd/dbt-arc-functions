@@ -28,6 +28,6 @@ SELECT DISTINCT message_id,
     label AS email_name,
     subject AS email_subject, 
     final_primary_source_code as source_code
-FROM {{ ref(reference_name) }}
+FROM casting
 
 {% endmacro %}
