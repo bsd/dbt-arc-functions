@@ -1,20 +1,19 @@
 {% macro create_stg_stitch_sfmc_uusa_email_campaign_dates(
-    reference_name='stg_src_stitch_email_job'
-    #bbcrm= 'stg_src_stitch_sfmc_bbcrm_transactions',
-    #fru = 'stg_src_stitch_sfmc_recent_transactions'
-
+    reference_name='stg_src_stitch_email_job',
+    bbcrm = 'stg_src_stitch_sfmc_bbcrm_transactions',
+    fru = 'stg_src_stitch_sfmc_recent_transactions'
     ) %}
 
     WITH current_fy as (
     SELECT
         __BBCRMLOOKUPID_
         ,CONSTITUENTSYSTEMRECORDID
-        ,CAST(STATUSCODE AS INT64) STATUSCODE
-        ,CAST(RECORDID AS STRING) AS RECORDID
+        ,SAFE_CAST(STATUSCODE AS INT64) STATUSCODE
+        ,SAFE_CAST(RECORDID AS STRING) AS RECORDID
         ,REVENUE_ID
-        ,CAST(TRANSACTION_DATE AS STRING) AS TRANSACTION_DATE
+        ,SAFE_CAST(TRANSACTION_DATE AS STRING) AS TRANSACTION_DATE
         ,PAYMENT_METHOD
-        ,CAST(RECOGNITION_AMOUNT AS STRING) AS RECOGNITION_AMOUNT
+        ,SAFE_CAST(RECOGNITION_AMOUNT AS STRING) AS RECOGNITION_AMOUNT
         ,INBOUND_CHANNEL
         ,APPEAL
         ,APPEAL_BUSINESS_UNIT
