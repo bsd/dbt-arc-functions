@@ -1,18 +1,14 @@
 {% macro create_stg_src_stitch_sfmc_bbcrm_recent_transactions() %}
-{% set relations= dbt_arc_functions.relations_that_match_regex('^bbcrm_revenue$',
-    is_source=True,
-  source_name='src_stitch_bbcrm',
-  schema_to_search='src_stitch_bbcrm_authorized') %}
-
+with revenue as (
 Select DISTINCT
             __bbcrmlookupid_ as bbcrmlookupid,
             constituentsystemrecordid as constituentsystemrecordid,
-            cast(statuscode as string) as statuscode,
-            cast(recordid as string) as recordid,
+            SAFE_CAST(statuscode as string) as statuscode,
+            SAFE_CAST(recordid as string) as recordid,
             revenue_id as revenue_id,
             transaction_date as transaction_date,
             payment_method as payment_method,
-            cast(recognition_amount as string) as recognition_amount,
+            SAFE_CAST(recognition_amount as string) as recognition_amount,
             inbound_channel as inbound_channel,
             appeal as appeal,
             appeal_business_unit as appeal_business_unit,
@@ -27,8 +23,21 @@ Select DISTINCT
             sfmc_dateadded as sfmc_dateadded,
             sfmc_updatedate as sfmc_updatedate
 
-        from ({{ dbt_utils.union_relations(relations) }})
+        from {{ source('src_stitch_bbcrm', 'revenue') }}
+), current_fiscal_ranked as (
 
+        select
+            *,
+            row_number() over (
+                partition by revenue_id order by sfmc_updatedate desc
+            ) as row_num
+        from revenue
+
+    ),
+    final as (select * except (row_num) from current_fiscal_ranked where row_num = 1 AND revenue_id != 'rev-44816929')
+select *
+from final
+where cast(transaction_date as datetime) < current_datetime()
 
 {% endmacro %}
 
