@@ -3,7 +3,7 @@
 SELECT DISTINCT SAFE_CAST(message_id AS STRING) AS message_id,
     SAFE_CAST(from_name AS STRING) AS from_name,
     SAFE_CAST(from_email AS STRING) AS from_email,
-    SAFE_CAST(COALESCE({{ dbt_date.convert_timezone("publish_date") }}, publish_date) AS TIMESTAMP) AS best_guess_timestamp,
+    SAFE_CAST(COALESCE({{ dbt_date.convert_timezone("publish_date_dt") }}, publish_date) AS TIMESTAMP) AS best_guess_timestamp,
     SAFE_CAST(NULL AS TIMESTAMP) AS scheduled_timestamp,
     SAFE_CAST(NULL AS TIMESTAMP) AS pickup_timestamp,
     SAFE_CAST(NULL AS TIMESTAMP) AS delivered_timestamp,

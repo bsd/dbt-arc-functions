@@ -4,6 +4,8 @@
   source_name='frakture_actionkit_email',
   schema_to_search='src_frakture') 
 %}
-SELECT DISTINCT * FROM ({{ dbt_utils.union_relations(relations) }})
+SELECT DISTINCT *,
+cast(publish_date as datetime) as publish_date_dt,
+ FROM ({{ dbt_utils.union_relations(relations) }})
 WHERE message_id IS NOT NULL
 {% endmacro %}
