@@ -2,16 +2,16 @@
     reference_name='stg_frakture_actionkit_email_summary_unioned') %}
 
 with casting as (
-SELECT DISTINCT SAFE_CAST(message_id AS STRING), 
-    SAFE_CAST(from_name AS STRING),
-    SAFE_CAST(from_email AS STRING),
-    SAFE_CAST(publish_date AS TIMESTAMP),
-    SAFE_CAST(NULL AS TIMESTAMP),
-    SAFE_CAST(NULL AS TIMESTAMP),
-    SAFE_CAST(NULL AS TIMESTAMP),
-    SAFE_CAST(label AS STRING),
-    SAFE_CAST(subject AS STRING),
-    SAFE_CAST(final_primary_source_code AS STRING) 
+SELECT DISTINCT SAFE_CAST(message_id AS STRING) as message_id, 
+    SAFE_CAST(from_name AS STRING) as from_name,
+    SAFE_CAST(from_email AS STRING) as from_email,
+    SAFE_CAST(publish_date AS TIMESTAMP) as publish_date,
+    SAFE_CAST(NULL AS TIMESTAMP) as scheduled_timestamp,
+    SAFE_CAST(NULL AS TIMESTAMP) as pickup_timestamp,
+    SAFE_CAST(NULL AS TIMESTAMP) as delivered_timestamp,
+    SAFE_CAST(label AS STRING) as label,
+    SAFE_CAST(subject AS STRING) as subject,
+    SAFE_CAST(final_primary_source_code AS STRING) as final_primary_source_code
 FROM {{ ref(reference_name) }}
 
 
