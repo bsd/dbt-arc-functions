@@ -132,7 +132,7 @@ def update_dbt_project(
     # adds dbt-date to the vars and sets default timezone conversion as UTC
     # TODO: ask user for timezone conversion for their client and add it to the vars
     # TODO: list out the available timezones, it is easy to make a typo
-    dbt_project_yml['vars']["dbt_date:time_zone"] = '"Africa/Abidjan"'
+    dbt_project_yml['vars']["dbt_date:time_zone"] = 'UTC'
     copy_choice = inplace_or_copy("dbt_project")
     file, extension = path.splitext(dbt_project)
     with open(file + copy_choice + extension, 'w', encoding='utf-8') as f:
