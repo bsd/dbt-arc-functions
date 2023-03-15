@@ -130,7 +130,7 @@ def update_dbt_project(
             "{% if target.name == 'default' %}{{ dbt_artifacts.upload_results(results) }}{% endif %}"]
     # adds dbt-date to the vars and sets default timezone conversion as UTC
     # TODO: ask user for timezone conversion for their client and add it to the vars
-    dbt_project_yml['vars'] = '"dbt_date:time_zone": "UTC"'
+    dbt_project_yml['vars'] = {"'dbt_date:time_zone'": "'UTC'"}
     copy_choice = inplace_or_copy("dbt_project")
     file, extension = path.splitext(dbt_project)
     with open(file + copy_choice + extension, 'w', encoding='utf-8') as f:
