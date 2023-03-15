@@ -5,7 +5,6 @@ and cleans up the dbt project so that it's ready"""
 # TODO: give option of removing comments from the profiles.yml file
 # TODO: give option of removing comments from the dbt_project.yml file
 # TODO: give option of using a more updated version of dbt in the
-# TODO: give option of using calogica/dbt_date (like with artifacts)
 # dbt_project.yml file
 
 
