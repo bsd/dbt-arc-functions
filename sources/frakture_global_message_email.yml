@@ -164,9 +164,9 @@ sources:
           - name: subject
             description: "The subject of the message."
           - name: campaign_name
-            description: "The - name of the campaign associated with the message."
+            description: "The name of the campaign associated with the message."
           - name: from_name
-            description: "The - name of the sender of the message."
+            description: "The name of the sender of the message."
           - name: preview_url
             description: "The URL to preview the message."
           - name: primary_source_code
