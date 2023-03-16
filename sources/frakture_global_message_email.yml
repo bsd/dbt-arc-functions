@@ -163,9 +163,9 @@ sources:
             description: "A label for the message."
           - name: subject
             description: "The subject of the message."
-          - name: campaign_- name
+          - name: campaign_name
             description: "The - name of the campaign associated with the message."
-          - name: from_- name
+          - name: from_name
             description: "The - name of the sender of the message."
           - name: preview_url
             description: "The URL to preview the message."
