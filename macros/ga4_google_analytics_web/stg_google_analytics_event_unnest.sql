@@ -27,10 +27,10 @@ FROM {{ ref('stg_google_analytics_event') }}
  cross join unnest(event_params) campaign_value
  cross join unnest(event_params) engagement_value
 
- where param_value.key = 'page_location'
- where source_value.key = 'source'
- where campaign_value.key = 'campaign'
- where engagement_value.key = 'engagement_time_msec'
+ where path_value.key = 'page_location'
+ and source_value.key = 'source'
+ and campaign_value.key = 'campaign'
+ and engagement_value.key = 'engagement_time_msec'
 
 {% endmacro %}
 
