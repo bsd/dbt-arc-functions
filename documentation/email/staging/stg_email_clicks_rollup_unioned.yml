@@ -13,8 +13,8 @@ models:
         description: ""
 
       - name: message_id
-        description: ""
+        description: "The unique identifier for each message."
 
       - name: clicks
-        description: ""
+        description: "The number of times the message was clicked."
 

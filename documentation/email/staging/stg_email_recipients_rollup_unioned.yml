@@ -13,8 +13,8 @@ models:
         description: ""
 
       - name: message_id
-        description: ""
+        description: "The unique identifier for each message."
 
       - name: recipients
-        description: ""
+        description: "Number of recipients of this email."
 
