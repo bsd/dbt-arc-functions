@@ -135,43 +135,43 @@ sources:
             description: COALESCE of primary_source_code_override and primary_source_code.
 
       - name: global_message
-        description: ""
+        description: "Contains information about a global message."
         columns:
           - name: message_id
-            description: ""
+            description: "Unique identifier for the message."
           - name: channel
-            description: ""
+            description: "The channel where the message was sent."
           - name: channel_label
-            description: ""
+            description: "A label for the channel where the message was sent."
           - name: type
-            description: ""
+            description: "The type of message sent."
           - name: status
-            description: ""
+            description: "The status of the message (e.g. sent, failed)."
           - name: publish_date
-            description: ""
+            description: "The date when the message was published."
           - name: campaign_id
-            description: ""
+            description: "Unique identifier for the campaign associated with the message."
           - name: bot_id
-            description: ""
+            description: "Unique identifier for the bot that sent the message."
           - name: submodule
-            description: ""
+            description: "The submodule of the bot that sent the message."
           - name: remote_id
-            description: ""
+            description: "The remote identifier associated with the message."
           - name: do_not_attribute
-            description: ""
+            description: "Whether the message should not be attributed."
           - name: label
-            description: ""
+            description: "A label for the message."
           - name: subject
-            description: ""
+            description: "The subject of the message."
           - name: campaign_name
-            description: ""
+            description: "The name of the campaign associated with the message."
           - name: from_name
-            description: ""
+            description: "The name of the sender of the message."
           - name: preview_url
-            description: ""
+            description: "The URL to preview the message."
           - name: primary_source_code
-            description: ""
+            description: "The primary source code associated with the message."
           - name: primary_source_code_override
-            description: ""
+            description: "Override value for primary source code."
           - name: final_primary_source_code
-            description: ""
+            description: "The final primary source code associated with the message."
