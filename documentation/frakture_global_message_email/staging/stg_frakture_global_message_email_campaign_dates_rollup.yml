@@ -1,20 +1,12 @@
-# TODO Write documentation for stg_frakture_global_message_email_campaign_dates_rollup [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/frakture_global_message_email/staging/stg_frakture_global_message_email_campaign_dates_rollup.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/frakture_global_message_email/staging/stg_frakture_global_message_email_campaign_dates_rollup.yml
 version: 2
 
 models:
   - name: stg_frakture_global_message_email_campaign_dates_rollup
-    description: Please replace this default description.
+    description: Contains the rollup information for email campaign dates.
     columns:
       - name: campaign_name
-        description: ""
-
+        description: The name of the email campaign.
       - name: campaign_start_timestamp
-        description: ""
-
+        description: The timestamp when the email campaign was started.
       - name: campaign_latest_timestamp
-        description: ""
-
+        description: The timestamp of the latest update to the email campaign.
