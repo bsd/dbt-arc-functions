@@ -1,4 +1,9 @@
-{% macro create_stg_src_stitch_sfmc_bbcrm_recent_transactions() %}
+{% macro create_stg_src_stitch_sfmc_bbcrm_revenue() %}
+{% set relations= dbt_arc_functions.relations_that_match_regex('^revenue$',
+    is_source=True,
+  source_name='src_stitch_bbcrm',
+  schema_to_search='src_stitch_bbcrm_authorized') %}
+
 with revenue as (
 Select DISTINCT
             __bbcrmlookupid_ as bbcrmlookupid,
@@ -6,7 +11,7 @@ Select DISTINCT
             SAFE_CAST(statuscode as string) as statuscode,
             SAFE_CAST(recordid as string) as recordid,
             revenue_id as revenue_id,
-            transaction_date as transaction_date,
+            SAFE_CAST(transaction_date as datetime) as transaction_date,
             payment_method as payment_method,
             SAFE_CAST(recognition_amount as string) as recognition_amount,
             inbound_channel as inbound_channel,
@@ -20,10 +25,11 @@ Select DISTINCT
             application as application,
             vendor_order_number as vendor_order_number,
             revenue_platform as revenue_platform,
-            sfmc_dateadded as sfmc_dateadded,
-            sfmc_updatedate as sfmc_updatedate
+            SAFE_CAST(sfmc_dateadded as datetime) as sfmc_dateadded,
+            SAFE_CAST(sfmc_updatedate as datetime) as sfmc_updatedate
 
-        from {{ source('src_stitch_bbcrm', 'revenue') }}
+        from ({{ dbt_utils.union_relations(relations) }})
+
 ), current_fiscal_ranked as (
 
         select
