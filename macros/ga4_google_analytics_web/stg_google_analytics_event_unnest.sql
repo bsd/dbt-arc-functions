@@ -1,7 +1,7 @@
 {% macro create_stg_google_analytics_event_unnest() %}
 
 SELECT 
-SAFE_CAST(event_date as DATE) as event_date,
+SAFE_CAST(event_date as DATE FORMAT 'YYYYMMDD') as event_date,
 SAFE_CAST(source_value.value.string_value as STRING) as session_source,
 SAFE_CAST(traffic_source.source as STRING) as traffic_source,
 SAFE_CAST(device.web_info.hostname as STRING) as hostname,
