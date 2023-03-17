@@ -6,7 +6,7 @@ SELECT
   remote_transaction_id AS transaction_id_in_source_crm,
   person_id_int AS person_id,
   amount - refund_amount AS amount,
-  SAFE_CAST(ts AS TIMESTAMP) transaction_timestamp,
+  SAFE_CAST({{ dbt_date.convert_timezone('cast(ts as TIMESTAMP)') }} as TIMESTAMP) as transaction_timestamp,
   recurs != 'Non-recurring' AS recurring_revenue,
   recurs_int = 1
   AND recurs != 'Non-recurring' AS new_recurring_revenue,
