@@ -1,52 +1,50 @@
 version: 2
 
 models:
+  - name: stg_frakture_global_transactions
+    description: "A staging table containing global transaction data from various CRM systems."
+    columns:
+      - name: source_crm
+        description: "The source Customer Relationship Management (CRM) system for the transaction data."
 
-- name: stg_frakture_global_transactions
-  description: "A staging table containing global transaction data from various CRM systems."
-  columns:
+      - name: transaction_id_in_source_crm
+        description: "The unique identifier of the transaction within the source CRM system."
 
-    - name: source_crm
-      description: "The source Customer Relationship Management (CRM) system for the transaction data."
+      - name: person_id
+        description: "The unique identifier of the person related to the transaction."
 
-    - name: transaction_id_in_source_crm
-      description: "The unique identifier of the transaction within the source CRM system."
+      - name: amount
+        description: "The amount of the transaction."
 
-    - name: person_id
-      description: "The unique identifier of the person related to the transaction."
+      - name: transaction_timestamp
+        description: "The timestamp of when the transaction occurred."
 
-    - name: amount
-      description: "The amount of the transaction."
+      - name: recurring_revenue
+        description: "The recurring revenue amount associated with the transaction."
 
-    - name: transaction_timestamp
-      description: "The timestamp of when the transaction occurred."
+      - name: new_recurring_revenue
+        description: "The new recurring revenue amount associated with the transaction."
 
-    - name: recurring_revenue
-      description: "The recurring revenue amount associated with the transaction."
+      - name: transaction_source_code
+        description: "The source code associated with the transaction."
 
-    - name: new_recurring_revenue
-      description: "The new recurring revenue amount associated with the transaction."
+      - name: best_guess_message_id
+        description: "The best guess for the message ID associated with the transaction."
 
-    - name: transaction_source_code
-      description: "The source code associated with the transaction."
+      - name: campaign
+        description: "The campaign associated with the transaction."
 
-    - name: best_guess_message_id
-      description: "The best guess for the message ID associated with the transaction."
+      - name: channel
+        description: "The channel through which the transaction was made."
 
-    - name: campaign
-      description: "The campaign associated with the transaction."
+      - name: audience
+        description: "The audience segment targeted by the campaign."
 
-    - name: channel
-      description: "The channel through which the transaction was made."
+      - name: crm_entity
+        description: "The entity within the CRM system associated with the transaction."
 
-    - name: audience
-      description: "The audience segment targeted by the campaign."
+      - name: source_code_entity
+        description: "The entity within the source code associated with the transaction."
 
-    - name: crm_entity
-      description: "The entity within the CRM system associated with the transaction."
-
-    - name: source_code_entity
-      description: "The entity within the source code associated with the transaction."
-
-    - name: channel_from_source_code
-      description: "The channel derived from the source code associated with the transaction."
+      - name: channel_from_source_code
+        description: "The channel derived from the source code associated with the transaction."
