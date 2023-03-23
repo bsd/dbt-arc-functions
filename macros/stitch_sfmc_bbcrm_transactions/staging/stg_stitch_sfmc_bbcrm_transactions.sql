@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_bbcrm_transactions(
-    reference_name = 'stg_src_stitch_sfmc_bbcrm_transactions.sql'
+    reference_name = 'stg_src_stitch_sfmc_bbcrm_transactions'
 ) %}
 
 with revenue as (
