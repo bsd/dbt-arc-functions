@@ -28,6 +28,9 @@ SAFE_CAST(NULL as STRING) as accordion_block,
 --SAFE_CAST(accordion_value.value.string_value as STRING) as accordion_item,
 --SAFE_CAST(file_value.value.string_value as STRING) as file_name,
 SAFE_CAST(NULL as STRING) as file_name,
+SAFE_CAST(click_value.value.string_value as STRING) as link_domain,
+SAFE_CAST(NULL as STRING) as top_nav_name,
+SAFE_CAST(NULL as STRING) as sub_menu_name,
 SAFE_CAST(engaged_value.value.int_value as INT) as engaged_session,
 SAFE_CAST(scroll_value.value.int_value as INT) as percent_scrolled,
 --SAFE_CAST(search_value.value.string_value as STRING) as search_term,
@@ -53,6 +56,7 @@ FROM {{ ref(reference_name) }}
 --cross join unnest(event_params) search_value
 --cross join unnest(event_params) refer_value
  --cross join unnest(event_params) accordion_value
+ cross join unnest(event_params) click_value
 
  where 
  event_name = 'click'
@@ -69,6 +73,7 @@ FROM {{ ref(reference_name) }}
 --and search_value.key = 'search_term'
 --and refer_value.key = 'page_referrer'
 -- and accordion_value.key = 'accordion_item'
+and click_value.key = 'link_domain'
 
 {% endmacro %}
 
