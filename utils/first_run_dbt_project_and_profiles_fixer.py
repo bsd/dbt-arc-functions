@@ -7,6 +7,7 @@ and cleans up the dbt project so that it's ready"""
 # TODO: give option of using a more updated version of dbt in the
 # TODO: ask user for project timezone and add response to the key value pair
 # dbt_project.yml file
+# TODO: add vars: ga4_schema to the dbt_project.yml file that pulls up the ga4 schema
 
 
 from os import path
