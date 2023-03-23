@@ -1,4 +1,5 @@
-# RUN compile_sources.py to add appopriate vars in profiles.yml
+# RUN compile_sources.py to add appopriate vars in dbt_project.yml
+# TODO: figure out how to reference partitioned tables...
 
 version: 2
 sources:
@@ -6,6 +7,6 @@ sources:
     database: "{{ var('database') }}"
     schema: "{{ var('sources').ga4_google_analytics_web.schema }}"
     tables: 
-      - name: events_
+      - name: events_%
 
 
