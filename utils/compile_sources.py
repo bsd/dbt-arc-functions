@@ -2,6 +2,7 @@
 
 # coding: utf-8
 # TODO: Make source_regex_mappings into an external json file
+# TODO: add vars: ga4_schema to the dbt_project.yml file that pulls up the ga4 schema
 
 import os
 import re
@@ -47,7 +48,13 @@ source_regex_mappings = {
         'tables': [r'^sfmc_[A-Za-z0-9]{3}_per_person_message_stat$',
                    r'^sfmc_[A-Za-z0-9]{3}_person$',
                    ]
-    }
+    },
+    'ga4_google_analytics_web.yml': {
+        'schema': [r'^analytics_%', 
+                   ],
+        'tables': 'events_%'
+    },
+
 }
 
 CREDENTIALS_HELPTEXT = """
@@ -98,6 +105,21 @@ def get_project_id(dbt_credentials_path):
     """
     with open(dbt_credentials_path, 'r', encoding='utf-8') as f:
         return json.load(f)['project_id']
+
+
+def get_schema(regex_pattern, client):
+    """ Get the schema that matches the regex pattern """
+    # List all the available datasets in the project
+    datasets = list(client.list_datasets())
+
+    # Loop through each dataset and check if it matches the regex pattern
+    for dataset in datasets:
+        if re.match(regex_pattern, dataset.dataset_id):
+            # If the dataset matches the pattern, return its dataset ID
+            return dataset.dataset_id
+
+    # If no matching dataset is found, raise an exception
+    raise Exception(f"No dataset found matching the regex pattern: {regex_pattern}")
 
 
 def get_client(credentials_path):
