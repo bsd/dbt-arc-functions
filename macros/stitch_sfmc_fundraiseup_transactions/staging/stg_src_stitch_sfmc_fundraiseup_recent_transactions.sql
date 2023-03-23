@@ -20,7 +20,7 @@ with fru as (
         ,SAFE_CAST(SUBSTR(sfmc_updatedate,1,19) AS DATETIME) as sfmc_updated_dt
         ,SAFE_CAST(SUBSTR(_sdc_received_at,1,19) AS DATETIME) as _sdc_received_at
 
-    from {{ dbt_utils.union_relations(relations) }}
+    from  {{ dbt_utils.union_relations(relations) }}
 
 ), fru_ranked as (
 

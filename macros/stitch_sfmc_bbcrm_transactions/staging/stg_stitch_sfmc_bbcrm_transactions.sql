@@ -2,7 +2,6 @@
     reference_name = 'stg_src_stitch_sfmc_bbcrm_transactions'
 ) %}
 
-with revenue as (
 Select
         revenue_id as transaction_id,
         bbcrmlookupid as person_id,
