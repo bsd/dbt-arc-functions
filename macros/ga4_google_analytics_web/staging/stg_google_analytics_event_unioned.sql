@@ -2,8 +2,7 @@
 
 
 {% set relations = dbt_arc_functions.relations_that_match_regex('^stg_google_analytics_event_.+$',
-  is_source=False,
-  schema_to_search=target.schema) 
+  is_source=False,) 
 
 %}
 
