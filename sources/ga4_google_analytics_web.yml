@@ -1,5 +1,5 @@
 # RUN compile_sources.py to add appopriate vars in dbt_project.yml
-# TODO: figure out how to reference partitioned tables...
+# TODO: figure out how to pull in the analytics schema name
 
 version: 2
 sources:
