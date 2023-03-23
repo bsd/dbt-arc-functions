@@ -4,7 +4,9 @@
   source_name='frakture_everyaction_email',
   schema_to_search='src_frakture') 
 %}
+
 SELECT DISTINCT * FROM ({{ dbt_utils.union_relations(relations) }})
 WHERE channel = 'email'
 AND message_id IS NOT NULL
+
 {% endmacro %}
