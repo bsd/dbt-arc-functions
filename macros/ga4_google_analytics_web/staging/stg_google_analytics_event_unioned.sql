@@ -1,7 +1,7 @@
 {% macro create_stg_google_analytics_event_unioned() %}
 
 {% set relations = dbt_utils.get_relations_by_pattern ( 
-    schema_to_search = target.name,
+    schema_pattern = target.name,
     table_pattern = 'stg_google_analytics_event_%',
     database = target.database)
 %}
