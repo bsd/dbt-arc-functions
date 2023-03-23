@@ -7,9 +7,9 @@
 with fru as (
     SELECT
         fru_donation_id as revenue_id
-        ,SAFE_CAST(__initial_market_source_ as STRING) as initial_market_source
+        ,__initial_market_source_ as initial_market_source
         ,email_address as email
-        ,SAFE_CAST(amount as FLOAT64) amount
+        ,amount
         ,gift_type
         ,SAFE_CAST(transaction_date AS DATETIME) as transaction_date
         ,appeal
@@ -18,7 +18,7 @@ with fru as (
         ,SAFE_CAST(migrated AS BOOL) migrated
         ,bbcrmlookupid as lookup_id
         ,SAFE_CAST(SUBSTR(sfmc_updatedate,1,19) AS DATETIME) as sfmc_updated_dt
-        ,SAFE_CAST(SUBSTR(_sdc_received_at,1,19) AS DATETIME) as _sdc_received_at
+        ,_sdc_received_at
 
     from  {{ dbt_utils.union_relations(relations) }}
 
