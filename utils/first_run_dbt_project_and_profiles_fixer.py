@@ -11,10 +11,10 @@ and cleans up the dbt project so that it's ready"""
 
 from os import path
 from shutil import rmtree
+import requests
+import git
 from utils import initialize_yaml
 
-import git
-import requests
 
 CREDENTIALS_HELPTEXT = """
 If you'd like to know how to generate a credentials json go here:
@@ -226,7 +226,8 @@ def update_profile_yml(project_id, project_id_underscore, yaml):
 
 def inplace_or_copy(filetype):
     """
-    Prompts the user to choose between replacing the existing file or making a copy of the file.
+    Prompts the user to choose between replacing the existing file or making
+    a copy of the file.
 
     :param filetype: Type of file to be replaced or copied
     :return: '_copy' if the user wants to make a copy, else an empty string
@@ -319,7 +320,8 @@ def main():
     """
     main
 
-    This function modifies an existing dbt_project.yml file by changing the name,
+    This function modifies an existing dbt_project.yml 
+        file by changing the name,
         adding a package and a model, updating the
         credentials file reference in the profile.yml file,
         and deleting the 'models/example' folder.
