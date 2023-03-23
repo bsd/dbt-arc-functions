@@ -2,6 +2,6 @@ version: 2
 sources:
   - name: ga4_google_analytics_web
     database: "{{ var('database') }}"
-    schema: analytics%
+    schema: "{{var('schema')}}"
     tables: 
-      - events_
+      - name: events_%
