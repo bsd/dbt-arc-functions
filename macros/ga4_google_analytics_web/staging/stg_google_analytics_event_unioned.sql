@@ -2,7 +2,7 @@
 
 {% set relations = dbt_utils.get_relations_by_pattern ( 
     schema_pattern = target.name,
-    table_pattern = 'stg_google_analytics_event_%',
+    table_pattern = 'stg_google_analytics_event_*',
     database = target.database)
 %}
 
