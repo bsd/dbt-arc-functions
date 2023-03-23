@@ -1,8 +1,8 @@
 {% macro create_stg_src_stitch_sfmc_fundraiseup_recent_transactions() %}
 {% set relations= dbt_arc_functions.relations_that_match_regex('^recent_transactions$',
     is_source=True,
-  source_name='src_stitch_bbcrm',
-  schema_to_search='src_stitch_bbcrm_authorized') %}
+  source_name='src_stitch_fundraiseup',
+  schema_to_search='src_stitch_fundraiseup_authorized') %}
 
 with fru as (
     SELECT
