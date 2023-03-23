@@ -8,6 +8,6 @@ sources:
     schema: "{{ var('sources').ga4_google_analytics_web.schema }}"
     tables: 
       - name: events
-      - identifier: "events_*"
+        identifier: "events_*"
 
 
