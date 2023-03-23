@@ -5,7 +5,6 @@ version: 2
 sources:
   - name: ga4_google_analytics_web
     database: "{{ var('database') }}"
-    schema: "{{ var('sources').ga4_google_analytics_web.schema }}"
     tables: 
       - name: events
         identifier: "events_*"
