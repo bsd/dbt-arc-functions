@@ -26,6 +26,11 @@ def check_profiles_file():
         raise FileNotFoundError
 
 
+def get_no_version_check_choice() -> str:
+    print("Do you want dbt to run without checking dbt version? This can help if you are getting version errors.")
+    return ' --no-version-check' if input("Enter 'y' if you want to run without version check:\n") == 'y' else ''
+
+
 def run_dbt_subprocess(bash_command: str) -> str:
     try:
         process = subprocess.run(
@@ -54,7 +59,8 @@ def main(dbt_base_path=None):
     if not dbt_base_path:
         dbt_base_path = click.prompt(
             "Please enter the base directory of your dbt project as an absolute path")
-    bash_command = f"cd {dbt_base_path} ;dbt run"
+    no_version_check_choice = get_no_version_check_choice()
+    bash_command = f"cd {dbt_base_path} ;dbt run{no_version_check_choice}"
     matches = [["dependency", "filename"]]
     process = subprocess.run(
         f"cd {dbt_base_path} ;dbt deps",
