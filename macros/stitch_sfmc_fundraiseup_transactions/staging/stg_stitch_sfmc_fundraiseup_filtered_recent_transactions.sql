@@ -12,12 +12,12 @@ FROM {{ref(reference_name1)}}
         initial_market_source as source_code,
         SAFE_CAST('sfmc_fundraiseup' as STRING) as crm,
         SAFE_CAST(REGEXP_EXTRACT(initial_market_source,r"sfmc(\d{6})") AS INT) as message_id,
-        transaction_date as date_timestamp,
+        transaction_date,
         amount,
         gift_type,
         appeal
         from {{ref(reference_name)}}
-        where CAST(TRANSACTION_DATE AS DATETIME) > (SELECT MAX(CAST(TRANSACTION_DATE AS DATETIME)) FROM bbcrm)
+        where transaction_date > (SELECT MAX(transaction_date) FROM bbcrm)
 
 
 
