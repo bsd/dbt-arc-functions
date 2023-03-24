@@ -1,4 +1,4 @@
-{% macro create_stg_src_stitch_sfmc_fundraiseup_recent_transactions() %}
+{% macro create_stg_src_stitch_sfmc_fundraiseup_recent_transaction() %}
 {% set relations= dbt_arc_functions.relations_that_match_regex('^recent_transactions$',
     is_source=True,
   source_name='src_stitch_fundraiseup',

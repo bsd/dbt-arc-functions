@@ -1,6 +1,6 @@
-{% macro create_stg_stitch_sfmc_fundraiseup_recent_transactions(
-    reference_name = 'stg_src_stitch_sfmc_fundraiseup_recent_transactions',
-    reference_name1= 'stg_stitch_sfmc_bbcrm_transactions'
+{% macro create_stg_stitch_sfmc_fundraiseup_recent_transaction(
+    reference_name = 'stg_src_stitch_sfmc_fundraiseup_recent_transaction',
+    reference_name1= 'stg_stitch_sfmc_bbcrm_transaction'
 ) %}
 with bbcrm as(
 SELECT *
