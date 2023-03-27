@@ -13,7 +13,7 @@ Select DISTINCT
             revenue_id as revenue_id,
             SAFE_CAST(transaction_date as datetime) as transaction_date,
             payment_method as payment_method,
-            SAFE_CAST(recognition_amount as int64) as amount,
+            recognition_amount as amount,
             inbound_channel as inbound_channel,
             appeal as appeal,
             appeal_business_unit as appeal_business_unit,
