@@ -1,3 +1,5 @@
+# This file will serve as a resource top copy and paste documentation as needed for future sources.
+
 version: 2
 
 sources:
@@ -209,65 +211,7 @@ sources:
           - name: __bbcrmlookupid_
             description: ""
 
-      - name: revenue
-        description: ""
-        columns:
-          - name: designation
-            description: ""
-          - name: inbound_channel
-            description: ""
-          - name: appeal
-            description: ""
-          - name: transaction_type
-            description: ""
-          - name: recognition_amount
-            description: ""
-          - name: revenue_platform
-            description: ""
-          - name: vendor_order_number
-            description: ""
-          - name: statuscode
-            description: ""
-          - name: constituentsystemrecordid
-            description: ""
-          - name: web_donation_form_value
-            description: ""
-          - name: payment_method
-            description: ""
-          - name: appeal_business_unit
-            description: ""
-          - name: recordid
-            description: ""
-          - name: _sdc_table_version
-            description: ""
-          - name: application
-            description: ""
-          - name: sfmc_dateadded
-            description: ""
-          - name: initial_market_source
-            description: ""
-          - name: _sdc_source_file
-            description: ""
-          - name: web_donation_form_comment
-            description: ""
-          - name: transaction_date
-            description: ""
-          - name: _sdc_received_at
-            description: ""
-          - name: _sdc_sequence
-            description: ""
-          - name: revenue_id
-            description: ""
-          - name: __sdc_primary_key
-            description: ""
-          - name: _sdc_batched_at
-            description: ""
-          - name: _sdc_source_lineno
-            description: ""
-          - name: sfmc_updatedate
-            description: ""
-          - name: __bbcrmlookupid_
-            description: ""
+
 
       - name: smartfieldsfirst
         description: ""
