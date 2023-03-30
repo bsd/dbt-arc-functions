@@ -9,5 +9,169 @@ sources:
           warn_after: {count: 2, period: day}
           error_after: {count: 7, period: day}
         loaded_at_field: cast(publish_date as timestamp)
+        description: Message summary table from Frakture with a 1 day grain.
+        columns:
+          - name: message_id
+            description: The unique identifier for each message.
+          - name: date
+            description: The date the message was sent.
+          - name: bot_id
+            description: The unique identifier for the Frakture bot.
+          - name: bot_path
+            description: The path of the Frakture.
+          - name: bot_label
+            description: The label of the Frakture bot.
+          - name: bot_nickname
+            description: The nickname of the Frakture bot.
+          - name: channel
+            description: The communication channel used for sending the message; includes paidmedia services and email.
+          - name: channel_label
+            description: The label of the channel.
+          - name: type
+            description: The type of message; usually a more specific subdivision of channel.
+          - name: status
+            description: The status of the message.
+          - name: publish_date
+            description: The date the message was published.
+          - name: campaign_id
+            description: The unique identifier for each campaign.
+          - name: submodule
+            description: The submodule of the message.
+          - name: remote_id
+            description: The remote identifier of the message.
+          - name: do_not_attribute
+            description: A flag indicating whether the message should not be attributed.
+          - name: sent
+            description: The number of times the message was sent.
+          - name: impressions
+            description: The number of times the message was viewed.
+          - name: clicks
+            description: The number of times the message was clicked.
+          - name: engagements
+            description: The number of times the message was engaged with.
+          - name: actions
+            description: The number of actions taken on the message.
+          - name: leads
+            description: The number of leads generated from the message.
+          - name: total_actions
+            description: The total number of actions taken on the message.
+          - name: unique_actions
+            description: The number of unique actions taken on the message.
+          - name: unsubscribes
+            description: The number of times users unsubscribed as a result of the message.
+          - name: complaints
+            description: The number of times users reported the message as spam or inappropriate.
+          - name: soft_bounces
+            description: The number of times the message failed to be delivered due to a temporary issue.
+          - name: hard_bounces
+            description: The number of times the message failed to be delivered due to a permanent issue.
+          - name: blocked
+            description: The number of times the message was blocked by a spam filter.
+          - name: transactions
+            description: The number of transactions resulting from the message.
+          - name: revenue
+            description: The total revenue generated from the message.
+          - name: spend
+            description: The amount spent on the message.
+          - name: attributed_revenue
+            description: The revenue attributed to the message.
+          - name: attributed_transactions
+            description: The number of transactions attributed to the message.
+          - name: attributed_revenue_day_1
+            description: The revenue attributed to the message within one day.
+          - name: attributed_transactions_day_1
+            description: The number of transactions attributed to the message within one day.
+          - name: attributed_revenue_day_6
+            description: The revenue attributed to the message within six days.
+          - name: attributed_transactions_day_6
+            description: The number of transactions attributed to the message within six days.
+          - name: attributed_recurring_revenue
+            description: The recurring revenue attributed to the message.
+          - name: attributed_recurring_transactions
+            description: The number of recurring transactions attributed to the message.
+          - name: attributed_initial_recurring_revenue
+            description: The initial recurring revenue attributed to the message.
+          - name: attributed_initial_recurring_transactions
+            description: The number of initial recurring transactions attributed to the message.
+          - name: attributed_subsequent_recurring_revenue
+            description: The subsequent recurring revenue attributed to the message.
+          - name: attributed_subsequent_recurring_transactions
+            description: The number of subsequent recurring transactions attributed to the message.
+          - name: attributed_min_amount
+            description: The minimum amount of revenue attributed to the message.
+          - name: origin_person_count
+            description: The number of people who received the message.
+          - name: recurtype
+            description: The type of recurring revenue.
+          - name: goal
+            description: Goal of the message.
+          - name: channel_type
+            description: Type of the channel of the message.
+          - name: appeal
+            description: The appeal used in the message.
+          - name: campaign_label
+            description: The label of the campaign.
+          - name: audience
+            description: The audience targeted by the message.
+          - name: label
+            description: The label of the message.
+          - name: subject
+            description: The subject of the message.
+          - name: campaign_name
+            description: The name of the campaign under which the email was sent. This is usually defined in the CRM/email software.
+          - name: campaign
+            description: Identifier for the campaign. Might be defined by end-user.
+          - name: account_prefix
+            description: Identifier for the account which the message was sent from.
+          - name: from_name
+            description: Name that appears in 'From' line on email client. NOT the email address, that is from_email.
+          - name: preview_url
+            description: Preview URL associated with the email.
+          - name: primary_source_code
+            description: Source Code associated with this particular email.
+          - name: primary_source_code_override
+            description: Optional override applied to source code.
+          - name: final_primary_source_code
+            description: COALESCE of primary_source_code_override and primary_source_code.
+
       - name: global_message
-    
+        description: "Contains information about a global message."
+        columns:
+          - name: message_id
+            description: "Unique identifier for the message."
+          - name: channel
+            description: "The channel where the message was sent."
+          - name: channel_label
+            description: "A label for the channel where the message was sent."
+          - name: type
+            description: "The type of message sent."
+          - name: status
+            description: "The status of the message (e.g. sent, failed)."
+          - name: publish_date
+            description: "The date when the message was published."
+          - name: campaign_id
+            description: "Unique identifier for the campaign associated with the message."
+          - name: bot_id
+            description: "Unique identifier for the bot that sent the message."
+          - name: submodule
+            description: "The submodule of the bot that sent the message."
+          - name: remote_id
+            description: "The remote identifier associated with the message."
+          - name: do_not_attribute
+            description: "Whether the message should not be attributed."
+          - name: label
+            description: "A label for the message."
+          - name: subject
+            description: "The subject of the message."
+          - name: campaign_name
+            description: "The name of the campaign associated with the message."
+          - name: from_name
+            description: "The name of the sender of the message."
+          - name: preview_url
+            description: "The URL to preview the message."
+          - name: primary_source_code
+            description: "The primary source code associated with the message."
+          - name: primary_source_code_override
+            description: "Override value for primary source code."
+          - name: final_primary_source_code
+            description: "The final primary source code associated with the message."

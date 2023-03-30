@@ -1,14 +1,13 @@
 """ This module compiles and generates a sources YML in dbt based on a regex match """
 
-#!/usr/bin/env python
 # coding: utf-8
-#TODO: Make source_regex_mappings into an external json file
+# TODO: Make source_regex_mappings into an external json file
 
 import os
 import re
 import json
 
-import ruamel.yaml
+from utils import initialize_yaml
 from google.cloud import bigquery
 from google.oauth2 import service_account
 
@@ -37,22 +36,22 @@ source_regex_mappings = {
                    r'^everyaction_[A-Za-z0-9]{3}_message$'
                    ]
     },
-     'frakture_everyaction_person.yml': {
+    'frakture_everyaction_person.yml': {
         'schema': 'src_frakture',
         'tables': [r'^everyaction_[A-Za-z0-9]{3}_per_person_message_stat$',
                    r'^everyaction_[A-Za-z0-9]{3}_person$',
                    ]
     },
-     'frakture_sfmc_person.yml': {
+    'frakture_sfmc_person.yml': {
         'schema': 'src_frakture',
         'tables': [r'^sfmc_[A-Za-z0-9]{3}_per_person_message_stat$',
                    r'^sfmc_[A-Za-z0-9]{3}_person$',
                    ]
-     }
+    }
 }
 
 CREDENTIALS_HELPTEXT = """
-If you'd like to know how to generate a credentials json go here: 
+If you'd like to know how to generate a credentials json go here:
 https://docs.getdbt.com/tutorial/setting-up#generate-bigquery-credentials
 
 We need to use your Big Query Credentials to access the database and build out sources.
@@ -108,9 +107,11 @@ def get_client(credentials_path):
     :return: A BigQuery client instance.
     """
     credentials = service_account.Credentials.from_service_account_file(
-        credentials_path, scopes=["https://www.googleapis.com/auth/cloud-platform"],
+        credentials_path, scopes=["https://www.googleapis.com/auth/cloud-platform"], )
+    return bigquery.Client(
+        credentials=credentials,
+        project=credentials.project_id,
     )
-    return bigquery.Client(credentials=credentials, project=credentials.project_id, )
 
 
 def add_sources_to_yml(dbt_project_yml, sources_directory, client):
@@ -137,10 +138,12 @@ def add_sources_to_yml(dbt_project_yml, sources_directory, client):
             all_tables = [row[0] for row in query_job]
             for table_regex in source_regex_mappings[source_yml]['tables']:
                 r = re.compile(table_regex)
-                matching_tables = list(filter(r.match, all_tables))  # Read Note below
+                matching_tables = list(
+                    filter(r.match, all_tables))  # Read Note below
                 for table in matching_tables:
                     if table not in dbt_project_yml['vars']['sources'][source]['tables']:
-                        dbt_project_yml['vars']['sources'][source]['tables'].append({'name':table})
+                        dbt_project_yml['vars']['sources'][source]['tables'].append({
+                                                                                    'name': table})
     return dbt_project_yml
 
 
@@ -157,9 +160,9 @@ def inplace_or_copy(filetype):
 
 
 def main(
-    dbt_project_path='', dbt_credentials_path='', project_id='', 
+    dbt_project_path='', dbt_credentials_path='', project_id='',
     yaml=None, dbt_models_sources_path=''
-    ):
+):
     """
     The main function that runs the script.
     :param dbt_project_path: The file path of the dbt_project.yml file.
@@ -169,22 +172,23 @@ def main(
     :param dbt_models_sources_path: The directory where the source files are located.
     """
     if not dbt_project_path:
-        dbt_project_path = input("Please enter the full path of the dbt_project.yml\
+        dbt_project_path = input(
+            "Please enter the full path of the dbt_project.yml\
                                 you'd like to modify:\n")
     if not dbt_credentials_path:
         dbt_credentials_path = input(CREDENTIALS_HELPTEXT)
     if not project_id:
         project_id = get_project_id(dbt_credentials_path)
     if not yaml:
-        yaml = ruamel.yaml.YAML()
-        yaml.indent(mapping=4, sequence=4, offset=2)
-        yaml.preserve_quotes = True
+        yaml = initialize_yaml()
     dbt_project_yml = load_dbt_project_yml(dbt_project_path, yaml)
     set_database(dbt_project_yml, project_id)
     client = get_client(dbt_credentials_path)
     if not dbt_models_sources_path:
-        dbt_models_sources_path = input("Please give the absolute path of the sources directory:\n")
-    dbt_project_yml = add_sources_to_yml(dbt_project_yml, dbt_models_sources_path, client)
+        dbt_models_sources_path = input(
+            "Please give the absolute path of the sources directory:\n")
+    dbt_project_yml = add_sources_to_yml(
+        dbt_project_yml, dbt_models_sources_path, client)
     copy_choice = inplace_or_copy("dbt_project")
     file, extension = os.path.splitext(dbt_project_path)
     with open(file + copy_choice + extension, 'w', encoding='utf-8') as f:

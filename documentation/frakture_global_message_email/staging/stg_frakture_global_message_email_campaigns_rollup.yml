@@ -1,29 +1,23 @@
-# TODO Write documentation for stg_frakture_global_message_email_campaigns_rollup [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/frakture_global_message_email/staging/stg_frakture_global_message_email_campaigns_rollup.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/frakture_global_message_email/staging/stg_frakture_global_message_email_campaigns_rollup.yml
 version: 2
 
 models:
   - name: stg_frakture_global_message_email_campaigns_rollup
-    description: Please replace this default description.
+    description: "This table contains rolled up information for email campaigns found in Frakture."
     columns:
       - name: message_id
-        description: ""
+        description: "The unique identifier for the email campaign message."
 
       - name: crm_entity
-        description: ""
+        description: "The CRM entity associated with the email campaign."
 
       - name: source_code_entity
-        description: ""
+        description: "The source code entity associated with the email campaign."
 
       - name: audience
-        description: ""
+        description: "The target audience for the email campaign."
 
       - name: recurtype
-        description: ""
+        description: "The recurrence type for the email campaign."
 
       - name: campaign_name
-        description: ""
-
+        description: "The name of the email campaign."
