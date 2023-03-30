@@ -96,7 +96,9 @@ SUM((CASE WHEN event_name = 'scroll'
  END) * percent_scrolled/(CASE WHEN event_name = 'scroll'
   THEN 1 ELSE 0 END)) as avg_percent_scrolled, 
 SUM(engagement_time_msec) as engagement_time_msecs,
-COUNT(DISTINCT session_id) as unique_sessions
+COUNT(DISTINCT session_id) as unique_sessions,
+COUNT(DISTINCT user_id) as unique_users,
+COUNT(user_id) as total_users
 
 FROM {{ ref(reference_name) }}
 GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
