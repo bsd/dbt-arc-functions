@@ -68,7 +68,7 @@ REVISION_CHOICE_HELPTEXT = """Your current active branch of dbt-arc-functions is
 
 The most recent release is {most_recent_release}
 
-It's best if you use a branch that's checked out otherwise models might not be the same. 
+It's best if you use a branch that's checked out otherwise models might not be the same.
 Please type the release or branch you'd like to use (pressing return will choose active branch):
 """
 
@@ -272,7 +272,7 @@ def get_branch_choices():
     # get the current commit
     current_commit = repo.commit()
     # if the current commit is a tag, return the tag name
-    active_branch =  next(
+    active_branch = next(
         (str(tag) for tag in repo.tags if current_commit == tag.commit),
         repo.active_branch.name,
     )
