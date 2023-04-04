@@ -8,9 +8,11 @@ import os
 import re
 import json
 
-from utils import initialize_yaml
+
 from google.cloud import bigquery
 from google.oauth2 import service_account
+from utils import initialize_yaml
+
 
 source_regex_mappings = {
     'frakture_twitter_paidmedia.yml': {
@@ -52,9 +54,7 @@ source_regex_mappings = {
     'ga4_google_analytics_web.yml': {
         'schema': [r'^analytics_%', 
                    ],
-### ADD IDENTIFER AND SOURCE YEML
     },
-
 }
 
 CREDENTIALS_HELPTEXT = """
@@ -119,7 +119,7 @@ def get_schema(regex_pattern, client):
             return dataset.dataset_id
 
     # If no matching dataset is found, raise an exception
-    raise Exception(f"No dataset found matching the regex pattern: {regex_pattern}")
+    raise ValueError(f"No dataset found matching the regex pattern: {regex_pattern}")
 
 
 def get_client(credentials_path):
