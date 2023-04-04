@@ -11,10 +11,10 @@ and cleans up the dbt project so that it's ready"""
 
 from os import path
 from shutil import rmtree
-import requests
-import git
 from utils import initialize_yaml
 
+import git
+import requests
 
 CREDENTIALS_HELPTEXT = """
 If you'd like to know how to generate a credentials json go here:
@@ -64,23 +64,16 @@ packages_dict_template = {
 
 # TODO: ask user if they want their active branch or the latest release of
 # dbt-arc-functions
+REVISION_CHOICE_HELPTEXT = """Your current active branch of dbt-arc-functions is {active_branch}
 
-REVISION_CHOICE_HELPTEXT = """Your current active branch of
-dbt-arc-functions is {active_branch_name}.
+The most recent release is {most_recent_release}
 
-For packages.yml file, if you'd like to reference 
-another branch, or an updated revision of the repository,
-    (for example, v4.5.0), enter it here.
-
-Else, press return. (If you don't know what to do, 
-press return.)
+It's best if you use a branch that's checked out otherwise models might not be the same.
+Please type the release or branch you'd like to use (pressing return will choose active branch):
 """
 
-DBT_ARTIFACTS_CHOICE_HELPTEXT = """Would you like to add 
-dbt-artifacts to this repo?
-dbt-artifacts produces useful artifacts in
-your BigQuery instance which allow you to track 
-recent dbt runs.
+DBT_ARTIFACTS_CHOICE_HELPTEXT = """Would you like to add dbt-artifacts to this repo?
+dbt-artifacts produces useful artifacts in your BigQuery instance which allow you to track recent dbt runs.
 Enter y for (y)es and n for (n)o. (We recommend y):
 """
 
@@ -226,8 +219,7 @@ def update_profile_yml(project_id, project_id_underscore, yaml):
 
 def inplace_or_copy(filetype):
     """
-    Prompts the user to choose between replacing the existing file or making
-    a copy of the file.
+    Prompts the user to choose between replacing the existing file or making a copy of the file.
 
     :param filetype: Type of file to be replaced or copied
     :return: '_copy' if the user wants to make a copy, else an empty string
@@ -266,9 +258,30 @@ def get_dbt_artifacts_with_version():
 # 'revision': version}
 
 
+def get_branch_choices():
+    """Get the name of the current active branch for the current repository.
+    If the current commit is a tag,
+    returns the name of the tag.
+
+    Returns:
+        str: The name of the current active branch or tag.
+    """
+    github_response = requests.get(url='https://api.github.com/repos/bsd/dbt-arc-functions/releases', timeout=60)
+    most_recent_release: str = github_response.json()[0]['tag_name']
+    repo = git.Repo(search_parent_directories=True)
+    # get the current commit
+    current_commit = repo.commit()
+    # if the current commit is a tag, return the tag name
+    active_branch = next(
+        (str(tag) for tag in repo.tags if current_commit == tag.commit),
+        repo.active_branch.name,
+    )
+    return {'most_recent_release': most_recent_release, 'active_branch': active_branch}
+
+
 def write_packages_yml(
         dbt_packages_path,
-        active_branch_name,
+        branch_choices,
         yaml,
         dbt_artifacts_choice):
     """
@@ -281,10 +294,10 @@ def write_packages_yml(
     """
     packages_dict = packages_dict_template.copy()
     revision_choice = input(REVISION_CHOICE_HELPTEXT.format(
-        active_branch_name=active_branch_name))
+        active_branch=branch_choices['active_branch'], most_recent_release=branch_choices['most_recent_release']))
     # if the user enters a revision, use that, otherwise use the active branch
     # name
-    revision = revision_choice or active_branch_name
+    revision = revision_choice or branch_choices['active_branch']
     # set the revision for the dbt-arc-functions package
     packages_dict['packages'][1]['revision'] = revision
     # if the user wants to use dbt-artifacts, add it to the packages.yml file
@@ -298,30 +311,11 @@ def write_packages_yml(
             yaml.dump(packages_dict, f)
 
 
-def get_active_branch_name():
-    """Get the name of the current active branch for the current repository.
-    If the current commit is a tag,
-    returns the name of the tag.
-
-    Returns:
-        str: The name of the current active branch or tag.
-    """
-    repo = git.Repo(search_parent_directories=True)
-    # get the current commit
-    current_commit = repo.commit()
-    # if the current commit is a tag, return the tag name
-    return next(
-        (str(tag) for tag in repo.tags if current_commit == tag.commit),
-        repo.active_branch.name,
-    )
-
-
 def main():
     """
     main
 
-    This function modifies an existing dbt_project.yml 
-        file by changing the name,
+    This function modifies an existing dbt_project.yml file by changing the name,
         adding a package and a model, updating the
         credentials file reference in the profile.yml file,
         and deleting the 'models/example' folder.
@@ -359,11 +353,11 @@ def main():
     # get the path to the packages.yml file
     dbt_packages_path = path.join(dbt_base_path, 'packages.yml')
     # get the name of the active branch of dbt-arc-functions
-    active_branch_name = get_active_branch_name()
+    branch_choices = get_branch_choices()
     # write the packages.yml file
     write_packages_yml(
         dbt_packages_path,
-        active_branch_name,
+        branch_choices,
         yaml,
         dbt_artifacts_choice)
     # get the path to the models/example folder
