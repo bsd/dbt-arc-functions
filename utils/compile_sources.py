@@ -52,7 +52,7 @@ source_regex_mappings = {
                    ]
     },
     'ga4_google_analytics_web.yml': {
-        'schema': [r'^analytics_%', 
+        'schema': [r'^analytics_%',
                    ],
     },
 }
