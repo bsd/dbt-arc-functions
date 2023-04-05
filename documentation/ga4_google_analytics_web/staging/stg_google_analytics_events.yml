@@ -1,0 +1,336 @@
+models:
+  - name: stg_google_analytics_events
+    description: ""
+    columns:
+      - name: event_date
+        description: ""
+
+      - name: event_timestamp
+        description: ""
+
+      - name: event_name
+        description: ""
+
+      - name: event_params
+        description: ""
+
+      - name: key
+        description: ""
+
+      - name: value
+        description: ""
+
+      - name: string_value
+        description: ""
+
+      - name: int_value
+        description: ""
+
+      - name: float_value
+        description: ""
+
+      - name: double_value
+        description: ""
+
+      - name: event_previous_timestamp
+        description: ""
+
+      - name: event_value_in_usd
+        description: ""
+
+      - name: event_bundle_sequence_id
+        description: ""
+
+      - name: event_server_timestamp_offset
+        description: ""
+
+      - name: user_id
+        description: ""
+
+      - name: user_pseudo_id
+        description: ""
+
+      - name: privacy_info
+        description: ""
+
+      - name: analytics_storage
+        description: ""
+
+      - name: ads_storage
+        description: ""
+
+      - name: uses_transient_token
+        description: ""
+
+      - name: user_properties
+        description: ""
+
+      - name: key
+        description: ""
+
+      - name: value
+        description: ""
+
+      - name: string_value
+        description: ""
+
+      - name: int_value
+        description: ""
+
+      - name: float_value
+        description: ""
+
+      - name: double_value
+        description: ""
+
+      - name: set_timestamp_micros
+        description: ""
+
+      - name: user_first_touch_timestamp
+        description: ""
+
+      - name: user_ltv
+        description: ""
+
+      - name: revenue
+        description: ""
+
+      - name: currency
+        description: ""
+
+      - name: device
+        description: ""
+
+      - name: category
+        description: ""
+
+      - name: mobile_brand_name
+        description: ""
+
+      - name: mobile_model_name
+        description: ""
+
+      - name: mobile_marketing_name
+        description: ""
+
+      - name: mobile_os_hardware_model
+        description: ""
+
+      - name: operating_system
+        description: ""
+
+      - name: operating_system_version
+        description: ""
+
+      - name: vendor_id
+        description: ""
+
+      - name: advertising_id
+        description: ""
+
+      - name: language
+        description: ""
+
+      - name: is_limited_ad_tracking
+        description: ""
+
+      - name: time_zone_offset_seconds
+        description: ""
+
+      - name: browser
+        description: ""
+
+      - name: browser_version
+        description: ""
+
+      - name: web_info
+        description: ""
+
+      - name: browser
+        description: ""
+
+      - name: browser_version
+        description: ""
+
+      - name: hostname
+        description: ""
+
+      - name: geo
+        description: ""
+
+      - name: continent
+        description: ""
+
+      - name: country
+        description: ""
+
+      - name: region
+        description: ""
+
+      - name: city
+        description: ""
+
+      - name: sub_continent
+        description: ""
+
+      - name: metro
+        description: ""
+
+      - name: app_info
+        description: ""
+
+      - name: id
+        description: ""
+
+      - name: version
+        description: ""
+
+      - name: install_store
+        description: ""
+
+      - name: firebase_app_id
+        description: ""
+
+      - name: install_source
+        description: ""
+
+      - name: traffic_source
+        description: ""
+
+      - name: name
+        description: ""
+
+      - name: medium
+        description: ""
+
+      - name: source
+        description: ""
+
+      - name: stream_id
+        description: ""
+
+      - name: platform
+        description: ""
+
+      - name: event_dimensions
+        description: ""
+
+      - name: hostname
+        description: ""
+
+      - name: ecommerce
+        description: ""
+
+      - name: total_item_quantity
+        description: ""
+
+      - name: purchase_revenue_in_usd
+        description: ""
+
+      - name: purchase_revenue
+        description: ""
+
+      - name: refund_value_in_usd
+        description: ""
+
+      - name: refund_value
+        description: ""
+
+      - name: shipping_value_in_usd
+        description: ""
+
+      - name: shipping_value
+        description: ""
+
+      - name: tax_value_in_usd
+        description: ""
+
+      - name: tax_value
+        description: ""
+
+      - name: unique_items
+        description: ""
+
+      - name: transaction_id
+        description: ""
+
+      - name: items
+        description: ""
+
+      - name: item_id
+        description: ""
+
+      - name: item_name
+        description: ""
+
+      - name: item_brand
+        description: ""
+
+      - name: item_variant
+        description: ""
+
+      - name: item_category
+        description: ""
+
+      - name: item_category2
+        description: ""
+
+      - name: item_category3
+        description: ""
+
+      - name: item_category4
+        description: ""
+
+      - name: item_category5
+        description: ""
+
+      - name: price_in_usd
+        description: ""
+
+      - name: price
+        description: ""
+
+      - name: quantity
+        description: ""
+
+      - name: item_revenue_in_usd
+        description: ""
+
+      - name: item_revenue
+        description: ""
+
+      - name: item_refund_in_usd
+        description: ""
+
+      - name: item_refund
+        description: ""
+
+      - name: coupon
+        description: ""
+
+      - name: affiliation
+        description: ""
+
+      - name: location_id
+        description: ""
+
+      - name: item_list_id
+        description: ""
+
+      - name: item_list_name
+        description: ""
+
+      - name: item_list_index
+        description: ""
+
+      - name: promotion_id
+        description: ""
+
+      - name: promotion_name
+        description: ""
+
+      - name: creative_name
+        description: ""
+
+      - name: creative_slot
+        description: ""
