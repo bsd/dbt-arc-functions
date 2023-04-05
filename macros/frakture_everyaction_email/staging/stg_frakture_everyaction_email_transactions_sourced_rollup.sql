@@ -17,7 +17,7 @@ SELECT
     COUNT(CASE WHEN transactions.is_recurring = '1' then transactions.remote_transaction_id end) AS total_monthly_gifts
  FROM  {{ ref(email_summary) }} email_summary
  FULL OUTER JOIN {{ ref(transactions) }} transactions 
- ON CAST(email_summary.source_code as STRING) = CAST(transactions.source_code as STRING)
+ ON CAST(email_summary.final_primary_source_code as STRING) = CAST(transactions.source_code as STRING)
  GROUP BY 1 )
 
 SELECT 
