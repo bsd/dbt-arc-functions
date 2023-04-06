@@ -33,7 +33,8 @@ source_regex_mappings = {
     'frakture_everyaction_email.yml': {
         'schema': 'src_frakture',
         'tables': [r'^everyaction_[A-Za-z0-9]{3}_email_summary$',
-                   r'^everyaction_[A-Za-z0-9]{3}_message$'
+                   r'^everyaction_[A-Za-z0-9]{3}_message$',
+                   r'^everyaction_[A-Za-z0-9]{3}_transaction$',
                    ]
     },
     'frakture_everyaction_person.yml': {
@@ -46,6 +47,13 @@ source_regex_mappings = {
         'schema': 'src_frakture',
         'tables': [r'^sfmc_[A-Za-z0-9]{3}_per_person_message_stat$',
                    r'^sfmc_[A-Za-z0-9]{3}_person$',
+                   ]
+    },
+    'frakture_actionkit_email.yml': {
+        'schema': 'src_frakture',
+        'tables': [r'^actionkit_[A-Za-z0-9]{3}_message$',
+                   r'^actionkit_[A-Za-z0-9]{3}_email_summary$',
+                   r'^actionkit_[A-Za-z0-9]{3}_transaction$'
                    ]
     }
 }
