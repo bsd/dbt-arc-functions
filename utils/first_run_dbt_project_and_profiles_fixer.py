@@ -98,7 +98,8 @@ If you enter nothing, will default to UTC. If you enter an invalid timezone stri
 def get_timezone_choice():
     while True:
         timezone_choice = input(TIMEZONE_CHOICE_HELPTEXT) or 'UTC'
-        if timezone_choice in pytz.all_timezones: break
+        if timezone_choice in pytz.all_timezones:
+            break
     return timezone_choice
 
 
