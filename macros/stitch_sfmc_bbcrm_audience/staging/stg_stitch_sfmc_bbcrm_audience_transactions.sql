@@ -10,7 +10,7 @@ Select
         SAFE_CAST(inbound_channel as STRING) as channel,
         SAFE_CAST(amount as FLOAT64) as amount,
         SAFE_CAST(appeal as STRING) as appeal,
-        SAFE_CAST(application as STRING) as donation_type,
+        SAFE_CAST(application as STRING) as application_type,
         CASE WHEN lower(application) = 'recurring gift' 
         THEN SAFE_CAST(1 as BOOLEAN) 
         ELSE SAFE_CAST(0 as BOOLEAN) END as recurring
