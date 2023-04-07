@@ -1,36 +1,61 @@
 {% macro create_stg_frakture_everyaction_email_transactions_sourced_rollup(
-    email_summary='stg_frakture_everyaction_email_summary_unioned',
-    transactions='stg_frakture_everyaction_transactions_summary_unioned'
-    ) %}
+    email_summary="stg_frakture_everyaction_email_summary_unioned",
+    transactions="stg_frakture_everyaction_transactions_summary_unioned"
+) %}
 
-WITH GROUPED as (
-SELECT 
-    email_summary.message_id AS message_id,
-    SUM(SAFE_CAST(transactions.amount AS numeric)) AS total_revenue,
-    COUNT(DISTINCT transactions.remote_transaction_id) AS total_gifts,
-    COUNT(DISTINCT transactions.remote_person_id) AS total_donors, 
-    SUM(CASE WHEN transactions.recurs is NULL then transactions.amount end) AS one_time_revenue,
-    COUNT(CASE WHEN transactions.recurs is NULL then transactions.remote_transaction_id end) AS one_time_gifts,
-    SUM(CASE WHEN transactions.recurring_number = 1 then transactions.amount end) AS new_monthly_revenue,
-    COUNT(CASE WHEN transactions.recurring_number = 1 then transactions.remote_transaction_id end) AS new_monthly_gifts,
-    SUM(CASE WHEN transactions.recurs = 'monthly' then transactions.amount end) AS total_monthly_revenue,
-    COUNT(CASE WHEN transactions.recurs = 'monthly' then transactions.remote_transaction_id end) AS total_monthly_gifts
- FROM  {{ ref(email_summary) }} email_summary
- FULL OUTER JOIN {{ ref(transactions) }} transactions 
- ON CAST(email_summary.final_primary_source_code as STRING) = CAST(transactions.source_code as STRING)
- GROUP BY 1 )
+with
+    grouped as (
+        select
+            email_summary.message_id as message_id,
+            sum(safe_cast(transactions.amount as numeric)) as total_revenue,
+            count(distinct transactions.remote_transaction_id) as total_gifts,
+            count(distinct transactions.remote_person_id) as total_donors,
+            sum(
+                case when transactions.recurs is null then transactions.amount end
+            ) as one_time_revenue,
+            count(
+                case
+                    when transactions.recurs is null
+                    then transactions.remote_transaction_id
+                end
+            ) as one_time_gifts,
+            sum(
+                case when transactions.recurring_number = 1 then transactions.amount end
+            ) as new_monthly_revenue,
+            count(
+                case
+                    when transactions.recurring_number = 1
+                    then transactions.remote_transaction_id
+                end
+            ) as new_monthly_gifts,
+            sum(
+                case when transactions.recurs = 'monthly' then transactions.amount end
+            ) as total_monthly_revenue,
+            count(
+                case
+                    when transactions.recurs = 'monthly'
+                    then transactions.remote_transaction_id
+                end
+            ) as total_monthly_gifts
+        from {{ ref(email_summary) }} email_summary
+        full outer join
+            {{ ref(transactions) }} transactions
+            on cast(email_summary.final_primary_source_code as string)
+            = cast(transactions.source_code as string)
+        group by 1
+    )
 
-SELECT 
-    SAFE_CAST(message_id as STRING) AS message_id,
-    SAFE_CAST(total_revenue as NUMERIC) AS total_revenue,
-    SAFE_CAST(total_gifts as INT) AS total_gifts,
-    SAFE_CAST(total_donors as INT) AS total_donors,
-    SAFE_CAST(one_time_gifts as INT) AS one_time_gifts,
-    SAFE_CAST(one_time_revenue as NUMERIC) AS one_time_revenue,
-    SAFE_CAST(new_monthly_revenue  AS numeric) AS new_monthly_revenue,
-    SAFE_CAST(new_monthly_gifts  AS int) AS new_monthly_gifts,
-    SAFE_CAST(total_monthly_revenue AS numeric) AS total_monthly_revenue,
-    SAFE_CAST(total_monthly_gifts  AS int) AS total_monthly_gifts
-FROM GROUPED
+select
+    safe_cast(message_id as string) as message_id,
+    safe_cast(total_revenue as numeric) as total_revenue,
+    safe_cast(total_gifts as int) as total_gifts,
+    safe_cast(total_donors as int) as total_donors,
+    safe_cast(one_time_gifts as int) as one_time_gifts,
+    safe_cast(one_time_revenue as numeric) as one_time_revenue,
+    safe_cast(new_monthly_revenue as numeric) as new_monthly_revenue,
+    safe_cast(new_monthly_gifts as int) as new_monthly_gifts,
+    safe_cast(total_monthly_revenue as numeric) as total_monthly_revenue,
+    safe_cast(total_monthly_gifts as int) as total_monthly_gifts
+from grouped
 
 {% endmacro %}

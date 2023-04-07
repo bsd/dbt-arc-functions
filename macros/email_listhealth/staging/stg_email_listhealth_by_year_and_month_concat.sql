@@ -1,27 +1,27 @@
 {% macro create_stg_email_listhealth_year_and_month_concat(
-    reference_name='stg_email_listhealth_by_year_and_month'
+    reference_name="stg_email_listhealth_by_year_and_month"
 ) %}
 
+with
+    base as (
+        select
+            concat(extract_year, '-', extract_month, '-01') as concat_date,
+            max_recipients,
+            max_delivered,
+            total_hard_bounces,
+            total_unsubscribes,
+            total_complaints
+        from {{ ref(reference_name) }} mart_email
+    )
 
-WITH BASE AS (SELECT
-CONCAT(extract_year,'-',extract_month,'-01') as concat_date,
-max_recipients,
-max_delivered,
-total_hard_bounces,
-total_unsubscribes,
-total_complaints
-FROM  {{ ref(reference_name) }} mart_email
-)
-
-SELECT
-SAFE_CAST(concat_date AS DATE) AS date_month,
-SAFE_CAST(max_recipients AS INT) AS max_recipients,
-SAFE_CAST(max_delivered AS INT) AS max_delivered,
-SAFE_CAST(total_unsubscribes AS INT) AS total_unsubscribes,
-SAFE_CAST(total_hard_bounces AS INT) AS total_hard_bounces,
-SAFE_CAST(total_complaints AS INT) AS total_complaints 
-FROM BASE
-WHERE concat_date IS NOT NULL
+select
+    safe_cast(concat_date as date) as date_month,
+    safe_cast(max_recipients as int) as max_recipients,
+    safe_cast(max_delivered as int) as max_delivered,
+    safe_cast(total_unsubscribes as int) as total_unsubscribes,
+    safe_cast(total_hard_bounces as int) as total_hard_bounces,
+    safe_cast(total_complaints as int) as total_complaints
+from base
+where concat_date is not null
 
 {% endmacro %}
-

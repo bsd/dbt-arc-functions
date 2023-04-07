@@ -1,17 +1,16 @@
-{% macro create_stg_stitch_sfmc_email_job(
-    reference_name='stg_src_stitch_email_job') %}
-SELECT 
-   DISTINCT SAFE_CAST(job_id AS STRING) AS message_id,
-    SAFE_CAST(email_id as STRING) AS email_id,
-    SAFE_CAST(from_name AS STRING) AS from_name,
-    SAFE_CAST(from_email AS STRING) AS from_email,
-    SAFE_CAST(coalesce(sched_dt,pickup_dt) AS TIMESTAMP) AS best_guess_timestamp,
-    SAFE_CAST(sched_dt AS TIMESTAMP) AS scheduled_timestamp,
-    SAFE_CAST(pickup_dt AS TIMESTAMP) AS pickup_timestamp,
-    SAFE_CAST(delivered_dt AS TIMESTAMP) AS delivered_timestamp,
-    SAFE_CAST(email_name AS STRING) AS email_name,
-    SAFE_CAST(email_subject AS STRING) AS email_subject,
-    SAFE_CAST(category as STRING) AS category,
-    SAFE_CAST(NULL AS STRING) AS source_code
-FROM {{ ref(reference_name) }}
+{% macro create_stg_stitch_sfmc_email_job(reference_name="stg_src_stitch_email_job") %}
+select distinct
+    safe_cast(job_id as string) as message_id,
+    safe_cast(email_id as string) as email_id,
+    safe_cast(from_name as string) as from_name,
+    safe_cast(from_email as string) as from_email,
+    safe_cast(coalesce(sched_dt, pickup_dt) as timestamp) as best_guess_timestamp,
+    safe_cast(sched_dt as timestamp) as scheduled_timestamp,
+    safe_cast(pickup_dt as timestamp) as pickup_timestamp,
+    safe_cast(delivered_dt as timestamp) as delivered_timestamp,
+    safe_cast(email_name as string) as email_name,
+    safe_cast(email_subject as string) as email_subject,
+    safe_cast(category as string) as category,
+    safe_cast(null as string) as source_code
+from {{ ref(reference_name) }}
 {% endmacro %}
