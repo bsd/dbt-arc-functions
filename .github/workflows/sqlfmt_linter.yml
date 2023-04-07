@@ -1,4 +1,4 @@
-name: sqlfmt
+name: sqlfmt linter
 
 on:
   push:
