@@ -1,17 +1,20 @@
 {% macro create_stg_src_stitch_sfmc_bbcrm_transaction() %}
-{% set relations= dbt_arc_functions.relations_that_match_regex('^revenue$',
+{% set relations = dbt_arc_functions.relations_that_match_regex(
+    "^revenue$",
     is_source=True,
-  source_name='src_stitch_bbcrm',
-  schema_to_search='src_stitch_bbcrm_authorized') %}
+    source_name="src_stitch_bbcrm",
+    schema_to_search="src_stitch_bbcrm_authorized",
+) %}
 
-with revenue as (
-Select DISTINCT
+with
+    revenue as (
+        select distinct
             __bbcrmlookupid_ as bbcrmlookupid,
             constituentsystemrecordid as constituentsystemrecordid,
-            SAFE_CAST(statuscode as string) as statuscode,
-            SAFE_CAST(recordid as string) as recordid,
+            safe_cast(statuscode as string) as statuscode,
+            safe_cast(recordid as string) as recordid,
             revenue_id as revenue_id,
-            SAFE_CAST(transaction_date as datetime) as transaction_date,
+            safe_cast(transaction_date as datetime) as transaction_date,
             payment_method as payment_method,
             recognition_amount as amount,
             inbound_channel as inbound_channel,
@@ -25,12 +28,13 @@ Select DISTINCT
             application as application,
             vendor_order_number as vendor_order_number,
             revenue_platform as revenue_platform,
-            SAFE_CAST(sfmc_dateadded as datetime) as sfmc_dateadded,
-            SAFE_CAST(sfmc_updatedate as datetime) as sfmc_updatedate
+            safe_cast(sfmc_dateadded as datetime) as sfmc_dateadded,
+            safe_cast(sfmc_updatedate as datetime) as sfmc_updatedate
 
         from ({{ dbt_utils.union_relations(relations) }})
 
-), current_fiscal_ranked as (
+    ),
+    current_fiscal_ranked as (
 
         select
             *,
@@ -40,10 +44,13 @@ Select DISTINCT
         from revenue
 
     ),
-    final as (select * except (row_num) from current_fiscal_ranked where row_num = 1 AND revenue_id != 'rev-44816929')
+    final as (
+        select * except (row_num)
+        from current_fiscal_ranked
+        where row_num = 1 and revenue_id != 'rev-44816929'
+    )
 select *
 from final
 where cast(transaction_date as datetime) < current_datetime()
 
 {% endmacro %}
-
