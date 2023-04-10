@@ -3,6 +3,7 @@ import subprocess
 import click
 import os
 
+
 def initialize_yaml():
     yaml = ruamel.yaml.YAML()
     yaml.indent(mapping=4, sequence=4, offset=2)
