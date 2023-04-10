@@ -10,6 +10,7 @@ def initialize_yaml():
     yaml.width = 5000
     return yaml
 
+
 def check_dbt_installed():
     try:
         subprocess.run(["dbt", "--version"], capture_output=True, check=False)
@@ -18,12 +19,14 @@ def check_dbt_installed():
             "dbt is not installed. Please install dbt before running this script.")
         raise e
 
+
 def check_profiles_file():
     if not os.path.exists(os.path.expanduser('~/.dbt/profiles.yml')):
         click.echo(
             "Could not find the profiles.yml file in the ~/.dbt/ directory.\
             Please check that it exists.")
         raise FileNotFoundError
+
 
 def run_dbt_subprocess(bash_command: str) -> str:
     try:
