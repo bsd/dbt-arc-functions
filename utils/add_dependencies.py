@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 """This script will add the dependencies to the models in your dbt project."""
 
-# TODO to add_dependencies for no version check
-
 import subprocess
 import click
 from os import path
 import re
 from utils import check_dbt_installed, check_profiles_file, run_dbt_subprocess
+
 
 def get_no_version_check_choice() -> str:
     print("Do you want dbt to run without checking dbt version? This can help if you are getting version errors.")
