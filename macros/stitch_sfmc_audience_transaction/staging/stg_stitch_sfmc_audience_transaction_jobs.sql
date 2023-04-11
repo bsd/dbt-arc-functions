@@ -17,6 +17,7 @@ select
     transactions.recurring,
     first_last.first_transaction_date,
     first_last.last_transaction_date,
+    first_last.previous_latest_transaction_date,
     cumulative.cumulative_amount,
     cumulative.cumulative_gifts,
     cumulative.cumulative_recurring_amount,
