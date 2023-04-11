@@ -3,7 +3,6 @@
     first_last = 'stg_stitch_sfmc_audience_first_last'
     cumulative = 'stg_stitch_sfmc_audience_cumulative'
     yoy = 'stg_stitch_sfmc_audience_yoy'
-    person = 'stg_src_stitch_sfmc_audience_person'
 ) %}
 
 select
@@ -33,6 +32,5 @@ from {{ ref(transactions) }} transactions
 join {{ ref(first_last) }} first_last using (transaction_id)
 join {{ ref(cumulative) }} cumulative using (transaction_id)
 join {{ ref(yoy) }} yoy using (person_id)
-left join {{ ref(person) }} person using (person_id)
 
 {% endmacro %}
