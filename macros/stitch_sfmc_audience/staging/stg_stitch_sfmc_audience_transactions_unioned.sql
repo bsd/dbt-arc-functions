@@ -1,4 +1,6 @@
 {% macro create_stg_stitch_sfmc_audience_transactions_unioned() %}
-{% set relations = dbt_arc_functions.relations_that_match_regex('^stg_stitch_sfmc_.*_audience_transaction$') %}
+{% set relations = dbt_arc_functions.relations_that_match_regex(
+    "^stg_stitch_sfmc_.*_audience_transaction$"
+) %}
 {{ dbt_utils.union_relations(relations) }}
 {% endmacro %}

@@ -1,17 +1,14 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_first_last(
-    reference_name = 'stg_src_stitch_sfmc_audience_transactions_unioned'
+    reference_name="stg_src_stitch_sfmc_audience_transactions_unioned"
 ) %}
 
-SELECT 
-transaction_id,
- MAX(transaction_date) OVER (PARTITION BY person_id) AS latest_transaction_date,
-  LAG(MAX(transaction_date) OVER (PARTITION BY person_id)) 
-  OVER (PARTITION BY person_id ORDER BY transaction_date) 
-  AS previous_latest_transaction_date
+select
+    transaction_id,
+    max(transaction_date) over (partition by person_id) as latest_transaction_date,
+    lag(max(transaction_date) over (partition by person_id)) over (
+        partition by person_id order by transaction_date
+    ) as previous_latest_transaction_date
 
-FROM {{ ref(reference_name) }}
+from {{ ref(reference_name) }}
 
 {% endmacro %}
-
-
-  

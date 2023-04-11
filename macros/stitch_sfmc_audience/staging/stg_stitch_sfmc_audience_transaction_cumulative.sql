@@ -1,31 +1,28 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_cumulative(
-    reference_name = 'stg_src_stitch_sfmc_audience_transactions_unioned'
+    reference_name="stg_src_stitch_sfmc_audience_transactions_unioned"
 ) %}
 
-SELECT 
-transaction_id,
-SUM(amount) OVER (PARTITION BY person_id ORDER BY transaction_date) AS cumulative_amount,
-COUNT(*) OVER (PARTITION BY person_id ORDER BY transaction_date) AS cumulative_gifts,
-SUM(CASE 
-  WHEN recurring = 0 THEN amount 
-  ELSE 0 
-END) OVER (PARTITION BY person_id ORDER BY transaction_date) AS cumulative_one_time_amount,
-COUNT(CASE 
-  WHEN recurring = 0 THEN 1
-  ELSE 0 
-END) OVER (PARTITION BY person_id ORDER BY transaction_date) AS cumulative_one_time_gifts,
-SUM(CASE 
-  WHEN recurring = 1 THEN amount 
-  ELSE 0 
-END) OVER (PARTITION BY person_id ORDER BY transaction_date) AS cumulative_recur_amount,
-COUNT(CASE 
-  WHEN recurring = 1 THEN 1
-  ELSE 0 
-END) OVER (PARTITION BY person_id ORDER BY transaction_date) AS cumulative_recur_gifts
+select
+    transaction_id,
+    sum(amount) over (
+        partition by person_id order by transaction_date
+    ) as cumulative_amount,
+    count(*) over (
+        partition by person_id order by transaction_date
+    ) as cumulative_gifts,
+    sum(case when recurring = 0 then amount else 0 end) over (
+        partition by person_id order by transaction_date
+    ) as cumulative_one_time_amount,
+    count(case when recurring = 0 then 1 else 0 end) over (
+        partition by person_id order by transaction_date
+    ) as cumulative_one_time_gifts,
+    sum(case when recurring = 1 then amount else 0 end) over (
+        partition by person_id order by transaction_date
+    ) as cumulative_recur_amount,
+    count(case when recurring = 1 then 1 else 0 end) over (
+        partition by person_id order by transaction_date
+    ) as cumulative_recur_gifts
 
-FROM {{ ref(reference_name) }}
+from {{ ref(reference_name) }}
 
 {% endmacro %}
-
-
-  
