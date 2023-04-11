@@ -1,7 +1,9 @@
 {% macro create_stg_frakture_everyaction_email_actions_rollup(
-    reference_name='stg_frakture_everyaction_email_summary_unioned') %}
-SELECT SAFE_CAST(message_id AS STRING) AS message_id,
-  SUM(SAFE_CAST(actions AS INT)) AS actions
-FROM  {{ ref(reference_name) }} 
-GROUP BY 1
+    reference_name="stg_frakture_everyaction_email_summary_unioned"
+) %}
+select
+    safe_cast(message_id as string) as message_id,
+    sum(safe_cast(actions as int)) as actions
+from {{ ref(reference_name) }}
+group by 1
 {% endmacro %}

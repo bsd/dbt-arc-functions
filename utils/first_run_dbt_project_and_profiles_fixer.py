@@ -15,6 +15,7 @@ from utils import initialize_yaml
 
 import git
 import requests
+import pytz
 
 CREDENTIALS_HELPTEXT = """
 If you'd like to know how to generate a credentials json go here:
@@ -77,6 +78,30 @@ dbt-artifacts produces useful artifacts in your BigQuery instance which allow yo
 Enter y for (y)es and n for (n)o. (We recommend y):
 """
 
+TIMEZONE_CHOICE_HELPTEXT = """Would you like to add a timezone to this project?
+This should be the timezone of your end-users so that they see data coming in on the
+ date + time they see in other products they use.
+This should be in the "timezone string" format, for reference:
+https://documentation.mersive.com/content/topics/api-timezones.htm
+
+Providing the US ones from East to West below so you can copy-paste:
+
+America/New_York
+America/Chicago
+America/Denver
+America/Los_Angeles
+
+If you enter nothing, will default to UTC. If you enter an invalid timezone string, will reprompt:
+"""
+
+
+def get_timezone_choice():
+    while True:
+        timezone_choice = input(TIMEZONE_CHOICE_HELPTEXT) or 'UTC'
+        if timezone_choice in pytz.all_timezones:
+            break
+    return timezone_choice
+
 
 def update_dbt_project(
         dbt_project,
@@ -132,7 +157,8 @@ def update_dbt_project(
     # adds dbt-date to the vars and sets default timezone conversion as UTC
     # TODO: ask user for timezone conversion for their client and add it to the vars
     # TODO: list out the available timezones, it is easy to make a typo
-    dbt_project_yml['vars']["dbt_date:time_zone"] = 'UTC'
+    timezone_choice = get_timezone_choice()
+    dbt_project_yml['vars']["dbt_date:time_zone"] = timezone_choice
     copy_choice = inplace_or_copy("dbt_project")
     file, extension = path.splitext(dbt_project)
     with open(file + copy_choice + extension, 'w', encoding='utf-8') as f:

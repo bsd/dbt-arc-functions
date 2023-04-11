@@ -1,0 +1,148 @@
+models:
+  - name: mart_google_analytics_web_performance_by_date
+    description: ""
+    columns:
+      - name: event_date
+        description: ""
+
+      - name: session_source
+        description: ""
+
+      - name: session_medium
+        description: ""
+
+      - name: host_name
+        description: ""
+
+      - name: page_group
+        description: ""
+
+      - name: session_default_channel
+        description: ""
+
+      - name: campaign
+        description: ""
+
+      - name: device_category
+        description: ""
+
+      - name: device_language
+        description: ""
+
+      - name: selected_language
+        description: ""
+
+      - name: user_gender
+        description: ""
+
+      - name: user_age
+        description: ""
+
+      - name: accordion_item
+        description: ""
+
+      - name: accordion_block
+        description: ""
+
+      - name: file_name
+        description: ""
+
+      - name: link_domain
+        description: ""
+
+      - name: top_nav_name
+        description: ""
+
+      - name: sub_menu_name
+        description: ""
+
+      - name: search_term
+        description: ""
+
+      - name: page_referrer
+        description: ""
+
+      - name: accordion_block_clicks
+        description: ""
+
+      - name: unique_accordion_block_clicks
+        description: ""
+
+      - name: clicks
+        description: ""
+
+      - name: unique_clicks
+        description: ""
+
+      - name: downloads
+        description: ""
+
+      - name: unique_downloads
+        description: ""
+
+      - name: first_visits
+        description: ""
+
+      - name: unique_first_visits
+        description: ""
+
+      - name: language_menu_expands
+        description: ""
+
+      - name: unique_language_menu_expands
+        description: ""
+
+      - name: page_views
+        description: ""
+
+      - name: unique_page_views
+        description: ""
+
+      - name: searches
+        description: ""
+
+      - name: unique_searches
+        description: ""
+
+      - name: scrolls
+        description: ""
+
+      - name: unique_scrolls
+        description: ""
+
+      - name: session_starts
+        description: ""
+
+      - name: unique_session_starts
+        description: ""
+
+      - name: sub_menu_expands
+        description: ""
+
+      - name: unique_sub_menu_expands
+        description: ""
+
+      - name: user_engagements
+        description: ""
+
+      - name: unique_user_engagements
+        description: ""
+
+      - name: engaged_sessions
+        description: ""
+
+      - name: avg_percent_scrolled
+        description: ""
+
+      - name: engagement_time_msecs
+        description: ""
+
+      - name: unique_sessions
+        description: ""
+
+      - name: unique_users
+        description: ""
+
+      - name: total_users
+        description: ""
+
