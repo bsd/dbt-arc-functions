@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_jobs(
-    transactions = 'stg_stitch_sfmc_audience_transactions_unioned'
+    transactions = 'stg_src_stitch_sfmc_transactions_unioned'
     first_last = 'stg_stitch_sfmc_audience_first_last'
     cumulative = 'stg_stitch_sfmc_audience_cumulative'
     yoy = 'stg_stitch_sfmc_audience_yoy'
