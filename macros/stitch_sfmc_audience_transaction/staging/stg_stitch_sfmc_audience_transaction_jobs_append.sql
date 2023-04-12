@@ -14,6 +14,9 @@
     select 
     transaction_date,
     person_id,
+    case when cumulative_amount between 1 and 999 then 'grassroots'
+    when 
+
     
 {% else %}
     -- This SQL statement will be used if 'variable' is empty or does not exist
