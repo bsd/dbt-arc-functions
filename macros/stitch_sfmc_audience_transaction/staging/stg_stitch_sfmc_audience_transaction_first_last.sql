@@ -3,7 +3,8 @@
 ) %}
 
 select
-    transaction_id,
+    transaction_date,
+    person_id,
     max(transaction_date) over (partition by person_id) as latest_transaction_date,
     min(transaction_date) over (partition by person_id) as first_transaction_date,
     lag(max(transaction_date) over (partition by person_id)) over (
@@ -11,5 +12,6 @@ select
     ) as previous_latest_transaction_date
 
 from {{ ref(reference_name) }}
+GROUP BY 1, 2
 
 {% endmacro %}

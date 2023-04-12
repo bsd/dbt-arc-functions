@@ -3,7 +3,8 @@
 ) %}
 
 select
-    transaction_id,
+    transaction_date,
+    person_id,
     sum(amount) over (
         partition by person_id order by transaction_date
     ) as cumulative_amount,
@@ -24,5 +25,6 @@ select
     ) as cumulative_recur_gifts
 
 from {{ ref(reference_name) }}
+GROUP BY 1, 2
 
 {% endmacro %}
