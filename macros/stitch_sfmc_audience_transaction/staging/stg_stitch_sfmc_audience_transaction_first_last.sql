@@ -12,6 +12,5 @@ select
     ) as previous_latest_transaction_date
 
 from {{ ref(reference_name) }}
-GROUP BY 1, 2
 
 {% endmacro %}

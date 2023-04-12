@@ -14,9 +14,20 @@
     select 
     transaction_date,
     person_id,
-    case when cumulative_amount between 1 and 999 then 'grassroots'
-    when 
-
+    case 
+    when cumulative_amount_12_months >= 25000 then 'major'
+    when cumulative_amount_24months between 1000 and 24999 
+        and cumulative_amount_12_months < 25000
+    then 'midlevel'
+    when cumulative_amount_30_days_recur > 0   
+        and cumulative_amount_24months < 1000
+        and cumulative_amount_12_months < 25000 then 'recurring'
+        then 'recurring' 
+    when cumulative_amount between 1 and 999 then 'grassroots'
+    else null end as audience_type,
+    -- new_donor definition missing for UUSA
+    case when donated_within_14_months = 0 then 'lapsed'
+   -- PAUSED HERE ********
     
 {% else %}
     -- This SQL statement will be used if 'variable' is empty or does not exist
