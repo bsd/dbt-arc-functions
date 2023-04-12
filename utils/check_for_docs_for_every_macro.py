@@ -17,7 +17,7 @@ def main():
                 if not os.path.exists(doc_path):
                     macros_without_docs.append((macro_path, doc_path))
     
-    if macro_without_docs:
+    if macros_without_docs:
         for macro_without_docs in macros_without_docs:
             macro_path, doc_path = macro_without_docs
             print(f"The macro below does not have docs:\n {macro_path}\n"
