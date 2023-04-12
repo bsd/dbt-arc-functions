@@ -1,4 +1,4 @@
-name: sqlfmt linter
+name: Check for docs for every macro
 
 on:
   push:
