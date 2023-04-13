@@ -10,7 +10,6 @@ select
     safe_cast(
         regexp_extract(initial_market_source, r"sfmc(\d{6})") as int
     ) as message_id,
-    initial_market_source,
     inbound_channel,
     transaction_date,
     amount,
