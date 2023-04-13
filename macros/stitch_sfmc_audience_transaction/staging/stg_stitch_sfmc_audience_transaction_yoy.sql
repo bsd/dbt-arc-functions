@@ -5,38 +5,59 @@
 SELECT
     transaction_date,
     person_id,
+    SELECT
+    transaction_date,
+    person_id,
     MAX(
         CASE
-            WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM transaction_date) = 0 THEN 1
+            WHEN DATE_TRUNC('year', transaction_date) = DATE_TRUNC('year', transaction_date) THEN 1
             ELSE 0
         END
     ) AS donated_this_year,
     MAX(
         CASE
-            WHEN DATEDIFF(current_date(), transaction_date) <= 14 THEN 1 ELSE 0
-        END
-    ) AS donated_within_14_months,
-    MAX(
-        CASE
-            WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM transaction_date) = 1 THEN 1
+            WHEN DATE_TRUNC('year', DATEADD('year', -1, transaction_date)) = DATE_TRUNC('year', DATEADD('year', -1, transaction_date)) THEN 1
             ELSE 0
         END
     ) AS donated_last_year,
     MAX(
         CASE
-            WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM transaction_date) = 2 THEN 1
+            WHEN DATE_TRUNC('year', DATEADD('year', -2, transaction_date)) = DATE_TRUNC('year', DATEADD('year', -2, transaction_date)) THEN 1
             ELSE 0
         END
     ) AS donated_two_years_ago,
     MAX(
         CASE
-            WHEN EXTRACT(YEAR FROM CURRENT_DATE()) - EXTRACT(YEAR FROM transaction_date) = 3 THEN 1
+            WHEN DATE_TRUNC('year', DATEADD('year', -3, transaction_date)) = DATE_TRUNC('year', DATEADD('year', -3, transaction_date)) THEN 1
             ELSE 0
         END
-    ) AS donated_three_years_ago
+    ) AS donated_three_years_ago,
+    MAX(
+        CASE
+            WHEN transaction_date >= DATE_TRUNC('year', transaction_date) AND 
+                 person_id NOT IN (
+                     SELECT DISTINCT person_id
+                     FROM {{ ref(reference_name) }}
+                     WHERE transaction_date >= DATE_TRUNC('year', DATEADD('year', -1, transaction_date)) AND 
+                           transaction_date < DATE_TRUNC('year', transaction_date)
+                 ) THEN 1
+            ELSE 0
+        END
+    ) AS new_donor,
+    MAX(
+        CASE
+            WHEN transaction_date >= DATEADD('month', -14, transaction_date) THEN 1
+            ELSE 0
+        END
+    ) AS donated_within_14_months
+    MAX(
+        CASE
+            WHEN transaction_date >= DATEADD('month', -13, transaction_date) THEN 1
+            ELSE 0
+        END
+    ) AS donated_within_13_months
 FROM {{ ref(reference_name) }}
-WHERE transaction_date >= DATE_TRUNC('year', CURRENT_DATE() - INTERVAL '3 year')
-GROUP BY person_id, transaction_date
+GROUP BY transaction_date, person_id
 
 
 {% endmacro %}

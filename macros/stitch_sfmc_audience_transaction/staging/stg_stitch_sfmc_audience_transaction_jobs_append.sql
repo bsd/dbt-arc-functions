@@ -45,8 +45,7 @@
     case 
     when donated_this_year = 0 then 'lapsed'
     when donated_this_year = 1
-        and new_donor = 0 then 'active'
-    when new_donor = 1 then 'new_donor'
+        and new_donor = 1 then 'new_donor'
 
 
     from {{ reference_name }}
