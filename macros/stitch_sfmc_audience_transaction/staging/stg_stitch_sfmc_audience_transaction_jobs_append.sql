@@ -29,10 +29,11 @@
     case 
     when donated_within_14_months = 0 
     then 'lapsed'
-    when donated_within_14_months = 1 
-        and and new_donor = 0 
-        then 'active'
-    when new_donor = 1 then 'new_donor'
+    -- active
+    -- new donor
+    -- reinstated
+    -- multi-year 
+    -- existing
     else null end as loyalty_type
     from {{ reference_name }}
          
@@ -44,9 +45,17 @@
     -- code out the audience_types
     case 
     when donated_this_year = 0 then 'lapsed'
+    when donated_within_14_months = 1
+         and new_donor = 0 then 'active'
+    when donated_this_year = 1
+        and (donated_two_years_ago = 1 or donated_three_years_ago = 1)
+        and donated_last_year = 0 then 'reinstated'
+   -- multi-year donor
+   when donated_this_year = 1
+        and donated_last_year = 1
+        then 'existing' -- this isn't exclusive from active!!
     when donated_this_year = 1
         and new_donor = 1 then 'new_donor'
-
 
     from {{ reference_name }}
  
