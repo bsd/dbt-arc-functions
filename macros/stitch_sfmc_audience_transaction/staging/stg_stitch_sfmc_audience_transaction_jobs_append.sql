@@ -55,7 +55,7 @@
    -- multi-year donor
    when donated_this_year = 1
         and donated_last_year = 1
-        then 'existing' -- this isn't exclusive from active!!
+        then 'existing'
     when donated_this_year = 1
         and new_donor = 1 then 'new_donor'
 
