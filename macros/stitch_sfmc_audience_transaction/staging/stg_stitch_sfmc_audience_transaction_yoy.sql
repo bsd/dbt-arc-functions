@@ -2,62 +2,77 @@
     reference_name="stg_src_stitch_sfmc_transactions_unioned"
 ) %}
 
-SELECT
+select transaction_date, person_id,
+select
     transaction_date,
     person_id,
-    SELECT
-    transaction_date,
-    person_id,
-    MAX(
-        CASE
-            WHEN DATE_TRUNC('year', transaction_date) = DATE_TRUNC('year', transaction_date) THEN 1
-            ELSE 0
-        END
-    ) AS donated_this_year,
-    MAX(
-        CASE
-            WHEN DATE_TRUNC('year', DATEADD('year', -1, transaction_date)) = DATE_TRUNC('year', DATEADD('year', -1, transaction_date)) THEN 1
-            ELSE 0
-        END
-    ) AS donated_last_year,
-    MAX(
-        CASE
-            WHEN DATE_TRUNC('year', DATEADD('year', -2, transaction_date)) = DATE_TRUNC('year', DATEADD('year', -2, transaction_date)) THEN 1
-            ELSE 0
-        END
-    ) AS donated_two_years_ago,
-    MAX(
-        CASE
-            WHEN DATE_TRUNC('year', DATEADD('year', -3, transaction_date)) = DATE_TRUNC('year', DATEADD('year', -3, transaction_date)) THEN 1
-            ELSE 0
-        END
-    ) AS donated_three_years_ago,
-    MAX(
-        CASE
-            WHEN transaction_date >= DATE_TRUNC('year', transaction_date) AND 
-                 person_id NOT IN (
-                     SELECT DISTINCT person_id
-                     FROM {{ ref(reference_name) }}
-                     WHERE transaction_date >= DATE_TRUNC('year', DATEADD('year', -1, transaction_date)) AND 
-                           transaction_date < DATE_TRUNC('year', transaction_date)
-                 ) THEN 1
-            ELSE 0
-        END
-    ) AS new_donor,
-    MAX(
-        CASE
-            WHEN transaction_date >= DATEADD('month', -14, transaction_date) THEN 1
-            ELSE 0
-        END
-    ) AS donated_within_14_months
-    MAX(
-        CASE
-            WHEN transaction_date >= DATEADD('month', -13, transaction_date) THEN 1
-            ELSE 0
-        END
-    ) AS donated_within_13_months
-FROM {{ ref(reference_name) }}
-GROUP BY transaction_date, person_id
-
+    max(
+        case
+            when
+                date_trunc('year', transaction_date)
+                = date_trunc('year', transaction_date)
+            then 1
+            else 0
+        end
+    ) as donated_this_year,
+    max(
+        case
+            when
+                date_trunc('year', dateadd('year', -1, transaction_date))
+                = date_trunc('year', dateadd('year', -1, transaction_date))
+            then 1
+            else 0
+        end
+    ) as donated_last_year,
+    max(
+        case
+            when
+                date_trunc('year', dateadd('year', -2, transaction_date))
+                = date_trunc('year', dateadd('year', -2, transaction_date))
+            then 1
+            else 0
+        end
+    ) as donated_two_years_ago,
+    max(
+        case
+            when
+                date_trunc('year', dateadd('year', -3, transaction_date))
+                = date_trunc('year', dateadd('year', -3, transaction_date))
+            then 1
+            else 0
+        end
+    ) as donated_three_years_ago,
+    max(
+        case
+            when
+                transaction_date >= date_trunc('year', transaction_date)
+                and person_id not in (
+                    select distinct person_id
+                    from {{ ref(reference_name) }}
+                    where
+                        transaction_date
+                        >= date_trunc('year', dateadd('year', -1, transaction_date))
+                        and transaction_date < date_trunc('year', transaction_date)
+                )
+            then 1
+            else 0
+        end
+    ) as new_donor,
+    max(
+        case
+            when transaction_date >= dateadd('month', -14, transaction_date)
+            then 1
+            else 0
+        end
+    ) as donated_within_14_months
+    max(
+        case
+            when transaction_date >= dateadd('month', -13, transaction_date)
+            then 1
+            else 0
+        end
+    ) as donated_within_13_months
+from {{ ref(reference_name) }}
+group by transaction_date, person_id
 
 {% endmacro %}

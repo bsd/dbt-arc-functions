@@ -41,11 +41,17 @@ select
     yoy.donated_three_years_ago
 
 from {{ ref(jobs) }} jobs
-join {{ ref(totals) }} totals on jobs.transaction_date = totals.transaction_date
+join
+    {{ ref(totals) }} totals
+    on jobs.transaction_date = totals.transaction_date
     and jobs.person_id = totals.person_id
-join {{ ref(first_last) }} first_last on jobs.transaction_date = first_last.transaction_date
+join
+    {{ ref(first_last) }} first_last
+    on jobs.transaction_date = first_last.transaction_date
     and jobs.person_id = first_last.person_id
-join {{ ref(cumulative) }} cumulative on jobs.transaction_date = cumulative.transaction_date
+join
+    {{ ref(cumulative) }} cumulative
+    on jobs.transaction_date = cumulative.transaction_date
     and jobs.person_id = cumulative.person_id
 join {{ ref(yoy) }} yoy on jobs.person_id = yoy.person_id
 
