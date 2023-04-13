@@ -26,11 +26,30 @@
     when cumulative_amount between 1 and 999 then 'grassroots'
     else null end as audience_type,
     -- new_donor definition missing for UUSA
-    case when donated_within_14_months = 0 then 'lapsed'
-   -- PAUSED HERE ********
-    
+    case 
+    when donated_within_14_months = 0 
+    then 'lapsed'
+    when donated_within_14_months = 1 
+        and and new_donor = 0 
+        then 'active'
+    when new_donor = 1 then 'new_donor'
+    else null end as loyalty_type
+    from {{ reference_name }}
+         
 {% else %}
     -- This SQL statement will be used if 'variable' is empty or does not exist
+    select 
+    transaction_date,
+    person_id,
+    -- code out the audience_types
+    case 
+    when donated_this_year = 0 then 'lapsed'
+    when donated_this_year = 1
+        and new_donor = 0 then 'active'
+    when new_donor = 1 then 'new_donor'
+
+
+    from {{ reference_name }}
  
 {% endif %}
 
