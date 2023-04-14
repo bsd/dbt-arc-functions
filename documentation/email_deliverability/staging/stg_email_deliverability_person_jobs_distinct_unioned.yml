@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_email_deliverability_person_jobs_distinct_unioned
+    description: ""
+    columns:
+      - name: _dbt_source_relation
+        description: ""
+
+      - name: message_id
+        description: ""
+
+      - name: sent_date
+        description: ""
+
+      - name: email_domain
+        description: ""
+
