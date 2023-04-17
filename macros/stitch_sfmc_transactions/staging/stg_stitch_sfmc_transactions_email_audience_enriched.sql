@@ -4,7 +4,7 @@
 
 ) %}
 
-Select u.*, e.email_name,
+Select u.*,
 (case when (lower(e.email_name) like '%active%' and lower(e.email_name) not like '%inactive%') or lower(e.email_name) like '%mass%' then 'Mass'
            when lower(e.email_name) like '%inactive%' then 'Inactive'
            when lower(e.email_name) like '%mid%level%' or lower(e.email_name) like '%leadership%giving%' then 'Leadership Giving'
