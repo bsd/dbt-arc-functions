@@ -1,6 +1,6 @@
 {% macro create_stg_stitch_sfmc_transactions_email_audience_enriched(
     reference_name="stg_stitch_sfmc_transactions_unioned",
-    job = 'stg_stitch_sfmc_email_jobs'
+    job = "stg_stitch_sfmc_email_jobs"
 
 ) %}
 
