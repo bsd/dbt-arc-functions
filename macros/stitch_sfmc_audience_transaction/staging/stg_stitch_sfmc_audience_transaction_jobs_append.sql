@@ -33,16 +33,16 @@ select
         then 'active'
         else null
     end as donor_engagement,
-    -- june to july is their fiscal year
-    when donated_this_year = 1 and donated_last_year = 1
-        then 'existing'
-        when donated_this_year = 1 and new_donor = 1
-        then 'new_donor'
-        end as donor_loyalty
+-- june to july is their fiscal year
+when donated_this_year = 1 and donated_last_year = 1
+then 'existing'
+when donated_this_year = 1 and new_donor = 1
+then 'new_donor' end as donor_loyalty
 from {{ reference_name }}
 
 {% else %}
--- This SQL statement will be used if 'variable' is empty or does not exist, it's the same as UUSA
+-- This SQL statement will be used if 'variable' is empty or does not exist, it's the
+-- same as UUSA
 select
     transaction_date,
     person_id,
@@ -69,12 +69,11 @@ select
         then 'active'
         else null
     end as donor_engagement,
-    -- change to fiscal year
-    when donated_this_year = 1 and donated_last_year = 1
-        then 'existing'
-        when donated_this_year = 1 and new_donor = 1
-        then 'new_donor'
-        end as donor_loyalty
+-- change to fiscal year
+when donated_this_year = 1 and donated_last_year = 1
+then 'existing'
+when donated_this_year = 1 and new_donor = 1
+then 'new_donor' end as donor_loyalty
 from {{ reference_name }}
 
 {% endif %}
