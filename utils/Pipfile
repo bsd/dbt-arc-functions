@@ -8,6 +8,7 @@ name = "pypi"
 google-cloud-bigquery = "==2.31.0"
 click = "*"
 
+
 [dev-packages]
 
 [requires]

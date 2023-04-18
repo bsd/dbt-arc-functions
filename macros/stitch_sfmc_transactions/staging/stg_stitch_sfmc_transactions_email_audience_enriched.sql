@@ -4,20 +4,37 @@
 
 ) %}
 
-Select u.*,
-(case when (lower(e.email_name) like '%active%' and lower(e.email_name) not like '%inactive%') or lower(e.email_name) like '%mass%' then 'Mass'
-           when lower(e.email_name) like '%inactive%' then 'Inactive'
-           when lower(e.email_name) like '%mid%level%' or lower(e.email_name) like '%leadership%giving%' then 'Leadership Giving'
-           when lower(e.email_name) like '%monthly%' then 'Monthly'
-           when lower(e.email_name) like '% other %' then 'Other - Targeted'
-           when lower(e.email_name) like '%ramp%' then 'IP Ramp'
-           when lower(e.email_name) like '%lapse%' then 'Lapsed'
-           when lower(e.email_name) like '%major%donor%' then 'Major Donors'
-           else 'Other'
-           end) as audience_name
+select
+    u.*,
+    (
+        case
+            when
+                (
+                    lower(e.email_name) like '%active%'
+                    and lower(e.email_name) not like '%inactive%'
+                )
+                or lower(e.email_name) like '%mass%'
+            then 'Mass'
+            when lower(e.email_name) like '%inactive%'
+            then 'Inactive'
+            when
+                lower(e.email_name) like '%mid%level%'
+                or lower(e.email_name) like '%leadership%giving%'
+            then 'Leadership Giving'
+            when lower(e.email_name) like '%monthly%'
+            then 'Monthly'
+            when lower(e.email_name) like '% other %'
+            then 'Other - Targeted'
+            when lower(e.email_name) like '%ramp%'
+            then 'IP Ramp'
+            when lower(e.email_name) like '%lapse%'
+            then 'Lapsed'
+            when lower(e.email_name) like '%major%donor%'
+            then 'Major Donors'
+            else 'Other'
+        end
+    ) as audience_name
 from {{ ref(reference_name) }} u
-inner join {{ ref(job) }} e on CAST(u.message_id as String) = e.message_id
-
-
+inner join {{ ref(job) }} e on cast(u.message_id as string) = e.message_id
 
 {% endmacro %}
