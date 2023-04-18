@@ -22,51 +22,60 @@ select
             and cumulative_amount_24months < 1000
             and cumulative_amount_12_months < 25000
         then 'recurring'
-        then 'recurring'
         when cumulative_amount between 1 and 999
         then 'grassroots'
         else null
-    end as audience_type,
+    end as donor_audience,
     case
         when donated_within_14_months = 0
         then 'lapsed'
         when donated_within_14_months = 1
         then 'active'
         else null
-    end as activity_type,
-    -- new donor
-    -- reinstated
-    -- multi-year 
-    -- existing
-    null as loyalty_type
+    end as donor_engagement,
+    -- june to july is their fiscal year
+    when donated_this_year = 1 and donated_last_year = 1
+        then 'existing'
+        when donated_this_year = 1 and new_donor = 1
+        then 'new_donor'
+        end as donor_loyalty
 from {{ reference_name }}
 
 {% else %}
--- This SQL statement will be used if 'variable' is empty or does not exist
+-- This SQL statement will be used if 'variable' is empty or does not exist, it's the same as UUSA
 select
     transaction_date,
     person_id,
-    -- code out the audience_types
     case
-        when donated_this_year = 0
+        when cumulative_amount_12_months >= 25000
+        then 'major'
+        when
+            cumulative_amount_24months between 1000 and 24999
+            and cumulative_amount_12_months < 25000
+        then 'midlevel'
+        when
+            cumulative_amount_30_days_recur > 0
+            and cumulative_amount_24months < 1000
+            and cumulative_amount_12_months < 25000
+        then 'recurring'
+        when cumulative_amount between 1 and 999
+        then 'grassroots'
+        else null
+    end as donor_audience,
+    case
+        when donated_within_14_months = 0
         then 'lapsed'
         when donated_within_14_months = 1
         then 'active'
         else null
-    end as activity_type,
-    case
-        when
-            donated_this_year = 1
-            and (donated_two_years_ago = 1 or donated_three_years_ago = 1)
-            and donated_last_year = 0
-        then 'reinstated'
-        -- multi-year donor
-        when donated_this_year = 1 and donated_last_year = 1
+    end as donor_engagement,
+    -- change to fiscal year
+    when donated_this_year = 1 and donated_last_year = 1
         then 'existing'
         when donated_this_year = 1 and new_donor = 1
         then 'new_donor'
-
-        from {{ reference_name }}
+        end as donor_loyalty
+from {{ reference_name }}
 
 {% endif %}
 
