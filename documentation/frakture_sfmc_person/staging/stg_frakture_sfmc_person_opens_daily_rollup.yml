@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_frakture_sfmc_person_opens_daily_rollup
+    description: ""
+    columns:
+      - name: sent_date
+        description: ""
+
+      - name: message_id
+        description: ""
+
+      - name: email_domain
+        description: ""
+
+      - name: opens
+        description: ""
+
