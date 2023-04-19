@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: stg_frakture_everyaction_person_jobs
+    description: ""
+    columns:
+      - name: message_id
+        description: ""
+
+      - name: sent_date
+        description: ""
+
+      - name: email_domain
+        description: ""
+

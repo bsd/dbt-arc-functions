@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: stg_frakture_everyaction_person_table_unioned
+    description: ""
+    columns:
+      - name: _dbt_source_relation
+        description: ""
+
+      - name: remote_person_id
+        description: ""
+
+      - name: date_created
+        description: ""
+
+      - name: postal_code
+        description: ""
+
+      - name: source_code
+        description: ""
+
+      - name: accepts_email
+        description: ""
+
+      - name: email_opt_out_date
+        description: ""
+
+      - name: ea_custom_origincodename
+        description: ""
+
+      - name: ea_custom_comfraffiliatesconstituentid
+        description: ""
+
+      - name: ea_custom_comfraffiliatepartnerid
+        description: ""
+
+      - name: ea_custom_comfrattribute
+        description: ""
+
+      - name: ea_custom_sourcecode
+        description: ""
+
+      - name: ea_custom_constituentlookupid
+        description: ""
+
+      - name: email_hash_v1
+        description: ""
+
+      - name: email_domain
+        description: ""
+
+      - name: ea_custom_bsdid
+        description: ""
+
