@@ -14,7 +14,13 @@ select
     transaction_date,
     amount,
     gift_type,
-    appeal
+    appeal,
+    case
+        when lower(gift_type) = 'monthly'
+        then safe_cast(1 as boolean)
+        else safe_cast(0 as boolean)
+    end as recurring
+
 from {{ ref(reference_name) }}
 where transaction_date > (select max(transaction_date) from bbcrm)
 
