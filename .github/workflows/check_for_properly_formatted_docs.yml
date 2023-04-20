@@ -1,4 +1,4 @@
-name: Check for docs for every macro
+name: Check for properly formatted docs
 
 on:
   push:
@@ -16,11 +16,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python 3.10
+    - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
-        python-version: "3.10"
+        python-version: "3.9"
+    - name: Install dependencies
+      run: |
+        pip install pyyaml
     - name: Check for docs for every macro
       run: |
         cd utils
         ./check_for_docs_for_every_macro.py
+    - name: Check for columns in every doc
+      run: |
+        cd utils
+        ./check_columns_in_every_doc.py
