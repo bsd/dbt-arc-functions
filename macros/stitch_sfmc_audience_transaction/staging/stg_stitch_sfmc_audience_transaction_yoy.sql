@@ -95,17 +95,16 @@ select
     max(
         case
             when
-                not exists (
-                    select 1
-                    from {{ ref(reference_name) }} t2
-                    where
-                        t2.person_id = t1.person_id
-                        and t2.transaction_date < t1.transaction_date
+                transaction_date >= date_trunc(
+                    'year', dateadd('month', 6, dateadd('year', -4, current_date))
+                )
+                and transaction_date < date_trunc(
+                    'year', dateadd('month', 6, dateadd('year', -4, current_date))
                 )
             then 1
             else 0
         end
-    ) as new_donor,
+    ) as donated_four_fiscal_years_ago_july_to_june,
     max(
         case
             when transaction_date >= dateadd('month', -14, transaction_date)

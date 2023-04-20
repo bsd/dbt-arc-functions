@@ -37,9 +37,20 @@ select
 when
     donated_current_fiscal_year_july_to_june = 1
     and donated_last_fiscal_year_july_to_june = 1
-then 'existing'
-when donated_current_fiscal_year_july_to_june = 1 and new_donor = 1
-then 'new_donor' end as donor_loyalty
+    and donated_two_fiscal_years_ago_july_to_june = 0 
+    and donated_three_fiscal_years_ago_july_to_june = 0
+    -- and did not donate two years ago and before
+then 'retained'
+when donated_current_fiscal_year_july_to_june = 1 and donated_last_fiscal_year_july_to_june = 0
+then 'new_donor'
+when donated_current_fiscal_year_july_to_june = 1
+    and donated_last_fiscal_year_july_to_june = 1
+    and (donated_two_fiscal_years_ago_july_to_june = 1 OR donated_three_fiscal_years_ago_july_to_june = 1)
+    -- and any other year before that
+then 'retained 3+' 
+-- retained 3+ also multiyear
+end 
+as donor_loyalty
 from {{ reference_name }}
 
 {% else %}
@@ -71,10 +82,12 @@ select
         then 'active'
         else null
     end as donor_engagement,
--- change to fiscal year
-when donated_this_year = 1 and donated_last_year = 1
+-- june to july is their fiscal year
+when
+    donated_current_fiscal_year_july_to_june = 1
+    and donated_last_fiscal_year_july_to_june = 1
 then 'existing'
-when donated_this_year = 1 and new_donor = 1
+when donated_current_fiscal_year_july_to_june = 1 and donated_last_fiscal_year_july_to_june = 0
 then 'new_donor' end as donor_loyalty
 from {{ reference_name }}
 

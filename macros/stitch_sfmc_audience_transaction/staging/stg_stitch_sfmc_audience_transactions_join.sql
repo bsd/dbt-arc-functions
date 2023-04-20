@@ -32,7 +32,6 @@ select
     cumulative.cumulative_gifts_24_months,
     cumulative.cumulative_one_time_amount,
     cumulative.cumulative_one_time_gifts,
-    yoy.new_donor,
     yoy.donated_this_year,
     yoy.donated_within_14_months,
     yoy.donated_within_13_months,
