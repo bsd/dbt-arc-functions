@@ -34,9 +34,9 @@ select
         else null
     end as donor_engagement,
 -- june to july is their fiscal year
-when donated_this_year = 1 and donated_last_year = 1
+when donated_current_fiscal_year_july_to_june = 1 and donated_last_fiscal_year_july_to_june = 1
 then 'existing'
-when donated_this_year = 1 and new_donor = 1
+when donated_current_fiscal_year_july_to_june = 1 and new_donor = 1
 then 'new_donor' end as donor_loyalty
 from {{ reference_name }}
 
