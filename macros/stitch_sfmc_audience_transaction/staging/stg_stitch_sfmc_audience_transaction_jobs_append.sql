@@ -54,8 +54,7 @@ as donor_loyalty
 from {{ reference_name }}
 
 {% else %}
--- This SQL statement will be used if 'variable' is empty or does not exist, it's the
--- same as UUSA
+-- This SQL statement will be used if 'variable' is empty or does not exist, it's dummy for now
 select
     transaction_date,
     person_id,
