@@ -44,47 +44,62 @@ select
     ) as donated_three_years_ago,
     max(
         case
-            when 
-                transaction_date >= date_trunc('year', dateadd('month', 6, current_date))
-                and transaction_date < date_trunc('year', dateadd('year', 1, dateadd('month', 6, current_date)))
+            when
+                transaction_date
+                >= date_trunc('year', dateadd('month', 6, current_date))
+                and transaction_date < date_trunc(
+                    'year', dateadd('year', 1, dateadd('month', 6, current_date))
+                )
             then 1
             else 0
         end
     ) as donated_current_fiscal_year_july_to_june,
     max(
         case
-            when 
-                transaction_date >= date_trunc('year', dateadd('month', 6, dateadd('year', -1, current_date)))
-                and transaction_date < date_trunc('year', dateadd('month', 6, current_date)))
+            when
+                transaction_date >= date_trunc(
+                    'year', dateadd('month', 6, dateadd('year', -1, current_date))
+                )
+                and transaction_date
+                < date_trunc('year', dateadd('month', 6, current_date))
             then 1
             else 0
         end
     ) as donated_last_fiscal_year_july_to_june,
     max(
         case
-            when 
-                transaction_date >= date_trunc('year', dateadd('month', 6, dateadd('year', -2, current_date)))
-                and transaction_date < date_trunc('year', dateadd('month', 6, dateadd('year', -1, current_date))))
+            when
+                transaction_date >= date_trunc(
+                    'year', dateadd('month', 6, dateadd('year', -2, current_date))
+                )
+                and transaction_date < date_trunc(
+                    'year', dateadd('month', 6, dateadd('year', -1, current_date))
+                )
             then 1
             else 0
         end
     ) as donated_two_fiscal_years_ago_july_to_june,
     max(
         case
-            when 
-                transaction_date >= date_trunc('year', dateadd('month', 6, dateadd('year', -3, current_date)))
-                and transaction_date < date_trunc('year', dateadd('month', 6, dateadd('year', -2, current_date))))
+            when
+                transaction_date >= date_trunc(
+                    'year', dateadd('month', 6, dateadd('year', -3, current_date))
+                )
+                and transaction_date < date_trunc(
+                    'year', dateadd('month', 6, dateadd('year', -2, current_date))
+                )
             then 1
             else 0
         end
     ) as donated_three_fiscal_years_ago_july_to_june,
-     max(
+    max(
         case
             when
                 not exists (
                     select 1
                     from {{ ref(reference_name) }} t2
-                    where t2.person_id = t1.person_id
+                    where
+                        t2.person_id = t1.person_id
                         and t2.transaction_date < t1.transaction_date
                 )
             then 1

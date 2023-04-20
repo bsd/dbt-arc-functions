@@ -38,7 +38,7 @@ select
     yoy.donated_within_13_months,
     yoy.donated_last_year,
     yoy.donated_two_years_ago,
-    yoy.donated_three_years_ago, 
+    yoy.donated_three_years_ago,
     yoy.donated_current_fiscal_year_july_to_june,
     yoy.donated_last_fiscal_year_july_to_june,
     yoy.donated_two_fiscal_years_ago_july_to_june,
