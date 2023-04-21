@@ -2,7 +2,7 @@
     reference_name="stg_stitch_sfmc_audience_transactions_join"
 ) %}
 
-{% set bsd_client = var.bsd_client %}
+{% set bsd_client = var.database %}
 
 -- TODO: prompt user to enter client name if applicable during create or update set up?
 -- this statement is meant to be unique for every date, transaction_id, and person_id 
