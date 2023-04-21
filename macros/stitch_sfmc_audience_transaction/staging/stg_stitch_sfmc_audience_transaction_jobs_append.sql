@@ -34,7 +34,7 @@ select
         else null
     end as donor_engagement,
 -- june to july is their fiscal year
-when
+case when
     donated_current_fiscal_year_july_to_june = 1
     and donated_last_fiscal_year_july_to_june = 1
     and donated_two_fiscal_years_ago_july_to_june = 0
@@ -89,7 +89,7 @@ select
         else null
     end as donor_engagement,
 -- june to july is their fiscal year
-when
+case when
     donated_current_fiscal_year_july_to_june = 1
     and donated_last_fiscal_year_july_to_june = 1
 then 'existing'
