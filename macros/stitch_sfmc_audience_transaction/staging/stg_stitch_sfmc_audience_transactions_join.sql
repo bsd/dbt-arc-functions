@@ -1,8 +1,8 @@
 {% macro create_stg_stitch_sfmc_audience_transactions_join(
-    jobs ="stg_stitch_sfmc_audience_transaction_jobs",
-    first_last ="stg_stitch_sfmc_audience_transaction_first_last",
-    cumulative ="stg_stitch_sfmc_audience_transaction_cumulative",
-    yoy ="stg_stitch_sfmc_audience_transaction_yoy"
+    jobs="stg_stitch_sfmc_audience_transaction_jobs",
+    first_last="stg_stitch_sfmc_audience_transaction_first_last",
+    cumulative="stg_stitch_sfmc_audience_transaction_cumulative",
+    yoy="stg_stitch_sfmc_audience_transaction_yoy"
 ) %}
 
 select
