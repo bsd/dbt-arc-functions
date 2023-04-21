@@ -5,7 +5,7 @@
 select
     transaction_date,
     person_id,
-    max(channel) as channel,
+    max(inbound_channel) as channel,
     sum(amount) as amount,
     count(distinct transaction_id) as gifts
 
