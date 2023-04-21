@@ -4,11 +4,7 @@
 
 {% set bsd_client = var.database %}
 
--- TODO: prompt user to enter client name if applicable during create or update set up?
--- this statement is meant to be unique for every date, transaction_id, and person_id 
--- with the intent of joining it back to the transaction table
 {% if bsd_client == "bsd-arc-uusa" %}
--- This SQL statement will be used if 'variable' has a value
 select
     transaction_date,
     person_id,
@@ -62,8 +58,7 @@ select
 from {{ ref(reference_name) }}
 
 {% else %}
--- This SQL statement will be used if 'variable' is empty or does not exist, it's
--- dummy for now
+
 select
     transaction_date,
     person_id,
