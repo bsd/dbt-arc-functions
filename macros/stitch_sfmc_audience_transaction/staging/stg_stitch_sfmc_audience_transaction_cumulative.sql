@@ -18,7 +18,7 @@ select
             between 63113904 preceding and current row
     ) as cumulative_amount_24_months,
     case
-        when recurring = TRUE
+        when recurring = true
         then
             sum(amount) over (
                 partition by person_id
