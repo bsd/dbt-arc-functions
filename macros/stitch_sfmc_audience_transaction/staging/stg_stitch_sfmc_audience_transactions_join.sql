@@ -44,10 +44,6 @@ select
 
 from {{ ref(jobs) }} jobs
 join
-    {{ ref(totals) }} totals
-    on jobs.transaction_date = totals.transaction_date
-    and jobs.person_id = totals.person_id
-join
     {{ ref(first_last) }} first_last
     on jobs.transaction_date = first_last.transaction_date
     and jobs.person_id = first_last.person_id
