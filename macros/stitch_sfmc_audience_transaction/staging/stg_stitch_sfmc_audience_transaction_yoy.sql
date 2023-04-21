@@ -2,7 +2,6 @@
     reference_name="stg_stitch_sfmc_transactions_unioned"
 ) %}
 
-select transaction_date, person_id,
 select
     transaction_date,
     person_id,
