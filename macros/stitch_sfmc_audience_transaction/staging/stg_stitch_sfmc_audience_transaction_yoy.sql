@@ -4,8 +4,8 @@
 
 WITH fiscal_years AS (
   SELECT 
-    DATE_TRUNC('YEAR', DATE_ADD(transaction_date, INTERVAL 6 MONTH)) as fiscal_year_start,
-    DATE_TRUNC('YEAR', DATE_ADD(transaction_date, INTERVAL 18 MONTH)) as fiscal_year_end,
+    DATE_TRUNC(DATE_ADD(transaction_date, INTERVAL 6 MONTH), YEAR) as fiscal_year_start,
+    DATE_TRUNC(DATE_ADD(transaction_date, INTERVAL 18 MONTH), YEAR) as fiscal_year_end,
     *
   FROM {{ ref(reference_name) }}
 )
@@ -13,11 +13,11 @@ WITH fiscal_years AS (
 SELECT
     transaction_date,
     person_id,
-    1 AS donated_current_fiscal_year_july_to_june, -- it's always the "current" fiscal year, so this one will always be 1 for the row
+    1 AS donated_current_fiscal_year_july_to_june,
     MAX(
         CASE
             WHEN
-                transaction_date >= DATE_TRUNC('YEAR', DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -1 YEAR))
+                transaction_date >= DATE_TRUNC(DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -1 YEAR), YEAR)
                 AND transaction_date < fiscal_years.fiscal_year_start
             THEN 1
             ELSE 0
@@ -26,8 +26,8 @@ SELECT
     MAX(
         CASE
             WHEN
-                transaction_date >= DATE_TRUNC('YEAR', DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -2 YEAR))
-                AND transaction_date < DATE_TRUNC('YEAR', DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -1 YEAR))
+                transaction_date >= DATE_TRUNC(DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -2 YEAR), YEAR)
+                AND transaction_date < DATE_TRUNC(DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -1 YEAR), YEAR)
             THEN 1
             ELSE 0
         END
@@ -35,8 +35,8 @@ SELECT
     MAX(
         CASE
             WHEN
-                transaction_date >= DATE_TRUNC('YEAR', DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -3 YEAR))
-                AND transaction_date < DATE_TRUNC('YEAR', DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -2 YEAR))
+                transaction_date >= DATE_TRUNC(DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -3 YEAR), YEAR)
+                AND transaction_date < DATE_TRUNC(DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -2 YEAR), YEAR)
             THEN 1
             ELSE 0
         END
@@ -44,27 +44,27 @@ SELECT
     MAX(
         CASE
             WHEN
-                transaction_date >= DATE_TRUNC('YEAR', DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -4 YEAR))
-                AND transaction_date < DATE_TRUNC('YEAR', DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -3 YEAR))
+                transaction_date >= DATE_TRUNC(DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -4 YEAR), YEAR)
+                AND transaction_date < DATE_TRUNC(DATE_ADD(fiscal_years.fiscal_year_start, INTERVAL -3 YEAR), YEAR)
             THEN 1
             ELSE 0
         END
     ) AS donated_four_fiscal_years_ago_july_to_june,
     MAX(
         CASE
-            WHEN transaction_date >= DATEADD('MONTH', -14, transaction_date)
+            WHEN transaction_date >= DATE_ADD(DATE_TRUNC(transaction_date, MONTH), INTERVAL -14 MONTH)
             THEN 1
             ELSE 0
         END
     ) AS donated_within_14_months,
     MAX(
         CASE
-            WHEN transaction_date >= DATEADD('MONTH', -13, transaction_date)
+            WHEN transaction_date >= DATE_ADD(DATE_TRUNC(transaction_date, MONTH), INTERVAL -13 MONTH)
             THEN 1
             ELSE 0
         END
     ) AS donated_within_13_months
 FROM fiscal_years
-GROUP BY 1, 2
+GROUP BY 1, 2;
 
 {% endmacro %}
