@@ -8,13 +8,13 @@ select
     sum(amount) over (
         partition by person_id
         order by
-            unix_seconds(transaction_date) range
+            unix_seconds(datetime(transaction_date)) range
             between 31556952 preceding and current row
     ) as cumulative_amount_12_months,
     sum(amount) over (
         partition by person_id
         order by
-            unix_seconds(transaction_date) range
+            unix_seconds(datetime(transaction_date)) range
             between 63113904 preceding and current row
     ) as cumulative_amount_24_months,
     case
@@ -23,7 +23,7 @@ select
             sum(amount) over (
                 partition by person_id
                 order by
-                    unix_seconds(transaction_date) range
+                    unix_seconds(datetime(transaction_date)) range
                     between 2592000 preceding and current row
             )
         else 0
