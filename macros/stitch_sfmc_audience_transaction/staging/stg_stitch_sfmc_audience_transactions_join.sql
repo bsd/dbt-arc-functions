@@ -8,8 +8,6 @@
 select
     jobs.transaction_date,
     jobs.person_id,
-    jobs.amount,
-    jobs.gifts,
     first_last.first_transaction_date,
     first_last.last_transaction_date,
     first_last.previous_latest_transaction_date,
