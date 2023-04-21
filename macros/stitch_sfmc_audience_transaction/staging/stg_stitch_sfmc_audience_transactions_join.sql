@@ -9,7 +9,6 @@ select
     jobs.transaction_date,
     jobs.person_id,
     first_last.first_transaction_date,
-    first_last.last_transaction_date,
     first_last.previous_latest_transaction_date,
     cumulative.cumulative_amount_12_months,
     cumulative.cumulative_amount_24_months,
