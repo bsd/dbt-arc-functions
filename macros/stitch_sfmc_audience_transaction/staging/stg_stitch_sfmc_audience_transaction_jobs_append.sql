@@ -12,12 +12,12 @@ select
         when cumulative_amount_12_months >= 25000
         then 'major'
         when
-            cumulative_amount_24months between 1000 and 24999
+            cumulative_amount_24_months between 1000 and 24999
             and cumulative_amount_12_months < 25000
         then 'midlevel'
         when
             cumulative_amount_30_days_recur > 0
-            and cumulative_amount_24months < 1000
+            and cumulative_amount_24_months < 1000
             and cumulative_amount_12_months < 25000
         then 'recurring'
         when cumulative_amount between 1 and 999
@@ -66,12 +66,12 @@ select
         when cumulative_amount_12_months >= 25000
         then 'major'
         when
-            cumulative_amount_24months between 1000 and 24999
+            cumulative_amount_24_months between 1000 and 24999
             and cumulative_amount_12_months < 25000
         then 'midlevel'
         when
             cumulative_amount_30_days_recur > 0
-            and cumulative_amount_24months < 1000
+            and cumulative_amount_24_months < 1000
             and cumulative_amount_12_months < 25000
         then 'recurring'
         when cumulative_amount between 1 and 999
