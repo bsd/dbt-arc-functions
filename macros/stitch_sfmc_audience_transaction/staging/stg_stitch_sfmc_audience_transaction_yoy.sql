@@ -8,42 +8,6 @@ select
     max(
         case
             when
-                date_trunc('year', transaction_date)
-                = date_trunc('year', transaction_date)
-            then 1
-            else 0
-        end
-    ) as donated_this_year,
-    max(
-        case
-            when
-                date_trunc('year', dateadd('year', -1, transaction_date))
-                = date_trunc('year', dateadd('year', -1, transaction_date))
-            then 1
-            else 0
-        end
-    ) as donated_last_year,
-    max(
-        case
-            when
-                date_trunc('year', dateadd('year', -2, transaction_date))
-                = date_trunc('year', dateadd('year', -2, transaction_date))
-            then 1
-            else 0
-        end
-    ) as donated_two_years_ago,
-    max(
-        case
-            when
-                date_trunc('year', dateadd('year', -3, transaction_date))
-                = date_trunc('year', dateadd('year', -3, transaction_date))
-            then 1
-            else 0
-        end
-    ) as donated_three_years_ago,
-    max(
-        case
-            when
                 transaction_date
                 >= date_trunc('year', dateadd('month', 6, current_date))
                 and transaction_date < date_trunc(
