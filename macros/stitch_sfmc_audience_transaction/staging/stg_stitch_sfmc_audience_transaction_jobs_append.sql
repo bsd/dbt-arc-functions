@@ -59,7 +59,7 @@ select
         then 'retained 3+'
     -- retained 3+ also multiyear
     end as donor_loyalty
-from {{ reference_name }}
+from {{ ref(reference_name) }}
 
 {% else %}
 -- This SQL statement will be used if 'variable' is empty or does not exist, it's
@@ -101,7 +101,7 @@ select
             and donated_last_fiscal_year_july_to_june = 0
         then 'new_donor'
     end as donor_loyalty
-from {{ reference_name }}
+from {{ ref(reference_name) }}
 
 {% endif %}
 
