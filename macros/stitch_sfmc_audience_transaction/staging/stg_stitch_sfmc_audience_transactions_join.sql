@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_audience_transaction_jobs(
+{% macro create_stg_stitch_sfmc_audience_transactions_join(
     jobs = 'stg_src_stitch_sfmc_transactions_jobs',
     totals = 'stg_src_stitch_sfmc_audience_totals',
     first_last = 'stg_stitch_sfmc_audience_transaction_first_last',
