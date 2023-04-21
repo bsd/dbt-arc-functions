@@ -89,8 +89,6 @@ select
             )
         else 0
     end as cumulative_amount_6_months_recur,
-
-select
     -- recurring gifts
     case
         when recurring = 1
