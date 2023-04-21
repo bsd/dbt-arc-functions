@@ -1,8 +1,8 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_jobs(
-    jobs = 'stg_src_stitch_sfmc_transactions_jobs'
-    totals = 'stg_src_stitch_sfmc_audience_totals'
-    first_last = 'stg_stitch_sfmc_audience_transaction_first_last'
-    cumulative = 'stg_stitch_sfmc_audience_transaction_cumulative'
+    jobs = 'stg_src_stitch_sfmc_transactions_jobs',
+    totals = 'stg_src_stitch_sfmc_audience_totals',
+    first_last = 'stg_stitch_sfmc_audience_transaction_first_last',
+    cumulative = 'stg_stitch_sfmc_audience_transaction_cumulative',
     yoy = 'stg_stitch_sfmc_audience_transaction_yoy'
 ) %}
 
