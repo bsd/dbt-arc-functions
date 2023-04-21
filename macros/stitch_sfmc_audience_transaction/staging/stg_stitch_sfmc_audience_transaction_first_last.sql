@@ -2,14 +2,14 @@
     reference_name="stg_stitch_sfmc_transactions_unioned"
 ) %}
 
-
-with subquery as (
-select
-        transaction_date,
-        person_id,
-        max(transaction_date) over (partition by person_id) as max_transaction_date
-    from {{ ref(reference_name) }}
-)
+with
+    subquery as (
+        select
+            transaction_date,
+            person_id,
+            max(transaction_date) over (partition by person_id) as max_transaction_date
+        from {{ ref(reference_name) }}
+    )
 
 select
     transaction_date,
