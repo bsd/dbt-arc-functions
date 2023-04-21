@@ -8,9 +8,7 @@
 select
     jobs.transaction_date,
     jobs.person_id,
-    jobs.source_code,
     jobs.channel,
-    jobs.appeal,
     jobs.application_type,
     jobs.amount,
     jobs.gifts,
