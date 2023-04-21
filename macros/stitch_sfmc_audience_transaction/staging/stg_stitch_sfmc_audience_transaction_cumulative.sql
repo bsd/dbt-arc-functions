@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_cumulative(
-    reference_name="stg_src_stitch_sfmc_transactions_unioned"
+    reference_name="stg_stitch_sfmc_transactions_unioned"
 ) %}
 
 select
