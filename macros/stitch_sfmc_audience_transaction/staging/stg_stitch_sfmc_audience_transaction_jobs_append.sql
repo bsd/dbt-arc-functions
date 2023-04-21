@@ -33,28 +33,28 @@ select
         then 'active'
         else null
     end as donor_engagement,
--- june to july is their fiscal year
-case when
-    donated_current_fiscal_year_july_to_june = 1
-    and donated_last_fiscal_year_july_to_june = 1
-    and donated_two_fiscal_years_ago_july_to_june = 0
-    and donated_three_fiscal_years_ago_july_to_june = 0
--- and did not donate two years ago and before
-then 'retained'
-when
-    donated_current_fiscal_year_july_to_june = 1
-    and donated_last_fiscal_year_july_to_june = 0
-then 'new_donor'
-when
-    donated_current_fiscal_year_july_to_june = 1
-    and donated_last_fiscal_year_july_to_june = 1
-    and (
-        donated_two_fiscal_years_ago_july_to_june = 1
-        or donated_three_fiscal_years_ago_july_to_june = 1
-    )
--- and any other year before that
-then
-    'retained 3+'
+    -- june to july is their fiscal year
+    case
+        when
+            donated_current_fiscal_year_july_to_june = 1
+            and donated_last_fiscal_year_july_to_june = 1
+            and donated_two_fiscal_years_ago_july_to_june = 0
+            and donated_three_fiscal_years_ago_july_to_june = 0
+        -- and did not donate two years ago and before
+        then 'retained'
+        when
+            donated_current_fiscal_year_july_to_june = 1
+            and donated_last_fiscal_year_july_to_june = 0
+        then 'new_donor'
+        when
+            donated_current_fiscal_year_july_to_june = 1
+            and donated_last_fiscal_year_july_to_june = 1
+            and (
+                donated_two_fiscal_years_ago_july_to_june = 1
+                or donated_three_fiscal_years_ago_july_to_june = 1
+            )
+        -- and any other year before that
+        then 'retained 3+'
     -- retained 3+ also multiyear
     end as donor_loyalty
 from {{ reference_name }}
@@ -88,15 +88,17 @@ select
         then 'active'
         else null
     end as donor_engagement,
--- june to july is their fiscal year
-case when
-    donated_current_fiscal_year_july_to_june = 1
-    and donated_last_fiscal_year_july_to_june = 1
-then 'existing'
-when
-    donated_current_fiscal_year_july_to_june = 1
-    and donated_last_fiscal_year_july_to_june = 0
-then 'new_donor' end as donor_loyalty
+    -- june to july is their fiscal year
+    case
+        when
+            donated_current_fiscal_year_july_to_june = 1
+            and donated_last_fiscal_year_july_to_june = 1
+        then 'existing'
+        when
+            donated_current_fiscal_year_july_to_june = 1
+            and donated_last_fiscal_year_july_to_june = 0
+        then 'new_donor'
+    end as donor_loyalty
 from {{ reference_name }}
 
 {% endif %}

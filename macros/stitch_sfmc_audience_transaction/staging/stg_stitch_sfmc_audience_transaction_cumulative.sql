@@ -1,4 +1,4 @@
-% macro create_stg_stitch_sfmc_audience_transaction_cumulative(
+{% macro create_stg_stitch_sfmc_audience_transaction_cumulative(
     reference_name="stg_stitch_sfmc_transactions_unioned"
 ) %}
 

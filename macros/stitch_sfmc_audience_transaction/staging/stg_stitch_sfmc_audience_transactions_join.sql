@@ -51,7 +51,6 @@ join
     {{ ref(cumulative) }} cumulative
     on jobs.transaction_date = cumulative.transaction_date
     and jobs.person_id = cumulative.person_id
-join {{ ref(yoy) }} yoy 
-    on jobs.person_id = yoy.person_id
+join {{ ref(yoy) }} yoy on jobs.person_id = yoy.person_id
 
 {% endmacro %}
