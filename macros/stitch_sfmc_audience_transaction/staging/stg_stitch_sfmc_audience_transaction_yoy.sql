@@ -110,7 +110,7 @@ select
             then 1
             else 0
         end
-    ) as donated_within_14_months
+    ) as donated_within_14_months,
     max(
         case
             when transaction_date >= dateadd('month', -13, transaction_date)
