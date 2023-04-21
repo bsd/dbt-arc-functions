@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: stg_stitch_sfmc_transactions_unioned
+    description: ""
+    columns:
+      - name: _dbt_source_relation
+        description: ""
+
+      - name: transaction_id
+        description: ""
+
+      - name: person_id
+        description: ""
+
+      - name: source_code
+        description: ""
+
+      - name: crm
+        description: ""
+
+      - name: message_id
+        description: ""
+
+      - name: transaction_date
+        description: ""
+
+      - name: amount
+        description: ""
+
+      - name: appeal
+        description: ""
+
+      - name: appeal_business_unit
+        description: ""
+
+      - name: application
+        description: ""
+
+      - name: gift_type
+        description: ""
+

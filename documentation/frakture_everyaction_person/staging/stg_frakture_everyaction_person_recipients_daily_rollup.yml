@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_frakture_everyaction_person_recipients_daily_rollup
+    description: ""
+    columns:
+      - name: sent_date
+        description: ""
+
+      - name: message_id
+        description: ""
+
+      - name: email_domain
+        description: ""
+
+      - name: recipients
+        description: ""
+

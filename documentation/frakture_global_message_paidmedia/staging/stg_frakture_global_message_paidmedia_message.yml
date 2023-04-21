@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: stg_frakture_global_message_paidmedia_message
+    description: ""
+    columns:
+      - name: message_id
+        description: ""
+
+      - name: label
+        description: ""
+
+      - name: subject
+        description: ""
+
+      - name: channel
+        description: ""
+
+      - name: channel_label
+        description: ""
+
+      - name: status
+        description: ""
+
+      - name: publish_date
+        description: ""
+
+      - name: campaign_id
+        description: ""
+
+      - name: campaign_name
+        description: ""
+
+      - name: primary_source_code
+        description: ""
+
+      - name: primary_source_code_override
+        description: ""
+
+      - name: final_primary_source_code
+        description: ""
+
+      - name: bot_id
+        description: ""
+
+      - name: submodule
+        description: ""
+
+      - name: remote_id
+        description: ""
+
+      - name: from_name
+        description: ""
+
+      - name: type
+        description: ""
+
+      - name: preview_url
+        description: ""
+
+      - name: do_not_attribute
+        description: ""
+
