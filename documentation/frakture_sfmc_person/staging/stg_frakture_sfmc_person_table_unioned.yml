@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_frakture_sfmc_person_table_unioned
+    description: ""
+    columns:
+      - name: _dbt_source_relation
+        description: ""
+
+      - name: remote_person_id
+        description: ""
+
+      - name: date_created
+        description: ""
+
+      - name: remote_last_modified
+        description: ""
+
+      - name: postal_code
+        description: ""
+
+      - name: source_code
+        description: ""
+
+      - name: accepts_email
+        description: ""
+
+      - name: email_opt_out_date
+        description: ""
+
+      - name: sfmc_status
+        description: ""
+
+      - name: email_hash_v1
+        description: ""
+
+      - name: email_domain
+        description: ""
+

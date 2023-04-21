@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_email_listhealth_by_year_and_month
+    description: ""
+    columns:
+      - name: extract_year
+        description: ""
+
+      - name: extract_month
+        description: ""
+
+      - name: max_recipients
+        description: ""
+
+      - name: max_delivered
+        description: ""
+
+      - name: total_unsubscribes
+        description: ""
+
+      - name: total_hard_bounces
+        description: ""
+
+      - name: total_complaints
+        description: ""
+
