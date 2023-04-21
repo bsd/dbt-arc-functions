@@ -5,7 +5,6 @@
 select
     transaction_date,
     person_id,
-    max(transaction_date) over (partition by person_id) as latest_transaction_date,
     min(transaction_date) over (partition by person_id) as first_transaction_date,
     lag(max(transaction_date) over (partition by person_id)) over (
         partition by person_id order by transaction_date
