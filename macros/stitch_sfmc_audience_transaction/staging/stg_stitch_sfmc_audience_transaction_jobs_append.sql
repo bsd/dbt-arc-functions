@@ -20,7 +20,7 @@ select
             and cumulative_amount_24_months < 1000
             and cumulative_amount_12_months < 25000
         then 'recurring'
-        when cumulative_amount between 1 and 999
+        when cumulative_amount_24_months between 1 and 999
         then 'grassroots'
         else null
     end as donor_audience,
@@ -74,7 +74,7 @@ select
             and cumulative_amount_24_months < 1000
             and cumulative_amount_12_months < 25000
         then 'recurring'
-        when cumulative_amount between 1 and 999
+        when cumulative_amount_24_months between 1 and 999
         then 'grassroots'
         else null
     end as donor_audience,
