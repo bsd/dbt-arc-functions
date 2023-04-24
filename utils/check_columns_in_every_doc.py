@@ -15,8 +15,9 @@ def main():
                 with open(file_path, 'r', encoding='utf-8') as f:
                     doc_yaml = yaml.safe_load(f)
                 try:
-                    columns = doc_yaml
+                    columns = doc_yaml['models'][0]['columns']
                 except KeyError:
+                    print('')
                     docs_without_columns.append(file_path)
                 if not columns or len(columns) < 2:
                     docs_without_columns.append(file_path)
