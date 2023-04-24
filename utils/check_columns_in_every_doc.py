@@ -7,6 +7,7 @@ import yaml
 
 def main():
     docs_without_columns = []
+    docs_without_version = []
 
     for root, _, files in os.walk('../documentation'):
         for file in files:
@@ -17,10 +18,14 @@ def main():
                 try:
                     columns = doc_yaml['models'][0]['columns']
                 except KeyError:
-                    print('')
                     docs_without_columns.append(file_path)
                 if not columns or len(columns) < 2:
                     docs_without_columns.append(file_path)
+                try:
+                    doc_yaml['version']
+                except KeyError:
+                    docs_without_version.append(file_path)
+
 
 
     if docs_without_columns:
@@ -28,8 +33,11 @@ def main():
             print(f"The doc below doesn't have any columns:\n {doc_without_columns}\n"
                   "Please delete the doc, then run create_docs.ipynb against a working"
                   " client to create docs\n")
-
-        print(f"\nDocs without columns: {len(docs_without_columns)}")
+        for doc_without_version in docs_without_version:
+            print(f"The doc below doesn't have a version number:\n {doc_without_version}\n"
+                  "Please delete the doc, then run create_docs.ipynb against a working"
+                  " client to create docs\n")
+        print(f"\nDocs without version: {len(docs_without_version)}")
         sys.exit(1)
 
 
