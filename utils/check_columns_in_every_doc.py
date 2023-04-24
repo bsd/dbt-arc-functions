@@ -8,9 +8,9 @@ import yaml
 def check_for_no_columns(file_path, docs_without_columns, doc_yaml):
     try:
         columns = doc_yaml['models'][0]['columns']
+        if not columns or len(columns) < 2:
+            docs_without_columns.append(file_path)
     except KeyError:
-        docs_without_columns.append(file_path)
-    if not columns or len(columns) < 2:
         docs_without_columns.append(file_path)
 
 
