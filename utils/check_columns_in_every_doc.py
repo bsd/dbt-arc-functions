@@ -47,6 +47,13 @@ def main():
                 check_for_no_macro(file_path, docs_without_macro, doc_yaml)
 
     if docs_without_columns:
+        for doc_without_macro in docs_without_macro:
+            print(
+                f"The doc below doesn't have a macro associated with it:\n {doc_without_macro[0]}\n"
+                f"Expected to find doc here:\n {doc_without_macro[1]}"
+                "Please delete the doc, then run create_docs.ipynb against a working"
+                " client to create docs\n")
+        print(f"\nDocs without macro: {len(docs_without_macro)}")
         for doc_without_columns in docs_without_columns:
             print(
                 f"The doc below doesn't have any columns:\n {doc_without_columns}\n"
@@ -59,13 +66,6 @@ def main():
                 "Please delete the doc, then run create_docs.ipynb against a working"
                 " client to create docs\n")
         print(f"\nDocs without version: {len(docs_without_version)}")
-        for doc_without_macro in docs_without_macro:
-            print(
-                f"The doc below doesn't have a version number:\n {doc_without_macro[0]}\n"
-                f"Expected to find doc here:\n {doc_without_macro[1]}"
-                "Please delete the doc, then run create_docs.ipynb against a working"
-                " client to create docs\n")
-        print(f"\nDocs without macro: {len(docs_without_macro)}")
         sys.exit(1)
 
 
