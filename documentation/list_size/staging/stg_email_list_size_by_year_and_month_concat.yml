@@ -1,6 +1,0 @@
-
-version: 2
-
-models:
-  - name: stg_email_list_size_by_year_and_month_concat
-    description: ""

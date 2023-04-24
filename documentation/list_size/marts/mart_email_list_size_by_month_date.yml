@@ -1,6 +1,0 @@
-
-version: 2
-
-models:
-  - name: mart_email_list_size_by_month_date
-    description: ""
