@@ -50,7 +50,7 @@ def main():
         for doc_without_macro in docs_without_macro:
             print(
                 f"The doc below doesn't have a macro associated with it:\n {doc_without_macro[0]}\n"
-                f"Expected to find doc here:\n {doc_without_macro[1]}"
+                f"Expected to find doc here:\n {doc_without_macro[1]}\n"
                 "Please delete the doc, then run create_docs.ipynb against a working"
                 " client to create docs\n")
         print(f"\nDocs without macro: {len(docs_without_macro)}")
