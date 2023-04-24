@@ -1,10 +1,6 @@
-# TODO Write documentation for stg_paidmedia_actuals_goals_unioned_ [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/email/marts/stg_paidmedia_actuals_goals_unioned_.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/email/marts/stg_paidmedia_actuals_goals_unioned_.yml
+
 version: 2
 
 models:
   - name: stg_paidmedia_actuals_goals_unioned_
-    description: Please replace this default description.
+    description: ""

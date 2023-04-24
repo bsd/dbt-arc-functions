@@ -1,13 +1,9 @@
-# TODO Write documentation for stg_frakture_actionkit_email_campaign_dates [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/frakture_actionkit_email/staging/stg_frakture_actionkit_email_campaign_dates.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/frakture_actionkit_email/staging/stg_frakture_actionkit_email_campaign_dates.yml
+
 version: 2
 
 models:
   - name: stg_frakture_actionkit_email_campaign_dates
-    description: Please replace this default description.
+    description: ""
     columns:
       - name: campaign_timestamp
         description: ""
