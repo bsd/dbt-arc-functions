@@ -7,7 +7,9 @@ with
         select
             transaction_date_day,
             person_id,
-            max(transaction_date_day) over (partition by person_id) as max_transaction_date
+            max(transaction_date_day) over (
+                partition by person_id
+            ) as max_transaction_date
         from {{ ref(reference_name) }}
     )
 

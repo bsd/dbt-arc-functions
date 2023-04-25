@@ -21,15 +21,15 @@ select
     yoy.donated_three_fiscal_years_ago_july_to_june
 
 from {{ ref(jobs) }} jobs
-LEFT join
+left join
     {{ ref(first_last) }} first_last
     on jobs.transaction_date_day = first_last.transaction_date_day
     and jobs.person_id = first_last.person_id
-LEFT join
+left join
     {{ ref(cumulative) }} cumulative
     on jobs.transaction_date_day = cumulative.transaction_date_day
     and jobs.person_id = cumulative.person_id
-LEFT join
+left join
     {{ ref(yoy) }} yoy
     on jobs.transaction_date_day = yoy.transaction_date_day
     and jobs.person_id = yoy.person_id

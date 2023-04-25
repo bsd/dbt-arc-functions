@@ -72,8 +72,9 @@ select
     max(
         case
             when
-                transaction_date
-                >= date_add(date_trunc(transaction_date_day, month), interval - 14 month)
+                transaction_date >= date_add(
+                    date_trunc(transaction_date_day, month), interval - 14 month
+                )
             then 1
             else 0
         end
@@ -81,8 +82,9 @@ select
     max(
         case
             when
-                transaction_date_day
-                >= date_add(date_trunc(transaction_date_day, month), interval - 13 month)
+                transaction_date_day >= date_add(
+                    date_trunc(transaction_date_day, month), interval - 13 month
+                )
             then 1
             else 0
         end

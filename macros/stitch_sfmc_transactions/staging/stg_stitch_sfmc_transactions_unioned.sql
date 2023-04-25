@@ -4,9 +4,9 @@
 ) %}
 with base as ({{ dbt_utils.union_relations(relations) }})
 
-select 
-base.*,
-CAST(TIMESTAMP_TRUNC(base.transaction_date, DAY) as date) as transaction_date_day
+select
+    base.*,
+    cast(timestamp_trunc(base.transaction_date, day) as date) as transaction_date_day
 from base
 
 {% endmacro %}
