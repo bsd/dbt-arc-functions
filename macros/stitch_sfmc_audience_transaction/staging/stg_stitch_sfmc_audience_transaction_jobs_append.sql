@@ -66,7 +66,7 @@ with
             person_id,
             donor_audience,
             donor_engagement,
-            donor_loyalty
+            donor_loyalty,
             row_number() over (
                 partition by
                     transaction_date_day,
@@ -147,7 +147,7 @@ with
             person_id,
             donor_audience,
             donor_engagement,
-            donor_loyalty
+            donor_loyalty,
             row_number() over (
                 partition by
                     transaction_date_day,
