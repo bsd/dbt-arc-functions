@@ -22,7 +22,7 @@ jobs:
       - name: Check that no yaml fixes need be made
         run: |-
           YAMLFIX_OUTPUT=$(yamlfix .)
-          if ! [[ $YAMLFIX_OUTPUT == *" 0 fixed"* ]]; then
+          if [[ $YAMLFIX_OUTPUT != *" 0 fixed"* ]]; then
             echo "Run yamlfix . to fix the errors below"
             echo $YAMLFIX_OUTPUT
             exit 1 
