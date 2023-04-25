@@ -1,6 +1,36 @@
-
 version: 2
 
 models:
-  - name: stg_paidmedia_actuals_goals_unioned_
+  - name: stg_paidmedia_actuals_goals_unioned
     description: ""
+    columns:
+      - name: _dbt_source_relation
+        description: ""
+
+      - name: month_year
+        description: ""
+
+      - name: objective
+        description: ""
+
+      - name: channel
+        description: ""
+
+      - name: platform
+        description: ""
+
+      - name: projected_spend
+        description: ""
+
+      - name: projected_revenue
+        description: ""
+
+      - name: actual_spend
+        description: ""
+
+      - name: actual_revenue
+        description: ""
+
+      - name: actual_donations
+        description: ""
+

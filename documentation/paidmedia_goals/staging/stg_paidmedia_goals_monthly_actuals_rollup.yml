@@ -1,6 +1,27 @@
-
 version: 2
 
 models:
   - name: stg_paidmedia_goals_monthly_actuals_rollup
     description: ""
+    columns:
+      - name: month_year
+        description: ""
+
+      - name: channel
+        description: ""
+
+      - name: objective
+        description: ""
+
+      - name: platform
+        description: ""
+
+      - name: actual_spend
+        description: ""
+
+      - name: actual_revenue
+        description: ""
+
+      - name: actual_donations
+        description: ""
+
