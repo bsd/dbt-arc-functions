@@ -5,6 +5,8 @@
 {% set bsd_client = var.database %}
 
 {% if bsd_client == "bsd-arc-uusa" %}
+
+with base as (
 select
     transaction_date_day,
     person_id,
@@ -55,7 +57,9 @@ select
         then 'retained 3+'
     -- retained 3+ also multiyear
     end as donor_loyalty
-from {{ ref(reference_name) }}
+from {{ ref(reference_name) }} )
+
+select DISTINCT * from base
 
 {% else %}
 
