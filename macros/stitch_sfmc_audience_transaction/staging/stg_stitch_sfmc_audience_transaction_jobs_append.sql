@@ -7,7 +7,7 @@
 with
     base as (
         select
-            transaction_date_day,
+            distinct transaction_date_day,
             person_id,
             case
                 when cumulative_amount_12_months >= 25000
@@ -65,7 +65,7 @@ from base
 {% else %}
 
 select
-    transaction_date_day,
+    distinct transaction_date_day,
     person_id,
     case
         when cumulative_amount_12_months >= 25000
