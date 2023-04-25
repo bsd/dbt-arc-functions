@@ -91,15 +91,7 @@ select
     end as donor_engagement,
     -- june to july is their fiscal year
     case
-        when
-            donated_current_fiscal_year_july_to_june = 1
-            and donated_last_fiscal_year_july_to_june = 1
-        then 'existing'
-        when
-            donated_current_fiscal_year_july_to_june = 1
-            and donated_last_fiscal_year_july_to_june = 0
-        then 'new_donor'
-    end as donor_loyalty
+        null as donor_loyalty
 from {{ ref(reference_name) }}
 
 {% endif %}
