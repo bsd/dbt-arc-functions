@@ -2,9 +2,7 @@
     reference_name="stg_stitch_sfmc_audience_transactions_join"
 ) %}
 
-{% set bsd_client = var.database %}
-
-{% if bsd_client == bsd-arc-uusa %}
+{% if var.database == 'bsd-arc-uusa' %}
 
 with
     base as (
