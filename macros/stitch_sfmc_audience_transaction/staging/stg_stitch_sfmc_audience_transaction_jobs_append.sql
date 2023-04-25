@@ -2,12 +2,12 @@
     reference_name="stg_stitch_sfmc_audience_transactions_join"
 ) %}
 
-{% if var.database == 'bsd-arc-uusa' %}
+{% if var.database == "bsd-arc-uusa" %}
 
 with
     base as (
-        select
-            distinct transaction_date_day,
+        select distinct
+            transaction_date_day,
             person_id,
             case
                 when cumulative_amount_12_months >= 25000
@@ -64,8 +64,8 @@ from base
 
 {% else %}
 
-select
-    distinct transaction_date_day,
+select distinct
+    transaction_date_day,
     person_id,
     case
         when cumulative_amount_12_months >= 25000
@@ -91,7 +91,8 @@ select
         else null
     end as donor_engagement,
     -- june to july is their fiscal year
-    null as donor_loyalty from {{ ref(reference_name) }}
+    null as donor_loyalty
+from {{ ref(reference_name) }}
 
 {% endif %}
 
