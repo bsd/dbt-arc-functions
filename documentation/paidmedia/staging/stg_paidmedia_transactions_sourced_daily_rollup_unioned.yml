@@ -1,13 +1,9 @@
-# TODO Write documentation for stg_paidmedia_transactions_sourced_daily_rollup_unioned [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/paidmedia/staging/stg_paidmedia_transactions_sourced_daily_rollup_unioned.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/paidmedia/staging/stg_paidmedia_transactions_sourced_daily_rollup_unioned.yml
+
 version: 2
 
 models:
   - name: stg_paidmedia_transactions_sourced_daily_rollup_unioned
-    description: Please replace this default description.
+    description: ""
     columns:
       - name: _dbt_source_relation
         description: ""

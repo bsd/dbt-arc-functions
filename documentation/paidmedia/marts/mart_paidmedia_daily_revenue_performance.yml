@@ -1,13 +1,9 @@
-# TODO Write documentation for mart_paidmedia_daily_revenue_performance [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/paidmedia/marts/mart_paidmedia_daily_revenue_performance.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/paidmedia/marts/mart_paidmedia_daily_revenue_performance.yml
+
 version: 2
 
 models:
   - name: mart_paidmedia_daily_revenue_performance
-    description: Please replace this default description.
+    description: ""
     columns:
       - name: message_id
         description: ""

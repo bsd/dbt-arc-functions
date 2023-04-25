@@ -1,13 +1,9 @@
-# TODO Write documentation for stg_supermetrics_yahoo_dsp_paidmedia_impressions_daily_rollup [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/supermetrics_yahoo_dsp_paidmedia/staging/stg_supermetrics_yahoo_dsp_paidmedia_impressions_daily_rollup.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/supermetrics_yahoo_dsp_paidmedia/staging/stg_supermetrics_yahoo_dsp_paidmedia_impressions_daily_rollup.yml
+
 version: 2
 
 models:
   - name: stg_supermetrics_yahoo_dsp_paidmedia_impressions_daily_rollup
-    description: Please replace this default description.
+    description: ""
     columns:
       - name: message_id
         description: ""
