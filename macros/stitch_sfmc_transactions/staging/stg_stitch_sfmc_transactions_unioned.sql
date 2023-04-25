@@ -5,7 +5,7 @@
 with base as ({{ dbt_utils.union_relations(relations) }})
 
 select 
-base.date_trunc('day', base.transaction_date) as transaction_date_day,
+date_trunc('day', base.transaction_date) as transaction_date_day,
 base.*
 from base
 
