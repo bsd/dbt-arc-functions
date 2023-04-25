@@ -39,7 +39,7 @@ def main():
     for root, _, files in os.walk('../documentation'):
         for file in files:
             file_path = os.path.join(root, file)
-            if file.endswith('.yml') and not 'utils' in root:
+            if file.endswith('.yml') and 'utils' not in root:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     doc_yaml = yaml.safe_load(f)
                 check_for_no_columns(file_path, docs_without_columns, doc_yaml)
