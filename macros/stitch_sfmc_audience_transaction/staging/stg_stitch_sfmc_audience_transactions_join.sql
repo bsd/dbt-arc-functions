@@ -23,15 +23,15 @@ select
 from {{ ref(jobs) }} jobs
 LEFT join
     {{ ref(first_last) }} first_last
-    on jobs.transaction_date = first_last.transaction_date
+    on jobs.transaction_date_day = first_last.transaction_date_day
     and jobs.person_id = first_last.person_id
 LEFT join
     {{ ref(cumulative) }} cumulative
-    on jobs.transaction_date = cumulative.transaction_date
+    on jobs.transaction_date_day = cumulative.transaction_date_day
     and jobs.person_id = cumulative.person_id
 LEFT join
     {{ ref(yoy) }} yoy
-    on jobs.transaction_date = yoy.transaction_date
+    on jobs.transaction_date_day = yoy.transaction_date_day
     and jobs.person_id = yoy.person_id
 
 {% endmacro %}
