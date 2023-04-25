@@ -27,7 +27,7 @@ jobs:
       run: |
         cd utils
         ./check_for_docs_for_every_macro.py
-    - name: Check for columns in every doc
+    - name: Check for well formatted docs and that macros exist for docs
       run: |
         cd utils
-        ./check_columns_in_every_doc.py
+        ./check_docs_correct.py
