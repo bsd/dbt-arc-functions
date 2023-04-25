@@ -1,3 +1,5 @@
+version: 2
+
 models:
   - name: stg_google_analytics_event_language_menu_expand
     description: ""

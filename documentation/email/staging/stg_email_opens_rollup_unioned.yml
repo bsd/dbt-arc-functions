@@ -1,8 +1,4 @@
-# TODO Write documentation for stg_email_opens_rollup_unioned [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/email/staging/stg_email_opens_rollup_unioned.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/email/staging/stg_email_opens_rollup_unioned.yml
+
 version: 2
 
 models:
