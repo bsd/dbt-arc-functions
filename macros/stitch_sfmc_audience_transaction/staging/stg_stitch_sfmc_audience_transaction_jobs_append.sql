@@ -4,7 +4,7 @@
 
 {% set bsd_client = var.database %}
 
-{% if bsd_client == "bsd-arc-uusa" %}
+{% if bsd_client == 'bsd-arc-uusa' %}
 
 with
     base as (
@@ -93,7 +93,7 @@ select
         else null
     end as donor_engagement,
     -- june to july is their fiscal year
-    case null as donor_loyalty from {{ ref(reference_name) }}
+    null as donor_loyalty from {{ ref(reference_name) }}
 
 {% endif %}
 
