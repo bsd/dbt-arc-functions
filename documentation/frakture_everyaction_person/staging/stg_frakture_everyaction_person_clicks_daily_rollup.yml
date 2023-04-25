@@ -1,18 +1,14 @@
+---
 version: 2
-
 models:
   - name: stg_frakture_everyaction_person_clicks_daily_rollup
-    description: ""
+    description: ''
     columns:
       - name: sent_date
-        description: ""
-
+        description: ''
       - name: message_id
-        description: ""
-
+        description: ''
       - name: email_domain
-        description: ""
-
+        description: ''
       - name: clicks
-        description: ""
-
+        description: ''

@@ -1,51 +1,36 @@
+---
 version: 2
-
 models:
   - name: stg_src_stitch_email_action
-    description: ""
+    description: ''
     columns:
       - name: account_id
-        description: ""
-
+        description: ''
       - name: oyb_account_id
-        description: ""
-
+        description: ''
       - name: job_id
-        description: ""
-
+        description: ''
       - name: list_id
-        description: ""
-
+        description: ''
       - name: batch_id
-        description: ""
-
+        description: ''
       - name: subscriber_id
-        description: ""
-
+        description: ''
       - name: subscriber_key
-        description: ""
-
+        description: ''
       - name: event_dt
-        description: ""
-
+        description: ''
       - name: domain
-        description: ""
-
+        description: ''
       - name: url
-        description: ""
-
+        description: ''
       - name: link_name
-        description: ""
-
+        description: ''
       - name: link_content
-        description: ""
-
+        description: ''
       - name: is_unique
-        description: ""
-
+        description: ''
       - name: triggerrer_send_definition_object_id
-        description: ""
-
+        description: ''
       - name: triggered_send_customer_key
-        description: ""
-
+        description: ''

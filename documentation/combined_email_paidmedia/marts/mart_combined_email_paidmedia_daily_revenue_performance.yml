@@ -1,22 +1,16 @@
-
+---
 version: 2
-
 models:
   - name: mart_combined_email_paidmedia_daily_revenue_performance
-    description: ""
+    description: ''
     columns:
       - name: date_timestamp
-        description: ""
-
+        description: ''
       - name: channel
-        description: ""
-
+        description: ''
       - name: best_guess_entity
-        description: ""
-
+        description: ''
       - name: total_revenue
-        description: ""
-
+        description: ''
       - name: total_gifts
-        description: ""
-
+        description: ''

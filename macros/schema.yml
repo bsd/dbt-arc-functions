@@ -1,5 +1,5 @@
+---
 version: 2
-
 macros:
   - name: create_mart_combined_email_paidmedia_daily_revenue_performance
     description: '{{doc ("mart_combined_email_paidmedia_daily_revenue_performance")}}'

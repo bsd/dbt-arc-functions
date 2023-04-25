@@ -1,13 +1,10 @@
-
+---
 version: 2
-
 models:
   - name: stg_frakture_global_message_email_unsubscribes_rollup
-    description: ""
+    description: ''
     columns:
       - name: message_id
-        description: "The unique identifier for each message."
-
+        description: The unique identifier for each message.
       - name: unsubscribes
-        description: "The number of times users unsubscribed as a result of the message."
-
+        description: The number of times users unsubscribed as a result of the message.

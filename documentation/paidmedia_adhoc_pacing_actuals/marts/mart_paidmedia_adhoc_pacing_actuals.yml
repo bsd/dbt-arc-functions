@@ -1,42 +1,30 @@
+---
 version: 2
-
 models:
   - name: mart_paidmedia_adhoc_pacing_actuals
-    description: ""
+    description: ''
     columns:
       - name: date_day
-        description: ""
-
+        description: ''
       - name: date_week_sunday
-        description: ""
-
+        description: ''
       - name: date_week_monday
-        description: ""
-
+        description: ''
       - name: date_month
-        description: ""
-
+        description: ''
       - name: date_quarter
-        description: ""
-
+        description: ''
       - name: objective
-        description: ""
-
+        description: ''
       - name: channel
-        description: ""
-
+        description: ''
       - name: channel_type
-        description: ""
-
+        description: ''
       - name: platform
-        description: ""
-
+        description: ''
       - name: campaign_name
-        description: ""
-
+        description: ''
       - name: actual_spend
-        description: ""
-
+        description: ''
       - name: actual_revenue
-        description: ""
-
+        description: ''

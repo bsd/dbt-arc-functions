@@ -1,30 +1,22 @@
+---
 version: 2
-
 models:
   - name: stg_paidmedia_pacing_actuals_campaigns_rollup_join
-    description: ""
+    description: ''
     columns:
       - name: date_day
-        description: ""
-
+        description: ''
       - name: objective
-        description: ""
-
+        description: ''
       - name: channel
-        description: ""
-
+        description: ''
       - name: platform
-        description: ""
-
+        description: ''
       - name: channel_type
-        description: ""
-
+        description: ''
       - name: campaign_name
-        description: ""
-
+        description: ''
       - name: actual_spend
-        description: ""
-
+        description: ''
       - name: actual_revenue
-        description: ""
-
+        description: ''

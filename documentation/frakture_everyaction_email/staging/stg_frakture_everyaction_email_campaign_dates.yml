@@ -1,15 +1,12 @@
+---
 version: 2
-
 models:
   - name: stg_frakture_everyaction_email_campaign_dates
-    description: ""
+    description: ''
     columns:
       - name: campaign_timestamp
-        description: ""
-
+        description: ''
       - name: crm_campaign
-        description: ""
-
+        description: ''
       - name: source_code_campaign
-        description: ""
-
+        description: ''

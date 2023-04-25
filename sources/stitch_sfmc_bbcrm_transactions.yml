@@ -1,68 +1,68 @@
+---
 version: 2
-
 sources:
   - name: src_stitch_bbcrm
-    description: ""
+    description: ''
     loader: stitch - sftp
     database: "{{ var('database') }}"
     schema: src_stitch_bbcrm_authorized
     tables:
       - name: revenue
-        description: ""
+        description: ''
         columns:
           - name: designation
-            description: ""
+            description: ''
           - name: inbound_channel
-            description: ""
+            description: ''
           - name: appeal
-            description: ""
+            description: ''
           - name: transaction_type
-            description: ""
+            description: ''
           - name: recognition_amount
-            description: ""
+            description: ''
           - name: revenue_platform
-            description: ""
+            description: ''
           - name: vendor_order_number
-            description: ""
+            description: ''
           - name: statuscode
-            description: ""
+            description: ''
           - name: constituentsystemrecordid
-            description: ""
+            description: ''
           - name: web_donation_form_value
-            description: ""
+            description: ''
           - name: payment_method
-            description: ""
+            description: ''
           - name: appeal_business_unit
-            description: ""
+            description: ''
           - name: recordid
-            description: ""
+            description: ''
           - name: _sdc_table_version
-            description: ""
+            description: ''
           - name: application
-            description: ""
+            description: ''
           - name: sfmc_dateadded
-            description: ""
+            description: ''
           - name: initial_market_source
-            description: ""
+            description: ''
           - name: _sdc_source_file
-            description: ""
+            description: ''
           - name: web_donation_form_comment
-            description: ""
+            description: ''
           - name: transaction_date
-            description: ""
+            description: ''
           - name: _sdc_received_at
-            description: ""
+            description: ''
           - name: _sdc_sequence
-            description: ""
+            description: ''
           - name: revenue_id
-            description: ""
+            description: ''
           - name: __sdc_primary_key
-            description: ""
+            description: ''
           - name: _sdc_batched_at
-            description: ""
+            description: ''
           - name: _sdc_source_lineno
-            description: ""
+            description: ''
           - name: sfmc_updatedate
-            description: ""
+            description: ''
           - name: __bbcrmlookupid_
-            description: ""
+            description: ''

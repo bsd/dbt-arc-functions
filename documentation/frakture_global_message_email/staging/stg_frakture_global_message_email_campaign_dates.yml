@@ -1,5 +1,5 @@
+---
 version: 2
-
 models:
   - name: stg_frakture_global_message_email_campaign_dates
     description: This model contains data about the email campaigns and their dates.
@@ -7,6 +7,7 @@ models:
       - name: campaign_timestamp
         description: The timestamp for the email campaign.
       - name: crm_campaign
-        description: The name of the campaign in the customer relationship management (CRM) system.
+        description: The name of the campaign in the customer relationship management
+          (CRM) system.
       - name: source_code_campaign
         description: The source code used for tracking campaign performance.

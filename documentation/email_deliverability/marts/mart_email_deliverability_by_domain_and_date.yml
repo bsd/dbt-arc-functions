@@ -1,42 +1,30 @@
+---
 version: 2
-
 models:
   - name: mart_email_deliverability_by_domain_and_date
-    description: ""
+    description: ''
     columns:
       - name: sent_date
-        description: ""
-
+        description: ''
       - name: message_id
-        description: ""
-
+        description: ''
       - name: email_domain
-        description: ""
-
+        description: ''
       - name: domain_category
-        description: ""
-
+        description: ''
       - name: recipients
-        description: ""
-
+        description: ''
       - name: opens
-        description: ""
-
+        description: ''
       - name: clicks
-        description: ""
-
+        description: ''
       - name: actions
-        description: ""
-
+        description: ''
       - name: total_bounces
-        description: ""
-
+        description: ''
       - name: soft_bounces
-        description: ""
-
+        description: ''
       - name: hard_bounces
-        description: ""
-
+        description: ''
       - name: unsubscribes
-        description: ""
-
+        description: ''

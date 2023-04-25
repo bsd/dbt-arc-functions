@@ -1,35 +1,26 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_bbcrm_transaction
-    description: ""
+    description: ''
     columns:
       - name: transaction_id
-        description: ""
-
+        description: ''
       - name: person_id
-        description: ""
-
+        description: ''
       - name: source_code
-        description: ""
-
+        description: ''
       - name: crm
-        description: ""
-
+        description: ''
       - name: message_id
-        description: ""
-
+        description: ''
       - name: transaction_date
-        description: ""
-
+        description: ''
       - name: amount
-        description: ""
-
+        description: ''
       - name: appeal
-        description: ""
-
+        description: ''
       - name: appeal_business_unit
-        description: ""
-
+        description: ''
       - name: application
-        description: ""
+        description: ''

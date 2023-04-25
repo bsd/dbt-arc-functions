@@ -1,84 +1,58 @@
+---
 version: 2
-
 models:
   - name: stg_google_analytics_event_view_search_results
-    description: ""
+    description: ''
     columns:
       - name: event_date
-        description: ""
-
+        description: ''
       - name: session_id
-        description: ""
-
+        description: ''
       - name: session_source
-        description: ""
-
+        description: ''
       - name: session_medium
-        description: ""
-
+        description: ''
       - name: host_name
-        description: ""
-
+        description: ''
       - name: page_path
-        description: ""
-
+        description: ''
       - name: device_category
-        description: ""
-
+        description: ''
       - name: user_gender
-        description: ""
-
+        description: ''
       - name: user_age
-        description: ""
-
+        description: ''
       - name: session_default_channel
-        description: ""
-
+        description: ''
       - name: campaign
-        description: ""
-
+        description: ''
       - name: device_language
-        description: ""
-
+        description: ''
       - name: selected_language
-        description: ""
-
+        description: ''
       - name: event_name
-        description: ""
-
+        description: ''
       - name: accordion_item
-        description: ""
-
+        description: ''
       - name: accordion_block
-        description: ""
-
+        description: ''
       - name: file_name
-        description: ""
-
+        description: ''
       - name: link_domain
-        description: ""
-
+        description: ''
       - name: top_nav_name
-        description: ""
-
+        description: ''
       - name: sub_menu_name
-        description: ""
-
+        description: ''
       - name: engaged_session
-        description: ""
-
+        description: ''
       - name: percent_scrolled
-        description: ""
-
+        description: ''
       - name: search_term
-        description: ""
-
+        description: ''
       - name: page_referrer
-        description: ""
-
+        description: ''
       - name: user_id
-        description: ""
-
+        description: ''
       - name: engagement_time_msec
-        description: ""
-
+        description: ''

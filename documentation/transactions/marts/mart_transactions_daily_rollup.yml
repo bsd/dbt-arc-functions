@@ -1,53 +1,46 @@
+---
 version: 2
-
 models:
   - name: mart_transactions_daily_rollup
-    description: "A daily aggregation of transaction data from multiple sources."
+    description: A daily aggregation of transaction data from multiple sources.
     columns:
       - name: best_guess_message_id
-        description: "The best guess for the message ID associated with the transaction."
-
+        description: The best guess for the message ID associated with the transaction.
       - name: date_timestamp
-        description: "The date and time when the transaction occurred."
-
+        description: The date and time when the transaction occurred.
       - name: transaction_source_code
-        description: "The source code associated with the transaction."
-
+        description: The source code associated with the transaction.
       - name: channel_from_crm
-        description: "The channel information extracted from the CRM system associated with the transaction."
-
+        description: The channel information extracted from the CRM system associated
+          with the transaction.
       - name: channel_from_source_code
-        description: "The channel derived from the source code associated with the transaction."
-
+        description: The channel derived from the source code associated with the
+          transaction.
       - name: channel_best_guess
-        description: "The best guess for the channel based on available information from CRM and source code."
-
+        description: The best guess for the channel based on available information
+          from CRM and source code.
       - name: campaign
-        description: "The campaign associated with the transaction."
-
+        description: The campaign associated with the transaction.
       - name: audience
-        description: "The audience segment targeted by the campaign."
-
+        description: The audience segment targeted by the campaign.
       - name: crm_entity
-        description: "The entity within the CRM system associated with the transaction."
-
+        description: The entity within the CRM system associated with the transaction.
       - name: source_code_entity
-        description: "The entity within the source code associated with the transaction."
-
+        description: The entity within the source code associated with the transaction.
       - name: best_guess_entity
-        description: "The best guess for the entity associated with the transaction based on available information from CRM and source code."
-
+        description: The best guess for the entity associated with the transaction
+          based on available information from CRM and source code.
       - name: total_amount
-        description: "The total monetary amount of all transactions within the aggregated period."
-
+        description: The total monetary amount of all transactions within the aggregated
+          period.
       - name: total_recurring_revenue
-        description: "The total revenue generated from recurring transactions within the aggregated period."
-
+        description: The total revenue generated from recurring transactions within
+          the aggregated period.
       - name: total_new_recurring_revenue
-        description: "The total revenue generated from new recurring transactions within the aggregated period."
-
+        description: The total revenue generated from new recurring transactions within
+          the aggregated period.
       - name: number_of_donors
-        description: "The total number of unique donors who made transactions within the aggregated period."
-
+        description: The total number of unique donors who made transactions within
+          the aggregated period.
       - name: number_of_transactions
-        description: "The total number of transactions within the aggregated period."
+        description: The total number of transactions within the aggregated period.

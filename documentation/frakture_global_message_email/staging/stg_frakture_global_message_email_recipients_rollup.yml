@@ -1,11 +1,10 @@
+---
 version: 2
-
 models:
   - name: stg_frakture_global_message_email_recipients_rollup
-    description: ""
+    description: ''
     columns:
       - name: message_id
-        description: "The unique identifier for each message."
-
+        description: The unique identifier for each message.
       - name: recipients
-        description: "Number of recipients of this email."
+        description: Number of recipients of this email.

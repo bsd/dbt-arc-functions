@@ -1,45 +1,32 @@
+---
 version: 2
-
 models:
   - name: stg_paidmedia_actuals_budget_by_day_and_campaign_join
-    description: ""
+    description: ''
     columns:
       - name: date_day
-        description: ""
-
+        description: ''
       - name: campaign_name
-        description: ""
-
+        description: ''
       - name: daily_spend
-        description: ""
-
+        description: ''
       - name: cumulative_spend
-        description: ""
-
+        description: ''
       - name: daily_budget
-        description: ""
-
+        description: ''
       - name: remaining_budget
-        description: ""
-
+        description: ''
       - name: spend_pace
-        description: ""
-
+        description: ''
       - name: budget_pace
-        description: ""
-
+        description: ''
       - name: cumulative_budget
-        description: ""
-
+        description: ''
       - name: total_budget
-        description: ""
-
+        description: ''
       - name: campaign_start_date
-        description: ""
-
+        description: ''
       - name: campaign_end_date
-        description: ""
-
+        description: ''
       - name: descriptions
-        description: ""
-
+        description: ''

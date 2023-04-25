@@ -1,16 +1,12 @@
-
+---
 version: 2
-
 models:
   - name: stg_frakture_global_message_paidmedia_sources_campaigns_messages_bridge
-    description: ""
+    description: ''
     columns:
       - name: message_id
-        description: ""
-
+        description: ''
       - name: source_code
-        description: ""
-
+        description: ''
       - name: campaign_id
-        description: ""
-
+        description: ''

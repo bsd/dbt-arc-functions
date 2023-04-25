@@ -1,40 +1,28 @@
-
+---
 version: 2
-
 models:
   - name: stg_frakture_everyaction_email_jobs
-    description: ""
+    description: ''
     columns:
       - name: message_id
-        description: ""
-
+        description: ''
       - name: campaign_id
-        description: ""
-
+        description: ''
       - name: from_name
-        description: ""
-
+        description: ''
       - name: from_email
-        description: ""
-
+        description: ''
       - name: best_guess_timestamp
-        description: ""
-
+        description: ''
       - name: scheduled_timestamp
-        description: ""
-
+        description: ''
       - name: pickup_timestamp
-        description: ""
-
+        description: ''
       - name: delivered_timestamp
-        description: ""
-
+        description: ''
       - name: email_name
-        description: ""
-
+        description: ''
       - name: email_subject
-        description: ""
-
+        description: ''
       - name: campaign_name
-        description: ""
-
+        description: ''

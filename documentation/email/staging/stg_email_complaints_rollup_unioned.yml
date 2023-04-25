@@ -1,11 +1,10 @@
-
+---
 version: 2
-
 models:
   - name: stg_email_complaints_rollup_unioned
-    description: "A rollup of email complaints across all email campaigns."
+    description: A rollup of email complaints across all email campaigns.
     columns:
-    - name: message_id
-      description: "The unique identifier for the email campaign message."
-    - name: complaints
-      description: "The number of complaints received for the email campaign."
+      - name: message_id
+        description: The unique identifier for the email campaign message.
+      - name: complaints
+        description: The number of complaints received for the email campaign.

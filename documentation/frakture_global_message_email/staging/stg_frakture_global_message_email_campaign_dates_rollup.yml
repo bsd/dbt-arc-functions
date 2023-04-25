@@ -1,5 +1,5 @@
+---
 version: 2
-
 models:
   - name: stg_frakture_global_message_email_campaign_dates_rollup
     description: Contains the rollup information for email campaign dates.

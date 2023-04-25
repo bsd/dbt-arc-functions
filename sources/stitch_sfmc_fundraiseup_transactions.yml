@@ -1,48 +1,48 @@
+---
 version: 2
-
 sources:
   - name: src_stitch_fundraiseup
-    description: ""
+    description: ''
     loader: stitch - sftp
     database: "{{ var('database') }}"
     schema: src_stitch_fundraiseup_authorized
     tables:
       - name: recent_transactions
-        description: ""
+        description: ''
         columns:
           - name: designation
-            description: ""
+            description: ''
           - name: appeal
-            description: ""
+            description: ''
           - name: __initial_market_source_
-            description: ""
+            description: ''
           - name: migrated
-            description: ""
+            description: ''
           - name: bbcrmlookupid
-            description: ""
+            description: ''
           - name: _sdc_table_version
-            description: ""
+            description: ''
           - name: _sdc_source_file
-            description: ""
+            description: ''
           - name: transaction_date
-            description: ""
+            description: ''
           - name: _sdc_received_at
-            description: ""
+            description: ''
           - name: _sdc_sequence
-            description: ""
+            description: ''
           - name: fru_donation_id
-            description: ""
+            description: ''
           - name: amount
-            description: ""
+            description: ''
           - name: gift_type
-            description: ""
+            description: ''
           - name: email_address
-            description: ""
+            description: ''
           - name: _sdc_batched_at
-            description: ""
+            description: ''
           - name: _sdc_source_lineno
-            description: ""
+            description: ''
           - name: designation_name
-            description: ""
+            description: ''
           - name: sfmc_updatedate
-            description: ""
+            description: ''

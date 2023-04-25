@@ -1,30 +1,22 @@
+---
 version: 2
-
 models:
   - name: mart_email_listhealth_by_month
-    description: ""
+    description: ''
     columns:
       - name: date_month
-        description: ""
-
+        description: ''
       - name: max_recipients
-        description: ""
-
+        description: ''
       - name: max_delivered
-        description: ""
-
+        description: ''
       - name: delivered_prev_month
-        description: ""
-
+        description: ''
       - name: diff_delivered_prev_month
-        description: ""
-
+        description: ''
       - name: total_unsubscribes
-        description: ""
-
+        description: ''
       - name: total_hard_bounces
-        description: ""
-
+        description: ''
       - name: total_complaints
-        description: ""
-
+        description: ''
