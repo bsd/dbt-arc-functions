@@ -4,7 +4,7 @@
 
 {% set bsd_client = var.database %}
 
-{% if bsd_client == 'bsd-arc-uusa' %}
+{% if bsd_client == bsd-arc-uusa %}
 
 with
     base as (
