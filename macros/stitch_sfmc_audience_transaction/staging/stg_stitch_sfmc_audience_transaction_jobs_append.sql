@@ -6,7 +6,7 @@
 
 {% if bsd_client == "bsd-arc-uusa" %}
 select
-    transaction_date,
+    transaction_date_day,
     person_id,
     case
         when cumulative_amount_12_months >= 25000
@@ -60,7 +60,7 @@ from {{ ref(reference_name) }}
 {% else %}
 
 select
-    transaction_date,
+    transaction_date_day,
     person_id,
     case
         when cumulative_amount_12_months >= 25000

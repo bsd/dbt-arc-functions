@@ -6,7 +6,7 @@
 ) %}
 
 select
-    jobs.transaction_date,
+    jobs.transaction_date_day,
     jobs.person_id,
     first_last.first_transaction_date,
     first_last.previous_latest_transaction_date,
