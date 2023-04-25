@@ -4,7 +4,9 @@
 
 {% if var.database == "bsd-arc-uusa" %}
 
-select distinct
+with base as 
+
+(select distinct
     transaction_date_day,
     person_id,
     case
@@ -54,7 +56,28 @@ select distinct
         then 'retained 3+'
     -- retained 3+ also multiyear
     end as donor_loyalty
-from {{ ref(reference_name) }}
+from {{ ref(reference_name) }})
+
+, dedupe as (
+select 
+    transaction_date_day,
+    person_id,
+    donor_audience,
+    donor_engagement,
+    donor_loyalty
+    ROW_NUMBER() OVER (PARTITION BY transaction_date_day, person_id, donor_audience, donor_engagement, donor_loyalty ORDER BY transaction_date_day DESC) AS row_number
+    from base
+)
+
+select 
+transaction_date_day,
+person_id,
+donor_audience,
+donor_engagement,
+donor_loyalty
+from dedupe
+where row_number = 1
+
 
 {% else %}
 
