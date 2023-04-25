@@ -57,7 +57,8 @@ select
         then 'retained 3+'
     -- retained 3+ also multiyear
     end as donor_loyalty
-from {{ ref(reference_name) }} )
+from {{ ref(reference_name) }} 
+)
 
 select DISTINCT * from base
 
