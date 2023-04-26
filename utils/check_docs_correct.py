@@ -45,27 +45,56 @@ def main():
                 check_for_no_columns(file_path, docs_without_columns, doc_yaml)
                 check_for_no_version(file_path, docs_without_version, doc_yaml)
                 check_for_no_macro(file_path, docs_without_macro, doc_yaml)
+    
+    sources_without_columns = []
+    sources_without_version = []
 
-    if docs_without_columns:
-        for doc_without_macro in docs_without_macro:
-            print(
-                f"The doc below doesn't have a macro associated with it:\n {doc_without_macro[0]}\n"
-                f"Expected to find doc here:\n {doc_without_macro[1]}\n"
-                "Please delete the doc, then run create_docs.ipynb against a working"
-                " client to create docs\n")
-        print(f"\nDocs without macro: {len(docs_without_macro)}")
-        for doc_without_columns in docs_without_columns:
-            print(
-                f"The doc below doesn't have any columns:\n {doc_without_columns}\n"
-                "Please delete the doc, then run create_docs.ipynb against a working"
-                " client to create docs\n")
-        print(f"\nDocs without columns: {len(docs_without_columns)}")
-        for doc_without_version in docs_without_version:
-            print(
-                f"The doc below doesn't have a version number:\n {doc_without_version}\n"
-                "Please delete the doc, then run create_docs.ipynb against a working"
-                " client to create docs\n")
-        print(f"\nDocs without version: {len(docs_without_version)}")
+    for root, _, files in os.walk('../sources'):
+        for file in files:
+            file_path = os.path.join(root, file)
+            if file.endswith('.yml') and 'utils' not in root:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    source_yaml = yaml.safe_load(f)
+                check_for_no_columns(file_path, sources_without_columns, source_yaml)
+                check_for_no_version(file_path, sources_without_version, source_yaml)
+
+    for doc_without_macro in docs_without_macro:
+        print(
+            f"The doc below doesn't have a macro associated with it:\n {doc_without_macro[0]}\n"
+            f"Expected to find doc here:\n {doc_without_macro[1]}\n"
+            "Please delete the doc, then run create_docs.ipynb against a working"
+            " client to create docs\n")
+    print(f"\nDocs without macro: {len(docs_without_macro)}")
+    for doc_without_columns in docs_without_columns:
+        print(
+            f"The doc below doesn't have any columns:\n {doc_without_columns}\n"
+            "Please delete the doc, then run create_docs.ipynb against a working"
+            " client to create docs\n")
+    print(f"\nDocs without columns: {len(docs_without_columns)}")
+    for doc_without_version in docs_without_version:
+        print(
+            f"The doc below doesn't have a version number:\n {doc_without_version}\n"
+            "Please delete the doc, then run create_docs.ipynb against a working"
+            " client to create docs\n")
+    print(f"\nDocs without version: {len(docs_without_version)}")
+    for source_without_columns in sources_without_columns:
+        print(
+            f"The source below doesn't have any columns:\n {source_without_columns}\n"
+            "Please delete the source, then run create_sources.ipynb against a working"
+            " client to create sources\n")
+    print(f"\nsources without columns: {len(sources_without_columns)}")
+    for source_without_version in sources_without_version:
+        print(
+            f"The source below doesn't have a version number:\n {source_without_version}\n"
+            "Please delete the source, then run create_sources.ipynb against a working"
+            " client to create sources\n")
+    print(f"\nsources without version: {len(sources_without_version)}")
+    
+    if (docs_without_columns
+        or docs_without_version
+        or docs_without_macro
+        or sources_without_columns
+        or sources_without_version):
         sys.exit(1)
 
 
