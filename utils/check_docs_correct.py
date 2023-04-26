@@ -14,6 +14,15 @@ def check_for_no_columns(file_path, docs_without_columns, doc_yaml):
         docs_without_columns.append(file_path)
 
 
+def check_for_no_tables(file_path, sources_without_tables, doc_yaml):
+    try:
+        tables = doc_yaml['models'][0]['tables']
+        if not tables or len(tables) < 1:
+            sources_without_tables.append(file_path)
+    except KeyError:
+        sources_without_tables.append(file_path)
+
+
 def check_for_no_version(file_path, docs_without_version, doc_yaml):
     try:
         doc_yaml['version']
@@ -46,7 +55,7 @@ def main():
                 check_for_no_version(file_path, docs_without_version, doc_yaml)
                 check_for_no_macro(file_path, docs_without_macro, doc_yaml)
     
-    sources_without_columns = []
+    sources_without_tables = []
     sources_without_version = []
 
     for root, _, files in os.walk('../sources'):
@@ -55,7 +64,8 @@ def main():
             if file.endswith('.yml') and 'utils' not in root:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     source_yaml = yaml.safe_load(f)
-                check_for_no_columns(file_path, sources_without_columns, source_yaml)
+                
+                check_for_no_tables(file_path, sources_without_tables, source_yaml)
                 check_for_no_version(file_path, sources_without_version, source_yaml)
 
     for doc_without_macro in docs_without_macro:
@@ -77,12 +87,12 @@ def main():
             "Please delete the doc, then run create_docs.ipynb against a working"
             " client to create docs\n")
     print(f"\nDocs without version: {len(docs_without_version)}")
-    for source_without_columns in sources_without_columns:
+    for source_without_tables in sources_without_tables:
         print(
-            f"The source below doesn't have any columns:\n {source_without_columns}\n"
+            f"The source below doesn't have any columns:\n {source_without_tables}\n"
             "Please delete the source, then run create_sources.ipynb against a working"
             " client to create sources\n")
-    print(f"\nsources without columns: {len(sources_without_columns)}")
+    print(f"\nsources without columns: {len(sources_without_tables)}")
     for source_without_version in sources_without_version:
         print(
             f"The source below doesn't have a version number:\n {source_without_version}\n"
@@ -93,7 +103,7 @@ def main():
     if (docs_without_columns
         or docs_without_version
         or docs_without_macro
-        or sources_without_columns
+        or sources_without_tables
         or sources_without_version):
         sys.exit(1)
 
