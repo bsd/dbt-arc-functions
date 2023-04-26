@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       importAll:
-        default: 'false'
+        default: false
         required: false
         type: boolean
         description: Enable, if you want to import all TODOs. Runs on checked out
