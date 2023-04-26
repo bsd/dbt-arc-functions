@@ -99,13 +99,13 @@ def main():
             f"The source below doesn't have any tables:\n {source_without_tables}\n"
             "Please run the following command against a working and reformat your source:\n"
             """ dbt run-operation generate_source --args '{"schema_name": "SCHEMA", "table_names":["TABLE"], "generate_columns": "true", "include_data_types": "true",}'\n""")
-    print(f"\nsources without columns: {len(sources_without_tables)}")
+    print(f"\nsources without tables: {len(sources_without_tables)}")
     for table_without_columns in tables_without_columns:
         print(
             f"The table noted in the source below doesn't have any columns:\n {table_without_columns[0]}\n{table_without_columns[1]}\n"
             "Please run the following command against a working and reformat your source:\n"
             """ dbt run-operation generate_source --args '{"schema_name": "SCHEMA", "table_names":["TABLE"], "generate_columns": "true", "include_data_types": "true",}'\n""")
-    print(f"\nsources without columns: {len(tables_without_columns)}")
+    print(f"\nsource tables without columns: {len(tables_without_columns)}")
     for source_without_version in sources_without_version:
         print(
             f"The source below doesn't have a version number:\n {source_without_version}\n"
