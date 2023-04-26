@@ -1,24 +1,18 @@
+---
 version: 2
-
 models:
   - name: stg_src_stitch_email_journeyactivity
-    description: ""
+    description: ''
     columns:
       - name: version_id
-        description: ""
-
+        description: ''
       - name: activity_id
-        description: ""
-
+        description: ''
       - name: activity_name
-        description: ""
-
+        description: ''
       - name: activity_external_key
-        description: ""
-
+        description: ''
       - name: journey_activity_object_id
-        description: ""
-
+        description: ''
       - name: activity_type
-        description: ""
-
+        description: ''

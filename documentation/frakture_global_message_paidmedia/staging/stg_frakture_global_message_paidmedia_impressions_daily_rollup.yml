@@ -1,19 +1,14 @@
-
+---
 version: 2
-
 models:
   - name: stg_frakture_global_message_paidmedia_impressions_daily_rollup
-    description: ""
+    description: ''
     columns:
       - name: message_id
-        description: ""
-
+        description: ''
       - name: date_timestamp
-        description: ""
-
+        description: ''
       - name: total_impressions
-        description: ""
-
+        description: ''
       - name: unique_impressions
-        description: ""
-
+        description: ''

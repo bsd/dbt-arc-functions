@@ -1,3 +1,4 @@
+---
 version: 2
 sources:
   - name: frakture_global_message_paidmedia
@@ -5,7 +6,7 @@ sources:
     schema: src_frakture
     tables:
       - name: global_message_summary_by_date
-        freshness: 
+        freshness:
           warn_after: {count: 2, period: day}
           error_after: {count: 7, period: day}
         loaded_at_field: cast(publish_date as timestamp)

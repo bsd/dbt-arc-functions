@@ -1,111 +1,104 @@
+---
 version: 2
-
 models:
   - name: mart_email_performance_with_revenue
-    description: Mart rolling up email performance across all vendors for this client. The grain of this table is email.
+    description: Mart rolling up email performance across all vendors for this client.
+      The grain of this table is email.
     columns:
       - name: message_id
-        description: "Unique ID for email, coming either directly from CRM or a data intermediary like Frakture or Stitch."
-
+        description: Unique ID for email, coming either directly from CRM or a data
+          intermediary like Frakture or Stitch.
       - name: from_name
-        description: "Name that appears in 'From' line on email client. NOT the email address, that is from_email."
-
+        description: Name that appears in 'From' line on email client. NOT the email
+          address, that is from_email.
       - name: from_email
-        description: "Email address that appears in 'From' line on email client."
-
+        description: Email address that appears in 'From' line on email client.
       - name: best_guess_timestamp
-        description: "Our best guess of when an email is was sent. This will vary between CRMs, but is usually some COALESCE of other timestamps."
-
+        description: Our best guess of when an email is was sent. This will vary between
+          CRMs, but is usually some COALESCE of other timestamps.
       - name: scheduled_timestamp
-        description: "From the CRM, not always included. When an email was scheduled to be sent."
-
+        description: From the CRM, not always included. When an email was scheduled
+          to be sent.
       - name: pickup_timestamp
-        description: "From the CRM, not always included. When an email was picked up by the mailing software to be sent."
-
+        description: From the CRM, not always included. When an email was picked up
+          by the mailing software to be sent.
       - name: delivered_timestamp
-        description: "From the CRM, not always included. When an email was delivered to a client."
-
+        description: From the CRM, not always included. When an email was delivered
+          to a client.
       - name: campaign_start_timestamp
-        description: "The first timestamp from a given campaign. Derived field, usually MIN() of a campaign's timestamps."
-
+        description: The first timestamp from a given campaign. Derived field, usually
+          MIN() of a campaign's timestamps.
       - name: campaign_latest_timestamp
-        description: "The first timestamp from a given campaign. Derived field, usually MAX() of a campaign's timestamps."
-
+        description: The first timestamp from a given campaign. Derived field, usually
+          MAX() of a campaign's timestamps.
       - name: email_name
-        description: "Depending on the CRM, this is usually the internal name of an email for the CRM software."
-
+        description: Depending on the CRM, this is usually the internal name of an
+          email for the CRM software.
       - name: email_subject
-        description: "The subject line an end-user will see in their email client."
-
+        description: The subject line an end-user will see in their email client.
       - name: source_code
-        description: "Source Code associated with this particular email. These are usually processed to attribute revenue to particular emails."
-
+        description: Source Code associated with this particular email. These are
+          usually processed to attribute revenue to particular emails.
       - name: crm_entity
-        description: "The CRM software from which this email was generated/sent out."
-
+        description: The CRM software from which this email was generated/sent out.
       - name: source_code_entity
-        description: "The entity from which this was sent out based on the source code."
-
+        description: The entity from which this was sent out based on the source code.
       - name: best_guess_entity
-        description: "Our best guess of which entity this was sent out. In many cases this is a concatenation of crm and source code entities."
-
+        description: Our best guess of which entity this was sent out. In many cases
+          this is a concatenation of crm and source code entities.
       - name: audience
-        description: "The intended audience for an email. Audiences can overlap with one another."
-
+        description: The intended audience for an email. Audiences can overlap with
+          one another.
       - name: campaign_name
-        description: "The name of the campaign under which the email was sent. This is usually defined in the CRM/email software."
-
+        description: The name of the campaign under which the email was sent. This
+          is usually defined in the CRM/email software.
       - name: recurtype
-        description: "A code that says what kind of recurrence schedule the email is on, originating in the CRM/email software or our data processor."
-
+        description: A code that says what kind of recurrence schedule the email is
+          on, originating in the CRM/email software or our data processor.
       - name: recipients
-        description: "Number of recipients of this email."
-
+        description: Number of recipients of this email.
       - name: opens
-        description: "Number of opens of this email."
-
+        description: Number of opens of this email.
       - name: clicks
-        description: "Number of clicks of this email."
-
+        description: Number of clicks of this email.
       - name: actions
-        description: "Number of actions taken by email recipients. This is defined as any action other than donation, which is tracked separately. Actions can include petition signing, letter writing, etc."
-
+        description: Number of actions taken by email recipients. This is defined
+          as any action other than donation, which is tracked separately. Actions
+          can include petition signing, letter writing, etc.
       - name: total_bounces
-        description: "Number of total bounces of this email."
-
+        description: Number of total bounces of this email.
       - name: block_bounces
-        description: "Number of block bounces of this email. A block bounce (which is considered a type of soft bounce) occurs when the email server rejects the email due to filter issues, such as URL blocks, lack of proper authentication, or the domain or IP address is found on a blacklist utilized by the receiving domain."
-
+        description: Number of block bounces of this email. A block bounce (which
+          is considered a type of soft bounce) occurs when the email server rejects
+          the email due to filter issues, such as URL blocks, lack of proper authentication,
+          or the domain or IP address is found on a blacklist utilized by the receiving
+          domain.
       - name: tech_bounces
-        description: "Number of technical bounces of this email. A technical bounce occurs when the email server rejects the email due to technical errors, such as a data format or network error."
-
+        description: Number of technical bounces of this email. A technical bounce
+          occurs when the email server rejects the email due to technical errors,
+          such as a data format or network error.
       - name: soft_bounces
-        description: "Number of soft bounces of this email. A soft bounce occurs when your email campaign goes as far as your customer's mail server, which means that your email address was recognized, but the message is then bounced back as undelivered before reaching the customer's inbox."
-
+        description: Number of soft bounces of this email. A soft bounce occurs when
+          your email campaign goes as far as your customer's mail server, which means
+          that your email address was recognized, but the message is then bounced
+          back as undelivered before reaching the customer's inbox.
       - name: unknown_bounces
-        description: "Number of unknown bounces of this email. Sometimes called a hard bounce. This bounce typically results when user unknown or domain not found errors occur."
-
+        description: Number of unknown bounces of this email. Sometimes called a hard
+          bounce. This bounce typically results when user unknown or domain not found
+          errors occur.
       - name: unsubscribes
-        description: "Number of unsubscribes of this email."
-
+        description: Number of unsubscribes of this email.
       - name: total_revenue
-        description: "total_revenue from this email."
-
+        description: total_revenue from this email.
       - name: total_gifts
-        description: "total_gifts from this email."
-
+        description: total_gifts from this email.
       - name: total_donors
-        description: "total_donors from this email."
-
+        description: total_donors from this email.
       - name: one_time_revenue
-        description: "one_time_revenue from this email."
-
+        description: one_time_revenue from this email.
       - name: one_time_gifts
-        description: "one_time_gifts from this email."
-
+        description: one_time_gifts from this email.
       - name: new_monthly_revenue
-        description: "new_monthly_revenue from this email."
-
+        description: new_monthly_revenue from this email.
       - name: new_monthly_gifts
-        description: "new_monthly_gifts from this email."
-
+        description: new_monthly_gifts from this email.

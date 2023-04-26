@@ -1,115 +1,78 @@
-
+---
 version: 2
-
 models:
   - name: stg_frakture_actionkit_transactions_summary_unioned
-    description: ""
+    description: ''
     columns:
       - name: _dbt_source_relation
-        description: ""
-
+        description: ''
       - name: remote_transaction_id
-        description: ""
-
+        description: ''
       - name: remote_person_id
-        description: ""
-
+        description: ''
       - name: ts
-        description: ""
-
+        description: ''
       - name: amount
-        description: ""
-
+        description: ''
       - name: recurs
-        description: ""
-
+        description: ''
       - name: recurring_number
-        description: ""
-
+        description: ''
       - name: refund_amount
-        description: ""
-
+        description: ''
       - name: source_code
-        description: ""
-
+        description: ''
       - name: email_hash_v1
-        description: ""
-
+        description: ''
       - name: actionkit_order_id
-        description: ""
-
+        description: ''
       - name: actionkit_transaction_type
-        description: ""
-
+        description: ''
       - name: actionkit_account
-        description: ""
-
+        description: ''
       - name: payment_method
-        description: ""
-
+        description: ''
       - name: is_recurring
-        description: ""
-
+        description: ''
       - name: actionkit_recurring_id
-        description: ""
-
+        description: ''
       - name: source
-        description: ""
-
+        description: ''
       - name: ts_eastern
-        description: ""
-
+        description: ''
       - name: pledge_id
-        description: ""
-
+        description: ''
       - name: order_id
-        description: ""
-
+        description: ''
       - name: remote_page_id
-        description: ""
-
+        description: ''
       - name: remote_page_name
-        description: ""
-
+        description: ''
       - name: page_id
-        description: ""
-
+        description: ''
       - name: page_title
-        description: ""
-
+        description: ''
       - name: page_name
-        description: ""
-
+        description: ''
       - name: pledge_start_date
-        description: ""
-
+        description: ''
       - name: frequency
-        description: ""
-
+        description: ''
       - name: giving_level_code
-        description: ""
-
+        description: ''
       - name: transaction_status
-        description: ""
-
+        description: ''
       - name: order_status
-        description: ""
-
+        description: ''
       - name: recurring_status
-        description: ""
-
+        description: ''
       - name: actionkit_overall_status
-        description: ""
-
+        description: ''
       - name: mailing_notes
-        description: ""
-
+        description: ''
       - name: remote_message_id
-        description: ""
-
+        description: ''
       - name: page_tags
-        description: ""
-
+        description: ''
       - name: page_tag_ids
-        description: ""
-
+        description: ''

@@ -1,37 +1,28 @@
-
+---
 version: 2
-
 models:
   - name: stg_frakture_actionkit_email_jobs
     description: Email jobs from Frakture, limited to Actionkit email jobs.
     columns:
       - name: message_id
-        description: "Unique ID for email from Frakture."
-
+        description: Unique ID for email from Frakture.
       - name: from_name
-        description: "Name that appears in 'From' line on email client. NOT the email address, that is from_email."
-
+        description: Name that appears in 'From' line on email client. NOT the email
+          address, that is from_email.
       - name: from_email
-        description: "Email address that appears in 'From' line on email client."
-
+        description: Email address that appears in 'From' line on email client.
       - name: best_guess_timestamp
-        description: "Timestamp from Frakture's 'publish_date' field."
-
+        description: Timestamp from Frakture's 'publish_date' field.
       - name: scheduled_timestamp
-        description: "Frakture does not provide this, so set to NULL"
-
+        description: Frakture does not provide this, so set to NULL
       - name: pickup_timestamp
-        description: "Frakture does not provide this, so set to NULL"
-
+        description: Frakture does not provide this, so set to NULL
       - name: delivered_timestamp
-        description: "Frakture does not provide this, so set to NULL"
-
+        description: Frakture does not provide this, so set to NULL
       - name: email_name
-        description: "Internal name for the email, from Frakture's 'label' field."
-
+        description: Internal name for the email, from Frakture's 'label' field.
       - name: email_subject
-        description: "The subject line an end-user will see in their email client."
-
+        description: The subject line an end-user will see in their email client.
       - name: source_code
-        description: "Source Code associated with this particular email. From Frakture's 'final_primary_source_code' field."
-
+        description: Source Code associated with this particular email. From Frakture's
+          'final_primary_source_code' field.

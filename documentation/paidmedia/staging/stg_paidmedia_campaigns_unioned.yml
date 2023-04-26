@@ -1,31 +1,22 @@
-
+---
 version: 2
-
 models:
   - name: stg_paidmedia_campaigns_unioned
-    description: ""
+    description: ''
     columns:
       - name: _dbt_source_relation
-        description: ""
-
+        description: ''
       - name: campaign_id
-        description: ""
-
+        description: ''
       - name: message_id
-        description: ""
-
+        description: ''
       - name: channel
-        description: ""
-
+        description: ''
       - name: channel_type
-        description: ""
-
+        description: ''
       - name: campaign_name
-        description: ""
-
+        description: ''
       - name: crm_entity
-        description: ""
-
+        description: ''
       - name: source_code_entity
-        description: ""
-
+        description: ''

@@ -1,15 +1,12 @@
+---
 version: 2
-
 models:
   - name: stg_paidmedia_pacing_budget_with_datespine
-    description: ""
+    description: ''
     columns:
       - name: date_day
-        description: ""
-
+        description: ''
       - name: campaign_name
-        description: ""
-
+        description: ''
       - name: daily_budget
-        description: ""
-
+        description: ''

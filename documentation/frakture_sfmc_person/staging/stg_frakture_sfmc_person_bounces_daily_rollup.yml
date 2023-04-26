@@ -1,21 +1,16 @@
+---
 version: 2
-
 models:
   - name: stg_frakture_sfmc_person_bounces_daily_rollup
-    description: ""
+    description: ''
     columns:
       - name: sent_date
-        description: ""
-
+        description: ''
       - name: message_id
-        description: ""
-
+        description: ''
       - name: email_domain
-        description: ""
-
+        description: ''
       - name: hard_bounces
-        description: ""
-
+        description: ''
       - name: soft_bounces
-        description: ""
-
+        description: ''

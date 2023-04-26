@@ -1,24 +1,18 @@
+---
 version: 2
-
 models:
   - name: stg_email_deliverability_person_bounces_daily_rollup_unioned
-    description: ""
+    description: ''
     columns:
       - name: _dbt_source_relation
-        description: ""
-
+        description: ''
       - name: sent_date
-        description: ""
-
+        description: ''
       - name: message_id
-        description: ""
-
+        description: ''
       - name: email_domain
-        description: ""
-
+        description: ''
       - name: hard_bounces
-        description: ""
-
+        description: ''
       - name: soft_bounces
-        description: ""
-
+        description: ''

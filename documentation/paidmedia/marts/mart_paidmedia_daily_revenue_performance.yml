@@ -1,94 +1,64 @@
-
+---
 version: 2
-
 models:
   - name: mart_paidmedia_daily_revenue_performance
-    description: ""
+    description: ''
     columns:
       - name: message_id
-        description: ""
-
+        description: ''
       - name: campaign_id
-        description: ""
-
+        description: ''
       - name: channel
-        description: ""
-
+        description: ''
       - name: channel_type
-        description: ""
-
+        description: ''
       - name: campaign_name
-        description: ""
-
+        description: ''
       - name: crm_entity
-        description: ""
-
+        description: ''
       - name: source_code_entity
-        description: ""
-
+        description: ''
       - name: best_guess_entity
-        description: ""
-
+        description: ''
       - name: date_timestamp
-        description: ""
-
+        description: ''
       - name: total_impressions
-        description: ""
-
+        description: ''
       - name: unique_impressions
-        description: ""
-
+        description: ''
       - name: total_clicks
-        description: ""
-
+        description: ''
       - name: unique_clicks
-        description: ""
-
+        description: ''
       - name: spend_amount
-        description: ""
-
+        description: ''
       - name: total_revenue
-        description: ""
-
+        description: ''
       - name: total_gifts
-        description: ""
-
+        description: ''
       - name: total_donors
-        description: ""
-
+        description: ''
       - name: one_time_revenue
-        description: ""
-
+        description: ''
       - name: one_time_gifts
-        description: ""
-
+        description: ''
       - name: new_monthly_revenue
-        description: ""
-
+        description: ''
       - name: new_monthly_gifts
-        description: ""
-
+        description: ''
       - name: total_monthly_revenue
-        description: ""
-
+        description: ''
       - name: total_monthly_gifts
-        description: ""
-
+        description: ''
       - name: campaign
-        description: ""
-
+        description: ''
       - name: campaign_label
-        description: ""
-
+        description: ''
       - name: audience
-        description: ""
-
+        description: ''
       - name: appeal
-        description: ""
-
+        description: ''
       - name: source_code
-        description: ""
-
+        description: ''
       - name: subscribes
-        description: ""
-
+        description: ''

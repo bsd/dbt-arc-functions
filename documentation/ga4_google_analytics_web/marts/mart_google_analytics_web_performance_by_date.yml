@@ -1,150 +1,102 @@
+---
 version: 2
-
 models:
   - name: mart_google_analytics_web_performance_by_date
-    description: ""
+    description: ''
     columns:
       - name: event_date
-        description: ""
-
+        description: ''
       - name: session_source
-        description: ""
-
+        description: ''
       - name: session_medium
-        description: ""
-
+        description: ''
       - name: host_name
-        description: ""
-
+        description: ''
       - name: page_group
-        description: ""
-
+        description: ''
       - name: session_default_channel
-        description: ""
-
+        description: ''
       - name: campaign
-        description: ""
-
+        description: ''
       - name: device_category
-        description: ""
-
+        description: ''
       - name: device_language
-        description: ""
-
+        description: ''
       - name: selected_language
-        description: ""
-
+        description: ''
       - name: user_gender
-        description: ""
-
+        description: ''
       - name: user_age
-        description: ""
-
+        description: ''
       - name: accordion_item
-        description: ""
-
+        description: ''
       - name: accordion_block
-        description: ""
-
+        description: ''
       - name: file_name
-        description: ""
-
+        description: ''
       - name: link_domain
-        description: ""
-
+        description: ''
       - name: top_nav_name
-        description: ""
-
+        description: ''
       - name: sub_menu_name
-        description: ""
-
+        description: ''
       - name: search_term
-        description: ""
-
+        description: ''
       - name: page_referrer
-        description: ""
-
+        description: ''
       - name: accordion_block_clicks
-        description: ""
-
+        description: ''
       - name: unique_accordion_block_clicks
-        description: ""
-
+        description: ''
       - name: clicks
-        description: ""
-
+        description: ''
       - name: unique_clicks
-        description: ""
-
+        description: ''
       - name: downloads
-        description: ""
-
+        description: ''
       - name: unique_downloads
-        description: ""
-
+        description: ''
       - name: first_visits
-        description: ""
-
+        description: ''
       - name: unique_first_visits
-        description: ""
-
+        description: ''
       - name: language_menu_expands
-        description: ""
-
+        description: ''
       - name: unique_language_menu_expands
-        description: ""
-
+        description: ''
       - name: page_views
-        description: ""
-
+        description: ''
       - name: unique_page_views
-        description: ""
-
+        description: ''
       - name: searches
-        description: ""
-
+        description: ''
       - name: unique_searches
-        description: ""
-
+        description: ''
       - name: scrolls
-        description: ""
-
+        description: ''
       - name: unique_scrolls
-        description: ""
-
+        description: ''
       - name: session_starts
-        description: ""
-
+        description: ''
       - name: unique_session_starts
-        description: ""
-
+        description: ''
       - name: sub_menu_expands
-        description: ""
-
+        description: ''
       - name: unique_sub_menu_expands
-        description: ""
-
+        description: ''
       - name: user_engagements
-        description: ""
-
+        description: ''
       - name: unique_user_engagements
-        description: ""
-
+        description: ''
       - name: engaged_sessions
-        description: ""
-
+        description: ''
       - name: avg_percent_scrolled
-        description: ""
-
+        description: ''
       - name: engagement_time_msecs
-        description: ""
-
+        description: ''
       - name: unique_sessions
-        description: ""
-
+        description: ''
       - name: unique_users
-        description: ""
-
+        description: ''
       - name: total_users
-        description: ""
-
+        description: ''

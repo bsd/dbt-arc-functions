@@ -1,19 +1,14 @@
-
+---
 version: 2
-
 models:
   - name: stg_frakture_global_message_paidmedia_clicks_daily_rollup
-    description: ""
+    description: ''
     columns:
       - name: message_id
-        description: ""
-
+        description: ''
       - name: date_timestamp
-        description: ""
-
+        description: ''
       - name: total_clicks
-        description: ""
-
+        description: ''
       - name: unique_clicks
-        description: ""
-
+        description: ''

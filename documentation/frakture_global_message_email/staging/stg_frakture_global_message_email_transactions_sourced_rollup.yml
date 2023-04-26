@@ -1,35 +1,32 @@
+---
 version: 2
-
 models:
   - name: stg_frakture_global_message_email_transactions_sourced_rollup
-    description: "Rollup of transaction data sourced from email campaigns."
+    description: Rollup of transaction data sourced from email campaigns.
     columns:
       - name: message_id
-        description: "The unique identifier for the email campaign message."
-
+        description: The unique identifier for the email campaign message.
       - name: total_revenue
-        description: "The total revenue generated from the email campaign."
-
+        description: The total revenue generated from the email campaign.
       - name: total_gifts
-        description: "The total number of gifts made as a result of the email campaign."
-
+        description: The total number of gifts made as a result of the email campaign.
       - name: total_donors
-        description: "The total number of donors who gave as a result of the email campaign."
-
+        description: The total number of donors who gave as a result of the email
+          campaign.
       - name: one_time_revenue
-        description: "The revenue generated from one-time gifts made as a result of the email campaign."
-
+        description: The revenue generated from one-time gifts made as a result of
+          the email campaign.
       - name: one_time_gifts
-        description: "The number of one-time gifts made as a result of the email campaign."
-
+        description: The number of one-time gifts made as a result of the email campaign.
       - name: new_monthly_revenue
-        description: "The revenue generated from new monthly donors who gave as a result of the email campaign."
-
+        description: The revenue generated from new monthly donors who gave as a result
+          of the email campaign.
       - name: new_monthly_gifts
-        description: "The number of new monthly donors who gave as a result of the email campaign."
-
+        description: The number of new monthly donors who gave as a result of the
+          email campaign.
       - name: total_monthly_revenue
-        description: "The total revenue generated from monthly donors who gave as a result of the email campaign."
-
+        description: The total revenue generated from monthly donors who gave as a
+          result of the email campaign.
       - name: total_monthly_gifts
-        description: "The total number of monthly gifts made as a result of the email campaign."
+        description: The total number of monthly gifts made as a result of the email
+          campaign.

@@ -1,28 +1,20 @@
-
+---
 version: 2
-
 models:
   - name: stg_frakture_actionkit_email_campaigns_rollup
-    description: ""
+    description: ''
     columns:
       - name: message_id
-        description: ""
-
+        description: ''
       - name: crm_entity
-        description: ""
-
+        description: ''
       - name: source_code_entity
-        description: ""
-
+        description: ''
       - name: audience
-        description: ""
-
+        description: ''
       - name: recurtype
-        description: ""
-
+        description: ''
       - name: campaign_category
-        description: ""
-
+        description: ''
       - name: campaign_name
-        description: ""
-
+        description: ''

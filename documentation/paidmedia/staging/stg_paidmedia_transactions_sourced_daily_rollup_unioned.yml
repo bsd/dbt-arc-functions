@@ -1,58 +1,40 @@
-
+---
 version: 2
-
 models:
   - name: stg_paidmedia_transactions_sourced_daily_rollup_unioned
-    description: ""
+    description: ''
     columns:
       - name: _dbt_source_relation
-        description: ""
-
+        description: ''
       - name: message_id
-        description: ""
-
+        description: ''
       - name: date_timestamp
-        description: ""
-
+        description: ''
       - name: total_revenue
-        description: ""
-
+        description: ''
       - name: total_gifts
-        description: ""
-
+        description: ''
       - name: total_donors
-        description: ""
-
+        description: ''
       - name: one_time_revenue
-        description: ""
-
+        description: ''
       - name: one_time_gifts
-        description: ""
-
+        description: ''
       - name: new_monthly_revenue
-        description: ""
-
+        description: ''
       - name: new_monthly_gifts
-        description: ""
-
+        description: ''
       - name: total_monthly_revenue
-        description: ""
-
+        description: ''
       - name: total_monthly_gifts
-        description: ""
-
+        description: ''
       - name: campaign
-        description: ""
-
+        description: ''
       - name: campaign_label
-        description: ""
-
+        description: ''
       - name: audience
-        description: ""
-
+        description: ''
       - name: appeal
-        description: ""
-
+        description: ''
       - name: source_code
-        description: ""
-
+        description: ''

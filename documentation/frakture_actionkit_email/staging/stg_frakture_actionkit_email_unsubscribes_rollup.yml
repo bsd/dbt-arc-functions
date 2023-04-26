@@ -1,13 +1,10 @@
-
+---
 version: 2
-
 models:
   - name: stg_frakture_actionkit_email_unsubscribes_rollup
-    description: ""
+    description: ''
     columns:
       - name: message_id
-        description: ""
-
+        description: ''
       - name: unsubscribes
-        description: ""
-
+        description: ''

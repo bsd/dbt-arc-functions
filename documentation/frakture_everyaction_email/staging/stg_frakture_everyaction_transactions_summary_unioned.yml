@@ -1,60 +1,42 @@
+---
 version: 2
-
 models:
   - name: stg_frakture_everyaction_transactions_summary_unioned
-    description: ""
+    description: ''
     columns:
       - name: _dbt_source_relation
-        description: ""
-
+        description: ''
       - name: remote_transaction_id
-        description: ""
-
+        description: ''
       - name: remote_person_id
-        description: ""
-
+        description: ''
       - name: ts
-        description: ""
-
+        description: ''
       - name: amount
-        description: ""
-
+        description: ''
       - name: recurs
-        description: ""
-
+        description: ''
       - name: recurring_number
-        description: ""
-
+        description: ''
       - name: refund_amount
-        description: ""
-
+        description: ''
       - name: source_code
-        description: ""
-
+        description: ''
       - name: remote_last_modified
-        description: ""
-
+        description: ''
       - name: source
-        description: ""
-
+        description: ''
       - name: payment_method
-        description: ""
-
+        description: ''
       - name: remote_page_name
-        description: ""
-
+        description: ''
       - name: form_name
-        description: ""
-
+        description: ''
       - name: everyaction_direct_marketing_code
-        description: ""
-
+        description: ''
       - name: everyaction_gateway_account
-        description: ""
-
+        description: ''
       - name: everyaction_online_reference_number
-        description: ""
-
+        description: ''
       - name: everyaction_market_source
-        description: ""
-
+        description: ''

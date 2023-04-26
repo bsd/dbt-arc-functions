@@ -1,21 +1,16 @@
+---
 version: 2
-
 models:
   - name: stg_adhoc_google_spreadsheets_paidmedia_pacing_budget
-    description: ""
+    description: ''
     columns:
       - name: campaign_start_date
-        description: ""
-
+        description: ''
       - name: campaign_end_date
-        description: ""
-
+        description: ''
       - name: campaign_name
-        description: ""
-
+        description: ''
       - name: budget
-        description: ""
-
+        description: ''
       - name: descriptions
-        description: ""
-
+        description: ''

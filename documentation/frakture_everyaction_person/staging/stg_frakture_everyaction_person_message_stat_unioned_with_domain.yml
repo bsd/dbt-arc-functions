@@ -1,57 +1,40 @@
+---
 version: 2
-
 models:
   - name: stg_frakture_everyaction_person_message_stat_unioned_with_domain
-    description: ""
+    description: ''
     columns:
       - name: _dbt_source_relation
-        description: ""
-
+        description: ''
       - name: ts
-        description: ""
-
+        description: ''
       - name: sent_ts
-        description: ""
-
+        description: ''
       - name: message_id
-        description: ""
-
+        description: ''
       - name: remote_person_id
-        description: ""
-
+        description: ''
       - name: received
-        description: ""
-
+        description: ''
       - name: opened
-        description: ""
-
+        description: ''
       - name: opened_ts
-        description: ""
-
+        description: ''
       - name: clicked
-        description: ""
-
+        description: ''
       - name: clicked_ts
-        description: ""
-
+        description: ''
       - name: action
-        description: ""
-
+        description: ''
       - name: hard_bounce
-        description: ""
-
+        description: ''
       - name: bounced_ts
-        description: ""
-
+        description: ''
       - name: unsubscribe
-        description: ""
-
+        description: ''
       - name: unsubscribed_ts
-        description: ""
-
+        description: ''
       - name: soft_bounce
-        description: ""
-
+        description: ''
       - name: email_domain
-        description: ""
-
+        description: ''

@@ -1,5 +1,5 @@
+---
 version: 2
-
 models:
   - name: stg_frakture_global_message_email_campaigns
     description: This table contains information about email campaigns.

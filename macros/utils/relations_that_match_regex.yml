@@ -1,20 +1,24 @@
+---
 version: 2
-
 macros:
   - name: relations_that_match_regex
-    description: A macro that allows you to search for tables that match a regex query withing a schema.
+    description: A macro that allows you to search for tables that match a regex query
+      withing a schema.
     docs:
       show: true
-    arguments: 
+    arguments:
       - name: regex
         type: string
-        description: Regex to search against tables in schema. Use regex syntax from python `re` package.
+        description: Regex to search against tables in schema. Use regex syntax from
+          python `re` package.
       - name: is_source
         type: boolean
-        description: If the function should be searching for a source. If false, will search for a `ref.`
+        description: If the function should be searching for a source. If false, will
+          search for a `ref.`
       - name: source_name
         type: string
-        description: If should be searching for a source, the name of the source as specified in the source's .yml file.
+        description: If should be searching for a source, the name of the source as
+          specified in the source's .yml file.
       - name: schema_to_search
         type: string
         description: The name of the schema to search for tables in.

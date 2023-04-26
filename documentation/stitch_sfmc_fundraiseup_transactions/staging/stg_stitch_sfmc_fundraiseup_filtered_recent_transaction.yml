@@ -1,32 +1,24 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_fundraiseup_filtered_recent_transaction
-    description: ""
+    description: ''
     columns:
       - name: transaction_id
-        description: ""
-
+        description: ''
       - name: person_id
-        description: ""
-
+        description: ''
       - name: source_code
-        description: ""
-
+        description: ''
       - name: crm
-        description: ""
-
+        description: ''
       - name: message_id
-        description: ""
-
+        description: ''
       - name: transaction_date
-        description: ""
-
+        description: ''
       - name: amount
-        description: ""
-
+        description: ''
       - name: gift_type
-        description: ""
-
+        description: ''
       - name: appeal
-        description: ""
+        description: ''

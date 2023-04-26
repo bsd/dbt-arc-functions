@@ -1,22 +1,16 @@
-
+---
 version: 2
-
 models:
   - name: stg_paidmedia_impressions_daily_rollup_unioned
-    description: ""
+    description: ''
     columns:
       - name: _dbt_source_relation
-        description: ""
-
+        description: ''
       - name: message_id
-        description: ""
-
+        description: ''
       - name: date_timestamp
-        description: ""
-
+        description: ''
       - name: total_impressions
-        description: ""
-
+        description: ''
       - name: unique_impressions
-        description: ""
-
+        description: ''
