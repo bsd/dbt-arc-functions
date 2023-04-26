@@ -21,6 +21,7 @@ def check_for_no_tables(file_path, sources_without_tables, tables_without_column
             sources_without_tables.append(file_path)
     except KeyError:
         sources_without_tables.append(file_path)
+        return
     for table in tables:
         try:
             columns = table['columns']
