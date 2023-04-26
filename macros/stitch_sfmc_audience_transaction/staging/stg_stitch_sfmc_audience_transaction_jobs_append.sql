@@ -50,10 +50,7 @@ with
                 when
                     donated_current_fiscal_year_july_to_june = 1
                     and donated_last_fiscal_year_july_to_june = 1
-                    and (
-                        donated_two_fiscal_years_ago_july_to_june = 1
-                        or donated_three_fiscal_years_ago_july_to_june = 1
-                    )
+                    and donated_two_fiscal_years_ago_july_to_june = 1
                 -- and any other year before that
                 then 'retained 3+'
             -- retained 3+ also multiyear
@@ -131,10 +128,7 @@ with
                 when
                     donated_current_fiscal_year_july_to_june = 1
                     and donated_last_fiscal_year_july_to_june = 1
-                    and (
-                        donated_two_fiscal_years_ago_july_to_june = 1
-                        or donated_three_fiscal_years_ago_july_to_june = 1
-                    )
+                    and donated_two_fiscal_years_ago_july_to_june = 1
                 -- and any other year before that
                 then 'retained 3+'
             -- retained 3+ also multiyear
