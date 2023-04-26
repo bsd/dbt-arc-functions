@@ -16,7 +16,7 @@ def check_for_no_columns(file_path, docs_without_columns, doc_yaml):
 
 def check_for_no_tables(file_path, sources_without_tables, tables_without_columns, doc_yaml):
     try:
-        tables = doc_yaml['models'][0]['tables']
+        tables = doc_yaml['sources'][0]['tables']
         if not tables or len(tables) < 1:
             sources_without_tables.append(file_path)
     except KeyError:
