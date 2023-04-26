@@ -27,7 +27,7 @@ def check_for_no_tables(file_path, sources_without_tables, tables_without_column
             columns = table['columns']
             if not columns or len(columns) < 2:
                 tables_without_columns.append((file_path, table['name']))
-        except KeyError:
+        except (KeyError, TypeError):
             tables_without_columns.append((file_path, table['name']))
 
 def check_for_no_version(file_path, docs_without_version, doc_yaml):
