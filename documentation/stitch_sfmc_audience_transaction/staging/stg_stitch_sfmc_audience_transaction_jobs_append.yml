@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_stitch_sfmc_audience_transaction_jobs_append
+    description: ""
+    columns:
+      - name: transaction_date
+        description: ""
+
+      - name: person_id
+        description: ""
+
+      - name: donor_audience
+        description: ""
+
+      - name: donor_engagement
+        description: ""
+
+      - name: donor_loyalty
+        description: ""
+

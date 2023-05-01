@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg_stitch_sfmc_audience_transactions_join
+    description: ""
+    columns:
+      - name: transaction_date
+        description: ""
+
+      - name: person_id
+        description: ""
+
+      - name: first_transaction_date
+        description: ""
+
+      - name: previous_latest_transaction_date
+        description: ""
+
+      - name: cumulative_amount_12_months
+        description: ""
+
+      - name: cumulative_amount_24_months
+        description: ""
+
+      - name: cumulative_amount_30_days_recur
+        description: ""
+
+      - name: donated_within_14_months
+        description: ""
+
+      - name: donated_within_13_months
+        description: ""
+
+      - name: donated_current_fiscal_year_july_to_june
+        description: ""
+
+      - name: donated_last_fiscal_year_july_to_june
+        description: ""
+
+      - name: donated_two_fiscal_years_ago_july_to_june
+        description: ""
+
+      - name: donated_three_fiscal_years_ago_july_to_june
+        description: ""
+
