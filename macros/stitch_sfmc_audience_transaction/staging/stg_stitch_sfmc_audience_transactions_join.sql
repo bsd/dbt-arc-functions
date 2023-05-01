@@ -18,7 +18,7 @@ select
     yoy.donated_current_fiscal_year_july_to_june,
     yoy.donated_last_fiscal_year_july_to_june,
     yoy.donated_two_fiscal_years_ago_july_to_june,
-    yoy.donated_three_fiscal_years_ago_july_to_june
+    yoy.donated_three_fiscal_years_ago_july_to_june,
     yoy.donated_four_fiscal_years_ago_july_to_june
 
 from {{ ref(jobs) }} jobs
