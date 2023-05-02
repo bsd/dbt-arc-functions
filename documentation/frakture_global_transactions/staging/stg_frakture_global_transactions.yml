@@ -1,56 +1,40 @@
-# TODO Write documentation for stg_frakture_global_transactions [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/frakture_global_transactions/staging/stg_frakture_global_transactions.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/frakture_global_transactions/staging/stg_frakture_global_transactions.yml
+---
 version: 2
-
 models:
   - name: stg_frakture_global_transactions
-    description: Please replace this default description.
+    description: A staging table containing global transaction data from various CRM
+      systems.
     columns:
       - name: source_crm
-        description: ""
-
+        description: The source Customer Relationship Management (CRM) system for
+          the transaction data.
       - name: transaction_id_in_source_crm
-        description: ""
-
+        description: The unique identifier of the transaction within the source CRM
+          system.
       - name: person_id
-        description: ""
-
+        description: The unique identifier of the person related to the transaction.
       - name: amount
-        description: ""
-
+        description: The amount of the transaction.
       - name: transaction_timestamp
-        description: ""
-
+        description: The timestamp of when the transaction occurred.
       - name: recurring_revenue
-        description: ""
-
+        description: The recurring revenue amount associated with the transaction.
       - name: new_recurring_revenue
-        description: ""
-
+        description: The new recurring revenue amount associated with the transaction.
       - name: transaction_source_code
-        description: ""
-
+        description: The source code associated with the transaction.
       - name: best_guess_message_id
-        description: ""
-
+        description: The best guess for the message ID associated with the transaction.
       - name: campaign
-        description: ""
-
+        description: The campaign associated with the transaction.
       - name: channel
-        description: ""
-
+        description: The channel through which the transaction was made.
       - name: audience
-        description: ""
-
+        description: The audience segment targeted by the campaign.
       - name: crm_entity
-        description: ""
-
+        description: The entity within the CRM system associated with the transaction.
       - name: source_code_entity
-        description: ""
-
+        description: The entity within the source code associated with the transaction.
       - name: channel_from_source_code
-        description: ""
-
+        description: The channel derived from the source code associated with the
+          transaction.

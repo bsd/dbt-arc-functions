@@ -1,10 +1,268 @@
-# TODO Write documentation for stg_frakture_everyaction_email_summary_unioned [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/frakture_everyaction_email/staging/stg_frakture_everyaction_email_summary_unioned.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/frakture_everyaction_email/staging/stg_frakture_everyaction_email_summary_unioned.yml
+---
 version: 2
-
 models:
   - name: stg_frakture_everyaction_email_summary_unioned
-    description: Please replace this default description.
+    description: ''
+    columns:
+      - name: _dbt_source_relation
+        description: ''
+      - name: account_id
+        description: ''
+      - name: account_prefix
+        description: ''
+      - name: account_prefix_label
+        description: ''
+      - name: acquisition_cost
+        description: ''
+      - name: acquisition_cost_per_person
+        description: ''
+      - name: acquisition_date
+        description: ''
+      - name: acquisition_source
+        description: ''
+      - name: additional_info
+        description: ''
+      - name: additional_info_label
+        description: ''
+      - name: affiliation
+        description: ''
+      - name: affiliation_label
+        description: ''
+      - name: agency
+        description: ''
+      - name: agency_label
+        description: ''
+      - name: appeal
+        description: ''
+      - name: appeal_label
+        description: ''
+      - name: audience
+        description: ''
+      - name: audience_label
+        description: ''
+      - name: author
+        description: ''
+      - name: author_label
+        description: ''
+      - name: bot_id
+        description: ''
+      - name: campaign
+        description: ''
+      - name: campaign_id
+        description: ''
+      - name: campaign_label
+        description: ''
+      - name: campaign_name
+        description: ''
+      - name: channel
+        description: ''
+      - name: department
+        description: ''
+      - name: department_label
+        description: ''
+      - name: format
+        description: ''
+      - name: format_regex
+        description: ''
+      - name: from_email
+        description: ''
+      - name: from_name
+        description: ''
+      - name: fund
+        description: ''
+      - name: fund_label
+        description: ''
+      - name: geo
+        description: ''
+      - name: geo_label
+        description: ''
+      - name: goal
+        description: ''
+      - name: goal_2
+        description: ''
+      - name: goal_2_label
+        description: ''
+      - name: goal_label
+        description: ''
+      - name: issue
+        description: ''
+      - name: issue_label
+        description: ''
+      - name: label
+        description: ''
+      - name: media
+        description: ''
+      - name: media_label
+        description: ''
+      - name: publish_date
+        description: ''
+      - name: remote_id
+        description: ''
+      - name: subject
+        description: ''
+      - name: submodule
+        description: ''
+      - name: actions
+        description: ''
+      - name: attributed_avg_amount
+        description: ''
+      - name: attributed_max_amount
+        description: ''
+      - name: attributed_min_amount
+        description: ''
+      - name: attributed_recurring_revenue
+        description: ''
+      - name: attributed_recurring_transactions
+        description: ''
+      - name: attributed_refund_amount
+        description: ''
+      - name: attributed_refund_count
+        description: ''
+      - name: attributed_revenue
+        description: ''
+      - name: attributed_revenue_day_1
+        description: ''
+      - name: attributed_revenue_day_6
+        description: ''
+      - name: attributed_soft_credit_amount
+        description: ''
+      - name: attributed_soft_credit_count
+        description: ''
+      - name: attributed_transactions
+        description: ''
+      - name: attributed_transactions_day_1
+        description: ''
+      - name: attributed_transactions_day_6
+        description: ''
+      - name: clicks
+        description: ''
+      - name: email_actions_taken
+        description: ''
+      - name: email_advocacy_actions
+        description: ''
+      - name: email_blocked
+        description: ''
+      - name: email_clicked
+        description: ''
+      - name: email_delivered
+        description: ''
+      - name: email_donations
+        description: ''
+      - name: email_ecommerce_purchase_amount
+        description: ''
+      - name: email_ecommerce_purchases
+        description: ''
+      - name: email_expected_send
+        description: ''
+      - name: email_forwarded_actions
+        description: ''
+      - name: email_forwarded_click_count
+        description: ''
+      - name: email_forwarded_open_count
+        description: ''
+      - name: email_hard_bounces
+        description: ''
+      - name: email_open_count
+        description: ''
+      - name: email_opened
+        description: ''
+      - name: email_registrations
+        description: ''
+      - name: email_rsvps
+        description: ''
+      - name: email_sent
+        description: ''
+      - name: email_soft_bounces
+        description: ''
+      - name: email_spam_complaints
+        description: ''
+      - name: email_surveys_taken
+        description: ''
+      - name: email_teamraiser_registrations
+        description: ''
+      - name: email_tell_a_friend_forward_recipients
+        description: ''
+      - name: email_tell_a_friend_forwards
+        description: ''
+      - name: email_ticket_purchases
+        description: ''
+      - name: email_total_clicks
+        description: ''
+      - name: email_unsubscribes
+        description: ''
+      - name: final_primary_source_code
+        description: ''
+      - name: first_time_actions
+        description: ''
+      - name: impressions
+        description: ''
+      - name: message_id
+        description: ''
+      - name: message_set
+        description: ''
+      - name: message_set_label
+        description: ''
+      - name: organic
+        description: ''
+      - name: organic_label
+        description: ''
+      - name: partner
+        description: ''
+      - name: partner_label
+        description: ''
+      - name: policy
+        description: ''
+      - name: policy_label
+        description: ''
+      - name: recurtype
+        description: ''
+      - name: recurtype_label
+        description: ''
+      - name: signer
+        description: ''
+      - name: signer_label
+        description: ''
+      - name: source_code_channel
+        description: ''
+      - name: source_code_channel_label
+        description: ''
+      - name: source_code_date
+        description: ''
+      - name: source_code_date_label
+        description: ''
+      - name: source_code_date_parsed
+        description: ''
+      - name: source_code_id
+        description: ''
+      - name: subchannel
+        description: ''
+      - name: subchannel_label
+        description: ''
+      - name: targeting
+        description: ''
+      - name: targeting_2
+        description: ''
+      - name: targeting_2_label
+        description: ''
+      - name: targeting_label
+        description: ''
+      - name: theme
+        description: ''
+      - name: theme_label
+        description: ''
+      - name: variant
+        description: ''
+      - name: variant_label
+        description: ''
+      - name: origin_person_count
+        description: ''
+      - name: reach
+        description: ''
+      - name: revenue
+        description: ''
+      - name: total_actions
+        description: ''
+      - name: transactions
+        description: ''
+      - name: unique_actions
+        description: ''

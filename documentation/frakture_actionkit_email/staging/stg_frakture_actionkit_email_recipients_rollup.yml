@@ -1,10 +1,10 @@
-# TODO Write documentation for stg_frakture_actionkit_email_recipients_rollup [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/frakture_actionkit_email/staging/stg_frakture_actionkit_email_recipients_rollup.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/frakture_actionkit_email/staging/stg_frakture_actionkit_email_recipients_rollup.yml
+---
 version: 2
-
 models:
   - name: stg_frakture_actionkit_email_recipients_rollup
-    description: Please replace this default description.
+    description: ''
+    columns:
+      - name: message_id
+        description: ''
+      - name: recipients
+        description: ''

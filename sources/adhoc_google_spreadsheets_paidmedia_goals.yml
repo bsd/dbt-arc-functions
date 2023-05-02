@@ -1,3 +1,4 @@
+---
 version: 2
 sources:
   - name: adhoc_google_spreadsheets_paidmedia_goals

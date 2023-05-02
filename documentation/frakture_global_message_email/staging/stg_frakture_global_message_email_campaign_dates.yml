@@ -1,20 +1,13 @@
-# TODO Write documentation for stg_frakture_global_message_email_campaign_dates [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/frakture_global_message_email/staging/stg_frakture_global_message_email_campaign_dates.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/frakture_global_message_email/staging/stg_frakture_global_message_email_campaign_dates.yml
+---
 version: 2
-
 models:
   - name: stg_frakture_global_message_email_campaign_dates
-    description: Please replace this default description.
+    description: This model contains data about the email campaigns and their dates.
     columns:
       - name: campaign_timestamp
-        description: ""
-
+        description: The timestamp for the email campaign.
       - name: crm_campaign
-        description: ""
-
+        description: The name of the campaign in the customer relationship management
+          (CRM) system.
       - name: source_code_campaign
-        description: ""
-
+        description: The source code used for tracking campaign performance.

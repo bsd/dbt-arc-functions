@@ -1,0 +1,29 @@
+---
+name: Lint YAML
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          pip install yamlfix
+      - name: Check that no yaml fixes need be made
+        run: |-
+          YAMLFIX_OUTPUT=$(yamlfix . 2>&1)
+          if [[ $YAMLFIX_OUTPUT != *" 0 fixed"* ]]; then
+            echo "Run yamlfix . to fix the errors below"
+            echo $YAMLFIX_OUTPUT
+            exit 1 
+          fi

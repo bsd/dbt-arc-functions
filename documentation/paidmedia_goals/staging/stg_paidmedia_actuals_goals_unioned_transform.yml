@@ -1,10 +1,26 @@
-# TODO Write documentation for stg_paidmedia_actuals_goals_unioned_transform [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/email/marts/stg_paidmedia_actuals_goals_unioned_transform.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/email/marts/stg_paidmedia_actuals_goals_unioned_transform.yml
+---
 version: 2
-
 models:
   - name: stg_paidmedia_actuals_goals_unioned_transform
-    description: Please replace this default description.
+    description: ''
+    columns:
+      - name: month_year
+        description: ''
+      - name: month_year_date
+        description: ''
+      - name: channel
+        description: ''
+      - name: objective
+        description: ''
+      - name: platform
+        description: ''
+      - name: actual_spend
+        description: ''
+      - name: actual_revenue
+        description: ''
+      - name: actual_donations
+        description: ''
+      - name: projected_revenue
+        description: ''
+      - name: projected_spend
+        description: ''

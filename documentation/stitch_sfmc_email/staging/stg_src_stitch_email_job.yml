@@ -1,0 +1,80 @@
+---
+version: 2
+models:
+  - name: stg_src_stitch_email_job
+    description: ''
+    columns:
+      - name: job_id
+        description: ''
+      - name: email_id
+        description: ''
+      - name: account_id
+        description: ''
+      - name: account_user_id
+        description: ''
+      - name: from_name
+        description: ''
+      - name: from_email
+        description: ''
+      - name: sched_dt
+        description: ''
+      - name: pickup_dt
+        description: ''
+      - name: delivered_dt
+        description: ''
+      - name: event_id
+        description: ''
+      - name: is_multipart
+        description: ''
+      - name: job_type
+        description: ''
+      - name: job_status
+        description: ''
+      - name: modified_by
+        description: ''
+      - name: modified_dt
+        description: ''
+      - name: email_name
+        description: ''
+      - name: email_subject
+        description: ''
+      - name: is_wrapped
+        description: ''
+      - name: test_email_addr
+        description: ''
+      - name: category
+        description: ''
+      - name: bcc_email
+        description: ''
+      - name: original_sched_time
+        description: ''
+      - name: created_dt
+        description: ''
+      - name: character_set
+        description: ''
+      - name: ip_address
+        description: ''
+      - name: salesforce_total_subscriber_count
+        description: ''
+      - name: salesforce_error_subscriber_count
+        description: ''
+      - name: send_type
+        description: ''
+      - name: dynamic_email_subject
+        description: ''
+      - name: suppress_tracking
+        description: ''
+      - name: send_classification_type
+        description: ''
+      - name: send_classification
+        description: ''
+      - name: resolve_links_with_current_data
+        description: ''
+      - name: email_send_definition
+        description: ''
+      - name: deduplicated_by_email
+        description: ''
+      - name: triggerrer_send_definition_object_id
+        description: ''
+      - name: triggered_send_customer_key
+        description: ''

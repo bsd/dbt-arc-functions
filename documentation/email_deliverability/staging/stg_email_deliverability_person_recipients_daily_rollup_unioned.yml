@@ -1,0 +1,16 @@
+---
+version: 2
+models:
+  - name: stg_email_deliverability_person_recipients_daily_rollup_unioned
+    description: ''
+    columns:
+      - name: _dbt_source_relation
+        description: ''
+      - name: sent_date
+        description: ''
+      - name: message_id
+        description: ''
+      - name: email_domain
+        description: ''
+      - name: recipients
+        description: ''

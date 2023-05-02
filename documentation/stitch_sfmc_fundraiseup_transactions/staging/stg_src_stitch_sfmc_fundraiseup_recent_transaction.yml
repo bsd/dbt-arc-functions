@@ -1,0 +1,30 @@
+---
+version: 2
+models:
+  - name: stg_src_stitch_sfmc_fundraiseup_recent_transaction
+    description: ''
+    columns:
+      - name: revenue_id
+        description: ''
+      - name: initial_market_source
+        description: ''
+      - name: email
+        description: ''
+      - name: amount
+        description: ''
+      - name: gift_type
+        description: ''
+      - name: transaction_date
+        description: ''
+      - name: appeal
+        description: ''
+      - name: designation
+        description: ''
+      - name: sfmc_insert_dt
+        description: ''
+      - name: migrated
+        description: ''
+      - name: lookup_id
+        description: ''
+      - name: sfmc_updated_dt
+        description: ''

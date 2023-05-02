@@ -1,0 +1,29 @@
+---
+name: Check for properly formatted docs
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: |
+          pip install pyyaml
+      - name: Check for docs for every macro
+        run: |
+          cd utils
+          ./check_for_docs_for_every_macro.py
+      - name: Check for well formatted docs and that macros exist for docs
+        run: |-
+          cd utils
+          ./check_docs_correct.py

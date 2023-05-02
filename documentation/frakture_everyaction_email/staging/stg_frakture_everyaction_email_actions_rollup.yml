@@ -1,0 +1,10 @@
+---
+version: 2
+models:
+  - name: stg_frakture_everyaction_email_actions_rollup
+    description: ''
+    columns:
+      - name: message_id
+        description: ''
+      - name: actions
+        description: ''

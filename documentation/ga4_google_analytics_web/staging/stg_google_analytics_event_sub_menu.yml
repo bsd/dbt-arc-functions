@@ -1,0 +1,58 @@
+---
+version: 2
+models:
+  - name: stg_google_analytics_event_sub_menu
+    description: ''
+    columns:
+      - name: event_date
+        description: ''
+      - name: session_id
+        description: ''
+      - name: session_source
+        description: ''
+      - name: session_medium
+        description: ''
+      - name: host_name
+        description: ''
+      - name: page_path
+        description: ''
+      - name: device_category
+        description: ''
+      - name: user_gender
+        description: ''
+      - name: user_age
+        description: ''
+      - name: session_default_channel
+        description: ''
+      - name: campaign
+        description: ''
+      - name: device_language
+        description: ''
+      - name: selected_language
+        description: ''
+      - name: event_name
+        description: ''
+      - name: accordion_item
+        description: ''
+      - name: accordion_block
+        description: ''
+      - name: file_name
+        description: ''
+      - name: link_domain
+        description: ''
+      - name: top_nav_name
+        description: ''
+      - name: sub_menu_name
+        description: ''
+      - name: engaged_session
+        description: ''
+      - name: percent_scrolled
+        description: ''
+      - name: search_term
+        description: ''
+      - name: page_referrer
+        description: ''
+      - name: user_id
+        description: ''
+      - name: engagement_time_msec
+        description: ''

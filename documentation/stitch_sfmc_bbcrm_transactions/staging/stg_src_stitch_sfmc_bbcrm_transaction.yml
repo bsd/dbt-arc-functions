@@ -1,0 +1,48 @@
+---
+version: 2
+models:
+  - name: stg_src_stitch_sfmc_bbcrm_transaction
+    description: ''
+    columns:
+      - name: bbcrmlookupid
+        description: ''
+      - name: constituentsystemrecordid
+        description: ''
+      - name: statuscode
+        description: ''
+      - name: recordid
+        description: ''
+      - name: revenue_id
+        description: ''
+      - name: transaction_date
+        description: ''
+      - name: payment_method
+        description: ''
+      - name: amount
+        description: ''
+      - name: inbound_channel
+        description: ''
+      - name: appeal
+        description: ''
+      - name: appeal_business_unit
+        description: ''
+      - name: initial_market_source
+        description: ''
+      - name: web_donation_form_value
+        description: ''
+      - name: web_donation_form_comment
+        description: ''
+      - name: designation
+        description: ''
+      - name: transaction_type
+        description: ''
+      - name: application
+        description: ''
+      - name: vendor_order_number
+        description: ''
+      - name: revenue_platform
+        description: ''
+      - name: sfmc_dateadded
+        description: ''
+      - name: sfmc_updatedate
+        description: ''

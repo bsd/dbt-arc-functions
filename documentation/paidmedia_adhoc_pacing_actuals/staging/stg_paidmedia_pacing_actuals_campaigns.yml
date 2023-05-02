@@ -1,0 +1,16 @@
+---
+version: 2
+models:
+  - name: stg_paidmedia_pacing_actuals_campaigns
+    description: ''
+    columns:
+      - name: campaign_name
+        description: ''
+      - name: platform
+        description: ''
+      - name: objective
+        description: ''
+      - name: channel
+        description: ''
+      - name: channel_type
+        description: ''

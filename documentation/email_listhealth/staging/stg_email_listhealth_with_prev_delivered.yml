@@ -1,0 +1,20 @@
+---
+version: 2
+models:
+  - name: stg_email_listhealth_with_prev_delivered
+    description: ''
+    columns:
+      - name: date_month
+        description: ''
+      - name: max_recipients
+        description: ''
+      - name: max_delivered
+        description: ''
+      - name: delivered_prev_month
+        description: ''
+      - name: total_unsubscribes
+        description: ''
+      - name: total_hard_bounces
+        description: ''
+      - name: total_complaints
+        description: ''

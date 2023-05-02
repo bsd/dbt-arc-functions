@@ -1,0 +1,38 @@
+---
+version: 2
+models:
+  - name: mart_transactions_hourly_rollup
+    description: ''
+    columns:
+      - name: best_guess_message_id
+        description: ''
+      - name: hour_timestamp
+        description: ''
+      - name: transaction_source_code
+        description: ''
+      - name: channel_from_crm
+        description: ''
+      - name: channel_from_source_code
+        description: ''
+      - name: channel_best_guess
+        description: ''
+      - name: campaign
+        description: ''
+      - name: audience
+        description: ''
+      - name: crm_entity
+        description: ''
+      - name: source_code_entity
+        description: ''
+      - name: best_guess_entity
+        description: ''
+      - name: total_amount
+        description: ''
+      - name: total_recurring_revenue
+        description: ''
+      - name: total_new_recurring_revenue
+        description: ''
+      - name: number_of_donors
+        description: ''
+      - name: number_of_transactions
+        description: ''

@@ -1,68 +1,44 @@
-# TODO Write documentation for stg_frakture_global_message_email_message [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/frakture_global_message_email/staging/stg_frakture_global_message_email_message.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/frakture_global_message_email/staging/stg_frakture_global_message_email_message.yml
+---
 version: 2
-
 models:
   - name: stg_frakture_global_message_email_message
-    description: Please replace this default description.
+    description: ''
     columns:
       - name: message_id
-        description: ""
-
+        description: ''
       - name: channel
-        description: ""
-
+        description: ''
       - name: channel_label
-        description: ""
-
+        description: ''
       - name: type
-        description: ""
-
+        description: ''
       - name: status
-        description: ""
-
+        description: ''
       - name: publish_date
-        description: ""
-
+        description: ''
       - name: campaign_id
-        description: ""
-
+        description: ''
       - name: bot_id
-        description: ""
-
+        description: ''
       - name: submodule
-        description: ""
-
+        description: ''
       - name: remote_id
-        description: ""
-
+        description: ''
       - name: do_not_attribute
-        description: ""
-
+        description: ''
       - name: label
-        description: ""
-
+        description: ''
       - name: subject
-        description: ""
-
+        description: ''
       - name: campaign_name
-        description: ""
-
+        description: ''
       - name: from_name
-        description: ""
-
+        description: ''
       - name: preview_url
-        description: ""
-
+        description: ''
       - name: primary_source_code
-        description: ""
-
+        description: ''
       - name: primary_source_code_override
-        description: ""
-
+        description: ''
       - name: final_primary_source_code
-        description: ""
-
+        description: ''

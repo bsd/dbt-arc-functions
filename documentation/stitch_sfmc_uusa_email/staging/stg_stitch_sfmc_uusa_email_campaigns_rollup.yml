@@ -1,0 +1,20 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_uusa_email_campaigns_rollup
+    description: ''
+    columns:
+      - name: message_id
+        description: ''
+      - name: crm_entity
+        description: ''
+      - name: source_code_entity
+        description: ''
+      - name: audience
+        description: ''
+      - name: recurtype
+        description: ''
+      - name: campaign_category
+        description: ''
+      - name: campaign_name
+        description: ''

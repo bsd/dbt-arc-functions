@@ -1,0 +1,16 @@
+---
+version: 2
+models:
+  - name: stg_paidmedia_pacing_actuals_rollup
+    description: ''
+    columns:
+      - name: date_day
+        description: ''
+      - name: platform
+        description: ''
+      - name: campaign_name
+        description: ''
+      - name: actual_spend
+        description: ''
+      - name: actual_revenue
+        description: ''

@@ -1,0 +1,30 @@
+---
+version: 2
+models:
+  - name: stg_src_stitch_email_open
+    description: ''
+    columns:
+      - name: account_id
+        description: ''
+      - name: oyb_account_id
+        description: ''
+      - name: job_id
+        description: ''
+      - name: list_id
+        description: ''
+      - name: batch_id
+        description: ''
+      - name: subscriber_id
+        description: ''
+      - name: subscriber_key
+        description: ''
+      - name: event_dt
+        description: ''
+      - name: domain
+        description: ''
+      - name: is_unique
+        description: ''
+      - name: triggerrer_send_definition_object_id
+        description: ''
+      - name: triggered_send_customer_key
+        description: ''

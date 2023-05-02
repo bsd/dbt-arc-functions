@@ -1,0 +1,10 @@
+---
+# RUN compile_sources.py to add appopriate vars in dbt_project.yml
+# TODO: figure out how to pull in the analytics schema name
+version: 2
+sources:
+  - name: ga4_google_analytics_web
+    database: "{{ var('database') }}"
+    tables:
+      - name: events
+        identifier: events_*

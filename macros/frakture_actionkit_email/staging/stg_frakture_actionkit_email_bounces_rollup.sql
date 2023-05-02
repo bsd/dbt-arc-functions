@@ -1,11 +1,13 @@
 {% macro create_stg_frakture_actionkit_email_bounces_rollup(
-    reference_name='stg_frakture_actionkit_email_summary_unioned') %}
-SELECT SAFE_CAST(message_id AS STRING) AS message_id,
-  SUM(SAFE_CAST(email_hard_bounces + email_soft_bounces AS INT)) AS total_bounces,
-  SUM(SAFE_CAST(email_blocked AS INT)) AS block_bounces,
-  SUM(SAFE_CAST(0 AS INT)) AS tech_bounces,
-  SUM(SAFE_CAST(email_soft_bounces AS INT)) AS soft_bounces,
-  SUM(SAFE_CAST(email_hard_bounces AS INT)) AS hard_bounces
-FROM  {{ ref(reference_name) }} 
-GROUP BY 1
+    reference_name="stg_frakture_actionkit_email_summary_unioned"
+) %}
+select
+    safe_cast(message_id as string) as message_id,
+    sum(safe_cast(email_hard_bounces + email_soft_bounces as int)) as total_bounces,
+    sum(safe_cast(email_blocked as int)) as block_bounces,
+    sum(safe_cast(0 as int)) as tech_bounces,
+    sum(safe_cast(email_soft_bounces as int)) as soft_bounces,
+    sum(safe_cast(email_hard_bounces as int)) as hard_bounces
+from {{ ref(reference_name) }}
+group by 1
 {% endmacro %}

@@ -1,3 +1,5 @@
+[![Flake8 Linter](https://github.com/bsd/dbt-arc-functions/actions/workflows/flake8_linter.yml/badge.svg)](https://github.com/bsd/dbt-arc-functions/actions/workflows/flake8_linter.yml)
+
 # dbt ARC Functions
 
 Functions used across clients using dbt in Analytics Reporting Cloud.

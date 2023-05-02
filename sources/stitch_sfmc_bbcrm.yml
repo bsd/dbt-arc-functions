@@ -1,0 +1,288 @@
+---
+# This file will serve as a resource top copy and paste documentation as needed for future sources.
+version: 2
+sources:
+  - name: src_stitch_bbcrm
+    description: ''
+    loader: stitch - sftp
+    database: "{{ var('database') }}"
+    schema: src_stitch_bbcrm_authorized
+    tables:
+      - name: constituencies
+        description: ''
+        columns:
+          - name: constituency
+            description: ''
+          - name: statuscode
+            description: ''
+          - name: constituentsystemrecordid
+            description: ''
+          - name: startdate
+            description: ''
+          - name: _sdc_table_version
+            description: ''
+          - name: sfmc_dateadded
+            description: ''
+          - name: constituencysystemrecordid
+            description: ''
+          - name: _sdc_source_file
+            description: ''
+          - name: _sdc_received_at
+            description: ''
+          - name: _sdc_sequence
+            description: ''
+          - name: __sdc_primary_key
+            description: ''
+          - name: _sdc_batched_at
+            description: ''
+          - name: _sdc_source_lineno
+            description: ''
+          - name: sfmc_updatedate
+            description: ''
+          - name: __bbcrmlookupid_
+            description: ''
+          - name: enddate
+            description: ''
+      - name: constituents
+        description: ''
+        columns:
+          - name: addresscity
+            description: ''
+          - name: prospectmanagerregion
+            description: ''
+          - name: metropolitanstatisticalarea
+            description: ''
+          - name: ethnicity
+            description: ''
+          - name: addressdonotmail
+            description: ''
+          - name: nickname
+            description: ''
+          - name: addressstateabbrevation
+            description: ''
+          - name: statuscode
+            description: ''
+          - name: last_org_group_hh_name
+            description: ''
+          - name: age
+            description: ''
+          - name: emailaddressundeliverable
+            description: ''
+          - name: householdlookupid
+            description: ''
+          - name: constituentsystemrecordid
+            description: ''
+          - name: income
+            description: ''
+          - name: addressinfosource
+            description: ''
+          - name: suffix
+            description: ''
+          - name: addresszip
+            description: ''
+          - name: addresscountry
+            description: ''
+          - name: gender
+            description: ''
+          - name: emailaddresshygienescoredate
+            description: ''
+          - name: emailaddressinfosourcecomments
+            description: ''
+          - name: statehousedistrict
+            description: ''
+          - name: emailaddressoptindate
+            description: ''
+          - name: county
+            description: ''
+          - name: dateadded
+            description: ''
+          - name: addressblock
+            description: ''
+          - name: corebasedstatisticalareas
+            description: ''
+          - name: _sdc_table_version
+            description: ''
+          - name: emailaddressdonotemailreason
+            description: ''
+          - name: sfmc_dateadded
+            description: ''
+          - name: region
+            description: ''
+          - name: localprecinct
+            description: ''
+          - name: grouptype
+            description: ''
+          - name: _sdc_source_file
+            description: ''
+          - name: _sdc_received_at
+            description: ''
+          - name: emailaddressstatus
+            description: ''
+          - name: _sdc_sequence
+            description: ''
+          - name: constituenttype
+            description: ''
+          - name: title
+            description: ''
+          - name: emailaddresshygienescore
+            description: ''
+          - name: congressionaldistrict
+            description: ''
+          - name: emailaddress
+            description: ''
+          - name: __sdc_primary_key
+            description: ''
+          - name: constituentsource
+            description: ''
+          - name: isinactive
+            description: ''
+          - name: birthdate
+            description: ''
+          - name: maritalstatus
+            description: ''
+          - name: statesenatedistrict
+            description: ''
+          - name: birthyear
+            description: ''
+          - name: emailaddressoptoutdate
+            description: ''
+          - name: emailaddressdonotemail
+            description: ''
+          - name: _sdc_batched_at
+            description: ''
+          - name: religion
+            description: ''
+          - name: _sdc_source_lineno
+            description: ''
+          - name: prospectmanagername
+            description: ''
+          - name: sfmc_updatedate
+            description: ''
+          - name: deceased
+            description: ''
+          - name: emailsystemrecordid
+            description: ''
+          - name: emailaddressinfosource
+            description: ''
+          - name: firstname
+            description: ''
+          - name: __bbcrmlookupid_
+            description: ''
+      - name: interactions
+        description: ''
+        columns:
+          - name: statuscode
+            description: ''
+          - name: constituentsystemrecordid
+            description: ''
+          - name: contactmethod
+            description: ''
+          - name: interactionsystemrecordid
+            description: ''
+          - name: summary
+            description: ''
+          - name: _sdc_table_version
+            description: ''
+          - name: actualdate
+            description: ''
+          - name: sfmc_dateadded
+            description: ''
+          - name: subcategory
+            description: ''
+          - name: _sdc_source_file
+            description: ''
+          - name: _sdc_received_at
+            description: ''
+          - name: _sdc_sequence
+            description: ''
+          - name: __sdc_primary_key
+            description: ''
+          - name: category
+            description: ''
+          - name: _sdc_batched_at
+            description: ''
+          - name: _sdc_source_lineno
+            description: ''
+          - name: sfmc_updatedate
+            description: ''
+          - name: __bbcrmlookupid_
+            description: ''
+      - name: smartfieldsfirst
+        description: ''
+        columns:
+          - name: first_single_gift_appeal
+            description: ''
+          - name: first_gift_inbound_channel
+            description: ''
+          - name: first_single_gift_date
+            description: ''
+          - name: first_recurring_gift_payment_date
+            description: ''
+          - name: statuscode
+            description: ''
+          - name: constituentsystemrecordid
+            description: ''
+          - name: first_gift_appeal_business_unit
+            description: ''
+          - name: first_single_gift_designation
+            description: ''
+          - name: first_market_purchase_date
+            description: ''
+          - name: first_market_purchase_appeal_business_unit
+            description: ''
+          - name: first_single_gift_appeal_business_unit
+            description: ''
+          - name: first_recurring_gift_payment_amount
+            description: ''
+          - name: first_gift_appeal
+            description: ''
+          - name: first_gift_amount
+            description: ''
+          - name: _sdc_table_version
+            description: ''
+          - name: first_gift_date
+            description: ''
+          - name: first_interaction_is_advocacy_date
+            description: ''
+          - name: first_single_gift_inbound_channel
+            description: ''
+          - name: sfmc_dateadded
+            description: ''
+          - name: first_interaction_is_advocacy_summary
+            description: ''
+          - name: first_market_purchase_inbound_channel
+            description: ''
+          - name: _sdc_source_file
+            description: ''
+          - name: first_market_purchase_appeal
+            description: ''
+          - name: first_market_purchase_designation
+            description: ''
+          - name: _sdc_received_at
+            description: ''
+          - name: _sdc_sequence
+            description: ''
+          - name: first_recurring_gift_payment_appeal
+            description: ''
+          - name: first_single_gift_amount
+            description: ''
+          - name: first_market_purchase_amount
+            description: ''
+          - name: first_recurring_gift_payment_inbound_channel
+            description: ''
+          - name: __sdc_primary_key
+            description: ''
+          - name: first_recurring_gift_payment_appeal_business_unit
+            description: ''
+          - name: first_recurring_gift_payment_designation
+            description: ''
+          - name: first_gift_designation
+            description: ''
+          - name: _sdc_batched_at
+            description: ''
+          - name: _sdc_source_lineno
+            description: ''
+          - name: sfmc_updatedate
+            description: ''
+          - name: __bbcrmlookupid_
+            description: ''

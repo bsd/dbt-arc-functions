@@ -1,188 +1,124 @@
-# TODO Write documentation for stg_frakture_global_message_paidmedia_ad_summary_by_date [documentation]
-#  Github main branch URL:
-#  https://github.com/bsd/dbt-arc-functions/blob/main/documentation/frakture_global_message_paidmedia/staging/stg_frakture_global_message_paidmedia_ad_summary_by_date.yml
-#  Where to find in dbt-arc-functions local directory:
-#  documentation/frakture_global_message_paidmedia/staging/stg_frakture_global_message_paidmedia_ad_summary_by_date.yml
+---
 version: 2
-
 models:
   - name: stg_frakture_global_message_paidmedia_ad_summary_by_date
-    description: Please replace this default description.
+    description: ''
     columns:
       - name: message_id
-        description: ""
-
+        description: ''
       - name: date
-        description: ""
-
+        description: ''
       - name: bot_id
-        description: ""
-
+        description: ''
       - name: bot_path
-        description: ""
-
+        description: ''
       - name: bot_label
-        description: ""
-
+        description: ''
       - name: bot_nickname
-        description: ""
-
+        description: ''
       - name: channel
-        description: ""
-
+        description: ''
       - name: channel_label
-        description: ""
-
+        description: ''
       - name: type
-        description: ""
-
+        description: ''
       - name: status
-        description: ""
-
+        description: ''
       - name: publish_date
-        description: ""
-
+        description: ''
       - name: campaign_id
-        description: ""
-
+        description: ''
       - name: submodule
-        description: ""
-
+        description: ''
       - name: remote_id
-        description: ""
-
+        description: ''
       - name: do_not_attribute
-        description: ""
-
+        description: ''
       - name: sent
-        description: ""
-
+        description: ''
       - name: impressions
-        description: ""
-
+        description: ''
       - name: clicks
-        description: ""
-
+        description: ''
       - name: engagements
-        description: ""
-
+        description: ''
       - name: actions
-        description: ""
-
+        description: ''
       - name: leads
-        description: ""
-
+        description: ''
       - name: total_actions
-        description: ""
-
+        description: ''
       - name: unique_actions
-        description: ""
-
+        description: ''
       - name: unsubscribes
-        description: ""
-
+        description: ''
       - name: complaints
-        description: ""
-
+        description: ''
       - name: soft_bounces
-        description: ""
-
+        description: ''
       - name: hard_bounces
-        description: ""
-
+        description: ''
       - name: blocked
-        description: ""
-
+        description: ''
       - name: transactions
-        description: ""
-
+        description: ''
       - name: revenue
-        description: ""
-
+        description: ''
       - name: spend
-        description: ""
-
+        description: ''
       - name: attributed_revenue
-        description: ""
-
+        description: ''
       - name: attributed_transactions
-        description: ""
-
+        description: ''
       - name: attributed_revenue_day_1
-        description: ""
-
+        description: ''
       - name: attributed_transactions_day_1
-        description: ""
-
+        description: ''
       - name: attributed_revenue_day_6
-        description: ""
-
+        description: ''
       - name: attributed_transactions_day_6
-        description: ""
-
+        description: ''
       - name: attributed_recurring_revenue
-        description: ""
-
+        description: ''
       - name: attributed_recurring_transactions
-        description: ""
-
+        description: ''
       - name: attributed_initial_recurring_revenue
-        description: ""
-
+        description: ''
       - name: attributed_initial_recurring_transactions
-        description: ""
-
+        description: ''
       - name: attributed_subsequent_recurring_revenue
-        description: ""
-
+        description: ''
       - name: attributed_subsequent_recurring_transactions
-        description: ""
-
+        description: ''
       - name: attributed_min_amount
-        description: ""
-
+        description: ''
       - name: origin_person_count
-        description: ""
-
+        description: ''
       - name: recurtype
-        description: ""
-
+        description: ''
       - name: appeal
-        description: ""
-
+        description: ''
       - name: campaign_label
-        description: ""
-
+        description: ''
       - name: audience
-        description: ""
-
+        description: ''
       - name: label
-        description: ""
-
+        description: ''
       - name: subject
-        description: ""
-
+        description: ''
       - name: campaign_name
-        description: ""
-
+        description: ''
       - name: campaign
-        description: ""
-
+        description: ''
       - name: account_prefix
-        description: ""
-
+        description: ''
       - name: from_name
-        description: ""
-
+        description: ''
       - name: preview_url
-        description: ""
-
+        description: ''
       - name: primary_source_code
-        description: ""
-
+        description: ''
       - name: primary_source_code_override
-        description: ""
-
+        description: ''
       - name: final_primary_source_code
-        description: ""
-
+        description: ''

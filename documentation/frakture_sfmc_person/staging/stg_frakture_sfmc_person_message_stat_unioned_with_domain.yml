@@ -1,0 +1,34 @@
+---
+version: 2
+models:
+  - name: stg_frakture_sfmc_person_message_stat_unioned_with_domain
+    description: ''
+    columns:
+      - name: _dbt_source_relation
+        description: ''
+      - name: message_id
+        description: ''
+      - name: remote_person_id
+        description: ''
+      - name: sent_ts
+        description: ''
+      - name: ts
+        description: ''
+      - name: opened
+        description: ''
+      - name: opened_ts
+        description: ''
+      - name: clicked
+        description: ''
+      - name: clicked_ts
+        description: ''
+      - name: unsubscribed
+        description: ''
+      - name: unsubscribed_ts
+        description: ''
+      - name: bounced
+        description: ''
+      - name: bounce_ts
+        description: ''
+      - name: email_domain
+        description: ''

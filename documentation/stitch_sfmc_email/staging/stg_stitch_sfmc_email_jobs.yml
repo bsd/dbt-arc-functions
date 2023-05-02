@@ -1,0 +1,30 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_email_jobs
+    description: ''
+    columns:
+      - name: message_id
+        description: ''
+      - name: email_id
+        description: ''
+      - name: from_name
+        description: ''
+      - name: from_email
+        description: ''
+      - name: best_guess_timestamp
+        description: ''
+      - name: scheduled_timestamp
+        description: ''
+      - name: pickup_timestamp
+        description: ''
+      - name: delivered_timestamp
+        description: ''
+      - name: email_name
+        description: ''
+      - name: email_subject
+        description: ''
+      - name: category
+        description: ''
+      - name: source_code
+        description: ''

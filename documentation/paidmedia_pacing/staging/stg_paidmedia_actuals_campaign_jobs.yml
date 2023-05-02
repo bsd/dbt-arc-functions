@@ -1,0 +1,16 @@
+---
+version: 2
+models:
+  - name: stg_paidmedia_actuals_campaign_jobs
+    description: ''
+    columns:
+      - name: campaign_name
+        description: ''
+      - name: channel
+        description: ''
+      - name: channel_category
+        description: ''
+      - name: channel_type
+        description: ''
+      - name: objective
+        description: ''

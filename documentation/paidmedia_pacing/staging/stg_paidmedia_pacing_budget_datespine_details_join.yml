@@ -1,0 +1,22 @@
+---
+version: 2
+models:
+  - name: stg_paidmedia_pacing_budget_datespine_details_join
+    description: ''
+    columns:
+      - name: date_day
+        description: ''
+      - name: campaign_start_date
+        description: ''
+      - name: campaign_end_date
+        description: ''
+      - name: campaign_name
+        description: ''
+      - name: daily_budget
+        description: ''
+      - name: cumulative_budget
+        description: ''
+      - name: descriptions
+        description: ''
+      - name: total_budget
+        description: ''
