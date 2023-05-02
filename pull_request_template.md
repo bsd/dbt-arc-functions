@@ -1,6 +1,8 @@
 # Pull Request for dbt-arc-functions
 
-- [ ] If you've created a macro, make sure it is documented by running the notebook: `process_model_documentation_codegen_output.ipynb` util in this repo
+- [ ] Create branch of dbt-arc-functions using JIRA extension so that naming convention is consistent
+
+- [ ] If you've created a macro, make sure it is documented by running the notebook: `create_docs.ipynb` util in this repo
 
 - [ ] Test branch on a development branch of an existing client (ideally the one that raised the bug). Do this by changing revision of the package to the branch name in `packages.yml` file in dbt State client below.
 

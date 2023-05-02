@@ -9,8 +9,9 @@ from utils import check_dbt_installed, check_profiles_file, run_dbt_subprocess
 
 
 def get_no_version_check_choice() -> str:
+    '''This function asks user if they want to run dbt without checking version.'''
     print("Do you want dbt to run without checking dbt version? This can help if you are getting version errors.")
-    return ' --no-version-check' if input("Enter 'y' if you want to run without version check:\n") == 'y' else ''
+    return ' --no-version-check' if input("Enter 'y' to run w.o version check, else (return):\n") == 'y' else ''
 
 
 def main(dbt_base_path=None):

@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_stitch_sfmc_audience_transaction_cumulative
+    description: ""
+    columns:
+      - name: transaction_date
+        description: ""
+
+      - name: person_id
+        description: ""
+
+      - name: cumulative_amount_12_months
+        description: ""
+
+      - name: cumulative_amount_24_months
+        description: ""
+
+      - name: cumulative_amount_30_days_recur
+        description: ""
+
