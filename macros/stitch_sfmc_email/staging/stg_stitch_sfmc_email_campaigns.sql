@@ -43,7 +43,27 @@ select distinct
     safe_cast(null as string) as recurtype,
     safe_cast(null as string) as campaign_category,
     safe_cast(null as string) as crm_campaign,
-    {% macro create_uusa_campaigns_sql()%}
+    {{ create_uusa_campaigns_sql() }}
+
+from {{ ref(reference_name) }}
+
+{%else%}
+
+select null as message_id,
+    null as crm_entity,
+    null as source_code_entity,
+    null as audience,
+    null as recurtype,
+    null as campaign_category,
+    null as crm_campaign,
+    null as source_code_campaign
+    from {{ ref(reference_name) }}
+
+{%endif%}
+
+{% endmacro %}
+
+ {% macro create_uusa_campaigns_sql()%}
     safe_cast(
         (
             case
@@ -107,21 +127,3 @@ select distinct
         ) as string
     ) as source_code_campaign
     {% endmacro %}
-
-from {{ ref(reference_name) }}
-
-{%else%}
-
-select null as message_id,
-    null as crm_entity,
-    null as source_code_entity,
-    null as audience,
-    null as recurtype,
-    null as campaign_category,
-    null as crm_campaign,
-    null as source_code_campaign
-    from {{ ref(reference_name) }}
-
-{%endif%}
-
-{% endmacro %}
