@@ -14,7 +14,11 @@ def check_for_no_columns(file_path, docs_without_columns, doc_yaml):
         docs_without_columns.append(file_path)
 
 
-def check_for_no_tables(file_path, sources_without_tables, tables_without_columns, doc_yaml):
+def check_for_no_tables(
+        file_path,
+        sources_without_tables,
+        tables_without_columns,
+        doc_yaml):
     try:
         tables = doc_yaml['sources'][0]['tables']
         if not tables or len(tables) < 1:
@@ -22,7 +26,7 @@ def check_for_no_tables(file_path, sources_without_tables, tables_without_column
     except KeyError:
         sources_without_tables.append(file_path)
         return
-    if type(tables) == str:
+    if isinstance(tables, str):
         return
     else:
         for table in tables:
@@ -67,7 +71,7 @@ def main():
                 check_for_no_columns(file_path, docs_without_columns, doc_yaml)
                 check_for_no_version(file_path, docs_without_version, doc_yaml)
                 check_for_no_macro(file_path, docs_without_macro, doc_yaml)
-    
+
     sources_without_tables = []
     tables_without_columns = []
     sources_without_version = []
@@ -78,9 +82,14 @@ def main():
             if file.endswith('.yml') and 'utils' not in root:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     source_yaml = yaml.safe_load(f)
-                
-                check_for_no_tables(file_path, sources_without_tables, tables_without_columns, source_yaml)
-                check_for_no_version(file_path, sources_without_version, source_yaml)
+
+                check_for_no_tables(
+                    file_path,
+                    sources_without_tables,
+                    tables_without_columns,
+                    source_yaml)
+                check_for_no_version(
+                    file_path, sources_without_version, source_yaml)
 
     for doc_without_macro in docs_without_macro:
         print(
@@ -119,12 +128,12 @@ def main():
             "Please delete the source, then run create_sources.ipynb against a working"
             " client to create sources\n")
     print(f"\nsources without version: {len(sources_without_version)}")
-    
+
     if (docs_without_columns
         or docs_without_version
         or docs_without_macro
         or sources_without_tables
-        or sources_without_version):
+            or sources_without_version):
         sys.exit(1)
 
 
