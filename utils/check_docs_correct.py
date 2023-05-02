@@ -95,8 +95,7 @@ def get_incorrect_sources():
                 check_for_no_version(
                     file_path, sources_without_version, source_yaml)
 
-    return (sources_without_tables, tables_without_columns, sources_without_version )
-
+    return (sources_without_tables, tables_without_columns, sources_without_version)
 
 
 def main():
