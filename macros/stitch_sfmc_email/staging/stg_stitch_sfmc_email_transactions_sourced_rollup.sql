@@ -33,10 +33,9 @@ with
                 end
             ) as total_monthly_gifts
         from {{ ref(email_summary) }} email_summary
-        full outer join
+        left join
             {{ ref(transactions) }} transactions
-            on cast(email_summary.final_primary_source_code as string)
-            = cast(transactions.source_code as string)
+            on transactions.message_id = email_summary.message_id 
         group by 1
     )
 
