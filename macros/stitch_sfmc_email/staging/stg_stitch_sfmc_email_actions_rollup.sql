@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_email_actions_rollup(
-    reference_name="stg_stitch_email_actions"
+    reference_name="stg_stitch_sfmc_email_actions"
 ) %}
 select distinct safe_cast(job_id as string) as message_id, 
 SUM(actions) as actions
