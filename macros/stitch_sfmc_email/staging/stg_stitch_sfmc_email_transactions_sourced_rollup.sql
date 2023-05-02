@@ -35,7 +35,7 @@ with
         from {{ ref(email_summary) }} email_summary
         left join
             {{ ref(transactions) }} transactions
-            on transactions.message_id = email_summary.message_id 
+            on cast(transactions.message_id as string) = cast(email_summary.message_id as string)
         group by 1
     )
 
