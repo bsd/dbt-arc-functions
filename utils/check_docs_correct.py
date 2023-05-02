@@ -57,7 +57,7 @@ def check_for_no_macro(file_path, docs_without_macro, doc_yaml):
         docs_without_macro.append((file_path, macro_path))
 
 
-def main():
+def get_incorrect_docs():
     docs_without_columns = []
     docs_without_version = []
     docs_without_macro = []
@@ -72,6 +72,10 @@ def main():
                 check_for_no_version(file_path, docs_without_version, doc_yaml)
                 check_for_no_macro(file_path, docs_without_macro, doc_yaml)
 
+    return (docs_without_columns, docs_without_version, docs_without_macro)
+
+
+def get_incorrect_sources():
     sources_without_tables = []
     tables_without_columns = []
     sources_without_version = []
@@ -90,6 +94,18 @@ def main():
                     source_yaml)
                 check_for_no_version(
                     file_path, sources_without_version, source_yaml)
+
+    return (sources_without_tables, tables_without_columns, sources_without_version )
+
+
+
+def main():
+    (docs_without_columns,
+     docs_without_version,
+     docs_without_macro) = get_incorrect_docs()
+    (sources_without_tables,
+     tables_without_columns,
+     sources_without_version) = get_incorrect_sources()
 
     for doc_without_macro in docs_without_macro:
         print(
