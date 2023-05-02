@@ -40,7 +40,7 @@ with
     )
 
 select
-    safe_cast(message_id as string) as message_id,
+    cast(message_id as string) as message_id,
     safe_cast(total_revenue as numeric) as total_revenue,
     safe_cast(total_gifts as int) as total_gifts,
     safe_cast(total_donors as int) as total_donors,
