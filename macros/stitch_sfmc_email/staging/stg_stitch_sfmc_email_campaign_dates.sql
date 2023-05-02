@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_email_campaign_dates(
-    reference_name="stg_stitch_sfmc_email_jobs"
+    reference_name="stg_src_email_job"
 ) %}
 
 {% if var.database == 'bsd-arc-uusa'%}
