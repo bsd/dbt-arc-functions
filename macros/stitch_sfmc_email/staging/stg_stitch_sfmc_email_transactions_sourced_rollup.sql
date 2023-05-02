@@ -11,11 +11,11 @@ with
             count(distinct transactions.transaction_id) as total_gifts,
             count(distinct transactions.person_id) as total_donors,
             sum(
-                case when transactions.recurring = 'false' then transactions.amount end
+                case when not transactions.recurring then transactions.amount end
             ) as one_time_revenue,
             count(
                 case
-                    when transactions.recurring = 'false'
+                    when not transactions.recurring
                     then transactions.transaction_id
                 end
             ) as one_time_gifts, 
@@ -24,11 +24,11 @@ with
             --count(case when transactions.recurring_number = 1 then transactions.transaction_id end) 
             null as new_monthly_gifts,
             sum(
-                case when transactions.recurring = 'true' then transactions.amount end
+                case when transactions.recurring then transactions.amount end
             ) as total_monthly_revenue,
             count(
                 case
-                    when transactions.recurring = 'true'
+                    when transactions.recurring
                     then transactions.transaction_id
                 end
             ) as total_monthly_gifts
