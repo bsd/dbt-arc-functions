@@ -1,18 +1,14 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_audience_transaction_first_last
-    description: ""
+    description: ''
     columns:
       - name: transaction_date
-        description: ""
-
+        description: ''
       - name: person_id
-        description: ""
-
+        description: ''
       - name: first_transaction_date
-        description: ""
-
+        description: ''
       - name: previous_latest_transaction_date
-        description: ""
-
+        description: ''
