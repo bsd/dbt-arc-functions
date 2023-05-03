@@ -2,7 +2,7 @@
     reference_name="stg_stitch_sfmc_email_campaigns"
 ) %}
 select distinct
-    message_id,
+    safe_cast(message_id as string) as message_id, -- just being extra safe since this is joining field
     crm_entity,
     source_code_entity,
     audience,
