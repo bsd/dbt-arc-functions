@@ -1,11 +1,11 @@
 {% macro create_stg_stitch_sfmc_uusa_email_campaigns(
-    reference_name="stg_src_stitch_email_job"
+    reference_name="stg_stitch_sfmc_email_jobs"
 ) %}
 
 {% if var.database == "bsd-arc-uusa" %}
 
 select distinct
-    safe_cast(job_id as string) as message_id,
+    message_id,
     safe_cast('sfmc' as string) as crm_entity,
     safe_cast(null as string) as source_code_entity,
     safe_cast(

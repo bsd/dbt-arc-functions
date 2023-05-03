@@ -1,18 +1,23 @@
-{% macro create_stg_stitch_sfmc_email_bounces_rollup(
-    reference_name="stg_src_stitch_email_bounce"
+{% macro create_stg_stitch_sfmc_email_bounces_rollup() %}
+{% set relations = dbt_arc_functions.relations_that_match_regex(
+    "^bounce$",
+    is_source=True,
+    source_name="stitch_sfmc_email",
+    schema_to_search="src_stitch_sfmc_authorized",
 ) %}
+
 select
-    safe_cast(job_id as string) as message_id,
-    sum(case when bounce_category_id = '1' then 1 else 0 end) as hard_bounce,
-    sum(case when bounce_category_id = '2' then 1 else 0 end) as soft_bounce,
-    sum(case when bounce_category_id = '3' then 1 else 0 end) as block_bounce,
-    sum(case when bounce_category_id = '5' then 1 else 0 end) as tech_bounce,
-    sum(case when bounce_category_id = '4' then 1 else 0 end) as unknown_bounce,
-    sum(
+    safe_cast(jobid as string) as message_id,
+    SAFE_CAST(sum(case when bouncecategoryid = '1' then 1 else 0 end) as int) as hard_bounce,
+    SAFE_CAST(sum(case when bouncecategoryid = '2' then 1 else 0 end) as int) as soft_bounce,
+    SAFE_CAST(sum(case when bouncecategoryid = '3' then 1 else 0 end) as int) as block_bounce,
+    SAFE_CAST(sum(case when bouncecategoryid = '5' then 1 else 0 end) as int) as tech_bounce,
+    SAFE_CAST(sum(case when bouncecategoryid = '4' then 1 else 0 end) as int) as unknown_bounce,
+    SAFE_CAST(sum(
         case
-            when bounce_category_id = '1' then 1 when bounce_category_id = '2' then 1
+            when bouncecategoryid = '1' then 1 when bouncecategoryid = '2' then 1
         end
-    ) as total_bounces
-from {{ ref(reference_name) }}
+    ) as int) as total_bounces
+from ({{ dbt_utils.union_relations(relations) }})
 group by 1
 {% endmacro %}
