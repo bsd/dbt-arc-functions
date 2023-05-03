@@ -15,8 +15,8 @@ select distinct
         {{ dbt_date.convert_timezone("cast(coalesce(schedtime, pickuptime, NULL) as timestamp)") }} as timestamp
     ) as best_guess_timestamp,
     safe_cast( {{ dbt_date.convert_timezone("cast(coalesce(schedtime, NULL) as timestamp)") }} as timestamp) as scheduled_timestamp,
-    safe_cast({{ dbt_date.convert_timezone("cast(pickuptime, NULL as timestamp)") }} as timestamp) as pickup_timestamp,
-    safe_cast({{ dbt_date.convert_timezone("cast(deliveredtime, NULL as timestamp)") }} as timestamp) as delivered_timestamp,
+    safe_cast({{ dbt_date.convert_timezone("cast(coalesce(pickuptime, NULL) as timestamp)") }} as timestamp) as pickup_timestamp,
+    safe_cast({{ dbt_date.convert_timezone("cast(coalesce(deliveredtime, NULL) as timestamp)") }} as timestamp) as delivered_timestamp,
     safe_cast(emailname as string) as email_name,
     safe_cast(emailsubject as string) as email_subject,
     safe_cast(category as string) as category,
