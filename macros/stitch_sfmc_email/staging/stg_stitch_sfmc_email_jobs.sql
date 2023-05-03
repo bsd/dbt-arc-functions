@@ -7,7 +7,7 @@
 ) %}
 
 select distinct
-    safe_cast(jobid as string) as message_id,
+    safe_cast(__jobid_ as string) as message_id,
     safe_cast(emailid as string) as email_id,
     safe_cast(fromname as string) as from_name,
     safe_cast(fromemail as string) as from_email,
