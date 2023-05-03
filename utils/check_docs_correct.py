@@ -37,8 +37,10 @@ def check_for_no_tables_or_tables_no_columns(
                     tables_without_columns.append((file_path, table['name']))
             except KeyError:
                 tables_without_columns.append((file_path, table['name']))
+                return
             except TypeError:
                 tables_without_columns.append((file_path, ''))
+                return
             if columns:
                 for column in columns:
                     try:
