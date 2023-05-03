@@ -8,6 +8,6 @@
     schema_to_search="src_stitch_sfmc_authorized",
 ) %}
 
-select distinct safe_cast(jobid as string) as message_id, null as actions
+select distinct cast(jobid as string) as message_id, safe_cast(null as int) as actions
 from ({{ dbt_utils.union_relations(relations) }})
 {% endmacro %}

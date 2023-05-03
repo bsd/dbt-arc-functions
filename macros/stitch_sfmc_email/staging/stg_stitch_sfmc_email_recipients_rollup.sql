@@ -6,7 +6,7 @@
     schema_to_search="src_stitch_sfmc_authorized",
 ) %}
 select
-    safe_cast(jobid as string) as message_id,
+    cast(jobid as string) as message_id,
     safe_cast(count(distinct subscriberid) as int) as recipients
 from ({{ dbt_utils.union_relations(relations) }})
 group by 1

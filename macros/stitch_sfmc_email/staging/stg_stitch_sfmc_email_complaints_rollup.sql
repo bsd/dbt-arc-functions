@@ -7,7 +7,7 @@
 ) %}
 
 select
-    safe_cast(jobid as string) as message_id, safe_cast(count(*) as int) as complaints
+    cast(jobid as string) as message_id, safe_cast(count(*) as int) as complaints
 from ({{ dbt_utils.union_relations(relations) }})
 group by 1
 {% endmacro %}

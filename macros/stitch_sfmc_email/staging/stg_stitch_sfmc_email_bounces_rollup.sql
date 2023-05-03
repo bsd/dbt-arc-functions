@@ -7,7 +7,7 @@
 ) %}
 
 select
-    safe_cast(jobid as string) as message_id,
+    cast(jobid as string) as message_id,
     SAFE_CAST(sum(case when bouncecategoryid = 1 then 1 else 0 end) as int) as hard_bounce,
     SAFE_CAST(sum(case when bouncecategoryid = 2 then 1 else 0 end) as int) as soft_bounce,
     SAFE_CAST(sum(case when bouncecategoryid = 3 then 1 else 0 end) as int) as block_bounce,
