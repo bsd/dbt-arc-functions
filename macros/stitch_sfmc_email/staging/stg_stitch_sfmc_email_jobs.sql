@@ -21,5 +21,5 @@ select distinct
     safe_cast(emailsubject as string) as email_subject,
     safe_cast(category as string) as category,
     safe_cast(null as string) as source_code
-from {{ ref(reference_name) }}
+from ({{ dbt_utils.union_relations(relations) }})
 {% endmacro %}
