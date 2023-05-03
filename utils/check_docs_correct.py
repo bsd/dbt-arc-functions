@@ -45,7 +45,7 @@ def check_for_no_tables_or_tables_no_columns(
                         description = column['description']
                         data_type = column['data_type']
                     except KeyError:
-                        columns_without_info.append(file_path, table['name'], column['name'])
+                        columns_without_info.append((file_path, table['name'], column['name']))
 
 
 def check_for_no_version(file_path, docs_without_version, doc_yaml):
