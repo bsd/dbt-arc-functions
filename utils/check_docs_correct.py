@@ -6,6 +6,9 @@ import yaml
 
 
 def check_for_no_columns(file_path, docs_without_columns, doc_yaml):
+    '''Checks if a doc has no columns'''
+    if doc_yaml is None:
+        return
     try:
         columns = doc_yaml['models'][0]['columns']
         if not columns or len(columns) < 2:
@@ -15,6 +18,7 @@ def check_for_no_columns(file_path, docs_without_columns, doc_yaml):
 
 
 def check_for_no_version(file_path, docs_without_version, doc_yaml):
+    '''Checks if a doc has no version number'''
     try:
         doc_yaml['version']
     except KeyError:
@@ -22,6 +26,7 @@ def check_for_no_version(file_path, docs_without_version, doc_yaml):
 
 
 def check_for_no_macro(file_path, docs_without_macro, doc_yaml):
+    '''Checks if a doc has no macro'''
     macro_path = file_path.replace(
         'documentation',
         'macros').replace(
@@ -32,6 +37,7 @@ def check_for_no_macro(file_path, docs_without_macro, doc_yaml):
 
 
 def main():
+    '''Checks if a doc has no columns, version number, or macro'''
     docs_without_columns = []
     docs_without_version = []
     docs_without_macro = []
