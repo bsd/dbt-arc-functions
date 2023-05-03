@@ -14,8 +14,8 @@ from {{ ref(reference_name) }}
 -- place holder with nulls for now
 select
     best_guess_timestamp as campaign_timestamp,
-    null as crm_campaign,
-    null as source_code_campaign
+    safe_cast(null as string) as crm_campaign,
+    safe_cast(null as string) as source_code_campaign
 from {{ ref(reference_name) }}
 
 {% endif %}

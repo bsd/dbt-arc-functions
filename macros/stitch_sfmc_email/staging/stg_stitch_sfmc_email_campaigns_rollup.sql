@@ -8,6 +8,6 @@ select distinct
     audience,
     recurtype,
     campaign_category,
-    coalesce(crm_campaign, source_code_campaign) as campaign_name
+    safe_cast(coalesce(crm_campaign, source_code_campaign) as string) as campaign_name
 from {{ ref(reference_name) }}
 {% endmacro %}

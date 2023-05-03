@@ -5,18 +5,18 @@
 {% if var.database == "bsd-arc-uusa" %}
 
 select
-    source_code_campaign as campaign_name,
-    min(campaign_timestamp) as campaign_start_timestamp,
-    max(campaign_timestamp) as campaign_latest_timestamp
+    safe_cast(source_code_campaign as string) as campaign_name,
+    safe_cast(min(campaign_timestamp) as timestamp) as campaign_start_timestamp,
+    safe_cast(max(campaign_timestamp) as timestamp) as campaign_latest_timestamp
 from {{ ref(reference_name) }}
 group by 1
 
 {% else %}
 
 select
-    coalesce(source_code_campaign, crm_campaign) as campaign_name,
-    min(campaign_timestamp) as campaign_start_timestamp,
-    max(campaign_timestamp) as campaign_latest_timestamp
+    safe_cast(coalesce(source_code_campaign, crm_campaign) as string) as campaign_name,
+    safe_cast(min(campaign_timestamp) as timestamp) as campaign_start_timestamp,
+    safe_cast(max(campaign_timestamp) as timestamp) as campaign_latest_timestamp
 from {{ ref(reference_name) }}
 group by 1
 
