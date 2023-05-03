@@ -2,7 +2,7 @@
     reference_name="stg_src_stitch_email_job"
 ) %}
 
-{% if var.database == 'bsd-arc-uusa'%}
+{% if var.database == "bsd-arc-uusa" %}
 
 select
     safe_cast(coalesce(sched_dt, pickup_dt) as timestamp) as campaign_timestamp,
@@ -11,9 +11,7 @@ from {{ ref(reference_name) }}
 
 {% else %}
 
-
 -- place holder with nulls for now
-
 select
     safe_cast(coalesce(sched_dt, pickup_dt) as timestamp) as campaign_timestamp,
     safe_cast(null as string) as crm_campaign,

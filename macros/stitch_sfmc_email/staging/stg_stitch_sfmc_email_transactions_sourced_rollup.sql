@@ -15,27 +15,26 @@ with
             ) as one_time_revenue,
             count(
                 case
-                    when not transactions.recurring
-                    then transactions.transaction_id
+                    when not transactions.recurring then transactions.transaction_id
                 end
-            ) as one_time_gifts, 
-            --sum(case when transactions.recurring_number = 1 then transactions.amount end) 
+            ) as one_time_gifts,
+            -- sum(case when transactions.recurring_number = 1 then
+            -- transactions.amount end)
             null as new_monthly_revenue,
-            --count(case when transactions.recurring_number = 1 then transactions.transaction_id end) 
+            -- count(case when transactions.recurring_number = 1 then
+            -- transactions.transaction_id end)
             null as new_monthly_gifts,
             sum(
                 case when transactions.recurring then transactions.amount end
             ) as total_monthly_revenue,
             count(
-                case
-                    when transactions.recurring
-                    then transactions.transaction_id
-                end
+                case when transactions.recurring then transactions.transaction_id end
             ) as total_monthly_gifts
         from {{ ref(email_summary) }} email_summary
         left join
             {{ ref(transactions) }} transactions
-            on cast(transactions.message_id as string) = cast(email_summary.message_id as string)
+            on cast(transactions.message_id as string)
+            = cast(email_summary.message_id as string)
         group by 1
     )
 

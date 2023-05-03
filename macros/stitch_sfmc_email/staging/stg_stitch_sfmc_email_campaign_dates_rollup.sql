@@ -2,7 +2,7 @@
     reference_name="stg_stitch_sfmc_email_campaign_dates"
 ) %}
 
-{% if var.database == 'bsd-arc-uusa' %}
+{% if var.database == "bsd-arc-uusa" %}
 
 select
     source_code_campaign as campaign_name,
@@ -11,10 +11,7 @@ select
 from {{ ref(reference_name) }}
 group by 1
 
-
 {% else %}
-
-
 
 select
     coalesce(source_code_campaign, crm_campaign) as campaign_name,
@@ -23,7 +20,6 @@ select
 from {{ ref(reference_name) }}
 group by 1
 
-    
 {% endif %}
 
 {% endmacro %}
