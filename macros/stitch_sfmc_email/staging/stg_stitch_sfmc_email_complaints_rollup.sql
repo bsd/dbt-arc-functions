@@ -6,8 +6,7 @@
     schema_to_search="src_stitch_sfmc_authorized",
 ) %}
 
-select
-    cast(jobid as string) as message_id, safe_cast(count(*) as int) as complaints
+select cast(jobid as string) as message_id, safe_cast(count(*) as int) as complaints
 from ({{ dbt_utils.union_relations(relations) }})
 group by 1
 {% endmacro %}

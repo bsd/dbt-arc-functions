@@ -8,16 +8,26 @@
 
 select
     cast(jobid as string) as message_id,
-    SAFE_CAST(sum(case when bouncecategoryid = 1 then 1 else 0 end) as int) as hard_bounces,
-    SAFE_CAST(sum(case when bouncecategoryid = 2 then 1 else 0 end) as int) as soft_bounces,
-    SAFE_CAST(sum(case when bouncecategoryid = 3 then 1 else 0 end) as int) as block_bounces,
-    SAFE_CAST(sum(case when bouncecategoryid = 5 then 1 else 0 end) as int) as tech_bounces,
-    SAFE_CAST(sum(case when bouncecategoryid = 4 then 1 else 0 end) as int) as unknown_bounces,
-    SAFE_CAST(sum(
-        case
-            when bouncecategoryid = 1 then 1 when bouncecategoryid = 2 then 1
-        end
-    ) as int) as total_bounces
+    safe_cast(
+        sum(case when bouncecategoryid = 1 then 1 else 0 end) as int
+    ) as hard_bounces,
+    safe_cast(
+        sum(case when bouncecategoryid = 2 then 1 else 0 end) as int
+    ) as soft_bounces,
+    safe_cast(
+        sum(case when bouncecategoryid = 3 then 1 else 0 end) as int
+    ) as block_bounces,
+    safe_cast(
+        sum(case when bouncecategoryid = 5 then 1 else 0 end) as int
+    ) as tech_bounces,
+    safe_cast(
+        sum(case when bouncecategoryid = 4 then 1 else 0 end) as int
+    ) as unknown_bounces,
+    safe_cast(
+        sum(
+            case when bouncecategoryid = 1 then 1 when bouncecategoryid = 2 then 1 end
+        ) as int
+    ) as total_bounces
 from ({{ dbt_utils.union_relations(relations) }})
 group by 1
 {% endmacro %}

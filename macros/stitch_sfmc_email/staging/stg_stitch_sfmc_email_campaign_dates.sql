@@ -4,9 +4,7 @@
 
 {% if var.database == "bsd-arc-uusa" %}
 
-select
-    best_guess_timestamp as campaign_timestamp,
-    {{ create_uusa_campaigns_sql() }}
+select best_guess_timestamp as campaign_timestamp, {{ create_uusa_campaigns_sql() }}
 from {{ ref(reference_name) }}
 
 {% else %}

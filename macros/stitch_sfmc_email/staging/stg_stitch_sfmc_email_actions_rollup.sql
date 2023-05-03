@@ -1,6 +1,5 @@
 {% macro create_stg_stitch_sfmc_email_actions_rollup() %}
 
-
 {% set relations = dbt_arc_functions.relations_that_match_regex(
     "^click$",
     is_source=True,
