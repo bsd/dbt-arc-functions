@@ -14,10 +14,11 @@ def check_for_no_columns(file_path, docs_without_columns, doc_yaml):
         docs_without_columns.append(file_path)
 
 
-def check_for_no_tables(
+def check_for_no_tables_or_tables_no_columns(
         file_path,
         sources_without_tables,
         tables_without_columns,
+        columns_without_info,
         doc_yaml):
     try:
         tables = doc_yaml['sources'][0]['tables']
@@ -38,6 +39,13 @@ def check_for_no_tables(
                 tables_without_columns.append((file_path, table['name']))
             except TypeError:
                 tables_without_columns.append((file_path, ''))
+            if columns:
+                for column in columns:
+                    try:
+                        description = column['description']
+                        data_type = column['data_type']
+                    except KeyError:
+                        columns_without_info.append(file_path, table['name'], column['name'])
 
 
 def check_for_no_version(file_path, docs_without_version, doc_yaml):
@@ -87,15 +95,21 @@ def get_incorrect_sources():
                 with open(file_path, 'r', encoding='utf-8') as f:
                     source_yaml = yaml.safe_load(f)
 
-                check_for_no_tables(
+                check_for_no_tables_or_tables_no_columns(
                     file_path,
                     sources_without_tables,
                     tables_without_columns,
                     source_yaml)
                 check_for_no_version(
                     file_path, sources_without_version, source_yaml)
+                
 
     return (sources_without_tables, tables_without_columns, sources_without_version)
+
+
+def print_missing_info(list_of_missing_info, format_string):
+    for missing_info in list_of_missing_info:
+        print(format_string.format(missing_info=missing_info))
 
 
 def main():
@@ -105,6 +119,14 @@ def main():
     (sources_without_tables,
      tables_without_columns,
      sources_without_version) = get_incorrect_sources()
+    docs_without_macro_format_string="""The doc below doesn't have a macro associated with it:
+ {missing_info[0]}
+Expected to find doc here:
+ {missing_info[1]}
+Please delete the doc, then run create_docs.ipynb against a working
+client to create docs"""
+    print_missing_info(docs_without_macro, docs_without_macro_format_string)
+
 
     for doc_without_macro in docs_without_macro:
         print(
