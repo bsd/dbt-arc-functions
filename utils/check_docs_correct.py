@@ -83,10 +83,12 @@ def get_incorrect_docs():
     return (docs_without_columns, docs_without_version, docs_without_macro)
 
 
+# TODO add print statement for columns without info
 def get_incorrect_sources():
     sources_without_tables = []
     tables_without_columns = []
     sources_without_version = []
+    columns_without_info = []
 
     for root, _, files in os.walk('../sources'):
         for file in files:
@@ -99,6 +101,7 @@ def get_incorrect_sources():
                     file_path,
                     sources_without_tables,
                     tables_without_columns,
+                    columns_without_info,
                     source_yaml)
                 check_for_no_version(
                     file_path, sources_without_version, source_yaml)
