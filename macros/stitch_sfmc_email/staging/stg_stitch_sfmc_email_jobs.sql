@@ -12,7 +12,7 @@ select distinct
     safe_cast(fromname as string) as from_name,
     safe_cast(fromemail as string) as from_email,
     safe_cast(
-        {{ dbt_date.convert_timezone("cast(coalesce(schedtime, pickup_dt) as timestamp)") }} as timestamp
+        {{ dbt_date.convert_timezone("cast(coalesce(schedtime, pickuptime) as timestamp)") }} as timestamp
     ) as best_guess_timestamp,
     safe_cast( {{ dbt_date.convert_timezone("cast(schedtime as timestamp)") }} as timestamp) as scheduled_timestamp,
     safe_cast({{ dbt_date.convert_timezone("cast(pickuptime as timestamp)") }} as timestamp) as pickup_timestamp,
