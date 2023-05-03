@@ -7,8 +7,6 @@ import yaml
 
 def check_for_no_columns(file_path, docs_without_columns, doc_yaml):
     '''Checks if a doc has no columns'''
-    if doc_yaml is None:
-        return
     try:
         columns = doc_yaml['models'][0]['columns']
         if not columns or len(columns) < 2:
