@@ -43,6 +43,11 @@ source_regex_mappings = {
                    r'^everyaction_[A-Za-z0-9]{3}_person$',
                    ]
     },
+    'frakture_everyaction_transactions.yml': {
+        'schema': 'src_frakture',
+        'tables': [r'^everyaction_[A-Za-z0-9]{3}_transaction$',
+                   ]
+    },
     'frakture_sfmc_person.yml': {
         'schema': 'src_frakture',
         'tables': [r'^sfmc_[A-Za-z0-9]{3}_per_person_message_stat$',
