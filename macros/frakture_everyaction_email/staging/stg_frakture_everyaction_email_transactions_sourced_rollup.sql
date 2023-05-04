@@ -5,7 +5,7 @@
 
 
 select * from (
-    {% call conditional_for_stg_frakture_everyaction_email_transactions_sourced_rollup(var) %}
+    {% call conditional_for_stg_frakture_everyaction_email_transactions_sourced_rollup() %}
     {% endcall %}
 )
 
