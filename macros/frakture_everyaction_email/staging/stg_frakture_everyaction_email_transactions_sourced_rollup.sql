@@ -1,17 +1,3 @@
-{% macro create_stg_frakture_everyaction_email_transactions_sourced_rollup(
-    email_summary="stg_frakture_everyaction_email_summary_unioned",
-    transactions="stg_frakture_everyaction_transactions_summary_unioned"
-) %}
-
-
-select * from (
-    {% call conditional_for_stg_frakture_everyaction_email_transactions_sourced_rollup(var) %}
-    {% endcall %}
-)
-
-{% endmacro %}
-
-
 {% macro conditional_for_stg_frakture_everyaction_email_transactions_sourced_rollup(var) %}
 {% if var['database'] == 'bsd-vera'%}
 
@@ -138,3 +124,23 @@ select * from (
 
 {% endif %}
 {% endmacro %}
+
+
+
+
+
+{% macro create_stg_frakture_everyaction_email_transactions_sourced_rollup(
+    email_summary="stg_frakture_everyaction_email_summary_unioned",
+    transactions="stg_frakture_everyaction_transactions_summary_unioned"
+) %}
+
+
+select * from (
+    {% call conditional_for_stg_frakture_everyaction_email_transactions_sourced_rollup(var) %}
+    {% endcall %}
+)
+
+{% endmacro %}
+
+
+
