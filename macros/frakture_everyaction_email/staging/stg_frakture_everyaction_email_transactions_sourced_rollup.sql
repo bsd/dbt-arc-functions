@@ -14,7 +14,7 @@ select * from (
 
 
 {% macro conditional_for_stg_frakture_everyaction_email_transactions_sourced_rollup() %}
-{% if var['database'] == 'bsd-vera'%}
+{% if var['database'] == 'bsd-vera' %}
 
  with
         grouped as (
