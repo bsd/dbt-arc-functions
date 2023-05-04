@@ -44,8 +44,8 @@ def check_for_no_tables_or_tables_no_columns(
             if columns:
                 for column in columns:
                     try:
-                        description = column['description']
-                        data_type = column['data_type']
+                        column['description']
+                        column['data_type']
                     except KeyError:
                         columns_without_info.append((file_path, table['name'], column['name']))
 
@@ -67,10 +67,19 @@ def check_for_no_macro(file_path, docs_without_macro, doc_yaml):
         docs_without_macro.append((file_path, macro_path))
 
 
+def check_for_blank_doc(file_path, docs_without_content, doc_yaml):
+    try:
+        doc_yaml['models']
+    except TypeError:
+        docs_without_content.append(file_path)
+        raise TypeError
+
+
 def get_incorrect_docs():
     docs_without_columns = []
     docs_without_version = []
     docs_without_macro = []
+    docs_without_content = []
 
     for root, _, files in os.walk('../documentation'):
         for file in files:
@@ -78,11 +87,15 @@ def get_incorrect_docs():
             if file.endswith('.yml') and 'utils' not in root:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     doc_yaml = yaml.safe_load(f)
+                try:
+                    check_for_blank_doc(file_path, docs_without_content, doc_yaml)
+                except TypeError:
+                    continue
                 check_for_no_columns(file_path, docs_without_columns, doc_yaml)
                 check_for_no_version(file_path, docs_without_version, doc_yaml)
                 check_for_no_macro(file_path, docs_without_macro, doc_yaml)
 
-    return (docs_without_columns, docs_without_version, docs_without_macro)
+    return (docs_without_columns, docs_without_version, docs_without_macro, docs_without_content)
 
 
 # TODO add print statement for columns without info
@@ -107,74 +120,94 @@ def get_incorrect_sources():
                     source_yaml)
                 check_for_no_version(
                     file_path, sources_without_version, source_yaml)
-                
 
-    return (sources_without_tables, tables_without_columns, sources_without_version)
+    return (sources_without_tables, tables_without_columns, sources_without_version, columns_without_info)
 
 
-def print_missing_info(list_of_missing_info, format_string):
+def print_missing_info(list_of_missing_info, format_string, entity_string):
     for missing_info in list_of_missing_info:
         print(format_string.format(missing_info=missing_info))
+    print(f"{entity_string}: {len(list_of_missing_info)}")
+
+
+DOCS_WITHOUT_MACRO_FORMAT_STRING = """The doc below doesn't have a macro associated with it:
+ {missing_info[0]}
+Expected to find doc here:
+ {missing_info[1]}
+Please delete the doc, then run create_docs.ipynb against a working
+client to create docs
+"""
+
+
+DOCS_WITHOUT_COLUMNS_FORMAT_STRING = """The doc below doesn't have any columns:
+{missing_info}
+Please delete the doc, then run create_docs.ipynb against a working
+client to create docs
+"""
+
+
+DOCS_WITHOUT_VERSION_FORMAT_STRING = """The doc below doesn't have a version number:
+ {missing_info}
+Please delete the doc, then run create_docs.ipynb against a working client to create docs.
+"""
+
+SOURCES_WITHOUT_TABLES_FORMAT_STRING = """The source below doesn't have any tables:
+ {missing_info}
+Please run the following command against a working and reformat your source:
+ dbt run-operation generate_source --args '{"schema_name": "SCHEMA", "table_names":["TABLE"],\
+      "generate_columns": "true", "include_data_types": "true",}'
+"""
+
+
+DOCS_WITHOUT_CONTENT_FORMAT_STRING = """The doc below doesn't have content:
+ {missing_info}
+Please delete the doc, then run create_docs.ipynb against a working client to create docs.
+"""
+
+TABLES_WITHOUT_COLUMNS_FORMAT_STRING = """The table noted in the source below doesn't have any columns:"
+    {missing_info[0]}
+    {missing_info[1]}
+Please run the following command against a working and reformat your source:
+ dbt run-operation generate_source --args '{"schema_name": "SCHEMA", \
+     "table_names":["TABLE"], "generate_columns": "true", "include_data_types": "true",}'"""
+
+
+SOURCES_WITHOUT_VERSION_FORMAT_STRING = """The source below doesn't have a version number:
+ {missing_info}
+Please delete the source, then run create_sources.ipynb against a working client to create sources
+"""
+
+COLUMNS_WITHOUT_INFO_FORMAT_STRING = """The column in the table in the source below does not have info:
+ {missing_info[0]}
+ {missing_info[1]}
+ {missing_info[2]}
+Please run the following command against a working and reformat your source:
+ dbt run-operation generate_source --args '{"schema_name": "SCHEMA", "table_names":["TABLE"],\
+      "generate_columns": "true", "include_data_types": "true",}'
+"""
 
 
 def main():
     (docs_without_columns,
      docs_without_version,
-     docs_without_macro) = get_incorrect_docs()
+     docs_without_macro,
+     docs_without_content) = get_incorrect_docs()
     (sources_without_tables,
      tables_without_columns,
-     sources_without_version) = get_incorrect_sources()
-    docs_without_macro_format_string="""The doc below doesn't have a macro associated with it:
- {missing_info[0]}
-Expected to find doc here:
- {missing_info[1]}
-Please delete the doc, then run create_docs.ipynb against a working
-client to create docs"""
-    print_missing_info(docs_without_macro, docs_without_macro_format_string)
+     sources_without_version,
+     columns_without_info) = get_incorrect_sources()
 
+    print_missing_info(docs_without_content, DOCS_WITHOUT_CONTENT_FORMAT_STRING, "Docs without content")
+    print_missing_info(docs_without_macro, DOCS_WITHOUT_MACRO_FORMAT_STRING, "Docs without macros")
+    print_missing_info(docs_without_columns, DOCS_WITHOUT_COLUMNS_FORMAT_STRING, "Docs without columns")
+    print_missing_info(docs_without_version, DOCS_WITHOUT_VERSION_FORMAT_STRING, "Docs without version")
+    print_missing_info(sources_without_tables, SOURCES_WITHOUT_TABLES_FORMAT_STRING, "Sources without tables")
+    print_missing_info(tables_without_columns, TABLES_WITHOUT_COLUMNS_FORMAT_STRING, "Sources without tables")
+    print_missing_info(sources_without_version, SOURCES_WITHOUT_VERSION_FORMAT_STRING, "Sources without version")
+    print_missing_info(columns_without_info, COLUMNS_WITHOUT_INFO_FORMAT_STRING, "Source columns without info")
 
-    for doc_without_macro in docs_without_macro:
-        print(
-            f"The doc below doesn't have a macro associated with it:\n {doc_without_macro[0]}\n"
-            f"Expected to find doc here:\n {doc_without_macro[1]}\n"
-            "Please delete the doc, then run create_docs.ipynb against a working"
-            " client to create docs\n")
-    print(f"\nDocs without macro: {len(docs_without_macro)}")
-    for doc_without_columns in docs_without_columns:
-        print(
-            f"The doc below doesn't have any columns:\n {doc_without_columns}\n"
-            "Please delete the doc, then run create_docs.ipynb against a working"
-            " client to create docs\n")
-    print(f"\nDocs without columns: {len(docs_without_columns)}")
-    for doc_without_version in docs_without_version:
-        print(
-            f"The doc below doesn't have a version number:\n {doc_without_version}\n"
-            "Please delete the doc, then run create_docs.ipynb against a working"
-            " client to create docs\n")
-    print(f"\nDocs without version: {len(docs_without_version)}")
-    for source_without_tables in sources_without_tables:
-        print(
-            f"The source below doesn't have any tables:\n {source_without_tables}\n"
-            "Please run the following command against a working and reformat your source:\n"
-            """ dbt run-operation generate_source --args '{"schema_name": "SCHEMA", """
-            """"table_names":["TABLE"], "generate_columns": "true", "include_data_types": "true",}'\n""")
-    print(f"\nsources without tables: {len(sources_without_tables)}")
-    for table_without_columns in tables_without_columns:
-        print(
-            "The table noted in the source below doesn't have any columns:\n"
-            f" {table_without_columns[0]}\n{table_without_columns[1]}\n"
-            "Please run the following command against a working and reformat your source:\n"
-            """ dbt run-operation generate_source --args '{"schema_name": "SCHEMA", """
-            """"table_names":["TABLE"], "generate_columns": "true", "include_data_types": "true",}'\n""")
-    print(f"\nsource tables without columns: {len(tables_without_columns)}")
-    for source_without_version in sources_without_version:
-        print(
-            f"The source below doesn't have a version number:\n {source_without_version}\n"
-            "Please delete the source, then run create_sources.ipynb against a working"
-            " client to create sources\n")
-    print(f"\nsources without version: {len(sources_without_version)}")
-
-    if (docs_without_columns
+    if (docs_without_content
+        or docs_without_columns
         or docs_without_version
         or docs_without_macro
         or sources_without_tables
