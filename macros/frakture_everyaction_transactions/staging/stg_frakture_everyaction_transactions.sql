@@ -22,6 +22,6 @@
         safe_cast(null as string) as audience,
         'everyaction' as crm_entity,
         safe_cast(null as string) as source_code_entity,
-        safe_cast(null) as channel_from_source_code
+        safe_cast(null as string) as channel_from_source_code
     from ({{ dbt_utils.union_relations(relations) }})
 {% endmacro %}
