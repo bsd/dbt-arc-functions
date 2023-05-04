@@ -199,7 +199,7 @@ def main(
     client = get_client(dbt_credentials_path)
     if not dbt_models_sources_path:
         dbt_models_sources_path = input(
-            "Please give the absolute path of the sources directory:\n")
+            "Please give the absolute path of the client sources directory:\n")
     dbt_project_yml = add_sources_to_yml(
         dbt_project_yml, dbt_models_sources_path, client)
     copy_choice = inplace_or_copy("dbt_project")
