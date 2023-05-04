@@ -1,5 +1,9 @@
-{% macro conditional_for_stg_frakture_everyaction_email_transactions_sourced_rollup() %}
-{% if var["database"] == "bsd-vera" %}
+{% macro create_stg_frakture_everyaction_email_transactions_sourced_rollup(
+    email_summary="stg_frakture_everyaction_email_summary_unioned",
+    transactions="stg_frakture_everyaction_transactions_summary_unioned"
+) %}
+
+{% if var.database == 'bsd-vera'%}
 
 with
     grouped as (
@@ -121,13 +125,3 @@ from grouped
 {% endmacro %}
 
 
-{% macro create_stg_frakture_everyaction_email_transactions_sourced_rollup(
-    email_summary="stg_frakture_everyaction_email_summary_unioned",
-    transactions="stg_frakture_everyaction_transactions_summary_unioned"
-) %}
-
-select *
-from
-    ({{ conditional_for_stg_frakture_everyaction_email_transactions_sourced_rollup() }})
-
-{% endmacro %}
