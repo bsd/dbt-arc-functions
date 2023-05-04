@@ -23,5 +23,5 @@
         'everyaction' as crm_entity,
         safe_cast(null as string) as source_code_entity,
         safe_cast(source_code_channel as string) as channel_from_source_code
-    from {{utils.union_relations(relations)}}
+    from ({{ dbt_utils.union_relations(relations) }})
 {% endmacro %}
