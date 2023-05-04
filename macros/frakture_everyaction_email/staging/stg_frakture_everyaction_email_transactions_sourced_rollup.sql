@@ -3,7 +3,7 @@
     transactions="stg_frakture_everyaction_transactions_summary_unioned"
 ) %}
 
-{% if var.database == 'bsd-vera'%}
+{% if var.database == 'bsd-vera' %}
 
 with
     grouped as (
