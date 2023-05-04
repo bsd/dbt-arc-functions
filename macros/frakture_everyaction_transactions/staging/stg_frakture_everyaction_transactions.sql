@@ -10,7 +10,7 @@ select
     'everyaction' as source_crm,
     remote_transaction_id as transaction_id_in_source_crm,
     remote_person_id as person_id,
-    safe_cast((amount - refund_amount) as numeric) as amount,
+    safe_cast(amount as numeric) as amount,
     safe_cast(
         {{ dbt_date.convert_timezone("cast(ts as TIMESTAMP)") }} as timestamp
     ) as transaction_timestamp,
