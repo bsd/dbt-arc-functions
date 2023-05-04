@@ -40,7 +40,7 @@ with
         from {{ ref(email_summary) }} email_summary
         full outer join
             {{ ref(transactions) }} transactions
-            on on regexp_replace(
+            on regexp_replace(
                 cast(email_summary.final_primary_source_code as string),
                 '(hdr|ftr)$',
                 ''
