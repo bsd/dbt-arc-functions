@@ -14,6 +14,30 @@ def check_for_no_columns(file_path, docs_without_columns, doc_yaml):
         docs_without_columns.append(file_path)
 
 
+def check_table_for_no_columns(
+        file_path,
+        tables_without_columns,
+        columns_without_info,
+        table):
+    try:
+        columns = table['columns']
+        if not columns or len(columns) < 2:
+            tables_without_columns.append((file_path, table['name']))
+    except KeyError:
+        tables_without_columns.append((file_path, table['name']))
+        return
+    except TypeError:
+        tables_without_columns.append((file_path, ''))
+        return
+    if columns:
+        for column in columns:
+            try:
+                column['description']
+                column['data_type']
+            except KeyError:
+                columns_without_info.append((file_path, table['name'], column['name']))
+
+
 def check_for_no_tables_or_tables_no_columns(
         file_path,
         sources_without_tables,
@@ -31,23 +55,10 @@ def check_for_no_tables_or_tables_no_columns(
         return
     else:
         for table in tables:
-            try:
-                columns = table['columns']
-                if not columns or len(columns) < 2:
-                    tables_without_columns.append((file_path, table['name']))
-            except KeyError:
-                tables_without_columns.append((file_path, table['name']))
-                return
-            except TypeError:
-                tables_without_columns.append((file_path, ''))
-                return
-            if columns:
-                for column in columns:
-                    try:
-                        column['description']
-                        column['data_type']
-                    except KeyError:
-                        columns_without_info.append((file_path, table['name'], column['name']))
+            check_table_for_no_columns(file_path,
+                                       tables_without_columns,
+                                       columns_without_info,
+                                       table)
 
 
 def check_for_no_version(file_path, docs_without_version, doc_yaml):
@@ -211,7 +222,8 @@ def main():
         or docs_without_version
         or docs_without_macro
         or sources_without_tables
-            or sources_without_version):
+        or sources_without_version
+            or columns_without_info):
         sys.exit(1)
 
 
