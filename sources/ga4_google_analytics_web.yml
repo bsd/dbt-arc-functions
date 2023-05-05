@@ -8,3 +8,64 @@ sources:
     tables:
       - name: events
         identifier: events_*
+        columns:
+          - name: event_date
+            description:
+            data_type: STRING
+          - name: event_timestamp
+            description:
+            data_type: INT64
+          - name: event_name
+            description:
+            data_type: STRING
+          - name: event_params
+            description:
+            data_type: ARRAY
+          - name: event_previous_timestamp
+            description:
+            data_type: INT64
+          - name: event_value_in_usd
+            description:
+            data_type: FLOAT64
+          - name: event_bundle_sequence_id
+            description:
+            data_type: INT64
+          - name: event_server_timestamp_offset
+            description:
+            data_type: INT64
+          - name: user_id
+            description:
+            data_type: STRING
+          - name: user_pseudo_id
+            description:
+            data_type: STRING
+          - name: privacy_info
+            description:
+            data_type: STRUCT
+          - name: user_properties
+            description:
+            data_type: ARRAY
+          - name: user_first_touch_timestamp
+            description:
+            data_type: INT64
+          - name: user_ltv
+            description:
+            data_type: STRUCT
+          - name: device
+            description:
+            data_type: STRUCT
+          - name: geo
+            description:
+            data_type: STRUCT
+          - name: app_info
+            description:
+            data_type: STRUCT
+          - name: traffic_source
+            description:
+            data_type: STRUCT
+          - name: stream_id
+            description:
+            data_type: INT64
+          - name: platform
+            description:
+            data_type: STRING
