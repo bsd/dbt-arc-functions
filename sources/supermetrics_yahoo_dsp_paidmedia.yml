@@ -3,244 +3,243 @@ version: 2
 sources:
   - name: supermetrics_yahoo_dsp_paidmedia
     database: "{{ var('database') }}"
-    description: ""
+    description: ''
     schema: src_supermetrics_yahoo_dsp
     tables:
       - name: alldates_vdsp_ad
-        description: ""
+        description: ''
         columns:
           - name: ad_name
             data_type: STRING
-            description: ""
+            description: ''
           - name: ad_id
             data_type: STRING
-            description: ""
+            description: ''
           - name: advertiser_currency
             data_type: STRING
-            description: ""
+            description: ''
           - name: advertiser_id
             data_type: STRING
-            description: ""
+            description: ''
           - name: campaign_id
             data_type: STRING
-            description: ""
+            description: ''
           - name: creative_id
             data_type: STRING
-            description: ""
+            description: ''
           - name: data_source_name
             data_type: STRING
-            description: ""
+            description: ''
           - name: date
             data_type: DATE
-            description: ""
+            description: ''
           - name: layout_name
             data_type: STRING
-            description: ""
+            description: ''
           - name: line_id
             data_type: STRING
-            description: ""
+            description: ''
           - name: media_type
             data_type: STRING
-            description: ""
+            description: ''
           - name: click_conversions
             data_type: INT64
-            description: ""
+            description: ''
           - name: clicks
             data_type: INT64
-            description: ""
+            description: ''
           - name: conversion_value
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: conversions
             data_type: INT64
-            description: ""
+            description: ''
           - name: cost
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: cross_device_conversions
             data_type: INT64
-            description: ""
+            description: ''
           - name: estimated_billable_amount
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: impressions
             data_type: INT64
-            description: ""
+            description: ''
           - name: measurable_impressions
             data_type: INT64
-            description: ""
+            description: ''
           - name: moat_measurable_impressions
             data_type: INT64
-            description: ""
+            description: ''
           - name: moat_viewable_impressions
             data_type: INT64
-            description: ""
+            description: ''
           - name: non_viewable_impressions
             data_type: INT64
-            description: ""
+            description: ''
           - name: order_management_fee
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: profit
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: publisher_earnings
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: seat_data_fee
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: seat_management_fee
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: seat_tech_fee
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: third_party_data_fees
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: video_completions
             data_type: INT64
-            description: ""
+            description: ''
           - name: video_completions_25
             data_type: INT64
-            description: ""
+            description: ''
           - name: video_completions_50
             data_type: INT64
-            description: ""
+            description: ''
           - name: video_completions_75
             data_type: INT64
-            description: ""
+            description: ''
           - name: video_views
             data_type: INT64
-            description: ""
+            description: ''
           - name: view_conversions
             data_type: INT64
-            description: ""
+            description: ''
           - name: viewable_impressions
             data_type: INT64
-            description: ""
+            description: ''
           - name: yahoo_data_fees
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: advertiser
             data_type: STRING
-            description: ""
+            description: ''
           - name: campaign_name
             data_type: STRING
-            description: ""
+            description: ''
           - name: creative_name
             data_type: STRING
-            description: ""
+            description: ''
           - name: line_name
             data_type: STRING
-            description: ""
-
+            description: ''
       - name: alldates_vdsp_campaign
-        description: ""
+        description: ''
         columns:
           - name: advertiser_currency
             data_type: STRING
-            description: ""
+            description: ''
           - name: advertiser_id
             data_type: STRING
-            description: ""
+            description: ''
           - name: campaign_id
             data_type: STRING
-            description: ""
+            description: ''
           - name: data_source_name
             data_type: STRING
-            description: ""
+            description: ''
           - name: date
             data_type: DATE
-            description: ""
+            description: ''
           - name: click_conversions
             data_type: INT64
-            description: ""
+            description: ''
           - name: clicks
             data_type: INT64
-            description: ""
+            description: ''
           - name: conversion_value
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: conversions
             data_type: INT64
-            description: ""
+            description: ''
           - name: cost
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: cross_device_conversions
             data_type: INT64
-            description: ""
+            description: ''
           - name: estimated_billable_amount
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: impressions
             data_type: INT64
-            description: ""
+            description: ''
           - name: measurable_impressions
             data_type: INT64
-            description: ""
+            description: ''
           - name: moat_measurable_impressions
             data_type: INT64
-            description: ""
+            description: ''
           - name: moat_viewable_impressions
             data_type: INT64
-            description: ""
+            description: ''
           - name: non_viewable_impressions
             data_type: INT64
-            description: ""
+            description: ''
           - name: order_management_fee
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: profit
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: publisher_earnings
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: seat_data_fee
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: seat_management_fee
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: seat_tech_fee
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: third_party_data_fees
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: unique_viewers
             data_type: INT64
-            description: ""
+            description: ''
           - name: video_completions
             data_type: INT64
-            description: ""
+            description: ''
           - name: video_completions_25
             data_type: INT64
-            description: ""
+            description: ''
           - name: video_completions_50
             data_type: INT64
-            description: ""
+            description: ''
           - name: video_completions_75
             data_type: INT64
-            description: ""
+            description: ''
           - name: video_views
             data_type: INT64
-            description: ""
+            description: ''
           - name: view_conversions
             data_type: INT64
-            description: ""
+            description: ''
           - name: viewable_impressions
             data_type: INT64
-            description: ""
+            description: ''
           - name: yahoo_data_fees
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: advertiser
             data_type: STRING
-            description: ""
+            description: ''
           - name: campaign_name
             data_type: STRING
-            description: ""
+            description: ''
