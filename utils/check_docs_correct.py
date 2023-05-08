@@ -164,9 +164,16 @@ Please delete the doc, then run create_docs.ipynb against a working client to cr
 
 SOURCES_WITHOUT_TABLES_FORMAT_STRING = """The source below doesn't have any tables:
  {missing_info}
+
+PLEASE NOTE:
+For the command below to work, your dbt-codegen will need to be on the main branch as of 5/8/2023
+Add this to your packages.yml:
+  - git: https://github.com/dbt-labs/dbt-codegen.git
+    revision: main
+
 Please run the following command against a working and reformat your source:
  dbt run-operation generate_source --args '{{"schema_name": "SCHEMA", "table_names":["TABLE"],\
-      "generate_columns": "true", "include_data_types": "true",}}'
+      "generate_columns": "true", "include_data_types": "true", "include_descriptions": "true"}}'
 """
 
 
@@ -178,9 +185,16 @@ Please delete the doc, then run create_docs.ipynb against a working client to cr
 TABLES_WITHOUT_COLUMNS_FORMAT_STRING = """The table noted in the source below doesn't have any columns:"
     {missing_info[0]}
     {missing_info[1]}
+
+PLEASE NOTE:
+For the command below to work, your dbt-codegen will need to be on the main branch as of 5/8/2023
+Add this to your packages.yml:
+  - git: https://github.com/dbt-labs/dbt-codegen.git
+    revision: main
+
 Please run the following command against a working and reformat your source:
  dbt run-operation generate_source --args '{{"schema_name": "SCHEMA", \
-     "table_names":["TABLE"], "generate_columns": "true", "include_data_types": "true",}}'"""
+     "table_names":["TABLE"], "generate_columns": "true", "include_data_types": "true", "include_descriptions": "true"}}'"""
 
 
 SOURCES_WITHOUT_VERSION_FORMAT_STRING = """The source below doesn't have a version number:
@@ -192,9 +206,16 @@ COLUMNS_WITHOUT_INFO_FORMAT_STRING = """The column in the table in the source be
  {missing_info[0]}
  {missing_info[1]}
  {missing_info[2]}
+
+PLEASE NOTE:
+For the command below to work, your dbt-codegen will need to be on the main branch as of 5/8/2023
+Add this to your packages.yml:
+  - git: https://github.com/dbt-labs/dbt-codegen.git
+    revision: main
+
 Please run the following command against a working and reformat your source:
  dbt run-operation generate_source --args '{{"schema_name": "SCHEMA", "table_names":["TABLE"],\
-      "generate_columns": "true", "include_data_types": "true",}}'
+      "generate_columns": "true", "include_data_types": "true", "include_descriptions": "true"}}'
 """
 
 
