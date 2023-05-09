@@ -6,3 +6,26 @@ sources:
     schema: adhoc_reporting
     tables:
       - name: spreadsheet_paidmedia_monthly_goals
+        description: ""
+        columns:
+          - name: month
+            data_type: STRING
+            description: ""
+          - name: year
+            data_type: INT64
+            description: ""
+          - name: objective
+            data_type: STRING
+            description: ""
+          - name: channel
+            data_type: STRING
+            description: ""
+          - name: platform
+            data_type: STRING
+            description: ""
+          - name: projected_spend
+            data_type: INT64
+            description: ""
+          - name: projected_revenue
+            data_type: INT64
+            description: ""
