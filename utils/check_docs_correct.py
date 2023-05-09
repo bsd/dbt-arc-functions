@@ -18,13 +18,16 @@ def check_table_for_no_columns(
         file_path,
         tables_without_columns,
         columns_without_info,
-        table):
+        table,
+        doc_yaml):
     try:
         columns = table['columns']
         if not columns or len(columns) < 2:
             tables_without_columns.append((file_path, table['name']))
     except KeyError:
-        tables_without_columns.append((file_path, table['name']))
+        tables_without_columns.append((file_path,
+                                       table['name'],
+                                       doc_yaml['sources'][0]['schema']))
         return
     except TypeError:
         tables_without_columns.append((file_path, ''))
@@ -35,7 +38,10 @@ def check_table_for_no_columns(
                 column['description']
                 column['data_type']
             except KeyError:
-                columns_without_info.append((file_path, table['name'], column['name']))
+                columns_without_info.append((file_path,
+                                             table['name'],
+                                             column['name'],
+                                             doc_yaml['sources'][0]['schema']))
 
 
 def check_for_no_tables_or_tables_no_columns(
@@ -58,7 +64,8 @@ def check_for_no_tables_or_tables_no_columns(
             check_table_for_no_columns(file_path,
                                        tables_without_columns,
                                        columns_without_info,
-                                       table)
+                                       table,
+                                       doc_yaml)
 
 
 def check_for_no_version(file_path, docs_without_version, doc_yaml):
@@ -199,8 +206,9 @@ Add this to your packages.yml:
     revision: main
 
 Please run the following command against a working and reformat your source:
- dbt run-operation generate_source --args '{{"schema_name": "SCHEMA", \
-     "table_names":["TABLE"], "generate_columns": "true", "include_data_types": "true", "include_descriptions": "true"}}'"""
+ dbt run-operation generate_source --args '{{"schema_name": "{missing_info[2]}", \
+     "table_names":["{missing_info[1]}"], "generate_columns": "true", \
+     "include_data_types": "true", "include_descriptions": "true"}}'"""
 
 
 SOURCES_WITHOUT_VERSION_FORMAT_STRING = """
@@ -222,7 +230,7 @@ Add this to your packages.yml:
     revision: main
 
 Please run the following command against a working and reformat your source:
- dbt run-operation generate_source --args '{{"schema_name": "SCHEMA", "table_names":["TABLE"],\
+ dbt run-operation generate_source --args '{{"schema_name": "{missing_info[3]}", "table_names":["{missing_info[1]}"],\
       "generate_columns": "true", "include_data_types": "true", "include_descriptions": "true"}}'
 """
 
