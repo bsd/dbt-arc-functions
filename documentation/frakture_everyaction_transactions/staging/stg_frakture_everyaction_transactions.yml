@@ -1,1 +1,51 @@
+version: 2
+
+models:
+  - name: stg_frakture_everyaction_transactions
+    description: ""
+    columns:
+      - name: source_crm
+        description: ""
+
+      - name: transaction_id_in_source_crm
+        description: ""
+
+      - name: person_id
+        description: ""
+
+      - name: amount
+        description: ""
+
+      - name: transaction_timestamp
+        description: ""
+
+      - name: recurring_revenue
+        description: ""
+
+      - name: new_recurring_revenue
+        description: ""
+
+      - name: transaction_source_code
+        description: ""
+
+      - name: best_guess_message_id
+        description: ""
+
+      - name: campaign
+        description: ""
+
+      - name: channel
+        description: ""
+
+      - name: audience
+        description: ""
+
+      - name: crm_entity
+        description: ""
+
+      - name: source_code_entity
+        description: ""
+
+      - name: channel_from_source_code
+        description: ""
 
