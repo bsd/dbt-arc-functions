@@ -250,7 +250,7 @@ def main():
     print_missing_info(docs_without_columns, DOCS_WITHOUT_COLUMNS_FORMAT_STRING, "Docs without columns")
     print_missing_info(docs_without_version, DOCS_WITHOUT_VERSION_FORMAT_STRING, "Docs without version")
     print_missing_info(sources_without_tables, SOURCES_WITHOUT_TABLES_FORMAT_STRING, "Sources without tables")
-    print_missing_info(tables_without_columns, TABLES_WITHOUT_COLUMNS_FORMAT_STRING, "Sources without tables")
+    print_missing_info(tables_without_columns, TABLES_WITHOUT_COLUMNS_FORMAT_STRING, "Tables without columns")
     print_missing_info(sources_without_version, SOURCES_WITHOUT_VERSION_FORMAT_STRING, "Sources without version")
     print_missing_info(columns_without_info, COLUMNS_WITHOUT_INFO_FORMAT_STRING, "Source columns without info")
 
