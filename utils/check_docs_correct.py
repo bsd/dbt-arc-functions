@@ -141,7 +141,8 @@ def print_missing_info(list_of_missing_info, format_string, entity_string):
     print(f"{entity_string}: {len(list_of_missing_info)}")
 
 
-DOCS_WITHOUT_MACRO_FORMAT_STRING = """The doc below doesn't have a macro associated with it:
+DOCS_WITHOUT_MACRO_FORMAT_STRING = """
+The doc below doesn't have a macro associated with it:
  {missing_info[0]}
 Expected to find doc here:
  {missing_info[1]}
@@ -150,19 +151,22 @@ client to create docs
 """
 
 
-DOCS_WITHOUT_COLUMNS_FORMAT_STRING = """The doc below doesn't have any columns:
+DOCS_WITHOUT_COLUMNS_FORMAT_STRING = """
+The doc below doesn't have any columns:
 {missing_info}
 Please delete the doc, then run create_docs.ipynb against a working
 client to create docs
 """
 
 
-DOCS_WITHOUT_VERSION_FORMAT_STRING = """The doc below doesn't have a version number:
+DOCS_WITHOUT_VERSION_FORMAT_STRING = """
+The doc below doesn't have a version number:
  {missing_info}
 Please delete the doc, then run create_docs.ipynb against a working client to create docs.
 """
 
-SOURCES_WITHOUT_TABLES_FORMAT_STRING = """The source below doesn't have any tables:
+SOURCES_WITHOUT_TABLES_FORMAT_STRING = """
+The source below doesn't have any tables:
  {missing_info}
 
 PLEASE NOTE:
@@ -177,12 +181,14 @@ Please run the following command against a working and reformat your source:
 """
 
 
-DOCS_WITHOUT_CONTENT_FORMAT_STRING = """The doc below doesn't have content:
+DOCS_WITHOUT_CONTENT_FORMAT_STRING = """
+The doc below doesn't have content:
  {missing_info}
 Please delete the doc, then run create_docs.ipynb against a working client to create docs.
 """
 
-TABLES_WITHOUT_COLUMNS_FORMAT_STRING = """The table noted in the source below doesn't have any columns:"
+TABLES_WITHOUT_COLUMNS_FORMAT_STRING = """
+The table noted in the source below doesn't have any columns:"
     {missing_info[0]}
     {missing_info[1]}
 
@@ -197,12 +203,14 @@ Please run the following command against a working and reformat your source:
      "table_names":["TABLE"], "generate_columns": "true", "include_data_types": "true", "include_descriptions": "true"}}'"""
 
 
-SOURCES_WITHOUT_VERSION_FORMAT_STRING = """The source below doesn't have a version number:
+SOURCES_WITHOUT_VERSION_FORMAT_STRING = """
+The source below doesn't have a version number:
  {missing_info}
 Please delete the source, then run create_sources.ipynb against a working client to create sources
 """
 
-COLUMNS_WITHOUT_INFO_FORMAT_STRING = """The column in the table in the source below does not have info:
+COLUMNS_WITHOUT_INFO_FORMAT_STRING = """
+The column in the table in the source below does not have info:
  {missing_info[0]}
  {missing_info[1]}
  {missing_info[2]}
