@@ -200,39 +200,58 @@ sources:
         columns:
           - name: message_id
             description: Unique identifier for the message.
+            data_type: INT64
           - name: channel
             description: The channel where the message was sent.
+            data_type: STRING
           - name: channel_label
             description: A label for the channel where the message was sent.
+            data_type: STRING
           - name: type
             description: The type of message sent.
+            data_type: STRING
           - name: status
             description: The status of the message (e.g. sent, failed).
+            data_type: STRING
           - name: publish_date
             description: The date when the message was published.
+            data_type: DATETIME
           - name: campaign_id
             description: Unique identifier for the campaign associated with the message.
+            data_type: STRING
           - name: bot_id
             description: Unique identifier for the bot that sent the message.
+            data_type: STRING
           - name: submodule
             description: The submodule of the bot that sent the message.
+            data_type: STRING
           - name: remote_id
             description: The remote identifier associated with the message.
+            data_type: STRING
           - name: do_not_attribute
             description: Whether the message should not be attributed.
+            data_type: INT64
           - name: label
             description: A label for the message.
+            data_type: STRING
           - name: subject
             description: The subject of the message.
+            data_type: STRING
           - name: campaign_name
             description: The name of the campaign associated with the message.
+            data_type: STRING
           - name: from_name
             description: The name of the sender of the message.
+            data_type: STRING
           - name: preview_url
             description: The URL to preview the message.
+            data_type: STRING
           - name: primary_source_code
             description: The primary source code associated with the message.
+            data_type: STRING
           - name: primary_source_code_override
             description: Override value for primary source code.
+            data_type: STRING
           - name: final_primary_source_code
             description: The final primary source code associated with the message.
+            data_type: STRING
