@@ -1,15 +1,12 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_email_campaign_dates_rollup
-    description: ""
+    description: ''
     columns:
       - name: campaign_name
-        description: ""
-
+        description: ''
       - name: campaign_start_timestamp
-        description: ""
-
+        description: ''
       - name: campaign_latest_timestamp
-        description: ""
-
+        description: ''

@@ -1,27 +1,20 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_email_bounces_rollup
-    description: ""
+    description: ''
     columns:
       - name: message_id
-        description: ""
-
+        description: ''
       - name: hard_bounces
-        description: ""
-
+        description: ''
       - name: soft_bounces
-        description: ""
-
+        description: ''
       - name: block_bounces
-        description: ""
-
+        description: ''
       - name: tech_bounces
-        description: ""
-
+        description: ''
       - name: unknown_bounces
-        description: ""
-
+        description: ''
       - name: total_bounces
-        description: ""
-
+        description: ''
