@@ -10,5 +10,6 @@
             timestamp_trunc(base.transaction_date, day) as date
         ) as transaction_date_day
     from base
+    where lower(inbound_channel) = 'web'
 
 {% endmacro %}
