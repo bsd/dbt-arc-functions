@@ -2,20 +2,22 @@
     reference_name="stg_stitch_sfmc_email_jobs"
 ) %}
 
-{% if var.database == "bsd-arc-uusa" %}
+    {% if var.database == "bsd-arc-uusa" %}
 
-select best_guess_timestamp as campaign_timestamp, {{ create_uusa_campaigns_sql() }}
-from {{ ref(reference_name) }}
+        select
+            best_guess_timestamp as campaign_timestamp,
+            {{ create_uusa_campaigns_sql() }}
+        from {{ ref(reference_name) }}
 
-{% else %}
+    {% else %}
 
--- place holder with nulls for now
-select
-    best_guess_timestamp as campaign_timestamp,
-    safe_cast(null as string) as crm_campaign,
-    safe_cast(null as string) as source_code_campaign
-from {{ ref(reference_name) }}
+        -- place holder with nulls for now
+        select
+            best_guess_timestamp as campaign_timestamp,
+            safe_cast(null as string) as crm_campaign,
+            safe_cast(null as string) as source_code_campaign
+        from {{ ref(reference_name) }}
 
-{% endif %}
+    {% endif %}
 
 {% endmacro %}
