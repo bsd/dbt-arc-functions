@@ -581,151 +581,185 @@ sources:
             description: Created by Stitch as an integer.The subscriber key for the affected subscriber
             data_type: INT64
       - name: smsmessagetracking
-        description: data view in Automation Studio to find message tracking information
-          from Marketing Cloud MobileConnect SMS sends. This data view allows customers
-          to view their send and receive history. Information from this query relates
-          to the owner of a private short code or long code. Query information can
-          also relate to a client using a shared short code to which the subscriber
-          has opted in.
+        description: data view in Automation Studio to find message tracking information from Marketing Cloud MobileConnect SMS sends. This data view allows customers to view their send and receive history. Information from this query relates to the owner of a private short code or long code. Query information can also relate to a client using a shared short code to which the subscriber has opted in.
         columns:
           - name: sent
             description: If the message was sent (1 = true, 0 = false)
+            data_type: STRING
           - name: subscriberid
-            description: The subscriber ID for the affected subscriber. This number
-              represents the unique ID for each subscriber record
+            description: The subscriber ID for the affected subscriber. This number represents the unique ID for each subscriber record
+            data_type: INT64
           - name: createdatetime
             description: The date and time the tracking record was created
+            data_type: STRING
           - name: responsetomobilemessagetrackingid
             description: The tracking ID of the response to the message
+            data_type: STRING
           - name: responsetomobilemessagetrackingid__it
-            description: Created by Stitch as an integer. The tracking ID of the response
-              to the message
+            description: Created by Stitch as an integer. The tracking ID of the response to the message
+            data_type: INT64
           - name: istest
             description: If the message was a test message
+            data_type: STRING
           - name: modifieddatetime
             description: The date and CST time the tracking record was modified
+            data_type: STRING
           - name: ordinal
-            description: Represents the parts in a multi-part message. Represented
-              in ascending order starting at 0.
+            description: Represents the parts in a multi-part message. Represented in ascending order starting at 0.
+            data_type: STRING
           - name: ordinal__it
-            description: Created by stitch as an integer. Represents the parts in
-              a multi-part message. Represented in ascending order starting at 0.
+            description: Created by stitch as an integer. Represents the parts in a multi-part message. Represented in ascending order starting at 0.
+            data_type: INT64
           - name: sharedkeyword
             description: The keyword used in your message
+            data_type: STRING
           - name: optin
             description: ''
+            data_type: STRING
           - name: messagetext
             description: The text of the message
+            data_type: STRING
           - name: delivered
             description: If the message was delivered (1 = true, 0 = false)
+            data_type: STRING
           - name: invalidationcode
             description: Invalidation code for the message
+            data_type: STRING
           - name: subscriberkey
             description: The subscriber key for the affected subscriber
+            data_type: INT64
           - name: sendjobid
             description: The job ID for the SMS send
+            data_type: STRING
           - name: messageid
             description: "Mobile message ID\t"
+            data_type: INT64
           - name: undelivered
-            description: Whether the message was delivered successfully or not (1
-              = true, 0 = false)
+            description: Whether the message was delivered successfully or not (1 = true, 0 = false)
+            data_type: STRING
           - name: keywordid
             description: Unique identifier for the keyword
+            data_type: STRING
           - name: name
             description: The name of your message
+            data_type: STRING
           - name: __mobilemessagetrackingid_
             description: Unique ID for tracking information related to the sent message
+            data_type: INT64
           - name: _sdc_table_version
-            description: Indicates the version of the table. This column is used to
-              determine when to issue TRUNCATE commands during loading, where applicable.
+            description: Indicates the version of the table. This column is used to determine when to issue TRUNCATE commands during loading, where applicable.
+            data_type: INT64
           - name: campaignid
             description: The SMS campaign tied to the record
+            data_type: STRING
           - name: sendsegmentid
             description: The ID of the segment tied to the message
+            data_type: STRING
           - name: _sdc_source_file
-            description: Applicable only to Intacct and Responsys integrations, this
-              column contains the file path on the SFTP server of the table’s source
-              file
+            description: Applicable only to Intacct and Responsys integrations, this column contains the file path on the SFTP server of the table’s source file
+            data_type: STRING
           - name: _sdc_received_at
-            description: Timestamp indicating when Stitch received the record for
-              loading.
+            description: Timestamp indicating when Stitch received the record for loading.
+            data_type: TIMESTAMP
           - name: _sdc_sequence
-            description: A Unix epoch (in nanoseconds) that indicates the order in
-              which data points were considered for loading.
+            description: A Unix epoch (in nanoseconds) that indicates the order in which data points were considered for loading.
+            data_type: INT64
           - name: shortcode
             description: The short code or long code used to send your message
+            data_type: STRING
           - name: shortcode__it
-            description: Created by Stitch as an integer. The short code or long code
-              used to send your message
+            description: Created by Stitch as an integer. The short code or long code used to send your message
+            data_type: INT64
           - name: outbound
             description: If the message was outgoing (1 = true, 0 = false)
+            data_type: STRING
           - name: sendpersonid
             description: The sendperson ID for the SMS send
+            data_type: STRING
           - name: smsstandardstatuscodeid
             description: SFMC delivery status code
+            data_type: STRING
           - name: smsstandardstatuscodeid__it
             description: Created by Stitch as an integer. SFMC delivery status code
+            data_type: INT64
           - name: actiondatetime
-            description: The actual date and time a delivery or non-delivery event
-              was received by the Marketing Cloud.
+            description: The actual date and time a delivery or non-delivery event was received by the Marketing Cloud.
+            data_type: STRING
           - name: __sdc_primary_key
-            description: Applicable only if Stitch doesn’t detect a Primary Key in
-              the source table. Stitch will use this column to de-dupe data.
+            description: Applicable only if Stitch doesn’t detect a Primary Key in the source table. Stitch will use this column to de-dupe data.
+            data_type: STRING
           - name: inbound
             description: If the message was incoming (1 = true, 0 = false)
+            data_type: STRING
           - name: sendgroupid
             description: The group ID for the SMS send
+            data_type: STRING
           - name: sendsplitid
             description: If the message was split, the ID of the split
+            data_type: STRING
           - name: mobile
             description: Mobile number for the subscriber
+            data_type: INT64
           - name: sendid
             description: "\tThe send ID number for the SMS send"
+            data_type: STRING
           - name: unsub
             description: ''
+            data_type: STRING
           - name: isvalid
             description: If the message is valid
+            data_type: STRING
           - name: fromname
-            description: From Name that an individual message was deployed with. Maximum
-              length 11 characters
+            description: From Name that an individual message was deployed with. Maximum length 11 characters
+            data_type: STRING
           - name: eid
             description: ''
+            data_type: INT64
           - name: mobilemessagerecurrenceid
-            description: The ID of the recurrence schedule for the message. Can be
-              used for troubleshooting send issues.
+            description: The ID of the recurrence schedule for the message. Can be used for troubleshooting send issues.
+            data_type: STRING
           - name: codeid
             description: Unique identifier for the SMS code
+            data_type: STRING
           - name: _sdc_batched_at
-            description: Timestamp indicating when Stitch loaded the batch the record
-              was a part of into the destination.
+            description: Timestamp indicating when Stitch loaded the batch the record was a part of into the destination.
+            data_type: TIMESTAMP
           - name: mid
             description: ''
+            data_type: INT64
           - name: _sdc_source_lineno
-            description: Applicable only to Intacct and Responsys integrations, this
-              column contains the row number for the record in the source file.
+            description: Applicable only to Intacct and Responsys integrations, this column contains the row number for the record in the source file.
+            data_type: INT64
           - name: conversationid
             description: Unique identifier for the SMS conversation
+            data_type: STRING
           - name: description
             description: Detailed description of the status code
+            data_type: STRING
           - name: optout
             description: ''
+            data_type: STRING
           - name: subscriberkey__st
-            description: Created by Stitch as a string. The subscriber key for the
-              affected subscriber
+            description: Created by Stitch as a string. The subscriber key for the affected subscriber
+            data_type: STRING
           - name: subscriberid__st
-            description: The subscriber ID for the affected subscriber. This number
-              represents the unique ID for each subscriber record
+            description: The subscriber ID for the affected subscriber. This number represents the unique ID for each subscriber record
+            data_type: STRING
           - name: messageid__st
             description: "Mobile message ID\t"
+            data_type: STRING
           - name: __mobilemessagetrackingid___st
-            description: Created by Stitch as a string. Unique ID for tracking information
-              related to the sent message
+            description: Created by Stitch as a string. Unique ID for tracking information related to the sent message
+            data_type: STRING
           - name: mobile__st
             description: Created by Stitch as a string. Mobile number for the subscriber
+            data_type: STRING
           - name: eid__st
             description: Created by Stitch as a string
+            data_type: STRING
           - name: mid__st
             description: Created by Stitch as a string
+            data_type: STRING
       - name: unsubscribe
         description: unsubscribes from email lists in your account by querying the
           _Unsubscribe data view. Records dating back six months from the day the
