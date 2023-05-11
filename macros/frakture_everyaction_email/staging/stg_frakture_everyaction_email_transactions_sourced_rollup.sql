@@ -62,7 +62,4 @@ select
     safe_cast(total_monthly_gifts as int) as total_monthly_gifts
 from grouped
 
-
 {% endmacro %}
-
-

@@ -14,7 +14,9 @@ select
     safe_cast(
         {{ dbt_date.convert_timezone("cast(ts as TIMESTAMP)") }} as timestamp
     ) as transaction_timestamp,
-    safe_cast(case when recurs = 'monthly' then 'true' else 'false' end as boolean) as recurring_revenue,
+    safe_cast(
+        case when recurs = 'monthly' then 'true' else 'false' end as boolean
+    ) as recurring_revenue,
     safe_cast('false' as boolean) as new_recurring_revenue,
     coalesce(everyaction_market_source, source_code) as transaction_source_code,
     safe_cast(null as string) as best_guess_message_id,
