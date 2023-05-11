@@ -413,49 +413,47 @@ sources:
             description: The date that the version of the journey was created
             data_type: STRING
       - name: journeyactivity
-        description: data view to join to the email tracking system data views. Also
-          use it to identify the Triggered Send Definition associated to an email
-          activity in a Marketing Cloud journey and more.
+        description: data view to join to the email tracking system data views. Also use it to identify the Triggered Send Definition associated to an email activity in a Marketing Cloud journey and more.
         columns:
           - name: activityexternalkey
             description: The external key associated with the activity
+            data_type: STRING
           - name: __versionid_
             description: The unique identifier for the version of the journey
+            data_type: STRING
           - name: journeyactivityobjectid
-            description: "\tUse this unique identifier to join to email tracking system\
-              \ data views to identify a journey email’s Triggered Send Definition."
+            description: "\tUse this unique identifier to join to email tracking system               data views to identify a journey email’s Triggered Send Definition."
+            data_type: STRING
           - name: activityid
-            description: The unique identifier for the activity. There are one or
-              more ActivityID’s associated to a VersionID.
+            description: The unique identifier for the activity. There are one or more ActivityID’s associated to a VersionID.
+            data_type: STRING
           - name: activityname
             description: The name of the activity
+            data_type: STRING
           - name: _sdc_table_version
-            description: Indicates the version of the table. This column is used to
-              determine when to issue TRUNCATE commands during loading, where applicable.
+            description: Indicates the version of the table. This column is used to determine when to issue TRUNCATE commands during loading, where applicable.
+            data_type: INT64
           - name: _sdc_source_file
-            description: Applicable only to Intacct and Responsys integrations, this
-              column contains the file path on the SFTP server of the table’s source
-              file.
+            description: Applicable only to Intacct and Responsys integrations, this column contains the file path on the SFTP server of the table’s source file.
+            data_type: STRING
           - name: _sdc_received_at
-            description: Timestamp indicating when Stitch received the record for
-              loading.
+            description: Timestamp indicating when Stitch received the record for loading.
+            data_type: TIMESTAMP
           - name: _sdc_sequence
-            description: A Unix epoch (in nanoseconds) that indicates the order in
-              which data points were considered for loading.
+            description: A Unix epoch (in nanoseconds) that indicates the order in which data points were considered for loading.
+            data_type: INT64
           - name: __sdc_primary_key
-            description: Applicable only if Stitch doesn’t detect a Primary Key in
-              the source table. Stitch will use this column to de-dupe data
+            description: Applicable only if Stitch doesn’t detect a Primary Key in the source table. Stitch will use this column to de-dupe data
+            data_type: STRING
           - name: activitytype
             description: The type of activity
+            data_type: STRING
           - name: _sdc_batched_at
-            description: Applicable only to Google BigQuery (v2) and Microsoft Azure
-              Synapse Analytics destinations, the _sdc_primary_keys table contains
-              a list of the tables in an integration schema and the columns those
-              tables use as Primary Keys. Every integration schema created by Stitch
-              will contain this table.
+            description: Applicable only to Google BigQuery (v2) and Microsoft Azure Synapse Analytics destinations, the _sdc_primary_keys table contains a list of the tables in an integration schema and the columns those tables use as Primary Keys. Every integration schema created by Stitch will contain this table.
+            data_type: TIMESTAMP
           - name: _sdc_source_lineno
-            description: Applicable only to Intacct and Responsys integrations, this
-              column contains the row number for the record in the source file.
+            description: Applicable only to Intacct and Responsys integrations, this column contains the row number for the record in the source file.
+            data_type: INT64
       - name: open
         description: email opens for your account by querying the _Open data view.
           Records dating back six months from the day the query runs are available.
