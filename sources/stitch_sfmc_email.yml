@@ -167,57 +167,62 @@ sources:
             description: ' Created by Stitch as an integer . The customer key for the triggered send'
             data_type: INT64
       - name: complaint
-        description: data regarding spam complaints from subscribers about email sends
-          from your account by querying the _Complaint data view. Records dating back
-          six months from the day the query runs are available.
+        description: data regarding spam complaints from subscribers about email sends from your account by querying the _Complaint data view. Records dating back six months from the day the query runs are available.
         columns:
           - name: subscriberid
-            description: The subscriber ID for the affected subscriber. This number
-              represents the unique ID for each subscriber record.
+            description: The subscriber ID for the affected subscriber. This number represents the unique ID for each subscriber record.
+            data_type: INT64
           - name: isunique
             description: Whether the event is unique or repeated
+            data_type: STRING
           - name: batchid
             description: The batch ID number for any batches used in the send
+            data_type: INT64
           - name: subscriberkey
             description: The subscriber key for the affected subscriber
+            data_type: STRING
           - name: _sdc_table_version
-            description: Indicates the version of the table. This column is used to
-              determine when to issue TRUNCATE commands during loading, where applicable.
+            description: Indicates the version of the table. This column is used to determine when to issue TRUNCATE commands during loading, where applicable.
+            data_type: INT64
           - name: oybaccountid
-            description: The account ID number for any related On-Your-Behalf (OYB)
-              accounts. This field applies to enterprise accounts only.
+            description: The account ID number for any related On-Your-Behalf (OYB) accounts. This field applies to enterprise accounts only.
+            data_type: INT64
           - name: domain
             description: The domain at which the complaint occurred
+            data_type: STRING
           - name: _sdc_source_file
-            description: Applicable only to Intacct and Responsys integrations, this
-              column contains the file path on the SFTP server of the table’s source
-              file.
+            description: Applicable only to Intacct and Responsys integrations, this column contains the file path on the SFTP server of the table’s source file.
+            data_type: STRING
           - name: _sdc_received_at
-            description: Timestamp indicating when Stitch received the record for
-              loading.
+            description: Timestamp indicating when Stitch received the record for loading.
+            data_type: TIMESTAMP
           - name: _sdc_sequence
-            description: A Unix epoch (in nanoseconds) that indicates the order in
-              which data points were considered for loading.
+            description: A Unix epoch (in nanoseconds) that indicates the order in which data points were considered for loading.
+            data_type: INT64
           - name: __sdc_primary_key
-            description: Applicable only if Stitch doesn’t detect a Primary Key in
-              the source table. Stitch will use this column to de-dupe data.
+            description: Applicable only if Stitch doesn’t detect a Primary Key in the source table. Stitch will use this column to de-dupe data.
+            data_type: STRING
           - name: jobid
             description: The job ID number for the email send
+            data_type: INT64
           - name: __accountid_
             description: Your account ID number
+            data_type: INT64
           - name: listid
             description: The list ID number for the list used in the send
+            data_type: INT64
           - name: _sdc_batched_at
-            description: Timestamp indicating when Stitch loaded the batch the record
-              was a part of into the destination.
+            description: Timestamp indicating when Stitch loaded the batch the record was a part of into the destination.
+            data_type: TIMESTAMP
           - name: _sdc_source_lineno
-            description: Applicable only to Intacct and Responsys integrations, this
-              column contains the row number for the record in the source file.
+            description: Applicable only to Intacct and Responsys integrations, this column contains the row number for the record in the source file.
+            data_type: INT64
           - name: eventdate
             description: The date the complaint took place
+            data_type: STRING
           - name: subscriberkey__it
-            description: Created by Stitch as an integer. The subscriber key for the
-              affected subscriber
+            description: Created by Stitch as an integer. The subscriber key for the affected subscriber
+            data_type: INT64
       - name: job
         description: data view in Automation Studio to find data on Marketing Cloud
           email send jobs.
