@@ -14,6 +14,6 @@
     and person_id is not null
     and amount > 0
     -- and only the last 5 years of transactions because we won't go further for audience data
-    and transaction_date >= dateadd('year', -5, current_date)
+    and transaction_date >= date_add('year', -5, current_date)
 
 {% endmacro %}
