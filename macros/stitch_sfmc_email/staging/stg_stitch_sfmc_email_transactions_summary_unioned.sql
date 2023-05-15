@@ -5,11 +5,8 @@
     with base as ({{ dbt_utils.union_relations(relations) }})
 
     select
-        base.*,
-        cast(
-            timestamp_trunc(base.transaction_date, day) as date
-        ) as transaction_date_day
-    from base
+        *
+        from base
     where lower(inbound_channel) = 'web'
 
 {% endmacro %}
