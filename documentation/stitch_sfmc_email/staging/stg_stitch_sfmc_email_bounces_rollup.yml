@@ -6,15 +6,15 @@ models:
     columns:
       - name: message_id
         description: ''
-      - name: hard_bounce
+      - name: hard_bounces
         description: ''
-      - name: soft_bounce
+      - name: soft_bounces
         description: ''
-      - name: block_bounce
+      - name: block_bounces
         description: ''
-      - name: tech_bounce
+      - name: tech_bounces
         description: ''
-      - name: unknown_bounce
+      - name: unknown_bounces
         description: ''
       - name: total_bounces
         description: ''

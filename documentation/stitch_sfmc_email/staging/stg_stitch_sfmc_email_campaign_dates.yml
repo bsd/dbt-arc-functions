@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_uusa_email_campaign_dates
+  - name: stg_stitch_sfmc_email_campaign_dates
     description: ''
     columns:
       - name: campaign_timestamp
