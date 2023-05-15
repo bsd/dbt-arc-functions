@@ -4,9 +4,8 @@
     ) %}
     with base as ({{ dbt_utils.union_relations(relations) }})
 
-    select
-        *
-        from base
-    where lower(inbound_channel) = 'web' -- web is the only channel that would contain email
+    select *
+    from base
+    where lower(inbound_channel) = 'web'  -- web is the only channel that would contain email
 
 {% endmacro %}
