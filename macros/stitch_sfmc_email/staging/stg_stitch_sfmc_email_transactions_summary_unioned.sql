@@ -7,6 +7,6 @@
     select
         *
         from base
-    where lower(inbound_channel) = 'web'
+    where lower(inbound_channel) = 'web' -- web is the only channel that would contain email
 
 {% endmacro %}
