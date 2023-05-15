@@ -44,8 +44,13 @@
             from {{ ref(email_summary) }} email_summary
             full outer join
                 {{ ref(transactions) }} transactions
-                on cast(email_summary.final_primary_source_code as string)
-                = cast(transactions.source_code as string)
+                on regexp_replace(
+                    cast(email_summary.final_primary_source_code as string),
+                    '(hdr|ftr)$',
+                    ''
+                ) = regexp_replace(
+                    cast(transactions.source_code as string), '(hdr|ftr)$', ''
+                )
             group by 1
         )
 

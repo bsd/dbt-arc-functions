@@ -43,6 +43,11 @@ source_regex_mappings = {
                    r'^everyaction_[A-Za-z0-9]{3}_person$',
                    ]
     },
+    'frakture_everyaction_transactions.yml': {
+        'schema': 'src_frakture',
+        'tables': [r'^everyaction_[A-Za-z0-9]{3}_transaction$',
+                   ]
+    },
     'frakture_sfmc_person.yml': {
         'schema': 'src_frakture',
         'tables': [r'^sfmc_[A-Za-z0-9]{3}_per_person_message_stat$',
@@ -194,7 +199,7 @@ def main(
     client = get_client(dbt_credentials_path)
     if not dbt_models_sources_path:
         dbt_models_sources_path = input(
-            "Please give the absolute path of the sources directory:\n")
+            "Please give the absolute path of the client sources directory:\n")
     dbt_project_yml = add_sources_to_yml(
         dbt_project_yml, dbt_models_sources_path, client)
     copy_choice = inplace_or_copy("dbt_project")

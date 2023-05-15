@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_uusa_email_campaigns_rollup
+  - name: stg_stitch_sfmc_email_campaigns_rollup
     description: ''
     columns:
       - name: message_id

@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_transactions_unioned
+  - name: stg_stitch_sfmc_email_transactions_summary_unioned
     description: ''
     columns:
       - name: _dbt_source_relation
