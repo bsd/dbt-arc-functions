@@ -8,10 +8,6 @@ models:
         description: ''
       - name: person_id
         description: ''
-      - name: first_transaction_date
-        description: ''
-      - name: previous_latest_transaction_date
-        description: ''
       - name: cumulative_amount_12_months
         description: ''
       - name: cumulative_amount_24_months
