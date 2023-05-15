@@ -1,10 +1,12 @@
----
 version: 2
+
 models:
   - name: stg_stitch_sfmc_audience_transaction_jobs
-    description: ''
+    description: ""
     columns:
-      - name: transaction_date
-        description: ''
+      - name: transaction_date_day
+        description: ""
+
       - name: person_id
-        description: ''
+        description: ""
+
