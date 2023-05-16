@@ -2,8 +2,7 @@
 name: Lint YAML
 on:
   push:
-    branches:
-      - '**' 
+    branches: ['**']
 permissions:
   contents: read
 jobs:
