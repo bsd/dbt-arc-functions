@@ -28,9 +28,9 @@ jobs:
           if [[ $YAMLFIX_OUTPUT != *" 0 fixed"* ]]; then
             echo "Run yamlfix . to fix the errors below"
             echo $YAMLFIX_OUTPUT
-            echo "is_formatted='true'" >> "$GITHUB_OUTPUT"
+            echo "is_formatted=true" >> "$GITHUB_OUTPUT"
           else
-            echo "is_formatted='false'" >> "$GITHUB_OUTPUT"
+            echo "is_formatted=false" >> "$GITHUB_OUTPUT"
           fi
       - name: Create Pull Request
         if: steps.yamlfix.outputs.is_formatted == 'true'
