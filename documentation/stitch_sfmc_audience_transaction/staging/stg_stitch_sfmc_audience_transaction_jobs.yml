@@ -4,7 +4,7 @@ models:
   - name: stg_stitch_sfmc_audience_transaction_jobs
     description: ''
     columns:
-      - name: transaction_date
+      - name: transaction_date_day
         description: ''
       - name: person_id
         description: ''

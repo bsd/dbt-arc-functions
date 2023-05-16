@@ -1,9 +1,11 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_fundraiseup_filtered_recent_transaction
+  - name: stg_stitch_sfmc_audience_transactions_summary_unioned
     description: ''
     columns:
+      - name: _dbt_source_relation
+        description: ''
       - name: transaction_id
         description: ''
       - name: person_id
@@ -21,4 +23,14 @@ models:
       - name: gift_type
         description: ''
       - name: appeal
+        description: ''
+      - name: recurring
+        description: ''
+      - name: inbound_channel
+        description: ''
+      - name: appeal_business_unit
+        description: ''
+      - name: application
+        description: ''
+      - name: transaction_date_day
         description: ''

@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_bbcrm_transaction
+  - name: stg_stitch_sfmc_bbcrm_transactions
     description: ''
     columns:
       - name: transaction_id
