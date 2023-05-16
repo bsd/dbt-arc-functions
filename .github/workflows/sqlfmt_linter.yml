@@ -22,5 +22,16 @@ jobs:
           pip install 'shandy-sqlfmt[jinjafmt]'
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run sqlfmt
+        continue-on-error: true
         run: |-
-          sqlfmt --diff .
+          sqlfmt .
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GHA_PERSONAL_ACCESS_TOKEN }}
+          branch: actions/sqlfmt/${{ github.head_ref || github.base_ref || github.ref }}
+          title: Sqlfmt to ${{ github.head_ref || github.base_ref || github.ref }}
+          base: ${{ github.head_ref || github.base_ref || github.ref }}
+      - name: Show sqlfmt diff
+        run: |-
+          sqlfmt . --diff

@@ -2,7 +2,7 @@
     reference_0_name="mart_email_performance_with_revenue",
     reference_1_name="mart_paidmedia_daily_revenue_performance"
 ) %}
-    select
+    SELECT
         timestamp_trunc(best_guess_timestamp, day) as date_timestamp,
         'email' as channel,
         best_guess_entity,

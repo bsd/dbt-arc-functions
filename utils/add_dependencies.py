@@ -8,6 +8,20 @@ import re
 from utils import check_dbt_installed, check_profiles_file, run_dbt_subprocess
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def get_no_version_check_choice() -> str:
     """This function asks user if they want to run dbt without checking version."""
     print(
