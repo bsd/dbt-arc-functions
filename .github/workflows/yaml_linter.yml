@@ -40,5 +40,5 @@ jobs:
           title: YamlFix to ${{ github.head_ref || github.base_ref || github.ref }}
           base: ${{ github.head_ref || github.base_ref || github.ref }}
       - name: Fail if yamlfix is_formatted
-        if: ${{ steps.yamlfix.outputs.is_formatted }}
+        if: ${{ steps.yamlfix.outputs.is_formatted }} == true
         run: exit 1
