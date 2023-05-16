@@ -23,9 +23,9 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GHA_PERSONAL_ACCESS_TOKEN }}
-          branch: actions/action_black/${{ github.ref_name || github.head_ref }}
-          title: Python Black to ${{ github.ref_name || github.head_ref }}
+          branch: actions/action_black/${{ github.head_ref || github.base_ref || github.ref }}
+          title: Python Black to ${{ github.head_ref || github.base_ref || github.ref }}
+          base: ${{ github.head_ref || github.base_ref || github.ref }}
       - name: Fail if action_black is_formatted
-        if: ${{ steps.action_black.outputs.is_formatted }} == true && [[ ${{ github.ref_name || github.head_ref }}
-          != *"actions/action_black"* ]]
+        if: ${{ steps.action_black.outputs.is_formatted }} == true
         run: exit 1
