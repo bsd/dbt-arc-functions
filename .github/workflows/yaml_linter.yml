@@ -37,3 +37,6 @@ jobs:
           token: ${{ secrets.GHA_PERSONAL_ACCESS_TOKEN }}
           branch: actions/yamlfix/${{ github.ref_name || github.head_ref }}
           title: YamlFix to ${{ github.ref_name || github.head_ref }}
+      - name: Fail if yamlfix is_formatted
+        if: ${{ steps.yamlfix.outputs.is_formatted }} == true
+        run: exit 1
