@@ -19,7 +19,7 @@ jobs:
         with:
           black_args: .
       - name: Create Pull Request
-        if: ${{ steps.action_black.outputs.is_formatted }} == true
+        if: steps.action_black.outputs.is_formatted == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GHA_PERSONAL_ACCESS_TOKEN }}
@@ -27,5 +27,5 @@ jobs:
           title: Python Black to ${{ github.head_ref || github.base_ref || github.ref }}
           base: ${{ github.head_ref || github.base_ref || github.ref }}
       - name: Fail if action_black is_formatted
-        if: ${{ steps.action_black.outputs.is_formatted }} == true
+        if: steps.action_black.outputs.is_formatted == 'true'
         run: exit 1
