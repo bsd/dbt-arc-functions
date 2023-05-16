@@ -1,7 +1,9 @@
 ---
 name: Lint YAML
 on:
-  pull_request:
+  push:
+    branches:
+      - '**'
 permissions:
   contents: read
 jobs:
@@ -37,6 +39,5 @@ jobs:
           branch: actions/yamlfix/${{ github.ref_name || github.head_ref }}
           title: YamlFix to ${{ github.ref_name || github.head_ref }}
       - name: Fail if yamlfix is_formatted
-        if: ${{ steps.yamlfix.outputs.is_formatted }} == true && [[ ${{ github.ref_name || github.head_ref }}
-          != *"actions/yamlfix"* ]]
+        if: ${{ steps.yamlfix.outputs.is_formatted }}
         run: exit 1
