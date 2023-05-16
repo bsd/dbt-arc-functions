@@ -32,7 +32,7 @@ jobs:
             echo "is_formatted=false" >> "$GITHUB_OUTPUT"
           fi
       - name: Create Pull Request
-        if: ${{ steps.projectcheck.outputs.central == "true" }}
+        if: ${{ steps.yamlfix.outputs.is_formatted == "true" }}
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GHA_PERSONAL_ACCESS_TOKEN }}
@@ -40,5 +40,5 @@ jobs:
           title: YamlFix to ${{ github.head_ref || github.base_ref || github.ref }}
           base: ${{ github.head_ref || github.base_ref || github.ref }}
       - name: Fail if yamlfix is_formatted
-        if: ${{ steps.projectcheck.outputs.central == "true" }}
+        if: ${{ steps.yamlfix.outputs.is_formatted == "true" }}
         run: exit 1
