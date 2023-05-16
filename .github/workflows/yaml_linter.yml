@@ -10,6 +10,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}/actions/yamlfix
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
@@ -29,10 +31,6 @@ jobs:
           else
             echo "is_formatted=false" >> "$GITHUB_OUTPUT"
           fi
-      - name: Extract branch name
-        shell: bash
-        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_OUTPUT
-        id: extract_branch
       - name: Create Pull Request
         if: ${{ steps.yamlfix.outputs.is_formatted }} == true
         uses: peter-evans/create-pull-request@v3
@@ -44,4 +42,4 @@ jobs:
             There appear to be some yaml formatting errors in ${{ github.sha }}. This pull request
             uses the [yamlfix](https://lyz-code.github.io/yamlfix/) formatter to fix these issues.
           base: ${{ github.head_ref }} # Creates pull request onto pull request or commit branch
-          branch: ${{ steps.extract_branch.outputs.branch }}/actions/yamlfix
+          branch: $BRANCH_NAME
