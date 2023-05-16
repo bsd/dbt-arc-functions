@@ -11,58 +11,86 @@ sources:
         description: ''
         columns:
           - name: designation
+            data_type: STRING
             description: ''
           - name: inbound_channel
+            data_type: STRING
             description: ''
           - name: appeal
+            data_type: STRING
             description: ''
           - name: transaction_type
+            data_type: STRING
             description: ''
           - name: recognition_amount
+            data_type: FLOAT64
             description: ''
           - name: revenue_platform
+            data_type: STRING
             description: ''
           - name: vendor_order_number
+            data_type: STRING
             description: ''
           - name: statuscode
+            data_type: INT64
             description: ''
           - name: constituentsystemrecordid
+            data_type: STRING
             description: ''
           - name: web_donation_form_value
+            data_type: STRING
             description: ''
           - name: payment_method
+            data_type: STRING
             description: ''
           - name: appeal_business_unit
+            data_type: STRING
             description: ''
           - name: recordid
+            data_type: STRING
             description: ''
           - name: _sdc_table_version
+            data_type: INT64
             description: ''
           - name: application
+            data_type: STRING
             description: ''
           - name: sfmc_dateadded
+            data_type: STRING
             description: ''
           - name: initial_market_source
+            data_type: STRING
             description: ''
           - name: _sdc_source_file
+            data_type: STRING
             description: ''
           - name: web_donation_form_comment
+            data_type: STRING
             description: ''
           - name: transaction_date
+            data_type: STRING
             description: ''
           - name: _sdc_received_at
+            data_type: TIMESTAMP
             description: ''
           - name: _sdc_sequence
+            data_type: INT64
             description: ''
           - name: revenue_id
+            data_type: STRING
             description: ''
           - name: __sdc_primary_key
+            data_type: STRING
             description: ''
           - name: _sdc_batched_at
+            data_type: TIMESTAMP
             description: ''
           - name: _sdc_source_lineno
+            data_type: INT64
             description: ''
           - name: sfmc_updatedate
+            data_type: STRING
             description: ''
           - name: __bbcrmlookupid_
+            data_type: STRING
             description: ''

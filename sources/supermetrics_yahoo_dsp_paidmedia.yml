@@ -3,7 +3,243 @@ version: 2
 sources:
   - name: supermetrics_yahoo_dsp_paidmedia
     database: "{{ var('database') }}"
+    description: ''
     schema: src_supermetrics_yahoo_dsp
     tables:
-      - name: alldates_VDSP_AD
-      - name: alldates_VDSP_CAMPAIGN
+      - name: alldates_vdsp_ad
+        description: ''
+        columns:
+          - name: ad_name
+            data_type: STRING
+            description: ''
+          - name: ad_id
+            data_type: STRING
+            description: ''
+          - name: advertiser_currency
+            data_type: STRING
+            description: ''
+          - name: advertiser_id
+            data_type: STRING
+            description: ''
+          - name: campaign_id
+            data_type: STRING
+            description: ''
+          - name: creative_id
+            data_type: STRING
+            description: ''
+          - name: data_source_name
+            data_type: STRING
+            description: ''
+          - name: date
+            data_type: DATE
+            description: ''
+          - name: layout_name
+            data_type: STRING
+            description: ''
+          - name: line_id
+            data_type: STRING
+            description: ''
+          - name: media_type
+            data_type: STRING
+            description: ''
+          - name: click_conversions
+            data_type: INT64
+            description: ''
+          - name: clicks
+            data_type: INT64
+            description: ''
+          - name: conversion_value
+            data_type: FLOAT64
+            description: ''
+          - name: conversions
+            data_type: INT64
+            description: ''
+          - name: cost
+            data_type: FLOAT64
+            description: ''
+          - name: cross_device_conversions
+            data_type: INT64
+            description: ''
+          - name: estimated_billable_amount
+            data_type: FLOAT64
+            description: ''
+          - name: impressions
+            data_type: INT64
+            description: ''
+          - name: measurable_impressions
+            data_type: INT64
+            description: ''
+          - name: moat_measurable_impressions
+            data_type: INT64
+            description: ''
+          - name: moat_viewable_impressions
+            data_type: INT64
+            description: ''
+          - name: non_viewable_impressions
+            data_type: INT64
+            description: ''
+          - name: order_management_fee
+            data_type: FLOAT64
+            description: ''
+          - name: profit
+            data_type: FLOAT64
+            description: ''
+          - name: publisher_earnings
+            data_type: FLOAT64
+            description: ''
+          - name: seat_data_fee
+            data_type: FLOAT64
+            description: ''
+          - name: seat_management_fee
+            data_type: FLOAT64
+            description: ''
+          - name: seat_tech_fee
+            data_type: FLOAT64
+            description: ''
+          - name: third_party_data_fees
+            data_type: FLOAT64
+            description: ''
+          - name: video_completions
+            data_type: INT64
+            description: ''
+          - name: video_completions_25
+            data_type: INT64
+            description: ''
+          - name: video_completions_50
+            data_type: INT64
+            description: ''
+          - name: video_completions_75
+            data_type: INT64
+            description: ''
+          - name: video_views
+            data_type: INT64
+            description: ''
+          - name: view_conversions
+            data_type: INT64
+            description: ''
+          - name: viewable_impressions
+            data_type: INT64
+            description: ''
+          - name: yahoo_data_fees
+            data_type: FLOAT64
+            description: ''
+          - name: advertiser
+            data_type: STRING
+            description: ''
+          - name: campaign_name
+            data_type: STRING
+            description: ''
+          - name: creative_name
+            data_type: STRING
+            description: ''
+          - name: line_name
+            data_type: STRING
+            description: ''
+      - name: alldates_vdsp_campaign
+        description: ''
+        columns:
+          - name: advertiser_currency
+            data_type: STRING
+            description: ''
+          - name: advertiser_id
+            data_type: STRING
+            description: ''
+          - name: campaign_id
+            data_type: STRING
+            description: ''
+          - name: data_source_name
+            data_type: STRING
+            description: ''
+          - name: date
+            data_type: DATE
+            description: ''
+          - name: click_conversions
+            data_type: INT64
+            description: ''
+          - name: clicks
+            data_type: INT64
+            description: ''
+          - name: conversion_value
+            data_type: FLOAT64
+            description: ''
+          - name: conversions
+            data_type: INT64
+            description: ''
+          - name: cost
+            data_type: FLOAT64
+            description: ''
+          - name: cross_device_conversions
+            data_type: INT64
+            description: ''
+          - name: estimated_billable_amount
+            data_type: FLOAT64
+            description: ''
+          - name: impressions
+            data_type: INT64
+            description: ''
+          - name: measurable_impressions
+            data_type: INT64
+            description: ''
+          - name: moat_measurable_impressions
+            data_type: INT64
+            description: ''
+          - name: moat_viewable_impressions
+            data_type: INT64
+            description: ''
+          - name: non_viewable_impressions
+            data_type: INT64
+            description: ''
+          - name: order_management_fee
+            data_type: FLOAT64
+            description: ''
+          - name: profit
+            data_type: FLOAT64
+            description: ''
+          - name: publisher_earnings
+            data_type: FLOAT64
+            description: ''
+          - name: seat_data_fee
+            data_type: FLOAT64
+            description: ''
+          - name: seat_management_fee
+            data_type: FLOAT64
+            description: ''
+          - name: seat_tech_fee
+            data_type: FLOAT64
+            description: ''
+          - name: third_party_data_fees
+            data_type: FLOAT64
+            description: ''
+          - name: unique_viewers
+            data_type: INT64
+            description: ''
+          - name: video_completions
+            data_type: INT64
+            description: ''
+          - name: video_completions_25
+            data_type: INT64
+            description: ''
+          - name: video_completions_50
+            data_type: INT64
+            description: ''
+          - name: video_completions_75
+            data_type: INT64
+            description: ''
+          - name: video_views
+            data_type: INT64
+            description: ''
+          - name: view_conversions
+            data_type: INT64
+            description: ''
+          - name: viewable_impressions
+            data_type: INT64
+            description: ''
+          - name: yahoo_data_fees
+            data_type: FLOAT64
+            description: ''
+          - name: advertiser
+            data_type: STRING
+            description: ''
+          - name: campaign_name
+            data_type: STRING
+            description: ''

@@ -10,4 +10,248 @@ sources:
           warn_after: {count: 2, period: day}
           error_after: {count: 7, period: day}
         loaded_at_field: cast(publish_date as timestamp)
+        description: ''
+        columns:
+          - name: message_id
+            data_type: INT64
+            description: ''
+          - name: date
+            data_type: DATE
+            description: ''
+          - name: bot_id
+            data_type: STRING
+            description: ''
+          - name: bot_path
+            data_type: STRING
+            description: ''
+          - name: bot_label
+            data_type: STRING
+            description: ''
+          - name: bot_nickname
+            data_type: STRING
+            description: ''
+          - name: channel
+            data_type: STRING
+            description: ''
+          - name: channel_label
+            data_type: STRING
+            description: ''
+          - name: type
+            data_type: STRING
+            description: ''
+          - name: status
+            data_type: STRING
+            description: ''
+          - name: publish_date
+            data_type: DATETIME
+            description: ''
+          - name: campaign_id
+            data_type: STRING
+            description: ''
+          - name: submodule
+            data_type: STRING
+            description: ''
+          - name: remote_id
+            data_type: STRING
+            description: ''
+          - name: do_not_attribute
+            data_type: INT64
+            description: ''
+          - name: sent
+            data_type: INT64
+            description: ''
+          - name: impressions
+            data_type: INT64
+            description: ''
+          - name: clicks
+            data_type: INT64
+            description: ''
+          - name: engagements
+            data_type: INT64
+            description: ''
+          - name: actions
+            data_type: INT64
+            description: ''
+          - name: leads
+            data_type: INT64
+            description: ''
+          - name: total_actions
+            data_type: INT64
+            description: ''
+          - name: unique_actions
+            data_type: INT64
+            description: ''
+          - name: unsubscribes
+            data_type: INT64
+            description: ''
+          - name: complaints
+            data_type: INT64
+            description: ''
+          - name: soft_bounces
+            data_type: INT64
+            description: ''
+          - name: hard_bounces
+            data_type: INT64
+            description: ''
+          - name: blocked
+            data_type: INT64
+            description: ''
+          - name: transactions
+            data_type: FLOAT64
+            description: ''
+          - name: revenue
+            data_type: FLOAT64
+            description: ''
+          - name: spend
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_revenue
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_transactions
+            data_type: INT64
+            description: ''
+          - name: attributed_revenue_day_1
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_transactions_day_1
+            data_type: INT64
+            description: ''
+          - name: attributed_revenue_day_6
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_transactions_day_6
+            data_type: INT64
+            description: ''
+          - name: attributed_recurring_revenue
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_recurring_transactions
+            data_type: INT64
+            description: ''
+          - name: attributed_initial_recurring_revenue
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_initial_recurring_transactions
+            data_type: INT64
+            description: ''
+          - name: attributed_subsequent_recurring_revenue
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_subsequent_recurring_transactions
+            data_type: INT64
+            description: ''
+          - name: attributed_min_amount
+            data_type: FLOAT64
+            description: ''
+          - name: origin_person_count
+            data_type: INT64
+            description: ''
+          - name: recurtype
+            data_type: STRING
+            description: ''
+          - name: goal
+            data_type: STRING
+            description: ''
+          - name: channel_type
+            data_type: STRING
+            description: ''
+          - name: appeal
+            data_type: STRING
+            description: ''
+          - name: campaign_label
+            data_type: STRING
+            description: ''
+          - name: audience
+            data_type: STRING
+            description: ''
+          - name: label
+            data_type: STRING
+            description: ''
+          - name: subject
+            data_type: STRING
+            description: ''
+          - name: campaign_name
+            data_type: STRING
+            description: ''
+          - name: campaign
+            data_type: STRING
+            description: ''
+          - name: account_prefix
+            data_type: STRING
+            description: ''
+          - name: from_name
+            data_type: STRING
+            description: ''
+          - name: preview_url
+            data_type: STRING
+            description: ''
+          - name: primary_source_code
+            data_type: STRING
+            description: ''
+          - name: primary_source_code_override
+            data_type: STRING
+            description: ''
+          - name: final_primary_source_code
+            data_type: STRING
+            description: ''
       - name: global_message
+        description: ''
+        columns:
+          - name: message_id
+            data_type: INT64
+            description: ''
+          - name: channel
+            data_type: STRING
+            description: ''
+          - name: channel_label
+            data_type: STRING
+            description: ''
+          - name: type
+            data_type: STRING
+            description: ''
+          - name: status
+            data_type: STRING
+            description: ''
+          - name: publish_date
+            data_type: DATETIME
+            description: ''
+          - name: campaign_id
+            data_type: STRING
+            description: ''
+          - name: bot_id
+            data_type: STRING
+            description: ''
+          - name: submodule
+            data_type: STRING
+            description: ''
+          - name: remote_id
+            data_type: STRING
+            description: ''
+          - name: do_not_attribute
+            data_type: INT64
+            description: ''
+          - name: label
+            data_type: STRING
+            description: ''
+          - name: subject
+            data_type: STRING
+            description: ''
+          - name: campaign_name
+            data_type: STRING
+            description: ''
+          - name: from_name
+            data_type: STRING
+            description: ''
+          - name: preview_url
+            data_type: STRING
+            description: ''
+          - name: primary_source_code
+            data_type: STRING
+            description: ''
+          - name: primary_source_code_override
+            data_type: STRING
+            description: ''
+          - name: final_primary_source_code
+            data_type: STRING
+            description: ''

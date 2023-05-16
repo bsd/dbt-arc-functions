@@ -14,176 +14,256 @@ sources:
         columns:
           - name: message_id
             description: The unique identifier for each message.
+            data_type: INT64
           - name: date
             description: The date the message was sent.
+            data_type: DATE
           - name: bot_id
             description: The unique identifier for the Frakture bot.
+            data_type: STRING
           - name: bot_path
             description: The path of the Frakture.
+            data_type: STRING
           - name: bot_label
             description: The label of the Frakture bot.
+            data_type: STRING
           - name: bot_nickname
             description: The nickname of the Frakture bot.
+            data_type: STRING
           - name: channel
             description: The communication channel used for sending the message; includes
               paidmedia services and email.
+            data_type: STRING
           - name: channel_label
             description: The label of the channel.
+            data_type: STRING
           - name: type
             description: The type of message; usually a more specific subdivision
               of channel.
+            data_type: STRING
           - name: status
             description: The status of the message.
+            data_type: STRING
           - name: publish_date
             description: The date the message was published.
+            data_type: DATETIME
           - name: campaign_id
             description: The unique identifier for each campaign.
+            data_type: STRING
           - name: submodule
             description: The submodule of the message.
+            data_type: STRING
           - name: remote_id
             description: The remote identifier of the message.
+            data_type: STRING
           - name: do_not_attribute
             description: A flag indicating whether the message should not be attributed.
+            data_type: INT64
           - name: sent
             description: The number of times the message was sent.
+            data_type: INT64
           - name: impressions
             description: The number of times the message was viewed.
+            data_type: INT64
           - name: clicks
             description: The number of times the message was clicked.
+            data_type: INT64
           - name: engagements
             description: The number of times the message was engaged with.
+            data_type: INT64
           - name: actions
             description: The number of actions taken on the message.
+            data_type: INT64
           - name: leads
             description: The number of leads generated from the message.
+            data_type: INT64
           - name: total_actions
             description: The total number of actions taken on the message.
+            data_type: INT64
           - name: unique_actions
             description: The number of unique actions taken on the message.
+            data_type: INT64
           - name: unsubscribes
             description: The number of times users unsubscribed as a result of the
               message.
+            data_type: INT64
           - name: complaints
             description: The number of times users reported the message as spam or
               inappropriate.
+            data_type: INT64
           - name: soft_bounces
             description: The number of times the message failed to be delivered due
               to a temporary issue.
+            data_type: INT64
           - name: hard_bounces
             description: The number of times the message failed to be delivered due
               to a permanent issue.
+            data_type: INT64
           - name: blocked
             description: The number of times the message was blocked by a spam filter.
+            data_type: INT64
           - name: transactions
             description: The number of transactions resulting from the message.
+            data_type: FLOAT64
           - name: revenue
             description: The total revenue generated from the message.
+            data_type: FLOAT64
           - name: spend
             description: The amount spent on the message.
+            data_type: FLOAT64
           - name: attributed_revenue
             description: The revenue attributed to the message.
+            data_type: FLOAT64
           - name: attributed_transactions
             description: The number of transactions attributed to the message.
+            data_type: INT64
           - name: attributed_revenue_day_1
             description: The revenue attributed to the message within one day.
+            data_type: FLOAT64
           - name: attributed_transactions_day_1
             description: The number of transactions attributed to the message within
               one day.
+            data_type: INT64
           - name: attributed_revenue_day_6
             description: The revenue attributed to the message within six days.
+            data_type: FLOAT64
           - name: attributed_transactions_day_6
             description: The number of transactions attributed to the message within
               six days.
+            data_type: INT64
           - name: attributed_recurring_revenue
             description: The recurring revenue attributed to the message.
+            data_type: FLOAT64
           - name: attributed_recurring_transactions
             description: The number of recurring transactions attributed to the message.
+            data_type: INT64
           - name: attributed_initial_recurring_revenue
             description: The initial recurring revenue attributed to the message.
+            data_type: FLOAT64
           - name: attributed_initial_recurring_transactions
             description: The number of initial recurring transactions attributed to
               the message.
+            data_type: INT64
           - name: attributed_subsequent_recurring_revenue
             description: The subsequent recurring revenue attributed to the message.
+            data_type: FLOAT64
           - name: attributed_subsequent_recurring_transactions
             description: The number of subsequent recurring transactions attributed
               to the message.
+            data_type: INT64
           - name: attributed_min_amount
             description: The minimum amount of revenue attributed to the message.
+            data_type: FLOAT64
           - name: origin_person_count
             description: The number of people who received the message.
+            data_type: INT64
           - name: recurtype
             description: The type of recurring revenue.
+            data_type: STRING
           - name: goal
             description: Goal of the message.
+            data_type: STRING
           - name: channel_type
             description: Type of the channel of the message.
+            data_type: STRING
           - name: appeal
             description: The appeal used in the message.
+            data_type: STRING
           - name: campaign_label
             description: The label of the campaign.
+            data_type: STRING
           - name: audience
             description: The audience targeted by the message.
+            data_type: STRING
           - name: label
             description: The label of the message.
+            data_type: STRING
           - name: subject
             description: The subject of the message.
+            data_type: STRING
           - name: campaign_name
             description: The name of the campaign under which the email was sent.
               This is usually defined in the CRM/email software.
+            data_type: STRING
           - name: campaign
             description: Identifier for the campaign. Might be defined by end-user.
+            data_type: STRING
           - name: account_prefix
             description: Identifier for the account which the message was sent from.
+            data_type: STRING
           - name: from_name
             description: Name that appears in 'From' line on email client. NOT the
               email address, that is from_email.
+            data_type: STRING
           - name: preview_url
             description: Preview URL associated with the email.
+            data_type: STRING
           - name: primary_source_code
             description: Source Code associated with this particular email.
+            data_type: STRING
           - name: primary_source_code_override
             description: Optional override applied to source code.
+            data_type: STRING
           - name: final_primary_source_code
             description: COALESCE of primary_source_code_override and primary_source_code.
+            data_type: STRING
       - name: global_message
         description: Contains information about a global message.
         columns:
           - name: message_id
             description: Unique identifier for the message.
+            data_type: INT64
           - name: channel
             description: The channel where the message was sent.
+            data_type: STRING
           - name: channel_label
             description: A label for the channel where the message was sent.
+            data_type: STRING
           - name: type
             description: The type of message sent.
+            data_type: STRING
           - name: status
             description: The status of the message (e.g. sent, failed).
+            data_type: STRING
           - name: publish_date
             description: The date when the message was published.
+            data_type: DATETIME
           - name: campaign_id
             description: Unique identifier for the campaign associated with the message.
+            data_type: STRING
           - name: bot_id
             description: Unique identifier for the bot that sent the message.
+            data_type: STRING
           - name: submodule
             description: The submodule of the bot that sent the message.
+            data_type: STRING
           - name: remote_id
             description: The remote identifier associated with the message.
+            data_type: STRING
           - name: do_not_attribute
             description: Whether the message should not be attributed.
+            data_type: INT64
           - name: label
             description: A label for the message.
+            data_type: STRING
           - name: subject
             description: The subject of the message.
+            data_type: STRING
           - name: campaign_name
             description: The name of the campaign associated with the message.
+            data_type: STRING
           - name: from_name
             description: The name of the sender of the message.
+            data_type: STRING
           - name: preview_url
             description: The URL to preview the message.
+            data_type: STRING
           - name: primary_source_code
             description: The primary source code associated with the message.
+            data_type: STRING
           - name: primary_source_code_override
             description: Override value for primary source code.
+            data_type: STRING
           - name: final_primary_source_code
             description: The final primary source code associated with the message.
+            data_type: STRING
