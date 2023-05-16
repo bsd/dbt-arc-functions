@@ -34,11 +34,3 @@ jobs:
       - name: Create Pull Request
         if: ${{ steps.yamlfix.outputs.is_formatted }} == true
         uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: Format Yaml code with yamlfix push
-          commit-message: ':art: Format Yaml code with yamlfix'
-          body: |
-            There appear to be some yaml formatting errors in ${{ github.sha }}. This pull request
-            uses the [yamlfix](https://lyz-code.github.io/yamlfix/) formatter to fix these issues.
-          branch: actions/yamlfix
