@@ -1,4 +1,4 @@
----
+
 # This file will serve as a resource top copy and paste documentation as needed for future sources.
 version: 2
 sources:
@@ -35,6 +35,7 @@ sources:
           - name: _sdc_source_file
             data_type: STRING
             description: ''
+      
           - name: _sdc_received_at
             data_type: TIMESTAMP
             description: ''
