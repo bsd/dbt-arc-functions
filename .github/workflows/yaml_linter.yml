@@ -27,12 +27,12 @@ jobs:
           if [[ $YAMLFIX_OUTPUT != *" 0 fixed"* ]]; then
             echo "Run yamlfix . to fix the errors below"
             echo $YAMLFIX_OUTPUT
-            echo "is_formatted='true'" >> "$GITHUB_OUTPUT"
+            echo "is_formatted=true" >> "$GITHUB_OUTPUT"
           else
-            echo "is_formatted='false'" >> "$GITHUB_OUTPUT"
+            echo "is_formatted=false" >> "$GITHUB_OUTPUT"
           fi
       - name: Create Pull Request
-        if: steps.yamlfix.outputs.is_formatted == 'true'
+        if: ${{ steps.projectcheck.outputs.central == "true" }}
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GHA_PERSONAL_ACCESS_TOKEN }}
@@ -40,5 +40,5 @@ jobs:
           title: YamlFix to ${{ github.head_ref || github.base_ref || github.ref }}
           base: ${{ github.head_ref || github.base_ref || github.ref }}
       - name: Fail if yamlfix is_formatted
-        if: steps.yamlfix.outputs.is_formatted == 'true'
+        if: ${{ steps.projectcheck.outputs.central == "true" }}
         run: exit 1
