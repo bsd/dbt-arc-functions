@@ -7,7 +7,8 @@ on:
     branches: [main]
 jobs:
   python_black:
-    if: startsWith(github.head_ref, 'actions/action_black') == false && github.event.pull_request.head.repo.full_name == github.repository
+    if: startsWith(github.head_ref, 'actions/action_black') == false && github.event.pull_request.head.repo.full_name
+      == github.repository
     name: runner / black
     runs-on: ubuntu-latest
     steps:
@@ -25,5 +26,6 @@ jobs:
           branch: actions/action_black/${{ github.ref_name || github.head_ref }}
           title: Python Black to ${{ github.ref_name || github.head_ref }}
       - name: Fail if action_black is_formatted
-        if: ${{ steps.action_black.outputs.is_formatted }} == true && [[ ${{ github.ref_name || github.head_ref }} != *"actions/action_black"* ]]
+        if: ${{ steps.action_black.outputs.is_formatted }} == true && [[ ${{ github.ref_name || github.head_ref }}
+          != *"actions/action_black"* ]]
         run: exit 1
