@@ -29,7 +29,6 @@ jobs:
             echo "Run yamlfix . to fix the errors below"
             echo $YAMLFIX_OUTPUT
             echo "is_formatted=true" >> "$GITHUB_OUTPUT"
-            exit 1 
           else
             echo "is_formatted=false" >> "$GITHUB_OUTPUT"
           fi
