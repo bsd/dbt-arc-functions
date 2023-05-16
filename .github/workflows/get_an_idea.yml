@@ -8,7 +8,8 @@ on:
 jobs:
   print_vars:
   steps:
-    run: |
-      echo "GITHUB head_ref ${{ github.head_ref }}"
-      echo "GITHUB ref ${{ github.ref }}"
-      echo "GITHUB base_ref ${{ github.base_ref }}"
+    - name: printy
+      run: |
+        echo "GITHUB head_ref ${{ github.head_ref }}"
+        echo "GITHUB ref ${{ github.ref }}"
+        echo "GITHUB base_ref ${{ github.base_ref }}"
