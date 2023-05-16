@@ -32,7 +32,7 @@ jobs:
             echo "is_formatted=false" >> "$GITHUB_OUTPUT"
           fi
       - name: Create Pull Request
-        if: steps.yamlfix.outputs.is_formatted == true
+        if: steps.build.outputs.is_formatted == true
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
