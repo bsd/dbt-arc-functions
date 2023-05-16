@@ -41,5 +41,4 @@ jobs:
           body: |
             There appear to be some yaml formatting errors in ${{ github.sha }}. This pull request
             uses the [yamlfix](https://lyz-code.github.io/yamlfix/) formatter to fix these issues.
-          base: ${{ github.head_ref }}  # Creates pull request onto pull request or commit branch
           branch: actions/yamlfix
