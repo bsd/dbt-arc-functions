@@ -38,5 +38,5 @@ jobs:
           branch: actions/yamlfix/${{ github.ref_name || github.head_ref }}
           title: YamlFix to ${{ github.ref_name || github.head_ref }}
       - name: Fail if yamlfix is_formatted
-        if: ${{ steps.yamlfix.outputs.is_formatted }} == true
+        if: ${{ steps.yamlfix.outputs.is_formatted }} == true && [[ ${{ github.ref_name || github.head_ref }} != *"actions/yamlfix"* ]]
         run: exit 1
