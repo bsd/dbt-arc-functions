@@ -8,59 +8,59 @@ sources:
     schema: src_stitch_fundraiseup_authorized
     tables:
       - name: recent_transactions
-        description: ""
+        description: ''
         columns:
           - name: designation
             data_type: STRING
-            description: ""
+            description: ''
           - name: appeal
             data_type: STRING
-            description: ""
+            description: ''
           - name: __initial_market_source_
             data_type: STRING
-            description: ""
+            description: ''
           - name: migrated
             data_type: STRING
-            description: ""
+            description: ''
           - name: bbcrmlookupid
             data_type: STRING
-            description: ""
+            description: ''
           - name: _sdc_table_version
             data_type: INT64
-            description: ""
+            description: ''
           - name: _sdc_source_file
             data_type: STRING
-            description: ""
+            description: ''
           - name: transaction_date
             data_type: STRING
-            description: ""
+            description: ''
           - name: _sdc_received_at
             data_type: TIMESTAMP
-            description: ""
+            description: ''
           - name: _sdc_sequence
             data_type: INT64
-            description: ""
+            description: ''
           - name: fru_donation_id
             data_type: STRING
-            description: ""
+            description: ''
           - name: amount
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: gift_type
             data_type: STRING
-            description: ""
+            description: ''
           - name: email_address
             data_type: STRING
-            description: ""
+            description: ''
           - name: _sdc_batched_at
             data_type: TIMESTAMP
-            description: ""
+            description: ''
           - name: _sdc_source_lineno
             data_type: INT64
-            description: ""
+            description: ''
           - name: designation_name
             data_type: STRING
-            description: ""
+            description: ''
           - name: sfmc_updatedate
             data_type: STRING
-            description: ""
+            description: ''

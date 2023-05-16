@@ -6,20 +6,20 @@ sources:
     schema: adhoc_reporting
     tables:
       - name: spreadsheet_paidmedia_pacing_budget
-        description: ""
+        description: ''
         columns:
           - name: start_date
             data_type: DATE
-            description: ""
+            description: ''
           - name: end_date
             data_type: DATE
-            description: ""
+            description: ''
           - name: campaign_name
             data_type: STRING
-            description: ""
+            description: ''
           - name: budget
             data_type: FLOAT64
-            description: ""
+            description: ''
           - name: description
             data_type: STRING
-            description: ""
+            description: ''

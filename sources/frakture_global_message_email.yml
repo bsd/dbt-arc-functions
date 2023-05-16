@@ -7,8 +7,8 @@ sources:
     tables:
       - name: global_message_summary_by_date
         freshness:
-            warn_after: {count: 2, period: day}
-            error_after: {count: 7, period: day}
+          warn_after: {count: 2, period: day}
+          error_after: {count: 7, period: day}
         loaded_at_field: cast(publish_date as timestamp)
         description: Message summary table from Frakture with a 1 day grain.
         columns:
@@ -31,13 +31,15 @@ sources:
             description: The nickname of the Frakture bot.
             data_type: STRING
           - name: channel
-            description: The communication channel used for sending the message; includes paidmedia services and email.
+            description: The communication channel used for sending the message; includes
+              paidmedia services and email.
             data_type: STRING
           - name: channel_label
             description: The label of the channel.
             data_type: STRING
           - name: type
-            description: The type of message; usually a more specific subdivision of channel.
+            description: The type of message; usually a more specific subdivision
+              of channel.
             data_type: STRING
           - name: status
             description: The status of the message.
@@ -82,16 +84,20 @@ sources:
             description: The number of unique actions taken on the message.
             data_type: INT64
           - name: unsubscribes
-            description: The number of times users unsubscribed as a result of the message.
+            description: The number of times users unsubscribed as a result of the
+              message.
             data_type: INT64
           - name: complaints
-            description: The number of times users reported the message as spam or inappropriate.
+            description: The number of times users reported the message as spam or
+              inappropriate.
             data_type: INT64
           - name: soft_bounces
-            description: The number of times the message failed to be delivered due to a temporary issue.
+            description: The number of times the message failed to be delivered due
+              to a temporary issue.
             data_type: INT64
           - name: hard_bounces
-            description: The number of times the message failed to be delivered due to a permanent issue.
+            description: The number of times the message failed to be delivered due
+              to a permanent issue.
             data_type: INT64
           - name: blocked
             description: The number of times the message was blocked by a spam filter.
@@ -115,13 +121,15 @@ sources:
             description: The revenue attributed to the message within one day.
             data_type: FLOAT64
           - name: attributed_transactions_day_1
-            description: The number of transactions attributed to the message within one day.
+            description: The number of transactions attributed to the message within
+              one day.
             data_type: INT64
           - name: attributed_revenue_day_6
             description: The revenue attributed to the message within six days.
             data_type: FLOAT64
           - name: attributed_transactions_day_6
-            description: The number of transactions attributed to the message within six days.
+            description: The number of transactions attributed to the message within
+              six days.
             data_type: INT64
           - name: attributed_recurring_revenue
             description: The recurring revenue attributed to the message.
@@ -133,13 +141,15 @@ sources:
             description: The initial recurring revenue attributed to the message.
             data_type: FLOAT64
           - name: attributed_initial_recurring_transactions
-            description: The number of initial recurring transactions attributed to the message.
+            description: The number of initial recurring transactions attributed to
+              the message.
             data_type: INT64
           - name: attributed_subsequent_recurring_revenue
             description: The subsequent recurring revenue attributed to the message.
             data_type: FLOAT64
           - name: attributed_subsequent_recurring_transactions
-            description: The number of subsequent recurring transactions attributed to the message.
+            description: The number of subsequent recurring transactions attributed
+              to the message.
             data_type: INT64
           - name: attributed_min_amount
             description: The minimum amount of revenue attributed to the message.
@@ -172,7 +182,8 @@ sources:
             description: The subject of the message.
             data_type: STRING
           - name: campaign_name
-            description: The name of the campaign under which the email was sent. This is usually defined in the CRM/email software.
+            description: The name of the campaign under which the email was sent.
+              This is usually defined in the CRM/email software.
             data_type: STRING
           - name: campaign
             description: Identifier for the campaign. Might be defined by end-user.
@@ -181,7 +192,8 @@ sources:
             description: Identifier for the account which the message was sent from.
             data_type: STRING
           - name: from_name
-            description: Name that appears in 'From' line on email client. NOT the email address, that is from_email.
+            description: Name that appears in 'From' line on email client. NOT the
+              email address, that is from_email.
             data_type: STRING
           - name: preview_url
             description: Preview URL associated with the email.
