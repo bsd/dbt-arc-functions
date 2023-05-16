@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: printy
-        run: |
+        run: |-
           echo "GITHUB head_ref ${{ github.head_ref }}"
           echo "GITHUB ref ${{ github.ref }}"
           echo "GITHUB base_ref ${{ github.base_ref }}"
