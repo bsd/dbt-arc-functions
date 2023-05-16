@@ -1,5 +1,5 @@
 ---
-name: Lint YAML
+name: yamlfix
 on:
   push:
     branches: [main]
@@ -8,7 +8,7 @@ on:
 permissions:
   contents: read
 jobs:
-  build:
+  yamlfix:
     if: startsWith(github.head_ref, 'actions/yamlfix') == false && github.event.pull_request.head.repo.full_name
       == github.repository
     runs-on: ubuntu-latest

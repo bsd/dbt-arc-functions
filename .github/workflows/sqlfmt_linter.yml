@@ -1,5 +1,5 @@
 ---
-name: sqlfmt linter
+name: sqlfmt
 on:
   push:
     branches: [main]
@@ -8,7 +8,7 @@ on:
 permissions:
   contents: read
 jobs:
-  build:
+  sqlfmt:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
