@@ -1,12 +1,12 @@
 ---
 name: Lint YAML
 on:
-  push:
-    branches: ['**']
+  pull_request:
 permissions:
   contents: read
 jobs:
   build:
+    if: startsWith(github.head_ref, 'actions/yamlfix') == false && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     env:
       BRANCH_NAME: ${{ github.head_ref || github.ref_name }}/actions/yamlfix
