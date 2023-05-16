@@ -10,8 +10,6 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      is_formatted: ${{ steps.yamlfix.outputs.is_formatted }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.9
@@ -32,7 +30,7 @@ jobs:
             echo "is_formatted=false" >> "$GITHUB_OUTPUT"
           fi
       - name: Create Pull Request
-        if: steps.build.outputs.is_formatted == true
+        if: ${{ steps.yamlfix.outputs.is_formatted }} == true
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
