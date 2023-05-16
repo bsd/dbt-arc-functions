@@ -7,6 +7,8 @@ on:
     branches: [main]
 jobs:
   print_vars:
+    name: printvars
+    runs-on: ubuntu-latest
     steps:
       - name: printy
         run: |
