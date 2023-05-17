@@ -1,5 +1,5 @@
 ---
-name: Lint YAML
+name: yamlfix
 on:
   push:
     branches: [main]
@@ -8,7 +8,9 @@ on:
 permissions:
   contents: read
 jobs:
-  build:
+  yamlfix:
+    if: startsWith(github.head_ref, 'actions/yamlfix') == false && github.event.pull_request.head.repo.full_name
+      == github.repository
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -19,11 +21,25 @@ jobs:
       - name: Install dependencies
         run: |
           pip install yamlfix
-      - name: Check that no yaml fixes need be made
+      - name: yamlfix
+        id: yamlfix
         run: |-
           YAMLFIX_OUTPUT=$(yamlfix . 2>&1)
           if [[ $YAMLFIX_OUTPUT != *" 0 fixed"* ]]; then
             echo "Run yamlfix . to fix the errors below"
             echo $YAMLFIX_OUTPUT
-            exit 1 
+            echo "is_formatted=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_formatted=false" >> "$GITHUB_OUTPUT"
           fi
+      - name: Create Pull Request
+        if: steps.yamlfix.outputs.is_formatted == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GHA_PERSONAL_ACCESS_TOKEN }}
+          branch: actions/yamlfix/${{ github.head_ref || github.base_ref || github.ref }}
+          title: YamlFix to ${{ github.head_ref || github.base_ref || github.ref }}
+          base: ${{ github.head_ref || github.base_ref || github.ref }}
+      - name: Fail if yamlfix is_formatted
+        if: steps.yamlfix.outputs.is_formatted == 'true'
+        run: exit 1
