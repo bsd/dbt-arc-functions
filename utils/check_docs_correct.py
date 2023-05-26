@@ -148,6 +148,7 @@ def get_incorrect_sources():
                     sources_without_tables,
                     tables_without_columns,
                     columns_without_info,
+                    var_sources_without_extra,
                     source_yaml,
                 )
                 check_for_no_version(file_path, sources_without_version, source_yaml)
