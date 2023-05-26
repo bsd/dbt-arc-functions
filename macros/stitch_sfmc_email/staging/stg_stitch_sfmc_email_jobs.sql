@@ -1,6 +1,6 @@
 {% macro create_stg_stitch_sfmc_email_job(reference_name="stg_src_stitch_email_job") %}
 select distinct
-    safe_cast(__jobid_ as string) as message_id,
+    safe_cast(jobid as string) as message_id,
     safe_cast(emailid as string) as email_id,
     safe_cast(fromname as string) as from_name,
     safe_cast(fromemail as string) as from_email,
