@@ -58,21 +58,22 @@ MERGE_STRING = """push:
 PR_STRING = """pull_request:"""
 
 TRIGGER_DICT = {
-    'prod': {'trigger': 'merge', 'trigger_string': MERGE_STRING},
-    'dev': {'trigger': 'pr', 'trigger_string': PR_STRING}
+    "prod": {"trigger": "merge", "trigger_string": MERGE_STRING},
+    "dev": {"trigger": "pr", "trigger_string": PR_STRING},
 }
 
 
 def get_dbt_base_path():
     """This function prompts the user to enter the base directory
-        of their dbt project as an absolute path and returns it."""
+    of their dbt project as an absolute path and returns it."""
     return input(
-        "Please enter the base directory of your dbt project as an absolute path:\n")
+        "Please enter the base directory of your dbt project as an absolute path:\n"
+    )
 
 
 def load_workflow_yml(workflow_yml_path, yaml):
-    """ This function takes the path to the github actions workflow and returns a formatted yaml """
-    with open(workflow_yml_path, 'r') as f:
+    """This function takes the path to the github actions workflow and returns a formatted yaml"""
+    with open(workflow_yml_path, "r") as f:
         content = f.read()
         workflow_yml = yaml.load(content)
     return workflow_yml
@@ -95,13 +96,13 @@ def convert_cloud_job_url_to_api_run_url(dbt_cloud_job_url):
         https://cloud.getdbt.com/api/v2/accounts/<account_id>/runs/<run_id>/
     """
     dbt_cloud_job_url = dbt_cloud_job_url.replace("next/", "")
-    dbt_cloud_job_url = dbt_cloud_job_url.replace(
-        "deploy/", "api/v2/accounts/")
+    dbt_cloud_job_url = dbt_cloud_job_url.replace("deploy/", "api/v2/accounts/")
     return re.sub(r"projects/\d+/", "", dbt_cloud_job_url) + "/run/"
 
 
 def create_dbt_run_yml_from_template(
-        dbt_run_yml_template, dbt_cloud_api_run_url, trigger_yml):
+    dbt_run_yml_template, dbt_cloud_api_run_url, trigger_yml
+):
     """
     Creates a new dbt run YAML configuration file by copying a template YAML file
     and replacing placeholders with actual values.
@@ -130,9 +131,10 @@ def create_dbt_run_yml_from_template(
         dbt_run_yml = create_dbt_run_yml_from_template(dbt_run_yml_template, dbt_cloud_api_run_url, trigger_yml)
     """
     dbt_run_yml = deepcopy(dbt_run_yml_template)
-    dbt_run_yml['jobs']['dbt_run']['steps'][0]['run'] = dbt_run_yml['jobs']['dbt_run']['steps'][0]['run'].replace(
-        '{dbt_cloud_api_run_url}', dbt_cloud_api_run_url)
-    dbt_run_yml['on'] = trigger_yml
+    dbt_run_yml["jobs"]["dbt_run"]["steps"][0]["run"] = dbt_run_yml["jobs"]["dbt_run"][
+        "steps"
+    ][0]["run"].replace("{dbt_cloud_api_run_url}", dbt_cloud_api_run_url)
+    dbt_run_yml["on"] = trigger_yml
     return dbt_run_yml
 
 
@@ -185,26 +187,31 @@ def create_dbt_run_workflow(environment, dbt_base_path, yaml):
         None
     """
     environment_dict = TRIGGER_DICT[environment]
-    trigger, trigger_string = environment_dict['trigger'], environment_dict['trigger_string']
-    input(PROMPT_CREATE_ENVIRONMENT_AND_JOB.format(
-        environment=environment, trigger=trigger))
-    dbt_run_filename = 'dbt_run_on_trigger.yml'
-    dbt_run_yml_path = os.path.join('yml_files', dbt_run_filename)
+    trigger, trigger_string = (
+        environment_dict["trigger"],
+        environment_dict["trigger_string"],
+    )
+    input(
+        PROMPT_CREATE_ENVIRONMENT_AND_JOB.format(
+            environment=environment, trigger=trigger
+        )
+    )
+    dbt_run_filename = "dbt_run_on_trigger.yml"
+    dbt_run_yml_path = os.path.join("yml_files", dbt_run_filename)
     dbt_run_yml_template = load_workflow_yml(dbt_run_yml_path, yaml)
     dbt_cloud_job_url = input(PROMPT_DBT_CLOUD_JOB_URL)
-    dbt_cloud_api_run_url = convert_cloud_job_url_to_api_run_url(
-        dbt_cloud_job_url)
+    dbt_cloud_api_run_url = convert_cloud_job_url_to_api_run_url(dbt_cloud_job_url)
     trigger_yml = yaml.load(trigger_string)
     dbt_run_yml = create_dbt_run_yml_from_template(
-        dbt_run_yml_template, dbt_cloud_api_run_url, trigger_yml)
-    dbt_trigger_filename = dbt_run_filename.replace('trigger', trigger)
-    dbt_run_path = create_workflow_path_and_folders(
-        dbt_base_path, dbt_trigger_filename)
+        dbt_run_yml_template, dbt_cloud_api_run_url, trigger_yml
+    )
+    dbt_trigger_filename = dbt_run_filename.replace("trigger", trigger)
+    dbt_run_path = create_workflow_path_and_folders(dbt_base_path, dbt_trigger_filename)
     write_workflow(dbt_run_path, dbt_run_yml, yaml)
     print("\n*** Workflow successfully created! ***\n")
 
 
-def main(dbt_base_path='', yaml=None):
+def main(dbt_base_path="", yaml=None):
     """
     The main() function is the entry point for the script. It prompts the user to start the script,
     initializes the yaml library and calls create_dbt_run_workflow() function
@@ -221,10 +228,10 @@ def main(dbt_base_path='', yaml=None):
         yaml = initialize_yaml()
     input(STARTING_PROMPT)
     input(PROMPT_API_ADDED_TO_SECRETS)
-    create_dbt_run_workflow('prod', dbt_base_path, yaml)
-    create_dbt_run_workflow('dev', dbt_base_path, yaml)
+    create_dbt_run_workflow("prod", dbt_base_path, yaml)
+    create_dbt_run_workflow("dev", dbt_base_path, yaml)
     print("\n***add_github_actions_workflows.py terminated successfully!***\n")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
