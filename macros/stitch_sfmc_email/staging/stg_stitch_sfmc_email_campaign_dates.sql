@@ -11,11 +11,10 @@ from {{ ref(reference_name) }}
 
     {% else %}
 
--- place holder with nulls for now
+-- try UUSA as well here and see what happens
 select
     safe_cast(coalesce(sched_dt, pickup_dt) as timestamp) as campaign_timestamp,
-    safe_cast(null as string) as crm_campaign,
-    safe_cast(null as string) as source_code_campaign
+    {{ create_uusa_campaigns_sql() }}
 from {{ ref(reference_name) }}
 
     {% endif %}
