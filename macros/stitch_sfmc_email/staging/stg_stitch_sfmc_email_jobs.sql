@@ -64,4 +64,5 @@
         safe_cast(category as string) as category,
         safe_cast(null as string) as source_code
     from ({{ dbt_utils.union_relations(relations) }})
+
 {% endmacro %}
