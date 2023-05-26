@@ -2,8 +2,8 @@
     reference_name="stg_src_stitch_email_sent"
 ) %}
 select
-    cast(message_id as string) as message_id,
-    count(safe_cast(subscriber_id as int)) as recipients
-from {{ ref(reference_name) }}
+    safe_cast(jobid as string) as message_id,
+    safe_cast(count(distinct subscriberid) as int) as recipients
+from ({{ dbt_utils.union_relations(relations) }})
 group by 1
 {% endmacro %}

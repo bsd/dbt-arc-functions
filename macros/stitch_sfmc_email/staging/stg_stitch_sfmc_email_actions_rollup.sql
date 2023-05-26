@@ -6,4 +6,6 @@ select distinct message_id, sum(actions) as actions
 from {{ ref(reference_name) }}
 group by 1
 
+select distinct safe_cast(jobid as string) as message_id, null as actions
+from ({{ dbt_utils.union_relations(relations) }})
 {% endmacro %}
