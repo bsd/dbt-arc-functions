@@ -51,6 +51,7 @@ def check_for_no_tables_or_tables_no_columns(
     sources_without_tables,
     tables_without_columns,
     columns_without_info,
+    var_sources_without_extra
     doc_yaml,
 ):
     try:
@@ -61,7 +62,14 @@ def check_for_no_tables_or_tables_no_columns(
         sources_without_tables.append(file_path)
         return
     if isinstance(tables, str):
-        return
+        original_filepath = file_path
+        file_path = file_path.replace('sources', 'sources-extra-for-fake-data')
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                doc_yaml = yaml.safe_load(f)
+        except FileNotFoundError:
+            var_sources_without_extra.append([original_filepath, file_path])
+            return
     else:
         for table in tables:
             check_table_for_no_columns(
@@ -144,13 +152,8 @@ def get_incorrect_sources():
                 )
                 check_for_no_version(file_path, sources_without_version, source_yaml)
 
-    return (
-        sources_without_tables,
-        tables_without_columns,
-        sources_without_version,
-        columns_without_info,
-    )
-
+    return (sources_without_tables, tables_without_columns, sources_without_version, columns_without_info,
+            var_sources_without_extra)
 
 def print_missing_info(list_of_missing_info, format_string, entity_string):
     for missing_info in list_of_missing_info:
@@ -278,6 +281,7 @@ def main():
         tables_without_columns,
         sources_without_version,
         columns_without_info,
+        var_sources_without_extra
     ) = get_incorrect_sources()
 
     print_missing_info(
@@ -312,6 +316,9 @@ def main():
         COLUMNS_WITHOUT_INFO_FORMAT_STRING,
         "Source columns without info",
     )
+    print_missing_info(var_sources_without_extra, VAR_SOURCES_WITHOUT_EXTRA_FORMAT_STRING,
+                       "var(sources) sources without files in the sources-extra-for-fake-data directory")
+
 
     if (
         docs_without_content
@@ -321,6 +328,7 @@ def main():
         or sources_without_tables
         or sources_without_version
         or columns_without_info
+        or var_sources_without_extra
     ):
         sys.exit(1)
 
