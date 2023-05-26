@@ -1,7 +1,8 @@
 {% macro create_stg_stitch_sfmc_email_unsubscribes_rollup(
     reference_name="stg_src_stitch_email_unsubscribe"
 ) %}
-select cast(job_id as string) as message_id, safe_cast(count(*) as int) as unsubscribes
-from {{ ref(reference_name) }}
-group by 1
+    select
+        cast(job_id as string) as message_id, safe_cast(count(*) as int) as unsubscribes
+    from {{ ref(reference_name) }}
+    group by 1
 {% endmacro %}
