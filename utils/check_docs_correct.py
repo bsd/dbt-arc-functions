@@ -51,7 +51,7 @@ def check_for_no_tables_or_tables_no_columns(
     sources_without_tables,
     tables_without_columns,
     columns_without_info,
-    var_sources_without_extra
+    var_sources_without_extra,
     doc_yaml,
 ):
     try:
