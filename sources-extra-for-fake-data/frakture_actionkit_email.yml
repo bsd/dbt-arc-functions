@@ -5,7 +5,7 @@ sources:
     description: ''
     schema: src_frakture
     tables:
-      - name: actionkit_hsi_email_summary_by_date
+      - name: actionkit_bot_email_summary_by_date
         description: ''
         columns:
           - name: date
@@ -419,7 +419,7 @@ sources:
           - name: unique_actions
             data_type: FLOAT64
             description: ''
-      - name: actionkit_hsi_transaction
+      - name: actionkit_bot_transaction
         description: ''
         columns:
           - name: remote_transaction_id

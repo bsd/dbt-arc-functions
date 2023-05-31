@@ -5,7 +5,7 @@ sources:
     description: ''
     schema: src_frakture
     tables:
-      - name: sfmc_gat_per_person_message_stat
+      - name: sfmc_bot_per_person_message_stat
         description: ''
         columns:
           - name: message_id
@@ -44,7 +44,7 @@ sources:
           - name: bounce_ts
             data_type: STRING
             description: ''
-      - name: sfmc_gat_person
+      - name: sfmc_bot_person
         description: ''
         columns:
           - name: remote_person_id
