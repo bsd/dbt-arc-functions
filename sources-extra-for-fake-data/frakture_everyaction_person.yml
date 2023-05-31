@@ -1,0 +1,103 @@
+---
+version: 2
+sources:
+  - name: frakture_everyaction_person
+    description: ''
+    schema: src_frakture
+    tables:
+      - name: everyaction_bot_per_person_message_stat
+        description: ''
+        columns:
+          - name: ts
+            data_type: DATETIME
+            description: ''
+          - name: sent_ts
+            data_type: DATETIME
+            description: ''
+          - name: message_id
+            data_type: INT64
+            description: ''
+          - name: remote_person_id
+            data_type: STRING
+            description: ''
+          - name: received
+            data_type: INT64
+            description: ''
+          - name: opened
+            data_type: INT64
+            description: ''
+          - name: opened_ts
+            data_type: DATETIME
+            description: ''
+          - name: clicked
+            data_type: INT64
+            description: ''
+          - name: clicked_ts
+            data_type: DATETIME
+            description: ''
+          - name: action
+            data_type: INT64
+            description: ''
+          - name: hard_bounce
+            data_type: INT64
+            description: ''
+          - name: bounced_ts
+            data_type: DATETIME
+            description: ''
+          - name: unsubscribe
+            data_type: INT64
+            description: ''
+          - name: unsubscribed_ts
+            data_type: DATETIME
+            description: ''
+          - name: soft_bounce
+            data_type: INT64
+            description: ''
+      - name: everyaction_bot_person
+        description: ''
+        columns:
+          - name: remote_person_id
+            data_type: STRING
+            description: ''
+          - name: date_created
+            data_type: DATETIME
+            description: ''
+          - name: postal_code
+            data_type: STRING
+            description: ''
+          - name: source_code
+            data_type: STRING
+            description: ''
+          - name: accepts_email
+            data_type: STRING
+            description: ''
+          - name: email_opt_out_date
+            data_type: DATETIME
+            description: ''
+          - name: ea_custom_origincodename
+            data_type: STRING
+            description: ''
+          - name: ea_custom_comfraffiliatesconstituentid
+            data_type: STRING
+            description: ''
+          - name: ea_custom_comfraffiliatepartnerid
+            data_type: STRING
+            description: ''
+          - name: ea_custom_comfrattribute
+            data_type: STRING
+            description: ''
+          - name: ea_custom_sourcecode
+            data_type: STRING
+            description: ''
+          - name: ea_custom_constituentlookupid
+            data_type: STRING
+            description: ''
+          - name: email_hash_v1
+            data_type: STRING
+            description: ''
+          - name: email_domain
+            data_type: STRING
+            description: ''
+          - name: ea_custom_bsdid
+            data_type: STRING
+            description: ''
