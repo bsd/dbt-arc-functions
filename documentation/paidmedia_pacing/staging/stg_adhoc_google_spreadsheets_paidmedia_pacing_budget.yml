@@ -14,5 +14,4 @@ models:
         description: The amount of the budget associated with the campaign
       - name: descriptions
         description: Descriptions of the campaign
-      - name: account_name
-        description: The name of the account related to the budget
+
