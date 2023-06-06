@@ -18,9 +18,3 @@ models:
         description: The associated CRM entity
       - name: source_code_entity
         description: The associated source code entity
-      - name: tool
-        description: The type of tool being used
-      - name: data_set
-        description: The data set used in the campaign
-      - name: medium
-        description: The medium used in the campaign
