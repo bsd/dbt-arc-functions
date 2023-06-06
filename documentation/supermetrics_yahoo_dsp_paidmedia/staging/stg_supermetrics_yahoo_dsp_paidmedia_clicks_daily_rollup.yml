@@ -2,13 +2,13 @@
 version: 2
 models:
   - name: stg_supermetrics_yahoo_dsp_paidmedia_clicks_daily_rollup
-    description: ''
+    description: Data associated with Yahoo DSP clicks.
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for a given message.
       - name: date_timestamp
-        description: ''
+        description: Date and time at which the clicks occurred.
       - name: total_clicks
-        description: ''
+        description: Number of clicks registered.
       - name: unique_clicks
-        description: ''
+        description: Number of clicks registered from unique IP addresses.

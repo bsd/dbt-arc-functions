@@ -2,35 +2,38 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_email_transactions_summary_unioned
-    description: ''
+    description: A summary of SFMC email transactions after being unioned with additional
+      data
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: The source relation from which this model was generated
       - name: transaction_id
-        description: ''
+        description: The transaction identifier of the SFMC email transaction
       - name: person_id
-        description: ''
+        description: The universal identifier for the individual email recipient
       - name: source_code
-        description: ''
+        description: The source code identifier found in the SFMC email transaction
+          data
       - name: crm
-        description: ''
+        description: The customer relationship management system where this transaction
+          was generated from
       - name: message_id
-        description: ''
+        description: The identifier for a specific SFMC email message
       - name: inbound_channel
-        description: ''
+        description: The channel or device used to access the particular SFMC email
       - name: transaction_date
-        description: ''
+        description: The date the joint SFMC email transaction took place
       - name: amount
-        description: ''
+        description: The total dollar amount of the joint SFMC email transaction
       - name: appeal
-        description: ''
+        description: The name of the appeal found in the SFMC email data
       - name: appeal_business_unit
-        description: ''
+        description: The business unit associated with a particular appeal
       - name: application
-        description: ''
+        description: The application associated with a particular SFMC email transaction
       - name: recurring
-        description: ''
+        description: Whether or not the SFMC email transaction is recurring
       - name: gift_type
-        description: ''
+        description: The type of gift associated with the joint SFMC email transaction
       - name: transaction_date_day
-        description: ''
+        description: The day component of the transaction date

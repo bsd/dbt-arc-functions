@@ -2,19 +2,19 @@
 version: 2
 models:
   - name: stg_email_listhealth_by_year_and_month
-    description: ''
+    description: Model to store email list health data by year and month
     columns:
       - name: extract_year
-        description: ''
+        description: The extract year of the data
       - name: extract_month
-        description: ''
+        description: The extract month of the data
       - name: max_recipients
-        description: ''
+        description: Maximum number of recipients
       - name: max_delivered
-        description: ''
+        description: Maximum number of emails delivered
       - name: total_unsubscribes
-        description: ''
+        description: Total number of unsubscribes
       - name: total_hard_bounces
-        description: ''
+        description: Total number of hard bounces
       - name: total_complaints
-        description: ''
+        description: Total number of complaints received

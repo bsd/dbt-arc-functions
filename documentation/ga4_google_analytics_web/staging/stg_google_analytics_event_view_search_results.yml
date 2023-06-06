@@ -2,57 +2,57 @@
 version: 2
 models:
   - name: stg_google_analytics_event_view_search_results
-    description: ''
+    description: View for search results events from Google Analytics
     columns:
       - name: event_date
-        description: ''
+        description: Date of the event
       - name: session_id
-        description: ''
+        description: Unique identifier for a user session on Google Analytics
       - name: session_source
-        description: ''
+        description: Source associated with the user session
       - name: session_medium
-        description: ''
+        description: Medium associated with the user session
       - name: host_name
-        description: ''
+        description: Host associated with the event
       - name: page_path
-        description: ''
+        description: Page path of the event
       - name: device_category
-        description: ''
+        description: Device category used to access the event
       - name: user_gender
-        description: ''
+        description: User's gender associated with the event
       - name: user_age
-        description: ''
+        description: User's age associated with the event
       - name: session_default_channel
-        description: ''
+        description: Default channel associated with the event
       - name: campaign
-        description: ''
+        description: Campaign associated with the event
       - name: device_language
-        description: ''
+        description: Language of the device associated with the event
       - name: selected_language
-        description: ''
+        description: Selected language of the event
       - name: event_name
-        description: ''
+        description: Event name
       - name: accordion_item
-        description: ''
+        description: Accordion item associated with the event
       - name: accordion_block
-        description: ''
+        description: Accordion block associated with the event
       - name: file_name
-        description: ''
+        description: File name associated with the event
       - name: link_domain
-        description: ''
+        description: Link domain associated with the event
       - name: top_nav_name
-        description: ''
+        description: Top navigation item associated with the event
       - name: sub_menu_name
-        description: ''
+        description: SubMenu item associated with the event
       - name: engaged_session
-        description: ''
+        description: Flag to identify if a user has engaged with the session
       - name: percent_scrolled
-        description: ''
+        description: Percent of the page that was scrolled by the user
       - name: search_term
-        description: ''
+        description: Search term associated with the event
       - name: page_referrer
-        description: ''
+        description: Page Referrer associated with the event
       - name: user_id
-        description: ''
+        description: Unique identifier for a user associated with the event
       - name: engagement_time_msec
-        description: ''
+        description: Engagement time of the user with the event in milliseconds

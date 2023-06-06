@@ -2,31 +2,32 @@
 version: 2
 models:
   - name: stg_frakture_sfmc_person_message_stat_unioned
-    description: ''
+    description: Stores message stats for SFMC contacts otherwise only available on
+      dashboards
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: The source relation from which this data originated
       - name: message_id
-        description: ''
+        description: The ID of the message sent
       - name: remote_person_id
-        description: ''
+        description: The ID of the SFMC contact
       - name: sent_ts
-        description: ''
+        description: Timestamp indicating when the message was sent
       - name: ts
-        description: ''
+        description: Timestamp when record inserted to table
       - name: opened
-        description: ''
+        description: Boolean indicating if the message was opened by the contact
       - name: opened_ts
-        description: ''
+        description: Timestamp when opened if message was opened
       - name: clicked
-        description: ''
+        description: Boolean indicating if the message was clicked by the contact
       - name: clicked_ts
-        description: ''
+        description: Timestamp when clicked if message was clicked
       - name: unsubscribed
-        description: ''
+        description: Boolean indicating if the contact unsubscribed
       - name: unsubscribed_ts
-        description: ''
+        description: Timestamp when unsubscribed if contact unsubscribed
       - name: bounced
-        description: ''
+        description: Boolean indicating if the message bounced
       - name: bounce_ts
-        description: ''
+        description: Timestamp when bounced if message bounced

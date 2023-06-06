@@ -2,9 +2,10 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_email_complaints_rollup
-    description: ''
+    description: A staging table for Frakture EveryAction Email Complaints Rollup
+      Data
     columns:
       - name: message_id
-        description: ''
+        description: Unique ID for each email message
       - name: complaints
-        description: ''
+        description: Total number of spam complaints associated with the email

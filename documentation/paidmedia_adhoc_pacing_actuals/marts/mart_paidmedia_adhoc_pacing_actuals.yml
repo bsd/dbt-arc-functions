@@ -2,29 +2,30 @@
 version: 2
 models:
   - name: mart_paidmedia_adhoc_pacing_actuals
-    description: ''
+    description: Stores daily, weekly, monthly, and quarterly metrics for paid media
+      campaigns from 01/01/19.
     columns:
       - name: date_day
-        description: ''
+        description: Date in yyyy-MM-dd format.
       - name: date_week_sunday
-        description: ''
+        description: Week number in yyyy-MM-dd format.
       - name: date_week_monday
-        description: ''
+        description: Week number in yyyy-MM-dd format starting on Monday.
       - name: date_month
-        description: ''
+        description: Month number in yyyy-MM format.
       - name: date_quarter
-        description: ''
+        description: Quarter number in yyyy-q format.
       - name: objective
-        description: ''
+        description: The goal of the campaign's marketing efforts.
       - name: channel
-        description: ''
+        description: The paid media channel/platform the campaign was run on.
       - name: channel_type
-        description: ''
+        description: The type of paid media article used for the campaign.
       - name: platform
-        description: ''
+        description: The platform the paid media was used on (e.g. desktop, mobile).
       - name: campaign_name
-        description: ''
+        description: The name of the campaign.
       - name: actual_spend
-        description: ''
+        description: The total amount spent for the campaign.
       - name: actual_revenue
-        description: ''
+        description: The total amount of money earned through the campaign.

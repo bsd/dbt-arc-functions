@@ -2,13 +2,14 @@
 version: 2
 models:
   - name: stg_frakture_global_message_paidmedia_clicks_daily_rollup
-    description: ''
+    description: Contains daily rolled up click activity for messages from Frakture's
+      global paid media campaigns
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for the message
       - name: date_timestamp
-        description: ''
+        description: Date timestamp for the click activity
       - name: total_clicks
-        description: ''
+        description: Total number of clicks for the message
       - name: unique_clicks
-        description: ''
+        description: Unique number of clicks for the message

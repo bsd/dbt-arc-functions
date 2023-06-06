@@ -2,25 +2,30 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_email_transactions_sourced_rollup
-    description: ''
+    description: Rollup of email actions from Every Action
     columns:
       - name: message_id
-        description: ''
+        description: Message unique identifier
       - name: total_revenue
-        description: ''
+        description: Total email revenue
       - name: total_gifts
-        description: ''
+        description: Total email donations
       - name: total_donors
-        description: ''
+        description: Total email donors
       - name: one_time_revenue
-        description: ''
+        description: Total single-time donation revenue associated with email
       - name: one_time_gifts
-        description: ''
+        description: Total single-time donations associated with email
       - name: new_monthly_revenue
-        description: ''
+        description: Total donations from new monthly donors associated with email
       - name: new_monthly_gifts
-        description: ''
+        description: Total monthly donations from new monthly donors associated with
+          email
       - name: total_monthly_revenue
-        description: ''
+        description: Total revenue from all monthly donations associated with email
       - name: total_monthly_gifts
-        description: ''
+        description: Total monthly donations associated with email
+      - name: sent_gi
+        description: Total amount of emails sent
+      - name: delivers
+        description: Total emails that were delivered

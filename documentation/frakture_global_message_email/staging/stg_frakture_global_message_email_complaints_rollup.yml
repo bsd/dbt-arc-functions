@@ -2,9 +2,10 @@
 version: 2
 models:
   - name: stg_frakture_global_message_email_complaints_rollup
-    description: ''
+    description: Stores rollup counts of email complaints sent through Frakture by
+      message ID.
     columns:
       - name: message_id
-        description: ''
+        description: The ID of the message for which complaints were logged.
       - name: complaints
-        description: ''
+        description: The number of complaints logged for this message.

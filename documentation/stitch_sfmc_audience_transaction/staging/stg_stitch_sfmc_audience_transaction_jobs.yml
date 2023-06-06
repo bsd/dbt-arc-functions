@@ -2,9 +2,10 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_audience_transaction_jobs
-    description: ''
+    description: A staging table for Salesforce Marketing Cloud Audience Transaction
+      Jobs
     columns:
       - name: transaction_date_day
-        description: ''
+        description: The date of the transaction, at the day level
       - name: person_id
-        description: ''
+        description: The unique identifier for the person associated with the transaction

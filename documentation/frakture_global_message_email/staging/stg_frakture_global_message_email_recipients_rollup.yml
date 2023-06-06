@@ -2,7 +2,7 @@
 version: 2
 models:
   - name: stg_frakture_global_message_email_recipients_rollup
-    description: ''
+    description: Table that stores rollup of total recipients for a message.
     columns:
       - name: message_id
         description: The unique identifier for each message.

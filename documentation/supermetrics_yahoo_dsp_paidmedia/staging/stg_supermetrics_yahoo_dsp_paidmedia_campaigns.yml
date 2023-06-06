@@ -2,15 +2,15 @@
 version: 2
 models:
   - name: stg_supermetrics_yahoo_dsp_paidmedia_campaigns
-    description: ''
+    description: Stage for Yahoo DSP Paid Media Campaigns
     columns:
       - name: campaign_id
-        description: ''
+        description: ID of the campaign
       - name: message_id
-        description: ''
+        description: Internal unique identifier for the message
       - name: channel
-        description: ''
+        description: The channel of the campaign
       - name: channel_type
-        description: ''
+        description: Type of channel
       - name: campaign_name
-        description: ''
+        description: Name of the campaign
