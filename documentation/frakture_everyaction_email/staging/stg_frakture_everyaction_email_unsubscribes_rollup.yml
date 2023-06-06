@@ -9,4 +9,4 @@ models:
         description: The unique identifier for the email.
       - name: unsubscribes
         description: Total number of unsubscribes for that email.
-        type: integer
+
