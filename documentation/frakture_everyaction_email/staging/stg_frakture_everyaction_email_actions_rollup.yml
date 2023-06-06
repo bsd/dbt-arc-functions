@@ -2,9 +2,11 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_email_actions_rollup
-    description: ''
+    description: Roll-up of everyaction email actions by hour and message
     columns:
       - name: message_id
-        description: ''
+        description: Unique Message ID
       - name: actions
-        description: ''
+        description: A count of the total number of specific types of actions
+      - name: interval
+        description: The hour when the action was taken

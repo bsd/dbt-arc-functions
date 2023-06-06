@@ -2,21 +2,21 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_email_campaigns
-    description: ''
+    description: staging table for EveryAction email campaigns
     columns:
       - name: message_id
-        description: ''
+        description: message id to be used for analytics correlation
       - name: crm_entity
-        description: ''
+        description: CRM entity associated with email
       - name: source_code_entity
-        description: ''
+        description: source code entity for the email
       - name: audience
-        description: ''
+        description: audience segment for the email
       - name: recurtype
-        description: ''
+        description: recurrency type for the email
       - name: campaign_category
-        description: ''
+        description: campaign category for the email
       - name: crm_campaign
-        description: ''
+        description: CRM campaign associated with the email
       - name: source_code_campaign
-        description: ''
+        description: source code campaign associated with the email

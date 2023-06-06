@@ -2,9 +2,9 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_email_clicks_rollup
-    description: ''
+    description: Rollup of unique clicks on EveryAction emails
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for EveryAction email sent
       - name: clicks
-        description: ''
+        description: Count of unique clicks on the email

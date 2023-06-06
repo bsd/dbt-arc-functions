@@ -2,43 +2,47 @@
 version: 2
 models:
   - name: stg_frakture_global_message_paidmedia_message
-    description: ''
+    description: Records information about paidmedia messages sent to contacts.
     columns:
       - name: message_id
-        description: ''
+        description: Unique message identifier
       - name: label
-        description: ''
+        description: Label of the message
       - name: subject
-        description: ''
+        description: Subject of the message
       - name: channel
-        description: ''
+        description: Channel (e.g. SMS, Email) the message was sent through
       - name: channel_label
-        description: ''
+        description: Channel specific label for the message
       - name: status
-        description: ''
+        description: Status of the message
       - name: publish_date
-        description: ''
+        description: Date the message was published
       - name: campaign_id
-        description: ''
+        description: Id of the campaign
       - name: campaign_name
-        description: ''
+        description: Name of the campaign
       - name: primary_source_code
-        description: ''
+        description: The primary source code associated with the message
       - name: primary_source_code_override
-        description: ''
+        description: An override of the primary source code associated with the message
       - name: final_primary_source_code
-        description: ''
+        description: The final primary source code used for attribution
       - name: bot_id
-        description: ''
+        description: ID of the bot that sent the message
       - name: submodule
-        description: ''
+        description: Used for categorizing messages
       - name: remote_id
-        description: ''
+        description: Remote ID used for linking messages from different platforms
       - name: from_name
-        description: ''
+        description: Name the message is from
       - name: type
-        description: ''
+        description: Type of message
       - name: preview_url
-        description: ''
+        description: A url for a preview of the message
       - name: do_not_attribute
-        description: ''
+        description: Indicates if the message should not be attributed
+      - name: ad_exp_id
+        description: The ID of the advertisement experience associated with the message
+      - name: campaign_buying_type
+        description: The buying type of the campaign that sent the message

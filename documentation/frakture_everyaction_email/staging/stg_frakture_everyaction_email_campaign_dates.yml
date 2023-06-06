@@ -2,11 +2,11 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_email_campaign_dates
-    description: ''
+    description: Stores campaign date information coming from EveryAction
     columns:
       - name: campaign_timestamp
-        description: ''
+        description: Timestamp of when the campaign was sent
       - name: crm_campaign
-        description: ''
+        description: The campaign name associated in the CRM system
       - name: source_code_campaign
-        description: ''
+        description: Source code associated with the the campaign

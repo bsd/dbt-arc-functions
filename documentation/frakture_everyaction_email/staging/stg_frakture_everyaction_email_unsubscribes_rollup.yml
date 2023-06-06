@@ -2,9 +2,11 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_email_unsubscribes_rollup
-    description: ''
+    description: This is a staging table that stores daily rollup for unsubscribes
+      from everyAction emails.
     columns:
       - name: message_id
-        description: ''
+        description: The unique identifier for the email.
       - name: unsubscribes
-        description: ''
+        description: Total number of unsubscribes for that email.
+        type: integer

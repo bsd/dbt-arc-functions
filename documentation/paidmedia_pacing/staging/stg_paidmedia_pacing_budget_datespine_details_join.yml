@@ -2,21 +2,22 @@
 version: 2
 models:
   - name: stg_paidmedia_pacing_budget_datespine_details_join
-    description: ''
+    description: Staging table to store the matrix of campaign name, date range and
+      daily/cumulative budget info
     columns:
       - name: date_day
-        description: ''
+        description: The date of each day in the Fiscal Month
       - name: campaign_start_date
-        description: ''
+        description: Start date of the campaign
       - name: campaign_end_date
-        description: ''
+        description: End date of the campaign
       - name: campaign_name
-        description: ''
+        description: Name of the campaign
       - name: daily_budget
-        description: ''
+        description: The daily budget of the campaign
       - name: cumulative_budget
-        description: ''
+        description: The cumulative budget of the campaign
       - name: descriptions
-        description: ''
+        description: Descriptions of the campaign
       - name: total_budget
-        description: ''
+        description: Total budget of the campaign
