@@ -1,31 +1,33 @@
-
 ---
 version: 2
 models:
   - name: stg_src_stitch_sfmc_fundraiseup_recent_transaction
-    description: 'Stage source table for stitching SFMC FundraiseUp Recent Transactions data'
+    description: Stage source table for stitching SFMC FundraiseUp Recent Transactions
+      data
     columns:
       - name: revenue_id
-        description: 'A unique identifier related to the SFMC FundraiseUp transaction'
+        description: A unique identifier related to the SFMC FundraiseUp transaction
       - name: initial_market_source
-        description: 'Tracking parameter which shows the source the donor used to navigate to the fundraising page'
+        description: Tracking parameter which shows the source the donor used to navigate
+          to the fundraising page
       - name: email
-        description: 'Email associated with donor'
+        description: Email associated with donor
       - name: amount
-        description: 'Amount of money donated'
+        description: Amount of money donated
       - name: gift_type
-        description: 'One time or recurring gift'
+        description: One time or recurring gift
       - name: transaction_date
-        description: 'Date the transaction was created'
+        description: Date the transaction was created
       - name: appeal
-        description: 'Identifier of the fundraising goal associated with the transaction'
+        description: Identifier of the fundraising goal associated with the transaction
       - name: designation
-        description: 'The cause that the donor has designated the gift to'
+        description: The cause that the donor has designated the gift to
       - name: sfmc_insert_dt
-        description: 'Date the transaction was loaded into Salesforce Marketing Cloud'
+        description: Date the transaction was loaded into Salesforce Marketing Cloud
       - name: migrated
-        description: 'Indicator to show if the transaction has been loaded to the data warehouse'
+        description: Indicator to show if the transaction has been loaded to the data
+          warehouse
       - name: lookup_id
-        description: 'A unique identifier used to link transactions from multiple sources'
+        description: A unique identifier used to link transactions from multiple sources
       - name: sfmc_updated_dt
-        description: 'Date the transaction was updated in Salesforce Marketing Cloud'
+        description: Date the transaction was updated in Salesforce Marketing Cloud

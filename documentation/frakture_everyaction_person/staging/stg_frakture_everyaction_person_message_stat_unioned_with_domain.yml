@@ -2,7 +2,8 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_person_message_stat_unioned_with_domain
-    description: Contains a unioned version of Frakture's EveryAction Person and Message Stats by domain
+    description: Contains a unioned version of Frakture's EveryAction Person and Message
+      Stats by domain
     columns:
       - name: _dbt_source_relation
         description: The source relation the data comes from

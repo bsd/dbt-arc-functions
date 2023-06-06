@@ -1,9 +1,9 @@
-
 ---
 version: 2
 models:
   - name: stg_frakture_everyaction_person_table_unioned
-    description: Data from EveryAction Person Table Unioned with other tables to create a unified view of persons
+    description: Data from EveryAction Person Table Unioned with other tables to create
+      a unified view of persons
     columns:
       - name: _dbt_source_relation
         description: The originating source relation
@@ -22,7 +22,8 @@ models:
       - name: ea_custom_origincodename
         description: A name associated with the source code
       - name: ea_custom_comfraffiliatesconstituentid
-        description: An identifier for the Constituent associated with the source code
+        description: An identifier for the Constituent associated with the source
+          code
       - name: ea_custom_comfraffiliatepartnerid
         description: An identifier for the Partner associated with the source code
       - name: ea_custom_comfrattribute
@@ -30,7 +31,8 @@ models:
       - name: ea_custom_sourcecode
         description: An identifier for the source code
       - name: ea_custom_constituentlookupid
-        description: An identifier for the Constituent lookup associated with the source code
+        description: An identifier for the Constituent lookup associated with the
+          source code
       - name: email_hash_v1
         description: A hashed version of the email address
       - name: email_domain
