@@ -8,5 +8,4 @@ models:
         description: Unique Message ID
       - name: actions
         description: A count of the total number of specific types of actions
-      - name: interval
-        description: The hour when the action was taken
+
