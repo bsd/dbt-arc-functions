@@ -1,10 +1,9 @@
-
 ---
 version: 2
 models:
   - name: stg_paidmedia_pacing_actuals_campaigns
-    description: Table of campaigns containing metrics such travel, impressions and cost.
-
+    description: Table of campaigns containing metrics such travel, impressions and
+      cost.
     columns:
       - name: campaign_name
         description: Unique identifier for the campaigns

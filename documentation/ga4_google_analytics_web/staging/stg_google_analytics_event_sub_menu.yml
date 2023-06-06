@@ -1,9 +1,9 @@
-
 ---
 version: 2
 models:
   - name: stg_google_analytics_event_sub_menu
-    description: Model that contains information to track user interactions with Accordion menu items
+    description: Model that contains information to track user interactions with Accordion
+      menu items
     columns:
       - name: event_date
         description: Date of the event

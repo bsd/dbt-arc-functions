@@ -1,10 +1,9 @@
-
-
 ---
 version: 2
 models:
   - name: stg_stitch_sfmc_email_transactions_summary_unioned
-    description: A summary of SFMC email transactions after being unioned with additional data
+    description: A summary of SFMC email transactions after being unioned with additional
+      data
     columns:
       - name: _dbt_source_relation
         description: The source relation from which this model was generated
@@ -13,9 +12,11 @@ models:
       - name: person_id
         description: The universal identifier for the individual email recipient
       - name: source_code
-        description: The source code identifier found in the SFMC email transaction data
+        description: The source code identifier found in the SFMC email transaction
+          data
       - name: crm
-        description: The customer relationship management system where this transaction was generated from
+        description: The customer relationship management system where this transaction
+          was generated from
       - name: message_id
         description: The identifier for a specific SFMC email message
       - name: inbound_channel

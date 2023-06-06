@@ -1,11 +1,10 @@
-
 ---
 version: 2
 models:
   - name: stg_stitch_sfmc_email_unsubscribes_rollup
-    description: Rollup of all Salesforce Marketing Cloud email unsubscribes 
+    description: Rollup of all Salesforce Marketing Cloud email unsubscribes
     columns:
       - name: message_id
-        description: Unique ID for the Salesforce Marketing Cloud message 
+        description: Unique ID for the Salesforce Marketing Cloud message
       - name: unsubscribes
         description: Number of user unsubscribes for a particular message

@@ -1,4 +1,3 @@
-
 ---
 version: 2
 models:
@@ -6,7 +5,7 @@ models:
     description: Rollup of daily subscription from paid media sources
     columns:
       - name: _dbt_source_relation
-        description: Source of the data    
+        description: Source of the data
       - name: message_id
         description: Unique ID connected to each message
       - name: date_timestamp

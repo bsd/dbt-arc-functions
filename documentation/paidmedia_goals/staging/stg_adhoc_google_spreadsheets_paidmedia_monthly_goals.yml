@@ -1,4 +1,3 @@
-
 ---
 version: 2
 models:
@@ -10,9 +9,11 @@ models:
       - name: objective
         description: A description of the goal for paid media
       - name: channel
-        description: The paid media channel associated with the record (e.g. Display, Social, Organic/Paid Search)
+        description: The paid media channel associated with the record (e.g. Display,
+          Social, Organic/Paid Search)
       - name: platform
-        description: The platform associated with the paid media (e.g. Google Ads, Facebook Ads, LinkedIn Ads)
+        description: The platform associated with the paid media (e.g. Google Ads,
+          Facebook Ads, LinkedIn Ads)
       - name: projected_spend
         description: The estimated spend for the record
       - name: projected_revenue

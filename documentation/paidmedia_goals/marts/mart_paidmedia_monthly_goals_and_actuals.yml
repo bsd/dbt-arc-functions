@@ -1,18 +1,21 @@
-
 ---
 version: 2
 models:
   - name: mart_paidmedia_monthly_goals_and_actuals
-    description: Stores monthly goals and actual results for activities related to paid media 
+    description: Stores monthly goals and actual results for activities related to
+      paid media
     columns:
       - name: month_year
         description: the month/year this record corresponds to
       - name: month_year_date
-        description: date value representing the beginning of the month corresponding to the record
+        description: date value representing the beginning of the month corresponding
+          to the record
       - name: channel
-        description: Paid media channels activities are associated with such as Instagram or YouTube
+        description: Paid media channels activities are associated with such as Instagram
+          or YouTube
       - name: objective
-        description: The overall objective for the activity such as brand awareness or generating leads
+        description: The overall objective for the activity such as brand awareness
+          or generating leads
       - name: platform
         description: The platform where the activity is running such as Facebook Ads
       - name: actual_spend

@@ -1,4 +1,3 @@
-
 ---
 version: 2
 models:
@@ -30,7 +29,7 @@ models:
       - name: audience
         description: The audience associated with the transaction
       - name: crm_entity
-        description: The Entity associated with the CRM source 
+        description: The Entity associated with the CRM source
       - name: source_code_entity
         description: The Entity associated with the source code
       - name: channel_from_source_code

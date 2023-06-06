@@ -2,7 +2,8 @@
 version: 2
 models:
   - name: stg_email_deliverability_person_clicks_daily_rollup_unioned
-    description: Data representing the number of click events on each sent message per day
+    description: Data representing the number of click events on each sent message
+      per day
     columns:
       - name: _dbt_source_relation
         description: A reference to the original table name the data was sourced from
@@ -13,4 +14,5 @@ models:
       - name: email_domain
         description: The domain of the recipient
       - name: clicks
-        description: The number of click events for each message in the given date range
+        description: The number of click events for each message in the given date
+          range

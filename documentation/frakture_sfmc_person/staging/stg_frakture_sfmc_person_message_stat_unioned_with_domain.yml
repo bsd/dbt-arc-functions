@@ -2,7 +2,8 @@
 version: 2
 models:
   - name: stg_frakture_sfmc_person_message_stat_unioned_with_domain
-    description: Contains stats for SFMC message sends, opens, clicks, bounces, unsubscribes, combined with domain
+    description: Contains stats for SFMC message sends, opens, clicks, bounces, unsubscribes,
+      combined with domain
     columns:
       - name: _dbt_source_relation
         description: The source relation from the extraction

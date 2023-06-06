@@ -1,14 +1,15 @@
-
 ---
 version: 2
 models:
   - name: stg_google_analytics_event_scroll
-    description: A staging table to store Google Analytics events related to scroll engagement
+    description: A staging table to store Google Analytics events related to scroll
+      engagement
     columns:
       - name: event_date
         description: The date associated with the event
       - name: session_id
-        description: A unique identification code associated with the session that the event was recorded in
+        description: A unique identification code associated with the session that
+          the event was recorded in
       - name: session_source
         description: The source of the URL that started the session
       - name: session_medium
@@ -18,7 +19,8 @@ models:
       - name: page_path
         description: The page path of the page in which the event was recorded
       - name: device_category
-        description: The category of device that the user interacted with to record the event
+        description: The category of device that the user interacted with to record
+          the event
       - name: user_gender
         description: Gender of the user associated with the session
       - name: user_age
@@ -38,7 +40,7 @@ models:
       - name: accordion_block
         description: The Accordion block associated with the event
       - name: file_name
-        description: The file name associated with the event 
+        description: The file name associated with the event
       - name: link_domain
         description: The domain used for an outbound link, if applicable
       - name: top_nav_name
@@ -48,9 +50,9 @@ models:
       - name: engaged_session
         description: Whether or not the user completed the engagement goal
       - name: percent_scrolled
-        description: The percent of the page scrolled by the user 
+        description: The percent of the page scrolled by the user
       - name: search_term
-        description: The search term associated with the page view, if applicable 
+        description: The search term associated with the page view, if applicable
       - name: page_referrer
         description: The referral page for the page view
       - name: user_id

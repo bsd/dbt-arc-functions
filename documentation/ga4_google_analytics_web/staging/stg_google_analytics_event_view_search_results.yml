@@ -1,4 +1,3 @@
-
 ---
 version: 2
 models:
@@ -52,7 +51,7 @@ models:
       - name: search_term
         description: Search term associated with the event
       - name: page_referrer
-        description: Page Referrer associated with the event 
+        description: Page Referrer associated with the event
       - name: user_id
         description: Unique identifier for a user associated with the event
       - name: engagement_time_msec

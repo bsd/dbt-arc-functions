@@ -1,9 +1,9 @@
-
 ---
 version: 2
 models:
   - name: stg_paidmedia_impressions_daily_rollup_unioned
-    description: Rollup table containing daily paid media performance metrics for the current date
+    description: Rollup table containing daily paid media performance metrics for
+      the current date
     columns:
       - name: _dbt_source_relation
         description: The source table name of this record

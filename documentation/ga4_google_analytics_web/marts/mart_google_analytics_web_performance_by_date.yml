@@ -5,98 +5,99 @@ models:
     description: Stores Google Analytics data for web performance by date.
     columns:
       - name: event_date
-        description: Timestamp of the event. 
+        description: Timestamp of the event.
       - name: session_source
         description: Source of the session (e.g. organic, referral, etc.)
       - name: session_medium
         description: Medium of the session (e.g. CPC, email, etc.)
       - name: host_name
-        description: Website URL hosting the page. 
+        description: Website URL hosting the page.
       - name: page_group
         description: Grouping of the webpage (e.g. blog, webinar, support, etc.)
       - name: session_default_channel
-        description: Default channel associated with the session (e.g. direct, display, etc.)
+        description: Default channel associated with the session (e.g. direct, display,
+          etc.)
       - name: campaign
-        description: Name of the associated campaign. 
+        description: Name of the associated campaign.
       - name: device_category
         description: Category of the device (e.g. desktop, tablet, etc.)
       - name: device_language
-        description: Language of the device OS. 
+        description: Language of the device OS.
       - name: selected_language
         description: Language actively selected by the user.
       - name: user_gender
-        description: Gender of the user. 
+        description: Gender of the user.
       - name: user_age
-        description: Age of the user. 
+        description: Age of the user.
       - name: accordion_item
-        description: Title of the accordion item that was clicked. 
+        description: Title of the accordion item that was clicked.
       - name: accordion_block
-        description: Name of the accordion block. 
+        description: Name of the accordion block.
       - name: file_name
-        description: Name of the file downloaded. 
+        description: Name of the file downloaded.
       - name: link_domain
-        description: Domain associated with the clicked link. 
+        description: Domain associated with the clicked link.
       - name: top_nav_name
-        description: Name of the top navigational element clicked. 
+        description: Name of the top navigational element clicked.
       - name: sub_menu_name
-        description: Name of the submenu element that was clicked. 
+        description: Name of the submenu element that was clicked.
       - name: search_term
-        description: Term searched on the page. 
+        description: Term searched on the page.
       - name: page_referrer
-        description: URL of the page the user referred from. 
+        description: URL of the page the user referred from.
       - name: accordion_block_clicks
-        description: Total number of clicks on the Accordion Block. 
+        description: Total number of clicks on the Accordion Block.
       - name: unique_accordion_block_clicks
-        description: Number of unique clicks on the Accordion Block. 
+        description: Number of unique clicks on the Accordion Block.
       - name: clicks
         description: Total number of clicks.
       - name: unique_clicks
         description: Number of unique clicks.
       - name: downloads
-        description: Total number of downloaded files. 
+        description: Total number of downloaded files.
       - name: unique_downloads
-        description: Number of unique downloaded files. 
+        description: Number of unique downloaded files.
       - name: first_visits
-        description: Total number of first visits. 
+        description: Total number of first visits.
       - name: unique_first_visits
-        description: Number of unique first visits. 
+        description: Number of unique first visits.
       - name: language_menu_expands
-        description: Total number of times the Language menu was expanded. 
+        description: Total number of times the Language menu was expanded.
       - name: unique_language_menu_expands
-        description: Number of unique times the Language menu was expanded. 
+        description: Number of unique times the Language menu was expanded.
       - name: page_views
-        description: Total number of page views. 
+        description: Total number of page views.
       - name: unique_page_views
-        description: Number of unique page views. 
+        description: Number of unique page views.
       - name: searches
-        description: Total number of searches. 
+        description: Total number of searches.
       - name: unique_searches
-        description: Number of unique searches. 
+        description: Number of unique searches.
       - name: scrolls
-        description: Total number of scrolls. 
+        description: Total number of scrolls.
       - name: unique_scrolls
-        description: Number of unique scrolls. 
+        description: Number of unique scrolls.
       - name: session_starts
-        description: Total number of session starts. 
+        description: Total number of session starts.
       - name: unique_session_starts
-        description: Number of unique session starts. 
+        description: Number of unique session starts.
       - name: sub_menu_expands
-        description: Total number of times the submenu was expanded. 
+        description: Total number of times the submenu was expanded.
       - name: unique_sub_menu_expands
-        description: Number of unique times the submenu was expanded. 
+        description: Number of unique times the submenu was expanded.
       - name: user_engagements
-        description: Total number of user engagements. 
+        description: Total number of user engagements.
       - name: unique_user_engagements
-        description: Number of unique user engagements. 
+        description: Number of unique user engagements.
       - name: engaged_sessions
         description: Total number of engaged sessions (sessions with user engagements).
       - name: avg_percent_scrolled
-        description: Average percent of the page scrolled. 
+        description: Average percent of the page scrolled.
       - name: engagement_time_msecs
         description: Total engagement time in milliseconds.
       - name: unique_sessions
-        description: Number of unique sessions.     
+        description: Number of unique sessions.
       - name: unique_users
-        description: Number of unique users. 
+        description: Number of unique users.
       - name: total_users
         description: Total number of users.

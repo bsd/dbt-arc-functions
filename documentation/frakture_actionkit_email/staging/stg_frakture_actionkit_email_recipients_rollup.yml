@@ -1,11 +1,10 @@
-
 ---
 version: 2
 models:
   - name: stg_frakture_actionkit_email_recipients_rollup
-    description: 'Rollup of ActionKit email recipient emails'
+    description: Rollup of ActionKit email recipient emails
     columns:
       - name: message_id
-        description: 'ActionKit email message ID'
+        description: ActionKit email message ID
       - name: recipients
-        description: 'Comma-separated list of email addresses for recipients'
+        description: Comma-separated list of email addresses for recipients

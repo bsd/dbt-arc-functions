@@ -1,4 +1,3 @@
-
 ---
 version: 2
 models:
@@ -6,11 +5,11 @@ models:
     description: Table containing transactions summaries from ActionKit
     columns:
       - name: _dbt_source_relation
-        description: The Relation this table was generated from. 
+        description: The Relation this table was generated from.
       - name: remote_transaction_id
-        description: The transaction id within ActionKit 
+        description: The transaction id within ActionKit
       - name: remote_person_id
-        description: The person id for this donor with ActionKit 
+        description: The person id for this donor with ActionKit
       - name: ts
         description: The timestamp of when the data was imported into DBT
       - name: amount

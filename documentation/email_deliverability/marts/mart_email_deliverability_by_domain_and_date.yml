@@ -1,31 +1,31 @@
-
 ---
 version: 2
 models:
   - name: mart_email_deliverability_by_domain_and_date
-    description: 'A data model that provides a historical summary of email performance by domain and date'
+    description: A data model that provides a historical summary of email performance
+      by domain and date
     columns:
       - name: sent_date
-        description: 'The date the email was sent'
+        description: The date the email was sent
       - name: message_id
-        description: 'The unique message id for the email sent'
+        description: The unique message id for the email sent
       - name: email_domain
-        description: 'The domain of the emails that was sent'
+        description: The domain of the emails that was sent
       - name: domain_category
-        description: 'The category the domain belongs to, e.g. bulk, monitoring etc'
+        description: The category the domain belongs to, e.g. bulk, monitoring etc
       - name: recipients
-        description: 'The amount of recipients that were sent to'
+        description: The amount of recipients that were sent to
       - name: opens
-        description: 'The amount of opens for the email'
+        description: The amount of opens for the email
       - name: clicks
-        description: 'The amount of clicks for the email'
+        description: The amount of clicks for the email
       - name: actions
-        description: 'The total amount of interactions/actions for the email'
+        description: The total amount of interactions/actions for the email
       - name: total_bounces
-        description: 'The total amount of bounces for the email'
+        description: The total amount of bounces for the email
       - name: soft_bounces
-        description: 'The amount of soft bounces for the email'
+        description: The amount of soft bounces for the email
       - name: hard_bounces
-        description: 'The amount of hard bounces for the email'
+        description: The amount of hard bounces for the email
       - name: unsubscribes
-        description: 'The amount of unsubscribes for the email'
+        description: The amount of unsubscribes for the email

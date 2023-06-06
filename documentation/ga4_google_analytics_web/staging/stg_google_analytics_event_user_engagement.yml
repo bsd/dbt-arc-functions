@@ -1,4 +1,3 @@
-
 ---
 version: 2
 models:
@@ -10,7 +9,8 @@ models:
       - name: session_id
         description: Unique session identifier.
       - name: session_source
-        description: Source that drove the session (e.g. email campaign, organic, etc).
+        description: Source that drove the session (e.g. email campaign, organic,
+          etc).
       - name: session_medium
         description: Medium the session was driven by (e.g. cpc, banner, etc).
       - name: host_name
@@ -18,7 +18,8 @@ models:
       - name: page_path
         description: URL path of the page.
       - name: device_category
-        description: Category of the device from which the page was accessed (e.g. desktop, tablet, mobile).
+        description: Category of the device from which the page was accessed (e.g.
+          desktop, tablet, mobile).
       - name: user_gender
         description: Gender of the user.
       - name: user_age

@@ -1,9 +1,9 @@
-
 ---
 version: 2
 models:
   - name: mart_paidmedia_daily_revenue_performance
-    description: Model used to track revenue performance from paid media at the daily level
+    description: Model used to track revenue performance from paid media at the daily
+      level
     columns:
       - name: message_id
         description: Unique identifier for the message
@@ -52,7 +52,7 @@ models:
       - name: total_monthly_gifts
         description: Total monthly gifts associated with this message
       - name: campaign
-        description: Name of the campaign 
+        description: Name of the campaign
       - name: campaign_label
         description: Label for the campaign
       - name: audience

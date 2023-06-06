@@ -1,11 +1,11 @@
-
 ---
 version: 2
 models:
   - name: stg_stitch_sfmc_email_clicks_rollup
-    description: 'Rollup of click counts per message_id from Salesforce Marketing Cloud - Email'
+    description: Rollup of click counts per message_id from Salesforce Marketing Cloud
+      - Email
     columns:
       - name: message_id
-        description: 'Unique identifier for an email'
+        description: Unique identifier for an email
       - name: clicks
-        description: 'Number of clicks for a specific message_id'
+        description: Number of clicks for a specific message_id

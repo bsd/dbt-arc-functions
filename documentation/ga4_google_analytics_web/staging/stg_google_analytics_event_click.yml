@@ -1,4 +1,3 @@
-
 ---
 version: 2
 models:
@@ -10,7 +9,8 @@ models:
       - name: session_id
         description: A unique identifier for the 5-minute or 30-minute session.
       - name: session_source
-        description: Where the session originated from - can be a Google organic search or a referral link.
+        description: Where the session originated from - can be a Google organic search
+          or a referral link.
       - name: session_medium
         description: The medium used in the original referer from the session source.
       - name: host_name
@@ -26,7 +26,8 @@ models:
       - name: session_default_channel
         description: The default channel of the session in lowercase.
       - name: campaign
-        description: The name of any Google Ads campaigns that may have contributed to the acquisition of the session.
+        description: The name of any Google Ads campaigns that may have contributed
+          to the acquisition of the session.
       - name: device_language
         description: The language setting of the device.
       - name: selected_language

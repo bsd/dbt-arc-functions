@@ -1,4 +1,3 @@
-
 ---
 version: 2
 models:
@@ -40,6 +39,8 @@ models:
       - name: primary_source_code
         description: Primary source code associated with the campaign
       - name: primary_source_code_override
-        description: Primary source code associated with the campaign, when an override is in use
+        description: Primary source code associated with the campaign, when an override
+          is in use
       - name: final_primary_source_code
-        description: Final primary source code used to attribute the lead with the appropriate campaign
+        description: Final primary source code used to attribute the lead with the
+          appropriate campaign

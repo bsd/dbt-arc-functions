@@ -1,14 +1,14 @@
-
 ---
 version: 2
 models:
   - name: stg_email_deliverability_person_jobs_distinct_unioned
-    description: This model stores the data related to email deliverability from the Interana events. 
+    description: This model stores the data related to email deliverability from the
+      Interana events.
     columns:
       - name: _dbt_source_relation
         description: The source relation that the table comes from.
       - name: message_id
-        description: A unique identifier assigned for each email sent. 
+        description: A unique identifier assigned for each email sent.
       - name: sent_date
         description: The time the email was sent.
       - name: email_domain

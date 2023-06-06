@@ -1,4 +1,3 @@
-
 ---
 version: 2
 models:
@@ -8,7 +7,8 @@ models:
       - name: event_date
         description: The date when the event occurred
       - name: session_id
-        description: The unique identifier assigned to the user session in Google Analytics
+        description: The unique identifier assigned to the user session in Google
+          Analytics
       - name: session_source
         description: The source of the user session
       - name: session_medium
@@ -18,7 +18,8 @@ models:
       - name: page_path
         description: The full path to the current page
       - name: device_category
-        description: The category of device (desktop, mobile, etc.) used by the user session
+        description: The category of device (desktop, mobile, etc.) used by the user
+          session
       - name: user_gender
         description: The gender of the user
       - name: user_age
@@ -56,4 +57,5 @@ models:
       - name: user_id
         description: The unique user identifier
       - name: engagement_time_msec
-        description: The change in time in milliseconds from the first impression to the last in the session
+        description: The change in time in milliseconds from the first impression
+          to the last in the session

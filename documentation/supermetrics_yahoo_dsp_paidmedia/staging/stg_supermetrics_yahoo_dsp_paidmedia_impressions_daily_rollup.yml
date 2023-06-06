@@ -1,15 +1,15 @@
-
 ---
 version: 2
 models:
   - name: stg_supermetrics_yahoo_dsp_paidmedia_impressions_daily_rollup
-    description: Contains daily counts of impression metrics for Yahoo DSP Paid Media campaigns.
+    description: Contains daily counts of impression metrics for Yahoo DSP Paid Media
+      campaigns.
     columns:
       - name: message_id
         description: Unique identifier for the ad campaign.
       - name: date_timestamp
         description: Date the metrics apply to.
       - name: total_impressions
-        description: Total impressions for the campaign on the given date. 
+        description: Total impressions for the campaign on the given date.
       - name: unique_impressions
         description: Unique impressions for the campaign on the given date.

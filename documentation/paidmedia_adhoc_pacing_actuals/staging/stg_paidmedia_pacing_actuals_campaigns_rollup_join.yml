@@ -1,9 +1,9 @@
-
 ---
 version: 2
 models:
   - name: stg_paidmedia_pacing_actuals_campaigns_rollup_join
-    description: A staging table of paid media pacing and actuals for campaigns rollup joined
+    description: A staging table of paid media pacing and actuals for campaigns rollup
+      joined
     columns:
       - name: date_day
         description: The day that the data corresponds to

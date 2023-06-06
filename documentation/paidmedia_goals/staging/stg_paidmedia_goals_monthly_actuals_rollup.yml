@@ -1,4 +1,3 @@
-
 ---
 version: 2
 models:
@@ -14,8 +13,9 @@ models:
       - name: platform
         description: The marketing platform (Google Ads, Facebook, etc)
       - name: actual_spend
-        description: The total amount spent on the channel and platform 
+        description: The total amount spent on the channel and platform
       - name: actual_revenue
         description: The total collected revenue from the channel and platform
       - name: actual_donations
-        description: The total number of donations collected from the channel and platform
+        description: The total number of donations collected from the channel and
+          platform
