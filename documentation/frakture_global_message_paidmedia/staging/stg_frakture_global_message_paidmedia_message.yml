@@ -42,7 +42,3 @@ models:
         description: A url for a preview of the message
       - name: do_not_attribute
         description: Indicates if the message should not be attributed
-      - name: ad_exp_id
-        description: The ID of the advertisement experience associated with the message
-      - name: campaign_buying_type
-        description: The buying type of the campaign that sent the message
