@@ -2,19 +2,19 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_email_bounces_rollup
-    description: ''
+    description: Rollup of email bounce data from Salesforce Marketing Cloud
     columns:
       - name: message_id
-        description: ''
+        description: The unique message ID for each email sent
       - name: hard_bounces
-        description: ''
+        description: The number of hard bounces for the message
       - name: soft_bounces
-        description: ''
+        description: The number of soft bounces for the message
       - name: block_bounces
-        description: ''
+        description: The number of block bounces for the message
       - name: tech_bounces
-        description: ''
+        description: The number of technical bounces for the message
       - name: unknown_bounces
-        description: ''
+        description: The number of unknown bounces for the message
       - name: total_bounces
-        description: ''
+        description: The total number of bounces for the message

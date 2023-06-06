@@ -2,29 +2,29 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_email_jobs
-    description: ''
+    description: Staging table for email job data from Salesforce Marketing Cloud
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for the email message
       - name: email_id
-        description: ''
+        description: Unique identifier for the email
       - name: from_name
-        description: ''
+        description: Name of sender
       - name: from_email
-        description: ''
+        description: Email address of sender
       - name: best_guess_timestamp
-        description: ''
+        description: Timestamp for the best guess delivery time
       - name: scheduled_timestamp
-        description: ''
+        description: Timestamp for scheduled delivery time
       - name: pickup_timestamp
-        description: ''
+        description: Timestamp for email pickup by email client
       - name: delivered_timestamp
-        description: ''
+        description: Timestamp for email delivery
       - name: email_name
-        description: ''
+        description: Name of the email
       - name: email_subject
-        description: ''
+        description: Subject line of the email
       - name: category
-        description: ''
+        description: Category of the email
       - name: source_code
-        description: ''
+        description: Source code of the email

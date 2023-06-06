@@ -8,5 +8,3 @@ models:
         description: Unique ID of EveryAction message
       - name: complaints
         description: Count of complaints received for a particular EveryAction message
----
-...
