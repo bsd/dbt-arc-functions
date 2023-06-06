@@ -9,5 +9,4 @@ models:
         description: Unique ID for each email message
       - name: complaints
         description: Total number of spam complaints associated with the email
-      - name: date
-        description: Date of each email message
+
