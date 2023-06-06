@@ -125,9 +125,4 @@ models:
         description: Primary source code override associated with message
       - name: final_primary_source_code
         description: Final primary source code associated with message
-      - name: adset_id
-        description: Unique identifier for adset
-      - name: ad_id
-        description: Unique identifier for ad
-      - name: matches_dah_selector
-        description: Flag indicating if Adset ID matches the DAH Selector
+
