@@ -2,21 +2,22 @@
 version: 2
 models:
   - name: mart_email_listhealth_by_month
-    description: ''
+    description: A model representing monthly list health metrics of an email list
     columns:
       - name: date_month
-        description: ''
+        description: The summary date at the month level
       - name: max_recipients
-        description: ''
+        description: The total number of maximum recipients for the month
       - name: max_delivered
-        description: ''
+        description: The total number of maximum delivered emails in the month
       - name: delivered_prev_month
-        description: ''
+        description: The amount of total delivered emails in the previous month
       - name: diff_delivered_prev_month
-        description: ''
+        description: The difference in total delivered emails between the current
+          and previous month
       - name: total_unsubscribes
-        description: ''
+        description: The total number of unsubscribes in the month
       - name: total_hard_bounces
-        description: ''
+        description: The total number of hard bounces in the month
       - name: total_complaints
-        description: ''
+        description: The total number of complaints in the month

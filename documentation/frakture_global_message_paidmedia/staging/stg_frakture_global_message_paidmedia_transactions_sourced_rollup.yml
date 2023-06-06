@@ -2,37 +2,40 @@
 version: 2
 models:
   - name: stg_frakture_global_message_paidmedia_transactions_sourced_rollup
-    description: ''
+    description: A table that contains rollup of paid media transactions sourced for
+      each message
     columns:
       - name: message_id
-        description: ''
+        description: The unique id for each message
       - name: date_timestamp
-        description: ''
+        description: The timestamp of the record
       - name: total_revenue
-        description: ''
+        description: The total revenue for the message
       - name: total_gifts
-        description: ''
+        description: The total number of gifts for the message
       - name: total_donors
-        description: ''
+        description: The total number of donors for the message
       - name: one_time_revenue
-        description: ''
+        description: The total one-time revenue for the message
       - name: one_time_gifts
-        description: ''
+        description: The total number of one-time gifts for the message
       - name: new_monthly_revenue
-        description: ''
+        description: The total new monthly revenue for the message
       - name: new_monthly_gifts
-        description: ''
+        description: The total number of new monthly gifts for the message
       - name: total_monthly_revenue
-        description: ''
+        description: The total monthly revenue for the message
       - name: total_monthly_gifts
-        description: ''
+        description: The total number of monthly gifts for the message
       - name: campaign
-        description: ''
+        description: The name of the campaign the message belongs to
       - name: campaign_label
-        description: ''
+        description: The label of the campaign the message belongs to
       - name: audience
-        description: ''
+        description: The audience the message was sent to
       - name: appeal
-        description: ''
+        description: The appeal code associated with the message
       - name: source_code
-        description: ''
+        description: The source code associated with the message
+      - name: source_code_label
+        description: The label of the source code associated with the message

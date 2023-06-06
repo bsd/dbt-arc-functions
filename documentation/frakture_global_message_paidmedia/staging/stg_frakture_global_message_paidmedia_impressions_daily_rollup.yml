@@ -2,13 +2,15 @@
 version: 2
 models:
   - name: stg_frakture_global_message_paidmedia_impressions_daily_rollup
-    description: ''
+    description: Aggregate table of paid media impressions at a daily level
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for a message across all channels
       - name: date_timestamp
-        description: ''
+        description: A timestamp indicating when the impressions were counted
       - name: total_impressions
-        description: ''
+        description: The total number of impressions counted for a given message and
+          date range
       - name: unique_impressions
-        description: ''
+        description: The total number of unique impressions counted for a given message
+          and date range
