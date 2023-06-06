@@ -1,26 +1,27 @@
+
 ---
 version: 2
 models:
   - name: stg_paidmedia_actuals_goals_unioned_transform
-    description: ''
+    description: 'Model provides an interim storage of paid media actuals and projected goals'
     columns:
       - name: month_year
-        description: ''
+        description: 'Month year of data loaded'
       - name: month_year_date
-        description: ''
+        description: 'Date format of month year'
       - name: channel
-        description: ''
+        description: 'Channel of data loaded'
       - name: objective
-        description: ''
+        description: 'Objective of data loaded'
       - name: platform
-        description: ''
+        description: 'Platform of data loaded'
       - name: actual_spend
-        description: ''
+        description: 'Actual spending for the period'
       - name: actual_revenue
-        description: ''
+        description: 'Actual revenue for the period'
       - name: actual_donations
-        description: ''
+        description: 'Actual donations for the period'
       - name: projected_revenue
-        description: ''
+        description: 'Projected revenue for the period'
       - name: projected_spend
-        description: ''
+        description: 'Projected spending for the period'

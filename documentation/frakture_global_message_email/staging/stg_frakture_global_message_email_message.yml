@@ -1,44 +1,45 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_global_message_email_message
-    description: ''
+    description: Database object containing data related to Frakture email messages
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for the Frakture Email Message
       - name: channel
-        description: ''
+        description: Channel used for sending the message
       - name: channel_label
-        description: ''
+        description: Label associated with a particular channel
       - name: type
-        description: ''
+        description: The type of message
       - name: status
-        description: ''
+        description: Status of the email message
       - name: publish_date
-        description: ''
+        description: Date the email message was sent
       - name: campaign_id
-        description: ''
+        description: Unique identifier for the Frakture Campaign
       - name: bot_id
-        description: ''
+        description: Unique identifier for the Frakture Bot
       - name: submodule
-        description: ''
+        description: The name of the submodule used to send the email message
       - name: remote_id
-        description: ''
+        description: Unique identifier for the remote system
       - name: do_not_attribute
-        description: ''
+        description: Flag indicating if the email should not be attributed to a campaign
       - name: label
-        description: ''
+        description: Label associated with the campaign
       - name: subject
-        description: ''
+        description: Subject line of the email
       - name: campaign_name
-        description: ''
+        description: Name of the associated campaign
       - name: from_name
-        description: ''
+        description: Name of the sender
       - name: preview_url
-        description: ''
+        description: URL where message content can be previewed
       - name: primary_source_code
-        description: ''
+        description: Primary source code associated with the campaign
       - name: primary_source_code_override
-        description: ''
+        description: Primary source code associated with the campaign, when an override is in use
       - name: final_primary_source_code
-        description: ''
+        description: Final primary source code used to attribute the lead with the appropriate campaign

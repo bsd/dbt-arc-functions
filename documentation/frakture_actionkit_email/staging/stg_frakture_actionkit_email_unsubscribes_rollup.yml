@@ -1,10 +1,11 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_actionkit_email_unsubscribes_rollup
-    description: ''
+    description: Rollup of unsubscribe counts by email
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for message 
       - name: unsubscribes
-        description: ''
+        description: Number of unsubscribers for a message

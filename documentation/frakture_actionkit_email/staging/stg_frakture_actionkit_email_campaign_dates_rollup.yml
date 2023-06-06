@@ -2,11 +2,11 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_email_campaign_dates_rollup
-    description: ''
+    description: A staging table containing rollup email campaign dates from EveryAction
     columns:
       - name: campaign_name
-        description: ''
+        description: The name of the email campaign
       - name: campaign_start_timestamp
-        description: ''
+        description: The timestamp when the campaign was started
       - name: campaign_latest_timestamp
-        description: ''
+        description: The timestamp of the latest email launched by the campaign

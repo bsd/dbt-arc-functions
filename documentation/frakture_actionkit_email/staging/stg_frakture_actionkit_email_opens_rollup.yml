@@ -1,10 +1,11 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_actionkit_email_opens_rollup
-    description: ''
+    description: Contains a rollup of open click activity for emails sent via ActionKit
     columns:
       - name: message_id
-        description: ''
+        description: Identifier for the ActionKit message
       - name: opens
-        description: ''
+        description: Aggregate number of opens for this ActionKit message

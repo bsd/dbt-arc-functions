@@ -1,16 +1,17 @@
+
 ---
 version: 2
 models:
   - name: stg_paidmedia_impressions_daily_rollup_unioned
-    description: ''
+    description: Rollup table containing daily paid media performance metrics for the current date
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: The source table name of this record
       - name: message_id
-        description: ''
+        description: The unique identifier for an external paid media message
       - name: date_timestamp
-        description: ''
+        description: The date associated with this record
       - name: total_impressions
-        description: ''
+        description: The total number of impressions for this record
       - name: unique_impressions
-        description: ''
+        description: The total number of unique impressions for this record

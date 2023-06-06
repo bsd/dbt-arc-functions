@@ -1,16 +1,17 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_everyaction_person_bounces_daily_rollup
-    description: ''
+    description: Record of everyaction emails bounces
     columns:
       - name: sent_date
-        description: ''
+        description: Date the email was sent
       - name: message_id
-        description: ''
+        description: Identfier for the specific email
       - name: email_domain
-        description: ''
+        description: The domain that the email was sent to
       - name: hard_bounces
-        description: ''
+        description: Total count of emails that had a hard bounce
       - name: soft_bounces
-        description: ''
+        description: Total count of emails that had a soft bounce

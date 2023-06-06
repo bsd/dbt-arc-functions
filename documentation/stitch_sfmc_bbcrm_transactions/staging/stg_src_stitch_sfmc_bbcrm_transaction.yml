@@ -1,48 +1,49 @@
+
 ---
 version: 2
 models:
   - name: stg_src_stitch_sfmc_bbcrm_transaction
-    description: ''
+    description: Model for tracking BBNCRM transactions
     columns:
       - name: bbcrmlookupid
-        description: ''
+        description: Unique identifier from BBCRM API
       - name: constituentsystemrecordid
-        description: ''
+        description: Unique identifier from BBCRM API
       - name: statuscode
-        description: ''
+        description: Numerical transaction status
       - name: recordid
-        description: ''
+        description: Unique identifier from BBCRM API
       - name: revenue_id
-        description: ''
+        description: Unique identifier from BBCRM API
       - name: transaction_date
-        description: ''
+        description: Date of transaction
       - name: payment_method
-        description: ''
+        description: Payment type used for transaction
       - name: amount
-        description: ''
+        description: Transaction amount
       - name: inbound_channel
-        description: ''
+        description: Source of inbound transaction
       - name: appeal
-        description: ''
+        description: Type of donation
       - name: appeal_business_unit
-        description: ''
+        description: Segment of donation type
       - name: initial_market_source
-        description: ''
+        description: Initial source of transaction
       - name: web_donation_form_value
-        description: ''
+        description: Value of donation form
       - name: web_donation_form_comment
-        description: ''
+        description: Comments from donation form
       - name: designation
-        description: ''
+        description: Potential designation of transaction
       - name: transaction_type
-        description: ''
+        description: Type of transaction
       - name: application
-        description: ''
+        description: Potential application of transaction
       - name: vendor_order_number
-        description: ''
+        description: Unique identifier from vendor/platform
       - name: revenue_platform
-        description: ''
+        description: Source revenue platform of transaction
       - name: sfmc_dateadded
-        description: ''
+        description: Date added to SFMC
       - name: sfmc_updatedate
-        description: ''
+        description: Date last updated in SFMC

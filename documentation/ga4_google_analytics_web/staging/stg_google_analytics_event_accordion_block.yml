@@ -2,57 +2,57 @@
 version: 2
 models:
   - name: stg_google_analytics_event_accordion_block
-    description: ''
+    description: A table to store Google Analytics events for accordion blocks
     columns:
       - name: event_date
-        description: ''
+        description: Date of the event
       - name: session_id
-        description: ''
+        description: Unique identifier for a particular session
       - name: session_source
-        description: ''
+        description: The referrer source of the session
       - name: session_medium
-        description: ''
+        description: The medium of the session
       - name: host_name
-        description: ''
+        description: The hostname of the page
       - name: page_path
-        description: ''
+        description: The path of the page
       - name: device_category
-        description: ''
+        description: The category of device used
       - name: user_gender
-        description: ''
+        description: The gender of the user
       - name: user_age
-        description: ''
+        description: The age of the user
       - name: session_default_channel
-        description: ''
+        description: The default channel of the session
       - name: campaign
-        description: ''
+        description: The campaign of the session
       - name: device_language
-        description: ''
+        description: The language of the device
       - name: selected_language
-        description: ''
+        description: The selected language
       - name: event_name
-        description: ''
+        description: The name of the event
       - name: accordion_item
-        description: ''
+        description: The item of the accordion
       - name: accordion_block
-        description: ''
+        description: The accordion block
       - name: file_name
-        description: ''
+        description: The name of the file
       - name: link_domain
-        description: ''
+        description: The domain of the link
       - name: top_nav_name
-        description: ''
+        description: The name of the top navigation
       - name: sub_menu_name
-        description: ''
+        description: The name of the sub menu
       - name: engaged_session
-        description: ''
+        description: Whether or not the session was engaged
       - name: percent_scrolled
-        description: ''
+        description: The percentage of the page that was scrolled
       - name: search_term
-        description: ''
+        description: The terms used for searching
       - name: page_referrer
-        description: ''
+        description: The referrer of the page
       - name: user_id
-        description: ''
+        description: The unique identifier for the user
       - name: engagement_time_msec
-        description: ''
+        description: The engagement time in milliseconds

@@ -1,14 +1,15 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_everyaction_person_actions_daily_rollup
-    description: ''
+    description: Rollup of person actions on a daily basis
     columns:
       - name: sent_date
-        description: ''
+        description: Date the action was sent
       - name: message_id
-        description: ''
+        description: Unique identifier of the email message
       - name: email_domain
-        description: ''
+        description: The domain of the email address associated with the action
       - name: actions
-        description: ''
+        description: Total actions associated with the email message

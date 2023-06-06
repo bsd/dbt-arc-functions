@@ -1,38 +1,39 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_everyaction_person_table_unioned
-    description: ''
+    description: Data from EveryAction Person Table Unioned with other tables to create a unified view of persons
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: The originating source relation
       - name: remote_person_id
-        description: ''
+        description: The identifier for the person from the originating source relation
       - name: date_created
-        description: ''
+        description: The date the row was created in the originating source relation
       - name: postal_code
-        description: ''
+        description: The postal code for the address of the person
       - name: source_code
-        description: ''
+        description: An identifier for the source from which the data comes
       - name: accepts_email
-        description: ''
+        description: An indicator of whether the person is likely to accept an email
       - name: email_opt_out_date
-        description: ''
+        description: The date when the person opted out of emails
       - name: ea_custom_origincodename
-        description: ''
+        description: A name associated with the source code
       - name: ea_custom_comfraffiliatesconstituentid
-        description: ''
+        description: An identifier for the Constituent associated with the source code
       - name: ea_custom_comfraffiliatepartnerid
-        description: ''
+        description: An identifier for the Partner associated with the source code
       - name: ea_custom_comfrattribute
-        description: ''
+        description: The attribute associated with the Partner
       - name: ea_custom_sourcecode
-        description: ''
+        description: An identifier for the source code
       - name: ea_custom_constituentlookupid
-        description: ''
+        description: An identifier for the Constituent lookup associated with the source code
       - name: email_hash_v1
-        description: ''
+        description: A hashed version of the email address
       - name: email_domain
-        description: ''
+        description: The domain of the email address
       - name: ea_custom_bsdid
-        description: ''
+        description: An identifier for the BlueState Digital ID of the person

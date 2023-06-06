@@ -1,38 +1,39 @@
+
 ---
 version: 2
 models:
   - name: mart_transactions_hourly_rollup
-    description: ''
+    description: Hourly rollup of aggregate mart transaction data
     columns:
       - name: best_guess_message_id
-        description: ''
+        description: A guess of what message a donation corresponded to (e.g. email send or broadcast, Facebook post) 
       - name: hour_timestamp
-        description: ''
+        description: The hour of the day the donation was made  
       - name: transaction_source_code
-        description: ''
+        description: A code that corresponds to a marketing effort (if available)
       - name: channel_from_crm
-        description: ''
+        description: A channel assigned to the donor by the CRM 
       - name: channel_from_source_code
-        description: ''
+        description: A channel inferred from the source code value
       - name: channel_best_guess
-        description: ''
-      - name: campaign
-        description: ''
+        description: The channel determined by the most indicative source among channel_from_crm, channel_from_source_code, and best_guess_message_id
+      - name: campaign 
+        description: A campaign assigned to the donor by the CRM
       - name: audience
-        description: ''
-      - name: crm_entity
-        description: ''
+        description: An audience assigned to the donor by the CRM
+      - name: crm_entity 
+        description: An entity assigned to the donor by the CRM
       - name: source_code_entity
-        description: ''
+        description: An entity inferred from the source code value
       - name: best_guess_entity
-        description: ''
+        description: The entity determined by the most indicative source among crm_entity, source_code_entity, and best_guess_message_id
       - name: total_amount
-        description: ''
-      - name: total_recurring_revenue
-        description: ''
+        description: Total amount of all transactions in the represented hour 
+      - name: total_recurring_revenue 
+        description: Total amount of all recurring donations in the represented hour 
       - name: total_new_recurring_revenue
-        description: ''
+        description: Total amount of all new recurring donations in the represented hour
       - name: number_of_donors
-        description: ''
+        description: Total number of donors in the represented hour 
       - name: number_of_transactions
-        description: ''
+        description: Total number of transactions in the represented hour

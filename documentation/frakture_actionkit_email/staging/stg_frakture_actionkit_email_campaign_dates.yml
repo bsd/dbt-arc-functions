@@ -1,12 +1,13 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_actionkit_email_campaign_dates
-    description: ''
+    description: This table stores data from ActionKit about email campaign dates.
     columns:
       - name: campaign_timestamp
-        description: ''
+        description: The timestamp of the email campaign.
       - name: crm_campaign
-        description: ''
+        description: The unique identifier of the email campaign in the CRM.
       - name: source_code_campaign
-        description: ''
+        description: The source code for the email campaign.

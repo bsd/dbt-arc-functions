@@ -1,14 +1,15 @@
+
 ---
 version: 2
 models:
   - name: stg_paidmedia_subscribes_daily_rollup_unioned
-    description: ''
+    description: Rollup of daily subscription from paid media sources
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: Source of the data    
       - name: message_id
-        description: ''
+        description: Unique ID connected to each message
       - name: date_timestamp
-        description: ''
+        description: Date of the subscription
       - name: subscribes
-        description: ''
+        description: Number of subscriptions

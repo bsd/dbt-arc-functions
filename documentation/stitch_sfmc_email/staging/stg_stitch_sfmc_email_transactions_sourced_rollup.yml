@@ -1,26 +1,27 @@
+
 ---
 version: 2
 models:
   - name: stg_stitch_sfmc_email_transactions_sourced_rollup
-    description: ''
+    description: Rollup table for revenue sourced to Salesforce Marketing Cloud newsletters
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for the newsletter
       - name: total_revenue
-        description: ''
+        description: Total revenue sourced to the newsletter
       - name: total_gifts
-        description: ''
+        description: Total gifts sourced to the newsletter
       - name: total_donors
-        description: ''
+        description: Total donors sourced to the newsletter
       - name: one_time_gifts
-        description: ''
+        description: Number of one-time gifts sourced to the newsletter
       - name: one_time_revenue
-        description: ''
+        description: Revenue from one-time gifts sourced to the newsletter
       - name: new_monthly_revenue
-        description: ''
+        description: Revenue from new monthly gifts sourced to the newsletter
       - name: new_monthly_gifts
-        description: ''
+        description: Number of new monthly gifts sourced to the newsletter
       - name: total_monthly_revenue
-        description: ''
+        description: Total revenue from monthly gifts sourced to the newsletter
       - name: total_monthly_gifts
-        description: ''
+        description: Total number of monthly gifts sourced to the newsletter

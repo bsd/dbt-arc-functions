@@ -1,10 +1,11 @@
+
 ---
 version: 2
 models:
   - name: stg_stitch_sfmc_email_actions_rollup
-    description: ''
+    description: Stores the rollup of all actions performed on an email
     columns:
       - name: message_id
-        description: ''
+        description: The ID of the message
       - name: actions
-        description: ''
+        description: The total number of actions performed on an email

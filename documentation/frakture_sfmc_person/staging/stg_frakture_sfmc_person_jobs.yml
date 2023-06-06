@@ -1,12 +1,13 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_sfmc_person_jobs
-    description: ''
+    description: A staging table for job listing records from SFMC.
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for the job listing record.
       - name: sent_date
-        description: ''
+        description: Date the job listing email was sent.
       - name: email_domain
-        description: ''
+        description: Domain of the email recipient.

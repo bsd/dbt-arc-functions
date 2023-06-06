@@ -1,22 +1,23 @@
+
 ---
 version: 2
 models:
   - name: stg_paidmedia_pacing_actuals_campaigns_rollup_join
-    description: ''
+    description: A staging table of paid media pacing and actuals for campaigns rollup joined
     columns:
       - name: date_day
-        description: ''
+        description: The day that the data corresponds to
       - name: objective
-        description: ''
+        description: The campaign's primary objective
       - name: channel
-        description: ''
+        description: The paid media channel the campaign is running on
       - name: platform
-        description: ''
+        description: The paid media platform the campaign is running on
       - name: channel_type
-        description: ''
+        description: The type of channel the campaign is running on
       - name: campaign_name
-        description: ''
+        description: The name of the campaign
       - name: actual_spend
-        description: ''
+        description: The actual money spent on the campaign
       - name: actual_revenue
-        description: ''
+        description: The actual money earned from the campaign

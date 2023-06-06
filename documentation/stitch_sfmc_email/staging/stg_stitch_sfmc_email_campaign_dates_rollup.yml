@@ -1,12 +1,14 @@
+
+
 ---
 version: 2
 models:
   - name: stg_stitch_sfmc_email_campaign_dates_rollup
-    description: ''
+    description: Records of SFMC Email Campaign Dates for daily rollup
     columns:
       - name: campaign_name
-        description: ''
+        description: The name of the SFMC Campaign
       - name: campaign_start_timestamp
-        description: ''
+        description: Timestamp when the SFMC Campaign was created
       - name: campaign_latest_timestamp
-        description: ''
+        description: Timestamp of the latest action associated to the SFMC Campaign

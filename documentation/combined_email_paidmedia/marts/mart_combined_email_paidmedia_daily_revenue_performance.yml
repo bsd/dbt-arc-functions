@@ -1,16 +1,17 @@
+
 ---
 version: 2
 models:
   - name: mart_combined_email_paidmedia_daily_revenue_performance
-    description: ''
+    description: Model that holds the daily combined revenue performance metrics for email and paid media
     columns:
       - name: date_timestamp
-        description: ''
+        description: Date timestamp of the revenue performance metrics 
       - name: channel
-        description: ''
+        description: Channel associated with the revenue performance metrics
       - name: best_guess_entity
-        description: ''
+        description: The entity associated with the revenue performance metrics
       - name: total_revenue
-        description: ''
+        description: Total revenue of the entity for the given date
       - name: total_gifts
-        description: ''
+        description: Total gifts for the entities given date

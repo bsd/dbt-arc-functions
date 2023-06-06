@@ -1,26 +1,27 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_actionkit_email_transactions_sourced_rollup
-    description: ''
+    description: Rollup of email transactions sourced from ActionKit
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier of the email sent
       - name: total_revenue
-        description: ''
+        description: Total monetary value of the transactions observed
       - name: total_gifts
-        description: ''
+        description: Total count of monetary transactions observed
       - name: total_donors
-        description: ''
+        description: Total count of unique donors associated with the transactions
       - name: one_time_gifts
-        description: ''
+        description: Total count of one time gifts observed
       - name: one_time_revenue
-        description: ''
+        description: Total monetary value of one time gifts observed
       - name: new_monthly_revenue
-        description: ''
+        description: Total monetary value of new monthly gifts observed
       - name: new_monthly_gifts
-        description: ''
+        description: Total count of new monthly gifts observed
       - name: total_monthly_revenue
-        description: ''
+        description: Total monetary value of all monthly gifts observed
       - name: total_monthly_gifts
-        description: ''
+        description: Total count of all monthly gifts observed

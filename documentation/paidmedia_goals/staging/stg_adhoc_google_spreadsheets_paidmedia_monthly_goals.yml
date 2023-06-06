@@ -1,18 +1,19 @@
+
 ---
 version: 2
 models:
   - name: stg_adhoc_google_spreadsheets_paidmedia_monthly_goals
-    description: ''
+    description: A staging table for paid media data from Google Spreadsheets
     columns:
       - name: month_year
-        description: ''
+        description: The month and year of the record
       - name: objective
-        description: ''
+        description: A description of the goal for paid media
       - name: channel
-        description: ''
+        description: The paid media channel associated with the record (e.g. Display, Social, Organic/Paid Search)
       - name: platform
-        description: ''
+        description: The platform associated with the paid media (e.g. Google Ads, Facebook Ads, LinkedIn Ads)
       - name: projected_spend
-        description: ''
+        description: The estimated spend for the record
       - name: projected_revenue
-        description: ''
+        description: The estimated resulting revenue from the record

@@ -2,11 +2,11 @@
 version: 2
 models:
   - name: stg_supermetrics_yahoo_dsp_paidmedia_spends_daily_rollup
-    description: ''
+    description: Daily rollup of paid media spends across Yahoo DSP
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for each spend
       - name: date_timestamp
-        description: ''
+        description: Timestamp for the daily rollup
       - name: spend_amount
-        description: ''
+        description: Amount spend on that day

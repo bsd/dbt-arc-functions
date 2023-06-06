@@ -1,58 +1,59 @@
+
 ---
 version: 2
 models:
   - name: stg_google_analytics_event_sub_menu
-    description: ''
+    description: Model that contains information to track user interactions with Accordion menu items
     columns:
       - name: event_date
-        description: ''
+        description: Date of the event
       - name: session_id
-        description: ''
+        description: Unique ID of the session
       - name: session_source
-        description: ''
+        description: Source of the session
       - name: session_medium
-        description: ''
+        description: Medium of the session
       - name: host_name
-        description: ''
+        description: Host name of the session
       - name: page_path
-        description: ''
+        description: Page path of the session
       - name: device_category
-        description: ''
+        description: Category of the device
       - name: user_gender
-        description: ''
+        description: Gender of the user
       - name: user_age
-        description: ''
+        description: Age of the user
       - name: session_default_channel
-        description: ''
+        description: Default channel of the session
       - name: campaign
-        description: ''
+        description: Campaign of the session
       - name: device_language
-        description: ''
+        description: Language of the device
       - name: selected_language
-        description: ''
+        description: Selected language of the session
       - name: event_name
-        description: ''
+        description: Name of the event
       - name: accordion_item
-        description: ''
+        description: Name of the Accordion item
       - name: accordion_block
-        description: ''
+        description: Name of the Accordion block
       - name: file_name
-        description: ''
+        description: File name of the Accordion item
       - name: link_domain
-        description: ''
+        description: Domain of the link
       - name: top_nav_name
-        description: ''
+        description: Name of the top navigation item
       - name: sub_menu_name
-        description: ''
+        description: Name of the sub menu item
       - name: engaged_session
-        description: ''
+        description: Flag to indicate engaged session
       - name: percent_scrolled
-        description: ''
+        description: Percentage of how far user scrolled
       - name: search_term
-        description: ''
+        description: Search term of the session
       - name: page_referrer
-        description: ''
+        description: Referrer of the page
       - name: user_id
-        description: ''
+        description: Unique ID of the user
       - name: engagement_time_msec
-        description: ''
+        description: Total engagement time in milliseconds

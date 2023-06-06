@@ -1,36 +1,37 @@
+
 ---
 version: 2
 models:
   - name: stg_stitch_sfmc_audience_transactions_summary_unioned
-    description: ''
+    description: Summary of all transactions from SFMC Audience
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: Relation of source in dbt
       - name: transaction_id
-        description: ''
+        description: Unique ID of the transaction
       - name: person_id
-        description: ''
+        description: Unique ID of the individual
       - name: source_code
-        description: ''
+        description: Unique ID of source
       - name: crm
-        description: ''
+        description: CRM system
       - name: message_id
-        description: ''
+        description: Unique ID of the message
       - name: transaction_date
-        description: ''
+        description: Date and time of the transaction
       - name: amount
-        description: ''
+        description: Amount of the transaction
       - name: gift_type
-        description: ''
+        description: Type of gift
       - name: appeal
-        description: ''
+        description: Appeal for donation
       - name: recurring
-        description: ''
+        description: If the transaction is part of a recurring donation
       - name: inbound_channel
-        description: ''
+        description: Channel of donation
       - name: appeal_business_unit
-        description: ''
+        description: Business unit of the appeal
       - name: application
-        description: ''
+        description: The application the transaction was made through
       - name: transaction_date_day
-        description: ''
+        description: Date of transaction in Day format

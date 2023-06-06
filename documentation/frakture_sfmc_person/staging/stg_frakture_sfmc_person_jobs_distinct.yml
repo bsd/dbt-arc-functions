@@ -1,12 +1,13 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_sfmc_person_jobs_distinct
-    description: ''
+    description: Temporary staging table for storing unique person jobs
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for each job
       - name: sent_date
-        description: ''
+        description: Date and time the job was sent
       - name: email_domain
-        description: ''
+        description: The domain of the recipient's email address

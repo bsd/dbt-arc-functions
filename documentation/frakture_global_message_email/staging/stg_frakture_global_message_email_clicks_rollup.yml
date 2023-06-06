@@ -1,8 +1,9 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_global_message_email_clicks_rollup
-    description: ''
+    description: Records the number of times a message was clicked.
     columns:
       - name: message_id
         description: The unique identifier for each message.

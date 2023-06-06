@@ -1,22 +1,23 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_everyaction_email_campaigns
-    description: ''
+    description: 'Stage for Frakture EveryAction email campaigns'
     columns:
       - name: message_id
-        description: ''
+        description: 'UUID provided by EveryAction for each message sent'
       - name: crm_entity
-        description: ''
+        description: 'Name of Frakture entity provided by EveryAction'
       - name: source_code_entity
-        description: ''
+        description: 'Source code of Frakture entity provided by EveryAction'
       - name: audience
-        description: ''
+        description: 'Audience to which email was sent by EveryAction in this campaign'
       - name: recurtype
-        description: ''
+        description:  'Recur type of message sent by EveryAction in this campaign'
       - name: campaign_category
-        description: ''
+        description: 'Category of this campaign provided by EveryAction'
       - name: crm_campaign
-        description: ''
+        description: 'campaign name provided by EveryAction'
       - name: source_code_campaign
-        description: ''
+        description: 'Source code of EveryAction campaign'

@@ -1,30 +1,31 @@
+
 ---
 version: 2
 models:
   - name: mart_email_deliverability_by_domain_and_date
-    description: ''
+    description: 'A data model that provides a historical summary of email performance by domain and date'
     columns:
       - name: sent_date
-        description: ''
+        description: 'The date the email was sent'
       - name: message_id
-        description: ''
+        description: 'The unique message id for the email sent'
       - name: email_domain
-        description: ''
+        description: 'The domain of the emails that was sent'
       - name: domain_category
-        description: ''
+        description: 'The category the domain belongs to, e.g. bulk, monitoring etc'
       - name: recipients
-        description: ''
+        description: 'The amount of recipients that were sent to'
       - name: opens
-        description: ''
+        description: 'The amount of opens for the email'
       - name: clicks
-        description: ''
+        description: 'The amount of clicks for the email'
       - name: actions
-        description: ''
+        description: 'The total amount of interactions/actions for the email'
       - name: total_bounces
-        description: ''
+        description: 'The total amount of bounces for the email'
       - name: soft_bounces
-        description: ''
+        description: 'The amount of soft bounces for the email'
       - name: hard_bounces
-        description: ''
+        description: 'The amount of hard bounces for the email'
       - name: unsubscribes
-        description: ''
+        description: 'The amount of unsubscribes for the email'

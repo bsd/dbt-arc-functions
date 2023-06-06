@@ -1,102 +1,103 @@
+
 ---
 version: 2
 models:
   - name: stg_google_analytics_events_unioned_rollup
-    description: ''
+    description: Events data from all Google Analytics sources
     columns:
       - name: event_date
-        description: ''
+        description: The date of the event
       - name: session_source
-        description: ''
+        description: The source of the user's session
       - name: session_medium
-        description: ''
+        description: The medium of the user's session 
       - name: host_name
-        description: ''
+        description: The name of the host for user's session
       - name: page_group
-        description: ''
+        description: The page group for the user's session
       - name: session_default_channel
-        description: ''
+        description: The default channel for the user's session
       - name: campaign
-        description: ''
+        description: The campaign for the user's session
       - name: device_category
-        description: ''
+        description: The category of the user's device
       - name: device_language
-        description: ''
+        description: The language of the user's device
       - name: selected_language
-        description: ''
+        description: The selected language for the user's session
       - name: user_gender
-        description: ''
+        description: The gender of the user
       - name: user_age
-        description: ''
+        description: The age of the user
       - name: accordion_item
-        description: ''
+        description: The accordion item clicked by the user
       - name: accordion_block
-        description: ''
+        description: The accordion block clicked by the user
       - name: file_name
-        description: ''
+        description: The name of the file the user downloaded
       - name: link_domain
-        description: ''
+        description: The domain of the link clicked by the user
       - name: top_nav_name
-        description: ''
+        description: The name of the top navigation item clicked by the user
       - name: sub_menu_name
-        description: ''
+        description: The name of the sub menu item clicked by the user
       - name: search_term
-        description: ''
+        description: The search term used by the user
       - name: page_referrer
-        description: ''
+        description: The page referrer for the user's session
       - name: accordion_block_clicks
-        description: ''
+        description: The number of clicks on accordion block items
       - name: unique_accordion_block_clicks
-        description: ''
+        description: The number of unique clicks on accordion block items
       - name: clicks
-        description: ''
+        description: The number of clicks on page elements
       - name: unique_clicks
-        description: ''
+        description: The number of unique clicks on page elements
       - name: downloads
-        description: ''
+        description: The number of file downloads
       - name: unique_downloads
-        description: ''
+        description: The number of unique file downloads
       - name: first_visits
-        description: ''
+        description: The number of first visits
       - name: unique_first_visits
-        description: ''
+        description: The number of unique first visits
       - name: language_menu_expands
-        description: ''
+        description: The number of times the language menu was expanded
       - name: unique_language_menu_expands
-        description: ''
+        description: The number of unique times the language menu was expanded
       - name: page_views
-        description: ''
+        description: The number of page views
       - name: unique_page_views
-        description: ''
+        description: The number of unique page views
       - name: searches
-        description: ''
+        description: The number of searches
       - name: unique_searches
-        description: ''
+        description: The number of unique searches
       - name: scrolls
-        description: ''
+        description: The number of page scrolls
       - name: unique_scrolls
-        description: ''
+        description: The number of unique page scrolls
       - name: session_starts
-        description: ''
+        description: The number of session starts
       - name: unique_session_starts
-        description: ''
+        description: The number of unique session starts
       - name: sub_menu_expands
-        description: ''
+        description: The number of times the sub menu was expanded
       - name: unique_sub_menu_expands
-        description: ''
+        description: The number of unique times the sub menu was expanded
       - name: user_engagements
-        description: ''
+        description: The number of user engagements
       - name: unique_user_engagements
-        description: ''
+        description: The number of unique user engagements
       - name: engaged_sessions
-        description: ''
+        description: The number of engaged sessions
       - name: avg_percent_scrolled
-        description: ''
+        description: The average percent of page scrolled per session
       - name: engagement_time_msecs
-        description: ''
+        description: The average engagement time, in milliseconds
       - name: unique_sessions
-        description: ''
+        description: The number of unique sessions
       - name: unique_users
-        description: ''
+        description: The number of unique users
       - name: total_users
-        description: ''
+        description: The total number of users

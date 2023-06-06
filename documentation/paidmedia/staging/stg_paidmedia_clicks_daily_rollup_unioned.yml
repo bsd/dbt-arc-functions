@@ -1,16 +1,17 @@
+
 ---
 version: 2
 models:
   - name: stg_paidmedia_clicks_daily_rollup_unioned
-    description: ''
+    description: Table containing rollup of daily click counts for all paid media campaigns.
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: Source relation from which this data point originates from.
       - name: message_id
-        description: ''
+        description: Unique identifier for each message/advertisement
       - name: date_timestamp
-        description: ''
+        description: Date the message/advertisement was shown
       - name: total_clicks
-        description: ''
+        description: Total number of clicks for a given date and message/advertisement
       - name: unique_clicks
-        description: ''
+        description: Number of unique users who clicked on the message/advertisement for a given date

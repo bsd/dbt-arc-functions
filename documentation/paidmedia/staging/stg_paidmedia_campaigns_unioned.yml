@@ -2,21 +2,21 @@
 version: 2
 models:
   - name: stg_paidmedia_campaigns_unioned
-    description: ''
+    description: This model joins two datasets from a paid media source
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: Name of the source table
       - name: campaign_id
-        description: ''
+        description: Unique identifier of the campaign
       - name: message_id
-        description: ''
+        description: Unique identifier of the message
       - name: channel
-        description: ''
+        description: Channel used to deliver the message
       - name: channel_type
-        description: ''
+        description: Type of channel used to deliver the message
       - name: campaign_name
-        description: ''
+        description: Name of the campaign
       - name: crm_entity
-        description: ''
+        description: Customer Relationship Management entity
       - name: source_code_entity
-        description: ''
+        description: Source code entity

@@ -1,18 +1,19 @@
+
 ---
 version: 2
 models:
   - name: stg_email_deliverability_person_bounces_daily_rollup_unioned
-    description: ''
+    description: Contains daily rollup unioned data for hard and soft bounces for all messages associated with a person
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: The source relation from which this model is materialized
       - name: sent_date
-        description: ''
+        description: The date the message was sent
       - name: message_id
-        description: ''
+        description: The id of the message
       - name: email_domain
-        description: ''
+        description: The domain of the associated email address
       - name: hard_bounces
-        description: ''
+        description: The number of hard bounces associated with the message
       - name: soft_bounces
-        description: ''
+        description: The number of soft bounces associated with the message

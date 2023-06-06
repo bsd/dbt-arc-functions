@@ -1,16 +1,18 @@
+
 ---
 version: 2
 models:
   - name: stg_paidmedia_pacing_actuals_campaigns
-    description: ''
+    description: Table of campaigns containing metrics such travel, impressions and cost.
+
     columns:
       - name: campaign_name
-        description: ''
+        description: Unique identifier for the campaigns
       - name: platform
-        description: ''
+        description: Platform on which the campaign was run
       - name: objective
-        description: ''
+        description: Main goal of the campaign
       - name: channel
-        description: ''
+        description: Channel used to reach the target audience
       - name: channel_type
-        description: ''
+        description: Type of the channel used

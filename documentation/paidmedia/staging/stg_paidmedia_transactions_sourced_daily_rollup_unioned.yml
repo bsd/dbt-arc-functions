@@ -1,40 +1,41 @@
+
 ---
 version: 2
 models:
   - name: stg_paidmedia_transactions_sourced_daily_rollup_unioned
-    description: ''
+    description: Aggregated daily rollup of all paid media sourced transactions
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: Source table for this rollup
       - name: message_id
-        description: ''
+        description: Message that drove the transaction
       - name: date_timestamp
-        description: ''
+        description: Date of the transaction
       - name: total_revenue
-        description: ''
+        description: Total revenue
       - name: total_gifts
-        description: ''
+        description: Total number of gifts
       - name: total_donors
-        description: ''
+        description: Total number of donors
       - name: one_time_revenue
-        description: ''
+        description: Total one-time revenue
       - name: one_time_gifts
-        description: ''
+        description: Total number of one-time gifts
       - name: new_monthly_revenue
-        description: ''
+        description: Total new recurring revenue
       - name: new_monthly_gifts
-        description: ''
+        description: Total new recurring gifts
       - name: total_monthly_revenue
-        description: ''
+        description: Total recurring revenue
       - name: total_monthly_gifts
-        description: ''
+        description: Total recurring gifts
       - name: campaign
-        description: ''
+        description: ID for the campaign
       - name: campaign_label
-        description: ''
+        description: Name of the campaign
       - name: audience
-        description: ''
+        description: Audience segment
       - name: appeal
-        description: ''
+        description: Appeal code
       - name: source_code
-        description: ''
+        description: Source code

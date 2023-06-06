@@ -1,10 +1,12 @@
+
 ---
+
 version: 2
 models:
   - name: stg_frakture_global_message_email_opens_rollup
-    description: ''
+    description: Rollup table of email message opens
     columns:
       - name: message_id
-        description: ''
+        description: Unique message id related to an email sent
       - name: opens
-        description: ''
+        description: Number of times the email was opened

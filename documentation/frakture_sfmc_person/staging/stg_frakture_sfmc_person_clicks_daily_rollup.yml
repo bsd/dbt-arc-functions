@@ -1,14 +1,15 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_sfmc_person_clicks_daily_rollup
-    description: ''
+    description: Stores a daily rollup of SFMC click data
     columns:
       - name: sent_date
-        description: ''
+        description: The date the message was sent successfully
       - name: message_id
-        description: ''
+        description: The ID for the SFMC message sent
       - name: email_domain
-        description: ''
+        description: The email domain of the recipient
       - name: clicks
-        description: ''
+        description: The total number of clicks for the email recipient

@@ -1,12 +1,13 @@
+
 ---
 version: 2
 models:
   - name: stg_stitch_sfmc_email_campaign_dates
-    description: ''
+    description: Tables provides SFMC campaign dates from the Salesforce Marketing Cloud
     columns:
       - name: campaign_timestamp
-        description: ''
+        description: Timestamp of when the campaign was sent
       - name: crm_campaign
-        description: ''
+        description: SFMC Campaign identifier from the Salesforce CRM system
       - name: source_code_campaign
-        description: ''
+        description: Source code of the campaign used in SFMC

@@ -1,18 +1,19 @@
+
 ---
 version: 2
 models:
   - name: stg_frakture_actionkit_email_bounces_rollup
-    description: ''
+    description: Contains email bounce data for the ActionKit integration
     columns:
       - name: message_id
-        description: ''
+        description: The unique message identifier
       - name: total_bounces
-        description: ''
+        description: Total number of email bounces
       - name: block_bounces
-        description: ''
+        description: Total number of email blocks
       - name: tech_bounces
-        description: ''
+        description: Total number of technical bounces
       - name: soft_bounces
-        description: ''
+        description: Total number of soft bounces
       - name: hard_bounces
-        description: ''
+        description: Total number of hard bounces
