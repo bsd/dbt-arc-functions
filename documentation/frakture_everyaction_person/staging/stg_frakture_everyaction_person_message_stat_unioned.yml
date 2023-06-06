@@ -7,33 +7,33 @@ models:
     columns:
       - name: _dbt_source_relation
         description: The source of the data contained in the table.
-    - name: ts
+      - name: ts
         description: The date the record was created.
-    - name: sent_ts
+      - name: sent_ts
         description: The date the message was sent.
-    - name: message_id
+      - name: message_id
         description: The ID of the message associated with this record.
-    - name: remote_person_id
+      - name: remote_person_id
         description: The ID of the person associated with this record.
-    - name: received
+      - name: received
         description: Indicates whether the message was received by the recipient.
-    - name: opened
+      - name: opened
         description: Indicates whether the message was opened by the recipient.
-    - name: opened_ts
+      - name: opened_ts
         description: The date the message was opened.
-    - name: clicked
+      - name: clicked
         description: Indicates whether the message was clicked by the recipient.
-    - name: clicked_ts
+      - name: clicked_ts
         description: The date the message was clicked.
-    - name: action
+      - name: action
         description: Indicates whether the message was responded to with an action.
-    - name: hard_bounce
+      - name: hard_bounce
         description: Indicates whether the message was returned with a hard bounce.
-    - name: bounced_ts
+      - name: bounced_ts
         description: The date the message was bounced.
-    - name: unsubscribe
+      - name: unsubscribe
         description: Indicates whether the message was unsubscribed by the recipient.
-    - name: unsubscribed_ts
+      - name: unsubscribed_ts
         description: The date the recipient unsubscribed from the message.
-    - name: soft_bounce
+      - name: soft_bounce
         description: Indicates whether the message was returned with a soft bounce.
