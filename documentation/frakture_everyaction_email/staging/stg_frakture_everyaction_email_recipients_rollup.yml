@@ -8,7 +8,4 @@ models:
         description: ID of the email sent
       - name: recipients
         description: Number of email recipients
-      - name: opens
-        description: Number of emails opened
-      - name: clicks
-        description: Number of emails clicked
+
