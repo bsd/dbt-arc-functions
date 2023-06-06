@@ -18,7 +18,4 @@ models:
         description: Campaign Category
       - name: campaign_name
         description: Campaign Name from EveryAction
-      - name: email_subject
-        description: Subject line of the message
-      - name: email_type
-        description: Type of Email sent
+
