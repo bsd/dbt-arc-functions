@@ -18,4 +18,3 @@ models:
         description: Campaign Category
       - name: campaign_name
         description: Campaign Name from EveryAction
-

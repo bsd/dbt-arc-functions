@@ -8,4 +8,3 @@ models:
         description: ID of the email sent
       - name: recipients
         description: Number of email recipients
-
