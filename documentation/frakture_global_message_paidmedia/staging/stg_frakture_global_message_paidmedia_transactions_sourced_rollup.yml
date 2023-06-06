@@ -37,5 +37,4 @@ models:
         description: The appeal code associated with the message
       - name: source_code
         description: The source code associated with the message
-      - name: source_code_label
-        description: The label of the source code associated with the message
+
