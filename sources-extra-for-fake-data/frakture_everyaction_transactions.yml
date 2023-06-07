@@ -1,0 +1,61 @@
+---
+version: 2
+sources:
+  - name: frakture_everyaction_transactions
+    description: ''
+    schema: src_frakture
+    tables:
+      - name: everyaction_bot_transaction
+        description: ''
+        columns:
+          - name: remote_transaction_id
+            data_type: STRING
+            description: ''
+          - name: remote_person_id
+            data_type: STRING
+            description: ''
+          - name: ts
+            data_type: DATETIME
+            description: ''
+          - name: amount
+            data_type: FLOAT64
+            description: ''
+          - name: recurs
+            data_type: STRING
+            description: ''
+          - name: recurring_number
+            data_type: INT64
+            description: ''
+          - name: refund_amount
+            data_type: FLOAT64
+            description: ''
+          - name: source_code
+            data_type: STRING
+            description: ''
+          - name: remote_last_modified
+            data_type: STRING
+            description: ''
+          - name: source
+            data_type: STRING
+            description: ''
+          - name: payment_method
+            data_type: STRING
+            description: ''
+          - name: remote_page_name
+            data_type: STRING
+            description: ''
+          - name: form_name
+            data_type: STRING
+            description: ''
+          - name: everyaction_direct_marketing_code
+            data_type: STRING
+            description: ''
+          - name: everyaction_market_source
+            data_type: STRING
+            description: ''
+          - name: everyaction_gateway_account
+            data_type: STRING
+            description: ''
+          - name: everyaction_online_reference_number
+            data_type: STRING
+            description: ''
