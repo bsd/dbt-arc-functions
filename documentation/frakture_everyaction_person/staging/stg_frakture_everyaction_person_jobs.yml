@@ -2,11 +2,11 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_person_jobs
-    description: ''
+    description: This model stores EveryAction Person Job information for daily ETL
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for the message sent
       - name: sent_date
-        description: ''
+        description: The date the message was sent
       - name: email_domain
-        description: ''
+        description: The domain name of the email recipient

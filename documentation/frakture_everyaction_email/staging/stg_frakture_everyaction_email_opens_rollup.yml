@@ -2,9 +2,9 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_email_opens_rollup
-    description: ''
+    description: Model contains records of actrive opens for everyaction emails
     columns:
       - name: message_id
-        description: ''
+        description: Uniquely identifies each message record
       - name: opens
-        description: ''
+        description: The total number of customers who opened an email

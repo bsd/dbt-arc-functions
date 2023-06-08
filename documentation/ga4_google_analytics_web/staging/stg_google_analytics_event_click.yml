@@ -2,57 +2,59 @@
 version: 2
 models:
   - name: stg_google_analytics_event_click
-    description: ''
+    description: This table contains all events acquired through Google Analytics.
     columns:
       - name: event_date
-        description: ''
+        description: The date the event was logged.
       - name: session_id
-        description: ''
+        description: A unique identifier for the 5-minute or 30-minute session.
       - name: session_source
-        description: ''
+        description: Where the session originated from - can be a Google organic search
+          or a referral link.
       - name: session_medium
-        description: ''
+        description: The medium used in the original referer from the session source.
       - name: host_name
-        description: ''
+        description: The domain from which the event originated.
       - name: page_path
-        description: ''
+        description: The URL of the event.
       - name: device_category
-        description: ''
+        description: The device type used by the user.
       - name: user_gender
-        description: ''
+        description: A user-defined field for gender information.
       - name: user_age
-        description: ''
+        description: A user-defined field for age range.
       - name: session_default_channel
-        description: ''
+        description: The default channel of the session in lowercase.
       - name: campaign
-        description: ''
+        description: The name of any Google Ads campaigns that may have contributed
+          to the acquisition of the session.
       - name: device_language
-        description: ''
+        description: The language setting of the device.
       - name: selected_language
-        description: ''
+        description: Any language selection the user has chosen themselves.
       - name: event_name
-        description: ''
+        description: The type of event, for example 'pageview' or 'click'.
       - name: accordion_item
-        description: ''
+        description: The name of an interactive accordion item.
       - name: accordion_block
-        description: ''
+        description: The name of the block containing the accordion item.
       - name: file_name
-        description: ''
+        description: The name of a downloaded file.
       - name: link_domain
-        description: ''
+        description: The domain of a clicked link.
       - name: top_nav_name
-        description: ''
+        description: The name of the top navigation item.
       - name: sub_menu_name
-        description: ''
+        description: The name of the sub-menu item.
       - name: engaged_session
-        description: ''
+        description: Whether or not the session engaged with the page.
       - name: percent_scrolled
-        description: ''
+        description: The percent of the page the user scrolled through.
       - name: search_term
-        description: ''
+        description: The user's search term.
       - name: page_referrer
-        description: ''
+        description: The URL of the page that referred the user to the current page.
       - name: user_id
-        description: ''
+        description: The unique ID of the user that accessed the page.
       - name: engagement_time_msec
-        description: ''
+        description: The amount of time the user took to engage with the page in milliseconds.

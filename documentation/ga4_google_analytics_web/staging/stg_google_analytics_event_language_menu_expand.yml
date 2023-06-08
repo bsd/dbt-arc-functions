@@ -2,57 +2,59 @@
 version: 2
 models:
   - name: stg_google_analytics_event_language_menu_expand
-    description: ''
+    description: Stage event data for potential language menu expand events.
     columns:
       - name: event_date
-        description: ''
+        description: Date of the event.
       - name: session_id
-        description: ''
+        description: Unique ID of the associated google analytics session.
       - name: session_source
-        description: ''
+        description: Referral source for the session.
       - name: session_medium
-        description: ''
+        description: Referral medium for the session.
       - name: host_name
-        description: ''
+        description: Domain of the page where the event occurred.
       - name: page_path
-        description: ''
+        description: Path of the page where the event occurred.
       - name: device_category
-        description: ''
+        description: Google analytics device category of the event.
       - name: user_gender
-        description: ''
+        description: Gender of the user.
       - name: user_age
-        description: ''
+        description: Age of the user.
       - name: session_default_channel
-        description: ''
+        description: Default channel for the session.
       - name: campaign
-        description: ''
+        description: Google analytics campaign associated with the session.
       - name: device_language
-        description: ''
+        description: Browser language of the device.
       - name: selected_language
-        description: ''
+        description: Language item chosen from the menu.
       - name: event_name
-        description: ''
+        description: Name of the event fired.
       - name: accordion_item
-        description: ''
+        description: Most recent item interacted with to lead to the menu expanding.
       - name: accordion_block
-        description: ''
+        description: Most recent accordion block interacted with to lead to the menu
+          expanding.
       - name: file_name
-        description: ''
+        description: Name of the file, if any, associated with the event.
       - name: link_domain
-        description: ''
+        description: Domain of the most recent link clicked prior to the event.
       - name: top_nav_name
-        description: ''
+        description: Name of the top navigation item interacted with prior to the
+          event.
       - name: sub_menu_name
-        description: ''
+        description: Name of the submenu interacted with prior to the event.
       - name: engaged_session
-        description: ''
+        description: Whether the session is considered an engaged session.
       - name: percent_scrolled
-        description: ''
+        description: Percentage of the page scrolled by the user prior to the event.
       - name: search_term
-        description: ''
+        description: Term used to find the page from a search engine, if any.
       - name: page_referrer
-        description: ''
+        description: Referrer for page, if any.
       - name: user_id
-        description: ''
+        description: Unique user ID, if available.
       - name: engagement_time_msec
-        description: ''
+        description: Time spent by user on the page prior to the event.

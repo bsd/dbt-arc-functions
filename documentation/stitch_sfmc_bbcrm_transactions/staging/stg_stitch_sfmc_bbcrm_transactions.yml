@@ -2,25 +2,25 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_bbcrm_transactions
-    description: ''
+    description: This model records historic transactions against people.
     columns:
       - name: transaction_id
-        description: ''
+        description: Unique identifier for a transaction.
       - name: person_id
-        description: ''
+        description: Unique identifier for a person.
       - name: source_code
-        description: ''
+        description: SourceCode of the transaction.
       - name: crm
-        description: ''
+        description: CRM system the transaction is affecting.
       - name: message_id
-        description: ''
+        description: Unique identifier for a message sent to a person.
       - name: transaction_date
-        description: ''
+        description: Date the transaction was recorded.
       - name: amount
-        description: ''
+        description: The amount of the transaction.
       - name: appeal
-        description: ''
+        description: The appeal associated with the transaction.
       - name: appeal_business_unit
-        description: ''
+        description: The business unit associated with the transaction.
       - name: application
-        description: ''
+        description: The application associated with the transaction.

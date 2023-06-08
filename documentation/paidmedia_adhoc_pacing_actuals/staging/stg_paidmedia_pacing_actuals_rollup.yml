@@ -2,15 +2,15 @@
 version: 2
 models:
   - name: stg_paidmedia_pacing_actuals_rollup
-    description: ''
+    description: Definition of the Paid Media Pacing Actuals rollup table
     columns:
       - name: date_day
-        description: ''
+        description: The day associated with the record
       - name: platform
-        description: ''
+        description: The media platform associated with the record
       - name: campaign_name
-        description: ''
+        description: The name of the campaign associated with the record
       - name: actual_spend
-        description: ''
+        description: The total spend associated with the record
       - name: actual_revenue
-        description: ''
+        description: The total revenue associated with the record

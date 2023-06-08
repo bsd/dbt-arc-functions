@@ -2,39 +2,40 @@
 version: 2
 models:
   - name: mart_paidmedia_pacing_budget_actuals_by_day
-    description: ''
+    description: This model stores the daily current spend and the current budget
+      for campaigns, as well as the pace of the spend vs budget
     columns:
       - name: date_day
-        description: ''
+        description: The day in YYYY-MM-DD format
       - name: campaign_start_date
-        description: ''
+        description: The start date of the campaign in YYYY-MM-DD format
       - name: campaign_end_date
-        description: ''
+        description: The end date of the campaign in YYYY-MM-DD format
       - name: campaign_name
-        description: ''
+        description: The name of the campaign
       - name: daily_spend
-        description: ''
+        description: The current daily spend for the campaign
       - name: cumulative_spend
-        description: ''
+        description: The cumulative spend from the start of the campaign
       - name: spend_pace
-        description: ''
+        description: How quickly the campaigns spend is going compared to the budget
       - name: daily_budget
-        description: ''
+        description: The campaigns current daily budget
       - name: cumulative_budget
-        description: ''
+        description: The campaigns cumulative budget since the start of the campaign
       - name: remaining_budget
-        description: ''
+        description: The campaigns current remaining budget
       - name: total_budget
-        description: ''
+        description: The campaigns entirety of the budget
       - name: budget_pace
-        description: ''
+        description: How quickly the campaign is being budgeted
       - name: descriptions
-        description: ''
+        description: Any additional descriptions of the campaign
       - name: channel
-        description: ''
+        description: The channel for the campaign
       - name: channel_category
-        description: ''
+        description: The channel category for the campaign
       - name: channel_type
-        description: ''
+        description: The channel type for the campaign
       - name: objective
-        description: ''
+        description: The campaign's objective

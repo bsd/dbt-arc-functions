@@ -2,19 +2,20 @@
 version: 2
 models:
   - name: stg_paidmedia_goals_monthly_actuals_rollup
-    description: ''
+    description: Holds data aggregated from the daily goals rollup from GA and FB
     columns:
       - name: month_year
-        description: ''
+        description: The month and year, displayed in a YYYY-MM format
       - name: channel
-        description: ''
+        description: The marketing channel (e.g. Paid Search, Social, etc)
       - name: objective
-        description: ''
+        description: The type of goal being measured (e.g. Revenue, Donations, etc)
       - name: platform
-        description: ''
+        description: The marketing platform (Google Ads, Facebook, etc)
       - name: actual_spend
-        description: ''
+        description: The total amount spent on the channel and platform
       - name: actual_revenue
-        description: ''
+        description: The total collected revenue from the channel and platform
       - name: actual_donations
-        description: ''
+        description: The total number of donations collected from the channel and
+          platform

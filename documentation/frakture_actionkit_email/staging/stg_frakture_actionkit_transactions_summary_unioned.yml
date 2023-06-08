@@ -2,77 +2,77 @@
 version: 2
 models:
   - name: stg_frakture_actionkit_transactions_summary_unioned
-    description: ''
+    description: Table containing transactions summaries from ActionKit
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: The Relation this table was generated from.
       - name: remote_transaction_id
-        description: ''
+        description: The transaction id within ActionKit
       - name: remote_person_id
-        description: ''
+        description: The person id for this donor with ActionKit
       - name: ts
-        description: ''
+        description: The timestamp of when the data was imported into DBT
       - name: amount
-        description: ''
+        description: The transaction amount
       - name: recurs
-        description: ''
+        description: Whether this was a recurring donation
       - name: recurring_number
-        description: ''
+        description: The recurring number (i.e. how many times the donor has donated)
       - name: refund_amount
-        description: ''
+        description: The amount of any refunds
       - name: source_code
-        description: ''
+        description: Any source code associated with the donation
       - name: email_hash_v1
-        description: ''
+        description: A hashed version of the donor's email address
       - name: actionkit_order_id
-        description: ''
+        description: The order id within ActionKit
       - name: actionkit_transaction_type
-        description: ''
+        description: The transaction type within ActionKit
       - name: actionkit_account
-        description: ''
+        description: The account associated with this donation
       - name: payment_method
-        description: ''
+        description: The payment method used for this donation
       - name: is_recurring
-        description: ''
+        description: Whether this donation is a recurring donation
       - name: actionkit_recurring_id
-        description: ''
+        description: The recurring id within ActionKit
       - name: source
-        description: ''
+        description: The source of this donation
       - name: ts_eastern
-        description: ''
+        description: The timestamp of the donation in Eastern Time
       - name: pledge_id
-        description: ''
+        description: The pledge id with ActionKit
       - name: order_id
-        description: ''
+        description: The order id associated with the donation
       - name: remote_page_id
-        description: ''
+        description: The page id associated with the donation in ActionKit
       - name: remote_page_name
-        description: ''
+        description: The page name associated with the donation in ActionKit
       - name: page_id
-        description: ''
+        description: The page id associated with the donation in Frakture
       - name: page_title
-        description: ''
+        description: The page title associated with the donation in Frakture
       - name: page_name
-        description: ''
+        description: The page name associated with the donation in Frakture
       - name: pledge_start_date
-        description: ''
+        description: The start date of the associated pledge
       - name: frequency
-        description: ''
+        description: The frequency of the associated recurring pledge
       - name: giving_level_code
-        description: ''
+        description: The giving level code associated with the donation
       - name: transaction_status
-        description: ''
+        description: The current status of the transaction
       - name: order_status
-        description: ''
+        description: The current status of the order
       - name: recurring_status
-        description: ''
+        description: The current status of the recurring donation
       - name: actionkit_overall_status
-        description: ''
+        description: The overall status of the donation with ActionKit
       - name: mailing_notes
-        description: ''
+        description: Any notes associated with this donation
       - name: remote_message_id
-        description: ''
+        description: The message id associated with this donation in ActionKit
       - name: page_tags
-        description: ''
+        description: The page tags associated with this donation in ActionKit
       - name: page_tag_ids
-        description: ''
+        description: The page tag ids associated with this donation in ActionKit

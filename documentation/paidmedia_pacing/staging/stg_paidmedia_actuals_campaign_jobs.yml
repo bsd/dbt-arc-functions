@@ -2,15 +2,16 @@
 version: 2
 models:
   - name: stg_paidmedia_actuals_campaign_jobs
-    description: ''
+    description: Records of paid media campaigns and jobs running in the North American
+      market
     columns:
       - name: campaign_name
-        description: ''
+        description: The name of the campaign
       - name: channel
-        description: ''
+        description: The channel the campaign is running in, e.g. Facebook
       - name: channel_category
-        description: ''
+        description: The broad category the channel falls into, e.g. Social
       - name: channel_type
-        description: ''
+        description: The more granular type of the channel, e.g. Desktop News Feed
       - name: objective
-        description: ''
+        description: The objective of the campaign, e.g. Brand Awareness

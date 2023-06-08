@@ -2,13 +2,13 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_person_opens_daily_rollup
-    description: ''
+    description: Records the total number of opens for each email sent per day.
     columns:
       - name: sent_date
-        description: ''
+        description: Date the email was sent.
       - name: message_id
-        description: ''
+        description: Unique identifier for the email.
       - name: email_domain
-        description: ''
+        description: Email domain of the person who opened the email.
       - name: opens
-        description: ''
+        description: Number of opens for the given message id.

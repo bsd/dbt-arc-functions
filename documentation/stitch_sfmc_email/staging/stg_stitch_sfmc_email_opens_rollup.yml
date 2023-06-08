@@ -2,9 +2,10 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_email_opens_rollup
-    description: ''
+    description: Staging table for rolling up email opens data from Salesforce Marketing
+      Cloud.
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier of the email message.
       - name: opens
-        description: ''
+        description: Number of times the email was opened.

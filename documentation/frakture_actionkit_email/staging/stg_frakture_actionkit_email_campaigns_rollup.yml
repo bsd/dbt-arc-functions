@@ -2,19 +2,19 @@
 version: 2
 models:
   - name: stg_frakture_actionkit_email_campaigns_rollup
-    description: ''
+    description: Rollup of all the data in actionkit for email campaigns
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for each email message
       - name: crm_entity
-        description: ''
+        description: Primary entity identifier
       - name: source_code_entity
-        description: ''
+        description: Source code entity
       - name: audience
-        description: ''
+        description: Identifier for the audience associated with the email message
       - name: recurtype
-        description: ''
+        description: Recurrency type, if applicable
       - name: campaign_category
-        description: ''
+        description: Category of the campaign the email message belongs to
       - name: campaign_name
-        description: ''
+        description: Name of the campaign the email message belongs to

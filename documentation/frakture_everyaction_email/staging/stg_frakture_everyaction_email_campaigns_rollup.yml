@@ -2,19 +2,19 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_email_campaigns_rollup
-    description: ''
+    description: Rollup of Email Campaigns data from EveryAction to upload to Frakture
     columns:
       - name: message_id
-        description: ''
+        description: UUID assigned by EveryAction for each sent Email
       - name: crm_entity
-        description: ''
+        description: Entity name of the customer which owns the data
       - name: source_code_entity
-        description: ''
+        description: Entity associated with the assigned source code (optional)
       - name: audience
-        description: ''
+        description: Name of the audience to whom the message was sent
       - name: recurtype
-        description: ''
+        description: Does the campaign type repeat weekly, monthly, annually
       - name: campaign_category
-        description: ''
+        description: Campaign Category
       - name: campaign_name
-        description: ''
+        description: Campaign Name from EveryAction

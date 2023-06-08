@@ -2,57 +2,59 @@
 version: 2
 models:
   - name: stg_google_analytics_event_user_engagement
-    description: ''
+    description: Stage table containing Google Analytics user engagement data.
     columns:
       - name: event_date
-        description: ''
+        description: Date of the event.
       - name: session_id
-        description: ''
+        description: Unique session identifier.
       - name: session_source
-        description: ''
+        description: Source that drove the session (e.g. email campaign, organic,
+          etc).
       - name: session_medium
-        description: ''
+        description: Medium the session was driven by (e.g. cpc, banner, etc).
       - name: host_name
-        description: ''
+        description: Name of the host.
       - name: page_path
-        description: ''
+        description: URL path of the page.
       - name: device_category
-        description: ''
+        description: Category of the device from which the page was accessed (e.g.
+          desktop, tablet, mobile).
       - name: user_gender
-        description: ''
+        description: Gender of the user.
       - name: user_age
-        description: ''
+        description: Age of the user.
       - name: session_default_channel
-        description: ''
+        description: Default channel for the session.
       - name: campaign
-        description: ''
+        description: Campaign to which the session can be attributed.
       - name: device_language
-        description: ''
+        description: Language of the device from which the page was accessed.
       - name: selected_language
-        description: ''
+        description: Language selected by the user.
       - name: event_name
-        description: ''
+        description: Name of the event.
       - name: accordion_item
-        description: ''
+        description: Accordion item interacted with.
       - name: accordion_block
-        description: ''
+        description: Accordion block interacted with.
       - name: file_name
-        description: ''
+        description: Filename of interactive document.
       - name: link_domain
-        description: ''
+        description: Domain of the link interacted with.
       - name: top_nav_name
-        description: ''
+        description: Top navigation item interacted with.
       - name: sub_menu_name
-        description: ''
+        description: Sub-menu item interacted with.
       - name: engaged_session
-        description: ''
+        description: Whether the session was an engaged session.
       - name: percent_scrolled
-        description: ''
+        description: Percentage of the page scrolled.
       - name: search_term
-        description: ''
+        description: Search term used.
       - name: page_referrer
-        description: ''
+        description: Referrer of the page.
       - name: user_id
-        description: ''
+        description: User identifier.
       - name: engagement_time_msec
-        description: ''
+        description: Amount of time the user engaged with the page in milliseconds.

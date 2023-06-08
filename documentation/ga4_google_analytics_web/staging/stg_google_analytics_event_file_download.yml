@@ -2,57 +2,60 @@
 version: 2
 models:
   - name: stg_google_analytics_event_file_download
-    description: ''
+    description: Stage table for Google Analytics Events related to file downloads
     columns:
       - name: event_date
-        description: ''
+        description: The date when the event occurred
       - name: session_id
-        description: ''
+        description: The unique identifier assigned to the user session in Google
+          Analytics
       - name: session_source
-        description: ''
+        description: The source of the user session
       - name: session_medium
-        description: ''
+        description: The medium of the user session
       - name: host_name
-        description: ''
+        description: The host name from which the user accessed the page
       - name: page_path
-        description: ''
+        description: The full path to the current page
       - name: device_category
-        description: ''
+        description: The category of device (desktop, mobile, etc.) used by the user
+          session
       - name: user_gender
-        description: ''
+        description: The gender of the user
       - name: user_age
-        description: ''
+        description: The age of the user
       - name: session_default_channel
-        description: ''
+        description: The default channel for the user session
       - name: campaign
-        description: ''
+        description: The campaign name linked to the user session
       - name: device_language
-        description: ''
+        description: The device language used by the user session
       - name: selected_language
-        description: ''
+        description: The language that was selected by the user
       - name: event_name
-        description: ''
+        description: The name of the event
       - name: accordion_block
-        description: ''
+        description: The block of content to which the accordion is attached
       - name: accordion_item
-        description: ''
+        description: The specific item of content selected in the accordion
       - name: file_name
-        description: ''
+        description: The name of the file that is part of the event
       - name: link_domain
-        description: ''
+        description: The domain base of the URL clicked
       - name: top_nav_name
-        description: ''
+        description: The name of the top navigation item clicked
       - name: sub_menu_name
-        description: ''
+        description: The name of the submenu item clicked
       - name: engaged_session
-        description: ''
+        description: Whether the user was engaged in a long session
       - name: percent_scrolled
-        description: ''
+        description: The percentage scroll of the page
       - name: search_term
-        description: ''
+        description: The search term used, if applicable
       - name: page_referrer
-        description: ''
+        description: The URL of the referring page, if there was one
       - name: user_id
-        description: ''
+        description: The unique user identifier
       - name: engagement_time_msec
-        description: ''
+        description: The change in time in milliseconds from the first impression
+          to the last in the session

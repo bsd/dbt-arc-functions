@@ -2,19 +2,19 @@
 version: 2
 models:
   - name: stg_frakture_global_message_paidmedia_campaigns
-    description: ''
+    description: A stage table for tracking global message paid media campaigns
     columns:
       - name: campaign_id
-        description: ''
+        description: ID of the campaign
       - name: message_id
-        description: ''
+        description: ID of the associated message
       - name: channel
-        description: ''
+        description: The advertising platform used
       - name: channel_type
-        description: ''
+        description: The type of channel being used
       - name: campaign_name
-        description: ''
+        description: The name of the campaign
       - name: crm_entity
-        description: ''
+        description: The associated CRM entity
       - name: source_code_entity
-        description: ''
+        description: The associated source code entity

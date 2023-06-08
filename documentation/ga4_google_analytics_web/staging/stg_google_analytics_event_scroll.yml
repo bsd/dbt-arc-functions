@@ -2,57 +2,60 @@
 version: 2
 models:
   - name: stg_google_analytics_event_scroll
-    description: ''
+    description: A staging table to store Google Analytics events related to scroll
+      engagement
     columns:
       - name: event_date
-        description: ''
+        description: The date associated with the event
       - name: session_id
-        description: ''
+        description: A unique identification code associated with the session that
+          the event was recorded in
       - name: session_source
-        description: ''
+        description: The source of the URL that started the session
       - name: session_medium
-        description: ''
+        description: The medium from the URL that started the session
       - name: host_name
-        description: ''
+        description: The host name from the URL that started the session
       - name: page_path
-        description: ''
+        description: The page path of the page in which the event was recorded
       - name: device_category
-        description: ''
+        description: The category of device that the user interacted with to record
+          the event
       - name: user_gender
-        description: ''
+        description: Gender of the user associated with the session
       - name: user_age
-        description: ''
+        description: Age of the user associated with the session
       - name: session_default_channel
-        description: ''
+        description: Default channel of the session
       - name: campaign
-        description: ''
+        description: Campaign associated with the page view
       - name: device_language
-        description: ''
+        description: The language/locale on the user's device
       - name: selected_language
-        description: ''
+        description: The language selected by the user
       - name: event_name
-        description: ''
+        description: The type of event recorded
       - name: accordion_item
-        description: ''
+        description: The Accordion item connected to the event
       - name: accordion_block
-        description: ''
+        description: The Accordion block associated with the event
       - name: file_name
-        description: ''
+        description: The file name associated with the event
       - name: link_domain
-        description: ''
+        description: The domain used for an outbound link, if applicable
       - name: top_nav_name
-        description: ''
+        description: The top navigation menu item associated with the event
       - name: sub_menu_name
-        description: ''
+        description: The sub-menu navigation item associated with the event
       - name: engaged_session
-        description: ''
+        description: Whether or not the user completed the engagement goal
       - name: percent_scrolled
-        description: ''
+        description: The percent of the page scrolled by the user
       - name: search_term
-        description: ''
+        description: The search term associated with the page view, if applicable
       - name: page_referrer
-        description: ''
+        description: The referral page for the page view
       - name: user_id
-        description: ''
+        description: A unique identification code associated with the user
       - name: engagement_time_msec
-        description: ''
+        description: The amount of time spent on a page before scrolling

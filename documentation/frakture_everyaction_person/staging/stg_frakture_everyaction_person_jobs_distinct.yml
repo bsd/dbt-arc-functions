@@ -2,11 +2,12 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_person_jobs_distinct
-    description: ''
+    description: Contains distinct job types associated with a person from the EveryAction
+      API
     columns:
       - name: message_id
-        description: ''
+        description: Unique ID for the message associated with the job
       - name: sent_date
-        description: ''
+        description: Date the message associated with the job was sent
       - name: email_domain
-        description: ''
+        description: Email domain associated with the job
