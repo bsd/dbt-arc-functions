@@ -1,8 +1,9 @@
 ---
 version: 2
 sources:
-  - name: velir_ga4_web
+  - name: ga4_google_analytics_web
     database: "{{ var('database') }}"
+    schema: ga4
     tables: 
       - name: fct_ga4__sessions_daily
       - name: dim_ga4__sessions_daily
