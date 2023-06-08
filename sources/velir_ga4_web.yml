@@ -7,3 +7,4 @@ sources:
     tables: 
       - name: fct_ga4__sessions_daily
       - name: dim_ga4__sessions_daily
+      - name: dim_ga4__sessions

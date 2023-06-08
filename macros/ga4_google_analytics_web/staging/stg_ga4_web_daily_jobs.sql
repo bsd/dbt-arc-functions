@@ -1,4 +1,4 @@
-{% macro create_stg_ga4_session_daily_jobs(reference_name="dim_ga4__sessions_daily") %}
+{% macro create_stg_ga4_web_daily_jobs(reference_name="dim_ga4__sessions_daily") %}
     with
         base as (
             select
