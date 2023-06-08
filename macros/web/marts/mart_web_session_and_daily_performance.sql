@@ -1,4 +1,4 @@
-{% macro create_mart_web_session_daily_performance(
+{% macro create_mart_web_session_and_daily_performance(
     jobs="stg_web_daily_jobs_unioned",
     engagement_time="stg_web_daily_engagement_time_rollup_unioned",
     max_engaged="stg_web_daily_max_engaged_rollup_unioned",
@@ -21,7 +21,7 @@
         jobs.geo_region,
         jobs.device_category,
         jobs.device_language,
-        engagement_time.engagement_time,
+        engagement_time.engagement_time_msec,
         max_engaged.max_engaged,
         new_users.new_users,
         unique_users.unique_users,
