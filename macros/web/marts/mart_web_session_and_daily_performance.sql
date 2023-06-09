@@ -51,4 +51,5 @@
         {{ ref(purchases) }} purchases
         on jobs.session_key = purchases.session_key
         and jobs.session_date = purchases.session_date
+    order by 1 desc, 2
 {% endmacro %}

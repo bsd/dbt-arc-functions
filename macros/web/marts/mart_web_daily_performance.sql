@@ -13,5 +13,6 @@
 
     from {{ ref(reference_name) }}
     group by session_date
+    order by 1 desc
 
 {% endmacro %}
