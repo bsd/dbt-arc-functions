@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: stg_ga4_web_daily_jobs
+    description: ""
+    columns:
+      - name: session_date
+        description: ""
+
+      - name: session_key
+        description: "Unique key assigned to sessions. Sessions can span multiple dates/partitions. 
+"
+
+      - name: default_channel_grouping
+        description: ""
+
+      - name: session_medium
+        description: ""
+
+      - name: session_source
+        description: ""
+
+      - name: session_campaign
+        description: ""
+
+      - name: hostname
+        description: ""
+
+      - name: page_path
+        description: ""
+
+      - name: referrer
+        description: ""
+
+      - name: geo_region
+        description: ""
+
+      - name: device_category
+        description: ""
+
+      - name: device_language
+        description: ""
+

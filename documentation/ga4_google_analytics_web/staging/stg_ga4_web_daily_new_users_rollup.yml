@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: stg_ga4_web_daily_new_users_rollup
+    description: ""
+    columns:
+      - name: session_date
+        description: ""
+
+      - name: session_key
+        description: ""
+
+      - name: new_users
+        description: ""
+
