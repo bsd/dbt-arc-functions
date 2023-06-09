@@ -1,5 +1,5 @@
 {% macro create_stg_ga4_web_daily_max_engaged_rollup(
-    reference_name="fct_ga4__sessions_daily)"
+    reference_name="fct_ga4__sessions_daily"
 ) %}
     select
         session_partition_date as session_date,
