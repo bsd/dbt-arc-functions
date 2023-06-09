@@ -1,16 +1,13 @@
+---
 version: 2
-
 models:
   - name: stg_ga4_web_daily_engagement_time_rollup
-    description: ""
+    description: ''
     columns:
       - name: session_date
-        description: ""
-
+        description: ''
       - name: session_key
-        description: "Unique key assigned to sessions. Sessions can span multiple dates/partitions. 
-"
-
+        description: 'Unique key assigned to sessions. Sessions can span multiple
+          dates/partitions. '
       - name: engagement_time_msec
-        description: ""
-
+        description: ''

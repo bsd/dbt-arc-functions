@@ -1,45 +1,32 @@
+---
 version: 2
-
 models:
   - name: stg_web_daily_jobs_unioned
-    description: ""
+    description: ''
     columns:
       - name: _dbt_source_relation
-        description: ""
-
+        description: ''
       - name: session_date
-        description: ""
-
+        description: ''
       - name: session_key
-        description: ""
-
+        description: ''
       - name: default_channel_grouping
-        description: ""
-
+        description: ''
       - name: session_medium
-        description: ""
-
+        description: ''
       - name: session_source
-        description: ""
-
+        description: ''
       - name: session_campaign
-        description: ""
-
+        description: ''
       - name: hostname
-        description: ""
-
+        description: ''
       - name: page_path
-        description: ""
-
+        description: ''
       - name: referrer
-        description: ""
-
+        description: ''
       - name: geo_region
-        description: ""
-
+        description: ''
       - name: device_category
-        description: ""
-
+        description: ''
       - name: device_language
-        description: ""
-
+        description: ''
