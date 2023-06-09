@@ -3,8 +3,206 @@ version: 2
 sources:
   - name: ga4_google_analytics_web
     database: "{{ var('database') }}"
-    schema: '{{ target.name }}_ga4'
-    tables:
+    schema: "{{ target.name }}_ga4"
+    tables: 
       - name: fct_ga4__sessions_daily
+        description: ""
+        columns:
+          - name: session_key
+            description: ""
+          - name: session_partition_key
+            description: ""
+          - name: user_pseudo_id
+            description: ""
+          - name: stream_id
+            description: ""
+          - name: session_partition_date
+            description: ""
+          - name: session_partition_min_timestamp
+            description: ""
+          - name: session_partition_count_page_views
+            description: ""
+          - name: session_partition_count_purchases
+            description: ""
+          - name: session_partition_sum_event_value_in_usd
+            description: ""
+          - name: session_partition_max_session_engaged
+            description: ""
+          - name: session_partition_sum_engagement_time_msec
+            description: ""
       - name: dim_ga4__sessions_daily
+        description: ""
+        columns:
+          - name: stream_id
+            description: ""
+          - name: session_key
+            description: ""
+          - name: session_partition_key
+            description: ""
+          - name: session_partition_date
+            description: ""
+          - name: session_partition_start_timestamp
+            description: ""
+          - name: landing_page_path
+            description: ""
+          - name: landing_page_location
+            description: ""
+          - name: landing_page_hostname
+            description: ""
+          - name: referrer
+            description: ""
+          - name: geo_continent
+            description: ""
+          - name: geo_country
+            description: ""
+          - name: geo_region
+            description: ""
+          - name: geo_city
+            description: ""
+          - name: geo_sub_continent
+            description: ""
+          - name: geo_metro
+            description: ""
+          - name: platform
+            description: ""
+          - name: device_category
+            description: ""
+          - name: device_mobile_brand_name
+            description: ""
+          - name: device_mobile_model_name
+            description: ""
+          - name: device_mobile_marketing_name
+            description: ""
+          - name: device_mobile_os_hardware_model
+            description: ""
+          - name: device_operating_system
+            description: ""
+          - name: device_operating_system_version
+            description: ""
+          - name: device_vendor_id
+            description: ""
+          - name: device_advertising_id
+            description: ""
+          - name: device_language
+            description: ""
+          - name: device_is_limited_ad_tracking
+            description: ""
+          - name: device_time_zone_offset_seconds
+            description: ""
+          - name: device_browser
+            description: ""
+          - name: device_web_info_browser
+            description: ""
+          - name: device_web_info_browser_version
+            description: ""
+          - name: device_web_info_hostname
+            description: ""
+          - name: user_campaign
+            description: ""
+          - name: user_medium
+            description: ""
+          - name: user_source
+            description: ""
+          - name: session_source
+            description: ""
+          - name: session_medium
+            description: ""
+          - name: session_campaign
+            description: ""
+          - name: session_content
+            description: ""
+          - name: session_term
+            description: ""
+          - name: session_default_channel_grouping
+            description: ""
+          - name: session_source_category
+            description: ""
       - name: dim_ga4__sessions
+        description: ""
+        columns:
+          - name: session_key
+            description: ""
+          - name: session_start_date
+            description: ""
+          - name: session_start_timestamp
+            description: ""
+          - name: landing_page_path
+            description: ""
+          - name: landing_page
+            description: ""
+          - name: landing_page_hostname
+            description: ""
+          - name: landing_page_referrer
+            description: ""
+          - name: geo_continent
+            description: ""
+          - name: geo_country
+            description: ""
+          - name: geo_region
+            description: ""
+          - name: geo_city
+            description: ""
+          - name: geo_sub_continent
+            description: ""
+          - name: geo_metro
+            description: ""
+          - name: stream_id
+            description: ""
+          - name: platform
+            description: ""
+          - name: device_category
+            description: ""
+          - name: device_mobile_brand_name
+            description: ""
+          - name: device_mobile_model_name
+            description: ""
+          - name: device_mobile_marketing_name
+            description: ""
+          - name: device_mobile_os_hardware_model
+            description: ""
+          - name: device_operating_system
+            description: ""
+          - name: device_operating_system_version
+            description: ""
+          - name: device_vendor_id
+            description: ""
+          - name: device_advertising_id
+            description: ""
+          - name: device_language
+            description: ""
+          - name: device_is_limited_ad_tracking
+            description: ""
+          - name: device_time_zone_offset_seconds
+            description: ""
+          - name: device_browser
+            description: ""
+          - name: device_web_info_browser
+            description: ""
+          - name: device_web_info_browser_version
+            description: ""
+          - name: device_web_info_hostname
+            description: ""
+          - name: session_number
+            description: ""
+          - name: is_first_session
+            description: ""
+          - name: user_campaign
+            description: ""
+          - name: user_medium
+            description: ""
+          - name: user_source
+            description: ""
+          - name: session_source
+            description: ""
+          - name: session_medium
+            description: ""
+          - name: session_campaign
+            description: ""
+          - name: session_content
+            description: ""
+          - name: session_term
+            description: ""
+          - name: session_default_channel_grouping
+            description: ""
+          - name: session_source_category
+            description: ""
