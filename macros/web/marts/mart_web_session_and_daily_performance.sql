@@ -14,7 +14,6 @@
         jobs.session_medium,
         jobs.session_source,
         jobs.session_campaign,
-        jobs.pages,
         jobs.hostname,
         jobs.page_path,
         jobs.referrer,

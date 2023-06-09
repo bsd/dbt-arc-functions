@@ -3,7 +3,7 @@
 ) %}
     select
         session_partition_date as session_date,
-        session_partition_key as session_key,
+        session_key,
         count(distinct pseudo_id) as unique_users
     from {{ ref(reference_name) }}
     group by 1, 2

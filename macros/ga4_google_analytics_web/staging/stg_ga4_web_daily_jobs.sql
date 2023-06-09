@@ -3,12 +3,11 @@
         base as (
             select
                 session_partition_date as session_date,
-                session_partition_key as session_key,
+                session_key,
                 session_default_channel_grouping as default_channel_grouping,
                 session_medium,
                 session_source,
                 session_campaign,
-                pages,
                 landing_page_hostname as hostname,
                 landing_page_path as page_path,
                 referrer,
@@ -35,7 +34,6 @@
         session_medium,
         session_source,
         session_campaign,
-        pages,
         hostname,
         page_path,
         referrer,
