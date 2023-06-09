@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: mart_web_daily_performance
+    description: ""
+    columns:
+      - name: session_date
+        description: ""
+
+      - name: page_views
+        description: ""
+
+      - name: engagement_time_msec
+        description: ""
+
+      - name: max_engaged
+        description: ""
+
+      - name: new_users
+        description: ""
+
+      - name: total_users
+        description: ""
+
+      - name: purchases
+        description: ""
+
+      - name: total_sessions
+        description: ""
+

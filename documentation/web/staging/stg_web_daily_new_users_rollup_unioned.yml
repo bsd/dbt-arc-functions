@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_web_daily_new_users_rollup_unioned
+    description: ""
+    columns:
+      - name: _dbt_source_relation
+        description: ""
+
+      - name: session_date
+        description: ""
+
+      - name: session_key
+        description: ""
+
+      - name: new_users
+        description: ""
+
