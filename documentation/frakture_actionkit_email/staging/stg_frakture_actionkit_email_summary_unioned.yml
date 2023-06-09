@@ -2,281 +2,294 @@
 version: 2
 models:
   - name: stg_frakture_actionkit_email_summary_unioned
-    description: ''
+    description: Stage model for the unioned summary of ActionKit emails.
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: The name of the source relation used in the DBT model.
       - name: date
-        description: ''
+        description: The date when the email was sent.
       - name: date_day
-        description: ''
+        description: Day component of the date when the email was sent.
       - name: account_id
-        description: ''
+        description: Unique identifier for the account from which the email was sent.
       - name: account_prefix
-        description: ''
+        description: Prefix associated with the account.
       - name: account_prefix_label
-        description: ''
+        description: Label for the associated account prefix.
       - name: acquisition_cost
-        description: ''
+        description: Cost of acquiring the email recipient.
       - name: acquisition_cost_per_person
-        description: ''
+        description: Cost of acquiring each individual recipient.
       - name: acquisition_date
-        description: ''
+        description: The date when the recipient was acquired.
       - name: acquisition_source
-        description: ''
+        description: The source from where the recipient was acquired.
       - name: additional_info
-        description: ''
+        description: Additional information related to the email campaign.
       - name: additional_info_label
-        description: ''
+        description: Label for the additional information related to the campaign.
       - name: adset_id
-        description: ''
+        description: Identifier for the ad set from which the recipient was sourced.
       - name: adset_name
-        description: ''
+        description: Name of the ad set from which the recipient was sourced.
       - name: affiliation
-        description: ''
+        description: The affiliation or association of the recipient.
       - name: affiliation_label
-        description: ''
+        description: Label for the affiliation or association of the recipient.
       - name: agency
-        description: ''
+        description: The agency involved in sending the email.
       - name: agency_label
-        description: ''
+        description: Label for the agency involved in sending the email.
       - name: appeal
-        description: ''
+        description: The appeal or request made in the email.
       - name: appeal_label
-        description: ''
+        description: Label for the appeal or request made in the email.
       - name: audience
-        description: ''
+        description: The intended audience for the email.
       - name: audience_label
-        description: ''
+        description: Label for the intended audience.
       - name: author
-        description: ''
+        description: Author of the email.
       - name: author_label
-        description: ''
+        description: Label for the author of the email.
       - name: bot_id
-        description: ''
+        description: Identifier for the bot involved in the email process.
       - name: campaign
-        description: ''
+        description: The campaign under which the email was sent.
       - name: campaign_id
-        description: ''
+        description: Identifier for the campaign under which the email was sent.
       - name: campaign_label
-        description: ''
+        description: Label for the campaign under which the email was sent.
       - name: campaign_name
-        description: ''
+        description: Name of the campaign under which the email was sent.
       - name: channel
-        description: ''
+        description: The communication channel used for the email.
       - name: department
-        description: ''
+        description: The department from which the email was sent.
       - name: department_label
-        description: ''
+        description: Label for the department from which the email was sent.
       - name: format
-        description: ''
+        description: The format of the email.
       - name: format_regex
-        description: ''
+        description: Regular expression relating to the format of the email.
       - name: from_email
-        description: ''
+        description: Email address from which the email was sent.
       - name: from_name
-        description: ''
+        description: Name of the sender of the email.
       - name: fund
-        description: ''
+        description: Fund or donation related to the email campaign.
       - name: fund_label
-        description: ''
+        description: Label for the fund or donation related to the email campaign.
       - name: geo
-        description: ''
+        description: Geographical information related to the recipient.
       - name: geo_label
-        description: ''
+        description: Label for geographical information related to the recipient.
       - name: goal
-        description: ''
+        description: The goal or objective of the email campaign.
       - name: goal_2
-        description: ''
+        description: Secondary goal or objective of the email campaign.
       - name: goal_2_label
-        description: ''
+        description: Label for the secondary goal or objective of the campaign.
       - name: goal_label
-        description: ''
+        description: Label for the goal or objective of the campaign.
       - name: issue
-        description: ''
+        description: Issue or topic discussed in the email.
       - name: issue_label
-        description: ''
+        description: Label for the issue or topic discussed in the email.
       - name: label
-        description: ''
+        description: General label related to the email.
       - name: media
-        description: ''
+        description: Media or content included in the email.
       - name: media_label
-        description: ''
+        description: Label for the media or content included in the email.
       - name: message_set
-        description: ''
+        description: Set of messages included in the email.
       - name: message_set_label
-        description: ''
+        description: Label for the set of messages included in the email.
       - name: organic
-        description: ''
+        description: Indicator for whether the email was sent organically (not part
+          of a paid campaign).
       - name: organic_label
-        description: ''
+        description: Label for the organic status of the email.
       - name: partner
-        description: ''
+        description: Partner involved in the email campaign.
       - name: partner_label
-        description: ''
+        description: Label for the partner involved in the email campaign.
       - name: policy
-        description: ''
+        description: Policy related to the email content or campaign.
       - name: policy_label
-        description: ''
+        description: Label for the policy related to the email content or campaign.
       - name: preview_url
-        description: ''
+        description: URL to preview the email.
       - name: publish_date
-        description: ''
+        description: The date when the email was published.
       - name: recurtype
-        description: ''
+        description: Type of recurring pattern for the email campaign.
       - name: recurtype_label
-        description: ''
+        description: Label for the type of recurring pattern for the email campaign.
       - name: remote_id
-        description: ''
+        description: ID given to the email campaign by a remote system.
       - name: signer
-        description: ''
+        description: Individual who signed off on the email.
       - name: signer_label
-        description: ''
+        description: Label for the individual who signed off on the email.
       - name: source_code_channel
-        description: ''
+        description: Channel related to the source code of the email campaign.
       - name: source_code_channel_label
-        description: ''
+        description: Label for the channel related to the source code of the campaign.
       - name: source_code_date
-        description: ''
+        description: Date when the source code was assigned to the campaign.
       - name: source_code_date_label
-        description: ''
+        description: Label for the date when the source code was assigned to the campaign.
       - name: source_code_date_parsed
-        description: ''
+        description: Parsed date when the source code was assigned.
       - name: source_code_id
-        description: ''
+        description: Unique identifier for the source code.
       - name: status
-        description: ''
+        description: Status of the email (e.g., sent, received, opened).
       - name: subchannel
-        description: ''
+        description: The specific subchannel related to the email campaign.
       - name: subchannel_label
-        description: ''
+        description: Label for the specific subchannel related to the campaign.
       - name: subject
-        description: ''
+        description: Subject line of the email.
       - name: submodule
-        description: ''
+        description: Specific submodule related to the email campaign.
       - name: tag
-        description: ''
+        description: Tag assigned to the email for tracking or categorization.
       - name: targeting
-        description: ''
+        description: Specific targeting or segmentation used for the email campaign.
       - name: targeting_2
-        description: ''
+        description: Secondary targeting or segmentation used for the campaign.
       - name: targeting_2_label
-        description: ''
+        description: Label for the secondary targeting or segmentation used for the
+          campaign.
       - name: targeting_label
-        description: ''
+        description: Label for the specific targeting or segmentation used for the
+          campaign.
       - name: theme
-        description: ''
+        description: Theme of the email content.
       - name: theme_label
-        description: ''
+        description: Label for the theme of the email content.
       - name: variant
-        description: ''
+        description: Variant or version of the email content.
       - name: variant_label
-        description: ''
+        description: Label for the variant or version of the email content.
       - name: actions
-        description: ''
+        description: Actions taken by recipients in response to the email (e.g., clicks,
+          opens, unsubscribes).
       - name: attributed_avg_amount
-        description: ''
+        description: Average amount attributed to the email campaign.
       - name: attributed_initial_recurring_revenue
-        description: ''
+        description: Initial recurring revenue attributed to the email campaign.
       - name: attributed_initial_recurring_transactions
-        description: ''
+        description: Initial recurring transactions attributed to the email campaign.
       - name: attributed_max_amount
-        description: ''
+        description: Maximum amount attributed to the email campaign.
       - name: attributed_min_amount
-        description: ''
+        description: Minimum amount attributed to the email campaign.
       - name: attributed_recurring_revenue
-        description: ''
+        description: Total recurring revenue attributed to the email campaign.
       - name: attributed_recurring_transactions
-        description: ''
+        description: Total recurring transactions attributed to the email campaign.
       - name: attributed_refund_amount
-        description: ''
+        description: Total refund amount attributed to the email campaign.
       - name: attributed_refund_count
-        description: ''
+        description: Total count of refunds attributed to the email campaign.
       - name: attributed_revenue
-        description: ''
+        description: Total revenue attributed to the email campaign.
       - name: attributed_soft_credit_amount
-        description: ''
+        description: Total soft credit amount attributed to the email campaign.
       - name: attributed_soft_credit_count
-        description: ''
+        description: Total count of soft credits attributed to the email campaign.
       - name: attributed_subsequent_recurring_revenue
-        description: ''
+        description: Subsequent recurring revenue attributed to the email campaign
+          after the initial recurrence.
       - name: attributed_subsequent_recurring_transactions
-        description: ''
+        description: Subsequent recurring transactions attributed to the campaign
+          after the initial recurrence.
       - name: attributed_transactions
-        description: ''
+        description: Total transactions attributed to the email campaign.
       - name: clicks
-        description: ''
+        description: Total clicks on the email content.
       - name: email_actions_taken
-        description: ''
+        description: Actions taken on the email by recipients.
       - name: email_advocacy_actions
-        description: ''
+        description: Advocacy actions taken in response to the email (e.g., signing
+          a petition, contacting a representative).
       - name: email_blocked
-        description: ''
+        description: Count of emails that were blocked by the recipient’s email server.
       - name: email_clicked
-        description: ''
+        description: Count of emails that were clicked on by recipients.
       - name: email_delivered
-        description: ''
+        description: Count of emails that were successfully delivered.
       - name: email_donations
-        description: ''
+        description: Donations made in response to the email.
       - name: email_ecommerce_purchase_amount
-        description: ''
+        description: Total purchase amount through eCommerce in response to the email.
       - name: email_ecommerce_purchases
-        description: ''
+        description: Total purchases made through eCommerce in response to the email.
       - name: email_expected_send
-        description: ''
+        description: Expected count of emails to be sent.
       - name: email_forwarded_actions
-        description: ''
+        description: Actions taken as a result of forwarded emails.
       - name: email_forwarded_click_count
-        description: ''
+        description: Count of clicks from forwarded emails.
       - name: email_forwarded_open_count
-        description: ''
+        description: Count of forwarded emails that were opened.
       - name: email_hard_bounces
-        description: ''
+        description: Count of emails that hard bounced (i.e., the recipient’s email
+          server rejected them).
       - name: email_open_count
-        description: ''
+        description: Count of emails that were opened by recipients.
       - name: email_opened
-        description: ''
+        description: Count of emails that were opened by recipients.
       - name: email_registrations
-        description: ''
+        description: Registrations made in response to the email.
       - name: email_rsvps
-        description: ''
+        description: Count of RSVPs made in response to the email.
       - name: email_sent
-        description: ''
+        description: Count of emails that were sent.
       - name: email_soft_bounces
-        description: ''
+        description: Count of emails that soft bounced (i.e., the recipient’s email
+          server temporarily rejected them).
       - name: email_spam_complaints
-        description: ''
+        description: Count of spam complaints made in response to the email.
       - name: email_surveys_taken
-        description: ''
+        description: Count of surveys taken in response to the email.
       - name: email_teamraiser_registrations
-        description: ''
+        description: Teamraiser registrations made in response to the email.
       - name: email_tell_a_friend_forward_recipients
-        description: ''
+        description: Count of recipients of forwarded emails through the tell-a-friend
+          feature.
       - name: email_tell_a_friend_forwards
-        description: ''
+        description: Count of emails forwarded through the tell-a-friend feature.
       - name: email_ticket_purchases
-        description: ''
+        description: Ticket purchases made in response to the email.
       - name: email_total_clicks
-        description: ''
+        description: Total count of clicks in the email.
       - name: email_unsubscribes
-        description: ''
+        description: Count of recipients who unsubscribed in response to the email.
       - name: final_primary_source_code
-        description: ''
+        description: Final source code primarily associated with the email.
       - name: first_time_actions
-        description: ''
+        description: Count of recipients who performed an action for the first time
+          in response to the email.
       - name: impressions
-        description: ''
+        description: Count of times the email was displayed, whether it was opened
+          or not.
       - name: message_id
-        description: ''
+        description: Unique identifier of the email message.
       - name: origin_person_count
-        description: ''
+        description: Count of people associated with the original email.
       - name: revenue
-        description: ''
+        description: Total revenue generated from the email.
       - name: sent
-        description: ''
+        description: Count of emails that were sent out.
       - name: total_actions
-        description: ''
+        description: Total actions taken by recipients in response to the email.
       - name: transactions
-        description: ''
+        description: Total transactions made in response to the email.
       - name: unique_actions
-        description: ''
+        description: Count of unique actions taken by recipients in response to the
+          email.

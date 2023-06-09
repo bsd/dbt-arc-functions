@@ -2,11 +2,11 @@
 version: 2
 models:
   - name: stg_frakture_global_message_paidmedia_spends_daily_rollup
-    description: ''
+    description: Rollup of daily global message paid media spends
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for a paid media message
       - name: date_timestamp
-        description: ''
+        description: Timestamp of the day for the daily rollup
       - name: spend_amount
-        description: ''
+        description: Total spend for the given day

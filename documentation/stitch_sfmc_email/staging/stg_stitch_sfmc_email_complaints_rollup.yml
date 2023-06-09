@@ -2,9 +2,9 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_email_complaints_rollup
-    description: ''
+    description: Rollup table containing aggregated email complaints from SFMC
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for the message
       - name: complaints
-        description: ''
+        description: Total number of complaints for a message

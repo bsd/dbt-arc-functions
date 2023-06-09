@@ -2,15 +2,15 @@
 version: 2
 models:
   - name: stg_email_deliverability_person_opens_daily_rollup_unioned
-    description: ''
+    description: A table to roll up sent, opens, and unique opens data by day.
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: The source relation that yielded the data.
       - name: sent_date
-        description: ''
+        description: The date the email was sent.
       - name: message_id
-        description: ''
+        description: A unique identifier of the message sent.
       - name: email_domain
-        description: ''
+        description: The domain name of the recipient's email address
       - name: opens
-        description: ''
+        description: The number of times the email was opened.

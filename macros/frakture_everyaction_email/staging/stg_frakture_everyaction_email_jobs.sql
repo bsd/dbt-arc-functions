@@ -15,7 +15,9 @@
         safe_cast(null as timestamp) as delivered_timestamp,
         safe_cast(label as string) as email_name,
         safe_cast(subject as string) as email_subject,
-        safe_cast(final_primary_source_code as string) as source_code
+        regexp_replace(
+            cast(final_primary_source_code as string), '(hdr|ftr)$', ''
+        ) as source_code
     from {{ ref(reference_name) }}
 
 {% endmacro %}

@@ -2,11 +2,11 @@
 version: 2
 models:
   - name: stg_paidmedia_pacing_budget_with_datespine
-    description: ''
+    description: A table containing date, campaign name, and daily budget.
     columns:
       - name: date_day
-        description: ''
+        description: The date for which the budget is specified.
       - name: campaign_name
-        description: ''
+        description: The name of the campaign for which budget is specified.
       - name: daily_budget
-        description: ''
+        description: The budget which applies for the day specified.

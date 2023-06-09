@@ -1,0 +1,20 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_email_campaigns_rollup
+    description: A rollup of Salesforce Marketing Cloud Email Campaigns from Stitch.
+    columns:
+      - name: message_id
+        description: The id for the email message.
+      - name: crm_entity
+        description: The name of the Salesforce CRM Entity.
+      - name: source_code_entity
+        description: The name of the Source Code Entity.
+      - name: audience
+        description: The audience the email was sent to.
+      - name: recurtype
+        description: The type of campaign recurrence if applicable.
+      - name: campaign_category
+        description: The category of the email campaign.
+      - name: campaign_name
+        description: The name of the email campaign.

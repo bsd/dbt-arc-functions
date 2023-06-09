@@ -13,5 +13,8 @@ __pycache__
 .DS_Store
 *.DS_Store
 
+
 utils/make_docs_first_time.ipynb
 utils/Untitled.ipynb
+utils/test.yml
+utils/Untitled1.ipynb

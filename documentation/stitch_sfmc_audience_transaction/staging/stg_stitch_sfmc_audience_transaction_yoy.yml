@@ -2,23 +2,29 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_audience_transaction_yoy
-    description: ''
+    description: Model that tracks year-over-year donation information for audience
+      members
     columns:
-      - name: transaction_date
-        description: ''
+      - name: transaction_date_day
+        description: The date of the donation transaction
       - name: person_id
-        description: ''
+        description: Unique identifier for the audience member
       - name: donated_current_fiscal_year_july_to_june
-        description: ''
+        description: Total amount donated by the audience member in the current fiscal
+          year from July to June
       - name: donated_last_fiscal_year_july_to_june
-        description: ''
+        description: Total amount donated by the audience member in the previous fiscal
+          year from July to June
       - name: donated_two_fiscal_years_ago_july_to_june
-        description: ''
+        description: Total amount donated by the audience member two fiscal years
+          ago from July to June
       - name: donated_three_fiscal_years_ago_july_to_june
-        description: ''
+        description: Total amount donated by the audience member three fiscal years
+          ago from July to June
       - name: donated_four_fiscal_years_ago_july_to_june
-        description: ''
+        description: Total amount donated by the audience member four fiscal years
+          ago from July to June
       - name: donated_within_14_months
-        description: ''
+        description: Total amount donated by the audience member in the last 14 months
       - name: donated_within_13_months
-        description: ''
+        description: Total amount donated by the audience member in the last 13 months

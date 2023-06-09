@@ -2,27 +2,28 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_email_jobs
-    description: ''
+    description: Records of EveryAction email jobs
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier of the email job
       - name: campaign_id
-        description: ''
+        description: Associated EveryAction campaign ID
       - name: from_name
-        description: ''
+        description: Name of sender of the email job
       - name: from_email
-        description: ''
+        description: Email address of sender of the email job
       - name: best_guess_timestamp
-        description: ''
+        description: Timestamp estimated by the EveryAction API
       - name: scheduled_timestamp
-        description: ''
+        description: Scheduled timestamp of the email job
       - name: pickup_timestamp
-        description: ''
+        description: Timestamp when the email job was picked up by the EveryAction
+          API
       - name: delivered_timestamp
-        description: ''
+        description: Timestamp when the email job was delivered
       - name: email_name
-        description: ''
+        description: Name of the email
       - name: email_subject
-        description: ''
+        description: Subject line of the email
       - name: campaign_name
-        description: ''
+        description: Name of the associated EveryAction campaign

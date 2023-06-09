@@ -2,123 +2,126 @@
 version: 2
 models:
   - name: stg_frakture_global_message_paidmedia_ad_summary_by_date
-    description: ''
+    description: Summarize paid media ad performance per message
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for message
       - name: date
-        description: ''
+        description: Date of performance metrics associated with this message
       - name: bot_id
-        description: ''
+        description: Unique identifier for the bot a message is sent from
       - name: bot_path
-        description: ''
+        description: Specific location of a bot in the bot hierarchy
       - name: bot_label
-        description: ''
+        description: Concise name for the bot
       - name: bot_nickname
-        description: ''
+        description: Nickname associated with the bot
       - name: channel
-        description: ''
+        description: Medium through which the message was sent
       - name: channel_label
-        description: ''
+        description: Concise name for the channel
       - name: type
-        description: ''
+        description: Type of message
       - name: status
-        description: ''
+        description: Message status
       - name: publish_date
-        description: ''
+        description: Date message was sent
       - name: campaign_id
-        description: ''
+        description: Unique identifier for parent campaign
       - name: submodule
-        description: ''
+        description: Submodule to which message belongs
       - name: remote_id
-        description: ''
+        description: Unique identifier for message in remote system
       - name: do_not_attribute
-        description: ''
+        description: Flag for tracking purposes
       - name: sent
-        description: ''
+        description: Number of messages sent
       - name: impressions
-        description: ''
+        description: Number of message impressions
       - name: clicks
-        description: ''
+        description: Number of message clicks
       - name: engagements
-        description: ''
+        description: Number of message engagements
       - name: actions
-        description: ''
+        description: Number of message actions
       - name: leads
-        description: ''
+        description: Number of message leads
       - name: total_actions
-        description: ''
+        description: Number of total actions
       - name: unique_actions
-        description: ''
+        description: Number of unique actions
       - name: unsubscribes
-        description: ''
+        description: Number of unsubscribes
       - name: complaints
-        description: ''
+        description: Number of complaints
       - name: soft_bounces
-        description: ''
+        description: Number of soft bounces
       - name: hard_bounces
-        description: ''
+        description: Number of hard bounces
       - name: blocked
-        description: ''
+        description: Number of messages blocked
       - name: transactions
-        description: ''
+        description: Number of transactions associated with message
       - name: revenue
-        description: ''
+        description: Total revenue associated with message
       - name: spend
-        description: ''
+        description: Total spend associated with message
       - name: attributed_revenue
-        description: ''
+        description: Total attributed revenue associated with message
       - name: attributed_transactions
-        description: ''
+        description: Total attributed transactions associated with message
       - name: attributed_revenue_day_1
-        description: ''
+        description: Total attributed revenue 1 day after message
       - name: attributed_transactions_day_1
-        description: ''
+        description: Total attributed transactions 1 day after message
       - name: attributed_revenue_day_6
-        description: ''
+        description: Total attributed revenue 6 days after message
       - name: attributed_transactions_day_6
-        description: ''
+        description: Total attributed transactions 6 days after message
       - name: attributed_recurring_revenue
-        description: ''
+        description: Total attributed recurring revenue associated with message
       - name: attributed_recurring_transactions
-        description: ''
+        description: Total attributed recurring transactions associated with message
       - name: attributed_initial_recurring_revenue
-        description: ''
+        description: Total attributed initial recurring revenue associated with message
       - name: attributed_initial_recurring_transactions
-        description: ''
+        description: Total attributed initial recurring transactions associated with
+          message
       - name: attributed_subsequent_recurring_revenue
-        description: ''
+        description: Total attributed subsequent recurring revenue associated with
+          message
       - name: attributed_subsequent_recurring_transactions
-        description: ''
+        description: Total attributed subsequent recurring transactions associated
+          with message
       - name: attributed_min_amount
-        description: ''
+        description: Minimum attributed revenue amount associated with message
       - name: origin_person_count
-        description: ''
+        description: Number of people that saw origin of message
       - name: recurtype
-        description: ''
+        description: Type of recurrence associated with message
       - name: appeal
-        description: ''
+        description: Appeal associated with message
       - name: campaign_label
-        description: ''
+        description: Label of parent campaign associated with message
       - name: audience
-        description: ''
+        description: Audience to whom the message was sent
       - name: label
-        description: ''
+        description: Label associated with message
       - name: subject
-        description: ''
+        description: Subject of message
       - name: campaign_name
-        description: ''
+        description: Name of parent campaign associated with message
       - name: campaign
-        description: ''
+        description: Name of parent campaign associated with message
       - name: account_prefix
-        description: ''
+        description: Prefix associated with tracking system associated with message
       - name: from_name
-        description: ''
+        description: From name associated with message
       - name: preview_url
-        description: ''
+        description: URL associated with preview of message
       - name: primary_source_code
-        description: ''
+        description: Primary source code associated with message
       - name: primary_source_code_override
-        description: ''
+        description: Primary source code override associated with message
       - name: final_primary_source_code
-        description: ''
+        description: Final primary source code associated with message

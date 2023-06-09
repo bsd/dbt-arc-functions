@@ -2,11 +2,11 @@
 version: 2
 models:
   - name: stg_frakture_global_message_paidmedia_subscribes_daily_rollup
-    description: ''
+    description: A daily rollup of the global, paid media message subscribes
     columns:
       - name: message_id
-        description: ''
+        description: The unique ID for the message
       - name: date_timestamp
-        description: ''
+        description: The timestamp representing the date of the message
       - name: subscribes
-        description: ''
+        description: The number of subscribers to the message

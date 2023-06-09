@@ -1,0 +1,36 @@
+---
+version: 2
+models:
+  - name: stg_frakture_everyaction_transactions
+    description: A staging table to hold raw data from EveryAction APIs
+    columns:
+      - name: source_crm
+        description: The source CRM platform name
+      - name: transaction_id_in_source_crm
+        description: Transaction ID in the source CRM
+      - name: person_id
+        description: Person ID in Frakture
+      - name: amount
+        description: Amount of the transaction
+      - name: transaction_timestamp
+        description: Timestamp of when the transaction occured
+      - name: recurring_revenue
+        description: Amount of recurring revenue associated with the transaction
+      - name: new_recurring_revenue
+        description: New recurring revenue associated with the transaction
+      - name: transaction_source_code
+        description: Source code for the transaction
+      - name: best_guess_message_id
+        description: The best-guessed message ID associated with the transaction
+      - name: campaign
+        description: The campaign associated with the transaction
+      - name: channel
+        description: The channel associated with the transaction
+      - name: audience
+        description: The audience associated with the transaction
+      - name: crm_entity
+        description: The Entity associated with the CRM source
+      - name: source_code_entity
+        description: The Entity associated with the source code
+      - name: channel_from_source_code
+        description: The channel associated with the source code

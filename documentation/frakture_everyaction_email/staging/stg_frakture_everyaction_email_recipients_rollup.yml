@@ -2,9 +2,9 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_email_recipients_rollup
-    description: ''
+    description: Stores data from EveryAction, rollup of weekly and daily email data
     columns:
       - name: message_id
-        description: ''
+        description: ID of the email sent
       - name: recipients
-        description: ''
+        description: Number of email recipients

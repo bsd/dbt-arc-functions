@@ -1,0 +1,457 @@
+---
+version: 2
+sources:
+  - name: frakture_twitter_paidmedia
+    description: ''
+    schema: src_frakture
+    tables:
+      - name: twitter_bot_ad_summary_by_date
+        description: ''
+        columns:
+          - name: date
+            data_type: DATE
+            description: ''
+          - name: date_day
+            data_type: DATE
+            description: ''
+          - name: account_id
+            data_type: STRING
+            description: ''
+          - name: account_prefix
+            data_type: STRING
+            description: ''
+          - name: account_prefix_label
+            data_type: STRING
+            description: ''
+          - name: acquisition_cost
+            data_type: FLOAT64
+            description: ''
+          - name: acquisition_cost_per_person
+            data_type: FLOAT64
+            description: ''
+          - name: acquisition_date
+            data_type: DATETIME
+            description: ''
+          - name: acquisition_source
+            data_type: STRING
+            description: ''
+          - name: ad_type
+            data_type: STRING
+            description: ''
+          - name: additional_info
+            data_type: STRING
+            description: ''
+          - name: additional_info_label
+            data_type: STRING
+            description: ''
+          - name: adset_id
+            data_type: STRING
+            description: ''
+          - name: adset_name
+            data_type: STRING
+            description: ''
+          - name: affiliation
+            data_type: STRING
+            description: ''
+          - name: affiliation_label
+            data_type: STRING
+            description: ''
+          - name: agency
+            data_type: STRING
+            description: ''
+          - name: agency_label
+            data_type: STRING
+            description: ''
+          - name: appeal
+            data_type: STRING
+            description: ''
+          - name: appeal_label
+            data_type: STRING
+            description: ''
+          - name: audience
+            data_type: STRING
+            description: ''
+          - name: audience_label
+            data_type: STRING
+            description: ''
+          - name: author
+            data_type: STRING
+            description: ''
+          - name: author_label
+            data_type: STRING
+            description: ''
+          - name: bot_id
+            data_type: STRING
+            description: ''
+          - name: campaign
+            data_type: STRING
+            description: ''
+          - name: campaign_id
+            data_type: STRING
+            description: ''
+          - name: campaign_label
+            data_type: STRING
+            description: ''
+          - name: campaign_name
+            data_type: STRING
+            description: ''
+          - name: channel
+            data_type: STRING
+            description: ''
+          - name: department
+            data_type: STRING
+            description: ''
+          - name: department_label
+            data_type: STRING
+            description: ''
+          - name: edit_url
+            data_type: STRING
+            description: ''
+          - name: format
+            data_type: STRING
+            description: ''
+          - name: format_regex
+            data_type: STRING
+            description: ''
+          - name: from_email
+            data_type: STRING
+            description: ''
+          - name: from_name
+            data_type: STRING
+            description: ''
+          - name: fund
+            data_type: STRING
+            description: ''
+          - name: fund_label
+            data_type: STRING
+            description: ''
+          - name: geo
+            data_type: STRING
+            description: ''
+          - name: geo_label
+            data_type: STRING
+            description: ''
+          - name: goal
+            data_type: STRING
+            description: ''
+          - name: goal_2
+            data_type: STRING
+            description: ''
+          - name: goal_2_label
+            data_type: STRING
+            description: ''
+          - name: goal_label
+            data_type: STRING
+            description: ''
+          - name: image_url
+            data_type: STRING
+            description: ''
+          - name: issue
+            data_type: STRING
+            description: ''
+          - name: issue_label
+            data_type: STRING
+            description: ''
+          - name: label
+            data_type: STRING
+            description: ''
+          - name: media
+            data_type: STRING
+            description: ''
+          - name: media_label
+            data_type: STRING
+            description: ''
+          - name: message_set
+            data_type: STRING
+            description: ''
+          - name: message_set_label
+            data_type: STRING
+            description: ''
+          - name: organic
+            data_type: STRING
+            description: ''
+          - name: organic_label
+            data_type: STRING
+            description: ''
+          - name: partner
+            data_type: STRING
+            description: ''
+          - name: partner_label
+            data_type: STRING
+            description: ''
+          - name: policy
+            data_type: STRING
+            description: ''
+          - name: policy_label
+            data_type: STRING
+            description: ''
+          - name: preview_url
+            data_type: STRING
+            description: ''
+          - name: publish_date
+            data_type: DATETIME
+            description: ''
+          - name: recurtype
+            data_type: STRING
+            description: ''
+          - name: recurtype_label
+            data_type: STRING
+            description: ''
+          - name: remote_id
+            data_type: STRING
+            description: ''
+          - name: signer
+            data_type: STRING
+            description: ''
+          - name: signer_label
+            data_type: STRING
+            description: ''
+          - name: source_code_channel
+            data_type: STRING
+            description: ''
+          - name: source_code_channel_label
+            data_type: STRING
+            description: ''
+          - name: source_code_date
+            data_type: STRING
+            description: ''
+          - name: source_code_date_label
+            data_type: STRING
+            description: ''
+          - name: source_code_date_parsed
+            data_type: DATETIME
+            description: ''
+          - name: source_code_id
+            data_type: INT64
+            description: ''
+          - name: subchannel
+            data_type: STRING
+            description: ''
+          - name: subchannel_label
+            data_type: STRING
+            description: ''
+          - name: subject
+            data_type: STRING
+            description: ''
+          - name: submodule
+            data_type: STRING
+            description: ''
+          - name: targeting
+            data_type: STRING
+            description: ''
+          - name: targeting_2
+            data_type: STRING
+            description: ''
+          - name: targeting_2_label
+            data_type: STRING
+            description: ''
+          - name: targeting_label
+            data_type: STRING
+            description: ''
+          - name: theme
+            data_type: STRING
+            description: ''
+          - name: theme_label
+            data_type: STRING
+            description: ''
+          - name: variant
+            data_type: STRING
+            description: ''
+          - name: variant_label
+            data_type: STRING
+            description: ''
+          - name: attributed_avg_amount
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_max_amount
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_min_amount
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_recurring_revenue
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_recurring_transactions
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_refund_amount
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_refund_count
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_revenue
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_soft_credit_amount
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_soft_credit_count
+            data_type: FLOAT64
+            description: ''
+          - name: attributed_transactions
+            data_type: FLOAT64
+            description: ''
+          - name: clicks
+            data_type: FLOAT64
+            description: ''
+          - name: engagements
+            data_type: FLOAT64
+            description: ''
+          - name: final_primary_source_code
+            data_type: STRING
+            description: ''
+          - name: impressions
+            data_type: FLOAT64
+            description: ''
+          - name: inline_link_clicks
+            data_type: FLOAT64
+            description: ''
+          - name: likes
+            data_type: FLOAT64
+            description: ''
+          - name: message_id
+            data_type: INT64
+            description: ''
+          - name: origin_person_count
+            data_type: FLOAT64
+            description: ''
+          - name: reach
+            data_type: FLOAT64
+            description: ''
+          - name: revenue
+            data_type: FLOAT64
+            description: ''
+          - name: spend
+            data_type: FLOAT64
+            description: ''
+          - name: transactions
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_app_clicks
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_engagements
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_follows
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_replies
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_retweets
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_unfollows
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_video_3s100pct_views
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_video_content_starts
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_video_total_views
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_video_views_100
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_video_views_25
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_video_views_50
+            data_type: FLOAT64
+            description: ''
+          - name: twitter_video_views_75
+            data_type: FLOAT64
+            description: ''
+          - name: url_clicks
+            data_type: FLOAT64
+            description: ''
+          - name: video_25_complete
+            data_type: FLOAT64
+            description: ''
+          - name: video_50_complete
+            data_type: FLOAT64
+            description: ''
+          - name: video_75_complete
+            data_type: FLOAT64
+            description: ''
+          - name: video_completes
+            data_type: FLOAT64
+            description: ''
+          - name: video_starts
+            data_type: FLOAT64
+            description: ''
+          - name: video_total_views
+            data_type: FLOAT64
+            description: ''
+      - name: twitter_bot_message
+        description: ''
+        columns:
+          - name: message_id
+            data_type: INT64
+            description: ''
+          - name: bot_id
+            data_type: STRING
+            description: ''
+          - name: submodule
+            data_type: STRING
+            description: ''
+          - name: remote_id
+            data_type: STRING
+            description: ''
+          - name: account_id
+            data_type: STRING
+            description: ''
+          - name: channel
+            data_type: STRING
+            description: ''
+          - name: publish_date
+            data_type: DATETIME
+            description: ''
+          - name: label
+            data_type: STRING
+            description: ''
+          - name: subject
+            data_type: STRING
+            description: ''
+          - name: from_name
+            data_type: STRING
+            description: ''
+          - name: from_email
+            data_type: STRING
+            description: ''
+          - name: campaign_name
+            data_type: STRING
+            description: ''
+          - name: campaign_id
+            data_type: STRING
+            description: ''
+          - name: preview_url
+            data_type: STRING
+            description: ''
+          - name: image_url
+            data_type: STRING
+            description: ''
+          - name: edit_url
+            data_type: STRING
+            description: ''
+          - name: ad_type
+            data_type: STRING
+            description: ''
+          - name: adset_name
+            data_type: STRING
+            description: ''
+          - name: adset_id
+            data_type: STRING
+            description: ''
+          - name: type
+            data_type: STRING
+            description: ''
+          - name: status
+            data_type: STRING
+            description: ''

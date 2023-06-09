@@ -2,13 +2,14 @@
 version: 2
 models:
   - name: stg_paidmedia_pacing_actuals_campaign_and_date_rollup
-    description: ''
+    description: Model containing the daily and cumulative spend across campaigns
+      by day
     columns:
       - name: date_day
-        description: ''
+        description: Day of the year
       - name: campaign_name
-        description: ''
+        description: Name of the campaign
       - name: daily_spend
-        description: ''
+        description: Amount spend on the day
       - name: cumulative_spend
-        description: ''
+        description: Cumulative amount spent with up to and including the day in question

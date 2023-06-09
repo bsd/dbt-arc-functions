@@ -12,277 +12,410 @@ sources:
         description: ''
         columns:
           - name: constituency
+            data_type: STRING
             description: ''
           - name: statuscode
+            data_type: INT64
             description: ''
           - name: constituentsystemrecordid
+            data_type: STRING
             description: ''
           - name: startdate
+            data_type: STRING
             description: ''
           - name: _sdc_table_version
+            data_type: INT64
             description: ''
           - name: sfmc_dateadded
+            data_type: STRING
             description: ''
           - name: constituencysystemrecordid
+            data_type: STRING
             description: ''
           - name: _sdc_source_file
+            data_type: STRING
             description: ''
           - name: _sdc_received_at
+            data_type: TIMESTAMP
             description: ''
           - name: _sdc_sequence
+            data_type: INT64
             description: ''
           - name: __sdc_primary_key
+            data_type: STRING
             description: ''
           - name: _sdc_batched_at
+            data_type: TIMESTAMP
             description: ''
           - name: _sdc_source_lineno
+            data_type: INT64
             description: ''
           - name: sfmc_updatedate
+            data_type: STRING
             description: ''
           - name: __bbcrmlookupid_
+            data_type: STRING
             description: ''
           - name: enddate
+            data_type: STRING
             description: ''
       - name: constituents
         description: ''
         columns:
           - name: addresscity
+            data_type: STRING
             description: ''
           - name: prospectmanagerregion
+            data_type: STRING
             description: ''
           - name: metropolitanstatisticalarea
+            data_type: STRING
             description: ''
           - name: ethnicity
+            data_type: STRING
             description: ''
           - name: addressdonotmail
+            data_type: STRING
             description: ''
           - name: nickname
+            data_type: STRING
             description: ''
           - name: addressstateabbrevation
+            data_type: STRING
             description: ''
           - name: statuscode
+            data_type: INT64
             description: ''
           - name: last_org_group_hh_name
+            data_type: STRING
             description: ''
           - name: age
+            data_type: INT64
             description: ''
           - name: emailaddressundeliverable
+            data_type: STRING
             description: ''
           - name: householdlookupid
+            data_type: STRING
             description: ''
           - name: constituentsystemrecordid
+            data_type: STRING
             description: ''
           - name: income
+            data_type: STRING
             description: ''
           - name: addressinfosource
+            data_type: STRING
             description: ''
           - name: suffix
+            data_type: STRING
             description: ''
           - name: addresszip
+            data_type: STRING
             description: ''
           - name: addresscountry
+            data_type: STRING
             description: ''
           - name: gender
+            data_type: STRING
             description: ''
           - name: emailaddresshygienescoredate
+            data_type: STRING
             description: ''
           - name: emailaddressinfosourcecomments
+            data_type: STRING
             description: ''
           - name: statehousedistrict
+            data_type: STRING
             description: ''
           - name: emailaddressoptindate
+            data_type: STRING
             description: ''
           - name: county
+            data_type: STRING
             description: ''
           - name: dateadded
+            data_type: STRING
             description: ''
           - name: addressblock
+            data_type: STRING
             description: ''
           - name: corebasedstatisticalareas
+            data_type: STRING
             description: ''
           - name: _sdc_table_version
+            data_type: INT64
             description: ''
           - name: emailaddressdonotemailreason
+            data_type: STRING
             description: ''
           - name: sfmc_dateadded
+            data_type: STRING
             description: ''
           - name: region
+            data_type: STRING
             description: ''
           - name: localprecinct
+            data_type: STRING
             description: ''
           - name: grouptype
+            data_type: STRING
             description: ''
           - name: _sdc_source_file
+            data_type: STRING
             description: ''
           - name: _sdc_received_at
+            data_type: TIMESTAMP
             description: ''
           - name: emailaddressstatus
+            data_type: STRING
             description: ''
           - name: _sdc_sequence
+            data_type: INT64
             description: ''
           - name: constituenttype
+            data_type: STRING
             description: ''
           - name: title
+            data_type: STRING
             description: ''
           - name: emailaddresshygienescore
+            data_type: STRING
             description: ''
           - name: congressionaldistrict
+            data_type: STRING
             description: ''
           - name: emailaddress
+            data_type: STRING
             description: ''
           - name: __sdc_primary_key
+            data_type: STRING
             description: ''
           - name: constituentsource
+            data_type: STRING
             description: ''
           - name: isinactive
+            data_type: STRING
             description: ''
           - name: birthdate
+            data_type: STRING
             description: ''
           - name: maritalstatus
+            data_type: STRING
             description: ''
           - name: statesenatedistrict
+            data_type: STRING
             description: ''
           - name: birthyear
+            data_type: INT64
             description: ''
           - name: emailaddressoptoutdate
+            data_type: STRING
             description: ''
           - name: emailaddressdonotemail
+            data_type: STRING
             description: ''
           - name: _sdc_batched_at
+            data_type: TIMESTAMP
             description: ''
           - name: religion
+            data_type: STRING
             description: ''
           - name: _sdc_source_lineno
+            data_type: INT64
             description: ''
           - name: prospectmanagername
+            data_type: STRING
             description: ''
           - name: sfmc_updatedate
+            data_type: STRING
             description: ''
           - name: deceased
+            data_type: STRING
             description: ''
           - name: emailsystemrecordid
+            data_type: STRING
             description: ''
           - name: emailaddressinfosource
+            data_type: STRING
             description: ''
           - name: firstname
+            data_type: STRING
             description: ''
           - name: __bbcrmlookupid_
+            data_type: STRING
             description: ''
       - name: interactions
         description: ''
         columns:
           - name: statuscode
+            data_type: INT64
             description: ''
           - name: constituentsystemrecordid
+            data_type: STRING
             description: ''
           - name: contactmethod
+            data_type: STRING
             description: ''
           - name: interactionsystemrecordid
+            data_type: STRING
             description: ''
           - name: summary
+            data_type: STRING
             description: ''
           - name: _sdc_table_version
+            data_type: INT64
             description: ''
           - name: actualdate
+            data_type: STRING
             description: ''
           - name: sfmc_dateadded
+            data_type: STRING
             description: ''
           - name: subcategory
+            data_type: STRING
             description: ''
           - name: _sdc_source_file
+            data_type: STRING
             description: ''
           - name: _sdc_received_at
+            data_type: TIMESTAMP
             description: ''
           - name: _sdc_sequence
+            data_type: INT64
             description: ''
           - name: __sdc_primary_key
+            data_type: STRING
             description: ''
           - name: category
+            data_type: STRING
             description: ''
           - name: _sdc_batched_at
+            data_type: TIMESTAMP
             description: ''
           - name: _sdc_source_lineno
+            data_type: INT64
             description: ''
           - name: sfmc_updatedate
+            data_type: STRING
             description: ''
           - name: __bbcrmlookupid_
+            data_type: STRING
             description: ''
       - name: smartfieldsfirst
         description: ''
         columns:
           - name: first_single_gift_appeal
+            data_type: STRING
             description: ''
           - name: first_gift_inbound_channel
+            data_type: STRING
             description: ''
           - name: first_single_gift_date
+            data_type: STRING
             description: ''
           - name: first_recurring_gift_payment_date
+            data_type: STRING
             description: ''
           - name: statuscode
+            data_type: INT64
             description: ''
           - name: constituentsystemrecordid
+            data_type: STRING
             description: ''
           - name: first_gift_appeal_business_unit
+            data_type: STRING
             description: ''
           - name: first_single_gift_designation
+            data_type: STRING
             description: ''
           - name: first_market_purchase_date
+            data_type: STRING
             description: ''
           - name: first_market_purchase_appeal_business_unit
+            data_type: STRING
             description: ''
           - name: first_single_gift_appeal_business_unit
+            data_type: STRING
             description: ''
           - name: first_recurring_gift_payment_amount
+            data_type: FLOAT64
             description: ''
           - name: first_gift_appeal
+            data_type: STRING
             description: ''
           - name: first_gift_amount
+            data_type: FLOAT64
             description: ''
           - name: _sdc_table_version
+            data_type: INT64
             description: ''
           - name: first_gift_date
+            data_type: STRING
             description: ''
           - name: first_interaction_is_advocacy_date
+            data_type: STRING
             description: ''
           - name: first_single_gift_inbound_channel
+            data_type: STRING
             description: ''
           - name: sfmc_dateadded
+            data_type: STRING
             description: ''
           - name: first_interaction_is_advocacy_summary
+            data_type: STRING
             description: ''
           - name: first_market_purchase_inbound_channel
+            data_type: STRING
             description: ''
           - name: _sdc_source_file
+            data_type: STRING
             description: ''
           - name: first_market_purchase_appeal
+            data_type: STRING
             description: ''
           - name: first_market_purchase_designation
+            data_type: STRING
             description: ''
           - name: _sdc_received_at
+            data_type: TIMESTAMP
             description: ''
           - name: _sdc_sequence
+            data_type: INT64
             description: ''
           - name: first_recurring_gift_payment_appeal
+            data_type: STRING
             description: ''
           - name: first_single_gift_amount
+            data_type: FLOAT64
             description: ''
           - name: first_market_purchase_amount
+            data_type: FLOAT64
             description: ''
           - name: first_recurring_gift_payment_inbound_channel
+            data_type: STRING
             description: ''
           - name: __sdc_primary_key
+            data_type: STRING
             description: ''
           - name: first_recurring_gift_payment_appeal_business_unit
+            data_type: STRING
             description: ''
           - name: first_recurring_gift_payment_designation
+            data_type: STRING
             description: ''
           - name: first_gift_designation
+            data_type: STRING
             description: ''
           - name: _sdc_batched_at
+            data_type: TIMESTAMP
             description: ''
           - name: _sdc_source_lineno
+            data_type: INT64
             description: ''
           - name: sfmc_updatedate
+            data_type: STRING
             description: ''
           - name: __bbcrmlookupid_
+            data_type: STRING
             description: ''

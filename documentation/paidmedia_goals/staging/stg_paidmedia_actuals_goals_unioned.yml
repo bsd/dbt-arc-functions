@@ -2,25 +2,25 @@
 version: 2
 models:
   - name: stg_paidmedia_actuals_goals_unioned
-    description: ''
+    description: Table which contains actuals & goals data for paid media
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: The source relation of the data in the table
       - name: month_year
-        description: ''
+        description: The month & year which the data applies to
       - name: objective
-        description: ''
+        description: The objective the data relates to
       - name: channel
-        description: ''
+        description: The marketing channel the data relates to
       - name: platform
-        description: ''
+        description: The marketing platform the data relates to
       - name: projected_spend
-        description: ''
+        description: The projected spend of the marketing campaign
       - name: projected_revenue
-        description: ''
+        description: The projected revenue from the marketing campaign
       - name: actual_spend
-        description: ''
+        description: The actual spend of the marketing campaign
       - name: actual_revenue
-        description: ''
+        description: The actual revenue from the marketing campaign
       - name: actual_donations
-        description: ''
+        description: The actual donations from the marketing campaign

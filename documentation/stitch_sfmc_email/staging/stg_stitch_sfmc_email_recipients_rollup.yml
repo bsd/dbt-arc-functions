@@ -2,9 +2,9 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_email_recipients_rollup
-    description: ''
+    description: Rollup of Email Engagement in Salesforce Marketing Cloud (SFMC)
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier of a message
       - name: recipients
-        description: ''
+        description: Number of recipients that received this message

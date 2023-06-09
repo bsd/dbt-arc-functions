@@ -2,15 +2,15 @@
 version: 2
 models:
   - name: stg_email_deliverability_person_unsubscribes_daily_rollup_unioned
-    description: ''
+    description: An aggregate view of all daily person unsubscribes from sending data
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: Name of source relation from DBT source mapping
       - name: sent_date
-        description: ''
+        description: Date emails which resulted in unsubscribes were sent
       - name: message_id
-        description: ''
+        description: ID of message sent
       - name: email_domain
-        description: ''
+        description: Email domain which resulted in unsubscribes
       - name: unsubscribes
-        description: ''
+        description: Total number of unsubscribes from sent message

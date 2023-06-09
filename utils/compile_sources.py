@@ -12,50 +12,63 @@ from google.cloud import bigquery
 from google.oauth2 import service_account
 
 source_regex_mappings = {
-    'frakture_twitter_paidmedia.yml': {
-        'schema': 'src_frakture',
-        'tables': [r'^twitter_[A-Za-z0-9]{3}_message$',
-                   r'^twitter_[A-Za-z0-9]{3}_ad_summary_by_date$'
-                   ]
+    "frakture_twitter_paidmedia.yml": {
+        "schema": "src_frakture",
+        "tables": [
+            r"^twitter_[A-Za-z0-9]{3}_message$",
+            r"^twitter_[A-Za-z0-9]{3}_ad_summary_by_date$",
+        ],
     },
-    'frakture_google_ads_paidmedia.yml': {
-        'schema': 'src_frakture',
-        'tables': [r'^google_ads_[A-Za-z0-9]{3}_message$',
-                   r'^google_ads_[A-Za-z0-9]{3}_ad_summary_by_date$'
-                   ]
+    "frakture_google_ads_paidmedia.yml": {
+        "schema": "src_frakture",
+        "tables": [
+            r"^google_ads_[A-Za-z0-9]{3}_message$",
+            r"^google_ads_[A-Za-z0-9]{3}_ad_summary_by_date$",
+        ],
     },
-    'frakture_facebook_paidmedia.yml': {
-        'schema': 'src_frakture',
-        'tables': [r'^facebook_bizman_[A-Za-z0-9]{3}_message$',
-                   r'^facebook_bizman_[A-Za-z0-9]{3}_ad_summary_by_date$'
-                   ]
+    "frakture_facebook_paidmedia.yml": {
+        "schema": "src_frakture",
+        "tables": [
+            r"^facebook_bizman_[A-Za-z0-9]{3}_message$",
+            r"^facebook_bizman_[A-Za-z0-9]{3}_ad_summary_by_date$",
+        ],
     },
-    'frakture_everyaction_email.yml': {
-        'schema': 'src_frakture',
-        'tables': [r'^everyaction_[A-Za-z0-9]{3}_email_summary$',
-                   r'^everyaction_[A-Za-z0-9]{3}_message$',
-                   r'^everyaction_[A-Za-z0-9]{3}_transaction$',
-                   ]
+    "frakture_everyaction_email.yml": {
+        "schema": "src_frakture",
+        "tables": [
+            r"^everyaction_[A-Za-z0-9]{3}_email_summary$",
+            r"^everyaction_[A-Za-z0-9]{3}_message$",
+            r"^everyaction_[A-Za-z0-9]{3}_transaction$",
+        ],
     },
-    'frakture_everyaction_person.yml': {
-        'schema': 'src_frakture',
-        'tables': [r'^everyaction_[A-Za-z0-9]{3}_per_person_message_stat$',
-                   r'^everyaction_[A-Za-z0-9]{3}_person$',
-                   ]
+    "frakture_everyaction_person.yml": {
+        "schema": "src_frakture",
+        "tables": [
+            r"^everyaction_[A-Za-z0-9]{3}_per_person_message_stat$",
+            r"^everyaction_[A-Za-z0-9]{3}_person$",
+        ],
     },
-    'frakture_sfmc_person.yml': {
-        'schema': 'src_frakture',
-        'tables': [r'^sfmc_[A-Za-z0-9]{3}_per_person_message_stat$',
-                   r'^sfmc_[A-Za-z0-9]{3}_person$',
-                   ]
+    "frakture_everyaction_transactions.yml": {
+        "schema": "src_frakture",
+        "tables": [
+            r"^everyaction_[A-Za-z0-9]{3}_transaction$",
+        ],
     },
-    'frakture_actionkit_email.yml': {
-        'schema': 'src_frakture',
-        'tables': [r'^actionkit_[A-Za-z0-9]{3}_message$',
-                   r'^actionkit_[A-Za-z0-9]{3}_email_summary$',
-                   r'^actionkit_[A-Za-z0-9]{3}_transaction$'
-                   ]
-    }
+    "frakture_sfmc_person.yml": {
+        "schema": "src_frakture",
+        "tables": [
+            r"^sfmc_[A-Za-z0-9]{3}_per_person_message_stat$",
+            r"^sfmc_[A-Za-z0-9]{3}_person$",
+        ],
+    },
+    "frakture_actionkit_email.yml": {
+        "schema": "src_frakture",
+        "tables": [
+            r"^actionkit_[A-Za-z0-9]{3}_message$",
+            r"^actionkit_[A-Za-z0-9]{3}_email_summary$",
+            r"^actionkit_[A-Za-z0-9]{3}_transaction$",
+        ],
+    },
 }
 
 CREDENTIALS_HELPTEXT = """
@@ -80,7 +93,7 @@ def load_dbt_project_yml(dbt_project_path, yaml):
     :param yaml: The instance of the ruamel.yaml.YAML class.
     :return: A dictionary containing the content of the dbt_project.yml file.
     """
-    with open(dbt_project_path, 'r', encoding='utf-8') as f:
+    with open(dbt_project_path, "r", encoding="utf-8") as f:
         content = f.read()
         return yaml.load(content)
 
@@ -91,11 +104,11 @@ def set_database(dbt_project_yml, project_id):
     :param dbt_project_yml: The dictionary containing the content of the dbt_project.yml file.
     :param project_id: The project ID to set as the 'database' variable.
     """
-    variables = {'database': project_id}
-    if 'vars' in dbt_project_yml:
-        dbt_project_yml['vars']['database'] = project_id
+    variables = {"database": project_id}
+    if "vars" in dbt_project_yml:
+        dbt_project_yml["vars"]["database"] = project_id
     else:
-        dbt_project_yml['vars'] = variables
+        dbt_project_yml["vars"] = variables
 
 
 def get_project_id(dbt_credentials_path):
@@ -104,8 +117,8 @@ def get_project_id(dbt_credentials_path):
     :param dbt_credentials_path: The file path of the BigQuery credentials file.
     :return: The project ID as a string.
     """
-    with open(dbt_credentials_path, 'r', encoding='utf-8') as f:
-        return json.load(f)['project_id']
+    with open(dbt_credentials_path, "r", encoding="utf-8") as f:
+        return json.load(f)["project_id"]
 
 
 def get_client(credentials_path):
@@ -115,7 +128,9 @@ def get_client(credentials_path):
     :return: A BigQuery client instance.
     """
     credentials = service_account.Credentials.from_service_account_file(
-        credentials_path, scopes=["https://www.googleapis.com/auth/cloud-platform"], )
+        credentials_path,
+        scopes=["https://www.googleapis.com/auth/cloud-platform"],
+    )
     return bigquery.Client(
         credentials=credentials,
         project=credentials.project_id,
@@ -130,28 +145,31 @@ def add_sources_to_yml(dbt_project_yml, sources_directory, client):
     :param client: The BigQuery client instance.
     :return: The updated dbt_project.yml dictionary.
     """
-    if 'sources' not in dbt_project_yml['vars']:
-        dbt_project_yml['vars']['sources'] = {}
+    if "sources" not in dbt_project_yml["vars"]:
+        dbt_project_yml["vars"]["sources"] = {}
     for source_yml in os.listdir(sources_directory):
         print(f"Working on {source_yml}")
         if source_yml in source_regex_mappings:
             source, _ = os.path.splitext(source_yml)
 
-            if source not in dbt_project_yml['vars']['sources']:
-                dbt_project_yml['vars']['sources'][source] = {}
-            if 'tables' not in dbt_project_yml['vars']['sources'][source]:
-                dbt_project_yml['vars']['sources'][source]['tables'] = []
+            if source not in dbt_project_yml["vars"]["sources"]:
+                dbt_project_yml["vars"]["sources"][source] = {}
+            if "tables" not in dbt_project_yml["vars"]["sources"][source]:
+                dbt_project_yml["vars"]["sources"][source]["tables"] = []
             query = f"SELECT table_name FROM `{source_regex_mappings[source_yml]['schema']}.INFORMATION_SCHEMA.TABLES`"
             query_job = client.query(query)
             all_tables = [row[0] for row in query_job]
-            for table_regex in source_regex_mappings[source_yml]['tables']:
+            for table_regex in source_regex_mappings[source_yml]["tables"]:
                 r = re.compile(table_regex)
-                matching_tables = list(
-                    filter(r.match, all_tables))  # Read Note below
+                matching_tables = list(filter(r.match, all_tables))  # Read Note below
                 for table in matching_tables:
-                    if table not in dbt_project_yml['vars']['sources'][source]['tables']:
-                        dbt_project_yml['vars']['sources'][source]['tables'].append({
-                                                                                    'name': table})
+                    if (
+                        table
+                        not in dbt_project_yml["vars"]["sources"][source]["tables"]
+                    ):
+                        dbt_project_yml["vars"]["sources"][source]["tables"].append(
+                            {"name": table}
+                        )
     return dbt_project_yml
 
 
@@ -161,15 +179,18 @@ def inplace_or_copy(filetype):
     :param filetype: The file type (string) to replace or copy.
     :return: The string '_copy' if the user chose to copy, otherwise an empty string.
     """
-    choice = ''
-    while choice not in ('r', 'c'):
+    choice = ""
+    while choice not in ("r", "c"):
         choice = input(INPLACE_OR_COPY_HELPTEXT.format(filename=filetype))
-    return '_copy' if choice == 'c' else ''
+    return "_copy" if choice == "c" else ""
 
 
 def main(
-    dbt_project_path='', dbt_credentials_path='', project_id='',
-    yaml=None, dbt_models_sources_path=''
+    dbt_project_path="",
+    dbt_credentials_path="",
+    project_id="",
+    yaml=None,
+    dbt_models_sources_path="",
 ):
     """
     The main function that runs the script.
@@ -182,7 +203,8 @@ def main(
     if not dbt_project_path:
         dbt_project_path = input(
             "Please enter the full path of the dbt_project.yml\
-                                you'd like to modify:\n")
+                                you'd like to modify:\n"
+        )
     if not dbt_credentials_path:
         dbt_credentials_path = input(CREDENTIALS_HELPTEXT)
     if not project_id:
@@ -194,14 +216,16 @@ def main(
     client = get_client(dbt_credentials_path)
     if not dbt_models_sources_path:
         dbt_models_sources_path = input(
-            "Please give the absolute path of the sources directory:\n")
+            "Please give the absolute path of the client sources directory:\n"
+        )
     dbt_project_yml = add_sources_to_yml(
-        dbt_project_yml, dbt_models_sources_path, client)
+        dbt_project_yml, dbt_models_sources_path, client
+    )
     copy_choice = inplace_or_copy("dbt_project")
     file, extension = os.path.splitext(dbt_project_path)
-    with open(file + copy_choice + extension, 'w', encoding='utf-8') as f:
+    with open(file + copy_choice + extension, "w", encoding="utf-8") as f:
         yaml.dump(dbt_project_yml, f)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

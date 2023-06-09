@@ -2,15 +2,15 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_audience_transaction_jobs_append
-    description: ''
+    description: Staging table for loading Salesforce Marketing Cloud Audience transactions
     columns:
-      - name: transaction_date
-        description: ''
+      - name: transaction_date_day
+        description: The day of the transaction
       - name: person_id
-        description: ''
+        description: The ID identifier of the person associated with the transaction
       - name: donor_audience
-        description: ''
+        description: The audience associated with the transaction
       - name: donor_engagement
-        description: ''
+        description: The engagement level associated with the transaction
       - name: donor_loyalty
-        description: ''
+        description: The loyalty level associated with the transaction
