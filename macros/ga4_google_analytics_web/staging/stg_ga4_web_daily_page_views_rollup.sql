@@ -7,5 +7,6 @@
         sum(session_partition_count_page_views) as page_views
     from {{ ref(reference_name) }}
     group by 1, 2
+    having page_views > 0
 
 {% endmacro %}

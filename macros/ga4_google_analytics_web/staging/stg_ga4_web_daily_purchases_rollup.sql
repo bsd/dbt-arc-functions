@@ -7,5 +7,6 @@
         sum(session_partition_count_purchages) as purchases
     from {{ ref(reference_name) }}
     group by 1, 2
+    having purchases > 0
 
 {% endmacro %}

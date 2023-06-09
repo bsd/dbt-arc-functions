@@ -5,5 +5,6 @@
     from {{ ref(reference_name) }}
     where is_first_session = true
     group by 1, 2
+    having new_users > 0
 
 {% endmacro %}

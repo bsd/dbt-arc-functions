@@ -7,5 +7,6 @@
         sum(session_partition_sum_engagement_time_msec) as engagement_time_mesc
     from {{ ref(reference_name) }}
     group by 1, 2
+    having engagement_time_mesc > 0
 
 {% endmacro %}

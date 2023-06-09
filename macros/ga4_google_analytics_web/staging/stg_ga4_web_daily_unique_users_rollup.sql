@@ -7,5 +7,6 @@
         count(unique pseudo_id) as unique_users
     from {{ ref(reference_name) }}
     group by 1, 2
+    having unique_users > 0
 
 {% endmacro %}

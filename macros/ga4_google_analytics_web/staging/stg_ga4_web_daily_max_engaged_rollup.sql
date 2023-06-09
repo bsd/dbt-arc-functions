@@ -7,5 +7,6 @@
         sum(session_partition_max_session_engaged) as max_engaged
     from {{ ref(reference_name) }}
     group by 1, 2
+    having max_engaged > 0
 
 {% endmacro %}
