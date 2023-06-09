@@ -4,7 +4,7 @@
     select
         session_partition_date as session_date,
         session_partition_key as session_key,
-        count(unique pseudo_id) as unique_users
+        count(distinct pseudo_id) as unique_users
     from {{ ref(reference_name) }}
     group by 1, 2
     having unique_users > 0
