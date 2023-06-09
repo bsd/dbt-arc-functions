@@ -4,7 +4,7 @@
     select
         session_partition_date as session_date,
         session_key,
-        sum(session_partition_sum_engagement_time_msec) as engagement_time_mesc
+        sum(session_partition_sum_engagement_time_msec) as engagement_time_msec
     from {{ ref(reference_name) }}
     group by 1, 2
     having engagement_time_mesc > 0
