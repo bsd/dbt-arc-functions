@@ -1,8 +1,13 @@
 # Pull Request for dbt-arc-functions
 
-- [ ] Create branch of dbt-arc-functions using JIRA extension so that naming convention is consistent
+- [ ] We've divided our PR templates into Macros, Utils and Docs PR requests. Delte the ones you're not using.
+### Macros (delete if not using)
 
-- [ ] If you've created a macro, make sure it is documented by running the notebook: `create_docs.ipynb` util in this repo. From there, you'll have to either fill in descriptions by hand OR use our `fill_in_descriptions_using_openai.ipynb` to fill in descriptions using OpenAI's ChatGPT. Always make sure to check over ChatGPT's column descriptions, as they're likely not perfect.
+- [ ] Link Jira tickets (or Github Issues) to PR here. Make sure that the Jira ticket has a good description as to why this PR is necessary and the business problem that this PR is solving. Moreover, if there have been any discussions of this ticket in Slack, make sure they're linked in the Jira ticket:
+
+- [ ] Make sure this is named using Jira extension so that naming convention is consistent. If it's not, that's okay. Go to the Jira ticket, click into the ticket, then on the right under Details, find Development, then click the Create branch button. Copy the Branch Name from there. Read here [how to rename a branch in Github](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/renaming-a-branch) to rename this branch. In the future, create branches from Jira.
+
+- [ ] Make sure the Macro is documented by running the notebook: `create_docs.ipynb` util in this repo. From there, you'll have to either fill in descriptions by hand OR use our `fill_in_descriptions_using_openai.ipynb` to fill in descriptions using OpenAI's ChatGPT. Always make sure to check over ChatGPT's column descriptions, as they're likely not perfect.
 
 - [ ] Test branch on a development branch of an existing client (ideally the one that raised the bug). Do this by changing revision of the package to the branch name in `packages.yml` file in dbt State client below.
 
@@ -12,8 +17,17 @@
 
 - [ ] query the resulting staging model in bigquery (or by previewing mart in dbt cloud, or your IDE); screenshot this
 
-- [ ] If exists, link bug issue and jira tickets to PR
+### Utils (delete if not using)
 
+- [ ] Link Jira tickets (or Github Issues) to PR here. Make sure that the Jira ticket has a good description as to why this PR is necessary and the business problem that this PR is solving. Moreover, if there have been any discussions of this ticket in Slack, make sure they're linked in the Jira ticket:
+
+- [ ] Make sure this is named using Jira extension so that naming convention is consistent. If it's not, that's okay. Go to the Jira ticket, click into the ticket, then on the right under Details, find Development, then click the Create branch button. Copy the Branch Name from there. Read here [how to rename a branch in Github](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/renaming-a-branch) to rename this branch. In the future, create branches from Jira.
+
+- [ ] Suggest any tests that your PR reviewer might use to check the utils here. Better yet, if you're able, write automated tests in Github Actions!
+
+### Docs
+
+- [ ] Link Jira tickets (or Github Issues) to PR here. Make sure that the Jira ticket has a good description as to why this PR is necessary and the business problem that this PR is solving. Moreover, if there have been any discussions of this ticket in Slack, make sure they're linked in the Jira ticket. If this is a very simple docs change, feel free to write a brief outline below instead:
 
 ## Formatters
 
