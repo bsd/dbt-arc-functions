@@ -12,35 +12,25 @@ Look [here in macros](https://github.com/bsd/dbt-arc-functions/tree/main/macros)
 
 Look [here in utils](https://github.com/bsd/dbt-arc-functions/tree/main/utils) for utilities that will help you get a dbt project going faster!
 
+## How to Contribute
+
+1. Claim an issue from the Jira tickets or Github Issues.
+2. Create new branch from the Jira ticket. To do this, go to the Jira ticket, click into the ticket, then on the right under `Details`, find `Development`, then click the `Create branch` button.
+3. Open the pull request as a draft so that you can run tests against the code and inspect the files in the Files view of the Pull Request interface in Github.
+4.  Link Jira tickets (or Github Issues) to PR. Make sure that the Jira ticket has a good description as to why this PR is necessary and the business problem that this PR is solving. Moreover, if there have been any discussions of this ticket in Slack, make sure they're linked in the Jira ticket.
+5. Once you're satisfied, convert the draft into an open Pull Request by clicking "Ready for Review" near the bottom of the PR page. You should not make any changes to the code except in dire emergency once you've converted from draft, so make sure you're really satisfied.
+6. Add two of the principal contributors to this PR for review. Currently, the principal contributors are @dmbluestate , @Frydafly , and @ryantimjohn.
+7. Reviewers should review the PR within 48 hours. If their work load prevents them from getting to the PR review or they are unable to complete the review because of incomplete information, they should let you know within that timeframe.
+8. If a review isn't approved, status should be changed to Request Changes with in line comments on the code and, potentially, general comments.
+9. Once the PR is approved, the requester should merge the PR.
+10. Make sure to delete your branch after you're done.
+
 ## How to Submit Bugs
 
 * usually, bug is identified by blue state client or analyst on account
 
 * bug is confirmed to be a result of the dbt-arc-functions by engineer
 
-* bug report created in [ARC Jira project](https://bluestate.atlassian.net/jira/software/c/projects/ARC/boards/245?selectedIssue=ARC-753&quickFilter=580)
+* bug report created in [ARC Jira project](https://bluestate.atlassian.net/Jira/software/c/projects/ARC/boards/245?selectedIssue=ARC-753&quickFilter=580)
 
 * create bug report as an issue in the GitHub project, adding a) what you expect to see, b) what you actually see, c) include screenshots and links + logging wherever possible
-
-
-## How to Contribute
-
-1. Claim Bug from the issue list
-
-2. Create new branch
-
-3. Make changes and test them, COPY tests below to PR description tick them:
-
-- [ ] If applicable, add documentation using the `schema.yml` macros documentation with embedded markdown docs (see `mart_email.md` for example) 
-
-- [ ] Test branch on a development branch of an existing client (ideally the one that raised the bug). Do this by changing revision of the package to the branch name in `packages.yml` file in dbt State client below.
-
-- [ ] Re-run `create_or_update_standard_models.py` for the client dbt project, replacing models and dependencies
-
-- [ ] check in dbt that client package successfully runs `dbt deps`, `dbt compile`, and `dbt run`; screenshot this page
-
-- [ ] query the resulting staging model in bigquery (or by previewing mart in dbt cloud); screenshot this
-
-- [ ] If exists, link bug issue and jira tickets to PR
-
-4. Ask for PR review from teammates: Reviewers should review code, and run the above tests themselves, then approve

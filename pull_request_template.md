@@ -1,5 +1,11 @@
 # Pull Request for dbt-arc-functions
 
+- [ ] Open the pull request as a draft so that you can run tests against the code and inspect the files in the Files view of the Pull Request interface in Github.
+
+- [ ] Once you're satisfied, convert the draft into an open Pull Request by clicking "Ready for Review" near the bottom of this page. You should not make any changes to the code except in dire emergency once you've converted from draft, so make sure you're really satisfied.
+
+- [ ] Add two of the principal contributors to this PR for review. Currently, the principal contributors are @dmbluestate , @Frydafly , and @ryantimjohn.
+
 - [ ] We've divided our PR templates into Macros, Utils and Docs PR requests. Delete the ones you're not using.
 ### Macros (delete if not using)
 
