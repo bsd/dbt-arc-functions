@@ -1,6 +1,6 @@
 # Pull Request for dbt-arc-functions
 
-- [ ] We've divided our PR templates into Macros, Utils and Docs PR requests. Delte the ones you're not using.
+- [ ] We've divided our PR templates into Macros, Utils and Docs PR requests. Delete the ones you're not using.
 ### Macros (delete if not using)
 
 - [ ] Link Jira tickets (or Github Issues) to PR here. Make sure that the Jira ticket has a good description as to why this PR is necessary and the business problem that this PR is solving. Moreover, if there have been any discussions of this ticket in Slack, make sure they're linked in the Jira ticket:
