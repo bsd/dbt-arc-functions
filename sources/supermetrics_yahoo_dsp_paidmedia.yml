@@ -3,243 +3,245 @@ version: 2
 sources:
   - name: supermetrics_yahoo_dsp_paidmedia
     database: "{{ var('database') }}"
-    description: ''
+    description: Data source for Supermetrics Yahoo DSP paid media analytics.
     schema: src_supermetrics_yahoo_dsp
     tables:
       - name: alldates_vdsp_ad
-        description: ''
+        description: Table containing advertisement level data for all dates.
         columns:
           - name: ad_name
             data_type: STRING
-            description: ''
+            description: Name of the advertisement.
           - name: ad_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the advertisement.
           - name: advertiser_currency
             data_type: STRING
-            description: ''
+            description: Currency used by the advertiser.
           - name: advertiser_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the advertiser.
           - name: campaign_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the campaign.
           - name: creative_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the creative asset.
           - name: data_source_name
             data_type: STRING
-            description: ''
+            description: Name of the data source.
           - name: date
             data_type: DATE
-            description: ''
+            description: Date of the record.
           - name: layout_name
             data_type: STRING
-            description: ''
+            description: Name of the ad layout.
           - name: line_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the line item.
           - name: media_type
             data_type: STRING
-            description: ''
+            description: Type of media for the ad.
           - name: click_conversions
             data_type: INT64
-            description: ''
+            description: Number of click conversions.
           - name: clicks
             data_type: INT64
-            description: ''
+            description: Number of ad clicks.
           - name: conversion_value
             data_type: FLOAT64
-            description: ''
+            description: Total value of conversions.
           - name: conversions
             data_type: INT64
-            description: ''
+            description: Number of conversions.
           - name: cost
             data_type: FLOAT64
-            description: ''
+            description: Cost of the ad.
           - name: cross_device_conversions
             data_type: INT64
-            description: ''
+            description: Number of conversions across different devices.
           - name: estimated_billable_amount
             data_type: FLOAT64
-            description: ''
+            description: Estimated amount to be billed for the ad.
           - name: impressions
             data_type: INT64
-            description: ''
+            description: Number of ad impressions.
           - name: measurable_impressions
             data_type: INT64
-            description: ''
+            description: Number of impressions that could be measured.
           - name: moat_measurable_impressions
             data_type: INT64
-            description: ''
+            description: Number of impressions measurable by Moat analytics.
           - name: moat_viewable_impressions
             data_type: INT64
-            description: ''
+            description: Number of impressions viewable according to Moat analytics.
           - name: non_viewable_impressions
             data_type: INT64
-            description: ''
+            description: Number of non-viewable impressions.
           - name: order_management_fee
             data_type: FLOAT64
-            description: ''
+            description: Fee for order management.
           - name: profit
             data_type: FLOAT64
-            description: ''
+            description: Profit earned from the ad.
           - name: publisher_earnings
             data_type: FLOAT64
-            description: ''
+            description: Earnings by the publisher for the ad.
           - name: seat_data_fee
             data_type: FLOAT64
-            description: ''
+            description: Data fee per ad seat.
           - name: seat_management_fee
             data_type: FLOAT64
-            description: ''
+            description: Management fee per ad seat.
           - name: seat_tech_fee
             data_type: FLOAT64
-            description: ''
+            description: Technology fee per ad seat.
           - name: third_party_data_fees
             data_type: FLOAT64
-            description: ''
+            description: Data fees paid to third parties.
           - name: video_completions
             data_type: INT64
-            description: ''
+            description: Number of completed video views.
           - name: video_completions_25
             data_type: INT64
-            description: ''
+            description: Number of video views completed up to 25%.
           - name: video_completions_50
             data_type: INT64
-            description: ''
+            description: Number of video views completed up to 50%.
           - name: video_completions_75
             data_type: INT64
-            description: ''
+            description: Number of video views completed up to 75%.
           - name: video_views
             data_type: INT64
-            description: ''
+            description: Number of video views.
           - name: view_conversions
             data_type: INT64
-            description: ''
+            description: Number of conversions from views.
           - name: viewable_impressions
             data_type: INT64
-            description: ''
+            description: Number of viewable impressions.
           - name: yahoo_data_fees
             data_type: FLOAT64
-            description: ''
+            description: Data fees paid to Yahoo.
           - name: advertiser
             data_type: STRING
-            description: ''
+            description: Name of the advertiser.
           - name: campaign_name
             data_type: STRING
-            description: ''
+            description: Name of the campaign.
           - name: creative_name
             data_type: STRING
-            description: ''
+            description: Name of the creative asset.
           - name: line_name
             data_type: STRING
-            description: ''
+            description: Name of the line item.
       - name: alldates_vdsp_campaign
-        description: ''
+        description: Table containing campaign level data for all dates.
         columns:
           - name: advertiser_currency
             data_type: STRING
-            description: ''
+            description: Currency used by the advertiser.
           - name: advertiser_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the advertiser.
           - name: campaign_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the campaign.
           - name: data_source_name
             data_type: STRING
-            description: ''
+            description: Name of the data source.
           - name: date
             data_type: DATE
-            description: ''
+            description: Date of the record.
           - name: click_conversions
             data_type: INT64
-            description: ''
+            description: Number of click conversions for the campaign.
           - name: clicks
             data_type: INT64
-            description: ''
+            description: Number of clicks for the campaign.
           - name: conversion_value
             data_type: FLOAT64
-            description: ''
+            description: Total value of conversions for the campaign.
           - name: conversions
             data_type: INT64
-            description: ''
+            description: Number of conversions for the campaign.
           - name: cost
             data_type: FLOAT64
-            description: ''
+            description: Cost of the campaign.
           - name: cross_device_conversions
             data_type: INT64
-            description: ''
+            description: Number of conversions across different devices for the campaign.
           - name: estimated_billable_amount
             data_type: FLOAT64
-            description: ''
+            description: Estimated amount to be billed for the campaign.
           - name: impressions
             data_type: INT64
-            description: ''
+            description: Number of impressions for the campaign.
           - name: measurable_impressions
             data_type: INT64
-            description: ''
+            description: Number of impressions that could be measured for the campaign.
           - name: moat_measurable_impressions
             data_type: INT64
-            description: ''
+            description: Number of impressions measurable by Moat analytics for the
+              campaign.
           - name: moat_viewable_impressions
             data_type: INT64
-            description: ''
+            description: Number of impressions viewable according to Moat analytics
+              for the campaign.
           - name: non_viewable_impressions
             data_type: INT64
-            description: ''
+            description: Number of non-viewable impressions for the campaign.
           - name: order_management_fee
             data_type: FLOAT64
-            description: ''
+            description: Order management fee for the campaign.
           - name: profit
             data_type: FLOAT64
-            description: ''
+            description: Profit earned from the campaign.
           - name: publisher_earnings
             data_type: FLOAT64
-            description: ''
+            description: Earnings by the publisher for the campaign.
           - name: seat_data_fee
             data_type: FLOAT64
-            description: ''
+            description: Data fee per ad seat for the campaign.
           - name: seat_management_fee
             data_type: FLOAT64
-            description: ''
+            description: Management fee per ad seat for the campaign.
           - name: seat_tech_fee
             data_type: FLOAT64
-            description: ''
+            description: Technology fee per ad seat for the campaign.
           - name: third_party_data_fees
             data_type: FLOAT64
-            description: ''
+            description: Data fees paid to third parties for the campaign.
           - name: unique_viewers
             data_type: INT64
-            description: ''
+            description: Number of unique viewers for the campaign.
           - name: video_completions
             data_type: INT64
-            description: ''
+            description: Number of completed video views for the campaign.
           - name: video_completions_25
             data_type: INT64
-            description: ''
+            description: Number of video views completed up to 25% for the campaign.
           - name: video_completions_50
             data_type: INT64
-            description: ''
+            description: Number of video views completed up to 50% for the campaign.
           - name: video_completions_75
             data_type: INT64
-            description: ''
+            description: Number of video views completed up to 75% for the campaign.
           - name: video_views
             data_type: INT64
-            description: ''
+            description: Number of video views for the campaign.
           - name: view_conversions
             data_type: INT64
-            description: ''
+            description: Number of conversions from views for the campaign.
           - name: viewable_impressions
             data_type: INT64
-            description: ''
+            description: Number of viewable impressions for the campaign.
           - name: yahoo_data_fees
             data_type: FLOAT64
-            description: ''
+            description: Data fees paid to Yahoo for the campaign.
           - name: advertiser
             data_type: STRING
-            description: ''
+            description: Name of the advertiser for the campaign.
           - name: campaign_name
             data_type: STRING
-            description: ''
+            description: Name of the campaign.
