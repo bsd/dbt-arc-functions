@@ -1,4 +1,4 @@
-[![Flake8 Linter](https://github.com/bsd/dbt-arc-functions/actions/workflows/flake8_linter.yml/badge.svg)](https://github.com/bsd/dbt-arc-functions/actions/workflows/flake8_linter.yml)
+[![Black](https://github.com/bsd/dbt-arc-functions/actions/workflows/python_black.yml/badge.svg)](https://github.com/bsd/dbt-arc-functions/actions/workflows/python_black.yml)
 
 # dbt ARC Functions
 
