@@ -111,8 +111,8 @@ def get_fiscal_year_start_choice():
         try:
             datetime.strptime(fiscal_year_start_choice, "%m-%d")
             break
-        except TypeError as e:
-            print(f"got a type error {e}")
+        except ValueError as e:
+            print(f"Not a valid date in MM-DD format!\n{e}")
     return fiscal_year_start_choice
 
 
