@@ -11,7 +11,9 @@ PARSE_DATE('%Y-%m-%d', {{date_to_convert_fiscal_year_start_string}})
     case
         when cast('{{fiscal_year_start}}' as string) = '01-01'
         then {{ date_to_convert_year }}
-        when {{ date_to_convert_fiscal_year_start_date }} > CAST({{date_to_convert}} AS DATE)
+        when
+            {{ date_to_convert_fiscal_year_start_date }}
+            > cast({{ date_to_convert }} as date)
         then {{ date_to_convert_year }}
         else {{ date_to_convert_year }} + 1
     end
@@ -41,18 +43,20 @@ DATE_DIFF(CAST({{date_to_convert}} AS DATE), {{date_to_convert_fiscal_year_befor
     {%- endset -%}
     case
         when cast('{{fiscal_year_start}}' as string) = '01-01'
-        then extract(quarter from CAST({{date_to_convert}} AS DATE))
-        when CAST({{date_to_convert}} AS DATE) >= {{ date_to_convert_fiscal_year_start_date }}
+        then extract(quarter from cast({{ date_to_convert }} as date))
+        when
+            cast({{ date_to_convert }} as date)
+            >= {{ date_to_convert_fiscal_year_start_date }}
         then
             date_diff(
-                CAST({{date_to_convert}} AS DATE),
+                cast({{ date_to_convert }} as date),
                 {{ date_to_convert_fiscal_year_start_date }},
                 quarter
             )
             + 1
         else
             date_diff(
-                CAST({{date_to_convert}} AS DATE),
+                cast({{ date_to_convert }} as date),
                 {{ date_to_convert_fiscal_year_before_start_date }},
                 quarter
             )
@@ -84,18 +88,20 @@ DATE_DIFF(CAST({{date_to_convert}} AS DATE), {{date_to_convert_fiscal_year_befor
     {%- endset -%}
     case
         when cast('{{fiscal_year_start}}' as string) = '01-01'
-        then extract(month from CAST({{date_to_convert}} AS DATE))
-        when CAST({{date_to_convert}} AS DATE) >= {{ date_to_convert_fiscal_year_start_date }}
+        then extract(month from cast({{ date_to_convert }} as date))
+        when
+            cast({{ date_to_convert }} as date)
+            >= {{ date_to_convert_fiscal_year_start_date }}
         then
             date_diff(
-                CAST({{date_to_convert}} AS DATE),
+                cast({{ date_to_convert }} as date),
                 {{ date_to_convert_fiscal_year_start_date }},
                 month
             )
             + 1
         else
             date_diff(
-                CAST({{date_to_convert}} AS DATE),
+                cast({{ date_to_convert }} as date),
                 {{ date_to_convert_fiscal_year_before_start_date }},
                 month
             )
@@ -127,18 +133,20 @@ DATE_DIFF(CAST({{date_to_convert}} AS DATE), {{date_to_convert_fiscal_year_befor
     {%- endset -%}
     case
         when cast('{{fiscal_year_start}}' as string) = '01-01'
-        then extract(week from CAST({{date_to_convert}} AS DATE))
-        when CAST({{date_to_convert}} AS DATE) >= {{ date_to_convert_fiscal_year_start_date }}
+        then extract(week from cast({{ date_to_convert }} as date))
+        when
+            cast({{ date_to_convert }} as date)
+            >= {{ date_to_convert_fiscal_year_start_date }}
         then
             date_diff(
-                CAST({{date_to_convert}} AS DATE),
+                cast({{ date_to_convert }} as date),
                 {{ date_to_convert_fiscal_year_start_date }},
                 week
             )
             + 1
         else
             date_diff(
-                CAST({{date_to_convert}} AS DATE),
+                cast({{ date_to_convert }} as date),
                 {{ date_to_convert_fiscal_year_before_start_date }},
                 week
             )
@@ -170,16 +178,20 @@ DATE_DIFF(CAST({{date_to_convert}} AS DATE), {{date_to_convert_fiscal_year_befor
     {%- endset -%}
     case
         when cast('{{fiscal_year_start}}' as string) = '01-01'
-        then extract(day from CAST({{date_to_convert}} AS DATE))
-        when CAST({{date_to_convert}} AS DATE) >= {{ date_to_convert_fiscal_year_start_date }}
+        then extract(day from cast({{ date_to_convert }} as date))
+        when
+            cast({{ date_to_convert }} as date)
+            >= {{ date_to_convert_fiscal_year_start_date }}
         then
             date_diff(
-                CAST({{date_to_convert}} AS DATE), {{ date_to_convert_fiscal_year_start_date }}, day
+                cast({{ date_to_convert }} as date),
+                {{ date_to_convert_fiscal_year_start_date }},
+                day
             )
             + 1
         else
             date_diff(
-                CAST({{date_to_convert}} AS DATE),
+                cast({{ date_to_convert }} as date),
                 {{ date_to_convert_fiscal_year_before_start_date }},
                 day
             )
