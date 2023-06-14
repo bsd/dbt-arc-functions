@@ -31,6 +31,8 @@
 
 - [ ] Suggest any tests that your PR reviewer might use to check the utils here. Better yet, if you're able, write automated tests in Github Actions!
 
+- [ ] Update utils/README.md with any new utils. Make sure that the Table of Contents is updated (most IDEs/code editors can do this for you!)
+
 ### Docs (delete if not using)
 
 - [ ] Link Jira tickets (or Github Issues) to PR here. Make sure that the Jira ticket has a good description as to why this PR is necessary and the business problem that this PR is solving. Moreover, if there have been any discussions of this ticket in Slack, make sure they're linked in the Jira ticket. If this is a very simple docs change, feel free to write a brief outline below instead:
