@@ -12,6 +12,7 @@ and cleans up the dbt project so that it's ready"""
 from os import path
 from shutil import rmtree
 from utils import initialize_yaml
+from datetime import datetime
 
 import git
 import requests
@@ -94,6 +95,27 @@ def get_timezone_choice():
     return timezone_choice
 
 
+FISCAL_YEAR_CHOICE_HELPTEXT = """Would you like to add a fiscal year start date to the project?
+
+This is for clients with a different fiscal year to the calendar year.
+If you enter nothing, fiscal year will default to the calendar year.
+
+Please enter in the format MM-DD.
+If you enter an invalid date, will reprompt:
+"""
+
+
+def get_fiscal_year_start_choice():
+    while True:
+        fiscal_year_start_choice = input(FISCAL_YEAR_CHOICE_HELPTEXT) or "01-01"
+        try:
+            datetime.strptime(fiscal_year_start_choice, "%m-%d")
+            break
+        except TypeError as e:
+            print(f"got a type error {e}")
+    return fiscal_year_start_choice
+
+
 def update_dbt_project(
     dbt_project, project_name, project_name_underscore, yaml, dbt_artifacts_choice
 ):
@@ -147,6 +169,8 @@ def update_dbt_project(
     # TODO: list out the available timezones, it is easy to make a typo
     timezone_choice = get_timezone_choice()
     dbt_project_yml["vars"]["dbt_date:time_zone"] = timezone_choice
+    fiscal_year_start = get_fiscal_year_start_choice()
+    dbt_project_yml["vars"]["fiscal_year_start"] = fiscal_year_start
     copy_choice = inplace_or_copy("dbt_project")
     file, extension = path.splitext(dbt_project)
     with open(file + copy_choice + extension, "w", encoding="utf-8") as f:
