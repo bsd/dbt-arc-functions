@@ -31,6 +31,6 @@ Look [here in utils](https://github.com/bsd/dbt-arc-functions/tree/main/utils) f
 
 * bug is confirmed to be a result of the dbt-arc-functions by engineer
 
-* bug report created in [ARC Jira project](https://bluestate.atlassian.net/Jira/software/c/projects/ARC/boards/245?selectedIssue=ARC-753&quickFilter=580)
+* bug report created in [ARC Jira project](https://bluestate.atlassian.net/jira/software/c/projects/ARC/boards/245?selectedIssue=ARC-753&quickFilter=580)
 
 * create bug report as an issue in the GitHub project, adding a) what you expect to see, b) what you actually see, c) include screenshots and links + logging wherever possible
