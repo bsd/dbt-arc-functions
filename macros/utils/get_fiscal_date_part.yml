@@ -1,0 +1,58 @@
+---
+version: 2
+macros:
+  - name: get_fiscal_year
+    description: A macro that allows you to get fiscal year from a date, datetime, or timestamp with a fiscal year start date.
+    docs:
+      show: true
+    arguments:
+      - name: date_to_convert
+        type: date, datetime, or timestamp
+        description: A date you'd like to get the fiscal year out of.
+      - name: fiscal_year_start
+        type: string
+        description: Fiscal year start date in MM-YY format.
+  - name: get_fiscal_quarter
+    description: A macro that allows you to get fiscal quarter from a date, datetime, or timestamp with a fiscal year start date.
+    docs:
+      show: true
+    arguments:
+      - name: date_to_convert
+        type: date, datetime, or timestamp
+        description: A date you'd like to get the fiscal quarter out of.
+      - name: fiscal_year_start
+        type: string
+        description: Fiscal year start date in MM-YY format.
+  - name: get_fiscal_month
+    description: A macro that allows you to get fiscal month from a date, datetime, or timestamp with a fiscal year start date.
+    docs:
+      show: true
+    arguments:
+      - name: date_to_convert
+        type: date, datetime, or timestamp
+        description: A date you'd like to get the fiscal month out of.
+      - name: fiscal_year_start
+        type: string
+        description: Fiscal year start date in MM-YY format.
+  - name: get_fiscal_week
+    description: A macro that allows you to get fiscal week from a date, datetime, or timestamp with a fiscal year start date.
+    docs:
+      show: true
+    arguments:
+      - name: date_to_convert
+        type: date, datetime, or timestamp
+        description: A date you'd like to get the fiscal week out of.
+      - name: fiscal_year_start
+        type: string
+        description: Fiscal year start date in MM-YY format.
+  - name: get_fiscal_day
+    description: A macro that allows you to get fiscal day from a date, datetime, or timestamp with a fiscal year start date.
+    docs:
+      show: true
+    arguments:
+      - name: date_to_convert
+        type: date, datetime, or timestamp
+        description: A date you'd like to get the fiscal day out of.
+      - name: fiscal_year_start
+        type: string
+        description: Fiscal year start date in MM-YY format.
