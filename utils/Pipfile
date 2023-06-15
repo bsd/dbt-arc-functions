@@ -7,6 +7,10 @@ name = "pypi"
 "ruamel.yaml" = "==0.16.12"
 google-cloud-bigquery = "==2.31.0"
 click = "*"
+tiktoken = "*"
+pyyaml = "*"
+ipykernel = "*"
+openai = "*"
 
 [dev-packages]
 
