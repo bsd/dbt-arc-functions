@@ -6,203 +6,206 @@ sources:
     schema: '{{ target.name }}_ga4'
     tables:
       - name: fct_ga4__sessions_daily
-        description: 'Fact table with daily session data partitioned by day'
+        description: Fact table with daily session data partitioned by day
         columns:
           - name: session_key
-            description: 'Unique key identifying each session'
+            description: Unique key identifying each session
           - name: session_partition_key
-            description: 'Partition key for the session table'
+            description: Partition key for the session table
           - name: user_pseudo_id
-            description: 'Pseudo ID of the user'
+            description: Pseudo ID of the user
           - name: stream_id
-            description: 'Unique identifier for the Analytics measurement ID associated with the data'
+            description: Unique identifier for the Analytics measurement ID associated
+              with the data
           - name: session_partition_date
-            description: 'Date for which the session data is aggregated'
+            description: Date for which the session data is aggregated
           - name: session_partition_min_timestamp
-            description: 'Minimum timestamp for the session data'
+            description: Minimum timestamp for the session data
           - name: session_partition_count_page_views
-            description: 'Count of page views during the session'
+            description: Count of page views during the session
           - name: session_partition_count_purchases
-            description: 'Count of purchases during the session'
+            description: Count of purchases during the session
           - name: session_partition_sum_event_value_in_usd
-            description: 'Sum of event value in USD during the session'
+            description: Sum of event value in USD during the session
           - name: session_partition_max_session_engaged
-            description: 'Max session engaged during the session'
+            description: Max session engaged during the session
           - name: session_partition_sum_engagement_time_msec
-            description: 'Sum of engagement time in milliseconds during the session'
+            description: Sum of engagement time in milliseconds during the session
       - name: dim_ga4__sessions_daily
-        description: 'Daily dimension table for sessions partitioned by day'
+        description: Daily dimension table for sessions partitioned by day
         columns:
           - name: stream_id
-            description: 'Unique identifier for the Analytics measurement ID associated with the data'
+            description: Unique identifier for the Analytics measurement ID associated
+              with the data
           - name: session_key
-            description: 'Unique key identifying each session'
+            description: Unique key identifying each session
           - name: session_partition_key
-            description: 'Partition key for the session table'
+            description: Partition key for the session table
           - name: session_partition_date
-            description: 'Date for which the session data is aggregated'
+            description: Date for which the session data is aggregated
           - name: session_partition_start_timestamp
-            description: 'Start timestamp for the session data'
+            description: Start timestamp for the session data
           - name: landing_page_path
-            description: 'Path of the landing page'
+            description: Path of the landing page
           - name: landing_page_location
-            description: 'Location of the landing page'
+            description: Location of the landing page
           - name: landing_page_hostname
-            description: 'Hostname of the landing page'
+            description: Hostname of the landing page
           - name: referrer
-            description: 'Referrer information for the session'
+            description: Referrer information for the session
           - name: geo_continent
-            description: 'Continent of the user'
+            description: Continent of the user
           - name: geo_country
-            description: 'Country of the user'
+            description: Country of the user
           - name: geo_region
-            description: 'Region of the user'
+            description: Region of the user
           - name: geo_city
-            description: 'City of the user'
+            description: City of the user
           - name: geo_sub_continent
-            description: 'Sub-continent of the user'
+            description: Sub-continent of the user
           - name: geo_metro
-            description: 'Metro area of the user'
+            description: Metro area of the user
           - name: platform
-            description: 'Platform used by the user'
+            description: Platform used by the user
           - name: device_category
-            description: 'Category of the device used by the user'
+            description: Category of the device used by the user
           - name: device_mobile_brand_name
-            description: 'Brand name of the mobile device used by the user'
+            description: Brand name of the mobile device used by the user
           - name: device_mobile_model_name
-            description: 'Model name of the mobile device used by the user'
+            description: Model name of the mobile device used by the user
           - name: device_mobile_marketing_name
-            description: 'Marketing name of the mobile device used by the user'
+            description: Marketing name of the mobile device used by the user
           - name: device_mobile_os_hardware_model
-            description: 'Hardware model of the mobile device used by the user'
+            description: Hardware model of the mobile device used by the user
           - name: device_operating_system
-            description: 'Operating system of the device used by the user'
+            description: Operating system of the device used by the user
           - name: device_operating_system_version
-            description: 'Operating system version of the device used by the user'
+            description: Operating system version of the device used by the user
           - name: device_vendor_id
-            description: 'Vendor ID of the device used by the user'
+            description: Vendor ID of the device used by the user
           - name: device_advertising_id
-            description: 'Advertising ID of the device used by the user'
+            description: Advertising ID of the device used by the user
           - name: device_language
-            description: 'Language of the device used by the user'
+            description: Language of the device used by the user
           - name: device_is_limited_ad_tracking
-            description: 'Whether the device has limited ad tracking enabled or not'
+            description: Whether the device has limited ad tracking enabled or not
           - name: device_time_zone_offset_seconds
-            description: 'Time zone offset of the device in seconds'
+            description: Time zone offset of the device in seconds
           - name: device_browser
-            description: 'Browser used by the user'
+            description: Browser used by the user
           - name: device_web_info_browser
-            description: 'Browser used by the user (web info)'
+            description: Browser used by the user (web info)
           - name: device_web_info_browser_version
-            description: 'Browser version used by the user (web info)'
+            description: Browser version used by the user (web info)
           - name: device_web_info_hostname
-            description: 'Hostname of the device (web info)'
+            description: Hostname of the device (web info)
           - name: user_campaign
-            description: 'Campaign associated with the user'
+            description: Campaign associated with the user
           - name: user_medium
-            description: 'Medium associated with the user'
+            description: Medium associated with the user
           - name: user_source
-            description: 'Source associated with the user'
+            description: Source associated with the user
           - name: session_source
-            description: 'Source of the session'
+            description: Source of the session
           - name: session_medium
-            description: 'Medium of the session'
+            description: Medium of the session
           - name: session_campaign
-            description: 'Campaign of the session'
+            description: Campaign of the session
           - name: session_content
-            description: 'Content associated with the session'
+            description: Content associated with the session
           - name: session_term
-            description: 'Term associated with the session'
+            description: Term associated with the session
           - name: session_default_channel_grouping
-            description: 'Default channel grouping of the session'
+            description: Default channel grouping of the session
           - name: session_source_category
-            description: 'Category of the session source'
+            description: Category of the session source
       - name: dim_ga4__sessions
-        description: 'Dimension table for sessions'
+        description: Dimension table for sessions
         columns:
           - name: session_key
-            description: 'Unique key identifying each session'
+            description: Unique key identifying each session
           - name: session_start_date
-            description: 'Date when the session started'
+            description: Date when the session started
           - name: session_start_timestamp
-            description: 'Timestamp when the session started'
+            description: Timestamp when the session started
           - name: landing_page_path
-            description: 'Path of the landing page'
+            description: Path of the landing page
           - name: landing_page
-            description: 'Landing page URL'
+            description: Landing page URL
           - name: landing_page_hostname
-            description: 'Hostname of the landing page'
+            description: Hostname of the landing page
           - name: landing_page_referrer
-            description: 'Referrer information for the landing page'
+            description: Referrer information for the landing page
           - name: geo_continent
-            description: 'Continent of the user'
+            description: Continent of the user
           - name: geo_country
-            description: 'Country of the user'
+            description: Country of the user
           - name: geo_region
-            description: 'Region of the user'
+            description: Region of the user
           - name: geo_city
-            description: 'City of the user'
+            description: City of the user
           - name: geo_sub_continent
-            description: 'Sub-continent of the user'
+            description: Sub-continent of the user
           - name: geo_metro
-            description: 'Metro area of the user'
+            description: Metro area of the user
           - name: stream_id
-            description: 'Unique identifier for the Analytics measurement ID associated with the data'
+            description: Unique identifier for the Analytics measurement ID associated
+              with the data
           - name: platform
-            description: 'Platform used by the user'
+            description: Platform used by the user
           - name: device_category
-            description: 'Category of the device used by the user'
+            description: Category of the device used by the user
           - name: device_mobile_brand_name
-            description: 'Brand name of the mobile device used by the user'
+            description: Brand name of the mobile device used by the user
           - name: device_mobile_model_name
-            description: 'Model name of the mobile device used by the user'
+            description: Model name of the mobile device used by the user
           - name: device_mobile_marketing_name
-            description: 'Marketing name of the mobile device used by the user'
+            description: Marketing name of the mobile device used by the user
           - name: device_mobile_os_hardware_model
-            description: 'Hardware model of the mobile device used by the user'
+            description: Hardware model of the mobile device used by the user
           - name: device_operating_system
-            description: 'Operating system of the device used by the user'
+            description: Operating system of the device used by the user
           - name: device_operating_system_version
-            description: 'Operating system version of the device used by the user'
+            description: Operating system version of the device used by the user
           - name: device_vendor_id
-            description: 'Vendor ID of the device used by the user'
+            description: Vendor ID of the device used by the user
           - name: device_advertising_id
-            description: 'Advertising ID of the device used by the user'
+            description: Advertising ID of the device used by the user
           - name: device_language
-            description: 'Language of the device used by the user'
+            description: Language of the device used by the user
           - name: device_is_limited_ad_tracking
-            description: 'Whether the device has limited ad tracking enabled or not'
+            description: Whether the device has limited ad tracking enabled or not
           - name: device_time_zone_offset_seconds
-            description: 'Time zone offset of the device in seconds'
+            description: Time zone offset of the device in seconds
           - name: device_browser
-            description: 'Browser used by the user'
+            description: Browser used by the user
           - name: device_web_info_browser
-            description: 'Browser used by the user (web info)'
+            description: Browser used by the user (web info)
           - name: device_web_info_browser_version
-            description: 'Browser version used by the user (web info)'
+            description: Browser version used by the user (web info)
           - name: device_web_info_hostname
-            description: 'Hostname of the device (web info)'
+            description: Hostname of the device (web info)
           - name: session_number
-            description: 'Number of the session'
+            description: Number of the session
           - name: is_first_session
-            description: 'Whether this is the user's first session or not'
+            description: Whether this is the user first session or not
           - name: user_campaign
-            description: 'Campaign associated with the user'
+            description: Campaign associated with the user
           - name: user_medium
-            description: 'Medium associated with the user'
+            description: Medium associated with the user
           - name: user_source
-            description: 'Source associated with the user'
+            description: Source associated with the user
           - name: session_source
-            description: 'Source of the session'
+            description: Source of the session
           - name: session_medium
-            description: 'Medium of the session'
+            description: Medium of the session
           - name: session_campaign
-            description: 'Campaign of the session'
+            description: Campaign of the session
           - name: session_content
-            description: 'Content associated with the session'
+            description: Content associated with the session
           - name: session_term
-            description: 'Term associated with the session'
+            description: Term associated with the session
           - name: session_default_channel_grouping
-            description: 'Default channel grouping of the session'
+            description: Default channel grouping of the session
           - name: session_source_category
-            description: 'Category of the session source'
+            description: Category of the session source
