@@ -2,95 +2,95 @@
 version: 2
 sources:
   - name: src_stitch_bbcrm
-    description: ''
+    description: "Source data from Stitch for BBCRM"
     loader: stitch - sftp
     database: "{{ var('database') }}"
     schema: src_stitch_bbcrm_authorized
     tables:
       - name: revenue
-        description: ''
+        description: "Revenue data for donors"
         columns:
           - name: designation
             data_type: STRING
-            description: ''
+            description: "The designation of the donor's gift"
           - name: inbound_channel
             data_type: STRING
-            description: ''
+            description: "The inbound channel for the donor's gift"
           - name: appeal
             data_type: STRING
-            description: ''
+            description: "The appeal for the donor's gift"
           - name: transaction_type
             data_type: STRING
-            description: ''
+            description: "The transaction type for the donor's gift"
           - name: recognition_amount
             data_type: FLOAT64
-            description: ''
+            description: "The recognition amount for the donor's gift"
           - name: revenue_platform
             data_type: STRING
-            description: ''
+            description: "The revenue platform used for the donor's gift"
           - name: vendor_order_number
             data_type: STRING
-            description: ''
+            description: "The vendor order number for the donor's gift"
           - name: statuscode
             data_type: INT64
-            description: ''
+            description: "The status code for the donor's gift"
           - name: constituentsystemrecordid
             data_type: STRING
-            description: ''
+            description: "The constituent system record ID for the donor"
           - name: web_donation_form_value
             data_type: STRING
-            description: ''
+            description: "The web donation form value for the donor's gift"
           - name: payment_method
             data_type: STRING
-            description: ''
+            description: "The payment method used for the donor's gift"
           - name: appeal_business_unit
             data_type: STRING
-            description: ''
+            description: "The appeal business unit for the donor's gift"
           - name: recordid
             data_type: STRING
-            description: ''
+            description: "The record ID for the donor's gift"
           - name: _sdc_table_version
             data_type: INT64
-            description: ''
+            description: "The version of the table for each record"
           - name: application
             data_type: STRING
-            description: ''
+            description: "The application for the donor's gift"
           - name: sfmc_dateadded
             data_type: STRING
-            description: ''
+            description: "The SFMC date added for the donor's gift"
           - name: initial_market_source
             data_type: STRING
-            description: ''
+            description: "The initial market source for the donor's gift"
           - name: _sdc_source_file
             data_type: STRING
-            description: ''
+            description: "The file from which the record was sourced"
           - name: web_donation_form_comment
             data_type: STRING
-            description: ''
+            description: "The web donation form comment for the donor's gift"
           - name: transaction_date
             data_type: STRING
-            description: ''
+            description: "The transaction date for the donor's gift"
           - name: _sdc_received_at
             data_type: TIMESTAMP
-            description: ''
+            description: "The time at which the record was received"
           - name: _sdc_sequence
             data_type: INT64
-            description: ''
+            description: "The sequence number for the record"
           - name: revenue_id
             data_type: STRING
-            description: ''
+            description: "The ID for the donor's gift"
           - name: __sdc_primary_key
             data_type: STRING
-            description: ''
+            description: "The primary key for each record"
           - name: _sdc_batched_at
             data_type: TIMESTAMP
-            description: ''
+            description: "The time at which the record was batched"
           - name: _sdc_source_lineno
             data_type: INT64
-            description: ''
+            description: "The line number in the source file for the record"
           - name: sfmc_updatedate
             data_type: STRING
-            description: ''
+            description: "The SFMC update date for the donor's gift"
           - name: __bbcrmlookupid_
             data_type: STRING
-            description: ''
+            description: "The BBCRM lookup ID for the donor's gift"
