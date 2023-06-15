@@ -185,7 +185,7 @@ sources:
           - name: session_number
             description: 'Number of the session'
           - name: is_first_session
-            description: 'Whether this is the user\'s first session or not'
+            description: 'Whether this is the user's first session or not'
           - name: user_campaign
             description: 'Campaign associated with the user'
           - name: user_medium
