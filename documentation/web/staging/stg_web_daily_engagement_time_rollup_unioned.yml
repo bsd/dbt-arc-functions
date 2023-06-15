@@ -2,13 +2,13 @@
 version: 2
 models:
   - name: stg_web_daily_engagement_time_rollup_unioned
-    description: ''
+    description: 'Model containing the unioned rollup of daily engagement time data from the web app'
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: 'Name of the source relation in the database'
       - name: session_date
-        description: ''
+        description: 'Date of the user session'
       - name: session_key
-        description: ''
+        description: 'Unique key for identifying the user session'
       - name: engagement_time_msec
-        description: ''
+        description: 'Total engagement time in milliseconds for the user session'

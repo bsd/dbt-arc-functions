@@ -2,12 +2,12 @@
 version: 2
 models:
   - name: stg_ga4_web_daily_purchases_rollup
-    description: ''
+    description: 'Rollup of daily purchase metrics from GA4 web data.'
     columns:
       - name: session_date
-        description: ''
+        description: 'Date of the session, in YYYY-MM-DD format.'
       - name: session_key
         description: 'Unique key assigned to sessions. Sessions can span multiple
           dates/partitions. '
       - name: purchases
-        description: ''
+        description: 'Count of purchases made during the session.'

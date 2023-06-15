@@ -2,13 +2,13 @@
 version: 2
 models:
   - name: stg_web_daily_unique_users_rollup_unioned
-    description: ''
+    description: 'Daily aggregation of unique users on a website'
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: 'Internal source relation used by dbt'
       - name: session_date
-        description: ''
+        description: 'The date of the user session'
       - name: session_key
-        description: ''
+        description: 'Key to identify the user session'
       - name: unique_users
-        description: ''
+        description: 'The number of unique users for the session'

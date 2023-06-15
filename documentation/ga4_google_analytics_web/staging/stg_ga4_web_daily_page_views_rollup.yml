@@ -2,12 +2,11 @@
 version: 2
 models:
   - name: stg_ga4_web_daily_page_views_rollup
-    description: ''
+    description: 'Rollup of daily page views data from Google Analytics 4 for web.'
     columns:
       - name: session_date
-        description: ''
+        description: 'Date of the session.'
       - name: session_key
-        description: 'Unique key assigned to sessions. Sessions can span multiple
-          dates/partitions. '
+        description: 'Unique key assigned to sessions. Sessions can span multiple dates/partitions. '
       - name: page_views
-        description: ''
+        description: 'Number of page views for the session.'

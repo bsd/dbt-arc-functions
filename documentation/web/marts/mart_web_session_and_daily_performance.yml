@@ -2,41 +2,41 @@
 version: 2
 models:
   - name: mart_web_session_and_daily_performance
-    description: ''
+    description: 'Model for tracking web sessions and daily performance'
     columns:
       - name: session_key
-        description: ''
+        description: 'Identifier for web session'
       - name: session_date
-        description: ''
+        description: 'Date of web session'
       - name: default_channel_grouping
-        description: ''
+        description: 'Default channel grouping'
       - name: session_medium
-        description: ''
+        description: 'Medium of web session'
       - name: session_source
-        description: ''
+        description: 'Source of web session'
       - name: session_campaign
-        description: ''
+        description: 'Campaign of web session'
       - name: hostname
-        description: ''
+        description: 'Hostname of web page visited'
       - name: page_path
-        description: ''
+        description: 'URL path of web page visited'
       - name: referrer
-        description: ''
+        description: 'Referrer URL of web session'
       - name: geo_region
-        description: ''
+        description: 'Geographic region of web session'
       - name: device_category
-        description: ''
+        description: 'Category of device used for web session'
       - name: device_language
-        description: ''
+        description: 'Language of device used for web session'
       - name: engagement_time_msec
-        description: ''
+        description: 'Length of engagement time in milliseconds'
       - name: max_engaged
-        description: ''
+        description: 'Maximum engagement time in milliseconds'
       - name: new_users
-        description: ''
+        description: 'Number of new users'
       - name: unique_users
-        description: ''
+        description: 'Number of unique users'
       - name: page_views
-        description: ''
+        description: 'Number of page views'
       - name: purchases
-        description: ''
+        description: 'Number of purchases made during web session'

@@ -2,12 +2,11 @@
 version: 2
 models:
   - name: stg_ga4_web_daily_max_engaged_rollup
-    description: ''
+    description: 'Model for rolling up daily maximum engagement metrics from Google Analytics 4 for web.'
     columns:
       - name: session_date
-        description: ''
+        description: 'Date of the session.'
       - name: session_key
-        description: 'Unique key assigned to sessions. Sessions can span multiple
-          dates/partitions. '
+        description: 'Unique key assigned to sessions. Sessions can span multiple dates/partitions.'
       - name: max_engaged
-        description: ''
+        description: 'Maximum engagement metric value for the session.'
