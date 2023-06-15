@@ -3,419 +3,423 @@
 version: 2
 sources:
   - name: src_stitch_bbcrm
-    description: ''
+    description: This source contains data from the bbcrm system.
     loader: stitch - sftp
     database: "{{ var('database') }}"
     schema: src_stitch_bbcrm_authorized
     tables:
       - name: constituencies
-        description: ''
+        description: Table containing information about constituencies.
         columns:
           - name: constituency
             data_type: STRING
-            description: ''
+            description: The name of the constituency.
           - name: statuscode
             data_type: INT64
-            description: ''
+            description: The status code of the constituency.
           - name: constituentsystemrecordid
             data_type: STRING
-            description: ''
+            description: The system record ID of the constituent.
           - name: startdate
             data_type: STRING
-            description: ''
+            description: The start date of the constituency.
           - name: _sdc_table_version
             data_type: INT64
-            description: ''
+            description: The table version of the source data.
           - name: sfmc_dateadded
             data_type: STRING
-            description: ''
+            description: The date the record was added to Salesforce Marketing Cloud.
           - name: constituencysystemrecordid
             data_type: STRING
-            description: ''
+            description: The system record ID of the constituency.
           - name: _sdc_source_file
             data_type: STRING
-            description: ''
+            description: The source file of the record.
           - name: _sdc_received_at
             data_type: TIMESTAMP
-            description: ''
+            description: The timestamp the record was received.
           - name: _sdc_sequence
             data_type: INT64
-            description: ''
+            description: The sequence number of the record.
           - name: __sdc_primary_key
             data_type: STRING
-            description: ''
+            description: The primary key of the record.
           - name: _sdc_batched_at
             data_type: TIMESTAMP
-            description: ''
+            description: The timestamp the record was batched.
           - name: _sdc_source_lineno
             data_type: INT64
-            description: ''
+            description: The line number of the record in the source file.
           - name: sfmc_updatedate
             data_type: STRING
-            description: ''
+            description: The date the record was last updated in Salesforce Marketing
+              Cloud.
           - name: __bbcrmlookupid_
             data_type: STRING
-            description: ''
+            description: The lookup ID of the record in bbcrm system.
           - name: enddate
             data_type: STRING
-            description: ''
+            description: The end date of the constituency.
       - name: constituents
-        description: ''
+        description: Table containing information about constituents.
         columns:
           - name: addresscity
             data_type: STRING
-            description: ''
+            description: The city of the address.
           - name: prospectmanagerregion
             data_type: STRING
-            description: ''
+            description: The region of the prospect manager.
           - name: metropolitanstatisticalarea
             data_type: STRING
-            description: ''
+            description: The metropolitan statistical area.
           - name: ethnicity
             data_type: STRING
-            description: ''
+            description: The ethnic background of the constituent.
           - name: addressdonotmail
             data_type: STRING
-            description: ''
+            description: Whether the address should not be mailed.
           - name: nickname
             data_type: STRING
-            description: ''
+            description: The nickname of the constituent.
           - name: addressstateabbrevation
             data_type: STRING
-            description: ''
+            description: The state abbreviation of the address.
           - name: statuscode
             data_type: INT64
-            description: ''
+            description: The status code of the constituent.
           - name: last_org_group_hh_name
             data_type: STRING
-            description: ''
+            description: The last organization group household name.
           - name: age
             data_type: INT64
-            description: ''
+            description: The age of the constituent.
           - name: emailaddressundeliverable
             data_type: STRING
-            description: ''
+            description: Whether the email address is undeliverable.
           - name: householdlookupid
             data_type: STRING
-            description: ''
+            description: The lookup ID of the household.
           - name: constituentsystemrecordid
             data_type: STRING
-            description: ''
+            description: The system record ID of the constituent.
           - name: income
             data_type: STRING
-            description: ''
+            description: The income of the constituent.
           - name: addressinfosource
             data_type: STRING
-            description: ''
+            description: The source of the address information.
           - name: suffix
             data_type: STRING
-            description: ''
+            description: The suffix of the constituent.
           - name: addresszip
             data_type: STRING
-            description: ''
+            description: The ZIP code of the address.
           - name: addresscountry
             data_type: STRING
-            description: ''
+            description: The country of the address.
           - name: gender
             data_type: STRING
-            description: ''
+            description: The gender of the constituent.
           - name: emailaddresshygienescoredate
             data_type: STRING
-            description: ''
+            description: The date of the email address hygiene score.
           - name: emailaddressinfosourcecomments
             data_type: STRING
-            description: ''
+            description: The comments of the email address information source.
           - name: statehousedistrict
             data_type: STRING
-            description: ''
+            description: The state house district of the constituent.
           - name: emailaddressoptindate
             data_type: STRING
-            description: ''
+            description: The date of the email address opt-in.
           - name: county
             data_type: STRING
-            description: ''
+            description: The county of the constituent.
           - name: dateadded
             data_type: STRING
-            description: ''
+            description: The date the record was added.
           - name: addressblock
             data_type: STRING
-            description: ''
+            description: The block of the address.
           - name: corebasedstatisticalareas
             data_type: STRING
-            description: ''
+            description: The core based statistical areas.
           - name: _sdc_table_version
             data_type: INT64
-            description: ''
+            description: The table version of the source data.
           - name: emailaddressdonotemailreason
             data_type: STRING
-            description: ''
+            description: The reason why the email address should not be emailed.
           - name: sfmc_dateadded
             data_type: STRING
-            description: ''
+            description: The date the record was added to Salesforce Marketing Cloud.
           - name: region
             data_type: STRING
-            description: ''
+            description: The region of the constituent.
           - name: localprecinct
             data_type: STRING
-            description: ''
+            description: The local precinct of the constituent.
           - name: grouptype
             data_type: STRING
-            description: ''
+            description: The group type of the constituent.
           - name: _sdc_source_file
             data_type: STRING
-            description: ''
+            description: The source file of the record.
           - name: _sdc_received_at
             data_type: TIMESTAMP
-            description: ''
+            description: The timestamp the record was received.
           - name: emailaddressstatus
             data_type: STRING
-            description: ''
+            description: The status of the email address.
           - name: _sdc_sequence
             data_type: INT64
-            description: ''
+            description: The sequence number of the record.
           - name: constituenttype
             data_type: STRING
-            description: ''
+            description: The type of the constituent.
           - name: title
             data_type: STRING
-            description: ''
+            description: The title of the constituent.
           - name: emailaddresshygienescore
             data_type: STRING
-            description: ''
+            description: The hygiene score of the email address.
           - name: congressionaldistrict
             data_type: STRING
-            description: ''
+            description: The congressional district of the constituent.
           - name: emailaddress
             data_type: STRING
-            description: ''
+            description: The email address of the constituent.
           - name: __sdc_primary_key
             data_type: STRING
-            description: ''
+            description: The primary key of the record.
           - name: constituentsource
             data_type: STRING
-            description: ''
+            description: The source of the constituent.
           - name: isinactive
             data_type: STRING
-            description: ''
+            description: Whether the constituent is inactive.
           - name: birthdate
             data_type: STRING
-            description: ''
+            description: The birth date of the constituent.
           - name: maritalstatus
             data_type: STRING
-            description: ''
+            description: The marital status of the constituent.
           - name: statesenatedistrict
             data_type: STRING
-            description: ''
+            description: The state senate district of the constituent.
           - name: birthyear
             data_type: INT64
-            description: ''
+            description: The birth year of the constituent.
           - name: emailaddressoptoutdate
             data_type: STRING
-            description: ''
+            description: The date of the email address opt-out.
           - name: emailaddressdonotemail
             data_type: STRING
-            description: ''
+            description: Whether the email address should not be emailed.
           - name: _sdc_batched_at
             data_type: TIMESTAMP
-            description: ''
+            description: The timestamp the record was batched.
           - name: religion
             data_type: STRING
-            description: ''
+            description: The religion of the constituent.
           - name: _sdc_source_lineno
             data_type: INT64
-            description: ''
+            description: The line number of the record in the source file.
           - name: prospectmanagername
             data_type: STRING
-            description: ''
+            description: The name of the prospect manager.
           - name: sfmc_updatedate
             data_type: STRING
-            description: ''
+            description: The date the record was last updated in Salesforce Marketing
+              Cloud.
           - name: deceased
             data_type: STRING
-            description: ''
+            description: Whether the constituent is deceased.
           - name: emailsystemrecordid
             data_type: STRING
-            description: ''
+            description: The system record ID of the email.
           - name: emailaddressinfosource
             data_type: STRING
-            description: ''
+            description: The source of the email address information.
           - name: firstname
             data_type: STRING
-            description: ''
+            description: The first name of the constituent.
           - name: __bbcrmlookupid_
             data_type: STRING
-            description: ''
+            description: The lookup ID of the record in bbcrm system.
       - name: interactions
-        description: ''
+        description: Table containing information about interactions.
         columns:
           - name: statuscode
             data_type: INT64
-            description: ''
+            description: The status code of the interaction.
           - name: constituentsystemrecordid
             data_type: STRING
-            description: ''
+            description: The system record ID of the constituent.
           - name: contactmethod
             data_type: STRING
-            description: ''
+            description: The contact method of the interaction.
           - name: interactionsystemrecordid
             data_type: STRING
-            description: ''
+            description: The system record ID of the interaction.
           - name: summary
             data_type: STRING
-            description: ''
+            description: The summary of the interaction.
           - name: _sdc_table_version
             data_type: INT64
-            description: ''
+            description: The table version of the source data.
           - name: actualdate
             data_type: STRING
-            description: ''
+            description: The actual date of the interaction.
           - name: sfmc_dateadded
             data_type: STRING
-            description: ''
+            description: The date the record was added to Salesforce Marketing Cloud.
           - name: subcategory
             data_type: STRING
-            description: ''
+            description: The subcategory of the interaction.
           - name: _sdc_source_file
             data_type: STRING
-            description: ''
+            description: The source file of the record.
           - name: _sdc_received_at
             data_type: TIMESTAMP
-            description: ''
+            description: The timestamp the record was received.
           - name: _sdc_sequence
             data_type: INT64
-            description: ''
+            description: The sequence number of the record.
           - name: __sdc_primary_key
             data_type: STRING
-            description: ''
+            description: The primary key of the record.
           - name: category
             data_type: STRING
-            description: ''
+            description: The category of the interaction.
           - name: _sdc_batched_at
             data_type: TIMESTAMP
-            description: ''
+            description: The timestamp the record was batched.
           - name: _sdc_source_lineno
             data_type: INT64
-            description: ''
+            description: The line number of the record in the source file.
           - name: sfmc_updatedate
             data_type: STRING
-            description: ''
+            description: The date the record was last updated in Salesforce Marketing
+              Cloud.
           - name: __bbcrmlookupid_
             data_type: STRING
-            description: ''
+            description: The lookup ID of the record in bbcrm system.
       - name: smartfieldsfirst
-        description: ''
+        description: Table containing information about first smart fields.
         columns:
           - name: first_single_gift_appeal
             data_type: STRING
-            description: ''
+            description: The appeal of the first single gift.
           - name: first_gift_inbound_channel
             data_type: STRING
-            description: ''
+            description: The inbound channel of the first gift.
           - name: first_single_gift_date
             data_type: STRING
-            description: ''
+            description: The date of the first single gift.
           - name: first_recurring_gift_payment_date
             data_type: STRING
-            description: ''
+            description: The date of the first recurring gift payment.
           - name: statuscode
             data_type: INT64
-            description: ''
+            description: The status code of the first gift.
           - name: constituentsystemrecordid
             data_type: STRING
-            description: ''
+            description: The system record ID of the constituent.
           - name: first_gift_appeal_business_unit
             data_type: STRING
-            description: ''
+            description: The business unit of the first gift appeal.
           - name: first_single_gift_designation
             data_type: STRING
-            description: ''
+            description: The designation of the first single gift.
           - name: first_market_purchase_date
             data_type: STRING
-            description: ''
+            description: The date of the first market purchase.
           - name: first_market_purchase_appeal_business_unit
             data_type: STRING
-            description: ''
+            description: The business unit of the first market purchase appeal.
           - name: first_single_gift_appeal_business_unit
             data_type: STRING
-            description: ''
+            description: The business unit of the first single gift appeal.
           - name: first_recurring_gift_payment_amount
             data_type: FLOAT64
-            description: ''
+            description: The amount of the first recurring gift payment.
           - name: first_gift_appeal
             data_type: STRING
-            description: ''
+            description: The appeal of the first gift.
           - name: first_gift_amount
             data_type: FLOAT64
-            description: ''
+            description: The amount of the first gift.
           - name: _sdc_table_version
             data_type: INT64
-            description: ''
+            description: The table version of the source data.
           - name: first_gift_date
             data_type: STRING
-            description: ''
+            description: The date of the first gift.
           - name: first_interaction_is_advocacy_date
             data_type: STRING
-            description: ''
+            description: The date of the first advocacy interaction.
           - name: first_single_gift_inbound_channel
             data_type: STRING
-            description: ''
+            description: The inbound channel of the first single gift.
           - name: sfmc_dateadded
             data_type: STRING
-            description: ''
+            description: The date the record was added to Salesforce Marketing Cloud.
           - name: first_interaction_is_advocacy_summary
             data_type: STRING
-            description: ''
+            description: The summary of the first advocacy interaction.
           - name: first_market_purchase_inbound_channel
             data_type: STRING
-            description: ''
+            description: The inbound channel of the first market purchase.
           - name: _sdc_source_file
             data_type: STRING
-            description: ''
+            description: The source file of the record.
           - name: first_market_purchase_appeal
             data_type: STRING
-            description: ''
+            description: The appeal of the first market purchase.
           - name: first_market_purchase_designation
             data_type: STRING
-            description: ''
+            description: The designation of the first market purchase.
           - name: _sdc_received_at
             data_type: TIMESTAMP
-            description: ''
+            description: The timestamp the record was received.
           - name: _sdc_sequence
             data_type: INT64
-            description: ''
+            description: The sequence number of the record.
           - name: first_recurring_gift_payment_appeal
             data_type: STRING
-            description: ''
+            description: The appeal of the first recurring gift payment.
           - name: first_single_gift_amount
             data_type: FLOAT64
-            description: ''
+            description: The amount of the first single gift.
           - name: first_market_purchase_amount
             data_type: FLOAT64
-            description: ''
+            description: The amount of the first market purchase.
           - name: first_recurring_gift_payment_inbound_channel
             data_type: STRING
-            description: ''
+            description: The inbound channel of the first recurring gift payment.
           - name: __sdc_primary_key
             data_type: STRING
-            description: ''
+            description: The primary key of the record.
           - name: first_recurring_gift_payment_appeal_business_unit
             data_type: STRING
-            description: ''
+            description: The business unit of the first recurring gift payment appeal.
           - name: first_recurring_gift_payment_designation
             data_type: STRING
-            description: ''
+            description: The designation of the first recurring gift payment.
           - name: first_gift_designation
             data_type: STRING
-            description: ''
+            description: The designation of the first gift.
           - name: _sdc_batched_at
             data_type: TIMESTAMP
-            description: ''
+            description: The timestamp the record was batched.
           - name: _sdc_source_lineno
             data_type: INT64
-            description: ''
+            description: The line number of the record in the source file.
           - name: sfmc_updatedate
             data_type: STRING
-            description: ''
+            description: The date the record was last updated in Salesforce Marketing
+              Cloud.
           - name: __bbcrmlookupid_
             data_type: STRING
-            description: ''
+            description: The lookup ID of the record in bbcrm system.

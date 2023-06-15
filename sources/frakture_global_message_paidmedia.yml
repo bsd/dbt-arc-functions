@@ -10,248 +10,250 @@ sources:
           warn_after: {count: 2, period: day}
           error_after: {count: 7, period: day}
         loaded_at_field: cast(publish_date as timestamp)
-        description: ''
+        description: Summary of global messages by date
         columns:
           - name: message_id
             data_type: INT64
-            description: ''
+            description: Unique identifier for the message
           - name: date
             data_type: DATE
-            description: ''
+            description: Date of the message
           - name: bot_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the bot
           - name: bot_path
             data_type: STRING
-            description: ''
+            description: Path of the bot
           - name: bot_label
             data_type: STRING
-            description: ''
+            description: Label of the bot
           - name: bot_nickname
             data_type: STRING
-            description: ''
+            description: Nickname of the bot
           - name: channel
             data_type: STRING
-            description: ''
+            description: Channel of the message
           - name: channel_label
             data_type: STRING
-            description: ''
+            description: Label of the channel
           - name: type
             data_type: STRING
-            description: ''
+            description: Type of the message
           - name: status
             data_type: STRING
-            description: ''
+            description: Status of the message
           - name: publish_date
             data_type: DATETIME
-            description: ''
+            description: Publish date of the message
           - name: campaign_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the campaign
           - name: submodule
             data_type: STRING
-            description: ''
+            description: Submodule of the message
           - name: remote_id
             data_type: STRING
-            description: ''
+            description: Remote identifier for the message
           - name: do_not_attribute
             data_type: INT64
-            description: ''
+            description: Flag indicating if the message should not be attributed
           - name: sent
             data_type: INT64
-            description: ''
+            description: Number of messages sent
           - name: impressions
             data_type: INT64
-            description: ''
+            description: Number of impressions received
           - name: clicks
             data_type: INT64
-            description: ''
+            description: Number of clicks received
           - name: engagements
             data_type: INT64
-            description: ''
+            description: Number of engagements received
           - name: actions
             data_type: INT64
-            description: ''
+            description: Number of actions performed
           - name: leads
             data_type: INT64
-            description: ''
+            description: Number of leads generated
           - name: total_actions
             data_type: INT64
-            description: ''
+            description: Total number of actions performed
           - name: unique_actions
             data_type: INT64
-            description: ''
+            description: Number of unique actions performed
           - name: unsubscribes
             data_type: INT64
-            description: ''
+            description: Number of unsubscribes
           - name: complaints
             data_type: INT64
-            description: ''
+            description: Number of complaints received
           - name: soft_bounces
             data_type: INT64
-            description: ''
+            description: Number of soft bounces
           - name: hard_bounces
             data_type: INT64
-            description: ''
+            description: Number of hard bounces
           - name: blocked
             data_type: INT64
-            description: ''
+            description: Number of blocked messages
           - name: transactions
             data_type: FLOAT64
-            description: ''
+            description: Number of transactions
           - name: revenue
             data_type: FLOAT64
-            description: ''
+            description: Revenue generated
           - name: spend
             data_type: FLOAT64
-            description: ''
+            description: Spend on the message
           - name: attributed_revenue
             data_type: FLOAT64
-            description: ''
+            description: Revenue attributed to the message
           - name: attributed_transactions
             data_type: INT64
-            description: ''
+            description: Number of transactions attributed to the message
           - name: attributed_revenue_day_1
             data_type: FLOAT64
-            description: ''
+            description: Revenue attributed to the message on day 1
           - name: attributed_transactions_day_1
             data_type: INT64
-            description: ''
+            description: Number of transactions attributed to the message on day 1
           - name: attributed_revenue_day_6
             data_type: FLOAT64
-            description: ''
+            description: Revenue attributed to the message on day 6
           - name: attributed_transactions_day_6
             data_type: INT64
-            description: ''
+            description: Number of transactions attributed to the message on day 6
           - name: attributed_recurring_revenue
             data_type: FLOAT64
-            description: ''
+            description: Recurring revenue attributed to the message
           - name: attributed_recurring_transactions
             data_type: INT64
-            description: ''
+            description: Number of recurring transactions attributed to the message
           - name: attributed_initial_recurring_revenue
             data_type: FLOAT64
-            description: ''
+            description: Initial recurring revenue attributed to the message
           - name: attributed_initial_recurring_transactions
             data_type: INT64
-            description: ''
+            description: Number of initial recurring transactions attributed to the
+              message
           - name: attributed_subsequent_recurring_revenue
             data_type: FLOAT64
-            description: ''
+            description: Subsequent recurring revenue attributed to the message
           - name: attributed_subsequent_recurring_transactions
             data_type: INT64
-            description: ''
+            description: Number of subsequent recurring transactions attributed to
+              the message
           - name: attributed_min_amount
             data_type: FLOAT64
-            description: ''
+            description: Minimum amount attributed to the message
           - name: origin_person_count
             data_type: INT64
-            description: ''
+            description: Number of origin persons
           - name: recurtype
             data_type: STRING
-            description: ''
+            description: Recurring type of the message
           - name: goal
             data_type: STRING
-            description: ''
+            description: Goal of the message
           - name: channel_type
             data_type: STRING
-            description: ''
+            description: Type of the channel
           - name: appeal
             data_type: STRING
-            description: ''
+            description: Appeal of the message
           - name: campaign_label
             data_type: STRING
-            description: ''
+            description: Label of the campaign
           - name: audience
             data_type: STRING
-            description: ''
+            description: Target audience of the message
           - name: label
             data_type: STRING
-            description: ''
+            description: Label of the message
           - name: subject
             data_type: STRING
-            description: ''
+            description: Subject of the message
           - name: campaign_name
             data_type: STRING
-            description: ''
+            description: Name of the campaign
           - name: campaign
             data_type: STRING
-            description: ''
+            description: Campaign of the message
           - name: account_prefix
             data_type: STRING
-            description: ''
+            description: Prefix of the account
           - name: from_name
             data_type: STRING
-            description: ''
+            description: From name of the message
           - name: preview_url
             data_type: STRING
-            description: ''
+            description: URL preview of the message
           - name: primary_source_code
             data_type: STRING
-            description: ''
+            description: Primary source code of the message
           - name: primary_source_code_override
             data_type: STRING
-            description: ''
+            description: Override of the primary source code
           - name: final_primary_source_code
             data_type: STRING
-            description: ''
+            description: Final primary source code of the message
       - name: global_message
-        description: ''
+        description: Global messages
         columns:
           - name: message_id
             data_type: INT64
-            description: ''
+            description: Unique identifier for the message
           - name: channel
             data_type: STRING
-            description: ''
+            description: Channel of the message
           - name: channel_label
             data_type: STRING
-            description: ''
+            description: Label of the channel
           - name: type
             data_type: STRING
-            description: ''
+            description: Type of the message
           - name: status
             data_type: STRING
-            description: ''
+            description: Status of the message
           - name: publish_date
             data_type: DATETIME
-            description: ''
+            description: Publish date of the message
           - name: campaign_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the campaign
           - name: bot_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the bot
           - name: submodule
             data_type: STRING
-            description: ''
+            description: Submodule of the message
           - name: remote_id
             data_type: STRING
-            description: ''
+            description: Remote identifier for the message
           - name: do_not_attribute
             data_type: INT64
-            description: ''
+            description: Flag indicating if the message should not be attributed
           - name: label
             data_type: STRING
-            description: ''
+            description: Label of the message
           - name: subject
             data_type: STRING
-            description: ''
+            description: Subject of the message
           - name: campaign_name
             data_type: STRING
-            description: ''
+            description: Name of the campaign
           - name: from_name
             data_type: STRING
-            description: ''
+            description: From name of the message
           - name: preview_url
             data_type: STRING
-            description: ''
+            description: URL preview of the message
           - name: primary_source_code
             data_type: STRING
-            description: ''
+            description: Primary source code of the message
           - name: primary_source_code_override
             data_type: STRING
-            description: ''
+            description: Override of the primary source code
           - name: final_primary_source_code
             data_type: STRING
-            description: ''
+            description: Final primary source code of the message
