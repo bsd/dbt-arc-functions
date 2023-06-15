@@ -2,21 +2,21 @@
 version: 2
 models:
   - name: mart_web_daily_performance
-    description: 'Daily performance metrics for the web mart'
+    description: Daily performance metrics for the web mart
     columns:
       - name: session_date
-        description: 'The date of the session'
+        description: The date of the session
       - name: page_views
-        description: 'The total number of page views for the session'
+        description: The total number of page views for the session
       - name: engagement_time_msec
-        description: 'The total engagement time for the session in milliseconds'
+        description: The total engagement time for the session in milliseconds
       - name: max_engaged
-        description: 'The maximum engagement time for the session in milliseconds'
+        description: The maximum engagement time for the session in milliseconds
       - name: new_users
-        description: 'The number of new users for the session'
+        description: The number of new users for the session
       - name: total_users
-        description: 'The total number of users for the session'
+        description: The total number of users for the session
       - name: purchases
-        description: 'The total number of purchases for the session'
+        description: The total number of purchases for the session
       - name: total_sessions
-        description: 'The total number of sessions for the day'
+        description: The total number of sessions for the day

@@ -2,65 +2,66 @@
 version: 2
 sources:
   - name: src_stitch_fundraiseup
-    description: 'Source for recent transactions data from FundraiseUp'
+    description: Source for recent transactions data from FundraiseUp
     loader: stitch - sftp
     database: "{{ var('database') }}"
     schema: src_stitch_fundraiseup_authorized
     tables:
       - name: recent_transactions
-        description: 'Table containing recent transactions from FundraiseUp'
+        description: Table containing recent transactions from FundraiseUp
         columns:
           - name: designation
             data_type: STRING
-            description: 'Designation of the transaction'
+            description: Designation of the transaction
           - name: appeal
             data_type: STRING
-            description: 'Appeal related to the transaction'
+            description: Appeal related to the transaction
           - name: __initial_market_source_
             data_type: STRING
-            description: 'Initial market source related to the transaction'
+            description: Initial market source related to the transaction
           - name: migrated
             data_type: STRING
-            description: 'Whether the transaction has been migrated or not'
+            description: Whether the transaction has been migrated or not
           - name: bbcrmlookupid
             data_type: STRING
-            description: 'ID related to the transaction in Blackbaud CRM'
+            description: ID related to the transaction in Blackbaud CRM
           - name: _sdc_table_version
             data_type: INT64
-            description: 'Version of the table'
+            description: Version of the table
           - name: _sdc_source_file
             data_type: STRING
-            description: 'Name of the source file related to the transaction'
+            description: Name of the source file related to the transaction
           - name: transaction_date
             data_type: STRING
-            description: 'Date of the transaction'
+            description: Date of the transaction
           - name: _sdc_received_at
             data_type: TIMESTAMP
-            description: 'Timestamp when the transaction was received'
+            description: Timestamp when the transaction was received
           - name: _sdc_sequence
             data_type: INT64
-            description: 'Sequence number related to the transaction'
+            description: Sequence number related to the transaction
           - name: fru_donation_id
             data_type: STRING
-            description: 'ID related to the donation in FundraiseUp'
+            description: ID related to the donation in FundraiseUp
           - name: amount
             data_type: FLOAT64
-            description: 'Amount of the transaction'
+            description: Amount of the transaction
           - name: gift_type
             data_type: STRING
-            description: 'Type of gift'
+            description: Type of gift
           - name: email_address
             data_type: STRING
-            description: 'Email address of the donor'
+            description: Email address of the donor
           - name: _sdc_batched_at
             data_type: TIMESTAMP
-            description: 'Timestamp when the batch was received'
+            description: Timestamp when the batch was received
           - name: _sdc_source_lineno
             data_type: INT64
-            description: 'Line number related to the transaction in the source file'
+            description: Line number related to the transaction in the source file
           - name: designation_name
             data_type: STRING
-            description: 'Name of the designation'
+            description: Name of the designation
           - name: sfmc_updatedate
             data_type: STRING
-            description: 'Update date related to the transaction in Salesforce Marketing Cloud'
+            description: Update date related to the transaction in Salesforce Marketing
+              Cloud

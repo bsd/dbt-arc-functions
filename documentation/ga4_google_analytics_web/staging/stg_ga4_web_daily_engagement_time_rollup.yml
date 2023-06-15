@@ -2,11 +2,14 @@
 version: 2
 models:
   - name: stg_ga4_web_daily_engagement_time_rollup
-    description: 'Table containing daily rollup of engagement time for web sessions in Google Analytics 4'
+    description: Table containing daily rollup of engagement time for web sessions
+      in Google Analytics 4
     columns:
       - name: session_date
-        description: 'Date of the session'
+        description: Date of the session
       - name: session_key
-        description: 'Unique key assigned to sessions. Sessions can span multiple dates/partitions. '
+        description: 'Unique key assigned to sessions. Sessions can span multiple
+          dates/partitions. '
       - name: engagement_time_msec
-        description: 'Total time in milliseconds that the user spent engaged with the website during the session.'
+        description: Total time in milliseconds that the user spent engaged with the
+          website during the session.

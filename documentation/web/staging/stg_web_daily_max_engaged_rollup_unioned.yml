@@ -2,13 +2,14 @@
 version: 2
 models:
   - name: stg_web_daily_max_engaged_rollup_unioned
-    description: 'Staging table containing daily rollup of maximum user engagement from multiple sources.'
+    description: Staging table containing daily rollup of maximum user engagement
+      from multiple sources.
     columns:
       - name: _dbt_source_relation
-        description: 'Name of the source table/view where the data was extracted from.'
+        description: Name of the source table/view where the data was extracted from.
       - name: session_date
-        description: 'Date of user session.'
+        description: Date of user session.
       - name: session_key
-        description: 'Unique identifier for the user session.'
+        description: Unique identifier for the user session.
       - name: max_engaged
-        description: 'Maximum level of user engagement during the session.'
+        description: Maximum level of user engagement during the session.

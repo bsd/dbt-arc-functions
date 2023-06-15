@@ -2,13 +2,13 @@
 version: 2
 models:
   - name: stg_web_daily_new_users_rollup_unioned
-    description: 'Model for tracking daily new users on the website.'
+    description: Model for tracking daily new users on the website.
     columns:
       - name: _dbt_source_relation
-        description: 'Name of the source relation in the database.'
+        description: Name of the source relation in the database.
       - name: session_date
-        description: 'Date of the session when the user signed up.'
+        description: Date of the session when the user signed up.
       - name: session_key
-        description: "Unique identifier for the user's session."
+        description: Unique identifier for the user's session.
       - name: new_users
-        description: 'Number of new users that signed up during the session.'
+        description: Number of new users that signed up during the session.
