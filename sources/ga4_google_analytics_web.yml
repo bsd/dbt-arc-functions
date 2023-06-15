@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: ga4_google_analytics_web
     database: "{{ var('database') }}"
-    schema: '{{ target.name }}_ga4'
+    schema: "{{ target.name }}_ga4"
     tables:
       - name: fct_ga4__sessions_daily
         description: Fact table with daily session data partitioned by day
