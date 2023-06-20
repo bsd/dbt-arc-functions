@@ -12,7 +12,7 @@ macros:
       - name: fiscal_year_start
         type: string
         description: Fiscal year start date in MM-YY format. How to use can be seen
-          in the snippet below 
+          in the snippet below
   - name: get_fiscal_quarter
     description: '{{ doc("get_fiscal_date_part") }}'
     docs:
