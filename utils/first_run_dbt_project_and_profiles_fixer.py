@@ -173,6 +173,7 @@ def update_dbt_project(
     dbt_project_yml["vars"]["fiscal_year_start"] = fiscal_year_start
     copy_choice = inplace_or_copy("dbt_project")
     file, extension = path.splitext(dbt_project)
+    dbt_project_yml["models"]["+persist_docs"] = {'relation': True, 'columns': True}
     with open(file + copy_choice + extension, "w", encoding="utf-8") as f:
         # width is set to a large number to avoid line breaks
         yaml.dump(dbt_project_yml, f)
