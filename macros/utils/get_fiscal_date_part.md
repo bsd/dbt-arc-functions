@@ -1,4 +1,5 @@
 {% docs get_fiscal_date_part %}
+{% raw %}
       A macro that allows you to get fiscal day from a date, datetime,
       or timestamp with a fiscal year start date. Usage shown below:
 
@@ -28,4 +29,5 @@ FROM {{ ref('YOUR_MODEL_HERE') }}
 WHERE total_gifts > 0 OR total_revenue > 0
 ORDER BY 2,3,1 ASC
 ```
-{% enddocs%}
+{% endraw %}
+{% enddocs %}
