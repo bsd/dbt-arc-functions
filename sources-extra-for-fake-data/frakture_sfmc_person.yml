@@ -2,78 +2,80 @@
 version: 2
 sources:
   - name: frakture_sfmc_person
-    description: ''
+    description: This source contains data about subscribers in Salesforce Marketing
+      Cloud.
     schema: src_frakture
     tables:
       - name: sfmc_bot_per_person_message_stat
-        description: ''
+        description: This table contains statistics about messages sent to each subscriber.
         columns:
           - name: message_id
             data_type: INT64
-            description: ''
+            description: Unique identifier for the message.
           - name: remote_person_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the subscriber.
           - name: sent_ts
             data_type: DATETIME
-            description: ''
+            description: Timestamp for when the message was sent.
           - name: ts
             data_type: DATETIME
-            description: ''
+            description: Timestamp for when the statistics were recorded.
           - name: opened
             data_type: INT64
-            description: ''
+            description: Number of times the message was opened.
           - name: opened_ts
             data_type: STRING
-            description: ''
+            description: Timestamp for when the message was last opened.
           - name: clicked
             data_type: INT64
-            description: ''
+            description: Number of times links in the message were clicked.
           - name: clicked_ts
             data_type: STRING
-            description: ''
+            description: Timestamp for when the link was last clicked.
           - name: unsubscribed
             data_type: BIGNUMERIC
-            description: ''
+            description: Number of times the subscriber has unsubscribed from this
+              message type.
           - name: unsubscribed_ts
             data_type: STRING
-            description: ''
+            description: Timestamp for when the subscriber was last unsubscribed.
           - name: bounced
             data_type: INT64
-            description: ''
+            description: Number of times the message bounced.
           - name: bounce_ts
             data_type: STRING
-            description: ''
+            description: Timestamp for when the message last bounced.
       - name: sfmc_bot_person
-        description: ''
+        description: This table contains information about each subscriber.
         columns:
           - name: remote_person_id
             data_type: STRING
-            description: ''
+            description: Unique identifier for the subscriber.
           - name: date_created
             data_type: DATETIME
-            description: ''
+            description: Timestamp for when the subscriber was added to the system.
           - name: remote_last_modified
             data_type: DATETIME
-            description: ''
+            description: Timestamp for when the subscriber was last modified.
           - name: postal_code
             data_type: STRING
-            description: ''
+            description: Postal code of the subscriber.
           - name: source_code
             data_type: STRING
-            description: ''
+            description: Source code of the subscriber.
           - name: accepts_email
             data_type: STRING
-            description: ''
+            description: Whether the subscriber accepts email communications.
           - name: email_opt_out_date
             data_type: DATETIME
-            description: ''
+            description: Timestamp for when the subscriber opted out of email communications.
           - name: sfmc_status
             data_type: STRING
-            description: ''
+            description: Status of the subscriber in Salesforce Marketing Cloud.
           - name: email_hash_v1
             data_type: STRING
-            description: ''
+            description: Hash of the subscriber email address.
           - name: email_domain
             data_type: STRING
-            description: ''
+            description: Domain of the subscriber email address.
