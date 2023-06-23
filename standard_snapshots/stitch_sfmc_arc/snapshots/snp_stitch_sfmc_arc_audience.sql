@@ -2,7 +2,7 @@
   {{
       config(
         target_database=var('database'),
-        target_schema=target.schema + '_snapshots',
+        target_schema=generate_schema_name('snapshots'),
         unique_key='subscriberkey',
         strategy='timestamp',
         updated_at='modifieddate',

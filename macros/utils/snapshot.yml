@@ -1,0 +1,11 @@
+---
+version: 2
+macros:
+  - name: snapshot
+    description: A macro that makes sure your snapshots always reference the prod snapshot database rather than your dev database.
+    docs:
+      show: true
+    arguments:
+      - name: snapshot_name
+        type: string
+        description: The reference name of your snapshot.
