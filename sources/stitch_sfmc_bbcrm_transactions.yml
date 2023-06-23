@@ -2,95 +2,96 @@
 version: 2
 sources:
   - name: src_stitch_bbcrm
-    description: Source data from Stitch for BBCRM
+    description: Source for revenue data from Salesforce CRM
     loader: stitch - sftp
     database: "{{ var('database') }}"
     schema: src_stitch_bbcrm_authorized
     tables:
       - name: revenue
-        description: Revenue data for donors
+        description: Table containing revenue data from Salesforce CRM
         columns:
           - name: designation
             data_type: STRING
-            description: The designation of the donor's gift
+            description: The designated area for the revenue
           - name: inbound_channel
             data_type: STRING
-            description: The inbound channel for the donor's gift
+            description: The channel through which the revenue was acquired
           - name: appeal
             data_type: STRING
-            description: The appeal for the donor's gift
+            description: The fundraising appeal associated with the revenue
           - name: transaction_type
             data_type: STRING
-            description: The transaction type for the donor's gift
+            description: The type of transaction associated with the revenue
           - name: recognition_amount
             data_type: FLOAT64
-            description: The recognition amount for the donor's gift
+            description: The amount of revenue to be recognized for financial reporting
           - name: revenue_platform
             data_type: STRING
-            description: The revenue platform used for the donor's gift
+            description: The platform through which the revenue was acquired
           - name: vendor_order_number
             data_type: STRING
-            description: The vendor order number for the donor's gift
+            description: The vendor order number associated with the revenue
           - name: statuscode
             data_type: INT64
-            description: The status code for the donor's gift
+            description: The status code of the revenue in Salesforce CRM
           - name: constituentsystemrecordid
             data_type: STRING
-            description: The constituent system record ID for the donor
+            description: The ID of the constituent system in Salesforce CRM
           - name: web_donation_form_value
             data_type: STRING
-            description: The web donation form value for the donor's gift
+            description: The value associated with the web donation form
           - name: payment_method
             data_type: STRING
-            description: The payment method used for the donor's gift
+            description: The payment method associated with the revenue
           - name: appeal_business_unit
             data_type: STRING
-            description: The appeal business unit for the donor's gift
+            description: The business unit associated with the fundraising appeal
           - name: recordid
             data_type: STRING
-            description: The record ID for the donor's gift
+            description: The record ID of the revenue in Salesforce CRM
           - name: _sdc_table_version
             data_type: INT64
-            description: The version of the table for each record
+            description: The version of the table in Stitch
           - name: application
             data_type: STRING
-            description: The application for the donor's gift
+            description: The application associated with the revenue
           - name: sfmc_dateadded
             data_type: STRING
-            description: The SFMC date added for the donor's gift
+            description: The date the revenue was added in Salesforce Marketing Cloud
           - name: initial_market_source
             data_type: STRING
-            description: The initial market source for the donor's gift
+            description: The initial marketing source associated with the revenue
           - name: _sdc_source_file
             data_type: STRING
-            description: The file from which the record was sourced
+            description: The source file used to load the revenue data in Stitch
           - name: web_donation_form_comment
             data_type: STRING
-            description: The web donation form comment for the donor's gift
+            description: The comment associated with the web donation form
           - name: transaction_date
             data_type: STRING
-            description: The transaction date for the donor's gift
+            description: The transaction date associated with the revenue
           - name: _sdc_received_at
             data_type: TIMESTAMP
-            description: The time at which the record was received
+            description: The timestamp when the revenue data was received in Stitch
           - name: _sdc_sequence
             data_type: INT64
-            description: The sequence number for the record
+            description: The sequence of the revenue data in Stitch
           - name: revenue_id
             data_type: STRING
-            description: The ID for the donor's gift
+            description: The ID of the revenue in Salesforce CRM
           - name: __sdc_primary_key
             data_type: STRING
-            description: The primary key for each record
+            description: The unique primary key for the revenue data in Stitch
           - name: _sdc_batched_at
             data_type: TIMESTAMP
-            description: The time at which the record was batched
+            description: The timestamp when the revenue data was batched in Stitch
           - name: _sdc_source_lineno
             data_type: INT64
-            description: The line number in the source file for the record
+            description: The line number of the revenue data in the source file
           - name: sfmc_updatedate
             data_type: STRING
-            description: The SFMC update date for the donor's gift
+            description: The date the revenue was updated in Salesforce Marketing
+              Cloud
           - name: __bbcrmlookupid_
             data_type: STRING
-            description: The BBCRM lookup ID for the donor's gift
+            description: The lookup ID in Salesforce CRM for the revenue data
