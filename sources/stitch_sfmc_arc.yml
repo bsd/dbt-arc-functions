@@ -11,22 +11,31 @@ sources:
         description: Table that contained all audience composition data from SFMC
         columns:
           - name: modifieddate
-            description: 'Date the audience membership was modified '
+            data_type: STRING
+            description: Date the audience membership was modified
           - name: subscriberkey
+            data_type: STRING
             description: the BBCRMLOOKUP ID for each person
           - name: _sdc_table_version
+            data_type: INT64
             description: Stitch specific table version
           - name: _sdc_source_file
+            data_type: STRING
             description: Stitch specific source file name
           - name: _sdc_received_at
-            description: stitch specific date when file was recieved from stitch
+            data_type: TIMESTAMP
+            description: stitch specific date when file was received from stitch
           - name: _sdc_sequence
+            data_type: INT64
             description: stitch specific sequence number
           - name: __donoraudience_
+            data_type: STRING
             description: the assigned audience from SFMC
           - name: _sdc_batched_at
+            data_type: TIMESTAMP
             description: Stitch specific batch date
           - name: _sdc_source_lineno
+            data_type: INT64
             description: stitch specific source line number
       - name: arc_person
         description: Table containing data from each person in the SFMC. This is built
