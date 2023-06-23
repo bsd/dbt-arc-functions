@@ -2,7 +2,7 @@
 version: 2
 macros:
   - name: snapshot
-    description: A macro that makes sure your snapshots always reference the prod snapshot database rather than your dev database.
+    description: A macro that makes sure your snapshots always reference the prod snapshot database rather than your dev database. Read more here https://discourse.getdbt.com/t/using-dbt-to-manage-user-defined-functions/18
     docs:
       show: true
     arguments:
