@@ -237,7 +237,7 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
     destination_file_path = path.join(destination_path, file)
     with open(file_path, "r", encoding="utf-8") as f:
         content = f.read()
-        if file.endswith(".sql"):
+        if file.endswith(".sql") and model_type != 'snapshots':
             print(rx.search(content))
             function = rx.search(content)[1] if rx.search(content) else None
             github_path = "/".join([git_prepend, source, model_type, file])
@@ -399,9 +399,11 @@ def delete_non_standard_models(destination_path, source_path):
 
 
 def loop_through_list_of_models(
-    list_of_models, model_types, sources_path, macros_path, source, destination, create
+    list_of_models, model_types, sources_path, macros_path, source, destination, create,
+    snapshots_path
 ):
     for model_type in list_of_models:
+        print(model_type)
         if model_type not in model_types:
             print(
                 f"Weird, {model_type} is not one of our standard model types. Going to skip."
@@ -410,12 +412,14 @@ def loop_through_list_of_models(
         source_path = (
             sources_path
             if model_type == sources_path
+            else path.join(snapshots_path, source, "snapshots")
+            if model_type == "snapshots"
             else path.join(macros_path, source, model_type)
         )
         destination_path = (
             path.join(destination, "sources")
             if model_type == sources_path
-            else path.join(os.path.dirname(destination), model_type, source)
+            else path.join(os.path.dirname(destination), "snapshots", source)
             if model_type == "snapshots"
             else path.join(destination, model_type, source)
         )
@@ -450,6 +454,7 @@ def loop_through_sources_wanted(
     model_types,
     create,
     destination,
+    snapshots_path
 ):
     for source in sources_wanted:
         if source not in list_of_sources:
@@ -457,6 +462,7 @@ def loop_through_sources_wanted(
             continue
         list_of_models = os.listdir(path.join(macros_path, source))
         list_of_models.append(sources_path)
+        list_of_models.extend(os.listdir(path.join(snapshots_path, source)))
         loop_through_list_of_models(
             list_of_models,
             model_types,
@@ -465,6 +471,7 @@ def loop_through_sources_wanted(
             source,
             destination,
             create,
+            snapshots_path
         )
 
 
@@ -479,7 +486,8 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
     :return: None
     """
     sources_path = path.join("..", "sources")
-    model_types = [sources_path, "snapshots", "staging", "marts"]
+    snapshots_path = path.join("..", "standard_snapshots")
+    model_types = [sources_path, snapshots_path, "staging", "marts", "snapshots"]
     loop_through_sources_wanted(
         sources_wanted,
         list_of_sources,
@@ -488,6 +496,7 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
         model_types,
         create,
         destination,
+        snapshots_path
     )
 
 
