@@ -29,4 +29,3 @@ sources:
           - name: projected_revenue
             data_type: INT64
             description: Projected revenue for the goal.
-
