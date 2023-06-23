@@ -237,7 +237,7 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
     destination_file_path = path.join(destination_path, file)
     with open(file_path, "r", encoding="utf-8") as f:
         content = f.read()
-        if file.endswith(".sql") and model_type != 'snapshots':
+        if file.endswith(".sql") and model_type != "snapshots":
             print(rx.search(content))
             function = rx.search(content)[1] if rx.search(content) else None
             github_path = "/".join([git_prepend, source, model_type, file])
@@ -399,8 +399,14 @@ def delete_non_standard_models(destination_path, source_path):
 
 
 def loop_through_list_of_models(
-    list_of_models, model_types, sources_path, macros_path, source, destination, create,
-    snapshots_path
+    list_of_models,
+    model_types,
+    sources_path,
+    macros_path,
+    source,
+    destination,
+    create,
+    snapshots_path,
 ):
     for model_type in list_of_models:
         print(model_type)
@@ -454,7 +460,7 @@ def loop_through_sources_wanted(
     model_types,
     create,
     destination,
-    snapshots_path
+    snapshots_path,
 ):
     for source in sources_wanted:
         if source not in list_of_sources:
@@ -472,7 +478,7 @@ def loop_through_sources_wanted(
             source,
             destination,
             create,
-            snapshots_path
+            snapshots_path,
         )
 
 
@@ -497,7 +503,7 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
         model_types,
         create,
         destination,
-        snapshots_path
+        snapshots_path,
     )
 
 
@@ -512,7 +518,9 @@ def create_or_update_readme(dbt_models_path, list_of_sources):
     proposed_readme_string += "## Standard Models from dbt-arc-functions\n\n"
     set_of_existing_models = set()
     model_types = ["marts", "staging", path.join("..", "snapshots")]
-    standard_paths = [os.path.join(dbt_models_path, model_type) for model_type in model_types]
+    standard_paths = [
+        os.path.join(dbt_models_path, model_type) for model_type in model_types
+    ]
     for standard_path in standard_paths:
         try:
             set_of_existing_models.update(os.listdir(standard_path))
