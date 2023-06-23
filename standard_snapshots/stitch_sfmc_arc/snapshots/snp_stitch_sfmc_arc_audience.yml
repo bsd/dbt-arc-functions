@@ -1,44 +1,42 @@
+---
 version: 2
-
 snapshots:
   - name: snp_stitch_sfmc_arc_audience
-    description: "Snapshot Stitch Salesforce Marketing Cloud ARC Audience"
+    description: Snapshot Stitch Salesforce Marketing Cloud ARC Audience
     columns:
       - name: modifieddate
-        description: "Modified Date"
-
+        description: Modified Date
       - name: subscriberkey
-        description: "Subscriber Key"
-
+        description: Subscriber Key
       - name: _sdc_table_version
-        description: "Stitch system column, Indicates the version of the table. This column is used to determine when to issue TRUNCATE commands during loading, where applicable."
-
+        description: Stitch system column, Indicates the version of the table. This
+          column is used to determine when to issue TRUNCATE commands during loading,
+          where applicable.
       - name: _sdc_source_file
-        description: "Stitch system column, Applicable only to Intacct and Responsys integrations, this column contains the file path on the SFTP server of the table’s source file."
-
+        description: Stitch system column, Applicable only to Intacct and Responsys
+          integrations, this column contains the file path on the SFTP server of the
+          table’s source file.
       - name: _sdc_received_at
-        description: "Stitch system column, Timestamp indicating when Stitch received the record for loading."
-
+        description: Stitch system column, Timestamp indicating when Stitch received
+          the record for loading.
       - name: _sdc_sequence
-        description: "Stitch system column, A Unix epoch (in nanoseconds) that indicates the order in which data points were considered for loading."
-
+        description: Stitch system column, A Unix epoch (in nanoseconds) that indicates
+          the order in which data points were considered for loading.
       - name: __donoraudience_
-        description: "Donor Audience"
-
+        description: Donor Audience
       - name: _sdc_batched_at
-        description: "Stitch system column, Timestamp indicating when Stitch loaded the batch the record was a part of into the destination."
-
+        description: Stitch system column, Timestamp indicating when Stitch loaded
+          the batch the record was a part of into the destination.
       - name: _sdc_source_lineno
-        description: "Stitch system column, Applicable only to Intacct and Responsys integrations, this column contains the row number for the record in the source file."
-
+        description: Stitch system column, Applicable only to Intacct and Responsys
+          integrations, this column contains the row number for the record in the
+          source file.
       - name: dbt_scd_id
-        description: "DBT Slowly Changing Dimension ID, it is an MD5 hash of primary_key and updated_at."
-
+        description: DBT Slowly Changing Dimension ID, it is an MD5 hash of primary_key
+          and updated_at.
       - name: dbt_updated_at
-        description: "DBT Updated At"
-
+        description: DBT Updated At
       - name: dbt_valid_from
-        description: "DBT Valid From"
-
+        description: DBT Valid From
       - name: dbt_valid_to
-        description: "DBT Valid To"
+        description: DBT Valid To

@@ -1,74 +1,78 @@
+---
 version: 2
-
 sources:
   - name: src_stitch_sfmc_arc
-    description: "Queries running from SFMC using ARC logic for person and audience"
+    description: Queries running from SFMC using ARC logic for person and audience
     loader: stitch - sftp
     database: "{{ var('database') }}"
     schema: src_stitch_sfmc_arc_authorized
     tables:
       - name: arc_audience
-        description: "Table that contained all audience composition data from SFMC"
+        description: Table that contained all audience composition data from SFMC
         columns:
           - name: modifieddate
-            description: "Date the audience membership was modified "
+            description: 'Date the audience membership was modified '
           - name: subscriberkey
-            description: "the BBCRMLOOKUP ID for each person"
+            description: the BBCRMLOOKUP ID for each person
           - name: _sdc_table_version
-            description: "Stitch specific table version"
+            description: Stitch specific table version
           - name: _sdc_source_file
-            description: "Stitch specific source file name"
+            description: Stitch specific source file name
           - name: _sdc_received_at
-            description: "stitch specific date when file was recieved from stitch"
+            description: stitch specific date when file was recieved from stitch
           - name: _sdc_sequence
-            description: "stitch specific sequence number"
+            description: stitch specific sequence number
           - name: __donoraudience_
-            description: "the assigned audience from SFMC"
+            description: the assigned audience from SFMC
           - name: _sdc_batched_at
-            description: "Stitch specific batch date"
+            description: Stitch specific batch date
           - name: _sdc_source_lineno
-            description: "stitch specific source line number"
-
+            description: stitch specific source line number
       - name: arc_person
-        description: "Table containing data from each person in the SFMC. This is built from a custom query in SFMC."
+        description: Table containing data from each person in the SFMC. This is built
+          from a custom query in SFMC.
         columns:
           - name: origindatasource
-            description: "This is the constituentsource field from BBCRM constituents in SFMC"
+            description: This is the constituentsource field from BBCRM constituents
+              in SFMC
           - name: persontype
-            description: "This is the constituenttype field from BBCRM_Constituents in SFMC. This can be individual or Organziaton, etc"
+            description: This is the constituenttype field from BBCRM_Constituents
+              in SFMC. This can be individual or Organziaton, etc
           - name: country
-            description: "This is the country of the person in SFMC"
+            description: This is the country of the person in SFMC
           - name: city
-            description: "This is the city of the person in SFMC"
+            description: This is the city of the person in SFMC
           - name: modifieddate
-            description: "The is the SFMC updated date of the person in SFMC"
+            description: The is the SFMC updated date of the person in SFMC
           - name: subscriberkey
-            description: "This is the BBCRMLookupID of the person in SFMC"
+            description: This is the BBCRMLookupID of the person in SFMC
           - name: emaildomain
-            description: "This is the person's email domain"
+            description: This is the person's email domain
           - name: _sdc_table_version
-            description: "Stitch specific table version"
+            description: Stitch specific table version
           - name: __emailhash_
-            description: "this is a converted email hash for each person in SFMC"
+            description: this is a converted email hash for each person in SFMC
           - name: originsourcecode
-            description: "This is the constituentmarket source field on BBCRM_Constituents in SFMC"
+            description: This is the constituentmarket source field on BBCRM_Constituents
+              in SFMC
           - name: postalcode
-            description: "This is the postal code of each person in SFMC"
+            description: This is the postal code of each person in SFMC
           - name: sfmc_dateadded
-            description: "this is the date that the person record was added to SFMC"
+            description: this is the date that the person record was added to SFMC
           - name: region
-            description: "This matches the US state abbreviation"
+            description: This matches the US state abbreviation
           - name: emailoptin
-            description: "This determines if someone has been opted into email. This field has multiple values"
+            description: This determines if someone has been opted into email. This
+              field has multiple values
           - name: _sdc_source_file
-            description: "stitch specific source file"
+            description: stitch specific source file
           - name: _sdc_received_at
-            description: "stitch specific date that file was received"
+            description: stitch specific date that file was received
           - name: _sdc_sequence
-            description: "stitch specific sequence number"
+            description: stitch specific sequence number
           - name: _sdc_batched_at
-            description: "stitch specific date that batched file was received"
+            description: stitch specific date that batched file was received
           - name: _sdc_source_lineno
-            description: "stitch specific source line number"
+            description: stitch specific source line number
           - name: createddate
-            description: "This should be the date that the person was added to BBCRM"
+            description: This should be the date that the person was added to BBCRM
