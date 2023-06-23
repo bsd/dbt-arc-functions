@@ -1,8 +1,8 @@
 {% snapshot snp_stitch_sfmc_arc_audience %} 
   {{
       config(
-        target_database="{{var('database')}}",
-        target_schema='snapshots',
+        target_database=var('database'),
+        target_schema=target.schema + '_snapshots',
         unique_key='subscriberkey',
         strategy='timestamp',
         updated_at='modifieddate',
