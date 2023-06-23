@@ -238,6 +238,7 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
     with open(file_path, "r", encoding="utf-8") as f:
         content = f.read()
         if file.endswith(".sql"):
+            print(rx.search(content))
             function = rx.search(content)[1] if rx.search(content) else None
             github_path = "/".join([git_prepend, source, model_type, file])
             output = DBT_STRING.format(github_path=github_path, function=function)
@@ -412,9 +413,11 @@ def loop_through_list_of_models(
             else path.join(macros_path, source, model_type)
         )
         destination_path = (
-            path.join(destination, model_type, source)
-            if model_type != sources_path
-            else path.join(destination, "sources")
+            path.join(destination, "sources")
+            if model_type == sources_path
+            else path.join(os.path.dirname(destination), model_type, source)
+            if model_type == "snapshots"
+            else path.join(destination, model_type, source)
         )
         if (
             path.exists(destination_path)
@@ -476,7 +479,7 @@ def process_sources(sources_wanted, list_of_sources, macros_path, create, destin
     :return: None
     """
     sources_path = path.join("..", "sources")
-    model_types = [sources_path, "staging", "marts"]
+    model_types = [sources_path, "snapshots", "staging", "marts"]
     loop_through_sources_wanted(
         sources_wanted,
         list_of_sources,
@@ -498,10 +501,13 @@ def create_or_update_readme(dbt_models_path, list_of_sources):
     proposed_readme_string += f"# {name_of_project}\n\n"
     proposed_readme_string += "## Standard Models from dbt-arc-functions\n\n"
     set_of_existing_models = set()
-    marts_path = os.path.join(dbt_models_path, "marts")
-    staging_path = os.path.join(dbt_models_path, "staging")
-    set_of_existing_models.update(os.listdir(marts_path))
-    set_of_existing_models.update(os.listdir(staging_path))
+    model_types = ["marts", "staging", path.join("..", "snapshots")]
+    standard_paths = [os.path.join(dbt_models_path, model_type) for model_type in model_types]
+    for standard_path in standard_paths:
+        try:
+            set_of_existing_models.update(os.listdir(standard_path))
+        except FileNotFoundError:
+            print(f"{standard_path} directory does not exist, moving on.")
     list_of_existing_models = list(set_of_existing_models)
     list_of_existing_models.sort
     for model in list_of_existing_models:
