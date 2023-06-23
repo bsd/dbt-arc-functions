@@ -462,7 +462,8 @@ def loop_through_sources_wanted(
             continue
         list_of_models = os.listdir(path.join(macros_path, source))
         list_of_models.append(sources_path)
-        list_of_models.extend(os.listdir(path.join(snapshots_path, source)))
+        if os.path.exists(path.join(snapshots_path, source)):
+            list_of_models.extend(os.listdir(path.join(snapshots_path, source)))
         loop_through_list_of_models(
             list_of_models,
             model_types,
