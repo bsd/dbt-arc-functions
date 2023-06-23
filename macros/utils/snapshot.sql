@@ -21,3 +21,4 @@ Use an or operator to handle:
 #}
 
 {{ return(prod_snapshot_relation or snapshot_relation) }}
+{% endmacro %}
