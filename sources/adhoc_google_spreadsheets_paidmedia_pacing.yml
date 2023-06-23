@@ -23,4 +23,3 @@ sources:
           - name: description
             data_type: STRING
             description: Additional description for the campaign.
-
