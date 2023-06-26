@@ -527,7 +527,7 @@ def create_or_update_readme(dbt_models_path, list_of_sources):
         except FileNotFoundError:
             print(f"{standard_path} directory does not exist, moving on.")
     list_of_existing_models = list(set_of_existing_models)
-    list_of_existing_models.sort
+    list_of_existing_models.sort()
     for model in list_of_existing_models:
         if model in list_of_sources:
             proposed_readme_string += f"- {model}\n"
