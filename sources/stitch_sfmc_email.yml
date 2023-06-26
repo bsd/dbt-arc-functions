@@ -735,7 +735,7 @@ sources:
             description: The keyword used in your message
             data_type: STRING
           - name: optin
-            description: ''
+            description: Optin status
             data_type: STRING
           - name: messagetext
             description: The text of the message
@@ -834,7 +834,7 @@ sources:
             description: "\tThe send ID number for the SMS send"
             data_type: STRING
           - name: unsub
-            description: ''
+            description: Unsubscribes
             data_type: STRING
           - name: isvalid
             description: If the message is valid
@@ -844,7 +844,7 @@ sources:
               length 11 characters
             data_type: STRING
           - name: eid
-            description: ''
+            description: Electronic identifier
             data_type: INT64
           - name: mobilemessagerecurrenceid
             description: The ID of the recurrence schedule for the message. Can be
@@ -858,7 +858,7 @@ sources:
               was a part of into the destination.
             data_type: TIMESTAMP
           - name: mid
-            description: ''
+            description: Mid tier
             data_type: INT64
           - name: _sdc_source_lineno
             description: Applicable only to Intacct and Responsys integrations, this
@@ -871,7 +871,7 @@ sources:
             description: Detailed description of the status code
             data_type: STRING
           - name: optout
-            description: ''
+            description: Optout status
             data_type: STRING
           - name: subscriberkey__st
             description: Created by Stitch as a string. The subscriber key for the

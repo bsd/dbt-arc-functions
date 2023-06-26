@@ -1,5 +1,5 @@
 ---
-# RUN compile_sources.py to add appopriate vars in dbt_project.yml
+# RUN compile_sources.py to add appropriate vars in dbt_project.yml
 # TODO: figure out how to pull in the analytics schema name
 version: 2
 sources:
@@ -10,62 +10,68 @@ sources:
         identifier: events_*
         columns:
           - name: event_date
-            description:
+            description: The date the event occurred
             data_type: STRING
           - name: event_timestamp
-            description:
+            description: The timestamp (in microseconds) of when the event occurred
             data_type: INT64
           - name: event_name
-            description:
+            description: The name of the event
             data_type: STRING
           - name: event_params
-            description:
+            description: An array containing up to 25 key-value pairs for the event
             data_type: ARRAY
           - name: event_previous_timestamp
-            description:
+            description: The previous timestamp (in microseconds) of when a user triggered
+              an event
             data_type: INT64
           - name: event_value_in_usd
-            description:
+            description: The assigned value of an event in USD
             data_type: FLOAT64
           - name: event_bundle_sequence_id
-            description:
+            description: The unique identifier for a bundle of events sent to Google
+              Analytics
             data_type: INT64
           - name: event_server_timestamp_offset
-            description:
+            description: The time difference (in microseconds) between the server
+              and the user's device when the event occurred
             data_type: INT64
           - name: user_id
-            description:
+            description: The user's unique identifier
             data_type: STRING
           - name: user_pseudo_id
-            description:
+            description: A pseudo-identifier for a user that is not the actual user
+              identifier
             data_type: STRING
           - name: privacy_info
-            description:
+            description: Information regarding the user's privacy settings
             data_type: STRUCT
           - name: user_properties
-            description:
+            description: An array containing up to 50 user-level custom dimensions
             data_type: ARRAY
           - name: user_first_touch_timestamp
-            description:
+            description: The timestamp (in microseconds) of the user's first interaction
+              with the app during the user acquisition time frame
             data_type: INT64
           - name: user_ltv
-            description:
+            description: Lifetime Value information about the user
             data_type: STRUCT
           - name: device
-            description:
+            description: Information regarding the user's device
             data_type: STRUCT
           - name: geo
-            description:
+            description: Information regarding the user's geographic location
             data_type: STRUCT
           - name: app_info
-            description:
+            description: Information regarding the app version and name
             data_type: STRUCT
           - name: traffic_source
-            description:
+            description: Information regarding the source of the user traffic
             data_type: STRUCT
           - name: stream_id
-            description:
+            description: The unique identifier associated with the data stream
             data_type: INT64
           - name: platform
-            description:
+            description: The type of platform (e.g. "Android", "iOS", "Web") associated
+              with the event
             data_type: STRING

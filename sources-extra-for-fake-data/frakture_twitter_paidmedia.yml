@@ -2,456 +2,456 @@
 version: 2
 sources:
   - name: frakture_twitter_paidmedia
-    description: ''
+    description: Data source related to paid media on Twitter managed through Frakture.
     schema: src_frakture
     tables:
       - name: twitter_bot_ad_summary_by_date
-        description: ''
+        description: Summary of ad data collected by Twitter bot, categorized by date.
         columns:
           - name: date
             data_type: DATE
-            description: ''
+            description: The date of the record.
           - name: date_day
             data_type: DATE
-            description: ''
+            description: The specific day of the record.
           - name: account_id
             data_type: STRING
-            description: ''
+            description: The unique identifier for the Twitter account.
           - name: account_prefix
             data_type: STRING
-            description: ''
+            description: The prefix of the Twitter account id.
           - name: account_prefix_label
             data_type: STRING
-            description: ''
+            description: The label for the Twitter account prefix.
           - name: acquisition_cost
             data_type: FLOAT64
-            description: ''
+            description: The cost of acquiring the ad.
           - name: acquisition_cost_per_person
             data_type: FLOAT64
-            description: ''
+            description: The cost of acquiring the ad per person.
           - name: acquisition_date
             data_type: DATETIME
-            description: ''
+            description: The date when the ad was acquired.
           - name: acquisition_source
             data_type: STRING
-            description: ''
+            description: The source from which the ad was acquired.
           - name: ad_type
             data_type: STRING
-            description: ''
+            description: The type of the ad.
           - name: additional_info
             data_type: STRING
-            description: ''
+            description: Any additional information related to the ad.
           - name: additional_info_label
             data_type: STRING
-            description: ''
+            description: The label for the additional information field.
           - name: adset_id
             data_type: STRING
-            description: ''
+            description: The unique identifier of the ad set.
           - name: adset_name
             data_type: STRING
-            description: ''
+            description: The name of the ad set.
           - name: affiliation
             data_type: STRING
-            description: ''
+            description: The affiliation associated with the ad.
           - name: affiliation_label
             data_type: STRING
-            description: ''
+            description: The label for the affiliation field.
           - name: agency
             data_type: STRING
-            description: ''
+            description: The agency that published the ad.
           - name: agency_label
             data_type: STRING
-            description: ''
+            description: The label for the agency field.
           - name: appeal
             data_type: STRING
-            description: ''
+            description: The appeal of the ad.
           - name: appeal_label
             data_type: STRING
-            description: ''
+            description: The label for the appeal field.
           - name: audience
             data_type: STRING
-            description: ''
+            description: The target audience of the ad.
           - name: audience_label
             data_type: STRING
-            description: ''
+            description: The label for the audience field.
           - name: author
             data_type: STRING
-            description: ''
+            description: The author of the ad.
           - name: author_label
             data_type: STRING
-            description: ''
+            description: The label for the author field.
           - name: bot_id
             data_type: STRING
-            description: ''
+            description: The unique identifier of the bot that generated the ad.
           - name: campaign
             data_type: STRING
-            description: ''
+            description: The campaign to which the ad belongs.
           - name: campaign_id
             data_type: STRING
-            description: ''
+            description: The unique identifier for the campaign.
           - name: campaign_label
             data_type: STRING
-            description: ''
+            description: The label for the campaign field.
           - name: campaign_name
             data_type: STRING
-            description: ''
+            description: Campaign Name
           - name: channel
             data_type: STRING
-            description: ''
+            description: Channel
           - name: department
             data_type: STRING
-            description: ''
+            description: Department
           - name: department_label
             data_type: STRING
-            description: ''
+            description: Department Label
           - name: edit_url
             data_type: STRING
-            description: ''
+            description: Edit URL
           - name: format
             data_type: STRING
-            description: ''
+            description: Format
           - name: format_regex
             data_type: STRING
-            description: ''
+            description: Format Regex
           - name: from_email
             data_type: STRING
-            description: ''
+            description: From Email
           - name: from_name
             data_type: STRING
-            description: ''
+            description: From Name
           - name: fund
             data_type: STRING
-            description: ''
+            description: Fund
           - name: fund_label
             data_type: STRING
-            description: ''
+            description: Fund Label
           - name: geo
             data_type: STRING
-            description: ''
+            description: Geo
           - name: geo_label
             data_type: STRING
-            description: ''
+            description: Geo Label
           - name: goal
             data_type: STRING
-            description: ''
+            description: Goal
           - name: goal_2
             data_type: STRING
-            description: ''
+            description: Goal 2
           - name: goal_2_label
             data_type: STRING
-            description: ''
+            description: Goal 2 Label
           - name: goal_label
             data_type: STRING
-            description: ''
+            description: Goal Label
           - name: image_url
             data_type: STRING
-            description: ''
+            description: Image URL
           - name: issue
             data_type: STRING
-            description: ''
+            description: Issue
           - name: issue_label
             data_type: STRING
-            description: ''
+            description: Issue Label
           - name: label
             data_type: STRING
-            description: ''
+            description: Label
           - name: media
             data_type: STRING
-            description: ''
+            description: Media
           - name: media_label
             data_type: STRING
-            description: ''
+            description: Media Label
           - name: message_set
             data_type: STRING
-            description: ''
+            description: Message Set
           - name: message_set_label
             data_type: STRING
-            description: ''
+            description: Message Set Label
           - name: organic
             data_type: STRING
-            description: ''
+            description: Organic
           - name: organic_label
             data_type: STRING
-            description: ''
+            description: Organic Label
           - name: partner
             data_type: STRING
-            description: ''
+            description: Partner
           - name: partner_label
             data_type: STRING
-            description: ''
+            description: Partner Label
           - name: policy
             data_type: STRING
-            description: ''
+            description: Policy
           - name: policy_label
             data_type: STRING
-            description: ''
+            description: Policy Label
           - name: preview_url
             data_type: STRING
-            description: ''
+            description: Preview URL
           - name: publish_date
             data_type: DATETIME
-            description: ''
+            description: Publish Date
           - name: recurtype
             data_type: STRING
-            description: ''
+            description: Recur Type
           - name: recurtype_label
             data_type: STRING
-            description: ''
+            description: Recur Type Label
           - name: remote_id
             data_type: STRING
-            description: ''
+            description: Remote ID
           - name: signer
             data_type: STRING
-            description: ''
+            description: Signer
           - name: signer_label
             data_type: STRING
-            description: ''
+            description: Signer Label
           - name: source_code_channel
             data_type: STRING
-            description: ''
+            description: Source Code Channel
           - name: source_code_channel_label
             data_type: STRING
-            description: ''
+            description: Source Code Channel Label
           - name: source_code_date
             data_type: STRING
-            description: ''
+            description: Source Code Date
           - name: source_code_date_label
             data_type: STRING
-            description: ''
+            description: Source Code Date Label
           - name: source_code_date_parsed
             data_type: DATETIME
-            description: ''
+            description: Source Code Date Parsed
           - name: source_code_id
             data_type: INT64
-            description: ''
+            description: Source Code ID
           - name: subchannel
             data_type: STRING
-            description: ''
+            description: Subchannel
           - name: subchannel_label
             data_type: STRING
-            description: ''
+            description: Subchannel Label
           - name: subject
             data_type: STRING
-            description: ''
+            description: Subject
           - name: submodule
             data_type: STRING
-            description: ''
+            description: Submodule
           - name: targeting
             data_type: STRING
-            description: ''
+            description: Targeting
           - name: targeting_2
             data_type: STRING
-            description: ''
+            description: Targeting 2
           - name: targeting_2_label
             data_type: STRING
-            description: ''
+            description: Targeting 2 Label
           - name: targeting_label
             data_type: STRING
-            description: ''
+            description: Targeting Label
           - name: theme
             data_type: STRING
-            description: ''
+            description: Theme
           - name: theme_label
             data_type: STRING
-            description: ''
+            description: Theme Label
           - name: variant
             data_type: STRING
-            description: ''
+            description: Variant
           - name: variant_label
             data_type: STRING
-            description: ''
+            description: Variant Label
           - name: attributed_avg_amount
             data_type: FLOAT64
-            description: ''
+            description: Attributed Average Amount
           - name: attributed_max_amount
             data_type: FLOAT64
-            description: ''
+            description: Attributed Maximum Amount
           - name: attributed_min_amount
             data_type: FLOAT64
-            description: ''
+            description: Attributed Minimum Amount
           - name: attributed_recurring_revenue
             data_type: FLOAT64
-            description: ''
+            description: Attributed Recurring Revenue
           - name: attributed_recurring_transactions
             data_type: FLOAT64
-            description: ''
+            description: Attributed Recurring Transactions
           - name: attributed_refund_amount
             data_type: FLOAT64
-            description: ''
+            description: Attributed Refund Amount
           - name: attributed_refund_count
             data_type: FLOAT64
-            description: ''
+            description: Attributed Refund Count
           - name: attributed_revenue
             data_type: FLOAT64
-            description: ''
+            description: Attributed Revenue
           - name: attributed_soft_credit_amount
             data_type: FLOAT64
-            description: ''
+            description: Attributed Soft Credit Amount
           - name: attributed_soft_credit_count
             data_type: FLOAT64
-            description: ''
+            description: Attributed Soft Credit Count
           - name: attributed_transactions
             data_type: FLOAT64
-            description: ''
+            description: Attributed Transactions
           - name: clicks
             data_type: FLOAT64
-            description: ''
+            description: Clicks
           - name: engagements
             data_type: FLOAT64
-            description: ''
+            description: Engagements
           - name: final_primary_source_code
             data_type: STRING
-            description: ''
+            description: Final Primary Source Code
           - name: impressions
             data_type: FLOAT64
-            description: ''
+            description: Impressions
           - name: inline_link_clicks
             data_type: FLOAT64
-            description: ''
+            description: Inline Link Clicks
           - name: likes
             data_type: FLOAT64
-            description: ''
+            description: Likes
           - name: message_id
             data_type: INT64
-            description: ''
+            description: Message ID
           - name: origin_person_count
             data_type: FLOAT64
-            description: ''
+            description: Origin Person Count
           - name: reach
             data_type: FLOAT64
-            description: ''
+            description: Reach
           - name: revenue
             data_type: FLOAT64
-            description: ''
+            description: Revenue
           - name: spend
             data_type: FLOAT64
-            description: ''
+            description: Spend
           - name: transactions
             data_type: FLOAT64
-            description: ''
+            description: Transactions
           - name: twitter_app_clicks
             data_type: FLOAT64
-            description: ''
+            description: Twitter App Clicks
           - name: twitter_engagements
             data_type: FLOAT64
-            description: ''
+            description: Twitter Engagements
           - name: twitter_follows
             data_type: FLOAT64
-            description: ''
+            description: Twitter Follows
           - name: twitter_replies
             data_type: FLOAT64
-            description: ''
+            description: Twitter Replies
           - name: twitter_retweets
             data_type: FLOAT64
-            description: ''
+            description: Twitter Retweets
           - name: twitter_unfollows
             data_type: FLOAT64
-            description: ''
+            description: Twitter Unfollows
           - name: twitter_video_3s100pct_views
             data_type: FLOAT64
-            description: ''
+            description: Twitter Video 3s 100% Views
           - name: twitter_video_content_starts
             data_type: FLOAT64
-            description: ''
+            description: Twitter Video Content Starts
           - name: twitter_video_total_views
             data_type: FLOAT64
-            description: ''
+            description: Twitter Video Total Views
           - name: twitter_video_views_100
             data_type: FLOAT64
-            description: ''
+            description: Twitter Video Views 100%
           - name: twitter_video_views_25
             data_type: FLOAT64
-            description: ''
+            description: Twitter Video Views 25%
           - name: twitter_video_views_50
             data_type: FLOAT64
-            description: ''
+            description: Twitter Video Views 50%
           - name: twitter_video_views_75
             data_type: FLOAT64
-            description: ''
+            description: Twitter Video Views 75%
           - name: url_clicks
             data_type: FLOAT64
-            description: ''
+            description: URL Clicks
           - name: video_25_complete
             data_type: FLOAT64
-            description: ''
+            description: Video 25% Complete
           - name: video_50_complete
             data_type: FLOAT64
-            description: ''
+            description: Video 50% Complete
           - name: video_75_complete
             data_type: FLOAT64
-            description: ''
+            description: Video 75% Complete
           - name: video_completes
             data_type: FLOAT64
-            description: ''
+            description: Video Completes
           - name: video_starts
             data_type: FLOAT64
-            description: ''
+            description: Video Starts
           - name: video_total_views
             data_type: FLOAT64
-            description: ''
+            description: Video Total Views
       - name: twitter_bot_message
-        description: ''
+        description: Twitter Bot Message
         columns:
           - name: message_id
             data_type: INT64
-            description: ''
+            description: Message ID
           - name: bot_id
             data_type: STRING
-            description: ''
+            description: Bot ID
           - name: submodule
             data_type: STRING
-            description: ''
+            description: Submodule
           - name: remote_id
             data_type: STRING
-            description: ''
+            description: Remote ID
           - name: account_id
             data_type: STRING
-            description: ''
+            description: Account ID
           - name: channel
             data_type: STRING
-            description: ''
+            description: Channel
           - name: publish_date
             data_type: DATETIME
-            description: ''
+            description: Publish Date
           - name: label
             data_type: STRING
-            description: ''
+            description: Label
           - name: subject
             data_type: STRING
-            description: ''
+            description: Subject
           - name: from_name
             data_type: STRING
-            description: ''
+            description: From Name
           - name: from_email
             data_type: STRING
-            description: ''
+            description: From Email
           - name: campaign_name
             data_type: STRING
-            description: ''
+            description: Campaign Name
           - name: campaign_id
             data_type: STRING
-            description: ''
+            description: Campaign ID
           - name: preview_url
             data_type: STRING
-            description: ''
+            description: Preview URL
           - name: image_url
             data_type: STRING
-            description: ''
+            description: Image URL
           - name: edit_url
             data_type: STRING
-            description: ''
+            description: Edit URL
           - name: ad_type
             data_type: STRING
-            description: ''
+            description: Ad Type
           - name: adset_name
             data_type: STRING
-            description: ''
+            description: Adset Name
           - name: adset_id
             data_type: STRING
-            description: ''
+            description: Adset ID
           - name: type
             data_type: STRING
-            description: ''
+            description: Type
           - name: status
             data_type: STRING
-            description: ''
+            description: Status

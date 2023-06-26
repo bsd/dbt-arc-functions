@@ -2,65 +2,65 @@
 version: 2
 sources:
   - name: src_stitch_fundraiseup
-    description: ''
+    description: Source for recent transactions data from Fundraise Up platform
     loader: stitch - sftp
     database: "{{ var('database') }}"
     schema: src_stitch_fundraiseup_authorized
     tables:
       - name: recent_transactions
-        description: ''
+        description: Table for recent transactions data
         columns:
           - name: designation
             data_type: STRING
-            description: ''
+            description: Designation of the transaction
           - name: appeal
             data_type: STRING
-            description: ''
+            description: Appeal of the transaction
           - name: __initial_market_source_
             data_type: STRING
-            description: ''
+            description: Initial market source of transaction
           - name: migrated
             data_type: STRING
-            description: ''
+            description: Whether transaction has been migrated
           - name: bbcrmlookupid
             data_type: STRING
-            description: ''
+            description: Look up ID for BB CRM
           - name: _sdc_table_version
             data_type: INT64
-            description: ''
+            description: Table version for Stitch
           - name: _sdc_source_file
             data_type: STRING
-            description: ''
+            description: Source file for Stitch
           - name: transaction_date
             data_type: STRING
-            description: ''
+            description: Date of the transaction
           - name: _sdc_received_at
             data_type: TIMESTAMP
-            description: ''
+            description: Receive time for Stitch
           - name: _sdc_sequence
             data_type: INT64
-            description: ''
+            description: Sequence of transaction for Stitch
           - name: fru_donation_id
             data_type: STRING
-            description: ''
+            description: Donation ID from Fundraise Up
           - name: amount
             data_type: FLOAT64
-            description: ''
+            description: Amount of the transaction
           - name: gift_type
             data_type: STRING
-            description: ''
+            description: Type of the gift
           - name: email_address
             data_type: STRING
-            description: ''
+            description: Email address of the donor
           - name: _sdc_batched_at
             data_type: TIMESTAMP
-            description: ''
+            description: Batch time for Stitch
           - name: _sdc_source_lineno
             data_type: INT64
-            description: ''
+            description: Line number for Stitch source file
           - name: designation_name
             data_type: STRING
-            description: ''
+            description: Name of the designation
           - name: sfmc_updatedate
             data_type: STRING
-            description: ''
+            description: Last update date for SFMC

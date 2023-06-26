@@ -6,26 +6,26 @@ sources:
     schema: adhoc_reporting
     tables:
       - name: spreadsheet_paidmedia_monthly_goals
-        description: ''
+        description: Table containing monthly paid media goals from a Google Spreadsheet.
         columns:
           - name: month
             data_type: STRING
-            description: ''
+            description: Month of the goal.
           - name: year
             data_type: INT64
-            description: ''
+            description: Year of the goal.
           - name: objective
             data_type: STRING
-            description: ''
+            description: Objective that the goal is associated with.
           - name: channel
             data_type: STRING
-            description: ''
+            description: Paid media channel associated with the goal.
           - name: platform
             data_type: STRING
-            description: ''
+            description: Paid media platform associated with the goal.
           - name: projected_spend
             data_type: INT64
-            description: ''
+            description: Projected spend for the goal.
           - name: projected_revenue
             data_type: INT64
-            description: ''
+            description: Projected revenue for the goal.

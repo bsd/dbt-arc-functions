@@ -1,0 +1,58 @@
+---
+version: 2
+macros:
+  - name: get_fiscal_year
+    description: '{{ doc("get_fiscal_date_part") }}'
+    docs:
+      show: true
+    arguments:
+      - name: date_to_convert
+        type: date, datetime, or timestamp
+        description: A date you'd like to get the fiscal year out of.
+      - name: fiscal_year_start
+        type: string
+        description: Fiscal year start date in MM-YY format.
+  - name: get_fiscal_quarter
+    description: '{{ doc("get_fiscal_date_part") }}'
+    docs:
+      show: true
+    arguments:
+      - name: date_to_convert
+        type: date, datetime, or timestamp
+        description: A date you'd like to get the fiscal quarter out of.
+      - name: fiscal_year_start
+        type: string
+        description: Fiscal year start date in MM-YY format.
+  - name: get_fiscal_month
+    description: '{{ doc("get_fiscal_date_part") }}'
+    docs:
+      show: true
+    arguments:
+      - name: date_to_convert
+        type: date, datetime, or timestamp
+        description: A date you'd like to get the fiscal month out of.
+      - name: fiscal_year_start
+        type: string
+        description: Fiscal year start date in MM-YY format.
+  - name: get_fiscal_week
+    description: '{{ doc("get_fiscal_date_part") }}'
+    docs:
+      show: true
+    arguments:
+      - name: date_to_convert
+        type: date, datetime, or timestamp
+        description: A date you'd like to get the fiscal week out of.
+      - name: fiscal_year_start
+        type: string
+        description: Fiscal year start date in MM-YY format.
+  - name: get_fiscal_day
+    description: '{{ doc("get_fiscal_date_part") }}'
+    docs:
+      show: true
+    arguments:
+      - name: date_to_convert
+        type: date, datetime, or timestamp
+        description: A date you'd like to get the fiscal day out of.
+      - name: fiscal_year_start
+        type: string
+        description: Fiscal year start date in MM-YY format.
