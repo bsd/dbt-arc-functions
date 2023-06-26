@@ -1,6 +1,6 @@
 {% macro create_stg_stitch_sfmc_arc_audience_by_date_day(
     date_spine = "stg_stitch_sfmc_arc_audience_date_spine",
-    audience_snapshot = "arc_audience_snapshot"
+    audience_snapshot = "snp_stitch_sfmc_arc_audience"
 ) %}
 
 WITH audience_by_date_day as (

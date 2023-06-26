@@ -1,5 +1,5 @@
 {% macro stg_stitch_sfmc_arc_audience_date_spine(
-    audience_snapshot = "arc_audience_snapshot"
+    audience_snapshot = "snp_stitch_sfmc_arc_audience"
 ) %}
 
 select date
