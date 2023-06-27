@@ -9,5 +9,5 @@ models:
         description: The date of each day, This column have one row per day per person
       - name: person_id
         description: The Unique identifier of each person record
-      - name: arc_audience
+      - name: donor_audience
         description: the audience of each person by day and date
