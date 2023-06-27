@@ -6,25 +6,25 @@
     with
         audience_by_date_day as (
             select
-                d.date as date_day,
-                s.subscriberkey as person_id,
-                s.__donoraudience_ as arc_audience
-            from {{ ref(date_spine) }} as d
+                date_spine.date as date_day,
+                audience_snapshot.subscriberkey as person_id,
+                audience_snapshot.__donoraudience_ as arc_audience
+            from {{ ref(date_spine) }} as date_spine
             inner join
-                {{ ref(audience_snapshot) }} as s
-                on d.date >= date(
+                {{ ref(audience_snapshot) }} as audience_snapshot
+                on date_spine.date >= date(
                     cast(
                         concat(
-                            substr(s.dbt_valid_from, 0, 22), " America/New_York"
+                            substr(audience_snapshot.dbt_valid_from, 0, 22), " America/New_York"
                         ) as timestamp
                     ),
                     "America/New_York"
                 )
                 and (
-                    d.date <= date(
+                    date_spine.date <= date(
                         cast(
                             concat(
-                                substr(s.dbt_valid_to, 0, 22), " America/New_York"
+                                substr(audience_snapshot.dbt_valid_to, 0, 22), " America/New_York"
                             ) as timestamp
                         ),
                         "America/New_York"
@@ -32,7 +32,7 @@
                     or date(
                         cast(
                             concat(
-                                substr(s.dbt_valid_to, 0, 22), " America/New_York"
+                                substr(audience_snapshot.dbt_valid_to, 0, 22), " America/New_York"
                             ) as timestamp
                         ),
                         "America/New_York"
