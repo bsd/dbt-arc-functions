@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
 jobs:
   python_black:
     if: startsWith(github.head_ref, 'actions/action_black') == false && github.event.pull_request.head.repo.full_name
