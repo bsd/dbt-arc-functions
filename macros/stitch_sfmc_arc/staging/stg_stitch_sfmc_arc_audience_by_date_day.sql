@@ -15,7 +15,8 @@
                 on date_spine.date >= date(
                     cast(
                         concat(
-                            substr(audience_snapshot.dbt_valid_from, 0, 22), " America/New_York"
+                            substr(audience_snapshot.dbt_valid_from, 0, 22),
+                            " America/New_York"
                         ) as timestamp
                     ),
                     "America/New_York"
@@ -24,7 +25,8 @@
                     date_spine.date <= date(
                         cast(
                             concat(
-                                substr(audience_snapshot.dbt_valid_to, 0, 22), " America/New_York"
+                                substr(audience_snapshot.dbt_valid_to, 0, 22),
+                                " America/New_York"
                             ) as timestamp
                         ),
                         "America/New_York"
@@ -32,7 +34,8 @@
                     or date(
                         cast(
                             concat(
-                                substr(audience_snapshot.dbt_valid_to, 0, 22), " America/New_York"
+                                substr(audience_snapshot.dbt_valid_to, 0, 22),
+                                " America/New_York"
                             ) as timestamp
                         ),
                         "America/New_York"
