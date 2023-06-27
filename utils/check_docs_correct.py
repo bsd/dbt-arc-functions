@@ -20,7 +20,7 @@ def check_table_for_no_columns(
 ):
     try:
         columns = table["columns"]
-        if not columns or len(columns) < 2:
+        if not columns or len(columns) < 1:
             tables_without_columns.append((file_path, table["name"]))
     except KeyError:
         tables_without_columns.append(
