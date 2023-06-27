@@ -8,7 +8,7 @@
             select
                 date_spine.date as date_day,
                 audience_snapshot.subscriberkey as person_id,
-                audience_snapshot.__donoraudience_ as arc_audience
+                audience_snapshot.__donoraudience_ as donor_audience
             from {{ ref(date_spine) }} as date_spine
             inner join
                 {{ ref(audience_snapshot) }} as audience_snapshot
@@ -47,15 +47,15 @@
             select
                 date_day,
                 person_id,
-                arc_audience,
+                donor_audience,
                 row_number() over (
-                    partition by date_day, person_id order by arc_audience
+                    partition by date_day, person_id order by donor_audience
                 ) as row_num
             from audience_by_date_day
 
         )
 
-    select date_day, person_id, arc_audience
+    select date_day, person_id, donor_audience
     from deduplicated_table
     where row_num = 1
 
