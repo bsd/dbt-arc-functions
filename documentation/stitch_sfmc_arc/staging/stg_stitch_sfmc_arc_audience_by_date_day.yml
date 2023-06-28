@@ -1,0 +1,13 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_arc_audience_by_date_day
+    description: Tracked audience membership by date and day. This table should have
+      one row per day per person
+    columns:
+      - name: date_day
+        description: The date of each day, This column have one row per day per person
+      - name: person_id
+        description: The Unique identifier of each person record
+      - name: donor_audience
+        description: the audience of each person by day and date
