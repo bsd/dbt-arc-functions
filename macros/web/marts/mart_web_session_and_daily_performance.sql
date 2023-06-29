@@ -16,6 +16,9 @@
         jobs.session_campaign,
         jobs.hostname,
         jobs.page_path,
+        case
+            when page_path = "/" then "/" else regexp_extract(page_path, "^(/[^/]+)")
+        end as first_directory,
         jobs.referrer,
         jobs.geo_region,
         jobs.device_category,
