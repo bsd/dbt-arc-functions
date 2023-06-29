@@ -20,6 +20,8 @@ models:
         description: Hostname of web page visited
       - name: page_path
         description: URL path of web page visited
+      - name: first_directory
+        description: regex that stops the URL path in the first directory
       - name: referrer
         description: Referrer URL of web session
       - name: geo_region
