@@ -1,0 +1,8 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_arc_audience_date_spine
+    description: This is a date spine for the snapshot audience table
+    columns:
+      - name: date
+        description: This is a list of dates
