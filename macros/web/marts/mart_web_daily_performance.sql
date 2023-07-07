@@ -7,7 +7,8 @@
         sum(engagement_time_msec) as engagement_time_msec,
         sum(max_engaged) as max_engaged,
         sum(new_users) as new_users,
-        sum(unique_users) as total_users,
+        sum(unique_users) as unique_users,
+        sum(total_users) as total_users,
         sum(purchases) as purchases,
         count(distinct session_key) as total_sessions
 
