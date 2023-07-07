@@ -27,6 +27,7 @@
         max_engaged.max_engaged,
         new_users.new_users,
         unique_users.unique_users,
+        unique_users.total_users,
         page_views.page_views,
         purchases.purchases
     from {{ ref(jobs) }} jobs
