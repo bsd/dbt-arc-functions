@@ -2,7 +2,6 @@
     reference_name="stg_stitch_sfmc_audience_transactions_summary_unioned"
 ) %}
 
-
 Select
 transaction_id,
 person_id,
@@ -20,7 +19,7 @@ inbound_channel,
         when lower(source_code) like 'social%' then 'Social'
         when source_code is null then 'No Source'
         else inbound_channel
-      end) as best_guest_inbound_channel,
+      end) as best_guess_inbound_channel,
 recurring,
 (case
            when amount BETWEEN 0 AND 25 then '0-25'
