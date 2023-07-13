@@ -1,5 +1,5 @@
-{% macro create_{% macro create_stg_stitch_sfmc_audience_transactions_enriched(
-    reference_name="stg_transactions_enriched"
+{% macro create_{% macro create_stg_stitch_sfmc_audience_transactions_first_gift(
+    reference_name="stg_stitch_sfmc_audience_transactions_enriched"
 ) %}
 
 with first_transactions as (
