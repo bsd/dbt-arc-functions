@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_stitch_sfmc_audience_transaction_first_gift
+    description: "Table that is organized to show the first gift for each person_id"
+    columns:
+      - name: person_id
+        description: "Unique ID of the individual"
+
+      - name: join_month_year_date
+        description: "The date of the first transaction for each person_id"
+
+      - name: first_gift_join_source
+        description: "The join source for the first gift"
+
+      - name: first_gift_amount_int
+        description: "the amount of the first gift as an integer"
+
+      - name: join_gift_size_string
+        description: "teh gift size of the first gift as a category string"
+
