@@ -18,7 +18,7 @@ SELECT
     cast(
         timestamp_trunc(ft.FirstTransactionDate, day) as date
         ) as join_month_year_date,
-    ft.best_guest_inbound_channel as first_gift_join_source,
+    ft.best_guess_inbound_channel as first_gift_join_source,
     ft.FirstTransactionAmount  as first_gift_amount_int,
     (case
            when ft.FirstTransactionAmount BETWEEN 0 AND 25 then '0-25'
