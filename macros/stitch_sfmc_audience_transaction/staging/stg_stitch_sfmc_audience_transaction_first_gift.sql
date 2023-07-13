@@ -28,7 +28,7 @@ SELECT
            when ft.FirstTransactionAmount BETWEEN 501 AND 1000 then '501-1000'
            when ft.FirstTransactionAmount BETWEEN 1001 AND 10000 then '1001-10000'
            else '10000+'
-       end) as join_gift_size_string,
+       end) as join_gift_size_string
 FROM
     first_transactions AS ft
 WHERE ft.row_number = 1
