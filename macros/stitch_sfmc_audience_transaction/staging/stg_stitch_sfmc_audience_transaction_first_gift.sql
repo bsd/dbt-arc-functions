@@ -1,4 +1,4 @@
-{% macro create_{% macro create_stg_stitch_sfmc_audience_transactions_first_gift(
+{% macro create_stg_stitch_sfmc_audience_transactions_first_gift(
     reference_name="stg_stitch_sfmc_audience_transactions_enriched"
 ) %}
 
