@@ -2,7 +2,8 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_customizable_audience_transaction_jobs_append
-    description: Table allowing for customizable audiences. By default, will just copy default audiences.
+    description: Table allowing for customizable audiences. By default, will just
+      copy default audiences.
     columns:
       - name: transaction_date_day
         description: The day of the transaction
