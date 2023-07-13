@@ -245,6 +245,15 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
         else:
             output = content
         if path.exists(destination_file_path) and not create:
+            if "_customizable_" in destination_file_path:
+                print(
+                    "This is a piece of SQL that's meant to be customizable and we recommend not updating it.."
+                )
+                update_customizable_sql_choice = input(
+                    "Type yes to update, any other input will not update (we recommend hitting return.):\n"
+                )
+                if not update_customizable_sql_choice == "yes":
+                    return
             output_formatted = [
                 line + ("\n" if i < len(output.split("\n")) else "")
                 for i, line in enumerate(output.split("\n"))
