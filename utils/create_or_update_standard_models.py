@@ -148,7 +148,7 @@ def overwrite_choice(source_file_path, output, destination_file_path):
         )
         if not differences:
             print(
-                f"No differences between {destination_file_path} and {source_file_path}, skipping."
+                f"\nNo differences between {destination_file_path} and {source_file_path}, skipping."
             )
             return False
         print(
@@ -238,7 +238,6 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
     with open(file_path, "r", encoding="utf-8") as f:
         content = f.read()
         if file.endswith(".sql") and model_type != "snapshots":
-            print(rx.search(content))
             function = rx.search(content)[1] if rx.search(content) else None
             github_path = "/".join([git_prepend, source, model_type, file])
             output = DBT_STRING.format(github_path=github_path, function=function)
@@ -247,7 +246,8 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
         if path.exists(destination_file_path) and not create:
             if "_customizable_" in destination_file_path:
                 print(
-                    "This is a piece of SQL that's meant to be customizable and we recommend not updating it.."
+                    f"\n{destination_file_path}"
+                    "\nThis is a piece of SQL that's meant to be customizable and we recommend not updating it.."
                 )
                 update_customizable_sql_choice = input(
                     "Type yes to update, any other input will not update (we recommend hitting return.):\n"
