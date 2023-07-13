@@ -1,0 +1,14 @@
+---
+version: 2
+models:
+  - name: stg_web_daily_purchases_rollup_unioned
+    description: Union of daily purchases data for web sessions.
+    columns:
+      - name: _dbt_source_relation
+        description: Name of the source relation in the source database.
+      - name: session_date
+        description: Date of the session for which purchases were made.
+      - name: session_key
+        description: Unique identifier for the web session.
+      - name: purchases
+        description: The number of purchases made during the session.

@@ -1,0 +1,12 @@
+---
+version: 2
+models:
+  - name: stg_ga4_web_daily_unique_users_rollup
+    description: Daily rollup of unique users based on Google Analytics 4 data.
+    columns:
+      - name: session_date
+        description: Date of the session.
+      - name: session_key
+        description: Unique key assigned to sessions. Sessions can span multiple dates/partitions.
+      - name: unique_users
+        description: Count of unique users for the given session.
