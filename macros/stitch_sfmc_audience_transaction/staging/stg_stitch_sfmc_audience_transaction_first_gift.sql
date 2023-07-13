@@ -8,7 +8,7 @@ Select
         transaction_date_day AS FirstTransactionDate,
         inbound_channel AS FirstTransactioninbound_channel,
         SAFE_CAST(amount as INT64) as FirstTransactionAmount,
-        best_guest_inbound_channel,
+        best_guess_inbound_channel,
         ROW_NUMBER() OVER (PARTITION BY person_id ORDER BY transaction_date_day asc) AS row_number
 from
 {{ ref(reference_name) }} ft
