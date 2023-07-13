@@ -1,71 +1,305 @@
 ---
-# RUN compile_sources.py to add appopriate vars in dbt_project.yml
-# TODO: figure out how to pull in the analytics schema name
 version: 2
 sources:
   - name: ga4_google_analytics_web
     database: "{{ var('database') }}"
+    schema: '{{ target.name }}_ga4'
+    description: Google Analytics data for website
     tables:
-      - name: events
-        identifier: events_*
+      - name: dim_ga4__sessions_daily
+        description: Dimension table for daily sessions in Google Analytics
         columns:
-          - name: event_date
-            description:
-            data_type: STRING
-          - name: event_timestamp
-            description:
-            data_type: INT64
-          - name: event_name
-            description:
-            data_type: STRING
-          - name: event_params
-            description:
-            data_type: ARRAY
-          - name: event_previous_timestamp
-            description:
-            data_type: INT64
-          - name: event_value_in_usd
-            description:
-            data_type: FLOAT64
-          - name: event_bundle_sequence_id
-            description:
-            data_type: INT64
-          - name: event_server_timestamp_offset
-            description:
-            data_type: INT64
-          - name: user_id
-            description:
-            data_type: STRING
-          - name: user_pseudo_id
-            description:
-            data_type: STRING
-          - name: privacy_info
-            description:
-            data_type: STRUCT
-          - name: user_properties
-            description:
-            data_type: ARRAY
-          - name: user_first_touch_timestamp
-            description:
-            data_type: INT64
-          - name: user_ltv
-            description:
-            data_type: STRUCT
-          - name: device
-            description:
-            data_type: STRUCT
-          - name: geo
-            description:
-            data_type: STRUCT
-          - name: app_info
-            description:
-            data_type: STRUCT
-          - name: traffic_source
-            description:
-            data_type: STRUCT
           - name: stream_id
-            description:
-            data_type: INT64
-          - name: platform
-            description:
             data_type: STRING
+            description: ID of the data stream
+          - name: session_key
+            data_type: STRING
+            description: Key of the session
+          - name: session_partition_key
+            data_type: STRING
+            description: Key of the session partition
+          - name: session_partition_date
+            data_type: DATE
+            description: Date of the session partition
+          - name: session_partition_start_timestamp
+            data_type: INT64
+            description: Start timestamp of the session partition
+          - name: landing_page_path
+            data_type: STRING
+            description: Path of the landing page
+          - name: landing_page_location
+            data_type: STRING
+            description: Location of the landing page
+          - name: landing_page_hostname
+            data_type: STRING
+            description: Host name of the landing page
+          - name: referrer
+            data_type: STRING
+            description: Referrer of the session
+          - name: geo_continent
+            data_type: STRING
+            description: Continent of the user
+          - name: geo_country
+            data_type: STRING
+            description: Country of the user
+          - name: geo_region
+            data_type: STRING
+            description: Region of the user
+          - name: geo_city
+            data_type: STRING
+            description: City of the user
+          - name: geo_sub_continent
+            data_type: STRING
+            description: Sub-continent of the user
+          - name: geo_metro
+            data_type: STRING
+            description: Metro area of the user
+          - name: platform
+            data_type: STRING
+            description: Platform used by the user
+          - name: device_category
+            data_type: STRING
+            description: Category of the device
+          - name: device_mobile_brand_name
+            data_type: STRING
+            description: Brand name of the mobile device
+          - name: device_mobile_model_name
+            data_type: STRING
+            description: Model name of the mobile device
+          - name: device_mobile_marketing_name
+            data_type: STRING
+            description: Marketing name of the mobile device
+          - name: device_mobile_os_hardware_model
+            data_type: STRING
+            description: Hardware model of the mobile device
+          - name: device_operating_system
+            data_type: STRING
+            description: Operating system of the device
+          - name: device_operating_system_version
+            data_type: STRING
+            description: Operating system version of the device
+          - name: device_vendor_id
+            data_type: STRING
+            description: Vendor ID of the device
+          - name: device_advertising_id
+            data_type: STRING
+            description: Advertising ID of the device
+          - name: device_language
+            data_type: STRING
+            description: Language of the device
+          - name: device_is_limited_ad_tracking
+            data_type: STRING
+            description: Flag indicating if ad tracking is limited on the device
+          - name: device_time_zone_offset_seconds
+            data_type: INT64
+            description: Time zone offset of the device in seconds
+          - name: device_browser
+            data_type: STRING
+            description: Browser used by the device
+          - name: device_web_info_browser
+            data_type: STRING
+            description: Browser info of the device
+          - name: device_web_info_browser_version
+            data_type: STRING
+            description: Browser version of the device
+          - name: device_web_info_hostname
+            data_type: STRING
+            description: Host name of the device
+          - name: user_campaign
+            data_type: STRING
+            description: Campaign of the user
+          - name: user_medium
+            data_type: STRING
+            description: Medium of the user
+          - name: user_source
+            data_type: STRING
+            description: Source of the user
+          - name: session_source
+            data_type: STRING
+            description: Source of the session
+          - name: session_medium
+            data_type: STRING
+            description: Medium of the session
+          - name: session_campaign
+            data_type: STRING
+            description: Campaign of the session
+          - name: session_content
+            data_type: STRING
+            description: Content of the session
+          - name: session_term
+            data_type: STRING
+            description: Term of the session
+          - name: session_default_channel_grouping
+            data_type: STRING
+            description: Default channel grouping of the session
+          - name: session_source_category
+            data_type: STRING
+            description: Category of the session source
+      - name: dim_ga4__sessions
+        description: Dimension table for sessions in Google Analytics
+        columns:
+          - name: session_key
+            data_type: STRING
+            description: Key of the session
+          - name: session_start_date
+            data_type: DATE
+            description: Start date of the session
+          - name: session_start_timestamp
+            data_type: INT64
+            description: Start timestamp of the session
+          - name: landing_page_path
+            data_type: STRING
+            description: Path of the landing page
+          - name: landing_page
+            data_type: STRING
+            description: Landing page
+          - name: landing_page_hostname
+            data_type: STRING
+            description: Host name of the landing page
+          - name: landing_page_referrer
+            data_type: STRING
+            description: Referrer of the landing page
+          - name: geo_continent
+            data_type: STRING
+            description: Continent of the user
+          - name: geo_country
+            data_type: STRING
+            description: Country of the user
+          - name: geo_region
+            data_type: STRING
+            description: Region of the user
+          - name: geo_city
+            data_type: STRING
+            description: City of the user
+          - name: geo_sub_continent
+            data_type: STRING
+            description: Sub-continent of the user
+          - name: geo_metro
+            data_type: STRING
+            description: Metro area of the user
+          - name: stream_id
+            data_type: STRING
+            description: ID of the data stream
+          - name: platform
+            data_type: STRING
+            description: Platform used by the user
+          - name: device_category
+            data_type: STRING
+            description: Category of the device
+          - name: device_mobile_brand_name
+            data_type: STRING
+            description: Brand name of the mobile device
+          - name: device_mobile_model_name
+            data_type: STRING
+            description: Model name of the mobile device
+          - name: device_mobile_marketing_name
+            data_type: STRING
+            description: Marketing name of the mobile device
+          - name: device_mobile_os_hardware_model
+            data_type: STRING
+            description: Hardware model of the mobile device
+          - name: device_operating_system
+            data_type: STRING
+            description: Operating system of the device
+          - name: device_operating_system_version
+            data_type: STRING
+            description: Operating system version of the device
+          - name: device_vendor_id
+            data_type: STRING
+            description: Vendor ID of the device
+          - name: device_advertising_id
+            data_type: STRING
+            description: Advertising ID of the device
+          - name: device_language
+            data_type: STRING
+            description: Language of the device
+          - name: device_is_limited_ad_tracking
+            data_type: STRING
+            description: Flag indicating if ad tracking is limited on the device
+          - name: device_time_zone_offset_seconds
+            data_type: INT64
+            description: Time zone offset of the device in seconds
+          - name: device_browser
+            data_type: STRING
+            description: Browser used by the device
+          - name: device_web_info_browser
+            data_type: STRING
+            description: Browser info of the device
+          - name: device_web_info_browser_version
+            data_type: STRING
+            description: Browser version of the device
+          - name: device_web_info_hostname
+            data_type: STRING
+            description: Host name of the device
+          - name: session_number
+            data_type: INT64
+            description: Number of the session
+          - name: is_first_session
+            data_type: BOOLEAN
+            description: Flag indicating if it is the first session of the user
+          - name: user_campaign
+            data_type: STRING
+            description: Campaign of the user
+          - name: user_medium
+            data_type: STRING
+            description: Medium of the user
+          - name: user_source
+            data_type: STRING
+            description: Source of the user
+          - name: session_source
+            data_type: STRING
+            description: Source of the session
+          - name: session_medium
+            data_type: STRING
+            description: Medium of the session
+          - name: session_campaign
+            data_type: STRING
+            description: Campaign of the session
+          - name: session_content
+            data_type: STRING
+            description: Content of the session
+          - name: session_term
+            data_type: STRING
+            description: Term of the session
+          - name: session_default_channel_grouping
+            data_type: STRING
+            description: Default channel grouping of the session
+          - name: session_source_category
+            data_type: STRING
+            description: Category of the session source
+      - name: fct_ga4__sessions_daily
+        description: Fact table for daily sessions in Google Analytics
+        columns:
+          - name: session_key
+            data_type: STRING
+            description: Key of the session
+          - name: session_partition_key
+            data_type: STRING
+            description: Key of the session partition
+          - name: user_pseudo_id
+            data_type: STRING
+            description: Pseudo ID of the user
+          - name: stream_id
+            data_type: STRING
+            description: ID of the data stream
+          - name: session_partition_date
+            data_type: DATE
+            description: Date of the session partition
+          - name: session_partition_min_timestamp
+            data_type: INT64
+            description: Minimum timestamp in the session partition
+          - name: session_partition_count_page_views
+            data_type: INT64
+            description: Count of page views in the session partition
+          - name: session_partition_count_purchases
+            data_type: INT64
+            description: Count of purchases in the session partition
+          - name: session_partition_sum_event_value_in_usd
+            data_type: FLOAT64
+            description: Sum of event values in USD in the session partition
+          - name: session_partition_max_session_engaged
+            data_type: INT64
+            description: Max session engaged time in the session partition
+          - name: session_partition_sum_engagement_time_msec
+            data_type: INT64
+            description: Sum of engagement time in milliseconds in the session partition

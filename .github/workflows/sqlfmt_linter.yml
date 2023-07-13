@@ -4,7 +4,6 @@ on:
   push:
     branches: [main]
   pull_request:
-    branches: [main]
 permissions:
   contents: read
 jobs:
@@ -24,14 +23,23 @@ jobs:
       - name: Run sqlfmt
         continue-on-error: true
         run: |-
+          SQLFMT_OUTPUT=$(sqlfmt . 2>&1)
+          if [[ $SQLFMT_OUTPUT =~ "[0-9]+ files* formatted\." ]]; then
+            echo "Run sqlfmt . to fix the errors below"
+            echo $SQLFMT_OUTPUT
+            echo "is_formatted=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "is_formatted=false" >> "$GITHUB_OUTPUT"
+          fi
           sqlfmt .
       - name: Create Pull Request
+        if: steps.sqlfmt.outputs.is_formatted == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GHA_PERSONAL_ACCESS_TOKEN }}
           branch: actions/sqlfmt/${{ github.head_ref || github.base_ref || github.ref }}
           title: Sqlfmt to ${{ github.head_ref || github.base_ref || github.ref }}
           base: ${{ github.head_ref || github.base_ref || github.ref }}
-      - name: Show sqlfmt diff
-        run: |-
-          sqlfmt . --diff
+      - name: Fail if sqlfmt is_formatted
+        if: steps.sqlfmt.outputs.is_formatted == 'true'
+        run: exit 1

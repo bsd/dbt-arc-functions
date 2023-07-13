@@ -2,13 +2,13 @@
 version: 2
 models:
   - name: stg_paidmedia_spends_daily_rollup_unioned
-    description: ''
+    description: The stage table for daily paid media spends
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: The relation from which this data is processed by dbt
       - name: message_id
-        description: ''
+        description: The message id used to extract data
       - name: date_timestamp
-        description: ''
+        description: The date of the data row in the processing table
       - name: spend_amount
-        description: ''
+        description: The spend amount associated with the message id and date

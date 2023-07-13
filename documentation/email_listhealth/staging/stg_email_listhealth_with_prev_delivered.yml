@@ -2,19 +2,21 @@
 version: 2
 models:
   - name: stg_email_listhealth_with_prev_delivered
-    description: ''
+    description: Stage table containing email list health metrics with previous month's
+      delivered measure
     columns:
       - name: date_month
-        description: ''
+        description: Month when data was recorded
       - name: max_recipients
-        description: ''
+        description: Total number of email recipients
       - name: max_delivered
-        description: ''
+        description: Total number of emails that left from the gateway
       - name: delivered_prev_month
-        description: ''
+        description: Total number of emails that left from the gateway in the previous
+          month
       - name: total_unsubscribes
-        description: ''
+        description: Total number of unsubscribes
       - name: total_hard_bounces
-        description: ''
+        description: Total number of hard bounces
       - name: total_complaints
-        description: ''
+        description: Total number of complaints

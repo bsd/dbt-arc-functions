@@ -1,0 +1,63 @@
+---
+version: 2
+sources:
+  - name: frakture_everyaction_transactions
+    description: Source for transaction data from EveryAction
+    schema: src_frakture
+    tables:
+      - name: everyaction_bot_transaction
+        description: Table containing transaction information for EveryAction
+        columns:
+          - name: remote_transaction_id
+            data_type: STRING
+            description: Unique identifier for transaction in EveryAction
+          - name: remote_person_id
+            data_type: STRING
+            description: Unique identifier for person in EveryAction
+          - name: ts
+            data_type: DATETIME
+            description: Timestamp for when the transaction occurred
+          - name: amount
+            data_type: FLOAT64
+            description: Amount of the transaction
+          - name: recurs
+            data_type: STRING
+            description: Whether the transaction is recurring or not
+          - name: recurring_number
+            data_type: INT64
+            description: Number of times the transaction has recurred
+          - name: refund_amount
+            data_type: FLOAT64
+            description: Amount of refund, if applicable
+          - name: source_code
+            data_type: STRING
+            description: Code for the source of the transaction
+          - name: remote_last_modified
+            data_type: STRING
+            description: Timestamp for when the transaction was last modified in EveryAction
+          - name: source
+            data_type: STRING
+            description: Source of the transaction
+          - name: payment_method
+            data_type: STRING
+            description: Method of payment for the transaction
+          - name: remote_page_name
+            data_type: STRING
+            description: Name of the page the transaction was made on in EveryAction
+          - name: form_name
+            data_type: STRING
+            description: Name of the form the transaction was made on in EveryAction
+          - name: everyaction_direct_marketing_code
+            data_type: STRING
+            description: Direct marketing code associated with the transaction in
+              EveryAction
+          - name: everyaction_market_source
+            data_type: STRING
+            description: Market source associated with the transaction in EveryAction
+          - name: everyaction_gateway_account
+            data_type: STRING
+            description: Gateway account associated with the transaction in EveryAction
+          - name: everyaction_online_reference_number
+            data_type: STRING
+            description: Online reference number associated with the transaction in
+              EveryAction

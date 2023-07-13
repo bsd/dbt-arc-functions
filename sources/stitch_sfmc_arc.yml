@@ -1,0 +1,107 @@
+---
+version: 2
+sources:
+  - name: src_stitch_sfmc_arc
+    description: Queries running from SFMC using ARC logic for person and audience
+    loader: stitch - sftp
+    database: "{{ var('database') }}"
+    schema: src_stitch_sfmc_arc_authorized
+    tables:
+      - name: arc_audience
+        description: Table that contained all audience composition data from SFMC
+        columns:
+          - name: modifieddate
+            data_type: STRING
+            description: Date the audience membership was modified
+          - name: subscriberkey
+            data_type: STRING
+            description: the BBCRMLOOKUP ID for each person
+          - name: _sdc_table_version
+            data_type: INT64
+            description: Stitch specific table version
+          - name: _sdc_source_file
+            data_type: STRING
+            description: Stitch specific source file name
+          - name: _sdc_received_at
+            data_type: TIMESTAMP
+            description: stitch specific date when file was received from stitch
+          - name: _sdc_sequence
+            data_type: INT64
+            description: stitch specific sequence number
+          - name: __donoraudience_
+            data_type: STRING
+            description: the assigned audience from SFMC
+          - name: _sdc_batched_at
+            data_type: TIMESTAMP
+            description: Stitch specific batch date
+          - name: _sdc_source_lineno
+            data_type: INT64
+            description: stitch specific source line number
+      - name: arc_person
+        description: Table containing data from each person in the SFMC. This is built
+          from a custom query in SFMC.
+        columns:
+          - name: origindatasource
+            data_type: STRING
+            description: This is the constituentsource field from BBCRM constituents
+              in SFMC
+          - name: persontype
+            data_type: STRING
+            description: This is the constituenttype field from BBCRM_Constituents
+              in SFMC. This can be individual or Organziaton, etc
+          - name: country
+            data_type: STRING
+            description: This is the country of the person in SFMC
+          - name: city
+            data_type: STRING
+            description: This is the city of the person in SFMC
+          - name: modifieddate
+            data_type: STRING
+            description: The is the SFMC updated date of the person in SFMC
+          - name: subscriberkey
+            data_type: STRING
+            description: This is the BBCRMLookupID of the person in SFMC
+          - name: emaildomain
+            data_type: STRING
+            description: This is the person's email domain
+          - name: _sdc_table_version
+            data_type: INT64
+            description: Stitch specific table version
+          - name: __emailhash_
+            data_type: STRING
+            description: this is a converted email hash for each person in SFMC
+          - name: originsourcecode
+            data_type: STRING
+            description: This is the constituentmarket source field on BBCRM_Constituents
+              in SFMC
+          - name: postalcode
+            data_type: STRING
+            description: This is the postal code of each person in SFMC
+          - name: sfmc_dateadded
+            data_type: STRING
+            description: this is the date that the person record was added to SFMC
+          - name: region
+            data_type: STRING
+            description: This matches the US state abbreviation
+          - name: emailoptin
+            data_type: STRING
+            description: This determines if someone has been opted into email. This
+              field has multiple values
+          - name: _sdc_source_file
+            data_type: STRING
+            description: stitch specific source file
+          - name: _sdc_received_at
+            data_type: TIMESTAMP
+            description: stitch specific date that file was received
+          - name: _sdc_sequence
+            data_type: INT64
+            description: stitch specific sequence number
+          - name: _sdc_batched_at
+            data_type: TIMESTAMP
+            description: stitch specific date that batched file was received
+          - name: _sdc_source_lineno
+            data_type: INT64
+            description: stitch specific source line number
+          - name: createddate
+            data_type: STRING
+            description: This should be the date that the person was added to BBCRM

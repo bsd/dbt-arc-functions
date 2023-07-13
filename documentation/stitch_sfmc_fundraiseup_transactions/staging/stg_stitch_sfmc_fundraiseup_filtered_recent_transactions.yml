@@ -2,23 +2,26 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_fundraiseup_filtered_recent_transactions
-    description: ''
+    description: Model that describes recent transactions within Salesforce Marketing
+      Cloud Fundraise Up
     columns:
       - name: transaction_id
-        description: ''
+        description: Unique identifier for each transaction
       - name: person_id
-        description: ''
+        description: Unique identifier for the person associated with the transaction
       - name: source_code
-        description: ''
+        description: Identifier to track the source of a transaction
       - name: crm
-        description: ''
+        description: Identifier for the customer relationship management (CRM) system
+          used for the transaction
       - name: message_id
-        description: ''
+        description: Uniques identifier for the marketing message associated with
+          the transaction
       - name: transaction_date
-        description: ''
+        description: Date the transaction occurred
       - name: amount
-        description: ''
+        description: Value of the transaction
       - name: gift_type
-        description: ''
+        description: Type of gift or donation associated with the transaction
       - name: appeal
-        description: ''
+        description: Identifier of the fundraising appeal associated with the transaction

@@ -2,15 +2,15 @@
 version: 2
 models:
   - name: stg_adhoc_google_spreadsheets_paidmedia_pacing_budget
-    description: ''
+    description: Model for tracking pacing and budget of paid media campaigns
     columns:
       - name: campaign_start_date
-        description: ''
+        description: The start date for the campaign
       - name: campaign_end_date
-        description: ''
+        description: The end date for the campaign
       - name: campaign_name
-        description: ''
+        description: The name of the campaign
       - name: budget
-        description: ''
+        description: The amount of the budget associated with the campaign
       - name: descriptions
-        description: ''
+        description: Descriptions of the campaign

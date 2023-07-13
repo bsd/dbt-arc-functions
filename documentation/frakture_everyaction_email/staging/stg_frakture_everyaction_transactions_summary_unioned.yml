@@ -2,41 +2,41 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_transactions_summary_unioned
-    description: ''
+    description: Stage table to join EveryAction and Frakture transaction data
     columns:
       - name: _dbt_source_relation
-        description: ''
+        description: The name of the source table for this record
       - name: remote_transaction_id
-        description: ''
+        description: The transaction ID in Frakture
       - name: remote_person_id
-        description: ''
+        description: The person ID in Frakture
       - name: ts
-        description: ''
+        description: The timestamp when the transaction took place
       - name: amount
-        description: ''
+        description: The transaction amount
       - name: recurs
-        description: ''
+        description: Whether or not the transaction was recurring
       - name: recurring_number
-        description: ''
+        description: The number of times that the transaction recurred
       - name: refund_amount
-        description: ''
+        description: The refund amount for the transaction
       - name: source_code
-        description: ''
+        description: The source code that was used for the transaction
       - name: remote_last_modified
-        description: ''
+        description: The date and time when the transaction record was last modified
       - name: source
-        description: ''
+        description: The source of the transaction
       - name: payment_method
-        description: ''
+        description: The method of payment that was used for the transaction
       - name: remote_page_name
-        description: ''
+        description: The name of the page associated with the transaction
       - name: form_name
-        description: ''
+        description: The form name associated with the transaction
       - name: everyaction_direct_marketing_code
-        description: ''
+        description: The direct marketing code associated with the transaction
       - name: everyaction_gateway_account
-        description: ''
+        description: The gateway account associated with the transaction
       - name: everyaction_online_reference_number
-        description: ''
+        description: The online reference number associated with the transaction
       - name: everyaction_market_source
-        description: ''
+        description: The source of the market associated with the transaction

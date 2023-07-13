@@ -2,11 +2,12 @@
 version: 2
 models:
   - name: stg_supermetrics_yahoo_dsp_paidmedia_subscribes_daily_rollup
-    description: ''
+    description: Tracks all paid media subscribe activations by date pulled from Yahoo
+      DSP
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier for a specific message
       - name: date_timestamp
-        description: ''
+        description: Date the message was sent in format YYYY-MM-DD
       - name: subscribes
-        description: ''
+        description: Number of users who subscribed from that message

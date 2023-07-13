@@ -2,11 +2,11 @@
 version: 2
 models:
   - name: stg_frakture_global_message_paidmedia_sources_campaigns_messages_bridge
-    description: ''
+    description: Table containing mapping between messages, sources and campaigns
     columns:
       - name: message_id
-        description: ''
+        description: Unique identifier of a Message
       - name: source_code
-        description: ''
+        description: Code that identifies the source
       - name: campaign_id
-        description: ''
+        description: Unique identifier of a Campaign

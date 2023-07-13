@@ -2,15 +2,19 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_audience_transaction_cumulative
-    description: ''
+    description: This table contains summary counts of transactions for a given audience
+      over various time periods.
     columns:
       - name: transaction_date_day
-        description: ''
+        description: The date of the transaction
       - name: person_id
-        description: ''
+        description: The unique ID of an individual customer
       - name: cumulative_amount_12_months
-        description: ''
+        description: The cumulative amount spent by the customer over the past 12
+          months
       - name: cumulative_amount_24_months
-        description: ''
+        description: The cumulative amount spent by the customer over the past 24
+          months
       - name: cumulative_amount_30_days_recur
-        description: ''
+        description: The cumulative amount spent by the customer over the past 30
+          days, with recurring transactions included

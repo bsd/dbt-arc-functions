@@ -2,29 +2,32 @@
 version: 2
 models:
   - name: stg_src_stitch_sfmc_fundraiseup_recent_transaction
-    description: ''
+    description: Stage source table for stitching SFMC FundraiseUp Recent Transactions
+      data
     columns:
       - name: revenue_id
-        description: ''
+        description: A unique identifier related to the SFMC FundraiseUp transaction
       - name: initial_market_source
-        description: ''
+        description: Tracking parameter which shows the source the donor used to navigate
+          to the fundraising page
       - name: email
-        description: ''
+        description: Email associated with donor
       - name: amount
-        description: ''
+        description: Amount of money donated
       - name: gift_type
-        description: ''
+        description: One time or recurring gift
       - name: transaction_date
-        description: ''
+        description: Date the transaction was created
       - name: appeal
-        description: ''
+        description: Identifier of the fundraising goal associated with the transaction
       - name: designation
-        description: ''
+        description: The cause that the donor has designated the gift to
       - name: sfmc_insert_dt
-        description: ''
+        description: Date the transaction was loaded into Salesforce Marketing Cloud
       - name: migrated
-        description: ''
+        description: Indicator to show if the transaction has been loaded to the data
+          warehouse
       - name: lookup_id
-        description: ''
+        description: A unique identifier used to link transactions from multiple sources
       - name: sfmc_updated_dt
-        description: ''
+        description: Date the transaction was updated in Salesforce Marketing Cloud

@@ -2,31 +2,34 @@
 version: 2
 models:
   - name: stg_paidmedia_actuals_budget_by_day_and_campaign_join
-    description: ''
+    description: Contains data from each campaign around daily actuals and budget
+      amounts
     columns:
       - name: date_day
-        description: ''
+        description: Date in YYYY-MM-DD format
       - name: campaign_name
-        description: ''
+        description: Name of the campaign as defined in the originating system
       - name: daily_spend
-        description: ''
+        description: Daily actuals or spend dollar amount
       - name: cumulative_spend
-        description: ''
+        description: Running total of daily spend
       - name: daily_budget
-        description: ''
+        description: Daily expected or budgeted spend amount
       - name: remaining_budget
-        description: ''
+        description: Amount of budget left after cumulative spend
       - name: spend_pace
-        description: ''
+        description: Expenditure on a daily basis relative to start date for a given
+          campaign
       - name: budget_pace
-        description: ''
+        description: Planned expenditure on a daily for a given campaign
       - name: cumulative_budget
-        description: ''
+        description: Total expected or budgeted spend amount for a given campaign
       - name: total_budget
-        description: ''
+        description: Cumulative amount of expected spend relative to start date of
+          a given campaign
       - name: campaign_start_date
-        description: ''
+        description: Starting date of the campaign
       - name: campaign_end_date
-        description: ''
+        description: Ending date of the campaign
       - name: descriptions
-        description: ''
+        description: Descriptions of campaigns where available

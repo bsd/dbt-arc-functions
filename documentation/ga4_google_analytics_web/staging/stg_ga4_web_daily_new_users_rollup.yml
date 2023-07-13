@@ -1,0 +1,13 @@
+---
+version: 2
+models:
+  - name: stg_ga4_web_daily_new_users_rollup
+    description: Rollup of new users on a daily basis for web traffic data sourced
+      from Google Analytics (GA4)
+    columns:
+      - name: session_date
+        description: The date the session occurred on
+      - name: session_key
+        description: A unique identifier for the session
+      - name: new_users
+        description: The number of new users for the given session

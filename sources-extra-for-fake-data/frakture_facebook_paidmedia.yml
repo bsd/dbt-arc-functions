@@ -1,0 +1,788 @@
+---
+version: 2
+sources:
+  - name: frakture_facebook_paidmedia
+    schema: src_frakture
+    description: Data source related to Facebook paid media metrics, ads, and related
+      entities.
+    tables:
+      - name: facebook_bizman_bot_ad_summary_by_date
+        description: Summary of Facebook business manager bot ads with associated
+          metrics by date.
+        columns:
+          - name: date
+            data_type: DATE
+            description: The date of the data record.
+          - name: date_day
+            data_type: DATE
+            description: The specific day associated with the data record.
+          - name: account_id
+            data_type: STRING
+            description: The unique identifier for the account.
+          - name: account_prefix
+            data_type: STRING
+            description: The prefix associated with the account.
+          - name: account_prefix_label
+            data_type: STRING
+            description: The label representing the account prefix.
+          - name: acquisition_cost
+            data_type: FLOAT64
+            description: The cost to acquire a new customer or conversion.
+          - name: acquisition_cost_per_person
+            data_type: FLOAT64
+            description: The cost to acquire a new customer or conversion per person.
+          - name: acquisition_date
+            data_type: DATETIME
+            description: The date a new customer was acquired.
+          - name: acquisition_source
+            data_type: STRING
+            description: The origin or source of a new customer.
+          - name: ad_type
+            data_type: STRING
+            description: The type of advertisement.
+          - name: additional_info
+            data_type: STRING
+            description: Additional information related to the ad.
+          - name: additional_info_label
+            data_type: STRING
+            description: Label representing the additional information.
+          - name: adset_id
+            data_type: STRING
+            description: Unique identifier for the ad set.
+          - name: adset_name
+            data_type: STRING
+            description: The name of the ad set.
+          - name: affiliation
+            data_type: STRING
+            description: The affiliation related to the ad.
+          - name: affiliation_label
+            data_type: STRING
+            description: Label representing the affiliation.
+          - name: agency
+            data_type: STRING
+            description: The agency that produced the ad.
+          - name: agency_label
+            data_type: STRING
+            description: Label representing the agency.
+          - name: appeal
+            data_type: STRING
+            description: The appeal or call to action of the ad.
+          - name: appeal_label
+            data_type: STRING
+            description: Label representing the appeal.
+          - name: audience
+            data_type: STRING
+            description: The target audience of the ad.
+          - name: audience_label
+            data_type: STRING
+            description: Label representing the target audience.
+          - name: author
+            data_type: STRING
+            description: The author of the ad.
+          - name: author_label
+            data_type: STRING
+            description: Label representing the author.
+          - name: bot_id
+            data_type: STRING
+            description: Unique identifier for the bot associated with the ad.
+          - name: campaign
+            data_type: STRING
+            description: The specific campaign the ad is part of.
+          - name: campaign_id
+            data_type: STRING
+            description: Unique identifier for the campaign.
+          - name: campaign_label
+            data_type: STRING
+            description: Label representing the campaign.
+          - name: campaign_name
+            data_type: STRING
+            description: The name of the campaign.
+          - name: channel
+            data_type: STRING
+            description: The media channel used for the ad.
+          - name: department
+            data_type: STRING
+            description: The department responsible for the ad.
+          - name: department_label
+            data_type: STRING
+            description: Label representing the department.
+          - name: edit_url
+            data_type: STRING
+            description: URL where the ad can be edited.
+          - name: fb_ad_edit_link
+            data_type: STRING
+            description: Facebook link where the ad can be edited.
+          - name: fb_call_to_action_types
+            data_type: STRING
+            description: Types of call-to-action used in the Facebook ad.
+          - name: fb_object_types
+            data_type: STRING
+            description: Types of objects used in the Facebook ad.
+          - name: fb_preview_feed_link
+            data_type: STRING
+            description: Link to a preview of the ad in the Facebook feed.
+          - name: fb_preview_share_link
+            data_type: STRING
+            description: Link to share the preview of the ad.
+          - name: format
+            data_type: STRING
+            description: The format of the ad.
+          - name: format_regex
+            data_type: STRING
+            description: Regex used for format validation.
+          - name: from_email
+            data_type: STRING
+            description: Email address from which the ad originates.
+          - name: from_name
+            data_type: STRING
+            description: Name associated with the origin of the ad.
+          - name: fund
+            data_type: STRING
+            description: The fund associated with the ad.
+          - name: fund_label
+            data_type: STRING
+            description: Label representing the fund.
+          - name: geo
+            data_type: STRING
+            description: The geographical area targeted by the ad.
+          - name: geo_label
+            data_type: STRING
+            description: Label representing the geographical area.
+          - name: goal
+            data_type: STRING
+            description: The goal or objective of the ad.
+          - name: goal_2
+            data_type: STRING
+            description: An additional or secondary goal of the ad.
+          - name: goal_2_label
+            data_type: STRING
+            description: Label representing the secondary goal.
+          - name: goal_label
+            data_type: STRING
+            description: Label representing the primary goal.
+          - name: image_url
+            data_type: STRING
+            description: URL for the ad image.
+          - name: issue
+            data_type: STRING
+            description: The issue addressed by the ad.
+          - name: issue_label
+            data_type: STRING
+            description: Label representing the issue.
+          - name: label
+            data_type: STRING
+            description: A label associated with the ad.
+          - name: link_url
+            data_type: STRING
+            description: URL for the ad link.
+          - name: media
+            data_type: STRING
+            description: The type of media used in the ad.
+          - name: media_label
+            data_type: STRING
+            description: Label representing the type of media.
+          - name: message_set
+            data_type: STRING
+            description: The set of messages included in the ad.
+          - name: message_set_label
+            data_type: STRING
+            description: Label representing the set of messages.
+          - name: organic
+            data_type: STRING
+            description: Description for the organic field.
+          - name: organic_label
+            data_type: STRING
+            description: Description for the organic_label field.
+          - name: partner
+            data_type: STRING
+            description: Description for the partner field.
+          - name: partner_label
+            data_type: STRING
+            description: Description for the partner_label field.
+          - name: policy
+            data_type: STRING
+            description: Description for the policy field.
+          - name: policy_label
+            data_type: STRING
+            description: Description for the policy_label field.
+          - name: preview_url
+            data_type: STRING
+            description: Description for the preview_url field.
+          - name: publish_date
+            data_type: DATETIME
+            description: Description for the publish_date field.
+          - name: recurtype
+            data_type: STRING
+            description: Description for the recurtype field.
+          - name: recurtype_label
+            data_type: STRING
+            description: Description for the recurtype_label field.
+          - name: remote_id
+            data_type: STRING
+            description: Description for the remote_id field.
+          - name: reply_to_email_email
+            data_type: STRING
+            description: Description for the reply_to_email_email field.
+          - name: signer
+            data_type: STRING
+            description: Description for the signer field.
+          - name: signer_label
+            data_type: STRING
+            description: Description for the signer_label field.
+          - name: source_code_channel
+            data_type: STRING
+            description: Description for the source_code_channel field.
+          - name: source_code_channel_label
+            data_type: STRING
+            description: Description for the source_code_channel_label field.
+          - name: source_code_date
+            data_type: STRING
+            description: Description for the source_code_date field.
+          - name: source_code_date_label
+            data_type: STRING
+            description: Description for the source_code_date_label field.
+          - name: source_code_date_parsed
+            data_type: DATETIME
+            description: Description for the source_code_date_parsed field.
+          - name: source_code_id
+            data_type: INT64
+            description: Description for the source_code_id field.
+          - name: subchannel
+            data_type: STRING
+            description: Description for the subchannel field.
+          - name: subchannel_label
+            data_type: STRING
+            description: Description for the subchannel_label field.
+          - name: subject
+            data_type: STRING
+            description: Description for the subject field.
+          - name: submodule
+            data_type: STRING
+            description: Description for the submodule field.
+          - name: targeting
+            data_type: STRING
+            description: Description for the targeting field.
+          - name: targeting_2
+            data_type: STRING
+            description: Description for the targeting_2 field.
+          - name: targeting_2_label
+            data_type: STRING
+            description: Description for the targeting_2_label field.
+          - name: targeting_label
+            data_type: STRING
+            description: Description for the targeting_label field.
+          - name: text_content
+            data_type: STRING
+            description: Description for the text_content field.
+          - name: theme
+            data_type: STRING
+            description: Description for the theme field.
+          - name: theme_label
+            data_type: STRING
+            description: Description for the theme_label field.
+          - name: url_tags
+            data_type: STRING
+            description: Description for the url_tags field.
+          - name: variant
+            data_type: STRING
+            description: Description for the variant field.
+          - name: variant_label
+            data_type: STRING
+            description: Description for the variant_label field.
+          - name: action_complete_registration
+            data_type: FLOAT64
+            description: Description for the action_complete_registration field.
+          - name: action_lead
+            data_type: FLOAT64
+            description: Description for the action_lead field.
+          - name: action_purchase
+            data_type: FLOAT64
+            description: Description for the action_purchase field.
+          - name: attributed_avg_amount
+            data_type: FLOAT64
+            description: Description for the attributed_avg_amount field.
+          - name: attributed_max_amount
+            data_type: FLOAT64
+            description: Description for the attributed_max_amount field.
+          - name: attributed_min_amount
+            data_type: FLOAT64
+            description: Description for the attributed_min_amount field.
+          - name: attributed_recurring_revenue
+            data_type: FLOAT64
+            description: Description for the attributed_recurring_revenue field.
+          - name: attributed_recurring_transactions
+            data_type: FLOAT64
+            description: Description for the attributed_recurring_transactions field.
+          - name: attributed_refund_amount
+            data_type: FLOAT64
+            description: Description for the attributed_refund_amount field.
+          - name: attributed_refund_count
+            data_type: FLOAT64
+            description: Description for the attributed_refund_count field.
+          - name: attributed_revenue
+            data_type: FLOAT64
+            description: Description for the attributed_revenue field.
+          - name: attributed_soft_credit_amount
+            data_type: FLOAT64
+            description: Description for the attributed_soft_credit_amount field.
+          - name: attributed_soft_credit_count
+            data_type: FLOAT64
+            description: Description for the attributed_soft_credit_count field.
+          - name: attributed_transactions
+            data_type: FLOAT64
+            description: Description for the attributed_transactions field.
+          - name: clicks
+            data_type: FLOAT64
+            description: Description for the clicks field.
+          - name: conversion_subscribe_total
+            data_type: FLOAT64
+            description: Description for the conversion_subscribe_total field.
+          - name: conversion_value_subscribe_total
+            data_type: FLOAT64
+            description: Description for the conversion_value_subscribe_total field.
+          - name: engagements
+            data_type: FLOAT64
+            description: Description for the engagements field.
+          - name: final_primary_source_code
+            data_type: STRING
+            description: Description for the final_primary_source_code field.
+          - name: impressions
+            data_type: FLOAT64
+            description: Description for the impressions field.
+          - name: inline_link_clicks
+            data_type: FLOAT64
+            description: Description for the inline_link_clicks field.
+          - name: likes
+            data_type: FLOAT64
+            description: Description for the likes field.
+          - name: message_id
+            data_type: INT64
+            description: Description for the message_id field.
+          - name: origin_person_count
+            data_type: FLOAT64
+            description: Description for the origin_person_count field.
+          - name: reach
+            data_type: FLOAT64
+            description: Description for the reach field.
+          - name: revenue
+            data_type: FLOAT64
+            description: Description for the revenue field.
+          - name: spend
+            data_type: FLOAT64
+            description: Description for the spend field.
+          - name: transactions
+            data_type: FLOAT64
+            description: Description for the transactions field.
+          - name: video_25_complete
+            data_type: FLOAT64
+            description: Description for the video_25_complete field.
+          - name: video_50_complete
+            data_type: FLOAT64
+            description: Description for the video_50_complete field.
+          - name: video_75_complete
+            data_type: FLOAT64
+            description: Description for the video_75_complete field.
+          - name: video_completes
+            data_type: FLOAT64
+            description: Description for the video_completes field.
+          - name: video_starts
+            data_type: FLOAT64
+            description: Description for the video_starts field.
+          - name: website_purchases
+            data_type: FLOAT64
+            description: Description for the website_purchases field.
+          - name: website_purchases_value
+            data_type: FLOAT64
+            description: Description for the website_purchases_value field.
+      - name: facebook_bizman_bot_ad_summary_by_date
+        description: Data summary of Facebook advertisements run by Bizman bot.
+        columns:
+          - name: date
+            data_type: DATE
+            description: The date of the record.
+          - name: date_day
+            data_type: DATE
+            description: The day part of the date.
+          - name: account_id
+            data_type: STRING
+            description: The identifier for the Facebook account.
+          - name: account_prefix
+            data_type: STRING
+            description: The prefix associated with the Facebook account.
+          - name: account_prefix_label
+            data_type: STRING
+            description: The label for the account prefix.
+          - name: acquisition_cost
+            data_type: FLOAT64
+            description: The cost of acquiring the advertisement.
+          - name: acquisition_cost_per_person
+            data_type: FLOAT64
+            description: The average cost of advertisement acquisition per person.
+          - name: acquisition_date
+            data_type: DATETIME
+            description: The date when the ad was acquired.
+          - name: acquisition_source
+            data_type: STRING
+            description: The source from which the ad was acquired.
+          - name: ad_type
+            data_type: STRING
+            description: The type of the ad.
+          - name: additional_info
+            data_type: STRING
+            description: Additional information related to the ad.
+          - name: additional_info_label
+            data_type: STRING
+            description: The label for the additional information.
+          - name: adset_id
+            data_type: STRING
+            description: The identifier for the ad set.
+          - name: adset_name
+            data_type: STRING
+            description: The name of the ad set.
+          - name: affiliation
+            data_type: STRING
+            description: Affiliation details of the ad, if any.
+          - name: affiliation_label
+            data_type: STRING
+            description: The label for the affiliation.
+          - name: agency
+            data_type: STRING
+            description: The agency responsible for the ad.
+          - name: agency_label
+            data_type: STRING
+            description: The label for the agency.
+          - name: appeal
+            data_type: STRING
+            description: The appeal or pitch of the ad.
+          - name: appeal_label
+            data_type: STRING
+            description: The label for the appeal.
+          - name: audience
+            data_type: STRING
+            description: The target audience of the ad.
+          - name: audience_label
+            data_type: STRING
+            description: The label for the target audience.
+          - name: author
+            data_type: STRING
+            description: The author of the ad.
+          - name: author_label
+            data_type: STRING
+            description: The label for the author.
+          - name: bot_id
+            data_type: STRING
+            description: The identifier for the Bizman bot.
+          - name: campaign
+            data_type: STRING
+            description: The campaign associated with the ad.
+          - name: campaign_id
+            data_type: STRING
+            description: The identifier for the campaign.
+          - name: campaign_label
+            data_type: STRING
+            description: The label for the campaign.
+          - name: campaign_name
+            data_type: STRING
+            description: The name of the campaign.
+          - name: channel
+            data_type: STRING
+            description: The channel through which the ad was broadcasted.
+          - name: department
+            data_type: STRING
+            description: The department responsible for the ad.
+          - name: department_label
+            data_type: STRING
+            description: The label for the department.
+          - name: edit_url
+            data_type: STRING
+            description: The URL to edit the ad.
+          - name: fb_ad_edit_link
+            data_type: STRING
+            description: The Facebook specific link to edit the ad.
+          - name: fb_call_to_action_types
+            data_type: STRING
+            description: The types of call to action in the ad.
+          - name: fb_object_types
+            data_type: STRING
+            description: The types of objects featured in the ad.
+          - name: fb_preview_feed_link
+            data_type: STRING
+            description: The link to preview the ad in Facebook feed.
+          - name: fb_preview_share_link
+            data_type: STRING
+            description: The link to share the preview of the ad.
+          - name: format
+            data_type: STRING
+            description: The format of the ad.
+          - name: format_regex
+            data_type: STRING
+            description: The regular expression to match the ad format.
+          - name: from_email
+            data_type: STRING
+            description: The email from which the ad is sent.
+          - name: from_name
+            data_type: STRING
+            description: The name from which the ad is sent.
+          - name: fund
+            data_type: STRING
+            description: The fund associated with the ad.
+          - name: fund_label
+            data_type: STRING
+            description: The label for the fund.
+          - name: geo
+            data_type: STRING
+            description: The geographical target of the ad.
+          - name: geo_label
+            data_type: STRING
+            description: The label for the geographical target.
+          - name: goal
+            data_type: STRING
+            description: The primary goal of the ad.
+          - name: goal_2
+            data_type: STRING
+            description: The secondary goal of the ad.
+          - name: goal_2_label
+            data_type: STRING
+            description: The label for the secondary goal.
+          - name: goal_label
+            data_type: STRING
+            description: The label for the primary goal.
+          - name: image_url
+            data_type: STRING
+            description: The URL of the image used in the ad.
+          - name: issue
+            data_type: STRING
+            description: The issue or topic addressed by the ad.
+          - name: issue_label
+            data_type: STRING
+            description: The label for the issue or topic.
+          - name: label
+            data_type: STRING
+            description: The label or tag associated with the ad.
+          - name: link_url
+            data_type: STRING
+            description: The URL of the ad.
+          - name: media
+            data_type: STRING
+            description: The media used in the ad.
+          - name: media_label
+            data_type: STRING
+            description: The label for the media.
+          - name: message_set
+            data_type: STRING
+            description: The set of messages included in the ad.
+          - name: message_set_label
+            data_type: STRING
+            description: The label for the set of messages.
+          - name: organic
+            data_type: STRING
+            description: Indicates if the ad is organic or paid.
+          - name: organic_label
+            data_type: STRING
+            description: The label for organic or paid attribute.
+          - name: partner
+            data_type: STRING
+            description: The partner involved in the ad, if any.
+          - name: partner_label
+            data_type: STRING
+            description: The label for the partner.
+          - name: policy
+            data_type: STRING
+            description: The policy followed for the ad.
+          - name: policy_label
+            data_type: STRING
+            description: The label for the policy.
+          - name: preview_url
+            data_type: STRING
+            description: The URL to preview the ad.
+          - name: publish_date
+            data_type: DATETIME
+            description: The date and time when the ad was published.
+          - name: recurtype
+            data_type: STRING
+            description: The type of recurrence for the ad.
+          - name: recurtype_label
+            data_type: STRING
+            description: The label for the type of recurrence.
+          - name: remote_id
+            data_type: STRING
+            description: The remote ID associated with the ad.
+          - name: reply_to_email_email
+            data_type: STRING
+            description: The reply-to email associated with the ad.
+          - name: signer
+            data_type: STRING
+            description: The signer of the ad.
+          - name: signer_label
+            data_type: STRING
+            description: The label for the signer.
+          - name: source_code_channel
+            data_type: STRING
+            description: The source code for the channel of the ad.
+          - name: source_code_channel_label
+            data_type: STRING
+            description: The label for the source code channel.
+          - name: source_code_date
+            data_type: STRING
+            description: The date associated with the source code.
+          - name: source_code_date_label
+            data_type: STRING
+            description: The label for the source code date.
+          - name: source_code_date_parsed
+            data_type: DATETIME
+            description: The parsed date associated with the source code.
+          - name: source_code_id
+            data_type: INT64
+            description: The ID for the source code.
+          - name: subchannel
+            data_type: STRING
+            description: The subchannel for the ad.
+          - name: subchannel_label
+            data_type: STRING
+            description: The label for the subchannel.
+          - name: subject
+            data_type: STRING
+            description: The subject of the ad.
+          - name: submodule
+            data_type: STRING
+            description: The submodule related to the ad.
+          - name: targeting
+            data_type: STRING
+            description: The targeting parameters for the ad.
+          - name: targeting_2
+            data_type: STRING
+            description: Additional targeting parameters for the ad.
+          - name: targeting_2_label
+            data_type: STRING
+            description: The label for additional targeting parameters.
+          - name: targeting_label
+            data_type: STRING
+            description: The label for targeting parameters.
+          - name: text_content
+            data_type: STRING
+            description: The text content of the ad.
+          - name: theme
+            data_type: STRING
+            description: The theme of the ad.
+          - name: theme_label
+            data_type: STRING
+            description: The label for the theme.
+          - name: url_tags
+            data_type: STRING
+            description: The tags in the URL of the ad.
+          - name: variant
+            data_type: STRING
+            description: The variant of the ad.
+          - name: variant_label
+            data_type: STRING
+            description: The descriptive label of the ad variant.
+          - name: action_complete_registration
+            data_type: FLOAT64
+            description: The count of completed registration actions triggered by
+              the ad.
+          - name: action_lead
+            data_type: FLOAT64
+            description: The count of lead-generation actions attributed to the ad.
+          - name: action_purchase
+            data_type: FLOAT64
+            description: The count of purchase actions attributed to the ad.
+          - name: attributed_avg_amount
+            data_type: FLOAT64
+            description: The average amount of revenue attributed to the ad.
+          - name: attributed_max_amount
+            data_type: FLOAT64
+            description: The maximum amount of revenue attributed to the ad.
+          - name: attributed_min_amount
+            data_type: FLOAT64
+            description: The minimum amount of revenue attributed to the ad.
+          - name: attributed_recurring_revenue
+            data_type: FLOAT64
+            description: The amount of recurring revenue attributed to the ad.
+          - name: attributed_recurring_transactions
+            data_type: FLOAT64
+            description: The number of recurring transactions attributed to the ad.
+          - name: attributed_refund_amount
+            data_type: FLOAT64
+            description: The total amount refunded for transactions attributed to
+              the ad.
+          - name: attributed_refund_count
+            data_type: FLOAT64
+            description: The total count of refunds for transactions attributed to
+              the ad.
+          - name: attributed_revenue
+            data_type: FLOAT64
+            description: The total revenue attributed to the ad.
+          - name: attributed_soft_credit_amount
+            data_type: FLOAT64
+            description: The total soft credit amount attributed to the ad.
+          - name: attributed_soft_credit_count
+            data_type: FLOAT64
+            description: The total soft credit count attributed to the ad.
+          - name: attributed_transactions
+            data_type: FLOAT64
+            description: The total transactions attributed to the ad.
+          - name: clicks
+            data_type: FLOAT64
+            description: The total number of clicks on the ad.
+          - name: conversion_subscribe_total
+            data_type: FLOAT64
+            description: The total number of subscribe conversions due to the ad.
+          - name: conversion_value_subscribe_total
+            data_type: FLOAT64
+            description: The total value of subscribe conversions due to the ad.
+          - name: engagements
+            data_type: FLOAT64
+            description: The total number of engagements with the ad.
+          - name: final_primary_source_code
+            data_type: STRING
+            description: The final primary source code associated with the ad.
+          - name: impressions
+            data_type: FLOAT64
+            description: The total number of times the ad was shown.
+          - name: inline_link_clicks
+            data_type: FLOAT64
+            description: The total number of inline link clicks on the ad.
+          - name: likes
+            data_type: FLOAT64
+            description: The total number of likes on the ad.
+          - name: message_id
+            data_type: INT64
+            description: The unique identifier of the message in the ad.
+          - name: origin_person_count
+            data_type: FLOAT64
+            description: The count of unique individuals who triggered the ad.
+          - name: reach
+            data_type: FLOAT64
+            description: The total number of unique individuals who viewed the ad.
+          - name: revenue
+            data_type: FLOAT64
+            description: The total revenue generated by the ad.
+          - name: spend
+            data_type: FLOAT64
+            description: The total amount spent on the ad.
+          - name: transactions
+            data_type: FLOAT64
+            description: The total number of transactions resulted from the ad.
+          - name: video_25_complete
+            data_type: FLOAT64
+            description: The count of video plays that reached 25% completion.
+          - name: video_50_complete
+            data_type: FLOAT64
+            description: The count of video plays that reached 50% completion.
+          - name: video_75_complete
+            data_type: FLOAT64
+            description: The count of video plays that reached 75% completion.
+          - name: video_completes
+            data_type: FLOAT64
+            description: The total number of completed video plays.
+          - name: video_starts
+            data_type: FLOAT64
+            description: The total number of video play starts.
+          - name: website_purchases
+            data_type: FLOAT64
+            description: The total number of purchases made on the website due to
+              the ad.
+          - name: website_purchases_value
+            data_type: FLOAT64
+            description: The total value of purchases made on the website due to the
+              ad.

@@ -30,6 +30,7 @@ Look [here](https://bluestate.atlassian.net/wiki/spaces/ATeam/pages/2986049548/T
     - [create\_or\_update\_standard\_models.py](#create_or_update_standard_modelspy)
       - [Usage](#usage-6)
       - [Plain English what it does](#plain-english-what-it-does-5)
+        - [UPDATE 2023/06/23](#update-20230623)
     - [create\_views\_from\_stitch\_datasets.ipynb](#create_views_from_stitch_datasetsipynb)
       - [Usage](#usage-7)
       - [Plain English what it does](#plain-english-what-it-does-6)
@@ -159,6 +160,8 @@ When you're prototyping building out a set of models, it's easiest to do that in
 
 #### Plain English what it does
 This function allows you to build out models based on the sources we've used before ([found here.](https://github.com/bsd/dbt-arc-functions/tree/main/macros)) This function will build a set of models in the desired project, by generating sql files that reference macros within a folder structure recognized by dbt.
+##### UPDATE 2023/06/23
+Now works with snapshots
 
 ---
 
@@ -188,7 +191,7 @@ This function deletes the specific schemas that your dbt profile has created so 
 `python first_run_dbt_project_and_profiles_fixer.py`
 
 #### Plain English what it does
-The first time you boot up a dbt project, there are a lot of variables you have to set by hand in dbt_project.yml and profiles.yml; this script does all that set up for you. You'll need to have a valid BigQuery credentials.json file to be able to run the dbt project locally, so good idea to get that together before running this script.
+The first time you boot up a dbt project, there are a lot of variables you have to set by hand in dbt_project.yml and profiles.yml; this script does all that set up for you. Includes adding +persist_docs to all new `dbt_project.yml` . You'll need to have a valid BigQuery credentials.json file to be able to run the dbt project locally, so good idea to get that together before running this script.
 
 If you'd like to know how to generate a credentials json go [here](https://docs.getdbt.com/tutorial/setting-up#generate-bigquery-credentials). If you'd like to understand why you need credentials to use the CLI go [here](https://docs.getdbt.com/tutorial/create-a-project-dbt-cli
 ).

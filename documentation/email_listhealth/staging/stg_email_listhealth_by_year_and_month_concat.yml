@@ -2,17 +2,17 @@
 version: 2
 models:
   - name: stg_email_listhealth_by_year_and_month_concat
-    description: ''
+    description: Monthly email performance metrics by year and month
     columns:
       - name: date_month
-        description: ''
+        description: The month of the email performance metrics
       - name: max_recipients
-        description: ''
+        description: The maximum number of recipients of the emails
       - name: max_delivered
-        description: ''
+        description: The maximum number of delivered emails
       - name: total_unsubscribes
-        description: ''
+        description: The total number of outgoing unsubscribes on the emails
       - name: total_hard_bounces
-        description: ''
+        description: The total number of hard bounces on the emails
       - name: total_complaints
-        description: ''
+        description: The total number of complaints about the emails

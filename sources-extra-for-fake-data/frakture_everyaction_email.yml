@@ -1,0 +1,456 @@
+---
+version: 2
+sources:
+  - name: frakture_everyaction_email
+    schema: src_frakture
+    description: Source for data coming from everyaction emails in the frakture system.
+    tables:
+      - name: everyaction_bot_email_summary
+        description: Summary of everyaction bot emails with various metrics and attributes.
+        columns:
+          - name: account_id
+            data_type: STRING
+            description: Unique identifier of the account.
+          - name: account_prefix
+            data_type: STRING
+            description: Prefix associated with the account.
+          - name: account_prefix_label
+            data_type: STRING
+            description: Label for the account prefix.
+          - name: acquisition_cost
+            data_type: FLOAT64
+            description: Cost of acquiring new leads or customers.
+          - name: acquisition_cost_per_person
+            data_type: FLOAT64
+            description: Cost of acquisition per individual.
+          - name: acquisition_date
+            data_type: DATETIME
+            description: Date when a lead or customer was acquired.
+          - name: acquisition_source
+            data_type: STRING
+            description: Source from which a lead or customer was acquired.
+          - name: additional_info
+            data_type: STRING
+            description: Additional information related to the email.
+          - name: additional_info_label
+            data_type: STRING
+            description: Label for the additional information.
+          - name: affiliation
+            data_type: STRING
+            description: Affiliation of the individual associated with the email.
+          - name: affiliation_label
+            data_type: STRING
+            description: Label for the affiliation.
+          - name: agency
+            data_type: STRING
+            description: Agency that is responsible for the email.
+          - name: agency_label
+            data_type: STRING
+            description: Label for the agency.
+          - name: appeal
+            data_type: STRING
+            description: The appeal or campaign associated with the email.
+          - name: appeal_label
+            data_type: STRING
+            description: Label for the appeal or campaign.
+          - name: audience
+            data_type: STRING
+            description: Audience to whom the email was sent.
+          - name: audience_label
+            data_type: STRING
+            description: Label for the audience.
+          - name: author
+            data_type: STRING
+            description: Author of the email.
+          - name: author_label
+            data_type: STRING
+            description: Label for the author.
+          - name: bot_id
+            data_type: STRING
+            description: Unique identifier of the bot.
+          - name: campaign
+            data_type: STRING
+            description: The campaign that the email is associated with.
+          - name: campaign_id
+            data_type: STRING
+            description: Unique identifier for the campaign.
+          - name: campaign_label
+            data_type: STRING
+            description: Label for the campaign.
+          - name: campaign_name
+            data_type: STRING
+            description: Name of the campaign.
+          - name: channel
+            data_type: STRING
+            description: Channel through which the email was sent.
+          - name: department
+            data_type: STRING
+            description: Department responsible for the email.
+          - name: department_label
+            data_type: STRING
+            description: Label for the department.
+          - name: format
+            data_type: STRING
+            description: Format of the email.
+          - name: format_regex
+            data_type: STRING
+            description: Regular expression used to determine the format.
+          - name: from_email
+            data_type: STRING
+            description: The email address of the sender.
+          - name: from_name
+            data_type: STRING
+            description: The name of the sender.
+          - name: fund
+            data_type: STRING
+            description: The fund related to the data.
+          - name: fund_label
+            data_type: STRING
+            description: The label or description of the fund.
+          - name: geo
+            data_type: STRING
+            description: The geographic location related to the data.
+          - name: geo_label
+            data_type: STRING
+            description: The label or description of the geographic location.
+          - name: goal
+            data_type: STRING
+            description: The goal related to the data.
+          - name: goal_2
+            data_type: STRING
+            description: The secondary goal related to the data.
+          - name: goal_2_label
+            data_type: STRING
+            description: The label or description of the secondary goal.
+          - name: goal_label
+            data_type: STRING
+            description: The label or description of the goal.
+          - name: issue
+            data_type: STRING
+            description: The issue related to the data.
+          - name: issue_label
+            data_type: STRING
+            description: The label or description of the issue.
+          - name: label
+            data_type: STRING
+            description: A general label or description for the data.
+          - name: media
+            data_type: STRING
+            description: The media related to the data.
+          - name: media_label
+            data_type: STRING
+            description: The label or description of the media.
+          - name: publish_date
+            data_type: DATETIME
+            description: The date when the data was published.
+          - name: remote_id
+            data_type: STRING
+            description: The remote identifier for the data.
+          - name: subject
+            data_type: STRING
+            description: The subject of the data.
+          - name: submodule
+            data_type: STRING
+            description: The submodule related to the data.
+          - name: actions
+            data_type: FLOAT64
+            description: The number of actions taken.
+          - name: attributed_avg_amount
+            data_type: FLOAT64
+            description: The attributed average amount.
+          - name: attributed_max_amount
+            data_type: FLOAT64
+            description: The attributed maximum amount.
+          - name: attributed_min_amount
+            data_type: FLOAT64
+            description: The attributed minimum amount.
+          - name: attributed_recurring_revenue
+            data_type: FLOAT64
+            description: The attributed recurring revenue.
+          - name: attributed_recurring_transactions
+            data_type: FLOAT64
+            description: The attributed recurring transactions.
+          - name: attributed_refund_amount
+            data_type: FLOAT64
+            description: The attributed refund amount.
+          - name: attributed_refund_count
+            data_type: FLOAT64
+            description: The attributed refund count.
+          - name: attributed_revenue
+            data_type: FLOAT64
+            description: The attributed revenue.
+          - name: attributed_revenue_day_1
+            data_type: FLOAT64
+            description: The attributed revenue on day 1.
+          - name: attributed_revenue_day_6
+            data_type: FLOAT64
+            description: The attributed revenue on day 6.
+          - name: attributed_soft_credit_amount
+            data_type: FLOAT64
+            description: The attributed soft credit amount.
+          - name: attributed_soft_credit_count
+            data_type: FLOAT64
+            description: The attributed soft credit count.
+          - name: attributed_transactions
+            data_type: FLOAT64
+            description: The attributed transactions.
+          - name: attributed_transactions_day_1
+            data_type: FLOAT64
+            description: The attributed transactions on day 1.
+          - name: attributed_transactions_day_6
+            data_type: FLOAT64
+            description: The attributed transactions on day 6.
+          - name: clicks
+            data_type: FLOAT64
+            description: The number of clicks.
+          - name: email_actions_taken
+            data_type: FLOAT64
+            description: The number of email actions taken.
+          - name: email_advocacy_actions
+            data_type: FLOAT64
+            description: The number of advocacy actions taken through email.
+          - name: email_blocked
+            data_type: FLOAT64
+            description: The number of blocked emails.
+          - name: email_clicked
+            data_type: FLOAT64
+            description: The number of emails clicked.
+          - name: email_delivered
+            data_type: FLOAT64
+            description: The number of emails delivered.
+          - name: email_donations
+            data_type: FLOAT64
+            description: The number of donations made through email.
+          - name: email_ecommerce_purchase_amount
+            data_type: FLOAT64
+            description: The total amount of ecommerce purchases made through email.
+          - name: email_ecommerce_purchases
+            data_type: FLOAT64
+            description: The number of ecommerce purchases made through email.
+          - name: email_expected_send
+            data_type: FLOAT64
+            description: The expected number of emails to be sent.
+          - name: email_forwarded_actions
+            data_type: FLOAT64
+            description: The number of forwarded actions taken through email.
+          - name: email_forwarded_click_count
+            data_type: FLOAT64
+            description: The number of clicks on forwarded emails.
+          - name: email_forwarded_open_count
+            data_type: FLOAT64
+            description: The number of times forwarded emails were opened.
+          - name: email_hard_bounces
+            data_type: FLOAT64
+            description: The number of hard bounces (undeliverable emails).
+          - name: email_open_count
+            data_type: FLOAT64
+            description: The number of times emails were opened.
+          - name: email_opened
+            data_type: FLOAT64
+            description: The number of emails opened.
+          - name: email_registrations
+            data_type: FLOAT64
+            description: The number of registrations made through email.
+          - name: email_rsvps
+            data_type: FLOAT64
+            description: The number of RSVPs made through email.
+          - name: email_sent
+            data_type: FLOAT64
+            description: The number of emails sent.
+          - name: email_soft_bounces
+            data_type: FLOAT64
+            description: The number of soft bounces (temporary delivery failures).
+          - name: email_spam_complaints
+            data_type: FLOAT64
+            description: The number of spam complaints received for emails.
+          - name: email_surveys_taken
+            data_type: FLOAT64
+            description: The number of surveys taken through email.
+          - name: email_teamraiser_registrations
+            data_type: FLOAT64
+            description: The number of TeamRaiser registrations made through email.
+          - name: email_tell_a_friend_forward_recipients
+            data_type: FLOAT64
+            description: The number of recipients for tell-a-friend email forwards.
+          - name: email_tell_a_friend_forwards
+            data_type: FLOAT64
+            description: The number of tell-a-friend email forwards.
+          - name: email_ticket_purchases
+            data_type: FLOAT64
+            description: The number of ticket purchases made through email.
+          - name: email_total_clicks
+            data_type: FLOAT64
+            description: The total number of clicks on emails.
+          - name: email_unsubscribes
+            data_type: FLOAT64
+            description: The number of email unsubscribes.
+          - name: final_primary_source_code
+            data_type: STRING
+            description: The final primary source code.
+          - name: first_time_actions
+            data_type: FLOAT64
+            description: The number of first-time actions taken.
+          - name: impressions
+            data_type: FLOAT64
+            description: The number of impressions.
+          - name: message_id
+            data_type: INT64
+            description: The ID of the message.
+          - name: message_set
+            data_type: STRING
+            description: The message set related to the data.
+          - name: message_set_label
+            data_type: STRING
+            description: The label or description of the message set.
+          - name: organic
+            data_type: STRING
+            description: The organic data related to the data.
+          - name: organic_label
+            data_type: STRING
+            description: The label or description of the organic data.
+          - name: partner
+            data_type: STRING
+            description: The partner related to the data.
+          - name: partner_label
+            data_type: STRING
+            description: The label or description of the partner.
+          - name: policy
+            data_type: STRING
+            description: The policy related to the data.
+          - name: policy_label
+            data_type: STRING
+            description: The label or description of the policy.
+          - name: recurtype
+            data_type: STRING
+            description: The recurring type related to the data.
+          - name: recurtype_label
+            data_type: STRING
+            description: The label or description of the recurring type.
+          - name: signer
+            data_type: STRING
+            description: The signer related to the data.
+          - name: signer_label
+            data_type: STRING
+            description: The label or description of the signer.
+          - name: source_code_channel
+            data_type: STRING
+            description: The channel related to the source code.
+          - name: source_code_channel_label
+            data_type: STRING
+            description: The label or description of the channel related to the source
+              code.
+          - name: source_code_date
+            data_type: STRING
+            description: The date related to the source code.
+          - name: source_code_date_label
+            data_type: STRING
+            description: The label or description of the date related to the source
+              code.
+          - name: source_code_date_parsed
+            data_type: DATETIME
+            description: The parsed date related to the source code.
+          - name: source_code_id
+            data_type: INT64
+            description: The ID of the source code.
+          - name: subchannel
+            data_type: STRING
+            description: The subchannel related to the data.
+          - name: subchannel_label
+            data_type: STRING
+            description: The label or description of the subchannel.
+          - name: targeting
+            data_type: STRING
+            description: The targeting related to the data.
+          - name: targeting_2
+            data_type: STRING
+            description: The secondary targeting related to the data.
+          - name: targeting_2_label
+            data_type: STRING
+            description: The label or description of the secondary targeting.
+          - name: targeting_label
+            data_type: STRING
+            description: The label or description of the targeting.
+          - name: theme
+            data_type: STRING
+            description: The theme related to the data.
+          - name: theme_label
+            data_type: STRING
+            description: The label or description of the theme.
+          - name: variant
+            data_type: STRING
+            description: The variant related to the data.
+          - name: variant_label
+            data_type: STRING
+            description: The label or description of the variant.
+          - name: origin_person_count
+            data_type: FLOAT64
+            description: The count of unique origin persons.
+          - name: reach
+            data_type: FLOAT64
+            description: The reach of the data.
+          - name: revenue
+            data_type: FLOAT64
+            description: The revenue.
+          - name: total_actions
+            data_type: FLOAT64
+            description: The total number of actions.
+          - name: transactions
+            data_type: FLOAT64
+            description: The number of transactions.
+          - name: unique_actions
+            data_type: FLOAT64
+            description: The number of unique actions.
+      - name: everyaction_bot_message
+        description: The data related to everyaction bot messages.
+        columns:
+          - name: message_id
+            data_type: INT64
+            description: The ID of the message.
+          - name: bot_id
+            data_type: STRING
+            description: The ID of the bot.
+          - name: submodule
+            data_type: STRING
+            description: The submodule related to the message.
+          - name: remote_id
+            data_type: STRING
+            description: The remote identifier for the message.
+          - name: account_id
+            data_type: STRING
+            description: The ID of the account.
+          - name: channel
+            data_type: STRING
+            description: The channel of the message.
+          - name: publish_date
+            data_type: DATETIME
+            description: The date when the message was published.
+          - name: label
+            data_type: STRING
+            description: The label or description of the message.
+          - name: subject
+            data_type: STRING
+            description: The subject of the message.
+          - name: from_name
+            data_type: STRING
+            description: The name of the sender.
+          - name: from_email
+            data_type: STRING
+            description: The email address of the sender.
+          - name: campaign_name
+            data_type: STRING
+            description: The name of the campaign.
+          - name: campaign_id
+            data_type: STRING
+            description: The ID of the campaign.
+          - name: adset_name
+            data_type: STRING
+            description: The name of the ad set.
+          - name: adset_id
+            data_type: STRING
+            description: The ID of the ad set.
+          - name: preview_url
+            data_type: STRING
+            description: The URL for previewing the message.
+          - name: status
+            data_type: STRING
+            description: The status of the message.

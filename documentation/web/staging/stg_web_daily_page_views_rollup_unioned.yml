@@ -1,0 +1,14 @@
+---
+version: 2
+models:
+  - name: stg_web_daily_page_views_rollup_unioned
+    description: Staging table for daily page views rolled up and unioned
+    columns:
+      - name: _dbt_source_relation
+        description: Name of the source table/view for the given record
+      - name: session_date
+        description: Date of the session that generated the page views
+      - name: session_key
+        description: Unique identifier for the session that generated the page views
+      - name: page_views
+        description: Total number of page views for the given session
