@@ -15,3 +15,6 @@ models:
         description: The engagement level associated with the transaction
       - name: donor_loyalty
         description: The loyalty level associated with the transaction
+    tests:
+      - dbt_expectations.expect_table_columns_to_match_ordered_list:
+        column_list: ["transaction_date_day", "person_id", "donor_audience", "donor_engagement", "donor_loyalty"]
