@@ -1,0 +1,39 @@
+---
+version: 2
+sources:
+  - name: adhoc_reporting
+    description: Adhoc Reporting
+    tables:
+      - name: spreadsheet_audience_monthly_budget
+        description: Spreadsheet Audience Monthly Budget
+        columns:
+          - name: start_date
+            data_type: DATE
+            description: Start Date
+          - name: end_date
+            data_type: DATE
+            description: End Date
+          - name: platform
+            data_type: STRING
+            description: Platform
+          - name: donor_audience
+            data_type: STRING
+            description: Donor Audience
+          - name: total_revenue_budget
+            data_type: FLOAT64
+            description: Total Revenue Budget
+          - name: loyalty_new_donor_targets
+            data_type: INT64
+            description: Loyalty New Donor Targets
+          - name: loyalty_unknown_donor_targets
+            data_type: INT64
+            description: Loyalty Unknown Donor Targets
+          - name: loyalty_retained_donor_targets
+            data_type: INT64
+            description: Loyalty Retained Donor Targets
+          - name: loyalty_retained_three_donor_targets
+            data_type: INT64
+            description: Loyalty Retained Donor Targets with at least 3 donations
+          - name: loyalty_reinstated_donor_targets
+            data_type: INT64
+            description: Loyalty Reinstated Donor Targets
