@@ -3,7 +3,7 @@
     transactions="stg_stitch_sfmc_transactions_summary_unioned"
 ) %}
 
-with
+    with
         grouped as (
             select
                 cast(email_summary.message_id as string) as message_id,
@@ -52,6 +52,5 @@ with
         safe_cast(total_monthly_revenue as numeric) as total_monthly_revenue,
         safe_cast(total_monthly_gifts as int) as total_monthly_gifts
     from grouped
-
 
 {% endmacro %}

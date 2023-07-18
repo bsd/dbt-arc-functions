@@ -7,4 +7,4 @@
         max(campaign_timestamp) as campaign_latest_timestamp
     from {{ ref(reference_name) }}
     group by 1
-{% endmacro %}xs
+{% endmacro %} xs
