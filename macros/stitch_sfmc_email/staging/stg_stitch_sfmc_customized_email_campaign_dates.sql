@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_uusa_email_campaign_dates(
+{% macro create_stg_stitch_sfmc_customized_email_campaign_dates(
     reference_name="stg_src_stitch_email_job"
 ) %}
     select
