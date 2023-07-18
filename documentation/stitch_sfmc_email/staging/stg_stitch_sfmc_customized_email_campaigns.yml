@@ -1,0 +1,6 @@
+version: 2
+
+models:
+  - name: stg_stitch_sfmc_customized_email_campaigns
+    description: ""
+    columns:
