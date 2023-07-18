@@ -1,6 +1,0 @@
----
-version: 2
-models:
-  - name: stg_stitch_sfmc_customized_email_campaign_dates
-    description: ''
-    columns:
