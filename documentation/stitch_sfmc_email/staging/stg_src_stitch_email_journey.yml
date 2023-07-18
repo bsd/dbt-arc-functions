@@ -1,30 +1,22 @@
+---
 version: 2
-
 models:
   - name: stg_src_stitch_email_journey
-    description: ""
+    description: ''
     columns:
       - name: version_id
-        description: ""
-
+        description: ''
       - name: journey_id
-        description: ""
-
+        description: ''
       - name: journey_name
-        description: ""
-
+        description: ''
       - name: version_number
-        description: ""
-
+        description: ''
       - name: created_dt
-        description: ""
-
+        description: ''
       - name: last_published_dt
-        description: ""
-
+        description: ''
       - name: modified_dt
-        description: ""
-
+        description: ''
       - name: journey_status
-        description: ""
-
+        description: ''
