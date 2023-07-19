@@ -3,11 +3,11 @@
 ) %}
     select
         safe_cast(job_id as string) as message_id,
-        sum(case when bounce_category_id = '1' then 1 else 0 end) as hard_bounce,
-        sum(case when bounce_category_id = '2' then 1 else 0 end) as soft_bounce,
-        sum(case when bounce_category_id = '3' then 1 else 0 end) as block_bounce,
-        sum(case when bounce_category_id = '5' then 1 else 0 end) as tech_bounce,
-        sum(case when bounce_category_id = '4' then 1 else 0 end) as unknown_bounce,
+        sum(case when bounce_category_id = '1' then 1 else 0 end) as hard_bounces,
+        sum(case when bounce_category_id = '2' then 1 else 0 end) as soft_bounces,
+        sum(case when bounce_category_id = '3' then 1 else 0 end) as block_bounces,
+        sum(case when bounce_category_id = '5' then 1 else 0 end) as tech_bounces,
+        sum(case when bounce_category_id = '4' then 1 else 0 end) as unknown_bounces,
         sum(
             case
                 when bounce_category_id = '1'
