@@ -13,4 +13,5 @@
         safe_cast(category as string) as category,
         safe_cast(null as string) as source_code
     from {{ ref(reference_name) }}
+    where job_id is not null
 {% endmacro %}
