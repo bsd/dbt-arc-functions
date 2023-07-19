@@ -119,5 +119,6 @@
         triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
         triggeredsendcustomerkey as triggered_send_customer_key
     from ({{ dbt_utils.union_relations(relations) }})
+    where __jobid_ is not null
 
 {% endmacro %}

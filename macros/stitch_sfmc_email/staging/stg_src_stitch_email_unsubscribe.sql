@@ -21,5 +21,6 @@
         cast(isunique as bool) as is_unique,
         domain
     from ({{ dbt_utils.union_relations(relations) }})
+    where jobid is not null
 
 {% endmacro %}

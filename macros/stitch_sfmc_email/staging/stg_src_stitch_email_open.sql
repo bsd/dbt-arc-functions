@@ -24,5 +24,6 @@
         cast(triggeredsendcustomerkey as string) as triggered_send_customer_key
 
     from ({{ dbt_utils.union_relations(relations) }})
+    where jobid is not null
 
 {% endmacro %}

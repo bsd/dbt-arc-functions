@@ -59,5 +59,6 @@
         journeystatus as journey_status
 
     from ({{ dbt_utils.union_relations(relations) }})
+    where journeyid is not null
 
 {% endmacro %}

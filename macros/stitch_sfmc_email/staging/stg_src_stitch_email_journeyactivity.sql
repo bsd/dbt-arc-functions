@@ -14,5 +14,6 @@
         journeyactivityobjectid as journey_activity_object_id,
         activitytype as activity_type
     from ({{ dbt_utils.union_relations(relations) }})
+    where activityid is not null
 
 {% endmacro %}
