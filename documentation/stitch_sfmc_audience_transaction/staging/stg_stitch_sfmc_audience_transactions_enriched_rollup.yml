@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_stitch_sfmc_audience_transactions_enriched_rollup
+    description: "Audience Transactions rolled up by day and person_id"
+    columns:
+      - name: transaction_date_day
+        description: "Date of transaction in Day format"
+
+      - name: person_id
+        description: "Unique ID of the individual"
+
+      - name: inbound_channel
+        description: "Channel of donation"
+
+      - name: recurring
+        description: "If the transaction is part of a recurring donation"
+
+      - name: recurring_gift_size
+        description: " If the transaction is recurring, then this will hold the gift_size in a string"
+
+      - name: amounts
+        description: "the rolled-up sum of all of a person's transactions by day"
+
+      - name: gifts
+        description: "The number of gifts a person gave in a day"
+
