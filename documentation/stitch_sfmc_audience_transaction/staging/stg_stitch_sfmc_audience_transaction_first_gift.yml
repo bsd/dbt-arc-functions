@@ -13,4 +13,4 @@ models:
       - name: first_gift_amount_int
         description: the amount of the first gift as an integer
       - name: join_gift_size_string
-        description: teh gift size of the first gift as a category string
+        description: The gift size of the first gift as a category string
