@@ -74,4 +74,5 @@
     full join
         {{ ref(campaign_dates) }} campaign_dates
         on campaigns.campaign_name = campaign_dates.campaign_name
+    where message_id is not null
 {% endmacro %}
