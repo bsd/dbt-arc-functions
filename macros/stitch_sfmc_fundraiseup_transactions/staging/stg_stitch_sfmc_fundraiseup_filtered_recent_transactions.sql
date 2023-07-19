@@ -9,7 +9,7 @@
         lookup_id as person_id,
         initial_market_source as source_code,
         initial_market_source as transaction_source_code,  -- required for transaction rollup
-        safe_cast(null string) as channel_from_source_code,  -- this can be regex later
+        safe_cast(null as string) as channel_from_source_code,  -- this can be regex later
         safe_cast(null as string) as channel,  -- required for transaction rollup
         safe_cast(null as string) as campaign,  -- required for transaction rollup
         safe_cast(null as string) as audience,  -- required for transaction rollup
