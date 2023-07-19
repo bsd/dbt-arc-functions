@@ -2,25 +2,26 @@
 version: 2
 models:
   - name: stg_src_stitch_email_unsubscribe
-    description: ''
+    description: Stitch email unsubscribe data from a source
     columns:
       - name: account_id
-        description: ''
+        description: Identifier for the account associated with the email unsubscribe
       - name: oyb_account_id
-        description: ''
+        description: Identifier for the OYB (On Your Behalf) account associated with
+          the email unsubscribe
       - name: job_id
-        description: ''
+        description: Identifier for the job associated with the email unsubscribe
       - name: list_id
-        description: ''
+        description: Identifier for the list associated with the email unsubscribe
       - name: batch_id
-        description: ''
+        description: Identifier for the batch associated with the email unsubscribe
       - name: subscriber_id
-        description: ''
+        description: Identifier for the subscriber associated with the email unsubscribe
       - name: subscriber_key
-        description: ''
+        description: Unique key for the subscriber associated with the email unsubscribe
       - name: event_dt
-        description: ''
+        description: Date and time of the email unsubscribe event
       - name: is_unique
-        description: ''
+        description: Flag indicating if the email unsubscribe is unique
       - name: domain
-        description: ''
+        description: Domain associated with the email unsubscribe

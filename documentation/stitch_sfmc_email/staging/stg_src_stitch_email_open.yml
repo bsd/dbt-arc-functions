@@ -2,29 +2,32 @@
 version: 2
 models:
   - name: stg_src_stitch_email_open
-    description: ''
+    description: Stitch email open data from a source
     columns:
       - name: account_id
-        description: ''
+        description: Identifier for the account associated with the email open
       - name: oyb_account_id
-        description: ''
+        description: Identifier for the OYB (On Your Behalf) account associated with
+          the email open
       - name: job_id
-        description: ''
+        description: Identifier for the job associated with the email open
       - name: list_id
-        description: ''
+        description: Identifier for the list associated with the email open
       - name: batch_id
-        description: ''
+        description: Identifier for the batch associated with the email open
       - name: subscriber_id
-        description: ''
+        description: Identifier for the subscriber associated with the email open
       - name: subscriber_key
-        description: ''
+        description: Unique key for the subscriber associated with the email open
       - name: event_dt
-        description: ''
+        description: Date and time of the email open event
       - name: domain
-        description: ''
+        description: Domain associated with the email open
       - name: is_unique
-        description: ''
+        description: Flag indicating if the email open is unique
       - name: triggerrer_send_definition_object_id
-        description: ''
+        description: Object ID of the triggered send definition associated with the
+          email open
       - name: triggered_send_customer_key
-        description: ''
+        description: Customer key of the triggered send associated with the email
+          open

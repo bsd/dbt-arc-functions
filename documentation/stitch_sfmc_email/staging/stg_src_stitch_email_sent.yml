@@ -2,27 +2,30 @@
 version: 2
 models:
   - name: stg_src_stitch_email_sent
-    description: ''
+    description: Stitch email sent data from a source
     columns:
       - name: account_id
-        description: ''
+        description: Identifier for the account associated with the email sent
       - name: oyb_account_id
-        description: ''
+        description: Identifier for the OYB (On Your Behalf) account associated with
+          the email sent
       - name: message_id
-        description: ''
+        description: Identifier for the email message sent
       - name: list_id
-        description: ''
+        description: Identifier for the list associated with the email sent
       - name: batch_id
-        description: ''
+        description: Identifier for the batch associated with the email sent
       - name: subscriber_id
-        description: ''
+        description: Identifier for the subscriber associated with the email sent
       - name: subscriber_key
-        description: ''
+        description: Unique key for the subscriber associated with the email sent
       - name: event_dt
-        description: ''
+        description: Date and time of the email sent event
       - name: domain
-        description: ''
+        description: Domain associated with the email sent
       - name: triggerrer_send_definition_object_id
-        description: ''
+        description: Object ID of the triggered send definition associated with the
+          email sent
       - name: triggered_send_customer_key
-        description: ''
+        description: Customer key of the triggered send associated with the email
+          sent
