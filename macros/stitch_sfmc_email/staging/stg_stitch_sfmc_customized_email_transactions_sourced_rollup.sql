@@ -53,6 +53,6 @@
         safe_cast(total_monthly_gifts as int) as total_monthly_gifts
     from grouped
     where message_id is not null
-    having total_gifts > 0
+    and total_gifts > 0
 
 {% endmacro %}
