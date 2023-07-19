@@ -1,0 +1,37 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_transactions_summary_unioned
+    description: Unioned summary of transactions sourced from Salesforce Marketing
+      Cloud (SFMC)
+    columns:
+      - name: _dbt_source_relation
+        description: Identifier of the source relation in dbt
+      - name: transaction_id
+        description: Unique identifier for each transaction
+      - name: person_id
+        description: Unique identifier for the person associated with the transaction
+      - name: source_code
+        description: Identifier to track the source of a transaction
+      - name: crm
+        description: Identifier for the customer relationship management (CRM) system
+          used for the transaction
+      - name: message_id
+        description: Unique identifier for the marketing message associated with the
+          transaction
+      - name: transaction_date
+        description: Date the transaction occurred
+      - name: amount
+        description: Value of the transaction
+      - name: gift_type
+        description: Type of gift or donation associated with the transaction
+      - name: appeal
+        description: Identifier of the fundraising appeal associated with the transaction
+      - name: recurring
+        description: Flag indicating if the transaction is a recurring donation
+      - name: inbound_channel
+        description: The channel through which the transaction was received
+      - name: appeal_business_unit
+        description: The business unit associated with the transaction
+      - name: application
+        description: The application associated with the transaction
