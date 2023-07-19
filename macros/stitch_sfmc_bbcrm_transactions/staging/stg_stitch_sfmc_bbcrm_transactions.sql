@@ -6,6 +6,7 @@
         revenue_id as transaction_id,
         bbcrmlookupid as person_id,
         initial_market_source as source_code,
+        initial_market_source as transaction_source_code,
         safe_cast('sfmc_bbcrm' as string) as crm,
         safe_cast(
             regexp_extract(initial_market_source, r"sfmc(\d{6})") as int
