@@ -2,7 +2,8 @@
     reference_name="stg_src_stitch_email_job"
 ) %}
 
--- reference campaigns model so that no repetition is necessary in case when for campaigns
+    -- reference campaigns model so that no repetition is necessary in case when for
+    -- campaigns
     select
         safe_cast(coalesce(sched_dt, pickup_dt) as timestamp) as campaign_timestamp,
         safe_cast(null as string) as crm_campaign,

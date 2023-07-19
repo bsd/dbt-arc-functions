@@ -1,9 +1,8 @@
-
 ---
 version: 2
 models:
   - name: stg_stitch_sfmc_email_campaign_dates_rollup
-    description: Rollup of email campaigns with their dates 
+    description: Rollup of email campaigns with their dates
     columns:
       - name: campaign_name
         description: The unique message ID for each email sent
