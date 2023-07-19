@@ -109,5 +109,6 @@
         ) as source_code_campaign
 
     from {{ ref(reference_name) }}
+    where message_id is not null
 
 {% endmacro %}
