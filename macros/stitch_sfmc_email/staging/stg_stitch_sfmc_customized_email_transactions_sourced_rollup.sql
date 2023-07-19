@@ -52,7 +52,6 @@
         safe_cast(total_monthly_revenue as numeric) as total_monthly_revenue,
         safe_cast(total_monthly_gifts as int) as total_monthly_gifts
     from grouped
-    where message_id is not null
-    and total_gifts > 0
+    where message_id is not null and total_gifts > 0
 
 {% endmacro %}
