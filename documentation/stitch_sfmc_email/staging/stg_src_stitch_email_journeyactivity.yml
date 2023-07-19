@@ -1,17 +1,18 @@
+---
 version: 2
 models:
   - name: stg_src_stitch_email_journeyactivity
-    description: "Stitch email journey activity data from a source"
+    description: Stitch email journey activity data from a source
     columns:
       - name: version_id
-        description: "Identifier for the version of the email journey"
+        description: Identifier for the version of the email journey
       - name: activity_id
-        description: "Identifier for the journey activity"
+        description: Identifier for the journey activity
       - name: activity_name
-        description: "Name of the journey activity"
+        description: Name of the journey activity
       - name: activity_external_key
-        description: "External key of the journey activity"
+        description: External key of the journey activity
       - name: journey_activity_object_id
-        description: "Object ID of the journey activity"
+        description: Object ID of the journey activity
       - name: activity_type
-        description: "Type of the journey activity"
+        description: Type of the journey activity
