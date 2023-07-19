@@ -3,5 +3,4 @@
         "^stg_stitch_sfmc_[A-Za-z0-9]{3}_transactions$",
     ) %}
     {{ dbt_utils.union_relations(relations) }}
-    where transaction_date <= DATE_SUB(CURRENT_DATE(), INTERVAL 5 YEAR)
 {% endmacro %}
