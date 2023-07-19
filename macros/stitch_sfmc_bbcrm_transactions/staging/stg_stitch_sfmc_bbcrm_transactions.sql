@@ -20,7 +20,8 @@
             when lower(application) = 'recurring gift'
             then safe_cast(1 as boolean)
             else safe_cast(0 as boolean)
-        end as recurring
+        end as recurring,
+        null as best_guess_message_id
     from {{ ref(reference_name) }}
 
 {% endmacro %}
