@@ -4,7 +4,7 @@
 
     select
         revenue_id as transaction_id,
-        revenue_id as transaction_id_in_source_crm, -- required for transaction rollup
+        revenue_id as transaction_id_in_source_crm,  -- required for transaction rollup
         bbcrmlookupid as person_id,
         initial_market_source as source_code,
         initial_market_source as transaction_source_code,  -- required for transaction rollup
