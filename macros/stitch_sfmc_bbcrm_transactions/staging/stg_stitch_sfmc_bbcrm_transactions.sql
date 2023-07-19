@@ -12,6 +12,7 @@
             regexp_extract(initial_market_source, r"sfmc(\d{6})") as int
         ) as message_id,
         inbound_channel,
+        null as channel_from_source_code, -- this can be regex later
         transaction_date,
         timestamp(transaction_date) as transaction_timestamp,
         amount,

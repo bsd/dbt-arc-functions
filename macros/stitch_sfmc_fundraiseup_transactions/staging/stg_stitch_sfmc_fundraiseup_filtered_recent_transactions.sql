@@ -8,6 +8,7 @@
         lookup_id as person_id,
         initial_market_source as source_code,
         initial_market_source as transaction_source_code,
+        null as channel_from_source_code, -- this can be regex later
         safe_cast('sfmc_fundraiseup' as string) as crm,
         safe_cast(
             regexp_extract(initial_market_source, r"sfmc(\d{6})") as int
