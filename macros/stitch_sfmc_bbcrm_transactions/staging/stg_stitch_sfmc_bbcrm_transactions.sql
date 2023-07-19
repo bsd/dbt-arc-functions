@@ -12,6 +12,7 @@
         ) as message_id,
         inbound_channel,
         transaction_date,
+        timestamp(transaction_date) as transaction_timestamp,
         amount,
         appeal,
         appeal_business_unit,
