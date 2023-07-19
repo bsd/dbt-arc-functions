@@ -21,7 +21,6 @@
         amount,
         appeal,
         appeal_business_unit,
-        null as channel,  -- required for transaction rollup
         null as campaign,  -- required for transaction rollup
         null as audience,  -- required for transaction rollup
         null as source_code_entity,  -- required for transaction rollup
