@@ -4,4 +4,5 @@
     ) %}
     select distinct *
     from ({{ dbt_utils.union_relations(relations) }})
+    where transaction_date <= DATE_SUB(CURRENT_DATE(), INTERVAL 5 YEAR)
 {% endmacro %}
