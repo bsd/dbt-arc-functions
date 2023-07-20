@@ -72,6 +72,6 @@
                     then regexp_extract(email_name, r"([a-zA-Z]+)")
                 end
             ) as string
-        ) as source_code_campaign
+        ) as source_code_campaign --UUSA specific
     from {{ ref(reference_name) }}
 {% endmacro %}

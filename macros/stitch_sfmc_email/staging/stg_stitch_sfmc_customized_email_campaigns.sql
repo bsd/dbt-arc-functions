@@ -37,7 +37,7 @@
                     else 'Other'
                 end
             ) as string
-        ) as audience,
+        ) as audience, -- UUSA specific
         safe_cast(null as string) as recurtype,
         safe_cast(null as string) as campaign_category,
         safe_cast(null as string) as crm_campaign,
@@ -106,7 +106,7 @@
                     then regexp_extract(email_name, r"([a-zA-Z]+)")
                 end
             ) as string
-        ) as source_code_campaign
+        ) as source_code_campaign -- UUSA specific
 
     from {{ ref(reference_name) }}
 
