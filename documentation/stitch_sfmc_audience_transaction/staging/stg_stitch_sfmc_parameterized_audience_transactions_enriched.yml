@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_audience_transactions_enriched
+  - name: stg_stitch_sfmc_parameterized_audience_transactions_enriched
     description: adding dimensions such as gift size and inbound channel
     columns:
       - name: transaction_id
