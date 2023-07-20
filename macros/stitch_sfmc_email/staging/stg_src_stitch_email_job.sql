@@ -1,10 +1,4 @@
 {% macro create_stg_src_stitch_email_job() %}
-    {% set relations = dbt_arc_functions.relations_that_match_regex(
-        "^job$",
-        is_source=True,
-        source_name="stitch_sfmc_email",
-        schema_to_search="src_stitch_sfmc_authorized",
-    ) %}
 
     select distinct
         cast(__jobid_ as int64) as job_id,
@@ -118,7 +112,7 @@
         cast(deduplicatebyemail as bool) as deduplicated_by_email,
         triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
         triggeredsendcustomerkey as triggered_send_customer_key
-    from ({{ dbt_utils.union_relations(relations) }})
+    from {{source('stitch_sfmc_email', 'job')}}
     where __jobid_ is not null
 
 {% endmacro %}

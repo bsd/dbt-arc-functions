@@ -1,10 +1,4 @@
 {% macro create_stg_src_stitch_email_bounce() %}
-    {% set relations = dbt_arc_functions.relations_that_match_regex(
-        "^bounce$",
-        is_source=True,
-        source_name="stitch_sfmc_email",
-        schema_to_search="src_stitch_sfmc_authorized",
-    ) %}
 
     select distinct
         cast(__accountid_ as int64) as account_id,
@@ -30,7 +24,7 @@
         triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
         cast(triggeredsendcustomerkey as string) as triggered_send_customer_key,
         _sdc_received_at as recieved_at
-    from ({{ dbt_utils.union_relations(relations) }})
+    from {{source('stitch_sfmc_email', 'bounce')}}
     where jobid is not null
 
 {% endmacro %}

@@ -1,10 +1,4 @@
 {% macro create_stg_src_stitch_email_unsubscribe() %}
-    {% set relations = dbt_arc_functions.relations_that_match_regex(
-        "^unsubscribe$",
-        is_source=True,
-        source_name="stitch_sfmc_email",
-        schema_to_search="src_stitch_sfmc_authorized",
-    ) %}
 
     select distinct
         cast(accountid as int64) as account_id,
@@ -20,7 +14,7 @@
         ) as event_dt,
         cast(isunique as bool) as is_unique,
         domain
-    from ({{ dbt_utils.union_relations(relations) }})
+    from {{source('stitch_sfmc_email', 'unsubscribe')}}
     where jobid is not null
 
 {% endmacro %}
