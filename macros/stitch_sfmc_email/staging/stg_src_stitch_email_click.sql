@@ -20,7 +20,7 @@
         triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
         triggeredsendcustomerkey as triggered_send_customer_key
 
-    from {{source('stitch_sfmc_email', 'click')}}
+    from {{ source("stitch_sfmc_email", "click") }}
     where jobid is not null
 
 {% endmacro %}

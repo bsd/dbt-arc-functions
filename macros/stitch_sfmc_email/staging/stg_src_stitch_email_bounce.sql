@@ -24,7 +24,7 @@
         triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
         cast(triggeredsendcustomerkey as string) as triggered_send_customer_key,
         _sdc_received_at as recieved_at
-    from {{source('stitch_sfmc_email', 'bounce')}}
+    from {{ source("stitch_sfmc_email", "bounce") }}
     where jobid is not null
 
 {% endmacro %}

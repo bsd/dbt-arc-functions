@@ -20,7 +20,7 @@
         triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
         triggeredsendcustomerkey as triggered_send_customer_key
 
-    from {{source('stitch_sfmc_email', 'click')}} -- is click because UUSA does not have action
+    from {{ source("stitch_sfmc_email", "click") }}  -- is click because UUSA does not have action
     where jobid is not null
 
 {% endmacro %}

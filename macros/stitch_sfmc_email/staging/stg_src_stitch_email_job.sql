@@ -112,7 +112,7 @@
         cast(deduplicatebyemail as bool) as deduplicated_by_email,
         triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
         triggeredsendcustomerkey as triggered_send_customer_key
-    from {{source('stitch_sfmc_email', 'job')}}
+    from {{ source("stitch_sfmc_email", "job") }}
     where __jobid_ is not null
 
 {% endmacro %}

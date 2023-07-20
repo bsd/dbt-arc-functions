@@ -7,7 +7,7 @@
         activityexternalkey as activity_external_key,
         journeyactivityobjectid as journey_activity_object_id,
         activitytype as activity_type
-    from {{source('stitch_sfmc_email', 'journeyactivity')}}
+    from {{ source("stitch_sfmc_email", "journeyactivity") }}
     where activityid is not null
 
 {% endmacro %}

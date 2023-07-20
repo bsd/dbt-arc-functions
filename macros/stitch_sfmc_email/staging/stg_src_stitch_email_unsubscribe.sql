@@ -14,7 +14,7 @@
         ) as event_dt,
         cast(isunique as bool) as is_unique,
         domain
-    from {{source('stitch_sfmc_email', 'unsubscribe')}}
+    from {{ source("stitch_sfmc_email", "unsubscribe") }}
     where jobid is not null
 
 {% endmacro %}
