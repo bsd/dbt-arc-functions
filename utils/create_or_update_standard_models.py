@@ -245,17 +245,14 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
         else:
             output = content
         if "_parameterized_" in destination_file_path:
-            print(function)
             parameters = parameters_regex.search(function)[1]
-            print(parameters)
             parameters_list = parameters.split(",")
-            print(parameters_list)
-            parameters_without_whitespace = [re.sub(r"\s+", "", s) for s in parameters_list]
-            print(parameters_without_whitespace)
-            parameters_without_defaults = list(filter(
-                lambda x: "=" not in x, parameters_without_whitespace
-            ))
-            print(parameters_without_defaults)
+            parameters_without_whitespace = [
+                re.sub(r"\s+", "", s) for s in parameters_list
+            ]
+            parameters_without_defaults = list(
+                filter(lambda x: "=" not in x, parameters_without_whitespace)
+            )
             unfilled_parameters_warning = (
                 "-- ***WARNING The following parameters must "
                 "be filled for this file to work:***\n"
