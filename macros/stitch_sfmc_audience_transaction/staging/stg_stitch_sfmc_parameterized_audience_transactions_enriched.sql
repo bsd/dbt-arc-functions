@@ -1,6 +1,6 @@
-{% macro create_stg_stitch_sfmc_audience_transactions_enriched(
-    reference_name="stg_stitch_sfmc_audience_transactions_summary_unioned",
-    best_guess_inbound_channel
+{% macro create_stg_stitch_sfmc_audience_transactions_enriched(    
+    best_guess_inbound_channel,
+    reference_name="stg_stitch_sfmc_audience_transactions_summary_unioned"
 ) %}
 
     select

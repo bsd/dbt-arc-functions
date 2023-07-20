@@ -233,7 +233,7 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
     """
     rx = re.compile(r"\{%\s+macro\s+(.*?)\s+%\}", re.DOTALL)
     dependencies_regex = re.compile(r"--\s+depends_on:\s+.*\n")
-    parameters_regex = re.compile(r"/\(\s*([^)]+?)\s*\)/")
+    parameters_regex = re.compile(r"\(\s*([^)]+?)\s*\)")
     git_prepend = "https://github.com/bsd/dbt-arc-functions/blob/main/macros"
     destination_file_path = path.join(destination_path, file)
     with open(file_path, "r", encoding="utf-8") as f:
@@ -245,15 +245,21 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
         else:
             output = content
         if "_parameterized_" in destination_file_path:
+            print(function)
             parameters = parameters_regex.search(function)[1]
-            parameters_list = parameters.split("/\s*,\s*/")
-            parameters_without_defaults = filter(
-                lambda x: "=" not in x, parameters_list
-            )
+            print(parameters)
+            parameters_list = parameters.split(",")
+            print(parameters_list)
+            parameters_without_whitespace = [re.sub(r"\s+", "", s) for s in parameters_list]
+            print(parameters_without_whitespace)
+            parameters_without_defaults = list(filter(
+                lambda x: "=" not in x, parameters_without_whitespace
+            ))
+            print(parameters_without_defaults)
             unfilled_parameters_warning = (
-                "***WARNING The following parameters must "
-                "be filled for this file to work:\n"
-                f"{parameters_without_defaults}***\n"
+                "-- ***WARNING The following parameters must "
+                "be filled for this file to work:***\n"
+                f"-- {parameters_without_defaults}\n"
             )
             output = unfilled_parameters_warning + output
         if path.exists(destination_file_path) and not create:
