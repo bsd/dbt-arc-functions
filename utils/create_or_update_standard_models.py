@@ -266,7 +266,8 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
             ):
                 print(
                     f"\n{destination_file_path}"
-                    "\nThis is a piece of SQL that's meant to be customizable or parameterized and we recommend not updating it.."
+                    "\nThis is a piece of SQL that's meant to be customizable"
+                    "or parameterized and we recommend not updating it.."
                 )
                 update_customizable_sql_choice = input(
                     "Type yes to update, any other input will not update (we recommend hitting return.):\n"
