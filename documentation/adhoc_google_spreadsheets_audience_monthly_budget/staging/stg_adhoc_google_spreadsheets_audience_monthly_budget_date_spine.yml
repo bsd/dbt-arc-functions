@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: stg_adhoc_google_spreadsheets_audience_monthly_budget_date_spine
+    description: ""
+    columns:
+      - name: date_day
+        description: ""
