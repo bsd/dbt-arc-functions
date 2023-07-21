@@ -1,4 +1,4 @@
-{% macro stg_stitch_sfmc_parameterized_audience_transactions_enriched(    
+{% macro create_stg_stitch_sfmc_parameterized_audience_transactions_enriched(    
     best_guess_inbound_channel,
     reference_name="stg_stitch_sfmc_audience_transactions_summary_unioned"
 ) %}
