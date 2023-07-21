@@ -1,45 +1,32 @@
+---
 version: 2
-
 models:
   - name: stg_adhoc_google_spreadsheets_audience_monthly_budget_daily
-    description: ""
+    description: ''
     columns:
       - name: platform
-        description: ""
-
+        description: ''
       - name: donor_audience
-        description: ""
-
+        description: ''
       - name: date_day
-        description: ""
-
+        description: ''
       - name: date_spine_year
-        description: ""
-
+        description: ''
       - name: date_spine_month
-        description: ""
-
+        description: ''
       - name: date_spine_day
-        description: ""
-
+        description: ''
       - name: total_revenue_budget_daily
-        description: ""
-
+        description: ''
       - name: loyalty_new_donor_targets_daily
-        description: ""
-
+        description: ''
       - name: loyalty_unknown_donor_targets_daily
-        description: ""
-
+        description: ''
       - name: loyalty_retained_donor_targets_daily
-        description: ""
-
+        description: ''
       - name: loyalty_retained_three_donor_targets_daily
-        description: ""
-
+        description: ''
       - name: loyalty_reinstated_donor_targets_daily
-        description: ""
-
+        description: ''
       - name: total_donors_daily
-        description: ""
-
+        description: ''
