@@ -1,0 +1,27 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_customized_email_transactions_sourced_rollup
+    description: Rollup of customized email transactions sourced from Salesforce Marketing
+      Cloud (SFMC)
+    columns:
+      - name: message_id
+        description: Unique identifier for the email message
+      - name: total_revenue
+        description: Total revenue generated from the email campaign
+      - name: total_gifts
+        description: Total number of gifts received from the email campaign
+      - name: total_donors
+        description: Total number of unique donors who contributed to the email campaign
+      - name: one_time_gifts
+        description: Number of one-time gifts received from the email campaign
+      - name: one_time_revenue
+        description: Revenue generated from one-time gifts in the email campaign
+      - name: new_monthly_revenue
+        description: Revenue generated from new monthly donors in the email campaign
+      - name: new_monthly_gifts
+        description: Number of new monthly donors acquired through the email campaign
+      - name: total_monthly_revenue
+        description: Total revenue generated from monthly donors in the email campaign
+      - name: total_monthly_gifts
+        description: Total number of monthly donors contributing to the email campaign

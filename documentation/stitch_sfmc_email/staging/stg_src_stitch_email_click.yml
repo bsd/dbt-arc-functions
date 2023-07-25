@@ -1,0 +1,39 @@
+---
+version: 2
+models:
+  - name: stg_src_stitch_email_click
+    description: Stitch email click data from a source
+    columns:
+      - name: account_id
+        description: Identifier for the account associated with the email click
+      - name: oyb_account_id
+        description: Identifier for the OYB (On Your Behalf) account associated with
+          the email click
+      - name: job_id
+        description: Identifier for the job associated with the email click
+      - name: list_id
+        description: Identifier for the list associated with the email click
+      - name: batch_id
+        description: Identifier for the batch associated with the email click
+      - name: subscriber_id
+        description: Identifier for the subscriber associated with the email click
+      - name: subscriber_key
+        description: Unique key for the subscriber associated with the email click
+      - name: event_dt
+        description: Date and time of the email click event
+      - name: domain
+        description: Domain associated with the email click
+      - name: url
+        description: URL associated with the email click
+      - name: link_name
+        description: Name of the link in the email associated with the email click
+      - name: link_content
+        description: Content of the link in the email associated with the email click
+      - name: is_unique
+        description: Flag indicating if the email click is unique
+      - name: triggerrer_send_definition_object_id
+        description: Object ID of the triggered send definition associated with the
+          email click
+      - name: triggered_send_customer_key
+        description: Customer key of the triggered send associated with the email
+          click

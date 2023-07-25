@@ -1,12 +1,9 @@
-{% macro create_stg_stitch_sfmc_email_complaints_rollup() %}
-    {% set relations = dbt_arc_functions.relations_that_match_regex(
-        "^complaint$",
-        is_source=True,
-        source_name="stitch_sfmc_email",
-        schema_to_search="src_stitch_sfmc_authorized",
-    ) %}
-
-    select cast(jobid as string) as message_id, safe_cast(count(*) as int) as complaints
-    from ({{ dbt_utils.union_relations(relations) }})
+{% macro create_stg_stitch_sfmc_email_complaints_rollup(
+    reference_name="stg_src_stitch_email_complaint"
+) %}
+    select
+        safe_cast(job_id as string) as message_id,
+        safe_cast(count(*) as int) as complaints
+    from {{ ref(reference_name) }}
     group by 1
 {% endmacro %}

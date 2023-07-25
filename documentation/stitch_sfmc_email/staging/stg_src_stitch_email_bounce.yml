@@ -1,0 +1,49 @@
+---
+version: 2
+models:
+  - name: stg_src_stitch_email_bounce
+    description: Stitch email bounce data from a source
+    columns:
+      - name: account_id
+        description: Identifier for the account associated with the email bounce
+      - name: oyb_account_id
+        description: Identifier for the OYB (On Your Behalf) account associated with
+          the email bounce
+      - name: job_id
+        description: Identifier for the job associated with the email bounce
+      - name: list_id
+        description: Identifier for the list associated with the email bounce
+      - name: batch_id
+        description: Identifier for the batch associated with the email bounce
+      - name: subscriber_id
+        description: Identifier for the subscriber associated with the email bounce
+      - name: subscriber_key
+        description: Unique key for the subscriber associated with the email bounce
+      - name: event_dt
+        description: Date and time of the email bounce event
+      - name: is_unique
+        description: Flag indicating if the email bounce is unique
+      - name: domain
+        description: Domain associated with the email bounce
+      - name: bounce_category_id
+        description: Identifier for the category of the email bounce
+      - name: bounce_category
+        description: Category of the email bounce
+      - name: bounce_subcategory_id
+        description: Identifier for the subcategory of the email bounce
+      - name: bounce_subcategory
+        description: Subcategory of the email bounce
+      - name: bounce_type_id
+        description: Identifier for the type of the email bounce
+      - name: bounce_type
+        description: Type of the email bounce
+      - name: smtp_code
+        description: SMTP code associated with the email bounce
+      - name: triggerrer_send_definition_object_id
+        description: Object ID of the triggered send definition associated with the
+          email bounce
+      - name: triggered_send_customer_key
+        description: Customer key of the triggered send associated with the email
+          bounce
+      - name: received_at
+        description: Date and time the email bounce was received

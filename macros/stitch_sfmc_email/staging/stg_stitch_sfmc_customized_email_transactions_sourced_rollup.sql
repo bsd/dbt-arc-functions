@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_email_transactions_sourced_rollup(
+{% macro create_stg_stitch_sfmc_customized_email_transactions_sourced_rollup(
     email_summary="stg_stitch_sfmc_email_jobs",
     transactions="stg_stitch_sfmc_email_transactions_summary_unioned"
 ) %}
@@ -52,5 +52,6 @@
         safe_cast(total_monthly_revenue as numeric) as total_monthly_revenue,
         safe_cast(total_monthly_gifts as int) as total_monthly_gifts
     from grouped
+    where message_id is not null and total_gifts > 0
 
 {% endmacro %}

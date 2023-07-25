@@ -1,0 +1,13 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_customized_email_campaign_dates
+    description: Dates and associated campaigns for customized email campaigns sourced
+      from Salesforce Marketing Cloud (SFMC)
+    columns:
+      - name: campaign_timestamp
+        description: Timestamp indicating the date and time of the email campaign
+      - name: crm_campaign
+        description: CRM campaign associated with the email campaign
+      - name: source_code_campaign
+        description: Source code campaign associated with the email campaign

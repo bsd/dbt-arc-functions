@@ -1,0 +1,82 @@
+---
+version: 2
+models:
+  - name: stg_src_stitch_email_job
+    description: Stitch email job data from a source
+    columns:
+      - name: job_id
+        description: Identifier for the email job
+      - name: email_id
+        description: Identifier for the email
+      - name: account_id
+        description: Identifier for the account associated with the email job
+      - name: account_user_id
+        description: Identifier for the user associated with the account
+      - name: from_name
+        description: Name of the sender of the email
+      - name: from_email
+        description: Email address of the sender
+      - name: sched_dt
+        description: Scheduled date and time for the email job
+      - name: pickup_dt
+        description: Date and time the email job was picked up for delivery
+      - name: delivered_dt
+        description: Date and time the email was delivered
+      - name: event_id
+        description: Identifier for the event associated with the email job
+      - name: is_multipart
+        description: Flag indicating if the email is multipart
+      - name: job_type
+        description: Type of the email job
+      - name: job_status
+        description: Status of the email job
+      - name: modified_by
+        description: Identifier for the user who last modified the email job
+      - name: modified_dt
+        description: Date and time the email job was last modified
+      - name: email_name
+        description: Name of the email
+      - name: email_subject
+        description: Subject of the email
+      - name: is_wrapped
+        description: Flag indicating if the email is wrapped
+      - name: test_email_addr
+        description: Email address used for testing purposes
+      - name: category
+        description: Category of the email job
+      - name: bcc_email
+        description: Email address used for blind carbon copy (BCC)
+      - name: original_sched_time
+        description: Original scheduled time for the email job
+      - name: created_dt
+        description: Date and time the email job was created
+      - name: character_set
+        description: Character set used for the email
+      - name: ip_address
+        description: IP address associated with the email job
+      - name: salesforce_total_subscriber_count
+        description: Total subscriber count from Salesforce
+      - name: salesforce_error_subscriber_count
+        description: Error subscriber count from Salesforce
+      - name: send_type
+        description: Type of the email send
+      - name: dynamic_email_subject
+        description: Flag indicating if the email subject is dynamic
+      - name: suppress_tracking
+        description: Flag indicating if email tracking is suppressed
+      - name: send_classification_type
+        description: Type of send classification
+      - name: send_classification
+        description: Send classification of the email job
+      - name: resolve_links_with_current_data
+        description: Flag indicating if links should be resolved with current data
+      - name: email_send_definition
+        description: Definition of the email send
+      - name: deduplicated_by_email
+        description: Flag indicating if the email job was deduplicated by email
+      - name: triggerrer_send_definition_object_id
+        description: Object ID of the triggered send definition associated with the
+          email job
+      - name: triggered_send_customer_key
+        description: Customer key of the triggered send associated with the email
+          job
