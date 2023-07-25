@@ -10,6 +10,6 @@ select
     loyalty_retained_donor_targets,
     loyalty_retained_three_donor_targets,
     loyalty_reinstated_donor_targets,
-from {{ source("adhoc_reporting", "spreadsheet_audience_monthly_budget") }}
+from {{ source("audience_budget", "spreadsheet_audience_monthly_budget") }}
 
 {% endmacro %}

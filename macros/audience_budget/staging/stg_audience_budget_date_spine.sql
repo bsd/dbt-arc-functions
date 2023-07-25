@@ -1,4 +1,4 @@
-{% macro create_stg_adhoc_google_spreadsheets_audience_monthly_budget_date_spine(
+{% macro create_stg_audience_budget_date_spine(
     reference_name='stg_adhoc_google_spreadsheets_audience_monthly_budget') %}
 {% set min_date_query %}
 SELECT min(start_date) FROM {{ ref(reference_name) }}

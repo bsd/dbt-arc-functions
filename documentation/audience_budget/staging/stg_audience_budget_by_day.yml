@@ -1,8 +1,8 @@
 ---
 version: 2
 models:
-  - name: stg_adhoc_google_spreadsheets_audience_monthly_budget_daily
-    description: 'Staging table that pulls from Google Spreadsheets and datespine for audience monthly budget, with a daily granularity rollup/rolldown'
+  - name: stg_audience_budget_by_day
+    description: 'Staging table that pulls from Google Spreadsheets and datespine for audience monthly budget, with a by_day granularity rollup/rolldown'
     columns:
       - name: platform
         description: 'Platform for the audience monthly budget, usually an ad provider'
@@ -16,17 +16,17 @@ models:
         description: 'Month pulled from date_day'
       - name: date_spine_day
         description: 'Day of the month pulled from date_day'
-      - name: total_revenue_budget_daily
-        description: 'The monthly budget broken down into a daily budget'
-      - name: loyalty_new_donor_targets_daily
+      - name: total_revenue_budget_by_day
+        description: 'The monthly budget broken down into a by_day budget'
+      - name: loyalty_new_donor_targets_by_day
         description: 'Number of new donors targeted for the audience monthly budget'
-      - name: loyalty_unknown_donor_targets_daily
+      - name: loyalty_unknown_donor_targets_by_day
         description: 'Number of unknown sourced donors targeted in the monthly budget'
-      - name: loyalty_retained_donor_targets_daily
+      - name: loyalty_retained_donor_targets_by_day
         description: 'Number of retained donors targeted in the monthly budget'
-      - name: loyalty_retained_three_donor_targets_daily
+      - name: loyalty_retained_three_donor_targets_by_day
         description: 'Number of retained donors with at least 3 donations targeted in the monthly budget'
-      - name: loyalty_reinstated_donor_targets_daily
+      - name: loyalty_reinstated_donor_targets_by_day
         description: 'Number of donors who lapsed and then reinstated targeted in the monthly budget'
-      - name: total_donors_daily
-        description: 'Sum of loyalty_new_donor_targets_daily, loyalty_unknown_donor_targets_daily, loyalty_retained_donor_targets_daily, loyalty_retained_three_donor_targets_daily, and loyalty_reinstated_donor_targets_daily'
+      - name: total_donors_by_day
+        description: 'Sum of loyalty_new_donor_targets_by_day, loyalty_unknown_donor_targets_by_day, loyalty_retained_donor_targets_by_day, loyalty_retained_three_donor_targets_by_day, and loyalty_reinstated_donor_targets_by_day'
