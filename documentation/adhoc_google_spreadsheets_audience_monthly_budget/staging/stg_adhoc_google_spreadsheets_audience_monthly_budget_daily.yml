@@ -2,31 +2,31 @@
 version: 2
 models:
   - name: stg_adhoc_google_spreadsheets_audience_monthly_budget_daily
-    description: ''
+    description: 'Staging table that pulls from Google Spreadsheets and datespine for audience monthly budget, with a daily granularity rollup/rolldown'
     columns:
       - name: platform
-        description: ''
+        description: 'Platform for the audience monthly budget, usually an ad provider'
       - name: donor_audience
-        description: ''
+        description: 'The donor audience for the audience monthly budget, usually a donor segment based on client criteria'
       - name: date_day
-        description: ''
+        description: 'The date of the audience monthly budget, with a day granularity'
       - name: date_spine_year
-        description: ''
+        description: 'Year pulled from date_day'
       - name: date_spine_month
-        description: ''
+        description: 'Month pulled from date_day'
       - name: date_spine_day
-        description: ''
+        description: 'Day of the month pulled from date_day'
       - name: total_revenue_budget_daily
-        description: ''
+        description: 'The monthly budget broken down into a daily budget'
       - name: loyalty_new_donor_targets_daily
-        description: ''
+        description: 'Number of new donors targeted for the audience monthly budget'
       - name: loyalty_unknown_donor_targets_daily
-        description: ''
+        description: 'Number of unknown sourced donors targeted in the monthly budget'
       - name: loyalty_retained_donor_targets_daily
-        description: ''
+        description: 'Number of retained donors targeted in the monthly budget'
       - name: loyalty_retained_three_donor_targets_daily
-        description: ''
+        description: 'Number of retained donors with at least 3 donations targeted in the monthly budget'
       - name: loyalty_reinstated_donor_targets_daily
-        description: ''
+        description: 'Number of donors who lapsed and then reinstated targeted in the monthly budget'
       - name: total_donors_daily
-        description: ''
+        description: 'Sum of loyalty_new_donor_targets_daily, loyalty_unknown_donor_targets_daily, loyalty_retained_donor_targets_daily, loyalty_retained_three_donor_targets_daily, and loyalty_reinstated_donor_targets_daily'

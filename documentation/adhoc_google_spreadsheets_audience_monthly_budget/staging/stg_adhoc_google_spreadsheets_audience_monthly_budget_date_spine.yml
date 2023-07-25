@@ -2,7 +2,7 @@
 version: 2
 models:
   - name: stg_adhoc_google_spreadsheets_audience_monthly_budget_date_spine
-    description: ''
+    description: 'Date spine for adhoc_google_spreadsheets_audience_monthly_budget, taken from start_date and end_date in stg_adhoc_google_spreadsheets_audience_monthly_budget'
     columns:
       - name: date_day
-        description: ''
+        description: 'Datetime with a day granularity'
