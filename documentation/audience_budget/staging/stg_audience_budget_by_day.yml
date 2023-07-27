@@ -25,9 +25,9 @@ models:
       - name: loyalty_unknown_donor_targets_by_day
         description: Number of unknown sourced donors targeted in the monthly budget
       - name: loyalty_retained_donor_targets_by_day
-        description: Number of retained donors targeted in the monthly budget
+        description: Number of donors targeted with at least 1 year as retained donors
       - name: loyalty_retained_three_donor_targets_by_day
-        description: Number of retained donors with at least 3 donations targeted
+        description: Number of donors targeted with at least 3 years as retained donors
           in the monthly budget
       - name: loyalty_reinstated_donor_targets_by_day
         description: Number of donors who lapsed and then reinstated targeted in the

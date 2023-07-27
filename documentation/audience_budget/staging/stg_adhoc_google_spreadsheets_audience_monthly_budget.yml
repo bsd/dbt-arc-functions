@@ -21,8 +21,8 @@ models:
       - name: loyalty_unknown_donor_targets
         description: Unknown sourced donor targets
       - name: loyalty_retained_donor_targets
-        description: Retained donor targets for campaign
+        description: Donors targeted for campaign who have been retained for at least one year
       - name: loyalty_retained_three_donor_targets
-        description: Retained donors with at least 3 donations targeted for campaign
+        description: Donors targeted for campaign who have been retained for at least three years
       - name: loyalty_reinstated_donor_targets
         description: Lapsed donors who reinstated targeted for campaign
