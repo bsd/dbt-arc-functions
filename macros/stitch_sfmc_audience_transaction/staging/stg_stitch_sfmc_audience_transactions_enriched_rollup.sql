@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_audience_transactions_enriched_rollup(
-    reference_name="stg_stitch_sfmc_audience_transactions_enriched"
+    reference_name="stg_stitch_sfmc_parameterized_audience_transactions_enriched"
 ) %}
 
     select

@@ -32,6 +32,7 @@ Look [here](https://bluestate.atlassian.net/wiki/spaces/ATeam/pages/2986049548/T
       - [Plain English what it does](#plain-english-what-it-does-5)
         - [UPDATE 2023/06/23](#update-20230623)
         - [UPDATE 2023/07/13](#update-20230713)
+        - [UPDATE 2023/07/20](#update-20230720)
     - [create\_views\_from\_stitch\_datasets.ipynb](#create_views_from_stitch_datasetsipynb)
       - [Usage](#usage-7)
       - [Plain English what it does](#plain-english-what-it-does-6)
@@ -165,6 +166,9 @@ This function allows you to build out models based on the sources we've used bef
 Now works with snapshots
 ##### UPDATE 2023/07/13
 Now works with \_customizable\_ sql.
+
+##### UPDATE 2023/07/20
+Now works with \_parameterized\_ sql.
 
 ---
 
