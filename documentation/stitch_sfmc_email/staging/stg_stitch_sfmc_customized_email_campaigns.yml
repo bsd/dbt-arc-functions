@@ -1,0 +1,23 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_customized_email_campaigns
+    description: Customized email campaigns sourced from Salesforce Marketing Cloud
+      (SFMC)
+    columns:
+      - name: message_id
+        description: Unique identifier for the email campaign
+      - name: crm_entity
+        description: CRM entity associated with the email campaign
+      - name: source_code_entity
+        description: Source code entity associated with the email campaign
+      - name: audience
+        description: Target audience of the email campaign
+      - name: recurtype
+        description: Recurrence type of the email campaign
+      - name: campaign_category
+        description: Category classification of the email campaign
+      - name: crm_campaign
+        description: CRM campaign associated with the email campaign
+      - name: source_code_campaign
+        description: Source code campaign associated with the email campaign

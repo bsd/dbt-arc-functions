@@ -1,0 +1,22 @@
+---
+version: 2
+models:
+  - name: stg_src_stitch_email_journey
+    description: Stitch email journey data from a source
+    columns:
+      - name: version_id
+        description: Identifier for the version of the email journey
+      - name: journey_id
+        description: Identifier for the email journey
+      - name: journey_name
+        description: Name of the email journey
+      - name: version_number
+        description: Version number of the email journey
+      - name: created_dt
+        description: Date and time when the email journey was created
+      - name: last_published_dt
+        description: Date and time when the email journey was last published
+      - name: modified_dt
+        description: Date and time when the email journey was last modified
+      - name: journey_status
+        description: Status of the email journey
