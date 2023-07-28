@@ -327,7 +327,9 @@ def main():
         docs_without_version, DOCS_WITHOUT_VERSION_FORMAT_STRING, "Docs without version"
     )
     print_missing_info(
-        docs_with_wrong_names, DOCS_WITH_WRONG_NAMES_FORMAT_STRING, "Docs with wrong names"
+        docs_with_wrong_names,
+        DOCS_WITH_WRONG_NAMES_FORMAT_STRING,
+        "Docs with wrong names",
     )
     print_missing_info(
         sources_without_tables,
