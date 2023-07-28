@@ -1,4 +1,4 @@
-{% macro stg_stitch_sfmc_arc_audience_date_spine(
+{% macro create_stg_stitch_sfmc_arc_audience_date_spine(
     audience_snapshot="snp_stitch_sfmc_arc_audience"
 ) %}
 

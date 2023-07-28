@@ -209,7 +209,7 @@ DOCS_WITH_WRONG_NAMES_FORMAT_STRING = """
 The doc below has the wrong name:
  {missing_info}
 The name should be the same as the file name without the yml extension.
-Please correct manually or delete the doc, then run create_docs.ipynb against a working 
+Please correct manually or delete the doc, then run create_docs.ipynb against a working
 client to create docs.
 """
 

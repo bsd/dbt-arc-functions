@@ -1,4 +1,4 @@
-{% macro create_stg_supermetrics_yahoo_dsp_paidmedia_clicks_daily_roundup(
+{% macro create_stg_supermetrics_yahoo_dsp_paidmedia_clicks_daily_rollup(
     source_name="supermetrics_yahoo_dsp_paidmedia",
     source_table_name="alldates_VDSP_AD"
 ) %}

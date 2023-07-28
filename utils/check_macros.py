@@ -39,8 +39,8 @@ def print_macros_with_wrong_name(macros_with_wrong_name):
         for macro_with_wrong_name in macros_with_wrong_name:
             macro_path, macro_name = macro_with_wrong_name
             print(
-                f"The macro below does not have correct name:\n {macro_path}\n"
-                f"Expect name: {macro_name}\n\n"
+                f"The macro in the file below does not have correct name:\n {macro_path}\n"
+                f"Expected name: {macro_name}\n\n"
             )
 
         print(f"\nMacros with wrong name: {len(macros_with_wrong_name)}")
