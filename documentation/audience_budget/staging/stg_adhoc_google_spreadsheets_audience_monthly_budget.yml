@@ -1,0 +1,30 @@
+---
+version: 2
+models:
+  - name: stg_adhoc_google_spreadsheets_audience_monthly_budget
+    description: Google Spreadsheets for audience monthly budget, often with a monthly
+      granularity but start date and end date are open fields
+    columns:
+      - name: start_date
+        description: Start date of audience campaign
+      - name: end_date
+        description: End date of audience campaign
+      - name: platform
+        description: Platform for the audience monthly budget, usually an ad provider
+      - name: donor_audience
+        description: Audience segment for the audience monthly budget, usually a donor
+          segment based on client criteria
+      - name: total_revenue_budget
+        description: Budget for the audience campaign
+      - name: loyalty_new_donor_targets
+        description: New donor targets
+      - name: loyalty_unknown_donor_targets
+        description: Unknown sourced donor targets
+      - name: loyalty_retained_donor_targets
+        description: Donors targeted for campaign who have been retained for at least
+          one year
+      - name: loyalty_retained_three_donor_targets
+        description: Donors targeted for campaign who have been retained for at least
+          three years
+      - name: loyalty_reinstated_donor_targets
+        description: Lapsed donors who reinstated targeted for campaign

@@ -1,8 +1,9 @@
 ---
 version: 2
 sources:
-  - name: adhoc_reporting
-    description: Adhoc Reporting
+  - name: audience_budget
+    schema: adhoc_reporting
+    description: Audience Budget tables in the Adhoc Reporting schema
     tables:
       - name: spreadsheet_audience_monthly_budget
         description: Spreadsheet Audience Monthly Budget
