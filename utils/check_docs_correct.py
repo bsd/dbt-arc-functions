@@ -360,6 +360,7 @@ def main():
         or docs_without_columns
         or docs_without_version
         or docs_without_macro
+        or docs_with_wrong_names
         or sources_without_tables
         or sources_without_version
         or columns_without_info
