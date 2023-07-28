@@ -21,7 +21,7 @@ jobs:
       - name: Check for docs for every macro
         run: |
           cd utils
-          ./check_for_docs_for_every_macro.py
+          ./check_macros.py
       - name: Check for well formatted docs and that macros exist for docs
         run: |-
           cd utils

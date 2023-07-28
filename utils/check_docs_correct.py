@@ -100,11 +100,22 @@ def check_for_blank_doc(file_path, docs_without_content, doc_yaml):
         raise TypeError
 
 
+def check_for_wrong_names(file_path, docs_with_wrong_names, doc_yaml):
+    file_stem = os.path.splitext(file_path)[0].split("/")[-1]
+    try:
+        if doc_yaml["models"][0]["name"] != file_stem:
+            docs_with_wrong_names.append(file_path)
+    except TypeError:
+        docs_with_wrong_names.append(file_path)
+        raise TypeError
+
+
 def get_incorrect_docs():
     docs_without_columns = []
     docs_without_version = []
     docs_without_macro = []
     docs_without_content = []
+    docs_with_wrong_names = []
 
     for root, _, files in os.walk("../documentation"):
         for file in files:
@@ -119,12 +130,14 @@ def get_incorrect_docs():
                 check_for_no_columns(file_path, docs_without_columns, doc_yaml)
                 check_for_no_version(file_path, docs_without_version, doc_yaml)
                 check_for_no_macro(file_path, docs_without_macro, doc_yaml)
+                check_for_wrong_names(file_path, docs_with_wrong_names, doc_yaml)
 
     return (
         docs_without_columns,
         docs_without_version,
         docs_without_macro,
         docs_without_content,
+        docs_with_wrong_names,
     )
 
 
@@ -191,6 +204,15 @@ The doc below doesn't have a version number:
  {missing_info}
 Please delete the doc, then run create_docs.ipynb against a working client to create docs.
 """
+
+DOCS_WITH_WRONG_NAMES_FORMAT_STRING = """
+The doc below has the wrong name:
+ {missing_info}
+The name should be the same as the file name without the yml extension.
+Please correct manually or delete the doc, then run create_docs.ipynb against a working 
+client to create docs.
+"""
+
 
 SOURCES_WITHOUT_TABLES_FORMAT_STRING = """
 The source below doesn't have any tables:
@@ -282,6 +304,7 @@ def main():
         docs_without_version,
         docs_without_macro,
         docs_without_content,
+        docs_with_wrong_names,
     ) = get_incorrect_docs()
     (
         sources_without_tables,
@@ -302,6 +325,9 @@ def main():
     )
     print_missing_info(
         docs_without_version, DOCS_WITHOUT_VERSION_FORMAT_STRING, "Docs without version"
+    )
+    print_missing_info(
+        docs_with_wrong_names, DOCS_WITH_WRONG_NAMES_FORMAT_STRING, "Docs with wrong names"
     )
     print_missing_info(
         sources_without_tables,
