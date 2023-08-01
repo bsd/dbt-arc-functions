@@ -1,4 +1,4 @@
-{% macro create_stg_email_listhealth_year_and_month_concat(
+{% macro create_stg_email_listhealth_by_year_and_month_concat(
     reference_name="stg_email_listhealth_by_year_and_month"
 ) %}
 
