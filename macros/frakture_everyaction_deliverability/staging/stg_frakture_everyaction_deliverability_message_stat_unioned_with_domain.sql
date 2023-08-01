@@ -3,7 +3,7 @@
     person="stg_frakture_everyaction_person_table_unioned"
 ) %}
     select deliverability_stat.*, person.email_domain
-    from {{ ref(deliverability_stat) }} person_stat
+    from {{ ref(deliverability_stat) }} deliverability_stat
     left join
         {{ ref(person) }} person
         on deliverability_stat.remote_person_id = person.remote_person_id
