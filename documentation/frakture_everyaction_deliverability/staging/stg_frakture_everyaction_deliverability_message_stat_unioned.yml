@@ -2,8 +2,8 @@
 version: 2
 models:
   - name: stg_frakture_everyaction_deliverability_message_stat_unioned
-    description: This table contains deliverability stat data from EveryAction for each person
-      record.
+    description: This table contains deliverability stat data from EveryAction for
+      each person record.
     columns:
       - name: _dbt_source_relation
         description: The source of the data contained in the table.

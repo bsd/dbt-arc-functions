@@ -1,15 +1,23 @@
 {% macro create_stg_adhoc_google_spreadsheets_audience_monthly_budget() %}
     select
-        SAFE_CAST(start_date AS DATETIME) as start_date,
-        SAFE_CAST(end_date AS DATETIME) as end_date,
-        SAFE_CAST(platform AS STRING) as platform,
-        SAFE_CAST(donor_audience AS STRING) as donor_audience,
-        SAFE_CAST(total_revenue_budget AS FLOAT64) as total_revenue_budget,
-        SAFE_CAST(loyalty_new_donor_targets AS FLOAT64) as loyalty_new_donor_targets,
-        SAFE_CAST(loyalty_unknown_donor_targets AS FLOAT64) as loyalty_unknown_donor_targets,
-        SAFE_CAST(loyalty_retained_donor_targets AS FLOAT64) AS loyalty_retained_donor_targets,
-        SAFE_CAST(loyalty_retained_three_donor_targets AS FLOAT64) as loyalty_retained_three_donor_targets,
-        SAFE_CAST(loyalty_reinstated_donor_targets AS FLOAT64) as loyalty_reinstated_donor_targets,
+        safe_cast(start_date as datetime) as start_date,
+        safe_cast(end_date as datetime) as end_date,
+        safe_cast(platform as string) as platform,
+        safe_cast(donor_audience as string) as donor_audience,
+        safe_cast(total_revenue_budget as float64) as total_revenue_budget,
+        safe_cast(loyalty_new_donor_targets as float64) as loyalty_new_donor_targets,
+        safe_cast(
+            loyalty_unknown_donor_targets as float64
+        ) as loyalty_unknown_donor_targets,
+        safe_cast(
+            loyalty_retained_donor_targets as float64
+        ) as loyalty_retained_donor_targets,
+        safe_cast(
+            loyalty_retained_three_donor_targets as float64
+        ) as loyalty_retained_three_donor_targets,
+        safe_cast(
+            loyalty_reinstated_donor_targets as float64
+        ) as loyalty_reinstated_donor_targets,
     from {{ source("audience_budget", "spreadsheet_audience_monthly_budget") }}
 
 {% endmacro %}
