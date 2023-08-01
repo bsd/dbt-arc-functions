@@ -1,11 +1,11 @@
 {% macro create_mart_email_deliverability_by_domain_and_date(
-    jobs="stg_email_deliverability_person_jobs_distinct_unioned",
-    bounces="stg_email_deliverability_person_bounces_daily_rollup_unioned",
-    clicks="stg_email_deliverability_person_clicks_daily_rollup_unioned",
-    opens="stg_email_deliverability_person_opens_daily_rollup_unioned",
-    actions="stg_email_deliverability_person_actions_daily_rollup_unioned",
-    recipients="stg_email_deliverability_person_recipients_daily_rollup_unioned",
-    unsubscribes="stg_email_deliverability_person_unsubscribes_daily_rollup_unioned"
+    jobs="stg_email_deliverability_jobs_distinct_unioned",
+    bounces="stg_email_deliverability_bounces_daily_rollup_unioned",
+    clicks="stg_email_deliverability_clicks_daily_rollup_unioned",
+    opens="stg_email_deliverability_opens_daily_rollup_unioned",
+    actions="stg_email_deliverability_actions_daily_rollup_unioned",
+    recipients="stg_email_deliverability_recipients_daily_rollup_unioned",
+    unsubscribes="stg_email_deliverability_unsubscribes_daily_rollup_unioned"
 ) %}
     select
         jobs.sent_date,
