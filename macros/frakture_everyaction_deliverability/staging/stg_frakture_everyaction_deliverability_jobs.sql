@@ -1,5 +1,5 @@
-{% macro create_stg_frakture_everyaction_person_jobs(
-    reference_name="stg_frakture_everyaction_person_message_stat_unioned_with_domain"
+{% macro create_stg_frakture_everyaction_deliverability_jobs(
+    reference_name="stg_frakture_everyaction_deliverability_message_stat_unioned_with_domain"
 ) %}
     select
         safe_cast(message_id as string) as message_id,

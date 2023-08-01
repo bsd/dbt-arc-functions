@@ -1,4 +1,4 @@
-{% macro create_stg_frakture_everyaction_person_message_stat_unioned() %}
+{% macro create_stg_frakture_everyaction_deliverability_message_stat_unioned() %}
     {% set relations = dbt_arc_functions.relations_that_match_regex(
         "^everyaction_[A-Za-z0-9]{3}_per_person_message_stat$",
         is_source=True,
