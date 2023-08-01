@@ -2,7 +2,7 @@
 version: 2
 models:
   - name: stg_frakture_actionkit_email_campaign_dates_rollup
-    description: A staging table containing rollup email campaign dates from EveryAction
+    description: A staging table containing rollup email campaign dates from actionkit
     columns:
       - name: campaign_name
         description: The name of the email campaign
