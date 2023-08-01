@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_email_deliverability_person_recipients_daily_rollup_unioned
+  - name: stg_email_deliverability_recipients_daily_rollup_unioned
     description: Stage table used to hold all person-level email deliverability data
       from the last 30 days.
     columns:

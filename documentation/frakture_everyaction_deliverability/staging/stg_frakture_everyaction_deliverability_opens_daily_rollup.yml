@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_frakture_everyaction_person_opens_daily_rollup
+  - name: stg_frakture_everyaction_deliverability_opens_daily_rollup
     description: Records the total number of opens for each email sent per day.
     columns:
       - name: sent_date

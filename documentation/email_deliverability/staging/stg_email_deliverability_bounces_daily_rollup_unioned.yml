@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_email_deliverability_person_bounces_daily_rollup_unioned
+  - name: stg_email_deliverability_bounces_daily_rollup_unioned
     description: Contains daily rollup unioned data for hard and soft bounces for
       all messages associated with a person
     columns:

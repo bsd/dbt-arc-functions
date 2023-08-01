@@ -1,8 +1,8 @@
 ---
 version: 2
 models:
-  - name: stg_frakture_everyaction_person_clicks_daily_rollup
-    description: A daily rollup for person clicks on emails sent from EveryAction
+  - name: stg_frakture_everyaction_deliverability_clicks_daily_rollup
+    description: A daily rollup for deliverability clicks on emails sent from EveryAction
     columns:
       - name: sent_date
         description: The date the email was sent

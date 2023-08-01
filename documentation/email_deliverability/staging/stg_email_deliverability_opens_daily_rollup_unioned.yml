@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_email_deliverability_person_opens_daily_rollup_unioned
+  - name: stg_email_deliverability_opens_daily_rollup_unioned
     description: A table to roll up sent, opens, and unique opens data by day.
     columns:
       - name: _dbt_source_relation

@@ -1,8 +1,8 @@
 ---
 version: 2
 models:
-  - name: stg_frakture_everyaction_person_jobs
-    description: This model stores EveryAction Person Job information for daily ETL
+  - name: stg_frakture_everyaction_deliverability_jobs
+    description: This model stores EveryAction deliverability Job information for daily ETL
     columns:
       - name: message_id
         description: Unique identifier for the message sent

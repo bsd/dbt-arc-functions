@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_email_deliverability_person_clicks_daily_rollup_unioned
+  - name: stg_email_deliverability_clicks_daily_rollup_unioned
     description: Data representing the number of click events on each sent message
       per day
     columns:

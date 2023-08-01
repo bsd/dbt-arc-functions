@@ -1,8 +1,8 @@
 ---
 version: 2
 models:
-  - name: stg_frakture_everyaction_person_actions_daily_rollup
-    description: Rollup of person actions on a daily basis
+  - name: stg_frakture_everyaction_deliverability_actions_daily_rollup
+    description: Rollup of deliverability actions on a daily basis
     columns:
       - name: sent_date
         description: Date the action was sent

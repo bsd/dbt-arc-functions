@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_frakture_everyaction_person_bounces_daily_rollup
+  - name: stg_frakture_everyaction_deliverability_bounces_daily_rollup
     description: Record of everyaction emails bounces
     columns:
       - name: sent_date

@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_frakture_everyaction_person_message_stat_unioned_with_domain
+  - name: stg_frakture_everyaction_deliverability_message_stat_unioned_with_domain
     description: Contains a unioned version of Frakture's EveryAction Person and Message
       Stats by domain
     columns:

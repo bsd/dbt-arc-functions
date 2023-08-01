@@ -1,8 +1,8 @@
 ---
 version: 2
 models:
-  - name: stg_frakture_everyaction_person_jobs_distinct
-    description: Contains distinct job types associated with a person from the EveryAction
+  - name: stg_frakture_everyaction_deliverability_jobs_distinct
+    description: Contains distinct job types associated with a deliverability from the EveryAction
       API
     columns:
       - name: message_id

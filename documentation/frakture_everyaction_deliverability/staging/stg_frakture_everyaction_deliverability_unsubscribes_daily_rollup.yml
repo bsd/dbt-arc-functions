@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_frakture_everyaction_person_unsubscribes_daily_rollup
+  - name: stg_frakture_everyaction_deliverability_unsubscribes_daily_rollup
     description: A daily summary view of unsubscribes, complaints, and hard bounces
       by message sent date and email domain
     columns:

@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_email_deliverability_person_actions_daily_rollup_unioned
+  - name: stg_email_deliverability_actions_daily_rollup_unioned
     description: Rollup of email actions by day per person
     columns:
       - name: _dbt_source_relation

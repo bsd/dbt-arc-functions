@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_email_deliverability_person_unsubscribes_daily_rollup_unioned
+  - name: stg_email_deliverability_unsubscribes_daily_rollup_unioned
     description: An aggregate view of all daily person unsubscribes from sending data
     columns:
       - name: _dbt_source_relation
