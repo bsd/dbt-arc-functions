@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_customized_audience_transaction_jobs_append() %}
+{% macro create_stg_stitch_sfmc_customizable_audience_transaction_jobs_append() %}
     select
         transaction_date_day,
         person_id,
