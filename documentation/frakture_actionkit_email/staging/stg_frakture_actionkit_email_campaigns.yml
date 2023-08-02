@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_frakture_everyaction_email_campaigns
+  - name: stg_frakture_actionkit_email_campaigns
     description: Stage for Frakture EveryAction email campaigns
     columns:
       - name: message_id

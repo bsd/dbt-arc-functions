@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_frakture_everyaction_complaints_rollup
+  - name: stg_frakture_actionkit_email_complaints_rollup
     description: Data rollup of EveryAction complaints
     columns:
       - name: message_id

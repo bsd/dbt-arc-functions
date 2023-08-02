@@ -1,5 +1,5 @@
 ---
-name: Check for properly formatted docs
+name: Check for properly formatted macros and docs
 on:
   push:
     branches: [main]
@@ -18,10 +18,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pyyaml
-      - name: Check for docs for every macro
+      - name: Check macros are formatted correctly
         run: |
           cd utils
-          ./check_for_docs_for_every_macro.py
+          ./check_macros.py
       - name: Check for well formatted docs and that macros exist for docs
         run: |-
           cd utils

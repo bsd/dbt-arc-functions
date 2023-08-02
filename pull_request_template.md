@@ -49,14 +49,16 @@ If any of them detect syntax problems, they will error. They will automatically 
 ## Linters
 We have two in-house linters:
 
-### [check_for_docs_for_every_macro.py](https://github.com/bsd/dbt-arc-functions/blob/main/utils/check_for_docs_for_every_macro.py)
-Just makes sure that every macro has a doc associated with it in the documentation folder with the same folder structure, i.e.:
+### [check_macros.py](https://github.com/bsd/dbt-arc-functions/blob/main/utils/check_macros.py)
+Makes sure that every macro has a doc associated with it in the documentation folder with the same folder structure, i.e.:
 
 `documentation/combined_email_paidmedia/marts/mart_combined_email_paidmedia_daily_revenue_performance.yml`
 
 is the doc for
 
 `       macros/combined_email_paidmedia/marts/mart_combined_email_paidmedia_daily_revenue_performance.sql`
+
+Additionally makes sure that macros are named correctly, i.e. with the naming convention `create_(macro_file_name_stem)`
 
 ### [check_docs_correct.py](https://github.com/bsd/dbt-arc-functions/blob/main/utils/check_docs_correct.py)
 Runs through a lot of checks on documents to make sure that they are formatted to our standards. This includes checking whether docs and sources:
@@ -66,6 +68,7 @@ Runs through a lot of checks on documents to make sure that they are formatted t
 - have a version number
 - docs have a macro associated with them
 - docs are not blank
+- that model names match the filename stem
 
 There may be additional checks not documented here. The linter will fail on any error.
 
