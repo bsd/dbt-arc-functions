@@ -1,14 +1,12 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_arc_calculated_audience_by_date_day
-    description: "Model for calculating audience by date and day"
+    description: Model for calculating audience by date and day
     columns:
       - name: date_day
-        description: "The date represented as day"
-
+        description: The date represented as day
       - name: person_id
-        description: "Unique identifier for a person"
-
+        description: Unique identifier for a person
       - name: donor_audience
-        description: "Indicator for donor audience"
+        description: Indicator for donor audience
