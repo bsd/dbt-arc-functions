@@ -1,7 +1,7 @@
 ---
 version: 2
 sources:
-  - name: frakture_everyaction_person
+  - name: frakture_everyaction_deliverability
     description: Data source containing information on individuals from EveryAction.
     schema: src_frakture
     tables:
