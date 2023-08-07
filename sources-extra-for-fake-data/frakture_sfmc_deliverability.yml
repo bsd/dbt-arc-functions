@@ -2,7 +2,8 @@
 version: 2
 sources:
   - name: frakture_sfmc_deliverability
-    description: Data source containing information on individuals from sfmc using frakture.
+    description: Data source containing information on individuals from sfmc using
+      frakture.
     schema: src_frakture
     tables:
       - name: sfmc_bot_per_person_message_stat
