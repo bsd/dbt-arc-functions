@@ -1,4 +1,4 @@
-{% macro create_stg_frakture_sfmc_person_jobs(
+{% macro create_stg_frakture_sfmc_deliverability_jobs(
     reference_name="stg_frakture_sfmc_person_message_stat_unioned_with_domain"
 ) %}
     select

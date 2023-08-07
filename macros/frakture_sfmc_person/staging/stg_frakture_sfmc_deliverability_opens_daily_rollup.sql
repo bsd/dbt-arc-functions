@@ -1,5 +1,5 @@
-{% macro create_stg_frakture_sfmc_person_opens_daily_rollup(
-    reference_name="stg_frakture_sfmc_person_message_stat_unioned_with_domain"
+{% macro create_stg_frakture_sfmc_delierability_opens_daily_rollup(
+    reference_name="stg_frakture_sfmc_deliverability_message_stat_unioned_with_domain"
 ) %}
     select
         safe_cast(sent_ts as date) as sent_date,
