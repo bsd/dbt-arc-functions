@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_frakture_sfmc_person_opens_daily_rollup
+  - name: stg_frakture_sfmc_deliverability_opens_daily_rollup
     description: Rollup of daily unique opens for SFMC emails
     columns:
       - name: sent_date

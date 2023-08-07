@@ -1,8 +1,8 @@
 ---
 version: 2
 models:
-  - name: stg_frakture_sfmc_person_unsubscribes_daily_rollup
-    description: Rollup of SFMC Person Unsubscribes data by sent_date
+  - name: stg_frakture_sfmc_deliverability_unsubscribes_daily_rollup
+    description: Rollup of SFMC deliverability Unsubscribes data by sent_date
     columns:
       - name: sent_date
         description: Date when messages were sent in yyyy-mm-dd format
