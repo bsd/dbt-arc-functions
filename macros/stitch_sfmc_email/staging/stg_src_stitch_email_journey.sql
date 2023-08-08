@@ -55,7 +55,7 @@
                 ) as modified_dt,
                 journeystatus as journey_status,
                 row_number() over (
-                    partition by journeyid order by created_dt
+                    partition by journeyid order by createddate
                 ) as row_num
             from {{ source("stitch_sfmc_email", "journey") }}
             where journeyid is not null

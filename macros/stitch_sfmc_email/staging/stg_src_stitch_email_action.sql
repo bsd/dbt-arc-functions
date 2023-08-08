@@ -26,7 +26,7 @@
                     triggerersenddefinitionobjectid
                     as triggerrer_send_definition_object_id,
                     triggeredsendcustomerkey as triggered_send_customer_key,
-                    row_number() over (partition by jobid order by eventate) as row_num
+                    row_number() over (partition by jobid order by evendate) as row_num
                 from {{ source("stitch_sfmc_email", "click") }}  -- is click because UUSA does not have action
                 where jobid is not null
             )
