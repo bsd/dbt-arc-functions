@@ -54,7 +54,7 @@
         triggered_send_customer_key,
         recieved_at
     from deduplicated_data
-    where row_num = 1;
+    where row_num = 1
 
 {% endmacro %}
 

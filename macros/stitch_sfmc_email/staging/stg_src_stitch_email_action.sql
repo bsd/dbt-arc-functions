@@ -44,6 +44,6 @@
         triggerrer_send_definition_object_id,
         triggered_send_customer_key
     from deduplicated_data
-    where row_num = 1;
+    where row_num = 1
 
 {% endmacro %}
