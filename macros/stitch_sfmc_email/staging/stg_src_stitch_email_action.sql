@@ -1,7 +1,5 @@
 {% macro create_stg_src_stitch_email_action() %}
 
-    {% macro create_stg_src_stitch_email_action() %}
-
         with
             deduplicated_data as (
                 select

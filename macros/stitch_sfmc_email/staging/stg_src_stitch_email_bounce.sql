@@ -1,7 +1,5 @@
 {% macro create_stg_src_stitch_email_bounce() %}
 
-    {% macro create_stg_src_stitch_email_bounce() %}
-
         with
             deduplicated_data as (
                 select
@@ -65,5 +63,3 @@
         where row_num = 1
 
     {% endmacro %}
-
-{% endmacro %}
