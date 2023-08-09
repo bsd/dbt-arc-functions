@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: onetime_donor_count_budget_combined
+    description: ""
+    columns:
+      - name: date_day
+        description: ""
+
+      - name: interval_type
+        description: ""
+
+      - name: donor_audience
+        description: ""
+
+      - name: join_source
+        description: ""
+
+      - name: onetime_donor_count_budget
+        description: ""
+
+      - name: onetime_new_donor_count_budget
+        description: ""
+
+      - name: onetime_donor_count_budget_cumulative
+        description: ""
+
+      - name: onetime_new_donor_count_cumulative
+        description: ""
+

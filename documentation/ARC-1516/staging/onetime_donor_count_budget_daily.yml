@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: onetime_donor_count_budget_daily
+    description: ""
+    columns:
+      - name: date_day
+        description: "The date of the audience monthly budget, with a day granularity"
+
+      - name: interval_type
+        description: ""
+
+      - name: donor_audience
+        description: "The donor audience for the audience monthly budget, usually a donor segment based on client criteria"
+
+      - name: join_source
+        description: ""
+
+      - name: onetime_donor_count_budget
+        description: ""
+
+      - name: onetime_new_donor_count_budget
+        description: ""
+
+      - name: onetime_donor_count_budget_cumulative
+        description: ""
+
+      - name: onetime_new_donor_count_cumulative
+        description: ""
+
