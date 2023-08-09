@@ -1,6 +1,6 @@
 {% macro create_stg_stitch_sfmc_arc_audience_union_transaction_joined(
     donor_audience_unioned ='stg_stitch_sfmc_arc_audience_unioned',
-    donor_engagement_by_day = 'stg_stitch_sfmc_donor_engagement_by_date_day'
+    donor_engagement_by_day = 'stg_stitch_sfmc_donor_engagement_by_date_day',
     donor_transaction_enriched = 'stg_stitch_sfmc_parameterized_audience_transactions_enriched'
 ) %}
 
