@@ -1,15 +1,12 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_donor_engagement_calculated
-    description: ""
+    description: ''
     columns:
       - name: person_id
-        description: "The ID identifier of the person associated with the transaction"
-
+        description: The ID identifier of the person associated with the transaction
       - name: transaction_date_day
-        description: "The day of the transaction"
-
+        description: The day of the transaction
       - name: donor_engagement
-        description: "The engagement level associated with the transaction"
-
+        description: The engagement level associated with the transaction
