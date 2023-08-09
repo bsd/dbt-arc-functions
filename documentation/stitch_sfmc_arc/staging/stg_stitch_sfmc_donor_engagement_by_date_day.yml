@@ -1,15 +1,12 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_donor_engagement_by_date_day
-    description: ""
+    description: ''
     columns:
       - name: date_day
-        description: "the date represented as a day"
-
+        description: the date represented as a day
       - name: person_id
-        description: "the unique identifier of each person record"
-
+        description: the unique identifier of each person record
       - name: donor_engagement
-        description: "the donor engagement value of each person record by day"
-
+        description: the donor engagement value of each person record by day
