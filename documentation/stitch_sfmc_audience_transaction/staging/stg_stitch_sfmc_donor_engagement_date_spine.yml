@@ -1,9 +1,9 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_donor_engagement_date_spine
-    description: ""
+    description: ''
     columns:
       - name: date
-        description: "date representing a range between the minimim and maximum dates for donor engagement values"
-
+        description: date representing a range between the minimim and maximum dates
+          for donor engagement values
