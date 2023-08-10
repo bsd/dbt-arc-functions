@@ -2,21 +2,21 @@
 version: 2
 models:
   - name: stg_onetime_donor_count_budget_combined
-    description: ''
+    description: Model for tracking the combined budget and count of one-time donors
     columns:
       - name: date_day
-        description: ''
+        description: The day of the date
       - name: interval_type
-        description: ''
+        description: The type of time interval
       - name: donor_audience
-        description: ''
+        description: The audience of the donor
       - name: join_source
-        description: ''
+        description: The source of joining
       - name: onetime_donor_count_budget
-        description: ''
+        description: The budget for one-time donor count
       - name: onetime_new_donor_count_budget
-        description: ''
+        description: The budget for new one-time donor count
       - name: onetime_donor_count_budget_cumulative
-        description: ''
+        description: The cumulative budget for one-time donor count
       - name: onetime_new_donor_count_cumulative
-        description: ''
+        description: The cumulative budget for new one-time donor count
