@@ -1,4 +1,4 @@
-{% macro create_stg_onetime_donor_count_budget_combined() %}
+{% macro create_stg_audience_budget_onetime_donor_count_budget_combined() %}
     select
         date_day,
         interval_type,
@@ -8,7 +8,7 @@
         onetime_new_donor_count_budget,
         onetime_donor_count_budget_cumulative,
         onetime_new_donor_count_cumulative
-    from {{ ref("stg_onetime_donor_count_budget_daily") }}
+    from {{ ref("stg_audience_budget_onetime_donor_count_budget_daily") }}
     union all
     select
         date_day,
@@ -19,7 +19,7 @@
         onetime_new_donor_count_budget,
         onetime_donor_count_budget_cumulative,
         onetime_new_donor_count_cumulative
-    from {{ ref("stg_onetime_donor_count_budget_monthly") }}
+    from {{ ref("stg_audience_budget_onetime_donor_count_budget_monthly") }}
     union all
     select
         date_day,
@@ -30,6 +30,6 @@
         onetime_new_donor_count_budget,
         onetime_donor_count_budget_cumulative,
         onetime_new_donor_count_cumulative
-    from {{ ref("stg_onetime_donor_count_budget_yearly") }}
+    from {{ ref("stg_audience_budget_onetime_donor_count_budget_yearly") }}
 
 {% endmacro %}

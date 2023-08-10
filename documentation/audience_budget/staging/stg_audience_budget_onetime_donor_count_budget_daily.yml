@@ -1,18 +1,18 @@
 ---
 version: 2
 models:
-  - name: stg_onetime_donor_count_budget_yearly
-    description: This model represents the yearly budget for one-time donors.
+  - name: stg_audience_budget_onetime_donor_count_budget_daily
+    description: Daily budget for one-time donor
     columns:
       - name: date_day
-        description: The date of the audience monthly budget, with a day granularity
+        description: The date with a day granularity
       - name: interval_type
-        description: The type of interval for the audience budget (e.g. monthly, yearly)
+        description: The type of interval for the budget (e.g. daily, weekly, monthly)
       - name: donor_audience
         description: The donor audience for the audience monthly budget, usually a
           donor segment based on client criteria
       - name: join_source
-        description: The source used for joining the audience monthly budget
+        description: The source of the join for the budget (e.g. email, direct mail)
       - name: onetime_donor_count_budget
         description: The budget for the count of one-time donors
       - name: onetime_new_donor_count_budget

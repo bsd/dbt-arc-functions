@@ -1,9 +1,9 @@
-{% macro create_stg_onetime_donor_count_budget_yearly() %}
+{% macro create_stg_audience_budget_onetime_donor_count_budget_daily() %}
     with
         sums as (
             select
-                last_day(date_day, year) as date_day,
-                'yearly' as interval_type,
+                date_day,
+                'daily' as interval_type,
                 donor_audience,
                 platform as join_source,
                 sum(total_revenue_budget_by_day) as onetime_donor_count_budget,

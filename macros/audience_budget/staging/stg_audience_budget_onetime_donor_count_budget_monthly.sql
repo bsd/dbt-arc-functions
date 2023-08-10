@@ -1,4 +1,4 @@
-{% macro create_stg_onetime_donor_count_budget_monthly() %}
+{% macro create_stg_audience_budget_onetime_donor_count_budget_monthly() %}
     with
         sums as (
             select
