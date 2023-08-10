@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: onetime_donor_count_budget_yearly
+  - name: stg_onetime_donor_count_budget_yearly
     description: ''
     columns:
       - name: date_day
