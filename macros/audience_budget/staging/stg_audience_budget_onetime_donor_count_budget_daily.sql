@@ -22,7 +22,9 @@
         onetime_new_donor_count_budget,
         sum(onetime_donor_count_budget) over (
             partition by
-                {{
+                donor_audience,
+                join_source,
+                {{  
                     dbt_arc_functions.get_fiscal_year(
                         "date_day", var("fiscal_year_start")
                     )
@@ -31,7 +33,9 @@
         ) as onetime_donor_count_budget_cumulative,
         sum(onetime_new_donor_count_budget) over (
             partition by
-                {{
+                donor_audience,
+                join_source,
+                {{  
                     dbt_arc_functions.get_fiscal_year(
                         "date_day", var("fiscal_year_start")
                     )
