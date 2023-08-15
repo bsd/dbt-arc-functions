@@ -1,8 +1,8 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_customized_email_campaigns
-    description: Customized email campaigns sourced from Salesforce Marketing Cloud
+  - name: stg_stitch_sfmc_parameterized_email_campaigns
+    description: parameterized email campaigns sourced from Salesforce Marketing Cloud
       (SFMC)
     columns:
       - name: message_id
