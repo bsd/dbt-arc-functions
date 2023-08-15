@@ -2,7 +2,7 @@
     audience,
     source_code_campaign,
     reference_name="stg_src_stitch_email_job"
-) %}
+ %}
 
     select distinct
         safe_cast(job_id as string) as message_id,
