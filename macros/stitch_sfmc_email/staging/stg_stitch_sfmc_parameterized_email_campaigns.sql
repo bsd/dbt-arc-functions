@@ -1,7 +1,7 @@
 {% macro create_stg_stitch_sfmc_parameterized_email_campaigns(
-    reference_name="stg_src_stitch_email_job",
     audience,
-    source_code_campaign
+    source_code_campaign,
+    reference_name="stg_src_stitch_email_job"
 ) %}
 
     select distinct
