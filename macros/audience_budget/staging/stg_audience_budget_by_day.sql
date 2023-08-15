@@ -3,7 +3,7 @@
     date_spine="stg_audience_budget_date_spine"
 ) %}
     {% set number_of_days_in_budget = (
-        "date_diff(budget.start_date, budget.end_date, day)"
+        "date_diff(budget.end_date, budget.start_date, day)"
     ) %}
     with
         dailies as (
