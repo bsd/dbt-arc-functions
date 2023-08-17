@@ -39,7 +39,7 @@
             ) as string
         ) as audience,  -- UUSA specific
         safe_cast(null as string) as recurtype,
-        safe_cast(null as string) as campaign_category,
+        safe_cast(category as string) as campaign_category,
         safe_cast(null as string) as crm_campaign,
         safe_cast(
             (
