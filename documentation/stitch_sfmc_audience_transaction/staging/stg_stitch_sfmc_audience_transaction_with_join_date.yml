@@ -1,0 +1,14 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_audience_transaction_with_join_date
+    description: Table containing transaction data for each individual, along with the join month and amount of the transaction
+    columns:
+      - name: transaction_date_day
+        description: Date of transaction in Day format
+      - name: person_id
+        description: Unique ID of the individual
+      - name: join_month_year_date
+        description: The date of the first transaction for each person_id
+      - name: amount
+        description: Amount of the transaction
