@@ -117,7 +117,7 @@
                 cast(deduplicatebyemail as bool) as deduplicated_by_email,
                 triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
                 triggeredsendcustomerkey as triggered_send_customer_key,
-                row_number() over (partition by __jobid_ order by createddate) as row_num
+                row_number() over (partition by __jobid_ order by coalesce(schedtime, pickuptime, deliveredtime)) as row_num
             from {{ source("stitch_sfmc_email", "job") }}
             where __jobid_ is not null
         )
