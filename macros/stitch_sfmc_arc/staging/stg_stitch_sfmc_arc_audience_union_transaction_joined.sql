@@ -1,31 +1,27 @@
 {% macro create_stg_stitch_sfmc_arc_audience_union_transaction_joined(
-    donor_audience_unioned ='stg_stitch_sfmc_arc_audience_unioned',
-    donor_engagement_by_day = 'stg_stitch_sfmc_donor_engagement_by_date_day',
-    donor_transaction_enriched = 'stg_stitch_sfmc_parameterized_audience_transactions_enriched'
+    donor_audience_unioned="stg_stitch_sfmc_arc_audience_unioned",
+    donor_engagement_by_day="stg_stitch_sfmc_donor_engagement_by_date_day",
+    donor_transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched"
 ) %}
 
-
-
-Select
-transaction_enriched.transaction_date_day,
-transaction_enriched.person_id,
-audience_unioned.donor_audience,
-donor_engagement.donor_engagement,
-transaction_enriched.inbound_channel,
-transaction_enriched.gift_size_string,
-transaction_enriched.recurring,
-transaction_enriched.amount,
-transaction_enriched.gift_count,
-FROM
-{{ ref(donor_transaction_enriched) }} transaction_enriched
-left join
-{{ ref(donor_audience_unioned) }} audience_unioned
-on transaction_enriched.transaction_date_day = audience_unioned.date_day
-and transaction_enriched.person_id = audience_unioned.person_id
-left join
-{{ ref(donor_engagement_by_day) }} donor_engagement
-on transaction_enriched.transaction_date_day = donor_engagement.date_day
-and transaction_enriched.person_id = donor_engagement.person_id
-
+    select
+        transaction_enriched.transaction_date_day,
+        transaction_enriched.person_id,
+        audience_unioned.donor_audience,
+        donor_engagement.donor_engagement,
+        transaction_enriched.inbound_channel,
+        transaction_enriched.gift_size_string,
+        transaction_enriched.recurring,
+        transaction_enriched.amount,
+        transaction_enriched.gift_count,
+    from {{ ref(donor_transaction_enriched) }} transaction_enriched
+    left join
+        {{ ref(donor_audience_unioned) }} audience_unioned
+        on transaction_enriched.transaction_date_day = audience_unioned.date_day
+        and transaction_enriched.person_id = audience_unioned.person_id
+    left join
+        {{ ref(donor_engagement_by_day) }} donor_engagement
+        on transaction_enriched.transaction_date_day = donor_engagement.date_day
+        and transaction_enriched.person_id = donor_engagement.person_id
 
 {% endmacro %}

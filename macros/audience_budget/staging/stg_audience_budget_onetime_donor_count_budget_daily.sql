@@ -24,7 +24,7 @@
             partition by
                 donor_audience,
                 join_source,
-                {{  
+                {{
                     dbt_arc_functions.get_fiscal_year(
                         "date_day", var("fiscal_year_start")
                     )
@@ -35,7 +35,7 @@
             partition by
                 donor_audience,
                 join_source,
-                {{  
+                {{
                     dbt_arc_functions.get_fiscal_year(
                         "date_day", var("fiscal_year_start")
                     )

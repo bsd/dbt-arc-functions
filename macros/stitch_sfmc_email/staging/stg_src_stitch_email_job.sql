@@ -119,7 +119,7 @@
                 triggeredsendcustomerkey as triggered_send_customer_key,
                 row_number() over (
                     partition by __jobid_
-                    order by coalesce(schedtime, pickuptime, deliveredtime)
+                    order by schedtime desc, pickuptime desc, deliveredtime desc
                 ) as row_num
             from {{ source("stitch_sfmc_email", "job") }}
             where __jobid_ is not null
