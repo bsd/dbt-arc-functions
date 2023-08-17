@@ -12,7 +12,7 @@
         safe_cast(delivered_dt as timestamp) as delivered_timestamp,
         safe_cast(email_name as string) as email_name,
         safe_cast(email_subject as string) as email_subject,
-        safe_cast(category as string) as category,
+        safe_cast(category as string) as campaign_category,
         safe_cast(null as string) as source_code
     from {{ ref(reference_name) }}
 {% endmacro %}
