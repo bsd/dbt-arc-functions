@@ -4,7 +4,7 @@
         safe_cast(email_id as string) as email_id,
         safe_cast(from_name as string) as from_name,
         safe_cast(from_email as string) as from_email,
-        safe_cast(coalesce(sched_dt, pickup_dt) as timestamp) as best_guess_timestamp,
+        safe_cast(coalesce(sched_dt, pickup_dt, delivered_dt) as timestamp) as best_guess_timestamp,
         safe_cast(sched_dt as timestamp) as scheduled_timestamp,
         safe_cast(pickup_dt as timestamp) as pickup_timestamp,
         safe_cast(delivered_dt as timestamp) as delivered_timestamp,
