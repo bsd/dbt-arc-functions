@@ -1,0 +1,16 @@
+---
+version: 2
+models:
+  - name: stg_email_deliverability_actions_daily_rollup_unioned
+    description: Rollup of email actions by day per person
+    columns:
+      - name: _dbt_source_relation
+        description: Source relation of data
+      - name: sent_date
+        description: Date the email was sent
+      - name: message_id
+        description: Unique id of the email
+      - name: email_domain
+        description: Domain of the email address being sent to
+      - name: actions
+        description: Actions taken on the email

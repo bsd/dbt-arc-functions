@@ -41,7 +41,7 @@ source_regex_mappings = {
             r"^everyaction_[A-Za-z0-9]{3}_transaction$",
         ],
     },
-    "frakture_everyaction_person.yml": {
+    "frakture_everyaction_deliverability.yml": {
         "schema": "src_frakture",
         "tables": [
             r"^everyaction_[A-Za-z0-9]{3}_per_person_message_stat$",

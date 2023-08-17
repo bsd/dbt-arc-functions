@@ -1,7 +1,0 @@
----
-version: 2
-sources:
-  - name: frakture_sfmc_person
-    database: "{{ var('database') }}"
-    schema: src_frakture
-    tables: "{{ var('sources').frakture_sfmc_person.tables }}"
