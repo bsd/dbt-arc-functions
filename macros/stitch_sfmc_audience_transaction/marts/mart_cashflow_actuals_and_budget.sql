@@ -25,7 +25,7 @@ with base as (
         on
             audience_transactions.transaction_date_day
             = date(budget_revenue.date_day)
-            and audience_transactions.donor_audience_up
+            and audience_transactions.coalesced_audience
             = budget_revenue.donor_audience
     group by 1, 2, 3, 4
     order by 4 desc
