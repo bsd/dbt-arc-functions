@@ -46,7 +46,11 @@
         opens.opens,
         clicks.clicks,
         actions.actions,
-        (bounces.soft_bounces + bounces.hard_bounces) as total_bounces,
+        case
+            when bounces.soft_bounces + bounces.hard_bounces is null
+            then 0
+            else bounces.soft_bounces + bounces.hard_bounces
+        end as total_bounces,
         bounces.soft_bounces,
         bounces.hard_bounces,
         unsubscribes.unsubscribes
