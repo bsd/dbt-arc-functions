@@ -5,7 +5,7 @@
             select distinct
                 cast(__accountid_ as int64) as account_id,
                 cast(oybaccountid as int64) as oyb_account_id,
-                cast(jobid as int64) as message_id,
+                cast(jobid as int64) as job_id,
                 cast(listid as int64) as list_id,
                 cast(batchid as int64) as batch_id,
                 cast(subscriberid as int64) as subscriber_id,
@@ -27,7 +27,7 @@
         )
 
     select distinct
-        account_id,
+        job_id,
         oyb_account_id,
         message_id,
         list_id,
