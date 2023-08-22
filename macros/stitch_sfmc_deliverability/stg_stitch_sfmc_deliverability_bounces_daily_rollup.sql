@@ -7,12 +7,20 @@
         safe_cast(domain as string) as email_domain,
         safe_cast(
             count(
-                case when lower(bounce_category) = 'hard bounce' and is_unique = True then 1 else 0 end
+                case
+                    when lower(bounce_category) = 'hard bounce' and is_unique = true
+                    then 1
+                    else 0
+                end
             ) as int
         ) as hard_bounces,
         safe_cast(
             count(
-                case when lower(bounce_category) = 'soft bounce' and is_unique = True then 1 else 0 end
+                case
+                    when lower(bounce_category) = 'soft bounce' and is_unique = true
+                    then 1
+                    else 0
+                end
             ) as int
         ) as soft_bounces
     from {{ ref(reference_name) }}
