@@ -8,7 +8,7 @@
     unsubscribes="stg_email_deliverability_unsubscribes_daily_rollup_unioned"
 ) %}
     select
-        coalesce(jobs.sent_date, recipients.sent_date, opens.sent_date, clicks.sent_date, unsubscribes.sent_date, actions.sent_date) as sent_date
+        jobs.sent_date,
         jobs.message_id,
         jobs.email_domain,
         case
@@ -55,32 +55,32 @@
         bounces.hard_bounces,
         unsubscribes.unsubscribes
     from {{ ref(jobs) }} jobs
-    full outer join
+    left join
         {{ ref(bounces) }} bounces
         on jobs.message_id = bounces.message_id
         and jobs.sent_date = bounces.sent_date
         and jobs.email_domain = bounces.email_domain
-    full outer join
+    left join
         {{ ref(clicks) }} clicks
         on jobs.message_id = clicks.message_id
         and jobs.sent_date = clicks.sent_date
         and jobs.email_domain = clicks.email_domain
-    full outer join
+    left join
         {{ ref(actions) }} actions
         on jobs.message_id = actions.message_id
         and jobs.sent_date = actions.sent_date
         and jobs.email_domain = actions.email_domain
-    full outer join
+    left join
         {{ ref(opens) }} opens
         on jobs.message_id = opens.message_id
         and jobs.sent_date = opens.sent_date
         and jobs.email_domain = opens.email_domain
-    full outer join
+    left join
         {{ ref(recipients) }} recipients
         on jobs.message_id = recipients.message_id
         and jobs.sent_date = recipients.sent_date
         and jobs.email_domain = recipients.email_domain
-    full outer join
+    left join
         {{ ref(unsubscribes) }} unsubscribes
         on jobs.message_id = unsubscribes.message_id
         and jobs.sent_date = unsubscribes.sent_date
