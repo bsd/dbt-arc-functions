@@ -21,3 +21,15 @@ models:
         description: CRM campaign associated with the email campaign
       - name: source_code_campaign
         description: Source code campaign associated with the email campaign
+    tests:
+      - dbt_expectations.expect_table_columns_to_match_ordered_list:
+          column_list:
+            - message_id
+            - crm_entity
+            - source_code_entity
+            - audience
+            - recurtype
+            - campaign_category
+            - crm_campaign
+            - source_code_campaign
+
