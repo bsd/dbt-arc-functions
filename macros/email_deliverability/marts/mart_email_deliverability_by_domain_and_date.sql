@@ -7,6 +7,7 @@
     recipients="stg_email_deliverability_recipients_daily_rollup_unioned",
     unsubscribes="stg_email_deliverability_unsubscribes_daily_rollup_unioned"
 ) %}
+with base as (
     select
         jobs.sent_date,
         jobs.message_id,
@@ -84,5 +85,9 @@
         {{ ref(unsubscribes) }} unsubscribes
         on jobs.message_id = unsubscribes.message_id
         and jobs.sent_date = unsubscribes.sent_date
-        and jobs.email_domain = unsubscribes.email_domain
+        and jobs.email_domain = unsubscribes.email_domain)
+
+    select distinct * from base 
+    where sent_date is not null
+    or message_id is not null
 {% endmacro %}
