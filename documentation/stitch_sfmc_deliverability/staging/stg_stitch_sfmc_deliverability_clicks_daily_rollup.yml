@@ -2,17 +2,16 @@ version: 2
 
 models:
   - name: stg_stitch_sfmc_deliverability_clicks_daily_rollup
-    description: ""
+    description: "A daily rollup of email click events from Salesforce Marketing Cloud (SFMC) sent campaigns."
     columns:
       - name: sent_date
-        description: ""
+        description: "Date of the click event."
 
       - name: message_id
-        description: ""
+        description: "The unique identifier of the sent email message."
 
       - name: email_domain
-        description: ""
+        description: "The domain of the recipient's email address."
 
       - name: clicks
-        description: ""
-
+        description: "The number of clicks recorded for the email campaign."

@@ -2,17 +2,16 @@ version: 2
 
 models:
   - name: stg_stitch_sfmc_deliverability_opens_daily_rollup
-    description: ""
+    description: "A daily rollup of email open events from Salesforce Marketing Cloud (SFMC) sent campaigns."
     columns:
       - name: sent_date
-        description: ""
+        description: "The date when the email was opened."
 
       - name: message_id
-        description: ""
+        description: "The unique identifier of the sent email message."
 
       - name: email_domain
-        description: ""
+        description: "The domain of the recipient's email address."
 
       - name: opens
-        description: ""
-
+        description: "The number of times the email was opened."
