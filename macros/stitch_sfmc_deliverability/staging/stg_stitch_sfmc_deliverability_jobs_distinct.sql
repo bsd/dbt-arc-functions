@@ -1,5 +1,9 @@
-{% macro create_stg_frakture_sfmc_deliverability_jobs_distinct(
-    reference_name="stg_frakture_sfmc_deliverability_jobs"
+{% macro create_stg_stitch_sfmc_deliverability_jobs(
+    reference_name="stg_src_stitch_email_sent"
 ) %}
-    select distinct * from {{ ref(reference_name) }}
+    select distinct
+        safe_cast(job_id as string) as message_id,
+        safe_cast(event_dt as date) as sent_date,
+        safe_cast(domain as string) as email_domain
+    from {{ ref(reference_name) }}
 {% endmacro %}
