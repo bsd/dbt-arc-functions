@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_audience_transacion_calculated_alldates(
+{% macro create_stg_stitch_sfmc_audience_transaction_calculated_alldates(
     jobs_append = 'stg_stitch_sfmc_customizable_audience_transaction_jobs_append'
 ) %}
 
