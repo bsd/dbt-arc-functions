@@ -1,1 +1,15 @@
+version: 2
+
+models:
+  - name: stg_stitch_sfmc_deliverability_jobs_distinct
+    description: ""
+    columns:
+      - name: message_id
+        description: ""
+
+      - name: sent_date
+        description: ""
+
+      - name: email_domain
+        description: ""
 

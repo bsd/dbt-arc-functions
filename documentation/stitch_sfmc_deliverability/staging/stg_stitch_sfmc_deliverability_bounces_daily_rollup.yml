@@ -1,1 +1,21 @@
+version: 2
+
+models:
+  - name: stg_stitch_sfmc_deliverability_bounces_daily_rollup
+    description: ""
+    columns:
+      - name: sent_date
+        description: ""
+
+      - name: message_id
+        description: ""
+
+      - name: email_domain
+        description: ""
+
+      - name: hard_bounces
+        description: ""
+
+      - name: soft_bounces
+        description: ""
 
