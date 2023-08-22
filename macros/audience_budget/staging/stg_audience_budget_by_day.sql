@@ -3,7 +3,7 @@
     date_spine="stg_audience_budget_date_spine"
 ) %}
     {% set number_of_days_in_budget = (
-        "date_diff(budget.start_date, budget.end_date, day)"
+        "date_diff(budget.end_date, budget.start_date, day)"
     ) %}
     with
         dailies as (
@@ -11,9 +11,15 @@
                 platform,
                 donor_audience,
                 date_spine.date_day,
-                SAFE_CAST(extract(year from date_spine.date_day) AS INT) as date_spine_year,
-                SAFE_CAST(extract(month from date_spine.date_day) AS INT) as date_spine_month,
-                SAFE_CAST(extract(day from date_spine.date_day) AS INT) as date_spine_day,
+                safe_cast(
+                    extract(year from date_spine.date_day) as int
+                ) as date_spine_year,
+                safe_cast(
+                    extract(month from date_spine.date_day) as int
+                ) as date_spine_month,
+                safe_cast(
+                    extract(day from date_spine.date_day) as int
+                ) as date_spine_day,
                 total_revenue_budget
                 / {{ number_of_days_in_budget }} as total_revenue_budget_by_day,
                 loyalty_new_donor_targets
@@ -31,9 +37,7 @@
                 / {{ number_of_days_in_budget }}
                 as loyalty_reinstated_donor_targets_by_day
 
-            from
-                {{ ref(google_spreadsheets_audience_monthly_budget) }}
-                as budget
+            from {{ ref(google_spreadsheets_audience_monthly_budget) }} as budget
             inner join
                 {{ ref(date_spine) }} as date_spine
                 on budget.start_date <= date_spine.date_day

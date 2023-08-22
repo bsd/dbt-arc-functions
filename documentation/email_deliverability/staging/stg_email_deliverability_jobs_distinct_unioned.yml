@@ -1,0 +1,15 @@
+---
+version: 2
+models:
+  - name: stg_email_deliverability_jobs_distinct_unioned
+    description: This model stores the data related to email deliverability from the
+      person table.
+    columns:
+      - name: _dbt_source_relation
+        description: The source relation that the table comes from.
+      - name: message_id
+        description: A unique identifier assigned for each email sent.
+      - name: sent_date
+        description: The time the email was sent.
+      - name: email_domain
+        description: The domain being sent to.

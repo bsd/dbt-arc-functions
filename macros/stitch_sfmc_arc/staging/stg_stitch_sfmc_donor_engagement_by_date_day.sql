@@ -1,10 +1,9 @@
 {% macro create_stg_stitch_sfmc_donor_engagement_by_date_day(
-    donor_engagement_scd_table ='stg_stitch_sfmc_donor_engagement_scd',
-    donor_engagement_date_spine = 'stg_stitch_sfmc_donor_engagement_date_spine'
+    donor_engagement_scd_table="stg_stitch_sfmc_donor_engagement_scd",
+    donor_engagement_date_spine="stg_stitch_sfmc_donor_engagement_date_spine"
 ) %}
 
-
-with
+    with
         engagement_by_date_day as (
             select
                 date_spine.date as date_day,

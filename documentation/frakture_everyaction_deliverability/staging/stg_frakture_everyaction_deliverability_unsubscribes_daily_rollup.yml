@@ -1,0 +1,15 @@
+---
+version: 2
+models:
+  - name: stg_frakture_everyaction_deliverability_unsubscribes_daily_rollup
+    description: A daily summary view of unsubscribes, complaints, and hard bounces
+      by message sent date and email domain
+    columns:
+      - name: sent_date
+        description: Date the message was sent
+      - name: message_id
+        description: Unique ID for the sent message
+      - name: email_domain
+        description: Email domain of recipient address
+      - name: unsubscribes
+        description: Number of opt-outs per domain per day
