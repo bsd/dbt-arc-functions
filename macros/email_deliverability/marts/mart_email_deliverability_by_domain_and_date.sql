@@ -42,18 +42,18 @@
             then 'Apple'
             else 'Other'
         end as domain_category,
-        recipients.recipients,
-        opens.opens,
-        clicks.clicks,
-        actions.actions,
+        coalesce(recipients.recipients, 0) as recipients,
+        coalesce(opens.opens, 0) as opens,
+        coalesce(clicks.clicks, 0) as clicks,
+        coalesce(actions.actions, 0) as actions,
         case
             when bounces.soft_bounces + bounces.hard_bounces is null
             then 0
             else bounces.soft_bounces + bounces.hard_bounces
         end as total_bounces,
-        bounces.soft_bounces,
-        bounces.hard_bounces,
-        unsubscribes.unsubscribes
+        coalesce(bounces.soft_bounces, 0) as soft_bounces,
+        coalesce(bounces.hard_bounces, 0) as hard_bounces,
+        coalesce(unsubscribes.unsubscribes, 0) as unsubscribes
     from {{ ref(jobs) }} jobs
     left join
         {{ ref(bounces) }} bounces
