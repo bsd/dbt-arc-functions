@@ -1,6 +1,39 @@
-{% macro create_stg_stitch_sfmc_arc_audience_unioned() %}
-    {% set relations = dbt_arc_functions.relations_that_match_regex(
-        "^stg_.*_audience_by_date_day$"
-    ) %}
-    {{ dbt_utils.union_relations(relations) }}
+{% macro create_stg_stitch_sfmc_arc_audience_unioned(
+    arc_audience = 'stg_stitch_sfmc_arc_audience_by_date_day',
+    calculated_audience = 'stg_stitch_sfmc_arc_calculated_audience_by_date_day'
+) %}
+
+
+with arc_audience as (
+
+    select
+        date_day,
+        person_id,
+        case
+            when donor_audience = 'mass' then 'grassroots'
+            when donor_audience = 'monthly' then 'recurring'
+            else donor_audience
+        end as donor_audience
+    from
+        {{ ref(arc_audience) }}
+
+),
+
+calculated_audience as (
+
+    select *
+    from {{ ref(calculated_audience) }}
+
+),
+
+unioned_audience as (
+    select * from arc_audience
+    union all
+    select * from calculated_audience
+
+)
+
+select * from unioned_audience
+
+
 {% endmacro %}

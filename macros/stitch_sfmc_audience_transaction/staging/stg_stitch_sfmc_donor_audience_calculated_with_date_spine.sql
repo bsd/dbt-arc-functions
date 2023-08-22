@@ -11,5 +11,5 @@
     where
         calc_audience.transaction_date_day
         < (select max(date) from {{ ref(calculated_date_spine) }})
-
+        and donor_audience is not null
 {% endmacro %}
