@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_deliverability_jobs(
+{% macro create_stg_stitch_sfmc_deliverability_jobs_distinct(
     reference_name="stg_src_stitch_email_sent"
 ) %}
     select distinct
