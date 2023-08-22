@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_arc_audience_union_transaction_joined(
+{% macro create_stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched(
     audience_union_transaction_joined="stg_stitch_sfmc_arc_audience_union_transaction_joined",
     audience_calculated_alldates ="stg_stitch_sfmc_audience_transaction_calculated_alldates"
 ) %}
