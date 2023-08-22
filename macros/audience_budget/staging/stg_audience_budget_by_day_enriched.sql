@@ -1,4 +1,4 @@
-{% macro create_stg_audience_budget_by_day(
+{% macro create_stg_audience_budget_by_day_enriched(
     budget_by_day ="stg_audience_budget_by_day"
 ) %}
 
