@@ -6,5 +6,4 @@
         safe_cast(event_dt as date) as sent_date,
         safe_cast(domain as string) as email_domain
     from {{ ref(reference_name) }}
-    where event_dt is not null or job_id is not null
 {% endmacro %}

@@ -7,6 +7,5 @@
         safe_cast(domain as string) as email_domain,
         count(distinct subscriber_id) as recipients
     from {{ ref(reference_name) }}
-    where event_dt is not null or job_id is not null
     group by 1, 2, 3
 {% endmacro %}

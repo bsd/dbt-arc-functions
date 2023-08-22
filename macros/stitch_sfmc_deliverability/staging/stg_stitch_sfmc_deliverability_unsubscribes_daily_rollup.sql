@@ -7,6 +7,5 @@
         safe_cast(domain as string) as email_domain,
         count(case when is_unique = true then 1 else 0 end) as unsubscribes
     from {{ ref(reference_name) }}
-    where event_dt is not null or job_id is not null
     group by 1, 2, 3
 {% endmacro %}
