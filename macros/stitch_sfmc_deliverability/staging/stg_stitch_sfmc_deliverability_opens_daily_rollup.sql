@@ -7,5 +7,6 @@
         safe_cast(domain as string) as email_domain,
         count(case when is_unique = true then 1 else 0 end) as opens
     from {{ ref(reference_name) }}
+    where event_dt is not null and job_id is not null
     group by 1, 2, 3
 {% endmacro %}

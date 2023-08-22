@@ -24,5 +24,6 @@
             ) as int
         ) as soft_bounces
     from {{ ref(reference_name) }}
+    where event_dt is not null and job_id is not null
     group by 1, 2, 3
 {% endmacro %}
