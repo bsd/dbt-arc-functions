@@ -29,7 +29,6 @@
     select distinct
         job_id,
         oyb_account_id,
-        message_id,
         list_id,
         batch_id,
         subscriber_id,
