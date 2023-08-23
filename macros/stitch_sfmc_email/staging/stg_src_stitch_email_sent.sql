@@ -21,7 +21,7 @@
                 domain,
                 triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
                 triggeredsendcustomerkey as triggered_send_customer_key,
-                row_number() over (partition by jobid order by eventdate) as row_num
+                row_number() over (partition by subscriberkey order by eventdate) as row_num
             from {{ source("stitch_sfmc_email", "sent") }}
             where jobid is not null
         )
