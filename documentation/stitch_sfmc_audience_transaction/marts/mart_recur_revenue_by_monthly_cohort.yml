@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: mart_stitch_sfmc_audience_transaction_monthly_recurring_rollup_with_activation
+  - name: mart_recur_revenue_by_monthly_cohort
     description: This model represents a monthly recurring rollup of SFMC audience
       transaction data with activation.
     columns:
