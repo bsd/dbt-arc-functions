@@ -11,7 +11,7 @@ with base as (
     select
         audience_transactions.transaction_date_day as date_day,
         audience_transactions.coalesced_audience as donor_audience,
-        audience_transactions.inbound_channel as channel,
+        audience_transactions.channel as channel,
         audience_transactions.recurring as recur_flag,
         sum(audience_transactions.amount) as total_revenue_actuals,
         sum(audience_transactions.gift_count) as total_gifts_actuals,
