@@ -6,7 +6,7 @@
 select
     audience_union_transaction_joined.transaction_date_day,
     {{ dbt_arc_functions.get_fiscal_year(
-        'transaction_date_day',
+        'audience_union_transaction_joined.transaction_date_day',
         var('fiscal_year_start')) }}
         AS fiscal_year,
     audience_union_transaction_joined.person_id,
