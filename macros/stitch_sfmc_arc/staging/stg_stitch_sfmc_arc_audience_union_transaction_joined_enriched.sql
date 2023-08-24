@@ -9,6 +9,7 @@ select
     audience_union_transaction_joined.donor_audience as audience_unioned,
     audience_calculated_alldates.donor_audience as audience_calculated,
     donor_engagement,
+    channel_category,
     inbound_channel,
     gift_size_string,
     recurring,

@@ -9,6 +9,7 @@
         transaction_enriched.person_id,
         audience_unioned.donor_audience,
         donor_engagement.donor_engagement,
+        transaction_enriched.best_guest_channel as channel_category,
         transaction_enriched.inbound_channel,
         transaction_enriched.gift_size_string,
         transaction_enriched.recurring,
