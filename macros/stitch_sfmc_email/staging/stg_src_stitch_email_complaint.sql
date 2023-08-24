@@ -1,7 +1,5 @@
 {% macro create_stg_src_stitch_email_complaint() %}
 
-    with
-        deduplicated_data as (
             select distinct
                 cast(__accountid_ as int64) as account_id,
                 cast(oybaccountid as int64) as oyb_account_id,
@@ -19,24 +17,8 @@
                     "America/New_York"
                 ) as event_dt,
                 cast(isunique as bool) as is_unique,
-                domain,
-                row_number() over (partition by subscriberkey order by eventdate) as row_num
+                domain
             from {{ source("stitch_sfmc_email", "complaint") }}
             where jobid is not null
-        )
-
-    select distinct
-        account_id,
-        oyb_account_id,
-        job_id,
-        list_id,
-        batch_id,
-        subscriber_id,
-        subscriber_key,
-        event_dt,
-        is_unique,
-        domain
-    from deduplicated_data
-    where row_num = 1
 
 {% endmacro %}

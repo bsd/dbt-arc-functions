@@ -1,7 +1,4 @@
 {% macro create_stg_src_stitch_email_open() %}
-
-    with
-        deduplicated_data as (
             select distinct
                 cast(__accountid_ as int64) as account_id,
                 cast(oybaccountid as int64) as oyb_account_id,
@@ -21,26 +18,8 @@
                 domain,
                 cast(isunique as bool) as is_unique,
                 triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
-                cast(triggeredsendcustomerkey as string) as triggered_send_customer_key,
-                row_number() over (partition by subscriberkey order by eventdate) as row_num
+                cast(triggeredsendcustomerkey as string) as triggered_send_customer_key
             from {{ source("stitch_sfmc_email", "open") }}
             where jobid is not null
-        )
-
-    select distinct
-        account_id,
-        oyb_account_id,
-        job_id,
-        list_id,
-        batch_id,
-        subscriber_id,
-        subscriber_key,
-        event_dt,
-        domain,
-        is_unique,
-        triggerrer_send_definition_object_id,
-        triggered_send_customer_key
-    from deduplicated_data
-    where row_num = 1
 
 {% endmacro %}

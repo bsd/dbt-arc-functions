@@ -1,7 +1,4 @@
 {% macro create_stg_src_stitch_email_bounce() %}
-
-    with
-        deduplicated_data as (
             select
                 cast(__accountid_ as int64) as account_id,
                 cast(oybaccountid as int64) as oyb_account_id,
@@ -29,34 +26,8 @@
                 cast(smtpcode as string) as smtp_code,
                 triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
                 cast(triggeredsendcustomerkey as string) as triggered_send_customer_key,
-                _sdc_received_at as recieved_at,
-                row_number() over (partition by subscriberkey order by eventdate) as row_num
+                _sdc_received_at as recieved_at
             from {{ source("stitch_sfmc_email", "bounce") }}
             where jobid is not null
-        )
-
-    select
-        account_id,
-        oyb_account_id,
-        job_id,
-        list_id,
-        batch_id,
-        subscriber_id,
-        subscriber_key,
-        event_dt,
-        is_unique,
-        domain,
-        bounce_category_id,
-        bounce_category,
-        bounce_subcategory_id,
-        bounce_subcategory,
-        bounce_type_id,
-        bounce_type,
-        smtp_code,
-        triggerrer_send_definition_object_id,
-        triggered_send_customer_key,
-        recieved_at
-    from deduplicated_data
-    where row_num = 1
 
 {% endmacro %}

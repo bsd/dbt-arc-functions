@@ -1,7 +1,5 @@
 {% macro create_stg_src_stitch_email_journey() %}
 
-    with
-        deduplicated_data as (
             select distinct
                 __versionid_ as version_id,
                 journeyid as journey_id,
@@ -53,24 +51,8 @@
                         else null
                     end
                 ) as modified_dt,
-                journeystatus as journey_status,
-                row_number() over (
-                    partition by journeyid order by createddate
-                ) as row_num
+                journeystatus as journey_status
             from {{ source("stitch_sfmc_email", "journey") }}
             where journeyid is not null
-        )
-
-    select distinct
-        version_id,
-        journey_id,
-        journey_name,
-        version_number,
-        created_dt,
-        last_published_dt,
-        modified_dt,
-        journey_status
-    from deduplicated_data
-    where row_num = 1
 
 {% endmacro %}
