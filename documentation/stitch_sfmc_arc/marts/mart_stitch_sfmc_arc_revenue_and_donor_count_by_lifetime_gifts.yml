@@ -1,0 +1,18 @@
+---
+version: 2
+models:
+  - name: mart_stitch_sfmc_arc_revenue_and_donor_count_by_lifetime_gifts
+    description: ''
+    columns:
+      - name: transaction_date_year
+        description: ''
+      - name: transaction_date_month
+        description: ''
+      - name: transaction_date_day
+        description: Date of transaction in Day format
+      - name: recurring_gift_cumulative_str
+        description: ''
+      - name: donors
+        description: ''
+      - name: summed_amount
+        description: ''
