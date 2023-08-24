@@ -20,7 +20,7 @@
                 ) as event_dt,
                 cast(isunique as bool) as is_unique,
                 domain,
-                row_number() over (partition by jobid order by eventdate) as row_num
+                row_number() over (partition by subscriberkey order by eventdate) as row_num
             from {{ source("stitch_sfmc_email", "complaint") }}
             where jobid is not null
         )

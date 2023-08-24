@@ -30,7 +30,7 @@
                 triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
                 cast(triggeredsendcustomerkey as string) as triggered_send_customer_key,
                 _sdc_received_at as recieved_at,
-                row_number() over (partition by jobid order by eventdate) as row_num
+                row_number() over (partition by subscriberkey order by eventdate) as row_num
             from {{ source("stitch_sfmc_email", "bounce") }}
             where jobid is not null
         )
