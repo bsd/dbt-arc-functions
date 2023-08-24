@@ -1,12 +1,12 @@
 {% macro create_stg_src_stitch_email_action() %}
 
             select
-                cast('' as int64) as account_id,
-                cast('' as int64) as oyb_account_id,
-                cast('' as int64) as job_id,
-                cast('' as int64) as list_id,
-                cast('' as int64) as batch_id,
-                cast('' as int64) as subscriber_id,
+                cast(0 as int64) as account_id,
+                cast(0 as int64) as oyb_account_id,
+                cast(0 as int64) as job_id,
+                cast(0 as int64) as list_id,
+                cast(0 as int64) as batch_id,
+                cast(0 as int64) as subscriber_id,
                 '' as subscriber_key,
                 datetime(''
                 ) as event_dt,
