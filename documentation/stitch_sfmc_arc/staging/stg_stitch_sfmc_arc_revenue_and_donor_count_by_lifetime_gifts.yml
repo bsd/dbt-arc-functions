@@ -1,0 +1,18 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_arc_revenue_and_donor_count_by_lifetime_gifts
+    description: 'A staging table that contains revenue and donor count by lifetime gifts'
+    columns:
+      - name: transaction_date_year
+        description: 'Date of transaction in Year format'
+      - name: transaction_date_month
+        description: 'Date of transaction in Month format'
+      - name: transaction_date_day
+        description: Date of transaction in Day format
+      - name: recurring_gift_cumulative_str
+        description: 'A string rollup of the number of cumulative recurring gifts, less than six months, six to twelve months, and greater than twelve months, etc.'
+      - name: donors
+        description: 'Number of donors'
+      - name: summed_amount
+        description: 'Summed amount of donations'

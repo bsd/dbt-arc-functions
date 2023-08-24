@@ -1,4 +1,4 @@
-{% macro create_mart_stitch_sfmc_arc_revenue_and_donor_count_by_lifetime_gifts(
+{% macro create_stg_stitch_sfmc_arc_revenue_and_donor_count_by_lifetime_gifts(
     reference_name="stg_stitch_sfmc_arc_audience_union_transaction_joined"
 ) %}
     select
