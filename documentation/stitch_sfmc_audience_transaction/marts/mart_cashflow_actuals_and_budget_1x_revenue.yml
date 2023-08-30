@@ -1,42 +1,30 @@
+---
 version: 2
-
 models:
   - name: mart_cashflow_actuals_and_budget_1x_revenue
-    description: ""
+    description: ''
     columns:
       - name: recur_flag
-        description: ""
-
+        description: ''
       - name: total_revenue_budget_by_day
-        description: ""
-
+        description: ''
       - name: fiscal_year
-        description: ""
-
+        description: ''
       - name: year
-        description: ""
-
+        description: ''
       - name: month
-        description: ""
-
+        description: ''
       - name: day
-        description: ""
-
+        description: ''
       - name: date_day
-        description: ""
-
+        description: ''
       - name: donor_audience
-        description: ""
-
+        description: ''
       - name: channel
-        description: ""
-
+        description: ''
       - name: total_revenue_actuals
-        description: ""
-
+        description: ''
       - name: total_gifts_actuals
-        description: ""
-
+        description: ''
       - name: total_revenue_cumulative_fiscal_year
-        description: ""
-
+        description: ''
