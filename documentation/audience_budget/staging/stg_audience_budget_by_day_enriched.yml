@@ -17,7 +17,7 @@ models:
         description: "Day of the month pulled from date_day"
 
       - name: fiscal_year
-        description: ""
+        description: "the fiscal year value as defined by the client"
 
       - name: date_day
         description: "The date of the audience monthly budget, with a day granularity"
