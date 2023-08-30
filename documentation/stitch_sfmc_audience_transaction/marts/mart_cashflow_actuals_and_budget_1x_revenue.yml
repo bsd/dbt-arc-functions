@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: mart_cashflow_actuals_and_budget_1x_revenue
-    description: ""
+    description: "A version of the cashflow actuals and budget mart"
     columns:
       - name: recur_flag
         description: "this is a flag to represent the if the transactions are recurring"
