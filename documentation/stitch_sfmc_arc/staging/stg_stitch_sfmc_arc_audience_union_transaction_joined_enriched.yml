@@ -1,48 +1,38 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched
-    description: ""
+    description: ''
     columns:
       - name: transaction_date_day
-        description: "Date of transaction in Day format"
-
+        description: Date of transaction in Day format
       - name: fiscal_year
-        description: "The fiscal year value as defined by the client"
-
+        description: The fiscal year value as defined by the client
       - name: person_id
-        description: "The unique identifier of each person record"
-
+        description: The unique identifier of each person record
       - name: audience_unioned
-        description: "the unioned audience values, which includes both calculated donor audience and crm derived donor audience"
-
+        description: the unioned audience values, which includes both calculated donor
+          audience and crm derived donor audience
       - name: audience_calculated
-        description: "The donor audience calcuated values."
-
+        description: The donor audience calcuated values.
       - name: donor_engagement
-        description: "The donor engagement value of each person by day and date"
-
+        description: The donor engagement value of each person by day and date
       - name: channel_category
-        description: "This is a grouping of channel values"
-
+        description: This is a grouping of channel values
       - name: channel
-        description: "the source channel of each transaction"
-
+        description: the source channel of each transaction
       - name: gift_size_string
-        description: "the size of each gift sorted into categories represented as a string"
-
+        description: the size of each gift sorted into categories represented as a
+          string
       - name: recurring
-        description: "If the transaction is part of a recurring donation"
-
+        description: If the transaction is part of a recurring donation
       - name: amount
-        description: "Amount of the transaction"
-
+        description: Amount of the transaction
       - name: gift_count
-        description: "the number of cumulative gifts for each person_id, This number increases with every donation."
-
+        description: the number of cumulative gifts for each person_id, This number
+          increases with every donation.
       - name: coalesced_audience
-        description: "The audience unioned values coalesced with the audience calculated values to fill in any nulls that are present"
-
+        description: The audience unioned values coalesced with the audience calculated
+          values to fill in any nulls that are present
       - name: source_column
-        description: "The source of the values in the coalesced_audience column"
-
+        description: The source of the values in the coalesced_audience column
