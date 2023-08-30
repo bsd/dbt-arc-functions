@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched
+    description: ""
+    columns:
+      - name: transaction_date_day
+        description: "Date of transaction in Day format"
+
+      - name: fiscal_year
+        description: ""
+
+      - name: person_id
+        description: "The unique identifier of each person record"
+
+      - name: audience_unioned
+        description: ""
+
+      - name: audience_calculated
+        description: ""
+
+      - name: donor_engagement
+        description: "the donor engagement value of each person by day and date"
+
+      - name: channel_category
+        description: ""
+
+      - name: channel
+        description: ""
+
+      - name: gift_size_string
+        description: "the size of each gift sorted into categories represented as a string"
+
+      - name: recurring
+        description: "If the transaction is part of a recurring donation"
+
+      - name: amount
+        description: "Amount of the transaction"
+
+      - name: gift_count
+        description: "the number of cumlative gifts for each person_id, This number increases with every donation."
+
+      - name: coalesced_audience
+        description: ""
+
+      - name: source_column
+        description: ""
+
