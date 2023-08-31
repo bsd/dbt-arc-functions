@@ -1,5 +1,5 @@
 {% macro create_mart_audience_budget_with_audience_transaction(
-    reference_0_name='audience_transaction_onetime_donor_counts_actuals_rollup_unioned',
+    reference_0_name='stg_audience_transaction_onetime_donor_counts_actuals_rollup_unioned',
     reference_1_name='stg_audience_budget_onetime_donor_count_budget_combined') %}
 SELECT
     onetime_donor_counts.total_onetime_donor_counts
