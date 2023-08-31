@@ -1,8 +1,8 @@
 {% macro create_stg_stitch_sfmc_customizable_email_campaigns(
     audience,
     source_code_campaign,
-    reference_name="stg_src_stitch_email_job")
- %}
+    reference_name="stg_src_stitch_email_job"
+) %}
 
     select distinct
         safe_cast(job_id as string) as message_id,
