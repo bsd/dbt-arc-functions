@@ -1,0 +1,40 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_audience_transaction_onetime_donor_counts_actuals_rollup
+    description: ''
+    columns:
+      - name: date_day
+        description: The date of each day. This column has one row per day per person
+      - name: interval_type
+        description: ''
+      - name: donor_audience
+        description: The audience associated with the transaction
+      - name: platform
+        description: ''
+      - name: total_onetime_donor_counts
+        description: ''
+      - name: new_onetime_donor_counts
+        description: ''
+      - name: retained_onetime_donor_counts
+        description: ''
+      - name: retained3_onetime_donor_counts
+        description: ''
+      - name: active_onetime_donor_counts
+        description: ''
+      - name: lapsed_onetime_donor_counts
+        description: ''
+      - name: total_onetime_donor_counts_cumulative
+        description: ''
+      - name: new_onetime_donor_counts_cumulative
+        description: ''
+      - name: retained_onetime_donor_counts_cumulative
+        description: ''
+      - name: retained3_onetime_donor_counts_cumulative
+        description: ''
+      - name: reinstated_onetime_donor_counts_cumulative
+        description: ''
+      - name: active_onetime_donor_counts_cumulative
+        description: ''
+      - name: lapsed_onetime_donor_counts_cumulative
+        description: ''
