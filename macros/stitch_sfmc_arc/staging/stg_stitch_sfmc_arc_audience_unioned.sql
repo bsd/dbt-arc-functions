@@ -13,7 +13,7 @@ with arc_audience as (
             when donor_audience = 'mass' then 'grassroots'
             when donor_audience = 'monthly' then 'recurring'
             else donor_audience
-        end as donor_audience
+        end as donor_audience -- UUSA custom audience naming code
     from
         {{ ref(arc_audience) }}
 

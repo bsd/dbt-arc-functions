@@ -26,7 +26,7 @@ select
         when donor_audience = 'Leadership Giving' then 'midlevel'
         when donor_audience = 'Major' then 'major'
         when donor_audience = 'Unite' then 'unite'
-    end as donor_audience
+    end as donor_audience -- UUSA custom audience naming code
 
 from {{ ref(budget_by_day) }}
 
