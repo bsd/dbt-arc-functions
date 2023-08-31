@@ -35,9 +35,9 @@
         subscriber_key,
         event_dt,
         domain,
-        triggerrer_send_definition_object_id,
-        triggered_send_customer_key
-    from deduplicated_data
-    where row_num = 1
+        triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
+        triggeredsendcustomerkey as triggered_send_customer_key
+    from {{ source("stitch_sfmc_email", "sent") }}
+    where jobid is not null
 
 {% endmacro %}
