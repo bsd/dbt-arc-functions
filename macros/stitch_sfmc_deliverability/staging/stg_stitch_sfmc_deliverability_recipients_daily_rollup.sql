@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_deliverability_recipients_daily_rollup(
-    reference_name="stg_src_stitch_email_open"
+    reference_name="stg_src_stitch_email_sent"
 ) %}
     select
         safe_cast(event_dt as date) as sent_date,
