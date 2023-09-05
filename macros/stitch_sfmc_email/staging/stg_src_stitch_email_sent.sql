@@ -2,7 +2,7 @@
 
     with
         deduplicated_data as (
-            select distinct
+            select
                 cast(__accountid_ as int64) as account_id,
                 cast(oybaccountid as int64) as oyb_account_id,
                 cast(jobid as int64) as job_id,
