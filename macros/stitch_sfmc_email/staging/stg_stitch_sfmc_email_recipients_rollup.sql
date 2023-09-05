@@ -3,7 +3,7 @@
 ) %}
     select
         safe_cast(job_id as string) as message_id,
-        count(safe_cast(distinct subscriber_key as int)) as recipients
+        safe_cast(count(distinct subscriber_key) as int) as recipients
     from {{ ref(reference_name) }}
     group by 1
 {% endmacro %}
