@@ -35,8 +35,8 @@
         subscriber_key,
         event_dt,
         domain,
-        triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
-        triggeredsendcustomerkey as triggered_send_customer_key
+        triggerrer_send_definition_object_id,
+        triggered_send_customer_key
     from deduplicated_data
 
 {% endmacro %}
