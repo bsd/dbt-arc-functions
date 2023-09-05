@@ -38,6 +38,5 @@
         triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
         triggeredsendcustomerkey as triggered_send_customer_key
     from {{ source("stitch_sfmc_email", "sent") }}
-    where jobid is not null
 
 {% endmacro %}
