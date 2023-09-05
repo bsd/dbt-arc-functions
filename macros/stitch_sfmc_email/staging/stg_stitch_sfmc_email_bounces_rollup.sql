@@ -19,18 +19,23 @@
             end
         ) as block_bounces,
         count(
-            distinct when bounce_category_id = '5' then subscriber_key else null end
+            distinct case
+                when bounce_category_id = '5' then subscriber_key else null
+            end
         ) as tech_bounces,
         count(
-            distinct when bounce_category_id = '4' then subscriber_key else null end
+            distinct case
+                when bounce_category_id = '4' then subscriber_key else null
+            end
         ) as unknown_bounces,
         count(
-            distinct
-            when bounce_category_id = '1'
-            then subscriber_key
-            when bounce_category_id = '2'
-            then subscriber_key
-            else null end
+            distinct case
+                when bounce_category_id = '1'
+                then subscriber_key
+                when bounce_category_id = '2'
+                then subscriber_key
+                else null
+            end
         ) as total_bounces
     from {{ ref(reference_name) }}
     group by 1
