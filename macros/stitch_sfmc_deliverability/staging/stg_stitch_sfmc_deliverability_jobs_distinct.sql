@@ -19,7 +19,7 @@
 
     select distinct
         safe_cast(job_id as string) as message_id,
-        safe_cast(event_dt as date) as sent_date,
+        safe_cast(NULLIF(event_dt, '') as DATE) as sent_date,
         safe_cast(domain as string) as email_domain
     from unions
 {% endmacro %}
