@@ -5,7 +5,7 @@
         safe_cast(event_dt as date) as sent_date,
         safe_cast(job_id as string) as message_id,
         safe_cast(domain as string) as email_domain,
-        count(case when is_unique = true then 1 else 0 end) as opens
+        count(distinct subscriber_key) as opens
     from {{ ref(reference_name) }}
     group by 1, 2, 3
 {% endmacro %}

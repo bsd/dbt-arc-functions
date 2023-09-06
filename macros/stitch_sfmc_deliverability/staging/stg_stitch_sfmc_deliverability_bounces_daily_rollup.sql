@@ -7,19 +7,21 @@
         safe_cast(domain as string) as email_domain,
         safe_cast(
             count(
+                distinct
                 case
                     when lower(bounce_category) = 'hard bounce' and is_unique = true
-                    then 1
-                    else 0
+                    then subscriber_key
+                    else null
                 end
             ) as int
         ) as hard_bounces,
         safe_cast(
             count(
+                distinct
                 case
                     when lower(bounce_category) = 'soft bounce' and is_unique = true
-                    then 1
-                    else 0
+                    then subscriber_key
+                    else null
                 end
             ) as int
         ) as soft_bounces
