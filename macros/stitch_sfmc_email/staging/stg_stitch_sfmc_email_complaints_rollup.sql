@@ -3,7 +3,7 @@
 ) %}
     select
         safe_cast(job_id as string) as message_id,
-        safe_cast(count(subscriber_key) as int) as complaints
+        safe_cast(count(distinct subscriber_key) as int) as complaints
     from {{ ref(reference_name) }}
     group by 1
 {% endmacro %}
