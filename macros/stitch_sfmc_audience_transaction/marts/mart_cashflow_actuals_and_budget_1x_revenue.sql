@@ -95,7 +95,7 @@
                 total_revenue_budget_by_day as prev_two_year_total_revenue_budget
             from dateoffset
         )
-
+enriched as (
     select
         t1.*,
         t2.prev_year_total_revenue_actuals,
@@ -114,5 +114,27 @@
     where
         t1.date_day >= date_sub(current_date(), interval 1 year)  -- Filter by the last year's data
         and t1.date_day <= date_sub(current_date(), interval 1 day)  -- Adjust as needed
+        )
+
+select 
+year,
+month,
+day,
+date_day, 
+fiscal_year,
+donor_audience, 
+channel,
+recur_flag,
+total_revenue_actuals,
+total_gifts_actuals,
+total_revenue_budget_by_day,
+total_revenue_cumulative_fiscal_year,
+prev_year_total_revenue_actuals,
+prev_year_total_revenue_budget,
+prev_two_year_total_revenue_actuals,
+prev_two_year_total_revenue_budget
+from enriched
+
+
 
 {% endmacro %}
