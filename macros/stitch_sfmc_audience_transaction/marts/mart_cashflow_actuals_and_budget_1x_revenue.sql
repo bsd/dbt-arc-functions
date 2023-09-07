@@ -60,11 +60,59 @@
                 on base.date_day = date(budget_revenue.date_day)
                 and base.donor_audience = budget_revenue.donor_audience
                 and base.channel = budget_revenue.platform
+        ),
+        original_mart as (
+            select *
+            from budget_join
+            where recur_flag is null or recur_flag = false
+            order by 2, 3, 4, 5, 6
+        ),
+        dateoffset as (
+            select
+                donor_audience,
+                date_day,
+                total_revenue_actuals,
+                total_revenue_budget_by_day,
+                date_sub(date_day, interval 1 year) as prev_year_date_day,
+                date_sub(date_day, interval 2 year) as prev_two_year_date_day
+            from original_mart
+        ),
+
+        prevyear as (
+            select
+                donor_audience,
+                date_day,
+                total_revenue_actuals as prev_year_total_revenue_actuals,
+                total_revenue_budget_by_day as prev_year_total_revenue_budget
+            from dateoffset
+        ),
+
+        prevtwoyears as (
+            select
+                donor_audience,
+                date_day,
+                total_revenue_actuals as prev_two_year_total_revenue_actuals,
+                total_revenue_budget_by_day as prev_two_year_total_revenue_budget
+            from dateoffset
         )
 
-    select *
-    from budget_join
-    where recur_flag is null or recur_flag = false
-    order by 2, 3, 4, 5, 6
+    select
+        t1.*,
+        t2.prev_year_total_revenue_actuals,
+        t2.prev_year_total_revenue_budget,
+        t3.prev_two_year_total_revenue_actuals,
+        t3.prev_two_year_total_revenue_budget
+    from dateoffset as t1
+    left join
+        prevyear as t2
+        on t1.donor_audience = t2.donor_audience
+        and t1.prev_year_date_day = t2.date_day  -- Same day last year
+    left join
+        prevtwoyears as t3
+        on t1.donor_audience = t3.donor_audience
+        and t1.prev_two_year_date_day = t3.date_day  -- Same day two years back
+    where
+        t1.date_day >= date_sub(current_date(), interval 1 year)  -- Filter by the last year's data
+        and t1.date_day <= date_sub(current_date(), interval 1 day)  -- Adjust as needed
 
 {% endmacro %}
