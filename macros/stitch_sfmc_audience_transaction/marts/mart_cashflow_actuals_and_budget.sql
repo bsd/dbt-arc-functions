@@ -60,10 +60,7 @@
         ),
         dateoffset as (
             select
-                donor_audience,
-                date_day,
-                total_revenue_actuals,
-                total_revenue_budget_by_day,
+                *,
                 date_sub(date_day, interval 1 year) as prev_year_date_day,
                 date_sub(date_day, interval 2 year) as prev_two_year_date_day
             from original_mart
@@ -105,7 +102,7 @@
     where
         t1.date_day >= date_sub(current_date(), interval 1 year)  -- Filter by the last year's data
         and t1.date_day <= date_sub(current_date(), interval 1 day)  -- Adjust as needed
-)
+        )
 
 select 
 year,
@@ -125,4 +122,7 @@ prev_year_total_revenue_budget,
 prev_two_year_total_revenue_actuals,
 prev_two_year_total_revenue_budget
 from enriched
+
+
 {% endmacro %}
+

@@ -69,10 +69,7 @@
         ),
         dateoffset as (
             select
-                donor_audience,
-                date_day,
-                total_revenue_actuals,
-                total_revenue_budget_by_day,
+                *,
                 date_sub(date_day, interval 1 year) as prev_year_date_day,
                 date_sub(date_day, interval 2 year) as prev_two_year_date_day
             from original_mart
@@ -95,7 +92,7 @@
                 total_revenue_budget_by_day as prev_two_year_total_revenue_budget
             from dateoffset
         )
-enriched as (
+, enriched as (
     select
         t1.*,
         t2.prev_year_total_revenue_actuals,
