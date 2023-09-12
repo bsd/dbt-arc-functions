@@ -78,6 +78,7 @@
         prevyear as (
             select
                 donor_audience,
+                channel,
                 date_day,
                 total_revenue_actuals as prev_year_total_revenue_actuals,
                 total_revenue_budget_by_day as prev_year_total_revenue_budget
@@ -87,6 +88,7 @@
         prevtwoyears as (
             select
                 donor_audience,
+                channel,
                 date_day,
                 total_revenue_actuals as prev_two_year_total_revenue_actuals,
                 total_revenue_budget_by_day as prev_two_year_total_revenue_budget
@@ -103,11 +105,13 @@
     left join
         prevyear
         on dateoffset.donor_audience = prevyear.donor_audience
-        and dateoffset.prev_year_date_day = prevyear.date_day  -- Same day last year
+        and dateoffset.prev_year_date_day = prevyear.date_day 
+        and dateoffset.channel = prevyear.channel 
     left join
         prevtwoyears 
         on dateoffset.donor_audience = prevtwoyears.donor_audience
-        and dateoffset.prev_two_year_date_day = prevtwoyears.date_day  -- Same day two years back
+        and dateoffset.prev_two_year_date_day = prevtwoyears.date_day
+        and dateoffset.channel = prevtwoyears.channel
         )
 
 select 

@@ -94,11 +94,13 @@
     left join
         prevyear
         on dateoffset.donor_audience = prevyear.donor_audience
-        and dateoffset.prev_year_date_day = prevyear.date_day  -- Same day last year
+        and dateoffset.prev_year_date_day = prevyear.date_day 
+        and dateoffset.channel = prevyear.channel 
     left join
         prevtwoyears 
         on dateoffset.donor_audience = prevtwoyears.donor_audience
-        and dateoffset.prev_two_year_date_day = prevtwoyears.date_day  -- Same day two years back
+        and dateoffset.prev_two_year_date_day = prevtwoyears.date_day
+        and dateoffset.channel = prevtwoyears.channel
         )
 
 select 
