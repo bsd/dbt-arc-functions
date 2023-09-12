@@ -85,23 +85,23 @@
         )
 , enriched as (
     select
-        t1.*,
-        t2.prev_year_total_revenue_actuals,
-        t2.prev_year_total_revenue_budget,
-        t3.prev_two_year_total_revenue_actuals,
-        t3.prev_two_year_total_revenue_budget
-    from dateoffset as t1
+        dateoffset.*,
+        prevyear.prev_year_total_revenue_actuals,
+        prevyear.prev_year_total_revenue_budget,
+        prevtwoyears.prev_two_year_total_revenue_actuals,
+        prevtwoyears.prev_two_year_total_revenue_budget
+    from dateoffset 
     left join
-        prevyear as t2
-        on t1.donor_audience = t2.donor_audience
-        and t1.prev_year_date_day = t2.date_day  -- Same day last year
+        prevyear
+        on dateoffset.donor_audience = prevyear.donor_audience
+        and dateoffset.prev_year_date_day = prevyear.date_day  -- Same day last year
     left join
-        prevtwoyears as t3
-        on t1.donor_audience = t3.donor_audience
-        and t1.prev_two_year_date_day = t3.date_day  -- Same day two years back
+        prevtwoyears 
+        on dateoffset.donor_audience = prevtwoyears.donor_audience
+        and dateoffset.prev_two_year_date_day = prevtwoyears.date_day  -- Same day two years back
     where
-        t1.date_day >= date_sub(current_date(), interval 1 year)  -- Filter by the last year's data
-        and t1.date_day <= date_sub(current_date(), interval 1 day)  -- Adjust as needed
+        dateoffset.date_day >= date_sub(current_date(), interval 1 year)  -- Filter by the last year's data
+        and dateoffset.date_day <= date_sub(current_date(), interval 1 day)  -- Adjust as needed
         )
 
 select 
