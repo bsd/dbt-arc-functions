@@ -108,9 +108,6 @@
         prevtwoyears 
         on dateoffset.donor_audience = prevtwoyears.donor_audience
         and dateoffset.prev_two_year_date_day = prevtwoyears.date_day  -- Same day two years back
-    where
-        dateoffset.date_day >= date_sub(current_date(), interval 1 year)  -- Filter by the last year's data
-        and dateoffset.date_day <= date_sub(current_date(), interval 1 day)  -- Adjust as needed
         )
 
 select 
