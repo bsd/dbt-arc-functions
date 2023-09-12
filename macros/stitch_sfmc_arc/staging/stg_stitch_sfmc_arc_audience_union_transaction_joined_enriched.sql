@@ -10,7 +10,7 @@
                 "audience_union_transaction_joined.transaction_date_day",
                 var("fiscal_year_start"),
             )
-        }} as fiscal_year,
+        }} as fiscal_year, -- not sure if this field is needed just yet here
         audience_union_transaction_joined.person_id,
         audience_union_transaction_joined.donor_audience as audience_unioned,
         audience_calculated_alldates.donor_audience as audience_calculated,
