@@ -91,19 +91,19 @@
         dateoffset.month,
         dateoffset.day,
         coalesce(
-            dateoffset.date_day, prevyear.date_day, prevtwoyear.date_day
+            dateoffset.date_day, prevyear.date_day, prevtwoyears.date_day
         ) as date_day,
         dateoffset.fiscal_year,
         coalesce(
             dateoffset.donor_audience,
             prevyear.donor_audience,
-            prevtwoyear.donor_audience
+            prevtwoyears.donor_audience
         ) as donor_audience,
-        coalesce(dateoffset.channel, prevyear.channel, prevtwoyear.channel) as channel,
-        offset.total_revenue_actuals,
-        offset.total_gifts_actuals,
-        offset.total_revenue_budget_by_day,
-        offset.total_revenue_cumulative_fiscal_year,
+        coalesce(dateoffset.channel, prevyear.channel, prevtwoyears.channel) as channel,
+        dateoffset.total_revenue_actuals,
+        dateoffset.total_gifts_actuals,
+        dateoffset.total_revenue_budget_by_day,
+        dateoffset.total_revenue_cumulative_fiscal_year,
         prevyear.prev_year_total_revenue_actuals,
         prevyear.prev_year_total_revenue_budget,
         prevtwoyears.prev_two_year_total_revenue_actuals,
