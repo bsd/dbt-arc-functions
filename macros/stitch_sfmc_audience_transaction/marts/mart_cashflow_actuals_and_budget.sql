@@ -9,6 +9,7 @@
                 audience_transactions.transaction_date_day as date_day,
                 audience_transactions.coalesced_audience as donor_audience,
                 lower(audience_transactions.channel) as channel,
+                audience_transactions.recurring as recur_flag,
                 audience_transactions.fiscal_year,
                 sum(audience_transactions.amount) as total_revenue_actuals,
                 sum(audience_transactions.gift_count) as total_gifts_actuals
@@ -33,7 +34,8 @@
                         coalesce(base.channel, budget_revenue.platform),
                         coalesce(base.fiscal_year, budget_revenue.fiscal_year)
                     order by coalesce(base.date_day, budget_revenue.date_day)
-                ) as total_revenue_cumulative_fiscal_year
+                ) as total_revenue_cumulative_fiscal_year,
+                recur_flag
             from base
             full join
                 {{ ref(budget_revenue) }} as budget_revenue
@@ -89,7 +91,8 @@
                 prevyear.prev_year_total_revenue_actuals,
                 prevyear.prev_year_total_revenue_budget,
                 prevtwoyears.prev_two_year_total_revenue_actuals,
-                prevtwoyears.prev_two_year_total_revenue_budget
+                prevtwoyears.prev_two_year_total_revenue_budget,
+                recur_flag
             from dateoffset
             full outer join
                 prevyear
