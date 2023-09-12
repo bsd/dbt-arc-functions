@@ -69,6 +69,7 @@
         prevyear as (
             select
                 donor_audience,
+                channel,
                 date_day,
                 total_revenue_actuals as prev_year_total_revenue_actuals,
                 total_revenue_budget_by_day as prev_year_total_revenue_budget
@@ -78,6 +79,7 @@
         prevtwoyears as (
             select
                 donor_audience,
+                channel,
                 date_day,
                 total_revenue_actuals as prev_two_year_total_revenue_actuals,
                 total_revenue_budget_by_day as prev_two_year_total_revenue_budget
