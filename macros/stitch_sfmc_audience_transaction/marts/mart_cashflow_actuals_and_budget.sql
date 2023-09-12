@@ -109,9 +109,7 @@
                 "enriched.date_day",
                 var("fiscal_year_start"),
             )
-        }}
-    else
-        as fiscal_year,
+        }} as fiscal_year,
         extract(year from enriched.date_day) as year,
         extract(month from enriched.date_day) as month,
         extract(day from enriched.date_day) as day,
