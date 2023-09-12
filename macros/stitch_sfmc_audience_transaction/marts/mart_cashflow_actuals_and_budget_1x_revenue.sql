@@ -60,15 +60,14 @@
                 on base.date_day = date(budget_revenue.date_day)
                 and base.donor_audience = budget_revenue.donor_audience
                 and base.channel = budget_revenue.platform
-        )
-    ,
-    original_mart as (
-    select *
-    from budget_join
-    where recur_flag is null or recur_flag = false
-    order by 2, 3, 4, 5, 6)
-
-, dateoffset as (
+        ),
+        original_mart as (
+            select *
+            from budget_join
+            where recur_flag is null or recur_flag = false
+            order by 2, 3, 4, 5, 6
+        ),
+        dateoffset as (
             select
                 *,
                 date_sub(date_day, interval 1 year) as prev_year_date_day,
