@@ -37,8 +37,7 @@
                         coalesce(base.channel, budget_revenue.platform),
                         coalesce(base.fiscal_year, budget_revenue.fiscal_year)
                     order by coalesce(base.date_day, budget_revenue.date_day)
-                ) as total_revenue_cumulative_fiscal_year,
-                recur_flag
+                ) as total_revenue_cumulative_fiscal_year
             from base
             full join
                 {{ ref(budget_revenue) }} as budget_revenue
@@ -94,8 +93,7 @@
                 prevyear.prev_year_total_revenue_actuals,
                 prevyear.prev_year_total_revenue_budget,
                 prevtwoyears.prev_two_year_total_revenue_actuals,
-                prevtwoyears.prev_two_year_total_revenue_budget,
-                recur_flag
+                prevtwoyears.prev_two_year_total_revenue_budget
             from dateoffset
             full outer join
                 prevyear
