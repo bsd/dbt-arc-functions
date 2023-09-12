@@ -19,6 +19,10 @@
         ),
         original_mart as (
             select
+                coalesce(
+            safe_cast(base.fiscal_year as int64),
+            safe_cast(budget_revenue.fiscal_year as int64)
+        ) as fiscal_year,
                 coalesce(base.date_day, budget_revenue.date_day) as date_day,
                 coalesce(
                     base.donor_audience, budget_revenue.donor_audience
