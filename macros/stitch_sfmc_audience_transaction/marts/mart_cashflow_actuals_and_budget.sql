@@ -18,22 +18,6 @@
         ),
         original_mart as (
             select
-                coalesce(
-                    safe_cast(base.fiscal_year as int64),
-                    safe_cast(budget_revenue.fiscal_year as int64)
-                ) as fiscal_year,
-                coalesce(
-                    safe_cast(extract(year from base.date_day) as int64),
-                    safe_cast(budget_revenue.date_spine_year as int64)
-                ) as year,
-                coalesce(
-                    safe_cast(extract(month from base.date_day) as int64),
-                    safe_cast(budget_revenue.date_spine_month as int64)
-                ) as month,
-                coalesce(
-                    safe_cast(extract(day from base.date_day) as int64),
-                    safe_cast(budget_revenue.date_spine_day as int64)
-                ) as day,
                 coalesce(base.date_day, budget_revenue.date_day) as date_day,
                 coalesce(
                     base.donor_audience, budget_revenue.donor_audience
@@ -84,40 +68,54 @@
                 total_revenue_actuals as prev_two_year_total_revenue_actuals,
                 total_revenue_budget_by_day as prev_two_year_total_revenue_budget
             from dateoffset
+        ),
+        enriched as (
+            select
+                coalesce(
+                    dateoffset.date_day, prevyear.date_day, prevtwoyears.date_day
+                ) as date_day,
+                coalesce(
+                    dateoffset.donor_audience,
+                    prevyear.donor_audience,
+                    prevtwoyears.donor_audience
+                ) as donor_audience,
+                coalesce(
+                    dateoffset.channel, prevyear.channel, prevtwoyears.channel
+                ) as channel,
+                dateoffset.total_revenue_actuals,
+                dateoffset.total_gifts_actuals,
+                dateoffset.total_revenue_budget_by_day,
+                dateoffset.total_revenue_cumulative_fiscal_year,
+                prevyear.prev_year_total_revenue_actuals,
+                prevyear.prev_year_total_revenue_budget,
+                prevtwoyears.prev_two_year_total_revenue_actuals,
+                prevtwoyears.prev_two_year_total_revenue_budget
+            from dateoffset
+            full outer join
+                prevyear
+                on dateoffset.donor_audience = prevyear.donor_audience
+                and dateoffset.prev_year_date_day = prevyear.date_day
+                and dateoffset.channel = prevyear.channel
+            full outer join
+                prevtwoyears
+                on dateoffset.donor_audience = prevtwoyears.donor_audience
+                and dateoffset.prev_two_year_date_day = prevtwoyears.date_day
+                and dateoffset.channel = prevtwoyears.channel
         )
 
     select
-        dateoffset.year,
-        dateoffset.month,
-        dateoffset.day,
-        coalesce(
-            dateoffset.date_day, prevyear.date_day, prevtwoyears.date_day
-        ) as date_day,
-        dateoffset.fiscal_year,
-        coalesce(
-            dateoffset.donor_audience,
-            prevyear.donor_audience,
-            prevtwoyears.donor_audience
-        ) as donor_audience,
-        coalesce(dateoffset.channel, prevyear.channel, prevtwoyears.channel) as channel,
-        dateoffset.total_revenue_actuals,
-        dateoffset.total_gifts_actuals,
-        dateoffset.total_revenue_budget_by_day,
-        dateoffset.total_revenue_cumulative_fiscal_year,
-        prevyear.prev_year_total_revenue_actuals,
-        prevyear.prev_year_total_revenue_budget,
-        prevtwoyears.prev_two_year_total_revenue_actuals,
-        prevtwoyears.prev_two_year_total_revenue_budget
-    from dateoffset
-    full outer join
-        prevyear
-        on dateoffset.donor_audience = prevyear.donor_audience
-        and dateoffset.prev_year_date_day = prevyear.date_day
-        and dateoffset.channel = prevyear.channel
-    full outer join
-        prevtwoyears
-        on dateoffset.donor_audience = prevtwoyears.donor_audience
-        and dateoffset.prev_two_year_date_day = prevtwoyears.date_day
-        and dateoffset.channel = prevtwoyears.channel
+        {{
+            dbt_arc_functions.get_fiscal_year(
+                "enriched.date_day",
+                var("fiscal_year_start"),
+            )
+        }}
+    else
+        as fiscal_year,
+        extract(year from enriched.date_day) as year,
+        extract(month from enriched.date_day) as month,
+        extract(day from enriched.date_day) as day,
+        enriched.*
+    from enriched
 
 {% endmacro %}
