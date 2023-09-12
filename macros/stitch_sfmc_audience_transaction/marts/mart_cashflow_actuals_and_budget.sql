@@ -10,11 +10,10 @@
                 audience_transactions.fiscal_year,
                 audience_transactions.coalesced_audience as donor_audience,
                 lower(audience_transactions.channel) as channel,
-                audience_transactions.recurring as recur_flag,
                 sum(audience_transactions.amount) as total_revenue_actuals,
                 sum(audience_transactions.gift_count) as total_gifts_actuals
             from {{ ref(audience_transactions) }} as audience_transactions
-            group by 1, 2, 3, 4, 5
+            group by 1, 2, 3, 4
             order by 2 desc
         ),
         original_mart as (
