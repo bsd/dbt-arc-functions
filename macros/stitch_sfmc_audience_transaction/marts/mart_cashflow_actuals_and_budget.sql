@@ -86,15 +86,20 @@
             from dateoffset
         )
 
-
     select
         dateoffset.year,
         dateoffset.month,
         dateoffset.day,
-        COALESCE(dateoffset.date_day, prevyear.date_day, prevtwoyear.date_day) as date_day
+        coalesce(
+            dateoffset.date_day, prevyear.date_day, prevtwoyear.date_day
+        ) as date_day,
         dateoffset.fiscal_year,
-        COALESCE(dateoffset.donor_audience,prevyear.donor_audience, prevtwoyear.donor_audience) as donor_audience,
-        COALESCE(dateoffset.channel,prevyear.channel, prevtwoyear.channel) as channel,
+        coalesce(
+            dateoffset.donor_audience,
+            prevyear.donor_audience,
+            prevtwoyear.donor_audience
+        ) as donor_audience,
+        coalesce(dateoffset.channel, prevyear.channel, prevtwoyear.channel) as channel,
         offset.total_revenue_actuals,
         offset.total_gifts_actuals,
         offset.total_revenue_budget_by_day,
@@ -103,19 +108,16 @@
         prevyear.prev_year_total_revenue_budget,
         prevtwoyears.prev_two_year_total_revenue_actuals,
         prevtwoyears.prev_two_year_total_revenue_budget
-    from dateoffset 
+    from dateoffset
     full outer join
         prevyear
         on dateoffset.donor_audience = prevyear.donor_audience
-        and dateoffset.prev_year_date_day = prevyear.date_day 
-        and dateoffset.channel = prevyear.channel 
+        and dateoffset.prev_year_date_day = prevyear.date_day
+        and dateoffset.channel = prevyear.channel
     full outer join
-        prevtwoyears 
+        prevtwoyears
         on dateoffset.donor_audience = prevtwoyears.donor_audience
         and dateoffset.prev_two_year_date_day = prevtwoyears.date_day
         and dateoffset.channel = prevtwoyears.channel
-        
-
 
 {% endmacro %}
-

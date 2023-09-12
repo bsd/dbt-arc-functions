@@ -1,4 +1,3 @@
-
 {% macro create_mart_cashflow_actuals_and_budget_1x_revenue(
     audience_transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
     budget_revenue="stg_audience_budget_by_day_enriched"
@@ -95,44 +94,39 @@
                 total_revenue_budget_by_day as prev_two_year_total_revenue_budget
             from dateoffset
         )
-, enriched as (
+
     select
-        dateoffset.*,
+        dateoffset.year,
+        dateoffset.month,
+        dateoffset.day,
+        coalesce(
+            dateoffset.date_day, prevyear.date_day, prevtwoyear.date_day
+        ) as date_day,
+        dateoffset.fiscal_year,
+        coalesce(
+            dateoffset.donor_audience,
+            prevyear.donor_audience,
+            prevtwoyear.donor_audience
+        ) as donor_audience,
+        coalesce(dateoffset.channel, prevyear.channel, prevtwoyear.channel) as channel,
+        offset.total_revenue_actuals,
+        offset.total_gifts_actuals,
+        offset.total_revenue_budget_by_day,
+        offset.total_revenue_cumulative_fiscal_year,
         prevyear.prev_year_total_revenue_actuals,
         prevyear.prev_year_total_revenue_budget,
         prevtwoyears.prev_two_year_total_revenue_actuals,
         prevtwoyears.prev_two_year_total_revenue_budget
-    from dateoffset 
-    left join
+    from dateoffset
+    full outer join
         prevyear
         on dateoffset.donor_audience = prevyear.donor_audience
-        and dateoffset.prev_year_date_day = prevyear.date_day 
-        and dateoffset.channel = prevyear.channel 
-    left join
-        prevtwoyears 
+        and dateoffset.prev_year_date_day = prevyear.date_day
+        and dateoffset.channel = prevyear.channel
+    full outer join
+        prevtwoyears
         on dateoffset.donor_audience = prevtwoyears.donor_audience
         and dateoffset.prev_two_year_date_day = prevtwoyears.date_day
         and dateoffset.channel = prevtwoyears.channel
-        )
-
-select 
-year,
-month,
-day,
-date_day, 
-fiscal_year,
-donor_audience, 
-channel,
-total_revenue_actuals,
-total_gifts_actuals,
-total_revenue_budget_by_day,
-total_revenue_cumulative_fiscal_year,
-prev_year_total_revenue_actuals,
-prev_year_total_revenue_budget,
-prev_two_year_total_revenue_actuals,
-prev_two_year_total_revenue_budget
-from enriched
-
-
 
 {% endmacro %}
