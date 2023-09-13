@@ -96,9 +96,11 @@
         ),
         enriched as (
             select
-                coalesce(
-                    dateoffset.date_day, prevyear.date_day, prevtwoyears.date_day
-                ) as date_day,
+                dateoffset.date_day as date_day,
+                date_add(prevyear.date_day, interval 1 year) as prevyear_date_day,
+                date_add(
+                    prevtwoyears.date_day, interval 2 year
+                ) as prevtwoyears_date_day,
                 coalesce(
                     dateoffset.donor_audience,
                     prevyear.donor_audience,
@@ -114,8 +116,7 @@
                 prevyear.prev_year_total_revenue_actuals,
                 prevyear.prev_year_total_revenue_budget,
                 prevtwoyears.prev_two_year_total_revenue_actuals,
-                prevtwoyears.prev_two_year_total_revenue_budget,
-                recur_flag
+                prevtwoyears.prev_two_year_total_revenue_budget
             from dateoffset
             full outer join
                 prevyear
@@ -127,19 +128,36 @@
                 on dateoffset.donor_audience = prevtwoyears.donor_audience
                 and dateoffset.prev_two_year_date_day = prevtwoyears.date_day
                 and dateoffset.channel = prevtwoyears.channel
+        ),
+        adjusted_date_day as (
+            select
+                coalesce(
+                    date_day, prevyear_date_day, prevtwoyears_date_day
+                ) as adjusted_date_day,  -- Use a different date value if the join failed (e.g., add 1 year)
+                enriched.*
+            from enriched
         )
 
     select
         {{
             dbt_arc_functions.get_fiscal_year(
-                "enriched.date_day",
+                "adjusted_date_day.adjusted_date_day",
                 var("fiscal_year_start"),
             )
         }} as fiscal_year,
-        extract(year from enriched.date_day) as year,
-        extract(month from enriched.date_day) as month,
-        extract(day from enriched.date_day) as day,
-        enriched.*
-    from enriched
+        extract(year from adjusted_date_day.adjusted_date_day) as year,
+        extract(month from adjusted_date_day.adjusted_date_day) as month,
+        extract(day from adjusted_date_day.adjusted_date_day) as day,
+        adjusted_date_day.adjusted_date_day as date_day,
+        donor_audience,
+        channel,
+        total_revenue_actuals,
+        total_revenue_budget_by_day,
+        total_revenue_cumulative_fiscal_year,
+        prev_year_total_revenue_actuals,
+        prev_year_total_revenue_budget,
+        prev_two_year_total_revenue_actuals,
+        prev_two_year_total_revenue_budget
+    from adjusted_date_day
 
 {% endmacro %}
