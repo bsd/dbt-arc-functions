@@ -77,7 +77,9 @@
             select
                 dateoffset.date_day as date_day,
                 date_add(prevyear.date_day, interval 1 year) as prevyear_date_day,
-                date_add(prevtwoyears.date_day, interval 2 year) as prevtwoyear_date_day,
+                date_add(
+                    prevtwoyears.date_day, interval 2 year
+                ) as prevtwoyear_date_day,
                 coalesce(
                     dateoffset.donor_audience,
                     prevyear.donor_audience,
@@ -95,24 +97,27 @@
                 prevtwoyears.prev_two_year_total_revenue_actuals,
                 prevtwoyears.prev_two_year_total_revenue_budget
             from dateoffset
-            left join
+            full outer join
                 prevyear
                 on dateoffset.donor_audience = prevyear.donor_audience
                 and dateoffset.prev_year_date_day = prevyear.date_day
                 and dateoffset.channel = prevyear.channel
-            left join
+            full outer join
                 prevtwoyears
                 on dateoffset.donor_audience = prevtwoyears.donor_audience
                 and dateoffset.prev_two_year_date_day = prevtwoyears.date_day
                 and dateoffset.channel = prevtwoyears.channel
+        ),
+        adjusted_date_day as (
+            select
+                coalesce(
+                    date_day, prevyear_date_day, prevtwoyears_date_day
+                ) as adjusted_date_day,  -- Use a different date value if the join failed (e.g., add 1 year)
+                enriched.*
+            from enriched
         )
 
-    , adjusted_date_day as (select
-        coalesce(date_day, prevyear_date_day, prevtwoyears_date_day) as adjusted_date_day, -- Use a different date value if the join failed (e.g., add 1 year)
-        enriched.*
-    from enriched)
-
- select
+    select
         {{
             dbt_arc_functions.get_fiscal_year(
                 "adjusted_date_day",
@@ -132,6 +137,6 @@
         prev_year_total_revenue_budget,
         prev_two_year_total_revenue_actuals,
         prev_two_year_total_revenue_budget
-        from adjusted_date_day
+    from adjusted_date_day
 
 {% endmacro %}
