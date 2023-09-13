@@ -140,7 +140,6 @@
         extract(year from date_day) as year,
         extract(month from date_day) as month,
         extract(day from date_day) as day,
-        date_day,
         adjusted_date_day.*
     from adjusted_date_day
     
