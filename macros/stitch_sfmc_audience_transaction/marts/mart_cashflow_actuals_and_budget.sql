@@ -96,10 +96,10 @@
                 dateoffset.total_gifts_actuals,
                 dateoffset.total_revenue_budget_by_day,
                 dateoffset.total_revenue_cumulative_fiscal_year,
-                coalesce(prevyear.prev_year_total_revenue_actuals, prevtwoyears.prev_year_total_revenue_actuals) as prev_year_total_revenue_actuals,
-                coalesce(prevyear.prev_year_total_revenue_budget, prevtwoyears.prev_year_total_revenue_budget) as prev_year_total_revenue_budget,
-                coalesce(prevtwoyears.prev_two_year_total_revenue_actuals, prevyear.prev_two_year_total_revenue_actuals) as prev_two_year_total_revenue_actuals,
-                coalesce(prevtwoyears.prev_two_year_total_revenue_budget, prevyear.prev_two_year_total_revenue_budget) as prev_two_year_total_revenue_budget
+                prevyear.prev_year_total_revenue_actuals,
+                prevyear.prev_year_total_revenue_budget,
+                prevtwoyears.prev_two_year_total_revenue_actuals,
+                prevtwoyears.prev_two_year_total_revenue_budget
             from dateoffset
             full outer join
                 prevyear
