@@ -92,7 +92,7 @@
                 coalesce(
                     dateoffset.channel, prevyear.channel, prevtwoyears.channel
                 ) as channel,
-                dateoffset.total_revenue_actuals
+                dateoffset.total_revenue_actuals,
                 dateoffset.total_gifts_actuals,
                 dateoffset.total_revenue_budget_by_day,
                 dateoffset.total_revenue_cumulative_fiscal_year,
