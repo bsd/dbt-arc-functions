@@ -133,31 +133,31 @@
             select
                 coalesce(
                     date_day, prevyear_date_day, prevtwoyears_date_day
-                ) as adjusted_date_day,  -- Use a different date value if the join failed (e.g., add 1 year)
-                enriched.*
+                ) as date_day,  -- Use a different date value if the join failed (e.g., add 1 year)
+            donor_audience,
+            channel,
+            sum(total_revenue_actuals) as total_revenue_actuals,
+            sum(total_revenue_budget_by_day) as total_revenue_budget_by_day,
+            max(total_revenue_cumulative_fiscal_year) as total_revenue_cumulative_fiscal_year,
+            sum(prev_year_total_revenue_actuals) as prev_year_total_revenue_actuals,
+            sum(prev_year_total_revenue_budget) as prev_year_total_revenue_budget,
+            sum(prev_two_year_total_revenue_actuals) as prev_two_year_total_revenue_actuals,
+            sum(prev_two_year_total_revenue_budget) as prev_two_year_total_revenue_budget
             from enriched
+            group by 1, 2, 3
         )
-
+    
     select
         {{
             dbt_arc_functions.get_fiscal_year(
-                "adjusted_date_day.adjusted_date_day",
+                "date_day",
                 var("fiscal_year_start"),
             )
         }} as fiscal_year,
-        extract(year from adjusted_date_day.adjusted_date_day) as year,
-        extract(month from adjusted_date_day.adjusted_date_day) as month,
-        extract(day from adjusted_date_day.adjusted_date_day) as day,
-        adjusted_date_day.adjusted_date_day as date_day,
-        donor_audience,
-        channel,
-        total_revenue_actuals,
-        total_revenue_budget_by_day,
-        total_revenue_cumulative_fiscal_year,
-        prev_year_total_revenue_actuals,
-        prev_year_total_revenue_budget,
-        prev_two_year_total_revenue_actuals,
-        prev_two_year_total_revenue_budget
+        extract(year from date_day) as year,
+        extract(month from date_day) as month,
+        extract(day from date_day) as day,
+        adjusted_date_day.*
     from adjusted_date_day
 
 {% endmacro %}
