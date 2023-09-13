@@ -60,7 +60,9 @@
                 channel,
                 date_day,
                 total_revenue_actuals as prev_year_total_revenue_actuals,
-                total_revenue_budget_by_day as prev_year_total_revenue_budget
+                total_revenue_budget_by_day as prev_year_total_revenue_budget,
+                0 as prev_two_year_total_revenue_actuals,
+                0 as prev_two_year_total_revenue_budget
             from dateoffset
         ),
 
@@ -70,7 +72,9 @@
                 channel,
                 date_day,
                 total_revenue_actuals as prev_two_year_total_revenue_actuals,
-                total_revenue_budget_by_day as prev_two_year_total_revenue_budget
+                total_revenue_budget_by_day as prev_two_year_total_revenue_budget,
+                0 as prev_year_total_revenue_actuals,
+                0 as prev_year_total_revenue_budget
             from dateoffset
         ),
         enriched as (
@@ -88,14 +92,14 @@
                 coalesce(
                     dateoffset.channel, prevyear.channel, prevtwoyears.channel
                 ) as channel,
-                dateoffset.total_revenue_actuals,
+                dateoffset.total_revenue_actuals
                 dateoffset.total_gifts_actuals,
                 dateoffset.total_revenue_budget_by_day,
                 dateoffset.total_revenue_cumulative_fiscal_year,
-                prevyear.prev_year_total_revenue_actuals,
-                prevyear.prev_year_total_revenue_budget,
-                prevtwoyears.prev_two_year_total_revenue_actuals,
-                prevtwoyears.prev_two_year_total_revenue_budget
+                coalesce(prevyear.prev_year_total_revenue_actuals, prevtwoyears.prev_year_total_revenue_actuals) as prev_year_total_revenue_actuals,
+                coalesce(prevyear.prev_year_total_revenue_budget, prevtwoyears.prev_year_total_revenue_budget) as prev_year_total_revenue_budget,
+                coalesce(prevtwoyears.prev_two_year_total_revenue_actuals, prevyear.prev_two_year_total_revenue_actuals) as prev_two_year_total_revenue_actuals,
+                coalesce(prevtwoyears.prev_two_year_total_revenue_budget, prevyear.prev_two_year_total_revenue_budget) as prev_two_year_total_revenue_budget
             from dateoffset
             full outer join
                 prevyear
