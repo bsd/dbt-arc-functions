@@ -8,7 +8,7 @@
         date_spine_month,
         date_spine_day,
         {{ dbt_arc_functions.get_fiscal_year("date_day", var("fiscal_year_start")) }}
-        as fiscal_year,  -- not sure if this is needed here yet or if we can just keep date_day
+        as fiscal_year, 
         date(date_day) as date_day,
         total_revenue_budget_by_day,
         loyalty_new_donor_targets_by_day,
