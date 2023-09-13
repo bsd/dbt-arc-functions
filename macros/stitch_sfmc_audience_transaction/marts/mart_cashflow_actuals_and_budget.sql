@@ -79,7 +79,7 @@
                 date_add(prevyear.date_day, interval 1 year) as prevyear_date_day,
                 date_add(
                     prevtwoyears.date_day, interval 2 year
-                ) as prevtwoyear_date_day,
+                ) as prevtwoyears_date_day,
                 coalesce(
                     dateoffset.donor_audience,
                     prevyear.donor_audience,
@@ -120,13 +120,13 @@
     select
         {{
             dbt_arc_functions.get_fiscal_year(
-                "adjusted_date_day",
+                "adjusted_date_day.adjusted_date_day",
                 var("fiscal_year_start"),
             )
         }} as fiscal_year,
-        extract(year from adjusted_date_day) as year,
-        extract(month from adjusted_date_day) as month,
-        extract(day from adjusted_date_day) as day,
+        extract(year from adjusted_date_day.adjusted_date_day) as year,
+        extract(month from adjusted_date_day.adjusted_date_day) as month,
+        extract(day from adjusted_date_day.adjusted_date_day) as day,
         adjusted_date_day.adjusted_date_day as date_day,
         donor_audience,
         channel,
