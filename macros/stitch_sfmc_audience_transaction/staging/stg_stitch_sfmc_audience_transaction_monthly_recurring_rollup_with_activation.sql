@@ -21,7 +21,7 @@
             )
         ) as activation,
         total_revenue,
-        total_donors,
+        total_donors
     from {{ ref(reference_name) }}
 
 {% endmacro %}
