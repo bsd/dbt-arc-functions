@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_audience_transaction_monthly_recurring_rollup(
+{% macro create_stg_stitch_sfmc_audience_transaction_monthly_1x_rollup(
     reference_name="stg_stitch_sfmc_audience_transaction_with_join_date"
 ) %}
     select
@@ -10,7 +10,7 @@
         sum(amount) as total_revenue,
         safe_cast(count(distinct person_id) as integer) as total_donors
     from {{ ref(reference_name) }}
-    where recurring = True -- boolean 
+    where recurring = False -- boolean
     group by 1, 2, 3, 4, 5
     order by 1, 2, 3, 4, 5
 

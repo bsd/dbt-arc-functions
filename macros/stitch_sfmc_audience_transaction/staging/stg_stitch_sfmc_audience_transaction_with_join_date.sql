@@ -10,6 +10,7 @@
         union_transaction.gift_size_string,
         union_transaction.recurring,
         first_gift.join_month_year_date as join_month_year_date,
+        first_gift.join_gift_size_string as join_gift_size_string,
         union_transaction.amount as amount
     from {{ ref(reference_0_name) }} as union_transaction
     inner join
