@@ -144,7 +144,6 @@
             order by date_day
         ) as lapsed_onetime_donor_counts_cumulative
     from daily_rollup
-    order by 1, 2, 3, 4
     union all
     select
         date_day,
@@ -186,7 +185,6 @@
             order by date_day
         ) as lapsed_onetime_donor_counts_cumulative
     from monthly_rollup
-    order by 1, 2, 3, 4
     union all
     select
         date_day,
