@@ -3,9 +3,9 @@
     with
         daily_rollup as (
             select
-                date_day as date_day,
+                date_day,
                 'daily' as interval_type,
-                donor_audience as donor_audience,
+                donor_audience,
                 join_source as platform,
                 {{ dbt_arc_functions.get_fiscal_year('date_day', var('fiscal_year_start')) }}
                 as fiscal_year,
@@ -39,7 +39,7 @@
             select
                 last_day(date_day, month) as date_day,
                 'monthly' as interval_type,
-                donor_audience as donor_audience,
+                donor_audience,
                 join_source as platform,
                 {{ dbt_arc_functions.get_fiscal_year('date_day', var('fiscal_year_start')) }}
                 as fiscal_year,
@@ -73,7 +73,7 @@
             select
                 last_day(date_day, year) as date_day,
                 'yearly' as interval_type,
-                donor_audience as donor_audience,
+                donor_audience,
                 join_source as platform,
                 {{ dbt_arc_functions.get_fiscal_year('date_day', var('fiscal_year_start')) }}
                 as fiscal_year,
@@ -105,16 +105,16 @@
         )
 
     select
-        date_day as date_day,
-        interval_type as interval_type,
-        donor_audience as donor_audience,
-        platform as platform,
-        total_onetime_donor_counts as total_onetime_donor_counts,
-        new_onetime_donor_counts as new_onetime_donor_counts,
-        retained_onetime_donor_counts as retained_onetime_donor_counts,
-        retained3_onetime_donor_counts as retained3_onetime_donor_counts,
-        active_onetime_donor_counts as active_onetime_donor_counts,
-        lapsed_onetime_donor_counts as lapsed_onetime_donor_counts,
+        date_day,
+        interval_type,
+        donor_audience,
+        platform,
+        total_onetime_donor_counts,
+        new_onetime_donor_counts,
+        retained_onetime_donor_counts,
+        retained3_onetime_donor_counts,
+        active_onetime_donor_counts,
+        lapsed_onetime_donor_counts,
         sum(total_onetime_donor_counts) over (
             partition by fiscal_year, interval_type, donor_audience, platform
             order by date_day
@@ -147,16 +147,16 @@
     order by 1, 2, 3, 4
     union all
     select
-        date_day as date_day,
-        interval_type as interval_type,
-        donor_audience as donor_audience,
-        platform as platform,
-        total_onetime_donor_counts as total_onetime_donor_counts,
-        new_onetime_donor_counts as new_onetime_donor_counts,
-        retained_onetime_donor_counts as retained_onetime_donor_counts,
-        retained3_onetime_donor_counts as retained3_onetime_donor_counts,
-        active_onetime_donor_counts as active_onetime_donor_counts,
-        lapsed_onetime_donor_counts as lapsed_onetime_donor_counts,
+        date_day,
+        interval_type,
+        donor_audience,
+        platform,
+        total_onetime_donor_counts,
+        new_onetime_donor_counts,
+        retained_onetime_donor_counts,
+        retained3_onetime_donor_counts,
+        active_onetime_donor_counts,
+        lapsed_onetime_donor_counts,
         sum(total_onetime_donor_counts) over (
             partition by fiscal_year, interval_type, donor_audience, platform
             order by date_day
@@ -189,16 +189,16 @@
     order by 1, 2, 3, 4
     union all
     select
-        date_day as date_day,
-        interval_type as interval_type,
-        donor_audience as donor_audience,
-        platform as platform,
-        total_onetime_donor_counts as total_onetime_donor_counts,
-        new_onetime_donor_counts as new_onetime_donor_counts,
-        retained_onetime_donor_counts as retained_onetime_donor_counts,
-        retained3_onetime_donor_counts as retained3_onetime_donor_counts,
-        active_onetime_donor_counts as active_onetime_donor_counts,
-        lapsed_onetime_donor_counts as lapsed_onetime_donor_counts,
+        date_day,
+        interval_type,
+        donor_audience,
+        platform,
+        total_onetime_donor_counts,
+        new_onetime_donor_counts,
+        retained_onetime_donor_counts,
+        retained3_onetime_donor_counts,
+        active_onetime_donor_counts,
+        lapsed_onetime_donor_counts,
         sum(total_onetime_donor_counts) over (
             partition by fiscal_year, interval_type, donor_audience, platform
             order by date_day
