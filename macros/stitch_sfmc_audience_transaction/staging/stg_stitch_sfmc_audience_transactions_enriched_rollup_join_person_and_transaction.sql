@@ -7,6 +7,7 @@
         audience.date_day as date_day,
         audience.person_id as person_id,
         audience.donor_audience as donor_audience,
+        -- donor loyalty to be added from new model built out
         transactions.donor_engagement as donor_engagement,
         transactions.gift_size_string as gift_size_str,
         first_gift.first_gift_join_source as join_source,
