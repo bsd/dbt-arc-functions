@@ -10,7 +10,7 @@
         sum(amount) as total_revenue,
         safe_cast(count(distinct person_id) as integer) as total_donors
     from {{ ref(reference_name) }}
-    where recurring = False -- boolean
+    where recurring = false  -- boolean
     group by 1, 2, 3, 4, 5
     order by 1, 2, 3, 4, 5
 

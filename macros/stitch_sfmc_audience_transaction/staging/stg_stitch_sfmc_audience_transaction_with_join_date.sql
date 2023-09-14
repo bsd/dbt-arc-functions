@@ -6,7 +6,7 @@
         union_transaction.transaction_date_day as transaction_date_day,
         union_transaction.person_id as person_id,
         union_transaction.coalesced_audience as donor_audience,
-        union_transaction.channel as channel, -- should be join source 
+        union_transaction.channel as channel,  -- should be join source 
         union_transaction.gift_size_string,
         union_transaction.recurring,
         first_gift.join_month_year_date as join_month_year_date,
