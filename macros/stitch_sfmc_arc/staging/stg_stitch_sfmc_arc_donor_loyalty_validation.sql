@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_src_donor_loyalty_validation(
+{% macro create_stg_stitch_sfmc_arc_donor_loyalty_validation(
     audience_union_transaction_joined="stg_stitch_sfmc_arc_audience_union_transaction_joined",
     donor_loyalty_count="stg_stitch_sfmc_arc_donor_loyalty_fiscal_year_count"
 ) %}
