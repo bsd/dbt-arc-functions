@@ -17,6 +17,8 @@ models:
         description: The donor audience calcuated values.
       - name: donor_engagement
         description: The donor engagement value of each person by day and date
+      - name: donor_loyalty
+        description: the donor loyalty value of each person by day and date
       - name: channel_category
         description: This is a grouping of channel values
       - name: channel
