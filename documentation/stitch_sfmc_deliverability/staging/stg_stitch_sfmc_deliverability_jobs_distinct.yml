@@ -1,0 +1,13 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_deliverability_jobs_distinct
+    description: A distinct list of email delivery jobs from Salesforce Marketing
+      Cloud (SFMC).
+    columns:
+      - name: message_id
+        description: The unique identifier of the sent email message.
+      - name: sent_date
+        description: The date when the email was sent.
+      - name: email_domain
+        description: The domain of the recipient's email address.

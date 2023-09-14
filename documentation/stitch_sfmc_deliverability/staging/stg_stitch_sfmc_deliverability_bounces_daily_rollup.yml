@@ -1,0 +1,17 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_deliverability_bounces_daily_rollup
+    description: A daily rollup of email bounce data from Salesforce Marketing Cloud
+      (SFMC) sent campaigns.
+    columns:
+      - name: sent_date
+        description: The event date for the bounce.
+      - name: message_id
+        description: The unique identifier of the sent email message.
+      - name: email_domain
+        description: The domain of the recipient's email address.
+      - name: hard_bounces
+        description: The number of hard bounces, indicating permanent delivery failures.
+      - name: soft_bounces
+        description: The number of soft bounces, indicating temporary delivery issues.

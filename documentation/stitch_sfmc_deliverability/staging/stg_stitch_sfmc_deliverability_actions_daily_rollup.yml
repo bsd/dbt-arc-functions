@@ -1,0 +1,16 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_deliverability_actions_daily_rollup
+    description: A daily rollup of email deliverability actions from Salesforce Marketing
+      Cloud (SFMC) sent campaigns.
+    columns:
+      - name: sent_date
+        description: The event date for the action.
+      - name: message_id
+        description: The unique identifier of the sent email message.
+      - name: email_domain
+        description: The domain of the recipient's email address.
+      - name: actions
+        description: The number of actions taken in response to the sent email (e.g.,
+          opens, clicks).
