@@ -1,5 +1,5 @@
-{% macro create_mart_stitch_sfmc_audience_transaction_recur_revenue_by_monthly_cohort(
-    reference_name="stg_stitch_sfmc_audience_transaction_monthly_recurring_rollup_with_activation"
+{% macro create_mart_stitch_sfmc_audience_transaction_1x_revenue_by_monthly_cohort(
+    reference_name="stg_stitch_sfmc_audience_transaction_monthly_1x_rollup_with_activation"
 ) %}
     with base as (
     select join_month_year,
