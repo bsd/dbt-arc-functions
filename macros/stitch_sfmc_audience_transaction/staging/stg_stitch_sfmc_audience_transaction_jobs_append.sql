@@ -45,8 +45,7 @@
                         transaction_date_day,
                         person_id,
                         donor_audience,
-                        donor_engagement,
-                        donor_loyalty
+                        donor_engagement
                     order by transaction_date_day desc
                 ) as row_number
             from base
