@@ -16,7 +16,7 @@ CROSS JOIN
 LEFT JOIN
     {{ ref(donor_loyalty_count) }} donor_loyalty_counts
 ON
-    person_id_subquery.person_id = donor_loyalty_counts.person_id AND f.fiscal_year = donor_loyalty_counts.fiscal_year
+    person_id_subquery.person_id = donor_loyalty_counts.person_id AND fiscal_year_subquery.fiscal_year = donor_loyalty_counts.fiscal_year
 ORDER BY
     person_id_subquery.person_id,
     fiscal_year_subquery.fiscal_year
