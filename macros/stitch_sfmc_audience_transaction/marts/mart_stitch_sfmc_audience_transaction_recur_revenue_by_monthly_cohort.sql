@@ -15,7 +15,7 @@
                 sum(total_revenue) over (
                     partition by
                         join_month_year_str,
-                        donor_audience
+                        donor_audience,
                         channel,
                         join_gift_size_string,
                         join_month_year
