@@ -20,7 +20,7 @@ other_model as (
 
 select *
 from this_model
-full outer join other_model using (test_column)
+full outer join other_model on this_model.test_column = other_model.test_column
 where this_model.test_column is null or other_model.test_column is null
 
 {% endtest %}
