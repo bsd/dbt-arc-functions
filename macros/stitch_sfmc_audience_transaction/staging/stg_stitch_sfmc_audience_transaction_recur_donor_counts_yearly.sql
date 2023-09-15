@@ -19,22 +19,9 @@ select
         case when donor_engagement = 'lapsed' then 1 end
     ) as lapsed_recur_donor_counts,
 
-from
-    (
-        select
-            date_day,
-            person_id,
-            donor_audience,
-            donor_engagement,
-            donor_loyalty,
-            gift_size_str,
-            join_source,
-            join_amount_str,
-            join_month_year_str,
-        from {{ ref("stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction") }}
-    )
+from {{ ref("stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction") }}
 
 where donor_audience = 'recurring'
-group by 1, 2, 3
+group by 1, 2, 3, 4
 
 {% endmacro %}
