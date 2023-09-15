@@ -8,7 +8,7 @@ models:
         description: "The unique identifier of each person record"
 
       - name: fiscal_year
-        description: ""The fiscal year value for each donor loyalty status""
+        description: "The fiscal year value for each donor loyalty status"
 
       - name: start_date
         description: "The first transaction date of each person in a fiscal yea"
