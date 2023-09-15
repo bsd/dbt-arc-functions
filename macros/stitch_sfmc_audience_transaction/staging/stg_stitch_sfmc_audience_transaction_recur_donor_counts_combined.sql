@@ -9,7 +9,7 @@ select
     retained3_recur_donor_counts,
     active_recur_donor_counts,
     lapsed_recur_donor_counts,
-from {{ ref("recur_donor_counts_daily") }}
+from {{ ref("stg_stitch_sfmc_audience_transaction_recur_donor_counts_daily") }}
 union all
 select
     date_day,
@@ -22,7 +22,7 @@ select
     retained3_recur_donor_counts,
     active_recur_donor_counts,
     lapsed_recur_donor_counts,
-from {{ ref("recur_donor_counts_monthly") }}
+from {{ ref("stg_stitch_sfmc_audience_transaction_recur_donor_counts_monthly") }}
 union all
 select
     date_day,
@@ -35,4 +35,4 @@ select
     retained3_recur_donor_counts,
     active_recur_donor_counts,
     lapsed_recur_donor_counts,
-from {{ ref("recur_donor_counts_yearly") }}
+from {{ ref("stg_stitch_sfmc_audience_transaction_recur_donor_counts_yearly") }}

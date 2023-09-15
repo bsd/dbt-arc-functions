@@ -30,7 +30,7 @@ from
             join_source,
             join_amount_str,
             join_month_year_str,
-        from {{ ref("ARC-1511") }}
+        from {{ ref("stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction") }}
     )
 
 where donor_audience = 'recurring'
