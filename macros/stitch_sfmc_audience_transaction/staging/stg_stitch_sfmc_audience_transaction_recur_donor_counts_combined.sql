@@ -1,3 +1,4 @@
+{% macro create_stg_stitch_sfmc_audience_transaction_recur_donor_counts_combined() %}
 select
     date_day,
     interval_type,
@@ -36,3 +37,5 @@ select
     active_recur_donor_counts,
     lapsed_recur_donor_counts,
 from {{ ref("stg_stitch_sfmc_audience_transaction_recur_donor_counts_yearly") }}
+
+{% endmacro %}

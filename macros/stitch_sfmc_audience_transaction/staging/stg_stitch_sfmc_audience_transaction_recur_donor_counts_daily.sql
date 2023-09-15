@@ -1,3 +1,4 @@
+{% macro create_stg_stitch_sfmc_audience_transaction_recur_donor_counts_daily() %}
 select
     date_day,
     'daily' as interval_type,
@@ -35,3 +36,5 @@ from
 
 where donor_audience = 'recurring'
 group by 1, 2, 3
+
+{% endmacro %}
