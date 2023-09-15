@@ -11,6 +11,10 @@ models:
         description: The ID identifier of the person associated with the transaction
       - name: donor_audience
         description: The audience associated with the transaction
+        tests:
+            - dbt_arc_functions.has_same_distinct_values_as:
+                other_model: ref('stg_adhoc_google_spreadsheets_audience_monthly_budget')
+                other_column_name: donor_audience
       - name: donor_engagement
         description: The engagement level associated with the transaction
       - name: donor_loyalty
