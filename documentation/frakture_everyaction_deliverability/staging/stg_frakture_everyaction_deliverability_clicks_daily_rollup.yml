@@ -1,0 +1,14 @@
+---
+version: 2
+models:
+  - name: stg_frakture_everyaction_deliverability_clicks_daily_rollup
+    description: A daily rollup for deliverability clicks on emails sent from EveryAction
+    columns:
+      - name: sent_date
+        description: The date the email was sent
+      - name: message_id
+        description: The unique ID assigned to the message
+      - name: email_domain
+        description: The domain part of the email address
+      - name: clicks
+        description: The number of times the link in the email was clicked

@@ -14,7 +14,6 @@
         ) as event_dt,
         cast(isunique as bool) as is_unique,
         domain
-
     from {{ source("stitch_sfmc_email", "complaint") }}
     where jobid is not null
 

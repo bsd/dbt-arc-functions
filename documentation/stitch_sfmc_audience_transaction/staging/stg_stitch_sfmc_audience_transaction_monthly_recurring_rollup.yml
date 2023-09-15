@@ -1,0 +1,15 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_audience_transaction_monthly_recurring_rollup
+    description: This model represents the monthly recurring rollup for audience transactions
+      in the Salesforce Marketing Cloud.
+    columns:
+      - name: transaction_month_year_date
+        description: The date of the transaction in the format truncated at month.
+      - name: join_month_year
+        description: The month and year when the users first donated.
+      - name: total_revenue
+        description: The total revenue generated from the audience transactions.
+      - name: total_donors
+        description: The total number of donors contributing to the audience transactions.

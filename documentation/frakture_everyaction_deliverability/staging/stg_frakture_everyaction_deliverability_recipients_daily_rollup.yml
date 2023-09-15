@@ -1,0 +1,14 @@
+---
+version: 2
+models:
+  - name: stg_frakture_everyaction_deliverability_recipients_daily_rollup
+    description: Model that stores a daily rollup of EveryAction recipients
+    columns:
+      - name: sent_date
+        description: The date that the message was sent
+      - name: message_id
+        description: The Alloys message id
+      - name: email_domain
+        description: The email domain of the recipient
+      - name: recipients
+        description: The count of people in this rollup by message and domain

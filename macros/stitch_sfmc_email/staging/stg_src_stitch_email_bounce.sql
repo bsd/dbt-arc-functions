@@ -1,5 +1,4 @@
 {% macro create_stg_src_stitch_email_bounce() %}
-
     select distinct
         cast(__accountid_ as int64) as account_id,
         cast(oybaccountid as int64) as oyb_account_id,
@@ -13,7 +12,7 @@
             "America/New_York"
         ) as event_dt,
         cast(isunique as bool) as is_unique,
-        domain as domain,
+        domain,
         cast(bouncecategoryid as string) as bounce_category_id,
         bouncecategory as bounce_category,
         bouncesubcategoryid as bounce_subcategory_id,

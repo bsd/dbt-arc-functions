@@ -1,9 +1,9 @@
 {% macro create_stg_stitch_sfmc_arc_calculated_audience_by_date_day(
-    date_spine ="stg_stitch_sfmc_audience_transaction_calculated_date_spine",
-    calcualted_audience_scd ="stg_stitch_sfmc_donor_audience_calculated_scd"
+    date_spine="stg_stitch_sfmc_audience_transaction_calculated_date_spine",
+    calcualted_audience_scd="stg_stitch_sfmc_donor_audience_calculated_scd"
 ) %}
 
-with
+    with
         audience_by_date_day as (
             select
                 date_spine.date as date_day,
@@ -30,10 +30,14 @@ with
 
         )
 
-    select date_day, person_id,
+    select
+        date_day,
+        person_id,
         case
-            when donor_audience = 'mass' then 'grassroots'
-            when donor_audience = 'monthly' then 'recurring'
+            when donor_audience = 'mass'
+            then 'grassroots'
+            when donor_audience = 'monthly'
+            then 'recurring'
             else donor_audience
         end as donor_audience
     from deduplicated_table

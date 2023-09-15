@@ -1,0 +1,7 @@
+---
+version: 2
+sources:
+  - name: frakture_sfmc_deliverability
+    database: "{{ var('database') }}"
+    schema: src_frakture
+    tables: "{{ var('sources').frakture_sfmc_deliverability.tables }}"

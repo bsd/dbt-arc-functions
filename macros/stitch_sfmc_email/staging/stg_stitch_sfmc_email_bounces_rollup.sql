@@ -3,17 +3,38 @@
 ) %}
     select
         safe_cast(job_id as string) as message_id,
-        sum(case when bounce_category_id = '1' then 1 else 0 end) as hard_bounces,
-        sum(case when bounce_category_id = '2' then 1 else 0 end) as soft_bounces,
-        sum(case when bounce_category_id = '3' then 1 else 0 end) as block_bounces,
-        sum(case when bounce_category_id = '5' then 1 else 0 end) as tech_bounces,
-        sum(case when bounce_category_id = '4' then 1 else 0 end) as unknown_bounces,
-        sum(
-            case
+        count(
+            distinct case
+                when bounce_category_id = '1' then subscriber_key else null
+            end
+        ) as hard_bounces,
+        count(
+            distinct case
+                when bounce_category_id = '2' then subscriber_key else null
+            end
+        ) as soft_bounces,
+        count(
+            distinct case
+                when bounce_category_id = '3' then subscriber_key else null
+            end
+        ) as block_bounces,
+        count(
+            distinct case
+                when bounce_category_id = '5' then subscriber_key else null
+            end
+        ) as tech_bounces,
+        count(
+            distinct case
+                when bounce_category_id = '4' then subscriber_key else null
+            end
+        ) as unknown_bounces,
+        count(
+            distinct case
                 when bounce_category_id = '1'
-                then 1
+                then subscriber_key
                 when bounce_category_id = '2'
-                then 1
+                then subscriber_key
+                else null
             end
         ) as total_bounces
     from {{ ref(reference_name) }}
