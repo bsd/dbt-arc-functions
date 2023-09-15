@@ -1,23 +1,21 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_arc_donor_loyalty_validation
-    description: "This table can be used to check the donor loyalty status of any person_id by filtering the table by person_id. There will be a row for every fiscal year for each person and a null value when a person has not donated in that fiscal year"
+    description: This table can be used to check the donor loyalty status of any person_id
+      by filtering the table by person_id. There will be a row for every fiscal year
+      for each person and a null value when a person has not donated in that fiscal
+      year
     columns:
       - name: person_id
-        description: "The unique identifier of each person record"
-
+        description: The unique identifier of each person record
       - name: fiscal_year
-        description: "The fiscal year value for each donor loyalty status"
-
+        description: The fiscal year value for each donor loyalty status
       - name: start_date
-        description: "The first transaction date of each person in a fiscal yea"
-
+        description: The first transaction date of each person in a fiscal yea
       - name: end_date
-        description: "The last day of the fiscal year and the last effective day for the donor loyalty status"
-
+        description: The last day of the fiscal year and the last effective day for
+          the donor loyalty status
       - name: row_num
-        description: "count of a donation in each fiscal year, ordered by fiscal year so that 1 represent the most recent donation for a person_id"
-
-
-
+        description: count of a donation in each fiscal year, ordered by fiscal year
+          so that 1 represent the most recent donation for a person_id
