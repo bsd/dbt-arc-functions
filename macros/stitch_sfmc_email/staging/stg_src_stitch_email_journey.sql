@@ -51,7 +51,6 @@
             end
         ) as modified_dt,
         journeystatus as journey_status
-
     from {{ source("stitch_sfmc_email", "journey") }}
     where journeyid is not null
 

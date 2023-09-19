@@ -1,5 +1,4 @@
 {% macro create_stg_src_stitch_email_click() %}
-
     select distinct
         cast(__accountid_ as int64) as account_id,
         cast(oybaccountid as int64) as oyb_account_id,
@@ -19,7 +18,6 @@
         cast(isunique as bool) as is_unique,
         triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
         triggeredsendcustomerkey as triggered_send_customer_key
-
     from {{ source("stitch_sfmc_email", "click") }}
     where jobid is not null
 

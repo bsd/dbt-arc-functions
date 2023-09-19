@@ -1,0 +1,15 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_deliverability_unsubscribes_daily_rollup
+    description: A daily rollup of email unsubscribe events from Salesforce Marketing
+      Cloud (SFMC) sent campaigns.
+    columns:
+      - name: sent_date
+        description: The event date of the unsubscribe.
+      - name: message_id
+        description: The unique identifier of the sent email message.
+      - name: email_domain
+        description: The domain of the recipient's email address.
+      - name: unsubscribes
+        description: The number of recipients who unsubscribed from the email campaign.

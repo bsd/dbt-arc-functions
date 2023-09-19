@@ -1,0 +1,15 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_deliverability_recipients_daily_rollup
+    description: A daily rollup of email recipient data from Salesforce Marketing
+      Cloud (SFMC) sent campaigns.
+    columns:
+      - name: sent_date
+        description: The date when the email was sent.
+      - name: message_id
+        description: The unique identifier of the sent email message.
+      - name: email_domain
+        description: The domain of the recipient's email address.
+      - name: recipients
+        description: The number of recipients who received the email.
