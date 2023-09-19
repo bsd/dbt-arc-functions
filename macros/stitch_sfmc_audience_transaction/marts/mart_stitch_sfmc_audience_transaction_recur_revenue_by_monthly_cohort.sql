@@ -22,7 +22,18 @@
                         join_gift_size_string
                     order by activation
                 ) as total_revenue_cumulative_cohort, -- this isn't correct
-                case when activation = 'Act00' then total_donors end as activation_donors
+                CASE
+                    WHEN activation = 'Act00' THEN
+                        FIRST_VALUE(total_donors) OVER (
+                            PARTITION BY
+                                join_month_year_str,
+                                donor_audience,
+                                channel,
+                                join_gift_size_string
+                            ORDER BY transaction_month_year_date
+                        )
+                    ELSE total_donors
+                END AS activation_donors
             from {{ ref(reference_name) }}
         )
 
