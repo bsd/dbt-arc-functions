@@ -1,33 +1,24 @@
+---
 version: 2
-
 models:
   - name: mart_arc_revenue_recur_actuals_by_day
-    description: ""
+    description: ''
     columns:
       - name: fiscal_year
-        description: "The fiscal year value as defined by the client"
-
+        description: The fiscal year value as defined by the client
       - name: fiscal_month
-        description: "the fiscal month corresponding to the fiscal year"
-
+        description: the fiscal month corresponding to the fiscal year
       - name: month
-        description: "The calendar month"
-
+        description: The calendar month
       - name: transaction_date_day
-        description: "Date of transaction in Day format"
-
+        description: Date of transaction in Day format
       - name: donor_loyalty
-        description: "the assigned donor loyalty category"
-
+        description: the assigned donor loyalty category
       - name: channel
-        description: "the source channel of each transaction"
-
+        description: the source channel of each transaction
       - name: join_amount_string
-        description: "the gift size category of the fist gift"
-
+        description: the gift size category of the fist gift
       - name: total_revenue
-        description: "Total revenue by day by dimension"
-
+        description: Total revenue by day by dimension
       - name: total_gifts
-        description: "total gifts by dat by dimension"
-
+        description: total gifts by dat by dimension
