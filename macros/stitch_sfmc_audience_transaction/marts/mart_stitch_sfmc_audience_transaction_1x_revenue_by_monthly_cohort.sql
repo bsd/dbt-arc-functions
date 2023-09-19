@@ -20,8 +20,7 @@
                         transaction_month_year_str,
                         donor_audience,
                         channel,
-                        join_gift_size_string,
-                        activation
+                        join_gift_size_string
                     order by transaction_month_year_date
                 ) as total_revenue_cumulative_cohort,
                 case when activation = 'Act00' then total_donors end as activation_donors
