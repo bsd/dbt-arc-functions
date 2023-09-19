@@ -30,6 +30,8 @@
     select
     join_month_year,
     join_month_year_str,
+    transaction_month_year_date,
+    transaction_month_year_str,
     donor_audience,
     channel,
     join_gift_size_string,
