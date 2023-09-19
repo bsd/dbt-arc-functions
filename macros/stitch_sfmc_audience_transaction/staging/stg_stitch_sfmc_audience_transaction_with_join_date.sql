@@ -7,7 +7,7 @@
         union_transaction.person_id as person_id,
         union_transaction.coalesced_audience as donor_audience,
         first_gift.first_gift_join_source as join_source,
-        union_transaction.channel as channel, 
+        union_transaction.channel as channel,
         union_transaction.gift_size_string,
         union_transaction.recurring,
         first_gift.join_month_year_date as join_month_year_date,

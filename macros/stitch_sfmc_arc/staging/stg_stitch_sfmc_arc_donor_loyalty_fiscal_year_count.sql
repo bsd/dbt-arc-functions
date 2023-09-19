@@ -2,28 +2,18 @@
     audience_union_transaction_joined="stg_stitch_sfmc_arc_audience_union_transaction_joined"
 ) %}
 
+    select
+        person_id,
+        fiscal_year,
+        min(transaction_date_day) as start_date,
+        date_sub(
+            date(concat(fiscal_year, '-', '{{ var(' fiscal_year_start ') }}')),
+            interval 1 day
+        ) as end_date,
 
-SELECT
-    person_id,
-    fiscal_year,
-    MIN(transaction_date_day) AS start_date,
-    DATE_SUB(
-        DATE(CONCAT(
-            fiscal_year,
-            '-',
-            '{{ var('fiscal_year_start') }}'
-        )),
-        INTERVAL 1 DAY
-    ) AS end_date,
-
-    ROW_NUMBER() OVER (PARTITION BY person_id ORDER BY fiscal_year desc) AS row_num
-FROM
-    {{ ref(audience_union_transaction_joined) }}
-GROUP BY
-    person_id,
-    fiscal_year
-ORDER BY
-    person_id,
-    fiscal_year
+        row_number() over (partition by person_id order by fiscal_year desc) as row_num
+    from {{ ref(audience_union_transaction_joined) }}
+    group by person_id, fiscal_year
+    order by person_id, fiscal_year
 
 {% endmacro %}

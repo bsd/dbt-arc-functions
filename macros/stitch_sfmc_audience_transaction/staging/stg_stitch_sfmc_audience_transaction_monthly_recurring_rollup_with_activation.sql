@@ -15,7 +15,9 @@
         concat(
             cast(extract(year from transaction_month_year_date) as string),
             '-',
-            lpad(cast(extract(month from transaction_month_year_date) as string), 2, '0')
+            lpad(
+                cast(extract(month from transaction_month_year_date) as string), 2, '0'
+            )
         ) as transaction_month_year_str,
         concat(
             'Act',

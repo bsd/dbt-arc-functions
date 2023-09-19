@@ -70,7 +70,11 @@
             from base
         )
 
-    select transaction_date_day, person_id, donor_audience, blue_state_donor_audience donor_engagement
+    select
+        transaction_date_day,
+        person_id,
+        donor_audience,
+        blue_state_donor_audience donor_engagement
     from dedupe
     where row_number = 1
 
