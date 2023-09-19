@@ -3,6 +3,7 @@
 ) %}
     select
         join_month_year,
+        transaction_month_year_date,
         donor_audience,
         channel,
         join_gift_size_string,
@@ -11,6 +12,11 @@
             '-',
             lpad(cast(extract(month from join_month_year) as string), 2, '0')
         ) as join_month_year_str,
+        concat(
+            cast(extract(year from transaction_month_year_date) as string),
+            '-',
+            lpad(cast(extract(month from transaction_month_year_date) as string), 2, '0')
+        ) as transaction_month_year_str,
         concat(
             'Act',
             lpad(
