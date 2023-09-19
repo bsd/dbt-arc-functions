@@ -1,4 +1,4 @@
-{% macro create_mart_arc_revenue_recur_actuals_by_day.sql(
+{% macro create_mart_arc_revenue_recur_actuals_by_day(
     audience_transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
     arc_first_gift= "stg_stitch_sfmc_audience_transaction_first_gift"
 ) %}
