@@ -21,17 +21,22 @@
                         join_month_year
                     order by join_month_year
                 ) as total_revenue_cumulative_cohort,
+                case when activation = 'Act00' then total_donors end as activation_donors
             from {{ ref(reference_name) }}
         )
 
     select
-        base.*,
-        (
-            total_donors / (case when activation = 'Act00' then total_donors end)
-        ) as retention_rate,
-        (
-            total_revenue_cumulative_cohort
-            / case when activation = 'Act00' then total_donors end
-        ) as value_per_donor
+    join_month_year,
+    join_month_year_str,
+    donor_audience,
+    channel,
+    join_gift_size_string,
+    activation,
+    total_revenue,
+    total_donors,
+    total_revenue_cumulative_cohort,
+    case when activation_donors = 0 then 0 else total_donors / activation_donors end as retention_rate,
+    case when activation_donors = 0 then 0 else total_revenue_cumulative_cohort / activation_donors end as value_per_donor
     from base
+
 {% endmacro %}
