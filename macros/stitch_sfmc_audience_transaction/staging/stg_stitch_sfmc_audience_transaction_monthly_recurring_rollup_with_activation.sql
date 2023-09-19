@@ -5,7 +5,7 @@
         join_month_year,
         transaction_month_year_date,
         donor_audience,
-        channel,
+        join_source,
         join_gift_size_string,
         concat(
             cast(extract(year from join_month_year) as string),

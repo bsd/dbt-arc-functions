@@ -5,7 +5,7 @@
         date_trunc(transaction_date_day, month) as transaction_month_year_date,
         date_trunc(join_month_year_date, month) as join_month_year,
         donor_audience,
-        channel,
+        join_source,
         join_gift_size_string,
         sum(amount) as total_revenue,
         safe_cast(count(distinct person_id) as integer) as total_donors
