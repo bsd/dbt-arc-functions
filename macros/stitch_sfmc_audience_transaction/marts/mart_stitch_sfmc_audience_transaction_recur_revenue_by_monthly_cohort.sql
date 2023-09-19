@@ -17,12 +17,11 @@
                 sum(total_revenue) over (
                     partition by
                         join_month_year_str,
-                        transaction_month_year_str,
                         donor_audience,
                         join_source,
                         join_gift_size_string
                     order by transaction_month_year_date
-                ) as total_revenue_cumulative_cohort,
+                ) as total_revenue_cumulative_cohort, -- this isn't correct
                 case when activation = 'Act00' then total_donors end as activation_donors
             from {{ ref(reference_name) }}
         )
