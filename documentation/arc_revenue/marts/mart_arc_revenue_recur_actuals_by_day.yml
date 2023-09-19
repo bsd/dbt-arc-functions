@@ -1,33 +1,24 @@
+---
 version: 2
-
 models:
   - name: mart_arc_revenue_recur_actuals_by_day
-    description: ""
+    description: ''
     columns:
       - name: fiscal_year
-        description: "The fiscal year value as defined by the client"
-
+        description: The fiscal year value as defined by the client
       - name: fiscal_month
-        description: ""
-
+        description: ''
       - name: month
-        description: ""
-
+        description: ''
       - name: transaction_date_day
-        description: "Date of transaction in Day format"
-
+        description: Date of transaction in Day format
       - name: donor_loyalty
-        description: ""
-
+        description: ''
       - name: channel
-        description: "the source channel of each transaction"
-
+        description: the source channel of each transaction
       - name: join_amount_string
-        description: ""
-
+        description: ''
       - name: total_revenue
-        description: ""
-
+        description: ''
       - name: total_gifts
-        description: ""
-
+        description: ''
