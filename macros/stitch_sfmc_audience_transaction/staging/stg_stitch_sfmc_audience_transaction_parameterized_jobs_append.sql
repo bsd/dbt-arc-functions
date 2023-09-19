@@ -1,6 +1,6 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_parameterized_jobs_append(
     reference_name="stg_stitch_sfmc_audience_transactions_join"
-    donor_audience="case
+    client_donor_audience="case
                     when cumulative_amount_12_months >= 25000
                     then 'major'
                     when
@@ -25,7 +25,7 @@
             select distinct
                 transaction_date_day,
                 person_id,
-                ({{ best_guess_inbound_channel }}) as donor_audience,
+                ({{ client_donor_audience }}) as donor_audience,
                 case
                     when cumulative_amount_12_months >= 25000
                     then 'major'
@@ -70,7 +70,7 @@
             from base
         )
 
-    select transaction_date_day, person_id, donor_audience, donor_engagement
+    select transaction_date_day, person_id, donor_audience, blue_state_donor_audience donor_engagement
     from dedupe
     where row_number = 1
 
