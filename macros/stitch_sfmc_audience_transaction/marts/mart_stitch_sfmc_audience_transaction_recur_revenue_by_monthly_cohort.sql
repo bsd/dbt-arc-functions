@@ -33,7 +33,6 @@
                                 join_gift_size_string
                             order by transaction_month_year_date
                         )
-                    else total_donors
                 end as activation_donors
             from {{ ref(reference_name) }}
         )

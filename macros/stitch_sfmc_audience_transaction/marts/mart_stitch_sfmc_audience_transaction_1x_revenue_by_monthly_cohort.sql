@@ -18,12 +18,21 @@
                     partition by
                         join_month_year_str,
                         donor_audience,
-                        channel,
+                        join_source,
                         join_gift_size_string
                     order by activation
-                ) as total_revenue_cumulative_cohort,
+                ) as total_revenue_cumulative_cohort,  
                 case
-                    when activation = 'Act00' then total_donors
+                    when activation = 'Act00'
+                    then
+                        first_value(total_donors) over (
+                            partition by
+                                join_month_year_str,
+                                donor_audience,
+                                channel,
+                                join_gift_size_string
+                            order by transaction_month_year_date
+                        )
                 end as activation_donors
             from {{ ref(reference_name) }}
         )
