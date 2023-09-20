@@ -1,20 +1,17 @@
 {% macro create_stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched(
     audience_union_transaction_joined="stg_stitch_sfmc_arc_audience_union_transaction_joined",
-    audience_calculated_alldates="stg_stitch_sfmc_audience_transaction_calculated_alldates"
+    audience_calculated_alldates="stg_stitch_sfmc_audience_transaction_calculated_alldates",
+    arc_donor_loyalty = "stg_stitch_sfmc_arc_donor_loyalty_by_fiscal_year"
 ) %}
 
     select
         audience_union_transaction_joined.transaction_date_day,
-        {{
-            dbt_arc_functions.get_fiscal_year(
-                "audience_union_transaction_joined.transaction_date_day",
-                var("fiscal_year_start"),
-            )
-        }} as fiscal_year,
+        audience_union_transaction_joined.fiscal_year,
         audience_union_transaction_joined.person_id,
         audience_union_transaction_joined.donor_audience as audience_unioned,
         audience_calculated_alldates.donor_audience as audience_calculated,
         donor_engagement,
+        arc_donor_loyalty.donor_loyalty,
         channel_category,
         channel,
         gift_size_string,
@@ -40,5 +37,10 @@
         = audience_union_transaction_joined.transaction_date_day
         and audience_calculated_alldates.person_id
         = audience_union_transaction_joined.person_id
+     left join
+        {{ ref(arc_donor_loyalty) }}
+        as arc_donor_loyalty
+        on audience_union_transaction_joined.person_id = arc_donor_loyalty.person_id
+        and audience_union_transaction_joined.transaction_date_day between arc_donor_loyalty.start_date and arc_donor_loyalty.end_date
 
 {% endmacro %}
