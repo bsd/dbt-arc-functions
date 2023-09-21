@@ -9,10 +9,11 @@
                 sum(total_revenue_budget_by_day) as onetime_donor_count_budget,
                 sum(loyalty_new_donor_targets_by_day) as onetime_new_donor_count_budget
             from {{ ref("stg_audience_budget_by_day") }}
-            where donor_audience != 'recurring' and donor_audience != 'Monthly'
+            where
+                lower(donor_audience) != 'recurring'
+                and lower(donor_audience) != 'monthly'
             group by 1, 2, 3, 4
         )
-
     select
         date_day,
         interval_type,

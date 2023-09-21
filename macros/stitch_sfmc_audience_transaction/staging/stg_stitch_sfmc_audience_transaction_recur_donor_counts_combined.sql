@@ -1,4 +1,8 @@
-{% macro create_stg_stitch_sfmc_audience_transaction_recur_donor_counts_combined() %}
+{% macro create_stg_stitch_sfmc_audience_transaction_recur_donor_counts_combined(
+    daily='stg_stitch_sfmc_audience_transaction_recur_donor_counts_daily',
+    monthly='stg_stitch_sfmc_audience_transaction_recur_donor_counts_monthly',
+    yearly='stg_stitch_sfmc_audience_transaction_recur_donor_counts_yearly'
+) %}
     select
         date_day,
         interval_type,
@@ -10,7 +14,7 @@
         retained3_recur_donor_counts,
         active_recur_donor_counts,
         lapsed_recur_donor_counts,
-    from {{ ref("stg_stitch_sfmc_audience_transaction_recur_donor_counts_daily") }}
+    from {{ ref(daily) }}
     union all
     select
         date_day,
@@ -23,7 +27,7 @@
         retained3_recur_donor_counts,
         active_recur_donor_counts,
         lapsed_recur_donor_counts,
-    from {{ ref("stg_stitch_sfmc_audience_transaction_recur_donor_counts_monthly") }}
+    from {{ ref(monthly) }}
     union all
     select
         date_day,
@@ -36,6 +40,6 @@
         retained3_recur_donor_counts,
         active_recur_donor_counts,
         lapsed_recur_donor_counts,
-    from {{ ref("stg_stitch_sfmc_audience_transaction_recur_donor_counts_yearly") }}
+    from {{ ref(yearly) }}
 
 {% endmacro %}

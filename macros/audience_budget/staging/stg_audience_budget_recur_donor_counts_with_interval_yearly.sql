@@ -7,6 +7,6 @@
         platform as join_source,
         sum(total_donors_by_day) as recur_total_donor_count_budget,
     from {{ ref(reference_name) }}
-    where donor_audience = 'recurring' or donor_audience = 'Monthly'
+    where lower(donor_audience) = 'recurring' or lower(donor_audience) = 'monthly'
     group by 1, 2, 3, 4
 {% endmacro %}
