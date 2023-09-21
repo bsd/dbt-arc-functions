@@ -6,6 +6,12 @@
 
     select
         transaction_enriched.transaction_date_day,
+        {{
+            dbt_arc_functions.get_fiscal_year(
+                "transaction_enriched.transaction_date_day",
+                var("fiscal_year_start"),
+            )
+        }} as fiscal_year,
         transaction_enriched.person_id,
         audience_unioned.donor_audience,
         donor_engagement.donor_engagement,

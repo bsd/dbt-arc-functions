@@ -1,0 +1,18 @@
+---
+version: 2
+models:
+  - name: stg_audience_budget_recur_donor_counts_with_interval_monthly
+    description: Audience monthly budget with recurring donor counts and monthly intervals
+    columns:
+      - name: date_day
+        description: The date of the audience monthly budget, with a day granularity
+      - name: interval_type
+        description: The interval type for the audience monthly budget (e.g., monthly,
+          yearly)
+      - name: donor_audience
+        description: The donor audience for the audience monthly budget, usually a
+          donor segment based on client criteria
+      - name: join_source
+        description: The source of the join for the audience monthly budget
+      - name: recur_total_donor_count_budget
+        description: The budget for recurring donor counts
