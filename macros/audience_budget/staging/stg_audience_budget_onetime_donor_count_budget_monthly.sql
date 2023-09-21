@@ -14,6 +14,7 @@
                 and lower(donor_audience) != 'monthly'
             group by 1, 2, 3, 4
         )
+
     select
         date_day,
         interval_type,
