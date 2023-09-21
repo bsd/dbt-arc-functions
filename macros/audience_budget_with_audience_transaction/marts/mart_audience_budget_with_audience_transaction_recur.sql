@@ -27,5 +27,5 @@
             and audience_budget.donor_audience = 'Monthly'
         )
         and recur_donor_counts.interval_type = audience_budget.interval_type
-        and recur_donor_counts.platform = audience_budget.join_source
+        and lower(recur_donor_counts.platform) = lower(audience_budget.join_source)
 {% endmacro %}
