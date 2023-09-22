@@ -1,7 +1,15 @@
 {% macro create_mart_audience_budget_with_audience_transaction(
-    reference_0_name='stg_audience_transaction_onetime_donor_counts_actuals_rollup_unioned',
-    reference_1_name='stg_audience_budget_onetime_donor_count_budget_combined') %}
+    onetime_donor_counts='stg_audience_transaction_onetime_donor_counts_actuals_rollup_unioned',
+    audience_budget='stg_audience_budget_onetime_donor_count_budget_combined') %}
     select
+        coalesce(onetime_donor_counts.date_day, audience_budget.date_day) as date_day,
+        coalesce(
+            onetime_donor_counts.interval_type, audience_budget.interval_type
+        ) as interval_type,
+        coalesce(
+            onetime_donor_counts.donor_audience, audience_budget.donor_audience
+        ) as donor_audience,
+        coalesce(onetime_donor_counts.platform, audience_budget.join_source) as platform,
         onetime_donor_counts.total_onetime_donor_counts as total_onetime_donor_counts,
         onetime_donor_counts.new_onetime_donor_counts as new_onetime_donor_counts,
         onetime_donor_counts.retained_onetime_donor_counts
@@ -31,17 +39,9 @@
         as onetime_donor_count_budget_cumulative,
         audience_budget.onetime_new_donor_count_cumulative
         as onetime_new_donor_count_budget_cumulative,
-        coalesce(onetime_donor_counts.date_day, audience_budget.date_day) as date_day,
-        coalesce(
-            onetime_donor_counts.interval_type, audience_budget.interval_type
-        ) as interval_type,
-        coalesce(
-            onetime_donor_counts.donor_audience, audience_budget.donor_audience
-        ) as donor_audience,
-        coalesce(onetime_donor_counts.platform, audience_budget.join_source) as platform
-    from {{ ref(reference_0_name) }} as onetime_donor_counts
+    from {{ ref(onetime_donor_counts) }} as onetime_donor_counts
     full join
-        {{ ref(reference_1_name) }} as audience_budget
+        {{ ref(audience_budget) }} as audience_budget
         on onetime_donor_counts.date_day = audience_budget.date_day
         and upper(onetime_donor_counts.interval_type)
         = upper(audience_budget.interval_type)
