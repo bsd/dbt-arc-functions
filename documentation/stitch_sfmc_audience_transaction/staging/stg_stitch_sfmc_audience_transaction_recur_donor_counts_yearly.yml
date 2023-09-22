@@ -1,0 +1,33 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_audience_transaction_recur_donor_counts_yearly
+    description: This model represents yearly counts of recurring donor transactions
+      associated with different audiences in SFMC. It contains information about the
+      date of each day, the type of interval, the audience associated with the transaction,
+      the platform, total recurring donor counts, new recurring donor counts, retained
+      recurring donor counts, retained3 recurring donor counts, active recurring donor
+      counts, and lapsed recurring donor counts.
+    columns:
+      - name: date_day
+        description: The date of each day. This column has one row per day per person
+      - name: interval_type
+        description: The type of interval the transaction belongs to (e.g., daily,
+          weekly, monthly)
+      - name: donor_audience
+        description: The audience associated with the transaction
+      - name: platform
+        description: The platform where the transaction occurred
+      - name: total_recur_donor_counts
+        description: The total count of recurring donors
+      - name: new_recur_donor_counts
+        description: The count of new recurring donors
+      - name: retained_recur_donor_counts
+        description: The count of recurring donors who were retained
+      - name: retained3_recur_donor_counts
+        description: The count of recurring donors who were retained for at least
+          3 intervals
+      - name: active_recur_donor_counts
+        description: The count of active recurring donors
+      - name: lapsed_recur_donor_counts
+        description: The count of lapsed recurring donors
