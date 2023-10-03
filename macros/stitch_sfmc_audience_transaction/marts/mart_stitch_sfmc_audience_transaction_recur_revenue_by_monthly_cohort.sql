@@ -1,7 +1,6 @@
 {% macro create_mart_stitch_sfmc_audience_transaction_recur_revenue_by_monthly_cohort(
     reference_name="stg_stitch_sfmc_audience_transaction_monthly_recurring_rollup_with_activation"
 ) %}
-    
 
     with
         activation_donors_base as (
@@ -10,9 +9,12 @@
                 donor_audience,
                 join_source,
                 join_gift_size_string,
-                max(case when activation = 'Act00' then total_donors end) as activation_donors
+                max(
+                    case when activation = 'Act00' then total_donors end
+                ) as activation_donors
             from {{ ref(reference_name) }}
-            group by join_month_year_str, donor_audience, join_source, join_gift_size_string
+            group by
+                join_month_year_str, donor_audience, join_source, join_gift_size_string
         ),
         base as (
             select
@@ -29,11 +31,12 @@
                 a.total_revenue_cumulative_cohort,
                 b.activation_donors as activation_donors
             from {{ ref(reference_name) }} a
-            join activation_donors_base b
-            on a.join_month_year_str = b.join_month_year_str
-            and a.donor_audience = b.donor_audience
-            and a.join_source = b.join_source
-            and a.join_gift_size_string = b.join_gift_size_string
+            join
+                activation_donors_base b
+                on a.join_month_year_str = b.join_month_year_str
+                and a.donor_audience = b.donor_audience
+                and a.join_source = b.join_source
+                and a.join_gift_size_string = b.join_gift_size_string
         )
 
     select
@@ -59,5 +62,3 @@
     from base
 
 {% endmacro %}
-
-

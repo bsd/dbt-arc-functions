@@ -51,10 +51,7 @@
             from base
         )
 
-    select
-        transaction_date_day,
-        person_id,
-        donor_audience
+    select transaction_date_day, person_id, donor_audience
     from dedupe
     where row_number = 1
 
