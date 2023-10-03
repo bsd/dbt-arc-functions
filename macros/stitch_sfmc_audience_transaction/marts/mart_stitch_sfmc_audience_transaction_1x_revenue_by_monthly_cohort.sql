@@ -66,15 +66,7 @@ END join_amount_string_sort,
         total_revenue,
         total_donors,
         total_revenue_cumulative_cohort,
-        activation_donors as first_activation_donor_count,
-        case
-            when activation_donors = 0 then 0 else total_donors / activation_donors
-        end as retention_rate,
-        case
-            when activation_donors = 0
-            then 0
-            else total_revenue_cumulative_cohort / activation_donors
-        end as value_per_donor
+        activation_donors as first_activation_donor_count
     from base
 
 {% endmacro %}
