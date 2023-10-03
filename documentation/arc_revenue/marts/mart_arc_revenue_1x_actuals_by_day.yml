@@ -25,6 +25,9 @@ models:
       - name: gift_size_string
         description: the size of each gift sorted into categories represented as a
           string
+      - name: gift_size_string_sort
+        description: a sort field for the gift_size_string field, ordering them from
+          smallest to largest
       - name: total_revenue
         description: Total revenue by day by dimension
       - name: total_gifts

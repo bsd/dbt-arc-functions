@@ -18,6 +18,8 @@ models:
         description: the source channel of each transaction
       - name: join_amount_string
         description: the gift size category of the fist gift
+      - name: join_amount_string_sort
+        description: a sort field for join_amount_string, organizing smallest to largest
       - name: total_revenue
         description: Total revenue by day by dimension
       - name: total_gifts
