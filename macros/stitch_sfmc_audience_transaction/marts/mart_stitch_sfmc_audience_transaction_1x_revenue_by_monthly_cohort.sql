@@ -30,11 +30,11 @@
                 a.total_donors,
                 sum(a.total_revenue) over (
                     partition by
-                        join_month_year_str,
-                        donor_audience,
-                        join_source,
-                        join_gift_size_string
-                    order by activation
+                        a.join_month_year_str,
+                        a.donor_audience,
+                        a.join_source,
+                        a.join_gift_size_string
+                    order by a.activation
                 ) as total_revenue_cumulative_cohort,
                 b.activation_donors as activation_donors
             from {{ ref(reference_name) }} a
