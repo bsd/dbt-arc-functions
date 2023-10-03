@@ -32,7 +32,7 @@
                     partition by
                         a.join_month_year_str,
                         a.donor_audience,
-                        a.join_source,
+                        a.channel,
                         a.join_gift_size_string
                     order by a.activation
                 ) as total_revenue_cumulative_cohort,
