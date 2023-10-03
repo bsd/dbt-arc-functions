@@ -54,15 +54,22 @@
         donor_audience,
         join_source,
         join_gift_size_string,
-         CASE
-    WHEN REGEXP_CONTAINS(gift_size_string,"0[-]25") THEN 1
-    WHEN REGEXP_CONTAINS(gift_size_string,"26[-]100") THEN 2
-    WHEN REGEXP_CONTAINS(gift_size_string,"101[-]250") THEN 3
-    WHEN REGEXP_CONTAINS(gift_size_string,"251[-]500") THEN 4
-    WHEN REGEXP_CONTAINS(gift_size_string,"501[-]1000") THEN 5
-    WHEN REGEXP_CONTAINS(gift_size_string,"1001[-]10000") THEN 6
-    WHEN REGEXP_CONTAINS(gift_size_string,"10000+") THEN 7
-END gift_size_string_sort,
+        case
+            when regexp_contains(gift_size_string, "0[-]25")
+            then 1
+            when regexp_contains(gift_size_string, "26[-]100")
+            then 2
+            when regexp_contains(gift_size_string, "101[-]250")
+            then 3
+            when regexp_contains(gift_size_string, "251[-]500")
+            then 4
+            when regexp_contains(gift_size_string, "501[-]1000")
+            then 5
+            when regexp_contains(gift_size_string, "1001[-]10000")
+            then 6
+            when regexp_contains(gift_size_string, "10000+")
+            then 7
+        end gift_size_string_sort,
         activation,
         total_revenue,
         total_donors,
