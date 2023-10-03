@@ -14,7 +14,7 @@
                 ) as activation_donors
             from {{ ref(reference_name) }}
             group by
-                join_month_year_str, donor_audience, join_source, join_gift_size_string
+                join_month_year_str, donor_audience, channel, join_gift_size_string
         ),
         base as (
             select
