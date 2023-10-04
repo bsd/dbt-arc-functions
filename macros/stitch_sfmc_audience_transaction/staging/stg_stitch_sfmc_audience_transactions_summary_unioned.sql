@@ -16,6 +16,6 @@
         and amount > 0
         -- and only the last 5 years of transactions because we won't go further for
         -- audience data
-        and transaction_date >= date_sub(current_date(), interval 5 year)
+        and transaction_date >= date_sub(current_date(), interval 10 year)
 
 {% endmacro %}
