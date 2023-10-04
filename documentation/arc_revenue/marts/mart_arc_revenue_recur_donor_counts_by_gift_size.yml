@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: mart_arc_revenue_recur_donor_counts_by_gift_size
+    description: "Recurring donor counts by gift_size by day, month, and year"
+    columns:
+      - name: date_day
+        description: "The day representing the day the transaction occured"
+
+      - name: interval_type
+        description: "The donor count interval, can be daily, monthly, or yearly"
+
+      - name: gift_size
+        description: "the size range of the gifts"
+
+      - name: donor_counts
+        description: "the number of donors"
+
