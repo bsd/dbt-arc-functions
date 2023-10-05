@@ -55,7 +55,12 @@
 
         )
 
-    select date_day, person_id, donor_audience
+    select date_day,
+    person_id, 
+    case donor_audience
+        when 'midlevel' then 'Leadership Giving'
+        else initcap(donor_audience)
+        end as donor_audience,
     from deduplicated_table
     where row_num = 1
 
