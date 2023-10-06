@@ -14,7 +14,7 @@ transactions.transaction_date_day,
 transactions.donor_loyalty,
 person.first_gift_join_source as channel,
 person.join_gift_size_string as join_amount_string_recur,
-CASE
+CASE join_amount_string_recur
     when '0-10' then 1
     when '11-20' then 2
     when '21-30' then 3
