@@ -1,6 +1,7 @@
 {% macro create_mart_audience_budget_with_audience_transaction_recur(
-    recur_donor_counts_actuals='stg_audience_transaction_recur_donor_counts_actuals_rollup_unioned',
-    recur_donor_counts_budget='stg_audience_budget_recur_donor_counts_with_interval_combined') %}
+    recur_donor_counts_actuals="stg_audience_transaction_recur_donor_counts_actuals_rollup_unioned",
+    recur_donor_counts_budget="stg_audience_budget_recur_donor_counts_with_interval_combined"
+) %}
     select
         coalesce(recur_donor_counts.date_day, audience_budget.date_day) as date_day,
         coalesce(
