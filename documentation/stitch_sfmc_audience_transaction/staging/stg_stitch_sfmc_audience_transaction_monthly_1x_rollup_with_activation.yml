@@ -1,36 +1,26 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_audience_transaction_monthly_1x_rollup_with_activation
-    description: ""
+    description: ''
     columns:
       - name: join_month_year
-        description: ""
-
+        description: ''
       - name: transaction_month_year_date
-        description: ""
-
+        description: ''
       - name: donor_audience
-        description: ""
-
+        description: ''
       - name: channel
-        description: ""
-
+        description: ''
       - name: join_gift_size_string
-        description: ""
-
+        description: ''
       - name: join_month_year_str
-        description: ""
-
+        description: ''
       - name: transaction_month_year_str
-        description: ""
-
+        description: ''
       - name: activation
-        description: ""
-
+        description: ''
       - name: total_revenue
-        description: ""
-
+        description: ''
       - name: total_donors
-        description: ""
-
+        description: ''
