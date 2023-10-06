@@ -8,8 +8,8 @@
         person_id,
         transaction_date_day,
         amount,
-        inbound_channel,
-        ({{ best_guess_inbound_channel }}) as best_guess_inbound_channel,
+        initcap(inbound_channel),
+        initcap({{ best_guess_inbound_channel }}) as best_guess_inbound_channel,
         recurring,
         (
             case
