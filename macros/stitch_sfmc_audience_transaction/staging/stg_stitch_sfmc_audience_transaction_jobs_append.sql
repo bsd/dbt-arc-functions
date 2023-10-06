@@ -19,8 +19,12 @@
                     order by unix_seconds(transaction_date_day)  -- Convert date to Unix timestamp
                     range between 63113904 preceding and current row  -- 63,113,904 seconds in 24 months
                 ) as cumulative_amount_24_months,
+                case when recurring = false then sum(amount) over (
+                    partition by person_id
+                    order by unix_seconds(transaction_date_day)  -- Convert date to Unix timestamp
+                    range between 63113904 preceding and current row  -- 63,113,904 seconds in 24 months
+                ) end as cumulative_amount_24_months_non_recur,
                 -- Calculate cumulative amount for the past 30 days for recurring
-                -- transactions
                 case
                     when recurring = true
                     then
@@ -31,6 +35,7 @@
                         )
                     else 0
                 end as cumulative_amount_30_days_recur,
+                -- add at least 1 recurring donation... EVER? (new definition of sustainer)
                 max(
                     case
                         when
@@ -52,27 +57,28 @@
                 transaction_date_day,
                 person_id,
                 case
-                    when cumulative_amount_12_months >= 25000
+                    when cumulative_amount_30_days_recur > 0 -- confirmed by laura to leave?
+                    then 'monthly'
+                    -- sustainers = at least 1 recur gift in BBCRM
+                    when cumulative_amount_12_months >= 25000 -- check!
                     then 'major'
                     when
-                        cumulative_amount_24_months between 1000 and 24999
-                        and cumulative_amount_12_months < 25000
-                    then 'midlevel'
+                        cumulative_amount_24_months between 1000 and 24999 -- check! 
+                        -- what if someone gave more than 24999 in 24 months but not in 12 months? won't fit into major OR recurring Or mass!!!
+                    then 'leadership giving'
+                    -- midlevel = cumulative $1,000 - $24,999 over 24 months (including all gifts)
                     when
-                        cumulative_amount_30_days_recur > 0
-                        and cumulative_amount_24_months < 1000
-                        and cumulative_amount_12_months < 25000
-                    then 'recurring'
-                    when cumulative_amount_24_months between 1 and 999
-                    then 'grassroots'
+                    cumulative_amount_24_months_non_recur < 1000
+                    then 'mass'
+                    -- mass = non-recurring; $1-$999; not monthly, midlevel, major, or unite
                     else null
                 end as donor_audience,
                 case
                     when donated_within_14_months = 0
                     then 'lapsed'
-                    when donated_within_14_months = 1
-                    then 'active'
-                    else null
+                    -- lapsed = have not donated within 14 months; members of major, monthly, leadership giving should be excluded (according to UUSA)
+                    else 'active'
+                    -- this isn't really counting active as much as everyone outside of mass that doesnt "lapse"?
                 end as donor_engagement
             from calculations
         ),
