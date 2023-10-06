@@ -1,7 +1,7 @@
 {% macro create_stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction(
    audience="stg_stitch_sfmc_arc_audience_unioned",
     first_gift="stg_stitch_sfmc_audience_transaction_first_gift",
-    transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined",
+    transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
     audience_transaction_jobs_append="stg_stitch_sfmc_audience_transaction_jobs_append"
 ) %}
     select
