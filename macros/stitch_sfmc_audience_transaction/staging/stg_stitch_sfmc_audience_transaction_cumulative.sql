@@ -27,7 +27,17 @@
                     range between 2592000 preceding and current row  -- 2,592,000 seconds in 30 days
                 )
             else 0
-        end as cumulative_amount_30_days_recur
+        end as cumulative_amount_30_days_recur,
+         max(
+            case
+                when
+                    transaction_date >= date_add(
+                        date_trunc(transaction_date_day, month), interval - 14 month
+                    )
+                then 1
+                else 0
+            end
+        ) as donated_within_14_months
 
     from {{ ref(reference_name) }}
 
