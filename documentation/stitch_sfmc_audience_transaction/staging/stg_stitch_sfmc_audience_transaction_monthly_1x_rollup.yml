@@ -1,17 +1,22 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_audience_transaction_monthly_1x_rollup
-    description: ""
+    description: ''
     columns:
        columns:
       - name: transaction_month_year_date
-        description: The date of the transaction in the format truncated at month.
+        description: ''
       - name: join_month_year
-        description: The month and year when the users first donated.
+        description: ''
+      - name: donor_audience
+        description: ''
+      - name: channel
+        description: ''
+      - name: join_gift_size_string
+        description: ''
       - name: total_revenue
-        description: The total revenue generated from the audience transactions.
+        description: ''
       - name: total_donors
-        description: The total number of donors contributing to the audience transactions.
-
+        description: ''
 
