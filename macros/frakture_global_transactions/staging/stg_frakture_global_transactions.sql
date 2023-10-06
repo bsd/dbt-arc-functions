@@ -15,7 +15,7 @@
         transaction_source_code,
         message_id as best_guess_message_id,
         campaign as campaign,
-        channel as channel,
+        initcap(channel) as channel,
         audience as audience,
         safe_cast(transaction_bot_id as string) as crm_entity,
         safe_cast(affiliation as string) as source_code_entity,
