@@ -43,6 +43,7 @@
                     end
                 ) as donated_within_14_months
             from {{ ref(reference_name) }}
+            group by 1 ,2
         ),
         base as
 
