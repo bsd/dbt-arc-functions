@@ -58,26 +58,26 @@
                 person_id,
                 case
                     when cumulative_amount_30_days_recur > 0 -- confirmed by laura to leave?
-                    then 'monthly'
+                    then 'Monthly'
                     -- sustainers = at least 1 recur gift in BBCRM
                     when cumulative_amount_12_months >= 25000 -- check!
-                    then 'major'
+                    then 'Major'
                     when
                         cumulative_amount_24_months between 1000 and 24999 -- check! 
                         -- what if someone gave more than 24999 in 24 months but not in 12 months? won't fit into major OR recurring Or mass!!!
-                    then 'leadership giving'
+                    then 'Leadership Giving'
                     -- midlevel = cumulative $1,000 - $24,999 over 24 months (including all gifts)
                     when
                     cumulative_amount_24_months_non_recur < 1000
-                    then 'mass'
+                    then 'Mass'
                     -- mass = non-recurring; $1-$999; not monthly, midlevel, major, or unite
                     else null
                 end as donor_audience,
                 case
                     when donated_within_14_months = 0
-                    then 'lapsed'
+                    then 'Lapsed'
                     -- lapsed = have not donated within 14 months; members of major, monthly, leadership giving should be excluded (according to UUSA)
-                    else 'active'
+                    else 'Active'
                     -- this isn't really counting active as much as everyone outside of mass that doesnt "lapse"?
                 end as donor_engagement
             from calculations
