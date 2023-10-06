@@ -17,20 +17,7 @@
         loyalty_retained_three_donor_targets_by_day,
         loyalty_reinstated_donor_targets_by_day,
         total_donors_by_day,
-        case
-            when donor_audience = 'Clubs'
-            then 'clubs'
-            when donor_audience = 'Monthly'
-            then 'recurring'
-            when donor_audience = 'Mass'
-            then 'grassroots'
-            when donor_audience = 'Leadership Giving'
-            then 'midlevel'
-            when donor_audience = 'Major'
-            then 'major'
-            when donor_audience = 'Unite'
-            then 'unite'
-        end as donor_audience  -- UUSA custom audience naming code
+        initcap(donor_audience) as donor_audience  -- UUSA custom audience naming code
 
     from {{ ref(budget_by_day) }}
 
