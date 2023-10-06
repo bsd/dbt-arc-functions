@@ -73,7 +73,7 @@
                     then 'active'
                     else null
                 end as donor_engagement
-            from {{ ref(reference_name) }}
+            from calculations
         ),
         dedupe as (
             select
