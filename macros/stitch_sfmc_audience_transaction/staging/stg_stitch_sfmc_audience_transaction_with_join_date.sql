@@ -17,5 +17,4 @@
     inner join
         {{ ref(reference_1_name) }} as first_gift
         on union_transaction.person_id = first_gift.person_id
-    where union_transaction.recurring = true
 {% endmacro %}
