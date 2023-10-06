@@ -114,6 +114,7 @@
         new_onetime_donor_counts,
         retained_onetime_donor_counts,
         retained3_onetime_donor_counts,
+        reinstated_onetime_donor_counts,
         active_onetime_donor_counts,
         lapsed_onetime_donor_counts,
         sum(total_onetime_donor_counts) over (
@@ -156,6 +157,7 @@
         new_onetime_donor_counts,
         retained_onetime_donor_counts,
         retained3_onetime_donor_counts,
+        reinstated_onetime_donor_counts,
         active_onetime_donor_counts,
         lapsed_onetime_donor_counts,
         sum(total_onetime_donor_counts) over (
@@ -198,6 +200,7 @@
         new_onetime_donor_counts,
         retained_onetime_donor_counts,
         retained3_onetime_donor_counts,
+        reinstated_onetime_donor_counts,
         active_onetime_donor_counts,
         lapsed_onetime_donor_counts,
         sum(total_onetime_donor_counts) over (
