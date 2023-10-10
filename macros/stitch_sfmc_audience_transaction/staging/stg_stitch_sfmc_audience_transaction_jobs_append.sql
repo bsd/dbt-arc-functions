@@ -7,6 +7,7 @@
             select
                 transaction_date_day,
                 person_id,
+                sum(amount) as daily_revenue,
                 -- Calculate cumulative amount for the past 12 months
                 sum(amount) over (
                     partition by person_id
@@ -58,12 +59,14 @@
                 person_id,
                 case
                     when cumulative_amount_30_days_recur > 0 -- confirmed by laura to leave?
+                    and daily_revenue < 80
                     then 'Monthly'
                     -- sustainers = at least 1 recur gift in BBCRM
                     when cumulative_amount_12_months >= 25000 -- check!
                     then 'Major'
                     when
                         cumulative_amount_24_months between 1000 and 24999 -- check! 
+                        and daily_revenue >= 80
                         -- what if someone gave more than 24999 in 24 months but not in 12 months? won't fit into major OR recurring Or mass!!!
                     then 'Leadership Giving'
                     -- midlevel = cumulative $1,000 - $24,999 over 24 months (including all gifts)
