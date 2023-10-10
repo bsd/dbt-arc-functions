@@ -38,7 +38,33 @@
                 then '1001-10000'
                 else '10000+'
             end
-        ) as join_gift_size_string
+        ) as join_gift_size_string,
+        (
+            case
+                when ft.firsttransactionamount between 0 and 10
+                then '0-10'
+                when ft.firsttransactionamount between 11 and 20
+                then '11-20'
+                when ft.firsttransactionamount between 21 and 30
+                then '21-30'
+                when ft.firsttransactionamount between 31 and 40
+                then '31-40'
+                when ft.firsttransactionamount between 41 and 50
+                then '41-50'
+                when ft.firsttransactionamount between 51 and 60
+                then '51-60'
+                when ft.firsttransactionamount between 61 and 70
+                then '61-70'
+                when ft.firsttransactionamount between 71 and 80
+                then '71-80'
+                when ft.firsttransactionamount between 81 and 90
+                then '81-90'
+                when ft.firsttransactionamount between 91 and 100
+                then '91-100'
+                when ft.firsttransactionamount > 100
+                then '100+'
+            end
+        ) as join_gift_size_string_recur
     from first_transactions as ft
     where ft.row_number = 1
 
