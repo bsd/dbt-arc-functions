@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction(
-   audience="stg_stitch_sfmc_arc_audience_unioned",
+    audience="stg_stitch_sfmc_arc_audience_unioned",
     first_gift="stg_stitch_sfmc_audience_transaction_first_gift",
     transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
     audience_transaction_jobs_append="stg_stitch_sfmc_audience_transaction_jobs_append"
@@ -19,7 +19,8 @@
     left join
         {{ ref(first_gift) }} as first_gift
         on transactions.person_id = first_gift.person_id
-    left join {{ ref(audience) }} as audience
+    left join
+        {{ ref(audience) }} as audience
         on audience.date_day = transactions.transaction_date_day
         and audience.person_id = transactions.person_id
     left join

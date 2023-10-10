@@ -54,19 +54,19 @@
         channel,
         join_gift_size_string,
         case
-            when regexp_contains(join_gift_size_string, "0[-]25")
+            when join_gift_size_string = "0-25"
             then 1
-            when regexp_contains(join_gift_size_string, "26[-]100")
+            when join_gift_size_string = "26-100"
             then 2
-            when regexp_contains(join_gift_size_string, "101[-]250")
+            when join_gift_size_string = "101-250"
             then 3
-            when regexp_contains(join_gift_size_string, "251[-]500")
+            when join_gift_size_string = "251-500"
             then 4
-            when regexp_contains(join_gift_size_string, "501[-]1000")
+            when join_gift_size_string = "501-1000"
             then 5
-            when regexp_contains(join_gift_size_string, "1001[-]10000")
+            when join_gift_size_string = "1001-10000"
             then 6
-            when regexp_contains(join_gift_size_string, "10000+")
+            when join_gift_size_string = "10000+"
             then 7
         end join_amount_string_sort,
         activation,

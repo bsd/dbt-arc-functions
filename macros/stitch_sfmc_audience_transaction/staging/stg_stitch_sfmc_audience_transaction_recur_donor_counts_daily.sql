@@ -23,7 +23,11 @@
         ) as lapsed_recur_donor_counts,
 
     from
-        {{ ref("stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction") }}
+        {{
+            ref(
+                "stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction"
+            )
+        }}
 
     where donor_audience = 'recurring'
     group by 1, 2, 3, 4
