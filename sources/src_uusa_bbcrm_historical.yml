@@ -1,0 +1,32 @@
+---
+version: 2
+sources:
+  - name: src_uusa_bbcrm_historical
+    description: Source for historical revenue data from legacy uusa project
+    loader: gcp - sftp - big query
+    database: "{{ var('database') }}"
+    schema: src_uusa_bbcrm_historical
+    tables:
+      - name: revenue_current_fiscal_hist
+        columns:
+          - name: bbcrmlookupid
+          - name: constituentsystemrecordid
+          - name: statuscode
+          - name: recordid
+          - name: revenue_id
+          - name: transaction_date
+          - name: payment_method
+          - name: recognition_amount
+          - name: inbound_channel
+          - name: appeal
+          - name: appeal_business_unit
+          - name: initial_market_source
+          - name: web_donation_form_value
+          - name: web_donation_form_comment
+          - name: designation
+          - name: transaction_type
+          - name: application
+          - name: vendor_order_number
+          - name: revenue_platform
+          - name: sfmc_dateadded
+          - name: sfmc_updatedate

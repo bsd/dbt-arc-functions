@@ -1,0 +1,23 @@
+---
+version: 2
+sources:
+  - name: src_uusa_sfmc_historical
+    description: "Historical Email metrics data from standard sfmc data views"
+    loader: stitch - sftp
+    database: "{{ var('database') }}"
+    schema: src_uusa_sfmc_historical
+    tables:
+      - name: backfill_sent
+        description: "Contains backfilled sent data from 12-28-2022 to present"
+        columns:
+          - name: accountid
+          - name: oybaccountid
+          - name: jobid
+          - name: listid
+          - name: batchid
+          - name: subscriberid
+          - name: subscriberkey
+          - name: eventdate
+          - name: domain
+          - name: triggerersenddefinitionobjectid
+          - name: triggeredsendcustomerkey
