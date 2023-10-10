@@ -72,6 +72,22 @@
                     then 'Mass'
                     -- mass = non-recurring; $1-$999; not monthly, midlevel, major, or unite
                     else null
+                end as bluestate_donor_audience,
+                case
+                    when cumulative_amount_12_months >= 25000
+                    then 'Major'
+                    when
+                        cumulative_amount_24_months between 1000 and 24999
+                        and cumulative_amount_12_months < 25000
+                    then 'Leadership Giving'
+                    when
+                        cumulative_amount_30_days_recur > 0
+                        and cumulative_amount_24_months < 1000
+                        and cumulative_amount_12_months < 25000
+                    then 'Monthly'
+                    when cumulative_amount_24_months between 1 and 999
+                    then 'Mass'
+                    else null
                 end as donor_audience,
                 case
                     when donated_within_14_months = 0

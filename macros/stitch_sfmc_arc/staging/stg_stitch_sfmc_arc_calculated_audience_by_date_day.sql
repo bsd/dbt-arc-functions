@@ -33,13 +33,7 @@
     select
         date_day,
         person_id,
-        case
-            when donor_audience = 'mass'
-            then 'grassroots'
-            when donor_audience = 'monthly'
-            then 'recurring'
-            else donor_audience
-        end as donor_audience
+        donor_audience
     from deduplicated_table
     where row_num = 1
 

@@ -13,6 +13,9 @@
             case when donor_loyalty = 'retained3' then 1 end
         ) as retained3_recur_donor_counts,
         count(
+            case when donor_loyalty = 'reinstated' then 1 end
+        ) as reinstated_recur_donor_counts,
+        count(
             case when donor_engagement = 'active' then 1 end
         ) as active_recur_donor_counts,
         count(
