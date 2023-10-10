@@ -13,6 +13,7 @@
         transactions.gift_size_string as gift_size_str,
         first_gift.first_gift_join_source as join_source,
         first_gift.join_gift_size_string as join_amount_str,
+        first_gift.join_gift_size_string_recur as join_amount_str_recur,
         first_gift.join_month_year_date as join_month_year_str
     from {{ ref(transactions) }} as transactions
     left join
