@@ -1,9 +1,8 @@
 ---
 version: 2
-
 sources:
   - name: src_uusa_sfmc_historical
-    description: ""
+    description: ''
     tables:
       - name: backfill_sent
         description: subscribers who were sent emails from your account by querying
