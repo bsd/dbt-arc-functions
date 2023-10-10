@@ -1,23 +1,47 @@
 ---
 version: 2
+
 sources:
   - name: src_uusa_sfmc_historical
-    description: "Historical Email metrics data from standard sfmc data views"
-    loader: stitch - sftp
-    database: "{{ var('database') }}"
-    schema: src_uusa_sfmc_historical
+    description: ""
     tables:
       - name: backfill_sent
-        description: "Contains backfilled sent data from 12-28-2022 to present"
+        description: subscribers who were sent emails from your account by querying
+          the _Sent data view. Records dating back six months from the day the query
+          runs are available.
         columns:
           - name: accountid
+            description: Your account ID number
+            data_type: string
           - name: oybaccountid
+            data_type: string
+            description: The account ID number for any related On-Your-Behalf accounts.
+              This field applies to enterprise accounts only.
           - name: jobid
+            data_type: string
+            description: The job ID number for the email send
           - name: listid
+            data_type: string
+            description: The list ID number for the list used in the send
           - name: batchid
+            data_type: string
+            description: The batch ID number for any batches used in the send
           - name: subscriberid
+            data_type: string
+            description: The subscriber ID for the affected subscriber. This number
+              represents the unique ID for each subscriber record.
           - name: subscriberkey
+            data_type: string
+            description: The subscriber key for the affected subscriber
           - name: eventdate
+            data_type: string
+            description: The date the send took place
           - name: domain
+            data_type: string
+            description: The domain at which the send occurred
           - name: triggerersenddefinitionobjectid
+            data_type: string
+            description: The object ID for the triggered send definition
           - name: triggeredsendcustomerkey
+            data_type: string
+            description: The customer key for the triggered send
