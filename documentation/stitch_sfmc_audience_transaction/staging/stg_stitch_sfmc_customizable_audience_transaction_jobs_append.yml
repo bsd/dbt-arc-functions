@@ -1,0 +1,25 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_customizable_audience_transaction_jobs_append
+    description: Table allowing for customizable audiences. By default, will just
+      copy default audiences.
+    columns:
+      - name: transaction_date_day
+        description: The day of the transaction
+      - name: person_id
+        description: The ID identifier of the person associated with the transaction
+      - name: donor_audience
+        description: The audience associated with the transaction
+      - name: donor_engagement
+        description: The engagement level associated with the transaction
+      - name: donor_loyalty
+        description: The loyalty level associated with the transaction
+    tests:
+      - dbt_expectations.expect_table_columns_to_match_ordered_list:
+          column_list:
+            - transaction_date_day
+            - person_id
+            - donor_audience
+            - donor_engagement
+            - donor_loyalty
