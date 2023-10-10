@@ -1,7 +1,7 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_recur_donor_counts_combined(
-    daily='stg_stitch_sfmc_audience_transaction_recur_donor_counts_daily',
-    monthly='stg_stitch_sfmc_audience_transaction_recur_donor_counts_monthly',
-    yearly='stg_stitch_sfmc_audience_transaction_recur_donor_counts_yearly'
+    daily="stg_stitch_sfmc_audience_transaction_recur_donor_counts_daily",
+    monthly="stg_stitch_sfmc_audience_transaction_recur_donor_counts_monthly",
+    yearly="stg_stitch_sfmc_audience_transaction_recur_donor_counts_yearly"
 ) %}
     select
         date_day,

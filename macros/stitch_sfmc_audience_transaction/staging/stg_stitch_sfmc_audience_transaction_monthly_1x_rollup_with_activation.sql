@@ -1,11 +1,11 @@
-{% macro create_stg_stitch_sfmc_audience_transaction_monthly_recurring_rollup_with_activation(
-    reference_name="stg_stitch_sfmc_audience_transaction_monthly_recurring_rollup"
+{% macro create_stg_stitch_sfmc_audience_transaction_monthly_1x_rollup_with_activation(
+    reference_name="stg_stitch_sfmc_audience_transaction_monthly_1x_rollup"
 ) %}
     select
         join_month_year,
         transaction_month_year_date,
         donor_audience,
-        join_source,
+        channel,
         join_gift_size_string,
         concat(
             cast(extract(year from join_month_year) as string),
