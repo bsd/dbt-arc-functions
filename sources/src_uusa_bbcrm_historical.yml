@@ -1,9 +1,8 @@
 ---
 version: 2
-
 sources:
   - name: src_uusa_bbcrm_historical
-    description:  historical source for revenue data from Salesforce CRM
+    description: historical source for revenue data from Salesforce CRM
     tables:
       - name: revenue_current_fiscal_hist
         description: Table containing revenue data from Salesforce CRM
