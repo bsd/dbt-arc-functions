@@ -1,0 +1,17 @@
+---
+version: 2
+models:
+  - name: stg_audience_budget_recur_donor_counts_with_interval_combined
+    description: This model contains data on recurring donor counts with interval
+      combined for audience budget.
+    columns:
+      - name: date_day
+        description: The date of the day.
+      - name: interval_type
+        description: The type of interval.
+      - name: donor_audience
+        description: The audience of the donor.
+      - name: join_source
+        description: The source of the join.
+      - name: recur_total_donor_count_budget
+        description: The budget for the total recurring donor count.
