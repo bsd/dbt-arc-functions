@@ -1,5 +1,5 @@
-{% macro create_mart_stitch_sfmc_audience_transaction_recur_revenue_by_monthly_cohort(
-    reference_name="stg_stitch_sfmc_audience_transaction_monthly_recurring_rollup_with_activation"
+{% macro create_mart_stitch_sfmc_audience_transaction_1x_revenue_by_monthly_cohort(
+    reference_name="stg_stitch_sfmc_audience_transaction_monthly_1x_rollup_with_activation"
 ) %}
 
     with
@@ -7,14 +7,13 @@
             select
                 join_month_year_str,
                 donor_audience,
-                join_source,
+                channel,
                 join_gift_size_string,
                 max(
                     case when activation = 'Act00' then total_donors end
                 ) as activation_donors
             from {{ ref(reference_name) }}
-            group by
-                join_month_year_str, donor_audience, join_source, join_gift_size_string
+            group by join_month_year_str, donor_audience, channel, join_gift_size_string
         ),
         base as (
             select
@@ -23,7 +22,7 @@
                 a.transaction_month_year_date,
                 a.transaction_month_year_str,
                 a.donor_audience,
-                a.join_source,
+                a.channel,
                 a.join_gift_size_string,
                 a.activation,
                 a.total_revenue,
@@ -32,7 +31,7 @@
                     partition by
                         a.join_month_year_str,
                         a.donor_audience,
-                        a.join_source,
+                        a.channel,
                         a.join_gift_size_string
                     order by a.activation
                 ) as total_revenue_cumulative_cohort,
@@ -42,7 +41,7 @@
                 activation_donors_base b
                 on a.join_month_year_str = b.join_month_year_str
                 and a.donor_audience = b.donor_audience
-                and a.join_source = b.join_source
+                and a.channel = b.channel
                 and a.join_gift_size_string = b.join_gift_size_string
         )
 
@@ -52,7 +51,7 @@
         transaction_month_year_date,
         transaction_month_year_str,
         donor_audience,
-        join_source,
+        channel,
         join_gift_size_string,
         case
             when join_gift_size_string = "0-25"
@@ -69,7 +68,7 @@
             then 6
             when join_gift_size_string = "10000+"
             then 7
-        end join_amount_string_sort,  -- change this once the join amount has been adjusted for recur
+        end join_amount_string_sort,
         activation,
         total_revenue,
         total_donors,

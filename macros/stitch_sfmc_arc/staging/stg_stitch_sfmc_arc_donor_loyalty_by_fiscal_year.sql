@@ -3,42 +3,49 @@
     donor_loyalty_count="stg_stitch_sfmc_arc_donor_loyalty_fiscal_year_count"
 ) %}
 
-
-WITH donation_history AS (
-    SELECT
-        person_id,
-        fiscal_year,
-        LAG(fiscal_year) OVER (PARTITION BY person_id ORDER BY fiscal_year) AS previous_fiscal_year,
-        LAG(fiscal_year, 2) OVER (PARTITION BY person_id ORDER BY fiscal_year) AS fiscal_year_before_previous,
-        MAX(transaction_date_day) AS last_donation_date
-    FROM
-       {{ ref(audience_union_transaction_joined) }}
-    GROUP BY
-        person_id,
-        fiscal_year
-)
-SELECT
-    donor_loyalty_counts.person_id,
-    donor_loyalty_counts.fiscal_year,
-    donor_loyalty_counts.start_date,
-    donor_loyalty_counts.end_date,
-    CASE
-        WHEN donation_history.previous_fiscal_year IS NULL THEN 'new_donor'
-        WHEN donation_history.previous_fiscal_year = donor_loyalty_counts.fiscal_year - 1 AND donation_history.fiscal_year_before_previous IS NULL THEN 'retained_donor'
-        WHEN donation_history.previous_fiscal_year = donor_loyalty_counts.fiscal_year - 1 AND donation_history.fiscal_year_before_previous IS NOT NULL THEN 'retained_3+_donor'
-        WHEN donation_history.previous_fiscal_year <> donor_loyalty_counts.fiscal_year - 1 THEN 'reactivated_donor'
-    END AS donor_loyalty
-FROM
-    {{ ref(donor_loyalty_count) }} donor_loyalty_counts
-LEFT JOIN
-    donation_history
-ON
-    donor_loyalty_counts.person_id = donation_history.person_id
-    AND donor_loyalty_counts.fiscal_year = donation_history.fiscal_year
-ORDER BY
-    donor_loyalty_counts.person_id,
-    donor_loyalty_counts.fiscal_year
+    with
+        donation_history as (
+            select
+                person_id,
+                fiscal_year,
+                lag(fiscal_year) over (
+                    partition by person_id order by fiscal_year
+                ) as previous_fiscal_year,
+                lag(fiscal_year, 2) over (
+                    partition by person_id order by fiscal_year
+                ) as fiscal_year_before_previous,
+                max(transaction_date_day) as last_donation_date
+            from {{ ref(audience_union_transaction_joined) }}
+            group by person_id, fiscal_year
+        )
+    select
+        donor_loyalty_counts.person_id,
+        donor_loyalty_counts.fiscal_year,
+        donor_loyalty_counts.start_date,
+        donor_loyalty_counts.end_date,
+        case
+            when donation_history.previous_fiscal_year is null
+            then 'new_donor'
+            when
+                donation_history.previous_fiscal_year
+                = donor_loyalty_counts.fiscal_year - 1
+                and donation_history.fiscal_year_before_previous is null
+            then 'retained_donor'
+            when
+                donation_history.previous_fiscal_year
+                = donor_loyalty_counts.fiscal_year - 1
+                and donation_history.fiscal_year_before_previous is not null
+            then 'retained_3+_donor'
+            when
+                donation_history.previous_fiscal_year
+                <> donor_loyalty_counts.fiscal_year - 1
+            then 'reactivated_donor'
+        end as donor_loyalty
+    from {{ ref(donor_loyalty_count) }} donor_loyalty_counts
+    left join
+        donation_history
+        on donor_loyalty_counts.person_id = donation_history.person_id
+        and donor_loyalty_counts.fiscal_year = donation_history.fiscal_year
+    order by donor_loyalty_counts.person_id, donor_loyalty_counts.fiscal_year
 
 {% endmacro %}
-
-

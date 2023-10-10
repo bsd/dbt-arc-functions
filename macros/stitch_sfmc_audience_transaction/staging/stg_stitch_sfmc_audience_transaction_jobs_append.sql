@@ -47,38 +47,7 @@
                     when donated_within_14_months = 1
                     then 'active'
                     else null
-                end as donor_engagement,
-                -- june to july is their fiscal year
-                case
-                    when
-                        donated_current_fiscal_year_july_to_june = 1
-                        and donated_last_fiscal_year_july_to_june = 1
-                        and donated_two_fiscal_years_ago_july_to_june = 0
-                        and donated_three_fiscal_years_ago_july_to_june = 0
-                    -- and did not donate two years ago and before
-                    then 'retained'
-                    -- reinstated missing
-                    when
-                        donated_current_fiscal_year_july_to_june = 1
-                        and donated_last_fiscal_year_july_to_june = 0
-                        and (
-                            donated_two_fiscal_years_ago_july_to_june = 1
-                            or donated_three_fiscal_years_ago_july_to_june = 1
-                            or donated_four_fiscal_years_ago_july_to_june = 1
-                        )
-                    then 'reinstated'
-                    when
-                        donated_current_fiscal_year_july_to_june = 1
-                        and donated_last_fiscal_year_july_to_june = 0
-                    then 'new_donor'
-                    when
-                        donated_current_fiscal_year_july_to_june = 1
-                        and donated_last_fiscal_year_july_to_june = 1
-                        and donated_two_fiscal_years_ago_july_to_june = 1
-                    -- and any other year before that
-                    then 'retained 3+'
-                -- retained 3+ also multiyear
-                end as donor_loyalty
+                end as donor_engagement
             from {{ ref(reference_name) }}
         ),
         dedupe as (
@@ -87,21 +56,18 @@
                 person_id,
                 donor_audience,
                 donor_engagement,
-                donor_loyalty,
                 row_number() over (
                     partition by
                         transaction_date_day,
                         person_id,
                         donor_audience,
-                        donor_engagement,
-                        donor_loyalty
+                        donor_engagement
                     order by transaction_date_day desc
                 ) as row_number
             from base
         )
 
-    select
-        transaction_date_day, person_id, donor_audience, donor_engagement, donor_loyalty
+    select transaction_date_day, person_id, donor_audience, donor_engagement
     from dedupe
     where row_number = 1
 
