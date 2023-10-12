@@ -37,7 +37,7 @@
                     else 0
                 end as cumulative_amount_30_days_recur,
                 -- add at least 1 recurring donation... EVER? (new definition of sustainer)
-                sum(amount) over 
+                sum(amount) over (
                     partition by person_id 
                     order by unix_seconds(timestamp(transaction_date_day))
                     range between 36816402 preceding and current row -- 36816402 seconds is 14 months
