@@ -10,7 +10,7 @@
         subscriber_key,
         case when bounce_category_id = '1' then 1 else 0 end as hard_bounces,
         case when bounce_category_id = '2' then 1 else 0 end as soft_bounces
-        from from {{ ref(reference_name) }}
+        from {{ ref(reference_name) }}
 
     )
 
