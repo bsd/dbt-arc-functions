@@ -67,7 +67,7 @@
         )
 
 
-        ,calculations as
+        ,base as
 
         (
             select distinct
@@ -115,7 +115,7 @@
                     else 'Active'
                     -- this isn't really counting active as much as everyone outside of mass that doesnt "lapse"?
                 end as donor_engagement
-            from calculations
+            from day_person_rollup
         ),
         dedupe as (
             select
