@@ -1,7 +1,6 @@
 {% macro create_mart_audience_budget_with_audience_transaction(
-    onetime_donor_counts="stg_audience_transaction_onetime_donor_counts_actuals_rollup_unioned",
-    audience_budget="stg_audience_budget_onetime_donor_count_budget_combined"
-) %}
+    onetime_donor_counts='stg_audience_transaction_onetime_donor_counts_actuals_rollup_unioned',
+    audience_budget='stg_audience_budget_onetime_donor_count_budget_combined') %}
     select
         coalesce(onetime_donor_counts.date_day, audience_budget.date_day) as date_day,
         coalesce(

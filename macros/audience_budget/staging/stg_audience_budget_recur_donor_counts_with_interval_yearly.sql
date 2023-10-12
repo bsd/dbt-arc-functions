@@ -1,6 +1,5 @@
 {% macro create_stg_audience_budget_recur_donor_counts_with_interval_yearly(
-    reference_name="stg_audience_budget_by_day"
-) %}
+    reference_name='stg_audience_budget_by_day') %}
     select
         last_day(date_day, year) as date_day,
         'yearly' as interval_type,

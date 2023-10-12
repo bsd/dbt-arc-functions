@@ -30,7 +30,10 @@
 
         )
 
-    select date_day, person_id, donor_audience
+    select
+        date_day,
+        person_id,
+        donor_audience
     from deduplicated_table
     where row_num = 1
 

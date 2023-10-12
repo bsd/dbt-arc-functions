@@ -28,7 +28,9 @@
                 when bounce_category_id = '4' then subscriber_key else null
             end
         ) as unknown_bounces,
-        count(distinct subscriber_key) as total_bounces
+        count(
+            distinct subscriber_key
+        ) as total_bounces
     from {{ ref(reference_name) }}
     group by 1
 {% endmacro %}
