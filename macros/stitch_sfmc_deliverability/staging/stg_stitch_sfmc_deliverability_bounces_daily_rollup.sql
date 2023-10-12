@@ -1,6 +1,10 @@
 {% macro create_stg_stitch_sfmc_deliverability_bounces_daily_rollup(
     reference_name="stg_src_stitch_email_bounce"
 ) %}
+    
+
+    
+    
     select
         safe_cast(event_dt as date) as sent_date,
         safe_cast(job_id as string) as message_id,

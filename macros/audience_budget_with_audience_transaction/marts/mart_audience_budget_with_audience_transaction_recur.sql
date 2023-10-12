@@ -1,6 +1,7 @@
 {% macro create_mart_audience_budget_with_audience_transaction_recur(
-    recur_donor_counts_actuals='stg_audience_transaction_recur_donor_counts_actuals_rollup_unioned',
-    recur_donor_counts_budget='stg_audience_budget_recur_donor_counts_with_interval_combined') %}
+    recur_donor_counts_actuals="stg_audience_transaction_recur_donor_counts_actuals_rollup_unioned",
+    recur_donor_counts_budget="stg_audience_budget_recur_donor_counts_with_interval_combined"
+) %}
     select
         coalesce(recur_donor_counts.date_day, audience_budget.date_day) as date_day,
         coalesce(
@@ -14,7 +15,8 @@
         recur_donor_counts.new_recur_donor_counts as new_recur_donor_counts,
         recur_donor_counts.retained_recur_donor_counts as retained_recur_donor_counts,
         recur_donor_counts.retained3_recur_donor_counts as retained3_recur_donor_counts,
-        recur_donor_counts.reinstated_recur_donor_counts as reinstated_recur_donor_counts,
+        recur_donor_counts.reinstated_recur_donor_counts
+        as reinstated_recur_donor_counts,
         recur_donor_counts.active_recur_donor_counts as active_recur_donor_counts,
         recur_donor_counts.lapsed_recur_donor_counts as lapsed_recur_donor_counts,
         audience_budget.recur_total_donor_count_budget
