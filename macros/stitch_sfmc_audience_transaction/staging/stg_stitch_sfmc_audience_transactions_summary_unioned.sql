@@ -8,7 +8,8 @@
         base.*,
         cast(
             timestamp_trunc(base.transaction_date, day) as date
-        ) as transaction_date_day
+        ) as transaction_date_day,
+        cast(transaction_date as timestamp) as transaction_date_timestamp
     from base
     where
         transaction_date is not null
