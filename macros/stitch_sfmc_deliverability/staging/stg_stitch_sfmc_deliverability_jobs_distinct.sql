@@ -1,25 +1,22 @@
 {% macro create_stg_stitch_sfmc_deliverability_jobs_distinct() %}
     with
         unions as (
-            select job_id, event_dt, domain
-            from {{ ref("stg_src_stitch_email_action") }}
+            select message_id, sent_date, email_domain
+            from {{ ref("stg_stitch_sfmc_deliverability_actions_daily_rollup") }}
             union distinct
-            select job_id, event_dt, domain
-            from {{ ref("stg_src_stitch_email_bounce") }}
+            select message_id, sent_date, email_domain
+            from {{ ref("stg_stitch_sfmc_deliverability_bounces_daily_rollup") }}
             union distinct
-            select job_id, event_dt, domain
-            from {{ ref("stg_src_stitch_email_click") }}
+            select message_id, sent_date, email_domain
+            from {{ ref("stg_stitch_sfmc_deliverability_clicks_daily_rollup") }}
             union distinct
-            select job_id, event_dt, domain
-            from {{ ref("stg_src_stitch_email_open") }}
+            select message_id, sent_date, email_domain
+            from {{ ref("stg_stitch_sfmc_deliverability_opens_daily_rollup") }}
             union distinct
-            select job_id, event_dt, domain
-            from {{ ref("stg_src_stitch_email_unsubscribe") }}
+            select message_id, sent_date, email_domain
+            from {{ ref("stg_stitch_sfmc_deliverability_unsubscribes_daily_rollup") }}
         )
 
-    select distinct
-        safe_cast(job_id as string) as message_id,
-        safe_cast(event_dt as date) as sent_date,
-        safe_cast(domain as string) as email_domain
+    select distinct *
     from unions
 {% endmacro %}
