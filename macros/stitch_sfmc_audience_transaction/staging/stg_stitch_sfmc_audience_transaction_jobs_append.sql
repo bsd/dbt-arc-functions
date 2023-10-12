@@ -37,17 +37,11 @@
                     else 0
                 end as cumulative_amount_30_days_recur,
                 -- add at least 1 recurring donation... EVER? (new definition of sustainer)
-                max(
-                    case
-                        when
-                            transaction_date >= date_add(
-                                date_trunc(transaction_date_day, month),
-                                interval - 14 month
-                            )
-                        then 1
-                        else 0
-                    end
-                ) as donated_within_14_months
+                sum(amount) over 
+                    partition by person_id 
+                    order by unix_seconds(timestamp(transaction_date_day))
+                    range between 36816402 preceding and current row -- 36816402 seconds is 14 months
+                ) as cumulative_amount_14_months
             from {{ ref(reference_name) }}
             group by transaction_date_day, person_id, amount, recurring
         )
@@ -61,7 +55,7 @@
             sum(cumulative_amount_24_months) as cumulative_amount_24_months,
             sum(cumulative_amount_24_months_non_recur) as cumulative_amount_24_months_non_recur,
             sum(cumulative_amount_30_days_recur) as cumulative_amount_30_days_recur, 
-            case when sum(donated_within_14_months) > 0 then 1 else 0 end as donated_within_14_months
+            sum(cumulative_amount_14_months) as cumulative_amount_14_months
             from calculations
             group by 1, 2
         )
@@ -109,7 +103,7 @@
                     else null
                 end as donor_audience,
                 case
-                    when donated_within_14_months = 0
+                    when cumulative_amount_14_months < 1
                     then 'Lapsed'
                     -- lapsed = have not donated within 14 months; members of major, monthly, leadership giving should be excluded (according to UUSA)
                     else 'Active'
