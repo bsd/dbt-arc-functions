@@ -13,19 +13,35 @@
                         "date_day", var("fiscal_year_start")
                     )
                 }} as fiscal_year,
-                count(distinct person_id) as total_onetime_donor_counts,
                 count(
-                    distinct case when donor_loyalty = 'new_donor' then person_id end
+                    distinct case when gift_size_string is not null then person_id end
+                ) as total_onetime_donor_counts,
+                count(
+                    distinct case
+                        when
+                            donor_loyalty = 'new_donor' and gift_size_string is not null
+                        then person_id
+                    end
                 ) as new_onetime_donor_counts,
                 count(
-                    distinct case when donor_loyalty = 'retained' then person_id end
+                    distinct case
+                        when donor_loyalty = 'retained' and gift_size_string is not null
+                        then person_id
+                    end
                 ) as retained_onetime_donor_counts,
                 count(
-                    distinct case when donor_loyalty = 'retained3' then person_id end
+                    distinct case
+                        when
+                            donor_loyalty = 'retained3' and gift_size_string is not null
+                        then person_id
+                    end
                 ) as retained3_onetime_donor_counts,
                 count(
                     distinct case
-                        when donor_engagement = 'reinstated' then person_id
+                        when
+                            donor_engagement = 'reinstated'
+                            and gift_size_string is not null
+                        then person_id
                     end
                 ) as reinstated_onetime_donor_counts,
                 count(
