@@ -20,13 +20,7 @@
         ) as int
         ) as soft_bounces,
         safe_cast(count(
-            distinct case
-                when bounce_category_id = '1'
-                then subscriber_key
-                when bounce_category_id = '2'
-                then subscriber_key
-                else null
-            end
+            distinct subscriber_key
             ) as int
         ) as total_bounces
     from {{ ref(reference_name) }}
