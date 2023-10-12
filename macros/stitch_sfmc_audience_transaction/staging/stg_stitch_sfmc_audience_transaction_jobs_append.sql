@@ -49,9 +49,25 @@
                     end
                 ) as donated_within_14_months
             from {{ ref(reference_name) }}
-            group by 1 ,2
-        ),
-        base as
+            group by transaction_date_day, person_id, amount, recurring
+        )
+
+        , day_person_rollup as (
+            select 
+            transaction_date_day,
+            person_id,
+            sum(daily_revenue) as daily_revenue,
+            sum(cumulative_amount_12_months) as cumulative_amount_12_months,
+            sum(cumulative_amount_24_months) as cumulative_amount_24_months,
+            sum(cumulative_amount_24_months_non_recur) as cumulative_amount_24_months_non_recur,
+            sum(cumulative_amount_30_days_recur) as cumulative_amount_30_days_recur, 
+            case when sum(donated_within_14_months) > 0 then 1 else 0 end as donated_within_14_months
+            from calculations
+            group by 1, 2
+        )
+
+
+        ,calculations as
 
         (
             select distinct
