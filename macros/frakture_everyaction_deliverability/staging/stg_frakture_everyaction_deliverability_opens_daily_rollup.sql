@@ -7,8 +7,7 @@ WITH unique_opens AS (
         safe_cast(message_id as string) as message_id,
         safe_cast(email_domain as string) as email_domain,
         subscriber_key,
-        ROW_NUMBER() OVER (PARTITION BY message_id, subscriber_key ORDER BY open_ts) AS open_row_number,
-        safe_cast(opened as int) as opened
+        ROW_NUMBER() OVER (PARTITION BY message_id, subscriber_key ORDER BY open_ts) AS open_row_number
     FROM {{ ref(reference_name) }}
 )
 
@@ -16,7 +15,7 @@ SELECT
     sent_date,
     message_id,
     email_domain,
-    SUM(CASE WHEN open_row_number = 1 THEN opened ELSE 0 END) AS opens
+    SUM(CASE WHEN open_row_number = 1 THEN 1 ELSE 0 END) AS opens
 FROM unique_opens
 GROUP BY 1, 2, 3
 {% endmacro %}

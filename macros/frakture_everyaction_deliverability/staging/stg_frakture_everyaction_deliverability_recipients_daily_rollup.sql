@@ -7,8 +7,7 @@ WITH unique_recipients AS (
         safe_cast(message_id as string) as message_id,
         safe_cast(email_domain as string) as email_domain,
         subscriber_key,
-        ROW_NUMBER() OVER (PARTITION BY message_id, subscriber_key ORDER BY received_ts) AS recipient_row_number,
-        safe_cast(received as int) as received
+        ROW_NUMBER() OVER (PARTITION BY message_id, subscriber_key ORDER BY received_ts) AS recipient_row_number
     FROM {{ ref(reference_name) }}
 )
 
@@ -16,7 +15,7 @@ SELECT
     sent_date,
     message_id,
     email_domain,
-    SUM(CASE WHEN recipient_row_number = 1 THEN received ELSE 0 END) AS recipients
+    SUM(CASE WHEN recipient_row_number = 1 THEN 1 ELSE 0 END) AS recipients
 FROM unique_recipients
 GROUP BY 1, 2, 3
 {% endmacro %}
