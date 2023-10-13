@@ -23,7 +23,7 @@
     left join {{ ref(transactions) }} as transactions
         on audience.date_day = transactions.transaction_date_day
         and audience.person_id = transactions.person_id
-    left join {{donor_engagement}}
+    left join {{ ref(donor_engagement) }}
         on audience.date_day = donor_engagement.date_day
         and audience.person_id = donor_engagement.person_id
     left join
