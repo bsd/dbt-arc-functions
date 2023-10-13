@@ -1,5 +1,6 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_onetime_donor_counts_actuals_rollup(
-    reference_name='stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction') %}
+    reference_name="stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction"
+) %}
     with
         daily_rollup as (
             select
@@ -7,8 +8,11 @@
                 'daily' as interval_type,
                 donor_audience,
                 join_source as platform,
-                {{ dbt_arc_functions.get_fiscal_year('date_day', var('fiscal_year_start')) }}
-                as fiscal_year,
+                {{
+                    dbt_arc_functions.get_fiscal_year(
+                        "date_day", var("fiscal_year_start")
+                    )
+                }} as fiscal_year,
                 count(distinct person_id) as total_onetime_donor_counts,
                 count(
                     distinct case when donor_loyalty = 'new_donor' then person_id end
@@ -41,8 +45,11 @@
                 'monthly' as interval_type,
                 donor_audience,
                 join_source as platform,
-                {{ dbt_arc_functions.get_fiscal_year('date_day', var('fiscal_year_start')) }}
-                as fiscal_year,
+                {{
+                    dbt_arc_functions.get_fiscal_year(
+                        "date_day", var("fiscal_year_start")
+                    )
+                }} as fiscal_year,
                 count(distinct person_id) as total_onetime_donor_counts,
                 count(
                     distinct case when donor_loyalty = 'new_donor' then person_id end
@@ -75,8 +82,11 @@
                 'yearly' as interval_type,
                 donor_audience,
                 join_source as platform,
-                {{ dbt_arc_functions.get_fiscal_year('date_day', var('fiscal_year_start')) }}
-                as fiscal_year,
+                {{
+                    dbt_arc_functions.get_fiscal_year(
+                        "date_day", var("fiscal_year_start")
+                    )
+                }} as fiscal_year,
                 count(distinct person_id) as total_onetime_donor_counts,
                 count(
                     distinct case when donor_loyalty = 'new_donor' then person_id end
@@ -114,6 +124,7 @@
         new_onetime_donor_counts,
         retained_onetime_donor_counts,
         retained3_onetime_donor_counts,
+        reinstated_onetime_donor_counts,
         active_onetime_donor_counts,
         lapsed_onetime_donor_counts,
         sum(total_onetime_donor_counts) over (
@@ -156,6 +167,7 @@
         new_onetime_donor_counts,
         retained_onetime_donor_counts,
         retained3_onetime_donor_counts,
+        reinstated_onetime_donor_counts,
         active_onetime_donor_counts,
         lapsed_onetime_donor_counts,
         sum(total_onetime_donor_counts) over (
@@ -198,6 +210,7 @@
         new_onetime_donor_counts,
         retained_onetime_donor_counts,
         retained3_onetime_donor_counts,
+        reinstated_onetime_donor_counts,
         active_onetime_donor_counts,
         lapsed_onetime_donor_counts,
         sum(total_onetime_donor_counts) over (

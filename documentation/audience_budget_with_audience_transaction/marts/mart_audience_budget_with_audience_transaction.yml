@@ -47,5 +47,5 @@ models:
         description: The type of time interval
       - name: donor_audience
         description: The audience of the donor
-      - name: platform
+      - name: channel
         description: The platform on which the transaction occurred.

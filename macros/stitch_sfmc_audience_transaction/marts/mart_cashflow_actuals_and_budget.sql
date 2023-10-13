@@ -113,19 +113,25 @@
                 coalesce(
                     date_day, prevyear_date_day, prevtwoyears_date_day
                 ) as date_day,  -- Use a different date value if the join failed (e.g., add 1 year)
-            donor_audience,
-            channel,
-            sum(total_revenue_actuals) as total_revenue_actuals,
-            sum(total_revenue_budget_by_day) as total_revenue_budget_by_day,
-            max(total_revenue_cumulative_fiscal_year) as total_revenue_cumulative_fiscal_year,
-            sum(prev_year_total_revenue_actuals) as prev_year_total_revenue_actuals,
-            sum(prev_year_total_revenue_budget) as prev_year_total_revenue_budget,
-            sum(prev_two_year_total_revenue_actuals) as prev_two_year_total_revenue_actuals,
-            sum(prev_two_year_total_revenue_budget) as prev_two_year_total_revenue_budget
+                donor_audience,
+                channel,
+                sum(total_revenue_actuals) as total_revenue_actuals,
+                sum(total_revenue_budget_by_day) as total_revenue_budget_by_day,
+                max(
+                    total_revenue_cumulative_fiscal_year
+                ) as total_revenue_cumulative_fiscal_year,
+                sum(prev_year_total_revenue_actuals) as prev_year_total_revenue_actuals,
+                sum(prev_year_total_revenue_budget) as prev_year_total_revenue_budget,
+                sum(
+                    prev_two_year_total_revenue_actuals
+                ) as prev_two_year_total_revenue_actuals,
+                sum(
+                    prev_two_year_total_revenue_budget
+                ) as prev_two_year_total_revenue_budget
             from enriched
             group by 1, 2, 3
         )
-    
+
     select
         {{
             dbt_arc_functions.get_fiscal_year(
@@ -138,8 +144,5 @@
         extract(day from date_day) as day,
         adjusted_date_day.*
     from adjusted_date_day
-    
-
-
 
 {% endmacro %}
