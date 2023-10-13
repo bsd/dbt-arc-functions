@@ -6,6 +6,8 @@
     select
         date_day,
         interval_type,
+        channel,
+        donor_audience,
         gift_size,
         donor_counts
     from {{ ref(daily) }}
@@ -13,6 +15,8 @@
     select
         date_day,
         interval_type,
+        channel,
+        donor_audience,
         gift_size,
         donor_counts
     from {{ ref(monthly) }}
@@ -20,6 +24,8 @@
     select
         date_day,
         interval_type,
+        channel,
+        donor_audience,
         gift_size,
         donor_counts
     from {{ ref(yearly) }}
