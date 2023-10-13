@@ -67,7 +67,7 @@
         person_id,
         date_day,
         case
-            when transactions_within_last_14_months > 0 then 'Active' else 'Lapsed'
+            when transactions_within_last_14_months > 0 then 'active' else 'lapsed'
         end as donor_engagement
     from person_with_transactions_in_last_14_months
     order by date_day
