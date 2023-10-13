@@ -19,7 +19,7 @@
     from {{ ref(audience) }} as audience
     left join
         {{ ref(first_gift) }} as first_gift
-        on transactions.person_id = first_gift.person_id
+        on audience.person_id = first_gift.person_id
     left join {{ ref(transactions) }} as transactions
         on audience.date_day = transactions.transaction_date_day
         and audience.person_id = transactions.person_id
