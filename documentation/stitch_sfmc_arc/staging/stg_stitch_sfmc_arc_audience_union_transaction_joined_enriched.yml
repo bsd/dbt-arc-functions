@@ -36,5 +36,9 @@ models:
       - name: coalesced_audience
         description: The audience unioned values coalesced with the audience calculated
           values to fill in any nulls that are present
+        tests:
+          - dbt_arc_functions.has_same_distinct_values_as:
+              other_model: ref('stg_adhoc_google_spreadsheets_audience_monthly_budget')
+              other_column_name: donor_audience
       - name: source_column
         description: The source of the values in the coalesced_audience column
