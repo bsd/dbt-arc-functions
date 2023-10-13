@@ -1,5 +1,6 @@
 {% macro create_stg_audience_budget_recur_donor_counts_with_interval_daily(
-    reference_name='stg_audience_budget_by_day') %}
+    reference_name="stg_audience_budget_by_day"
+) %}
     select
         date_day as date_day,
         'daily' as interval_type,
