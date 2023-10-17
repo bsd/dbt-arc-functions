@@ -2,7 +2,7 @@
     stg_stitch_sfmc_audience_transaction_person_with_all_transactions="stg_stitch_sfmc_audience_transaction_person_with_all_transactions"
 ) %}
 
-    person_with_transactions_in_last_14_months as (
+    with person_with_transactions_in_last_14_months as (
         select
             *,
             sum(transaction_on_this_date) over (
