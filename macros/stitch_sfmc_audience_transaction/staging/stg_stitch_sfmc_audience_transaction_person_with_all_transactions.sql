@@ -27,7 +27,7 @@
                     )
                 ) as date_day
             {% if max_date != "" %}
-                where date_day <= date({{ max_date }})
+                where date_day <= date("{{ max_date }}")
             {% endif %}
         )
     select
