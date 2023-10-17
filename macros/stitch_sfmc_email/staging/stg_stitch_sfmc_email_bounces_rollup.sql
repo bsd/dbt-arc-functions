@@ -29,13 +29,7 @@
             end
         ) as unknown_bounces,
         count(
-            distinct case
-                when bounce_category_id = '1'
-                then subscriber_key
-                when bounce_category_id = '2'
-                then subscriber_key
-                else null
-            end
+            distinct subscriber_key
         ) as total_bounces
     from {{ ref(reference_name) }}
     group by 1
