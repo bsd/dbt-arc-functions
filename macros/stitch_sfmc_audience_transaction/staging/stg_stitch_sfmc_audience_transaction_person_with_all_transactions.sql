@@ -1,6 +1,13 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_person_with_all_transactions(
-    stg_stitch_sfmc_audience_transactions_summary_unioned="stg_stitch_sfmc_audience_transactions_summary_unioned"
+    stg_stitch_sfmc_audience_transactions_summary_unioned="stg_stitch_sfmc_audience_transactions_summary_unioned",
+    max_date=""
 ) %}
+
+{{
+    config(
+        materialized='incremental'
+    )
+}}
     with
         date_spine as (
             select *
@@ -19,6 +26,9 @@
                         )
                     )
                 ) as date_day
+            {% if max_date != "" %}
+                where date_day <= date({{ max_date }})
+            {% endif %}
         )
     select
         person_with_min_transaction_date.person_id,
@@ -45,5 +55,12 @@
         on person_with_min_transaction_date.person_id
         = person_with_all_transaction_dates.person_id
         and date_spine.date_day = person_with_all_transaction_dates.transaction_date
+    {% if is_incremental() %}
+
+    where date_spine.date_day > (
+        select max(date_day)
+        from {{ this }}
+    )
+    {% endif %}
     order by 1, 2, 3
 {% endmacro %}
