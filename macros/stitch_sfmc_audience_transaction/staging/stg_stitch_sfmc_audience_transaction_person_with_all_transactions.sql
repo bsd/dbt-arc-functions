@@ -57,7 +57,7 @@
         and date_spine.date_day = person_with_all_transaction_dates.transaction_date
     {% if is_incremental() %}
 
-    where date_spine.date_day > (
+    where date_spine.date_day >= (
         select max(date_day)
         from {{ this }}
     )
