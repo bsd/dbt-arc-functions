@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_audience_transaction_person_with_all_transactions(
+{% macro create_stg_stitch_sfmc_audience_transaction_person_with_all_txns(
     stg_stitch_sfmc_audience_transactions_summary_unioned="stg_stitch_sfmc_audience_transactions_summary_unioned",
     max_date=""
 ) %}
