@@ -10,7 +10,7 @@
     select
         jobs.sent_date,
         jobs.message_id,
-        jobs.email_domain,
+        lower(jobs.email_domain) as email_domain,
         case
             when lower(jobs.email_domain) like 'live.%'
             then 'Microsoft'
@@ -25,8 +25,6 @@
             when lower(jobs.email_domain) like 'googlemail.com'
             then 'Google'
             when lower(jobs.email_domain) like 'google.com'
-            then 'Google'
-            when lower(jobs.email_domain) like 'gmail.com'
             then 'Google'
             when lower(jobs.email_domain) like 'yahoo.%'
             then 'Yahoo'
@@ -55,30 +53,30 @@
         {{ ref(bounces) }} bounces
         on jobs.message_id = bounces.message_id
         and jobs.sent_date = bounces.sent_date
-        and jobs.email_domain = bounces.email_domain
+        and lower(jobs.email_domain) = lower(bounces.email_domain)
     left join
         {{ ref(clicks) }} clicks
         on jobs.message_id = clicks.message_id
         and jobs.sent_date = clicks.sent_date
-        and jobs.email_domain = clicks.email_domain
+        and lower(jobs.email_domain) = lower(clicks.email_domain)
     left join
         {{ ref(actions) }} actions
         on jobs.message_id = actions.message_id
         and jobs.sent_date = actions.sent_date
-        and jobs.email_domain = actions.email_domain
+        and lower(jobs.email_domain) = lower(actions.email_domain)
     left join
         {{ ref(opens) }} opens
         on jobs.message_id = opens.message_id
         and jobs.sent_date = opens.sent_date
-        and jobs.email_domain = opens.email_domain
+        and lower(jobs.email_domain) = lower(opens.email_domain)
     left join
         {{ ref(recipients) }} recipients
         on jobs.message_id = recipients.message_id
         and jobs.sent_date = recipients.sent_date
-        and jobs.email_domain = recipients.email_domain
+        and lower(jobs.email_domain) = lower(recipients.email_domain)
     left join
         {{ ref(unsubscribes) }} unsubscribes
         on jobs.message_id = unsubscribes.message_id
         and jobs.sent_date = unsubscribes.sent_date
-        and jobs.email_domain = unsubscribes.email_domain
+        and lower(jobs.email_domain) = lower(unsubscribes.email_domain)
 {% endmacro %}
