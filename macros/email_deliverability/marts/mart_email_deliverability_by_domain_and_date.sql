@@ -26,8 +26,6 @@
             then 'Google'
             when lower(jobs.email_domain) like 'google.com'
             then 'Google'
-            when lower(jobs.email_domain) like 'gmail.com'
-            then 'Google'
             when lower(jobs.email_domain) like 'yahoo.%'
             then 'Yahoo'
             when lower(jobs.email_domain) like 'myyahoo.%'
