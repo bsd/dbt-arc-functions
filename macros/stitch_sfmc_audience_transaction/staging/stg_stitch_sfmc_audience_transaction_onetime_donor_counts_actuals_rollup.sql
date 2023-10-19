@@ -25,21 +25,21 @@
                 ) as new_onetime_donor_counts,
                 count(
                     distinct case
-                        when donor_loyalty = 'retained' and gift_size_str is not null
+                        when donor_loyalty = 'retained_donor' and gift_size_str is not null
                         then person_id
                     end
                 ) as retained_onetime_donor_counts,
                 count(
                     distinct case
                         when
-                            donor_loyalty = 'retained3' and gift_size_str is not null
+                            donor_loyalty = 'retained_3+_donor' and gift_size_str is not null
                         then person_id
                     end
                 ) as retained3_onetime_donor_counts,
                 count(
                     distinct case
                         when
-                            donor_engagement = 'reinstated'
+                            donor_loyalty = 'reactivated_donor'
                             and gift_size_str is not null
                         then person_id
                     end
@@ -71,14 +71,14 @@
                     distinct case when donor_loyalty = 'new_donor' then person_id end
                 ) as new_onetime_donor_counts,
                 count(
-                    distinct case when donor_loyalty = 'retained' then person_id end
+                    distinct case when donor_loyalty = 'retained_donor' then person_id end
                 ) as retained_onetime_donor_counts,
                 count(
-                    distinct case when donor_loyalty = 'retained3' then person_id end
+                    distinct case when donor_loyalty = 'retained_3+_donor' then person_id end
                 ) as retained3_onetime_donor_counts,
                 count(
                     distinct case
-                        when donor_engagement = 'reinstated' then person_id
+                        when donor_loyalty = 'reactivated_donor' then person_id
                     end
                 ) as reinstated_onetime_donor_counts,
                 count(
@@ -108,14 +108,14 @@
                     distinct case when donor_loyalty = 'new_donor' then person_id end
                 ) as new_onetime_donor_counts,
                 count(
-                    distinct case when donor_loyalty = 'retained' then person_id end
+                    distinct case when donor_loyalty = 'retained_donor' then person_id end
                 ) as retained_onetime_donor_counts,
                 count(
-                    distinct case when donor_loyalty = 'retained3' then person_id end
+                    distinct case when donor_loyalty = 'retained_3+_donor' then person_id end
                 ) as retained3_onetime_donor_counts,
                 count(
                     distinct case
-                        when donor_engagement = 'reinstated' then person_id
+                        when donor_loyalty = 'reactivated_donor' then person_id
                     end
                 ) as reinstated_onetime_donor_counts,
                 count(

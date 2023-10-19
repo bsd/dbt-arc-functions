@@ -5,15 +5,15 @@
         donor_audience,
         join_source as platform,
         count(person_id) as total_recur_donor_counts,
-        count(case when donor_loyalty = 'new' then 1 end) as new_recur_donor_counts,
+        count(case when donor_loyalty = 'new_donor' then 1 end) as new_recur_donor_counts,
         count(
-            case when donor_loyalty = 'retained' then 1 end
+            case when donor_loyalty = 'retained_donor' then 1 end
         ) as retained_recur_donor_counts,
         count(
-            case when donor_loyalty = 'retained3' then 1 end
+            case when donor_loyalty = 'retained_3+_donor' then 1 end
         ) as retained3_recur_donor_counts,
         count(
-            case when donor_loyalty = 'reinstated' then 1 end
+            case when donor_loyalty = 'reactivated_donor' then 1 end
         ) as reinstated_recur_donor_counts,
         count(
             case when donor_engagement = 'active' then 1 end
