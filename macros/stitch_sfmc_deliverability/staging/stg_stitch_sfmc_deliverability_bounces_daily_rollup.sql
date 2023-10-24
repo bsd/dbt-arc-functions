@@ -10,8 +10,10 @@
                 domain,
                 subscriber_key,
                 case when bounce_category_id = '1' then 1 else 0 end as hard_bounces,
-                case when bounce_category_id = '2' then 1 else 0 end as soft_bounces, 
-                case when bounce_category_id is not null then 1 else 0 end as total_bounces
+                case when bounce_category_id = '2' then 1 else 0 end as soft_bounces,
+                case
+                    when bounce_category_id is not null then 1 else 0
+                end as total_bounces
             from {{ ref(reference_name) }}
 
         ),
@@ -25,8 +27,7 @@
                 soft_bounces,
                 total_bounces,
                 row_number() over (
-                    partition by job_id, subscriber_key
-                    order by event_dt
+                    partition by job_id, subscriber_key order by event_dt
                 ) as bounce_row_number,
             from base
 

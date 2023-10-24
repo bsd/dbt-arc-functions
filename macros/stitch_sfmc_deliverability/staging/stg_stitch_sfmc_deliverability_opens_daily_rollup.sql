@@ -14,11 +14,7 @@
             from {{ ref(reference_name) }}
         )
 
-    select
-        sent_date,
-        message_id,
-        email_domain,
-        count(distinct subscriber_key) as opens
+    select sent_date, message_id, email_domain, count(distinct subscriber_key) as opens
     from unique_opens
     where open_row_number = 1
     group by 1, 2, 3
