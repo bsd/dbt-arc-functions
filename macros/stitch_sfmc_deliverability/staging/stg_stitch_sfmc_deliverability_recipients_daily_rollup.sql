@@ -19,8 +19,8 @@
         message_id,
         email_domain,
         count(
-            distinct case when recipient_row_number = 1 then subscriber_key end
-        ) as recipients
+            distinct subscriber_key ) as recipients
     from unique_recipients
+    where recipient_row_number = 1
     group by 1, 2, 3
 {% endmacro %}
