@@ -1,3 +1,5 @@
+-- sqlfmt: disable=space-around-variables
+
 {% macro create_stg_stitch_sfmc_arc_donor_loyalty_fiscal_year_count(
     audience_union_transaction_joined="stg_stitch_sfmc_arc_audience_union_transaction_joined"
 ) %}
@@ -17,3 +19,5 @@
     order by person_id, fiscal_year
 
 {% endmacro %}
+
+-- sqlfmt: enable=space-around-variables
