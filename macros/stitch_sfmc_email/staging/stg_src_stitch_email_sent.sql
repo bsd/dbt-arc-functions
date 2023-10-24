@@ -30,7 +30,7 @@
 
             select
                 subscriberkey as subscriber_key,
-                domain,
+                lower(domain) as domain,
                 triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
                 triggeredsendcustomerkey as triggered_send_customer_key,
                 cast(__accountid_ as int64) as account_id,

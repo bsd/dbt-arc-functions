@@ -11,7 +11,7 @@
             cast(concat(substr(eventdate, 0, 22), " America/New_York") as timestamp),
             "America/New_York"
         ) as event_dt,
-        domain,
+        lower(domain) as domain,
         url,
         linkname as link_name,
         linkcontent as link_content,

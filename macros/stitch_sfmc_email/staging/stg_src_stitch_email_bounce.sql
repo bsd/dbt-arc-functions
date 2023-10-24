@@ -12,7 +12,7 @@
             "America/New_York"
         ) as event_dt,
         cast(isunique as bool) as is_unique,
-        domain,
+        lower(domain) as domain,
         cast(bouncecategoryid as string) as bounce_category_id,
         bouncecategory as bounce_category,
         bouncesubcategoryid as bounce_subcategory_id,
