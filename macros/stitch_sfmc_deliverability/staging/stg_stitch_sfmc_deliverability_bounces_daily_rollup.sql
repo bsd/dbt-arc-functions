@@ -10,7 +10,8 @@
                 domain,
                 subscriber_key,
                 case when bounce_category_id = '1' then 1 else 0 end as hard_bounces,
-                case when bounce_category_id = '2' then 1 else 0 end as soft_bounces
+                case when bounce_category_id = '2' then 1 else 0 end as soft_bounces, 
+                case when bounce_category_id is not null then 1 else 0 end as total_bounces
             from {{ ref(reference_name) }}
 
         ),
@@ -22,8 +23,9 @@
                 subscriber_key,
                 hard_bounces,
                 soft_bounces,
+                total_bounces,
                 row_number() over (
-                    partition by job_id, subscriber_key, hard_bounces, soft_bounces
+                    partition by job_id, subscriber_key
                     order by event_dt
                 ) as bounce_row_number,
             from base
@@ -34,11 +36,10 @@
         sent_date,
         message_id,
         email_domain,
-        sum(case when bounce_row_number = 1 then hard_bounces end) as hard_bounces,
-        sum(case when bounce_row_number = 1 then soft_bounces end) as soft_bounces,
-        count(
-            distinct case when bounce_row_number = 1 then subscriber_key end
-        ) as total_bounces
+        sum(hard_bounces) as hard_bounces,
+        sum(soft_bounces) as soft_bounces,
+        sum(total_bounces) as total_bounces
     from unique_bounces
+    where bounce_row_number = 1
     group by 1, 2, 3
 {% endmacro %}
