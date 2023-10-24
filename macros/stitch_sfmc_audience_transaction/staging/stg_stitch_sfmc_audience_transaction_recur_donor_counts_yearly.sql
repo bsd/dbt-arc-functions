@@ -4,22 +4,44 @@
         'yearly' as interval_type,
         donor_audience,
         join_source as platform,
-        count(person_id) as total_recur_donor_counts,
-        count(case when donor_loyalty = 'new' then 1 end) as new_recur_donor_counts,
         count(
-            case when donor_loyalty = 'retained' then 1 end
+            distinct case when gift_size_str is not null then person_id end
+        ) as total_recur_donor_counts,
+        count(
+            distinct case
+                when donor_loyalty = 'new_donor' and gift_size_str is not null
+                then person_id
+            end
+        ) as new_recur_donor_counts,
+        count(
+            distinct case
+                when donor_loyalty = 'retained_donor' and gift_size_str is not null
+                then person_id
+            end
         ) as retained_recur_donor_counts,
         count(
-            case when donor_loyalty = 'retained3' then 1 end
+            distinct case
+                when donor_loyalty = 'retained_3+_donor' and gift_size_str is not null
+                then person_id
+            end
         ) as retained3_recur_donor_counts,
         count(
-            case when donor_loyalty = 'reinstated' then 1 end
+            distinct case
+                when donor_loyalty = 'reactivated_donor' and gift_size_str is not null
+                then person_id
+            end
         ) as reinstated_recur_donor_counts,
         count(
-            case when donor_engagement = 'active' then 1 end
+            distinct case
+                when donor_engagement = 'active' and gift_size_str is not null
+                then person_id
+            end
         ) as active_recur_donor_counts,
         count(
-            case when donor_engagement = 'lapsed' then 1 end
+            distinct case
+                when donor_engagement = 'lapsed' and gift_size_str is not null
+                then person_id
+            end
         ) as lapsed_recur_donor_counts,
 
     from
