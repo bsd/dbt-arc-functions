@@ -2,7 +2,6 @@
     audience="stg_stitch_sfmc_arc_audience_unioned",
     first_gift="stg_stitch_sfmc_audience_transaction_first_gift",
     transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
-    audience_transaction_jobs_append="stg_stitch_sfmc_audience_transaction_jobs_append",
     donor_engagement="stg_stitch_sfmc_audience_transaction_person_with_donor_engagement"
 ) %}
     select
@@ -26,10 +25,6 @@
     left join {{ ref(donor_engagement) }} as donor_engagement
         on audience.date_day = donor_engagement.date_day
         and audience.person_id = donor_engagement.person_id
-    left join
-        {{ ref(audience_transaction_jobs_append) }} as audience_transaction_jobs_append
-        on transactions.transaction_date_day
-        = audience_transaction_jobs_append.transaction_date_day
-        and transactions.person_id = audience_transaction_jobs_append.person_id
+
 
 {% endmacro %}
