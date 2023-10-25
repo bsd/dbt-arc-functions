@@ -14,11 +14,8 @@
             from {{ ref(reference_name) }}
         )
 
-    select
-        sent_date,
-        message_id,
-        email_domain,
-        count(distinct case when click_row_number = 1 then subscriber_key end) as clicks
+    select sent_date, message_id, email_domain, count(distinct subscriber_key) as clicks
     from unique_clicks
+    where click_row_number = 1
     group by 1, 2, 3
 {% endmacro %}

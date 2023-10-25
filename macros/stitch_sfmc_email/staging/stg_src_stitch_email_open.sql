@@ -11,7 +11,7 @@
             cast(concat(substr(eventdate, 0, 22), " America/New_York") as timestamp),
             "America/New_York"
         ) as event_dt,
-        domain,
+        lower(domain) as domain,
         cast(isunique as bool) as is_unique,
         triggerersenddefinitionobjectid as triggerrer_send_definition_object_id,
         cast(triggeredsendcustomerkey as string) as triggered_send_customer_key

@@ -13,7 +13,7 @@
             "America/New_York"
         ) as event_dt,
         cast(isunique as bool) as is_unique,
-        domain
+        lower(domain) as domain
     from {{ source("stitch_sfmc_email", "unsubscribe") }}
     where jobid is not null
 
