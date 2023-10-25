@@ -1,24 +1,21 @@
 {% macro create_stg_stitch_sfmc_arc_recur_donor_counts_by_gift_size_monthly(
-    audience_transaction= "stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched"
-
+    audience_transaction="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched"
 ) %}
 
+    with
+        base as (
+            select
+                last_day(transaction_date_day, month) as date_day,
+                channel,
+                coalesced_audience as donor_audience,
+                gift_size_string as gift_size,
+                count(distinct person_id) as donor_counts
+            from {{ ref(audience_transaction) }}
+            where recurring = true
+            group by 1, 2, 3, 4
+            order by 1 desc, 4
+        )
 
-with base as (
-Select
-    last_day(transaction_date_day, Month) As date_day,
-    channel,
-    coalesced_audience as donor_audience,
-    gift_size_string As gift_size,
-    count(Distinct person_id) As donor_counts
-From {{ ref(audience_transaction) }}
-Where recurring = True
-Group By 1, 2, 3, 4
-Order By 1 Desc, 4
-)
-
-Select
-'monthly' As interval_type,
-*
-from base
+    select 'monthly' as interval_type, *
+    from base
 {% endmacro %}

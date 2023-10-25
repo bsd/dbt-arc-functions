@@ -17,14 +17,14 @@
         first_gift.join_month_year_date as join_month_year_str
     from {{ ref(audience) }} as audience
     left join
-        {{ ref(first_gift) }} as first_gift
-        on audience.person_id = first_gift.person_id
-    left join {{ ref(transactions) }} as transactions
+        {{ ref(first_gift) }} as first_gift on audience.person_id = first_gift.person_id
+    left join
+        {{ ref(transactions) }} as transactions
         on audience.date_day = transactions.transaction_date_day
         and audience.person_id = transactions.person_id
-    left join {{ ref(donor_engagement) }} as donor_engagement
+    left join
+        {{ ref(donor_engagement) }} as donor_engagement
         on audience.date_day = donor_engagement.date_day
         and audience.person_id = donor_engagement.person_id
-
 
 {% endmacro %}

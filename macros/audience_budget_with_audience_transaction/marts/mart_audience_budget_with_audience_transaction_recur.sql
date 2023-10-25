@@ -15,7 +15,8 @@
         recur_donor_counts.new_recur_donor_counts as new_recur_donor_counts,
         recur_donor_counts.retained_recur_donor_counts as retained_recur_donor_counts,
         recur_donor_counts.retained3_recur_donor_counts as retained3_recur_donor_counts,
-        recur_donor_counts.reinstated_recur_donor_counts as reinstated_recur_donor_counts,
+        recur_donor_counts.reinstated_recur_donor_counts
+        as reinstated_recur_donor_counts,
         recur_donor_counts.active_recur_donor_counts as active_recur_donor_counts,
         recur_donor_counts.lapsed_recur_donor_counts as lapsed_recur_donor_counts,
         audience_budget.recur_total_donor_count_budget
