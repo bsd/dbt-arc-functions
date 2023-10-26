@@ -37,6 +37,7 @@
             select
                 person_id,
                 transaction_date_day,
+                donor_loyalty,
                 row_number() over (
                     partition by person_id, fiscal_year order by transaction_date_day
                 ) as nth_transaction_this_fiscal_year
