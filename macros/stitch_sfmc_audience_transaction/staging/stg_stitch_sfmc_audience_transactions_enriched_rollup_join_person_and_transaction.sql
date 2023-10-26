@@ -9,21 +9,46 @@
         audience.person_id as person_id,
         audience.donor_audience as donor_audience,
         transactions.donor_loyalty as donor_loyalty,
+        transactions.nth_transaction_this_fiscal_year
+        as nth_transaction_this_fiscal_year,
         donor_engagement.donor_engagement as donor_engagement,
         transactions.gift_size_string as gift_size_str,
         first_gift.first_gift_join_source as join_source,
         first_gift.join_gift_size_string as join_amount_str,
         first_gift.join_gift_size_string_recur as join_amount_str_recur,
-        first_gift.join_month_year_date as join_month_year_str
-    from {{ ref(audience) }} as audience
+        first_gift.join_month_year_date as join_month_year_str,
+    from
+        (
+            select date_day, person_id, donor_audience from {{ ref(audience) }}
+        ) as audience
     left join
-        {{ ref(first_gift) }} as first_gift on audience.person_id = first_gift.person_id
+        (
+            select
+                person_id,
+                first_gift_join_source,
+                join_gift_size_string,
+                join_gift_size_string_recur,
+                join_month_year_date
+            from {{ ref(first_gift) }}
+        ) as first_gift
+        on audience.person_id = first_gift.person_id
     left join
-        {{ ref(transactions) }} as transactions
+        (
+            select
+                person_id,
+                transaction_date_day,
+                row_number() over (
+                    partition by person_id, fiscal_year order by transaction_date_day
+                ) as nth_transaction_this_fiscal_year
+            from {{ ref(transactions) }}
+        ) as transactions
         on audience.date_day = transactions.transaction_date_day
         and audience.person_id = transactions.person_id
     left join
-        {{ ref(donor_engagement) }} as donor_engagement
+        (
+            select date_day, person_id, donor_engagement
+            from {{ ref(donor_engagement) }}
+        ) as donor_engagement
         on audience.date_day = donor_engagement.date_day
         and audience.person_id = donor_engagement.person_id
 
