@@ -3,22 +3,28 @@
 ) %}
 
     with
-        person_with_transactions_in_last_14_months as (
-            select
-                *,
-                sum(transaction_on_this_date) over (
-                    partition by person_id
-                    order by date_day
-                    rows between 426 preceding and current row
-                ) as transactions_within_last_14_months
-            from {{ ref(stg_stitch_sfmc_audience_transaction_person_with_all_txns) }}
-        )
-    select
-        person_id,
-        date_day,
-        case
-            when transactions_within_last_14_months > 0 then 'active' else 'lapsed'
-        end as donor_engagement
-    from person_with_transactions_in_last_14_months
-    order by date_day
+         date_spine AS (
+  SELECT
+    *
+  FROM
+    UNNEST( GENERATE_DATE_ARRAY( (
+        SELECT
+          MIN(DATE(transaction_date))
+        FROM
+          {{ref('stg_stitch_sfmc_audience_transactions_summary_unioned')}} ), (
+        SELECT
+          Current_date ) ) ) AS date_day )
+SELECT
+  donor_engagement_start_and_end_dates.person_id,
+  date_spine.date_day AS date_day,
+  donor_engagement_start_and_end_dates.donor_engagement
+FROM
+  date_spine
+INNER JOIN
+  {{ref('stg_stitch_sfmc_audience_transaction_person_with_all_txns')}} as donor_engagement_start_and_end_dates
+ON
+  date_spine.date_day >= donor_engagement_start_and_end_dates.start_date
+  AND date_spine.date_day <= donor_engagement_start_and_end_dates.end_date
+  OR donor_engagement_start_and_end_dates.end_date IS NULL
+ORDER BY 1, 2
 {% endmacro %}

@@ -3,63 +3,62 @@
     max_date=""
 ) %}
 
-    {{ config(materialized="incremental") }}
-    with
-        date_spine as (
-            select *
-            from
-                unnest(
-                    generate_date_array(
-                        (
-                            select min(date(transaction_date))
-                            from
-                                {{
-                                    ref(
-                                        stg_stitch_sfmc_audience_transactions_summary_unioned
-                                    )
-                                }}
-                        ),
-                        (
-                            select max(date(transaction_date))
-                            from
-                                {{
-                                    ref(
-                                        stg_stitch_sfmc_audience_transactions_summary_unioned
-                                    )
-                                }}
-                        )
-                    )
-                ) as date_day
-            {% if max_date != "" %} where date_day <= date("{{ max_date }}") {% endif %}
-        )
-    select
-        person_with_min_transaction_date.person_id,
-        person_with_min_transaction_date.min_transaction_date,
-        date_spine.date_day,
-        case
-            when person_with_all_transaction_dates.transaction_date is not null
-            then 1
-            else 0
-        end as transaction_on_this_date
-    from date_spine
-    left join
-        (
-            select person_id, date(min(transaction_date)) min_transaction_date
-            from {{ ref(stg_stitch_sfmc_audience_transactions_summary_unioned) }}
-            group by 1
-        ) person_with_min_transaction_date
-        on date_spine.date_day >= person_with_min_transaction_date.min_transaction_date
-    left join
-        (
-            select distinct person_id, date(transaction_date) as transaction_date
-            from {{ ref(stg_stitch_sfmc_audience_transactions_summary_unioned) }}
-        ) as person_with_all_transaction_dates
-        on person_with_min_transaction_date.person_id
-        = person_with_all_transaction_dates.person_id
-        and date_spine.date_day = person_with_all_transaction_dates.transaction_date
-    {% if is_incremental() %}
+WITH
+  start_of_active_and_lapsed AS (
+  SELECT
+    person_id,
+    transaction_date,
+    CASE
+      WHEN LAG(transaction_date)OVER(PARTITION BY person_id ORDER BY transaction_date) IS NULL THEN transaction_date
+      WHEN DATE_DIFF(transaction_date, LAG(transaction_date)OVER(PARTITION BY person_id ORDER BY transaction_date), day) > 426 THEN transaction_date
+  END
+    AS start_of_active,
+    CASE
+      WHEN DATE_DIFF(LEAD(transaction_date)OVER(PARTITION BY person_id ORDER BY transaction_date), transaction_date, day) > 426 THEN DATE_ADD(transaction_date, INTERVAL 426 day)
+      WHEN LEAD(transaction_date)OVER(PARTITION BY person_id ORDER BY transaction_date) IS NULL
+    AND DATE_DIFF(current_date, transaction_date, day) > 426 THEN DATE_ADD(transaction_date, INTERVAL 426 day)
+  END
+    AS start_of_lapsed
+  FROM (
+    SELECT
+      DISTINCT person_id,
+      DATE(transaction_date) AS transaction_date
+    FROM
+      {{ref('stg_stitch_sfmc_audience_transactions_summary_unioned')}} ) AS person_with_all_transaction_dates
 
-        where date_spine.date_day >= (select max(date_day) from {{ this }})
-    {% endif %}
-    order by 1, 2, 3
+  ORDER BY
+    1,
+    2)
+  SELECT
+    person_id,
+    'active' AS donor_engagement,
+    start_of_active AS start_date,
+  FROM
+    start_of_active_and_lapsed
+  WHERE
+    start_of_active IS NOT NULL
+  UNION ALL
+  SELECT
+    person_id,
+    'lapsed' AS donor_engagement,
+    start_of_lapsed AS start_date,
+  FROM
+    start_of_active_and_lapsed
+  WHERE
+    start_of_lapsed IS NOT NULL
+  ORDER BY
+    1,
+    3),
+  donor_engagement_start_and_end_dates AS (
+  SELECT
+    person_id,
+    donor_engagement,
+    start_date,
+    LEAD(start_date)OVER(PARTITION BY person_id ORDER BY start_date) - 1 AS end_date
+  FROM
+    donor_engagement_start_dates
+  ORDER BY
+    1,
+    3 
+
 {% endmacro %}
