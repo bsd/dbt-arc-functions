@@ -133,14 +133,6 @@
         sum(unique_reinstated_onetime_donor_counts) over (
             partition by fiscal_year, interval_type, donor_audience, platform
             order by date_day
-        ) as reinstated_onetime_donor_counts_cumulative,
-        sum(unique_active_onetime_donor_counts) over (
-            partition by fiscal_year, interval_type, donor_audience, platform
-            order by date_day
-        ) as active_onetime_donor_counts_cumulative,
-        sum(unique_lapsed_onetime_donor_counts) over (
-            partition by fiscal_year, interval_type, donor_audience, platform
-            order by date_day
-        ) as lapsed_onetime_donor_counts_cumulative
+        ) as reinstated_onetime_donor_counts_cumulative
     from intermediate_rollup
 {% endmacro %}
