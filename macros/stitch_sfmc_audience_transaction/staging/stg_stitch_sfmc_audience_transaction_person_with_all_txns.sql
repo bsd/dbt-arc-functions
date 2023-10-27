@@ -28,7 +28,8 @@ WITH
 
   ORDER BY
     1,
-    2)
+    2),
+    donor_engagement_start_dates AS (
   SELECT
     person_id,
     'active' AS donor_engagement,
@@ -48,8 +49,7 @@ WITH
     start_of_lapsed IS NOT NULL
   ORDER BY
     1,
-    3),
-  donor_engagement_start_and_end_dates AS (
+    3)
   SELECT
     person_id,
     donor_engagement,
