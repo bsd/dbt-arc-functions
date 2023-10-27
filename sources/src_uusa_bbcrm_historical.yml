@@ -71,9 +71,8 @@ sources:
             data_type: string
             description: The date the revenue was updated in Salesforce Marketing
               Cloud
-
       - name: revenue_historical
-        description: "Table containing revenue data from Salesforce CRM pre-2020"
+        description: Table containing revenue data from Salesforce CRM pre-2020
         columns:
           - name: bbcrmlookupid
             data_type: string
