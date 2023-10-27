@@ -2,7 +2,7 @@
     audience="stg_stitch_sfmc_arc_audience_unioned",
     first_gift="stg_stitch_sfmc_audience_transaction_first_gift",
     transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
-    donor_engagement="stg_stitch_sfmc_audience_transaction_person_with_donor_engagement"
+    donor_engagement="stg_stitch_sfmc_audience_transaction_person_with_all_txns"
 ) %}
     select
         audience.date_day as date_day,
@@ -49,10 +49,11 @@
         and audience.person_id = transactions.person_id
     left join
         (
-            select date_day, person_id, donor_engagement
+            select person_id, donor_engagement, start_date, end_date
             from {{ ref(donor_engagement) }}
         ) as donor_engagement
-        on audience.date_day = donor_engagement.date_day
+        on audience.date_day >= donor_engagement.start_date
+        and (audience.date_day <= donor_engagement.end_date or donor_engagement.end_date is null)
         and audience.person_id = donor_engagement.person_id
 
 {% endmacro %}
