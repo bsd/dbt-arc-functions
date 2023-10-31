@@ -16,9 +16,9 @@ models:
         description: the assigned donor loyalty category
       - name: channel
         description: the source channel of each transaction
-      - name: join_amount_string
+      - name: join_amount_string_recur
         description: the gift size category of the fist gift
-      - name: join_amount_string_sort
+      - name: join_amount_string_recur_sort
         description: a sort field for join_amount_string, organizing smallest to largest
       - name: total_revenue
         description: Total revenue by day by dimension
