@@ -7,7 +7,7 @@ with
     changes as (
         select
             person_id,
-            transaction_date_day,
+            date_day as transaction_date_day,
             donor_engagement,
             lag(donor_engagement) over (
                 partition by person_id order by transaction_date_day
@@ -16,7 +16,7 @@ with
     )
 select
     person_id,
-    min(transaction_date_day) as start_date,
+    min(date_day) as start_date,
     ifnull(
         max(next_date) - 1,
         (select max(date) from {{ ref(donor_engagement_date_spine) }})
