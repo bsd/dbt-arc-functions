@@ -44,7 +44,7 @@ with
             transaction_date_day,
             person_id,
             sum(cumulative_amount_24_months) as cumulative_amount_24_months,
-            sum(cumulative_amount_90_days_recur) as cumulative_amount_30_days_recur
+            sum(cumulative_amount_90_days_recur) as cumulative_amount_90_days_recur
         from calculations
         group by 1, 2
     ),
