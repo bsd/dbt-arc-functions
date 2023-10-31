@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_donor_engagement_scd(
-    donor_engagement="stg_stitch_sfmc_donor_engagement_calculated",
+    donor_engagement="stg_stitch_sfmc_audience_transaction_person_with_donor_engagement",
     donor_engagement_date_spine="stg_stitch_sfmc_donor_engagement_date_spine"
 ) %}
 
