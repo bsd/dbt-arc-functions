@@ -16,23 +16,13 @@ Mass: Is not in Sustainer, Midlevel or Major.
             select
                 transaction_date_day,
                 person_id,
-                sum(amount) as daily_revenue,
-                -- Calculate cumulative amount for the past 24 months
+                -- Calculate cumulative recur and 1x amount for the past 24 months
                 sum(amount) over (
                     partition by person_id
                     order by unix_seconds(timestamp(transaction_date_day))  -- Convert date to Unix timestamp
                     range between 63113904 preceding and current row  -- 63,113,904 seconds in 24 months
-                ) as cumulative_amount_24_months,
-                case
-                    when recurring = false
-                    then
-                        sum(amount) over (
-                            partition by person_id
-                            order by unix_seconds(timestamp(transaction_date_day))  -- Convert date to Unix timestamp
-                            range between 63113904 preceding and current row  -- 63,113,904 seconds in 24 months
-                        )
-                end as cumulative_amount_24_months_non_recur,
-                -- Calculate cumulative amount for the past 30 days for recurring
+                ) as cumulative_amount_24_months
+                -- Calculate cumulative recurring amount over past 90 days
                 case
                     when recurring = true
                     then
@@ -42,14 +32,7 @@ Mass: Is not in Sustainer, Midlevel or Major.
                             range between 7776000 preceding and current row  -- unix seconds in 90 days
                         )
                     else 0
-                end as cumulative_amount_90_days_recur,
-                -- add at least 1 recurring donation... EVER? (new definition of
-                -- sustainer)
-                sum(amount) over (
-                    partition by person_id
-                    order by unix_seconds(timestamp(transaction_date_day))
-                    range between 36816402 preceding and current row  -- 36816402 seconds is 14 months
-                ) as cumulative_amount_14_months
+                end as cumulative_amount_90_days_recur
             from {{ ref(reference_name) }}
             group by transaction_date_day, person_id, amount, recurring
         ),
@@ -57,13 +40,8 @@ Mass: Is not in Sustainer, Midlevel or Major.
             select
                 transaction_date_day,
                 person_id,
-                sum(daily_revenue) as daily_revenue,
                 sum(cumulative_amount_24_months) as cumulative_amount_24_months,
-                sum(
-                    cumulative_amount_24_months_non_recur
-                ) as cumulative_amount_24_months_non_recur,
-                sum(cumulative_amount_90_days_recur) as cumulative_amount_30_days_recur,
-                sum(cumulative_amount_14_months) as cumulative_amount_14_months
+                sum(cumulative_amount_90_days_recur) as cumulative_amount_30_days_recur
             from calculations
             group by 1, 2
         ),
