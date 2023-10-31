@@ -16,7 +16,7 @@ with
     )
 select
     person_id,
-    min(date_day) as start_date,
+    min(transaction_date_day) as start_date,
     ifnull(
         max(next_date) - 1,
         (select max(date) from {{ ref(donor_engagement_date_spine) }})
