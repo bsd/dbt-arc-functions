@@ -94,17 +94,7 @@ Mass: Is not in Sustainer, Midlevel or Major.
                     cumulative_amount_90_days_recur > 0
                     then 'Monthly'
                     else 'Mass'
-                end as donor_audience,
-                case
-                    when cumulative_amount_14_months < 1
-                    then 'Lapsed'
-                    -- lapsed = have not donated within 14 months; members of major,
-                    -- monthly, leadership giving should be excluded (according to
-                    -- UUSA)
-                    else 'Active'
-                -- this isn't really counting active as much as everyone outside of
-                -- mass that doesnt "lapse"?
-                end as donor_engagement
+                end as donor_audience
             from day_person_rollup
         ),
         dedupe as (
@@ -112,19 +102,17 @@ Mass: Is not in Sustainer, Midlevel or Major.
                 transaction_date_day,
                 person_id,
                 donor_audience,
-                donor_engagement,
                 row_number() over (
                     partition by
                         transaction_date_day,
                         person_id,
-                        donor_audience,
-                        donor_engagement
+                        donor_audience
                     order by transaction_date_day desc
                 ) as row_number
             from base
         )
 
-    select transaction_date_day, person_id, donor_audience, donor_engagement
+    select transaction_date_day, person_id, donor_audience
     from dedupe
     where row_number = 1
 
