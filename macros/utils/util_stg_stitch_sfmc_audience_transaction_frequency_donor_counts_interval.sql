@@ -13,7 +13,7 @@
         intermediate_rollup as (
             select
                 {% if interval == 'day' %} date_day,
-                {% else %} last_day(date_day, '{{interval}}') as date_day,
+                {% else %} last_day(date_day, {{interval}}) as date_day,
                 {% endif %}
                 {% if interval == 'day' %} 'daily' as interval_type,
                 {% elif interval == 'week' %} 'weekly' as interval_type,
