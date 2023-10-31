@@ -11,7 +11,6 @@ Sustainer: Has a recurring gift in the last 90 days and is not in either midleve
 Mass: Is not in Sustainer, Midlevel or Major. 
 
 #}
-
 with
     calculations as (
         select

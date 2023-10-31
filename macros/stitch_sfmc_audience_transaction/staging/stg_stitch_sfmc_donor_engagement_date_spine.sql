@@ -8,8 +8,7 @@ from
         generate_date_array(
             (select min(date_day), from {{ ref(donor_engagement) }}),
             ifnull(
-                (select max(date_day) from {{ ref(donor_engagement) }}),
-                current_date()
+                (select max(date_day) from {{ ref(donor_engagement) }}), current_date()
             )
         )
     ) as date
