@@ -2,7 +2,7 @@
     audience="stg_stitch_sfmc_arc_audience_unioned",
     first_gift="stg_stitch_sfmc_audience_transaction_first_gift",
     transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
-    donor_engagement="stg_stitch_sfmc_audience_transaction_person_with_all_txns"
+    donor_engagement="stg_stitch_sfmc_audience_transaction_person_engagement_with_start_and_end_dates"
 ) %}
     select
         audience.date_day as date_day,
