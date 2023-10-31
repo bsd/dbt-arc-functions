@@ -6,9 +6,9 @@ select date
 from
     unnest(
         generate_date_array(
-            (select min(transaction_date_day), from {{ ref(donor_engagement) }}),
+            (select min(date_day), from {{ ref(donor_engagement) }}),
             ifnull(
-                (select max(transaction_date_day) from {{ ref(donor_engagement) }}), current_date()
+                (select max(date_day) from {{ ref(donor_engagement) }}), current_date()
             )
         )
     ) as date
