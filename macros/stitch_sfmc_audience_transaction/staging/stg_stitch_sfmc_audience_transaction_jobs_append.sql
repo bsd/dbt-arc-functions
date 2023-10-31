@@ -2,14 +2,16 @@
     reference_name="stg_stitch_sfmc_audience_transactions_summary_unioned"
 ) %}
 
-/*
+{#
+
 UUSA Client Audience Requirements: 
 Major: 25,000 cumulative or more in the last 24 months including 1x and recurring gifts.
 Midlevel: 1,000 to 24,999 cumulative in the last 24 months including 1x and recurring
 Sustainer: Has a recurring gift in the last 90 days and is not in either midlevel or major
 Mass: Is not in Sustainer, Midlevel or Major. 
 
-*/
+#}
+
 with
     calculations as (
         select
@@ -21,7 +23,7 @@ with
                 order by
                     unix_seconds(timestamp(transaction_date_day))  -- Convert date to Unix timestamp
                     range between 63113904 preceding and current row  -- 63,113,904 seconds in 24 months
-            ) as cumulative_amount_24_months
+            ) as cumulative_amount_24_months,
             -- Calculate cumulative recurring amount over past 90 days
             case
                 when recurring = true
