@@ -1,6 +1,34 @@
 {% macro create_stg_src_stitch_sfmc_bbcrm_transaction() %}
 
     with
+        revenue_historical as (
+            select
+                bbcrmlookupid,
+                constituentsystemrecordid,
+                statuscode,
+                cast(recordid as string) as recordid,
+                revenue_id,
+                cast(transaction_date as datetime) as transaction_date,
+                payment_method,
+                cast(recognition_amount as string) as amount,
+                inbound_channel,
+                appeal,
+                appeal_business_unit,
+                initial_market_source,
+                web_donation_form_value,
+                web_donation_form_comment,
+                designation,
+                transaction_type,
+                application,
+                vendor_order_number,
+                revenue_platform,
+                sfmc_dateadded,
+                sfmc_updatedate
+            from
+                {{ source("src_uusa_bbcrm_historical","revenue_historical") }}
+
+        ),
+
         current_fiscal_historical as (
             select
                 bbcrmlookupid,
@@ -59,6 +87,9 @@
 
         current_fiscal_unioned as (
 
+            select *
+            from revenue_historical
+            union all
             select *
             from current_fiscal_historical
             union all
