@@ -14,12 +14,27 @@ with
             ) as prev_donor_engagement
         from {{ ref(donor_engagement) }}
     )
+
+, date_spine as (
+select date
+from
+    unnest(
+        generate_date_array(
+            (select min(start_date), from {{ ref(donor_engagement) }}),
+            ifnull(
+                (select max(start_date) from {{ ref(donor_engagement) }}), current_date()
+            )
+        )
+    ) as date
+
+)
+
 select
     person_id,
     min(transaction_date_day) as start_date,
     ifnull(
         max(next_date) - 1,
-        (select max(date) from {{ ref(donor_engagement_date_spine) }})
+        (select max(date) from date_spine)
     ) as end_date,
     donor_engagement
 from
