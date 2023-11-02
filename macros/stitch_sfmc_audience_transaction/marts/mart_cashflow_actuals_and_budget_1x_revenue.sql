@@ -43,7 +43,7 @@
                 coalesce(
                     base.donor_audience, budget_revenue.donor_audience
                 ) as donor_audience,
-                coalesce(base.channel, budget_revenue.platform) as channel,
+                coalesce(base.channel, lower(budget_revenue.platform)) as channel,
                 coalesce(base.total_revenue_actuals, 0) as total_revenue_actuals,
                 coalesce(base.total_gifts_actuals, 0) as total_gifts_actuals,
                 sum(total_revenue_actuals) over (
@@ -58,8 +58,8 @@
             full join
                 {{ ref(budget_revenue) }} as budget_revenue
                 on base.date_day = date(budget_revenue.date_day)
-                and base.donor_audience = budget_revenue.donor_audience
-                and base.channel = budget_revenue.platform
+                and lower(base.donor_audience) = lower(budget_revenue.donor_audience)
+                and lower(base.channel) = lower(budget_revenue.platform)
         ),
         original_mart as (
             select *

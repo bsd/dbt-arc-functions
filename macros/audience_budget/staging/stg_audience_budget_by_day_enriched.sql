@@ -3,7 +3,7 @@
 ) %}
 
     select
-        platform,
+        lower(platform) as platform,
         date_spine_year,
         date_spine_month,
         date_spine_day,
