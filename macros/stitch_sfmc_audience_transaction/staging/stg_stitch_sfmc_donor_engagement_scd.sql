@@ -6,7 +6,7 @@ with
     changes as (
         select
             person_id,
-            start_day as transaction_date_day,
+            start_date as transaction_date_day,
             donor_engagement,
             lag(donor_engagement) over (
                 partition by person_id order by date_day
