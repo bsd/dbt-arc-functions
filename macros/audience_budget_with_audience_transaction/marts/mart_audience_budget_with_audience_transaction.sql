@@ -31,10 +31,6 @@
         as retained3_onetime_donor_counts_cumulative,
         onetime_donor_counts.reinstated_onetime_donor_counts_cumulative
         as reinstated_onetime_donor_counts_cumulative,
-        onetime_donor_counts.active_onetime_donor_counts_cumulative
-        as active_onetime_donor_counts_cumulative,
-        onetime_donor_counts.lapsed_onetime_donor_counts_cumulative
-        as lapsed_onetime_donor_counts_cumulative,
         audience_budget.onetime_donor_count_budget as onetime_donor_count_budget,
         audience_budget.onetime_new_donor_count_budget
         as onetime_new_donor_count_budget,
