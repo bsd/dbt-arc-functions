@@ -9,7 +9,7 @@ with
             start_date as transaction_date_day,
             donor_engagement,
             lag(donor_engagement) over (
-                partition by person_id order by date_day
+                partition by person_id order by start_date
             ) as prev_donor_engagement
         from {{ ref(donor_engagement) }}
     )
