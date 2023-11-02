@@ -3,7 +3,7 @@
 ) %}
 
 with date_spine as (
-select date
+select date_day
 from
     unnest(
         generate_date_array(
