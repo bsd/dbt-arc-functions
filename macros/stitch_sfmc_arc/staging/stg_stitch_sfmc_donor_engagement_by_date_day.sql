@@ -23,9 +23,9 @@ from
             from date_spine
             inner join
                 {{ ref(donor_engagement_scd_table) }} as donor_engagement_scd
-                on date_spine.date >= date(donor_engagement_scd.start_date)
+                on date_spine.date_day >= date(donor_engagement_scd.start_date)
                 and (
-                    date_spine.date <= date(donor_engagement_scd.end_date)
+                    date_spine.date_day <= date(donor_engagement_scd.end_date)
                     or date(donor_engagement_scd.start_date) is null
                 )
         ),
