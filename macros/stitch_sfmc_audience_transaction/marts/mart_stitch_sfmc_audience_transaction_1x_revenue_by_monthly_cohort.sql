@@ -33,10 +33,9 @@ with
             donor_audience,
             channel,
             join_gift_size_string,
-            max(
-                case when activation = 'Act00' then total_donors end
-            ) as activation_donors
+            total_donors as activation_donors
         from {{ ref(reference_name) }} monthly_1x_rollup
+        where activation = 'Act00'
         group by join_month_year_str, donor_audience, channel, join_gift_size_string
     ),
     base as (
@@ -59,16 +58,7 @@ with
                     monthly_1x_rollup.join_gift_size_string
                 order by monthly_1x_rollup.activation
             ) as total_revenue_cumulative_cohort,
-             coalesce(
-        activation_donors_base.activation_donors,
-        (
-          select
-            max(
-              case when activation = 'Act00' then total_donors end
-            ) as activation_donors
-          from {{ ref(reference_name) }} monthly_1x_rollup
-        )
-      ) as activation_donors
+            activation_donors_base.activation_donors 
         from {{ ref(reference_name) }} monthly_1x_rollup
         left join
             activation_donors_base
@@ -106,7 +96,7 @@ select
     total_revenue,
     total_donors,
     total_revenue_cumulative_cohort,
-    activation_donors as first_activation_donor_count
+    COALESCE(MAX(COALESCE(activation_donors, 0)) OVER (), 0) as first_activation_donor_count
 from base
 
 {% endmacro %}
