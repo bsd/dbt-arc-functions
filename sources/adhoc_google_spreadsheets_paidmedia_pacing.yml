@@ -7,11 +7,11 @@ sources:
     tables:
       - name: spreadsheet_paidmedia_pacing_budget
         description: Table containing budget data for paid media pacing.
-            tests:
-              - unique::
-                  column_name: "start_date || end_date || campaign_name"
-                  config:
-                    severity: warn
+        tests:
+          - unique::
+              column_name: "start_date || end_date || campaign_name"
+              config:
+                severity: warn
         columns:
           - name: start_date
             data_type: DATE
