@@ -33,10 +33,10 @@ with
             donor_audience,
             channel,
             join_gift_size_string,
-            total_donors as activation_donors
+            sum(total_donors) as activation_donors
         from {{ ref(reference_name) }} monthly_1x_rollup
         where activation = 'Act00'
-        group by join_month_year_str, donor_audience, channel, join_gift_size_string
+        group by 1, 2, 3, 4
     ),
     base as (
         select
