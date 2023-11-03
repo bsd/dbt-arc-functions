@@ -9,6 +9,14 @@ sources:
     tables:
       - name: arc_audience
         description: Table that contained all audience composition data from SFMC
+        freshness:
+          warn_after:
+            count: 2
+            period: day
+          error_after:
+            count: 14
+            period: day
+          loaded_at_field: _sdc_batched_at
         columns:
           - name: modifieddate
             data_type: STRING
@@ -40,6 +48,14 @@ sources:
       - name: arc_person
         description: Table containing data from each person in the SFMC. This is built
           from a custom query in SFMC.
+        freshness:
+          warn_after:
+            count: 2
+            period: day
+          error_after:
+            count: 14
+            period: day
+          loaded_at_field: _sdc_batched_at
         columns:
           - name: origindatasource
             data_type: STRING

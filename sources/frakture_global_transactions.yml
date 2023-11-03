@@ -21,6 +21,13 @@ sources:
           - name: remote_transaction_id
             description: The identifier of the transaction from the remote system.
             data_type: STRING
+            tests:
+              - not_null
+                  config:
+                    severity: warn
+              - unique
+                  config:
+                    severity: warn
           - name: person_id_int
             description: A unique identifier for the person associated with the transaction.
             data_type: BIGNUMERIC

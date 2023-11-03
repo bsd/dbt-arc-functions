@@ -6,6 +6,14 @@ sources:
     loader: stitch - sftp
     database: "{{ var('database') }}"
     schema: src_stitch_fundraiseup_authorized
+    freshness:
+      warn_after:
+        count: 2
+        period: day
+      error_after:
+        count: 14
+        period: day
+      loaded_at_field: _sdc_batched_at
     tables:
       - name: recent_transactions
         description: Table for recent transactions data
@@ -25,6 +33,10 @@ sources:
           - name: bbcrmlookupid
             data_type: STRING
             description: Look up ID for BB CRM
+            tests:
+              - not_null
+                  config:
+                    severity: warn
           - name: _sdc_table_version
             data_type: INT64
             description: Table version for Stitch
@@ -43,6 +55,13 @@ sources:
           - name: fru_donation_id
             data_type: STRING
             description: Donation ID from Fundraise Up
+            tests:
+              - not_null
+                  config:
+                    severity: warn
+              - unique  
+                  config:
+                    severity: warn
           - name: amount
             data_type: FLOAT64
             description: Amount of the transaction

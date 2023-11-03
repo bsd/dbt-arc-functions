@@ -7,6 +7,14 @@ sources:
     loader: stitch - sftp
     database: "{{ var('database') }}"
     schema: src_stitch_bbcrm_authorized
+    freshness:
+              warn_after:
+                count: 2
+                period: day
+              error_after:
+                count: 14
+                period: day
+              loaded_at_field: _sdc_batched_at
     tables:
       - name: constituencies
         description: Table containing information about the constituencies associated
@@ -22,6 +30,10 @@ sources:
             data_type: STRING
             description: System generated ID for the constituent associated with the
               constituency.
+            tests:
+              - not_null
+                  config:
+                    severity: warn
           - name: startdate
             data_type: STRING
             description: Start date of the constituent's association with the constituency.
@@ -35,6 +47,10 @@ sources:
           - name: constituencysystemrecordid
             data_type: STRING
             description: System generated ID for the constituency record.
+            tests:
+              - not_null
+                  config:
+                    severity: warn
           - name: _sdc_source_file
             data_type: STRING
             description: File source information tracked by Stitch.
@@ -59,6 +75,13 @@ sources:
           - name: __bbcrmlookupid_
             data_type: STRING
             description: Lookup ID for the record in the Blackbaud CRM.
+            tests:
+              - not_null
+                  config:
+                    severity: warn
+              - unique 
+                  config:
+                    severity: warn
           - name: enddate
             data_type: STRING
             description: End date of the constituent's association with the constituency.
@@ -106,9 +129,17 @@ sources:
             data_type: STRING
             description: Unique identifier for the household the constituent belongs
               to.
+            tests:
+              - not_null
+                  config:
+                    severity: warn
           - name: constituentsystemrecordid
             data_type: STRING
             description: Unique identifier for the constituent system record.
+            tests:
+              - not_null
+                  config:
+                    severity: warn
           - name: income
             data_type: STRING
             description: Income of the constituent.
@@ -246,6 +277,10 @@ sources:
           - name: emailsystemrecordid
             data_type: STRING
             description: Unique identifier for the email system record of the constituent.
+            tests:
+              - not_null
+                  config:
+                    severity: warn
           - name: emailaddressinfosource
             data_type: STRING
             description: Source of the email address information for the constituent.
@@ -255,6 +290,13 @@ sources:
           - name: __bbcrmlookupid_
             data_type: STRING
             description: Blackbaud CRM lookup id.
+            tests:
+              - not_null
+                  config:
+                    severity: warn
+              - unique
+                  config:
+                    severity: warn
       - name: interactions
         description: Records related to interactions with the constituents.
         columns:
@@ -265,12 +307,20 @@ sources:
             data_type: STRING
             description: Unique identifier for the constituent system record the interaction
               is related to.
+            tests:
+              - not_null
+                  config:
+                    severity: warn
           - name: contactmethod
             data_type: STRING
             description: Method of contact for the interaction.
           - name: interactionsystemrecordid
             data_type: STRING
             description: Unique identifier for the interaction system record.
+            tests:
+              - not_null
+                  config:
+                    severity: warn
           - name: summary
             data_type: STRING
             description: Summary of the interaction.
@@ -314,6 +364,13 @@ sources:
           - name: __bbcrmlookupid_
             data_type: STRING
             description: Blackbaud CRM lookup id for the interaction.
+            tests:
+              - not_null
+                  config:
+                    severity: warn
+              - unique
+                  config:
+                    severity: warn
       - name: smartfieldsfirst
         description: Records related to first events of constituents.
         columns:
@@ -336,6 +393,10 @@ sources:
             data_type: STRING
             description: Unique identifier for the constituent system record the first
               gift is related to.
+            tests:
+              - not_null
+                  config:
+                    severity: warn
           - name: first_gift_appeal_business_unit
             data_type: STRING
             description: Business unit of the first gift appeal by the constituent.
@@ -436,3 +497,10 @@ sources:
           - name: __bbcrmlookupid_
             data_type: STRING
             description: Blackbaud CRM lookup id.
+            tests:
+              - not_null
+                  config:
+                    severity: warn
+              - unique
+                  config:
+                    severity: warn
