@@ -66,7 +66,7 @@ with
             max(
               case when activation = 'Act00' then total_donors end
             ) as activation_donors
-          from monthly_1x_rollup
+          from {{ ref(reference_name) }} monthly_1x_rollup
         )
       ) as activation_donors
         from {{ ref(reference_name) }} monthly_1x_rollup
