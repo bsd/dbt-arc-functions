@@ -46,7 +46,7 @@ sources:
             data_type: STRING
             description: The ID of the constituent system in Salesforce CRM
             tests:
-              - not_null::
+              - 'not_null:':
                   config:
                     severity: warn
           - name: web_donation_form_value
