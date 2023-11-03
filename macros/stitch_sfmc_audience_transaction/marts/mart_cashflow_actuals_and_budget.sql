@@ -54,95 +54,91 @@
             from original_mart
         ),
 
-        prevyear as (
-            select
-                donor_audience,
-                channel,
-                date_day,
-                total_revenue_actuals as prev_year_total_revenue_actuals,
-                total_revenue_budget_by_day as prev_year_total_revenue_budget
-            from dateoffset
-        ),
+    prevyear as (
+        select
+            donor_audience,
+            channel,
+            date_day,
+            total_revenue_actuals as prev_year_total_revenue_actuals,
+            total_revenue_budget_by_day as prev_year_total_revenue_budget
+        from dateoffset
+    ),
 
-        prevtwoyears as (
-            select
-                donor_audience,
-                channel,
-                date_day,
-                total_revenue_actuals as prev_two_year_total_revenue_actuals,
-                total_revenue_budget_by_day as prev_two_year_total_revenue_budget
-            from dateoffset
-        ),
-        enriched as (
-            select
-                dateoffset.date_day as date_day,
-                date_add(prevyear.date_day, interval 1 year) as prevyear_date_day,
-                date_add(
-                    prevtwoyears.date_day, interval 2 year
-                ) as prevtwoyears_date_day,
-                coalesce(
-                    dateoffset.donor_audience,
-                    prevyear.donor_audience,
-                    prevtwoyears.donor_audience
-                ) as donor_audience,
-                coalesce(
-                    dateoffset.channel, prevyear.channel, prevtwoyears.channel
-                ) as channel,
-                dateoffset.total_revenue_actuals,
-                dateoffset.total_gifts_actuals,
-                dateoffset.total_revenue_budget_by_day,
-                dateoffset.total_revenue_cumulative_fiscal_year,
-                prevyear.prev_year_total_revenue_actuals,
-                prevyear.prev_year_total_revenue_budget,
-                prevtwoyears.prev_two_year_total_revenue_actuals,
-                prevtwoyears.prev_two_year_total_revenue_budget
-            from dateoffset
-            full outer join
-                prevyear
-                on dateoffset.donor_audience = prevyear.donor_audience
-                and dateoffset.prev_year_date_day = prevyear.date_day
-                and dateoffset.channel = prevyear.channel
-            full outer join
-                prevtwoyears
-                on dateoffset.donor_audience = prevtwoyears.donor_audience
-                and dateoffset.prev_two_year_date_day = prevtwoyears.date_day
-                and dateoffset.channel = prevtwoyears.channel
-        ),
-        adjusted_date_day as (
-            select
-                coalesce(
-                    date_day, prevyear_date_day, prevtwoyears_date_day
-                ) as date_day,  -- Use a different date value if the join failed (e.g., add 1 year)
-                donor_audience,
-                channel,
-                sum(total_revenue_actuals) as total_revenue_actuals,
-                sum(total_revenue_budget_by_day) as total_revenue_budget_by_day,
-                max(
-                    total_revenue_cumulative_fiscal_year
-                ) as total_revenue_cumulative_fiscal_year,
-                sum(prev_year_total_revenue_actuals) as prev_year_total_revenue_actuals,
-                sum(prev_year_total_revenue_budget) as prev_year_total_revenue_budget,
-                sum(
-                    prev_two_year_total_revenue_actuals
-                ) as prev_two_year_total_revenue_actuals,
-                sum(
-                    prev_two_year_total_revenue_budget
-                ) as prev_two_year_total_revenue_budget
-            from enriched
-            group by 1, 2, 3
+    prevtwoyears as (
+        select
+            donor_audience,
+            channel,
+            date_day,
+            total_revenue_actuals as prev_two_year_total_revenue_actuals,
+            total_revenue_budget_by_day as prev_two_year_total_revenue_budget
+        from dateoffset
+    ),
+    enriched as (
+        select
+            dateoffset.date_day as date_day,
+            date_add(prevyear.date_day, interval 1 year) as prevyear_date_day,
+            date_add(prevtwoyears.date_day, interval 2 year) as prevtwoyears_date_day,
+            coalesce(
+                dateoffset.donor_audience,
+                prevyear.donor_audience,
+                prevtwoyears.donor_audience
+            ) as donor_audience,
+            coalesce(
+                dateoffset.channel, prevyear.channel, prevtwoyears.channel
+            ) as channel,
+            dateoffset.total_revenue_actuals,
+            dateoffset.total_gifts_actuals,
+            dateoffset.total_revenue_budget_by_day,
+            dateoffset.total_revenue_cumulative_fiscal_year,
+            prevyear.prev_year_total_revenue_actuals,
+            prevyear.prev_year_total_revenue_budget,
+            prevtwoyears.prev_two_year_total_revenue_actuals,
+            prevtwoyears.prev_two_year_total_revenue_budget
+        from dateoffset
+        full outer join
+            prevyear
+            on dateoffset.donor_audience = prevyear.donor_audience
+            and dateoffset.prev_year_date_day = prevyear.date_day
+            and dateoffset.channel = prevyear.channel
+        full outer join
+            prevtwoyears
+            on dateoffset.donor_audience = prevtwoyears.donor_audience
+            and dateoffset.prev_two_year_date_day = prevtwoyears.date_day
+            and dateoffset.channel = prevtwoyears.channel
+    ),
+    adjusted_date_day as (
+        select
+            coalesce(date_day, prevyear_date_day, prevtwoyears_date_day) as date_day,  -- Use a different date value if the join failed (e.g., add 1 year)
+            donor_audience,
+            channel,
+            sum(total_revenue_actuals) as total_revenue_actuals,
+            sum(total_revenue_budget_by_day) as total_revenue_budget_by_day,
+            max(
+                total_revenue_cumulative_fiscal_year
+            ) as total_revenue_cumulative_fiscal_year,
+            sum(prev_year_total_revenue_actuals) as prev_year_total_revenue_actuals,
+            sum(prev_year_total_revenue_budget) as prev_year_total_revenue_budget,
+            sum(
+                prev_two_year_total_revenue_actuals
+            ) as prev_two_year_total_revenue_actuals,
+            sum(
+                prev_two_year_total_revenue_budget
+            ) as prev_two_year_total_revenue_budget
+        from enriched
+        group by 1, 2, 3
+    )
+
+select
+    {{
+        dbt_arc_functions.get_fiscal_year(
+            "date_day",
+            var("fiscal_year_start"),
         )
-
-    select
-        {{
-            dbt_arc_functions.get_fiscal_year(
-                "date_day",
-                var("fiscal_year_start"),
-            )
-        }} as fiscal_year,
-        extract(year from date_day) as year,
-        extract(month from date_day) as month,
-        extract(day from date_day) as day,
-        adjusted_date_day.*
-    from adjusted_date_day
+    }} as fiscal_year,
+    extract(year from date_day) as year,
+    extract(month from date_day) as month,
+    extract(day from date_day) as day,
+    adjusted_date_day.*
+from adjusted_date_day
 
 {% endmacro %}
