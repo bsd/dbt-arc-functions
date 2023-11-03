@@ -11,10 +11,10 @@ sources:
             data_type: string
             description: The lookup ID in Salesforce CRM for the revenue data
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
-              - unique
+              - unique:
                   config:
                     severity: warn
           - name: constituentsystemrecordid
@@ -85,10 +85,10 @@ sources:
             data_type: string
             description: The lookup ID in Salesforce CRM for the revenue data
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
-              - unique
+              - unique:
                   config:
                     severity: warn
           - name: constituentsystemrecordid

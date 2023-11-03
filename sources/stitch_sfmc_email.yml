@@ -33,14 +33,14 @@ sources:
               represents the unique ID for each subscriber record.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: triggerersenddefinitionobjectid
             description: The object ID for the triggered send definition
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: bouncetype
@@ -53,7 +53,7 @@ sources:
             description: The batch ID number for any batches used in the send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: subscriberkey
@@ -69,7 +69,7 @@ sources:
               This field applies to enterprise accounts only.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: domain
@@ -99,20 +99,20 @@ sources:
             description: The job ID number for the email send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: __accountid_
             description: 'Your account ID number '
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: listid
             description: 'The list ID number for the list used in the send '
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
             data_type: INT64
@@ -120,14 +120,14 @@ sources:
             description: 'The ID number for the bounce subcategory '
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: bouncetypeid
             description: The ID number for the bounce type
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: bouncecategory
@@ -148,7 +148,7 @@ sources:
             description: 'The category of the bounce '
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: eventdate
@@ -175,14 +175,14 @@ sources:
               represents the unique ID for each subscriber record.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: triggerersenddefinitionobjectid
             description: 'he object ID for the triggered send definition '
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: url
@@ -198,7 +198,7 @@ sources:
             description: The batch ID number for any batches used in the send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: subscriberkey
@@ -216,7 +216,7 @@ sources:
               accounts. This field applies to enterprise accounts only.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: linkcontent
@@ -248,21 +248,21 @@ sources:
             description: The job ID number for the email send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: __accountid_
             description: The account ID number of the Marketing Cloud account.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: listid
             description: The list ID number for the list used in the send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: _sdc_batched_at
@@ -293,7 +293,7 @@ sources:
               represents the unique ID for each subscriber record.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: isunique
@@ -303,7 +303,7 @@ sources:
             description: The batch ID number for any batches used in the send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: subscriberkey
@@ -318,7 +318,7 @@ sources:
               accounts. This field applies to enterprise accounts only.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: domain
@@ -345,21 +345,21 @@ sources:
             description: The job ID number for the email send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: __accountid_
             description: Your account ID number
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: listid
             description: The list ID number for the list used in the send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: _sdc_batched_at
@@ -388,14 +388,14 @@ sources:
             description: The job ID number for the email send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: triggerersenddefinitionobjectid
             description: The object ID for the triggered send definition
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: schedtime
@@ -442,7 +442,7 @@ sources:
             description: The ID for the job event
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: iswrapped
@@ -468,7 +468,7 @@ sources:
             description: The ID number for the account that performed the job
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: ipaddress
@@ -535,7 +535,7 @@ sources:
             description: The ID number for the account user that performed the job
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: originalschedtime
@@ -561,14 +561,14 @@ sources:
               VersionID’s associated to a JourneyID.
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: __versionid_
             description: The unique identifier for the version of the journey
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: modifieddate
@@ -628,14 +628,14 @@ sources:
             description: The external key associated with the activity
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: __versionid_
             description: The unique identifier for the version of the journey
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: journeyactivityobjectid
@@ -644,7 +644,7 @@ sources:
               \ Definition."
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: activityid
@@ -652,7 +652,7 @@ sources:
               more ActivityID's associated to a VersionID.
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: activityname
@@ -702,14 +702,14 @@ sources:
               represents the unique ID for each subscriber record.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: triggerersenddefinitionobjectid
             description: The object ID for the triggered send definition
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: isunique
@@ -719,7 +719,7 @@ sources:
             description: The batch ID number for any batches used in the send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: subscriberkey
@@ -734,7 +734,7 @@ sources:
               This field applies to enterprise accounts only.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: domain
@@ -760,21 +760,21 @@ sources:
             description: The job ID number for the email send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: __accountid_
             description: Your account ID number
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: listid
             description: The job ID number for the email send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: _sdc_batched_at
@@ -805,7 +805,7 @@ sources:
               represents the unique ID for each subscriber record.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: triggerersenddefinitionobjectid
@@ -815,7 +815,7 @@ sources:
             description: The batch ID number for any batches used in the send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: subscriberkey
@@ -830,7 +830,7 @@ sources:
               This field applies to enterprise accounts only.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: domain
@@ -857,21 +857,21 @@ sources:
             description: "\tThe job ID number for the email send"
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: __accountid_
             description: Your account ID number
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: listid
             description: The list ID number for the list used in the send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: _sdc_batched_at
@@ -1111,7 +1111,7 @@ sources:
               represents the unique ID for each subscriber record.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: isunique
@@ -1121,7 +1121,7 @@ sources:
             description: The batch ID number for any batches used in the send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: subscriberkey
@@ -1135,7 +1135,7 @@ sources:
             description: Your account ID number
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: domain
@@ -1163,21 +1163,21 @@ sources:
               This field applies to enterprise accounts only.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: jobid
             description: The job ID number for the email send
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: listid
             description: "\tThe list ID number for the list used in the send"
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: _sdc_batched_at

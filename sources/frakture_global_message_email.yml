@@ -16,7 +16,7 @@ sources:
             description: The unique identifier for each message.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: date
@@ -218,10 +218,10 @@ sources:
             description: Unique identifier for the message.
             data_type: INT64
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
-              - unique
+              - unique:
                   config:
                     severity: warn
           - name: channel

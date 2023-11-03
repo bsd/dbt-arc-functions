@@ -46,7 +46,7 @@ sources:
             data_type: STRING
             description: The ID of the constituent system in Salesforce CRM
             tests:
-              - not_null
+              - not_null::
                   config:
                     severity: warn
           - name: web_donation_form_value
@@ -62,7 +62,7 @@ sources:
             data_type: STRING
             description: The record ID of the revenue in Salesforce CRM
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: _sdc_table_version
@@ -96,10 +96,10 @@ sources:
             data_type: STRING
             description: The ID of the revenue in Salesforce CRM
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
-              - unique
+              - unique:
                   config:
                     severity: warn
           - name: __sdc_primary_key
@@ -119,9 +119,9 @@ sources:
             data_type: STRING
             description: The lookup ID in Salesforce CRM for the revenue data
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
-              - unique
+              - unique:
                   config:
                     severity: warn

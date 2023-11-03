@@ -5,7 +5,7 @@ sources:
     schema: adhoc_reporting
     description: Audience Budget tables in the Adhoc Reporting schema
     tests:
-      - unique:
+      - unique::
           column_name: "start_date || end_date || platform || donor_audience"
           config:
             severity: warn

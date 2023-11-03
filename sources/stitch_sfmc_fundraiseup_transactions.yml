@@ -34,7 +34,7 @@ sources:
             data_type: STRING
             description: Look up ID for BB CRM
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
           - name: _sdc_table_version
@@ -56,10 +56,10 @@ sources:
             data_type: STRING
             description: Donation ID from Fundraise Up
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
-              - unique  
+              - unique:  
                   config:
                     severity: warn
           - name: amount

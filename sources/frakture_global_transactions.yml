@@ -22,10 +22,10 @@ sources:
             description: The identifier of the transaction from the remote system.
             data_type: STRING
             tests:
-              - not_null
+              - not_null:
                   config:
                     severity: warn
-              - unique
+              - unique:
                   config:
                     severity: warn
           - name: person_id_int
