@@ -8,13 +8,13 @@ sources:
     database: "{{ var('database') }}"
     schema: src_stitch_bbcrm_authorized
     freshness:
-              warn_after:
-                count: 2
-                period: day
-              error_after:
-                count: 14
-                period: day
-              loaded_at_field: _sdc_batched_at
+      warn_after:
+        count: 2
+        period: day
+      error_after:
+        count: 14
+        period: day
+    loaded_at_field: _sdc_batched_at
     tables:
       - name: constituencies
         description: Table containing information about the constituencies associated

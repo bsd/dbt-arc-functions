@@ -13,7 +13,7 @@ sources:
       error_after:
         count: 14
         period: day
-      loaded_at_field: _sdc_batched_at
+    loaded_at_field: _sdc_batched_at
     tables:
       - name: bounce
         description: Bounce data for emails from your Marketing Cloud account, query
@@ -26,7 +26,7 @@ sources:
           error_after:
             count: 14
             period: day
-          loaded_at_field: _sdc_batched_at
+        loaded_at_field: _sdc_batched_at
         columns:
           - name: subscriberid
             description: The subscriber ID for the affected subscriber. This number

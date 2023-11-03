@@ -13,7 +13,7 @@ sources:
       error_after:
         count: 14
         period: day
-      loaded_at_field: _sdc_batched_at
+    loaded_at_field: _sdc_batched_at
     tables:
       - name: recent_transactions
         description: Table for recent transactions data
