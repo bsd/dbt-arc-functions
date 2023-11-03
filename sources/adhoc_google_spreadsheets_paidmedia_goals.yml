@@ -9,7 +9,7 @@ sources:
         description: Table containing monthly paid media goals from a Google Spreadsheet.
         tests:
           - unique:
-              column_name: "concat(month, year, objective, channel, platform)"
+              column_name: concat(month, year, objective, channel, platform)
               config:
                 severity: warn
         columns:

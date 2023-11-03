@@ -9,7 +9,7 @@ sources:
         description: Table containing budget data for paid media pacing.
         tests:
           - unique:
-              column_name: "concat(start_date, end_date, campaign_name)"
+              column_name: concat(start_date, end_date, campaign_name)
               config:
                 severity: warn
         columns:

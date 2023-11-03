@@ -79,7 +79,7 @@ sources:
               - not_null:
                   config:
                     severity: warn
-              - unique: 
+              - unique:
                   config:
                     severity: warn
           - name: enddate
