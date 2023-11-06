@@ -7,6 +7,11 @@ sources:
     tables:
       - name: spreadsheet_audience_monthly_budget
         description: Spreadsheet Audience Monthly Budget
+        tests:
+          - unique:
+              column_name: concat(start_date, end_date, platform, donor_audience)
+              config:
+                severity: warn
         columns:
           - name: start_date
             data_type: DATE

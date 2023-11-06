@@ -9,6 +9,11 @@ sources:
     tables:
       - name: revenue
         description: Table containing revenue data from Salesforce CRM
+        freshness:
+          warn_after:
+            count: 2
+            period: day
+        loaded_at_field: _sdc_batched_at
         columns:
           - name: designation
             data_type: STRING
@@ -79,6 +84,10 @@ sources:
           - name: revenue_id
             data_type: STRING
             description: The ID of the revenue in Salesforce CRM
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: __sdc_primary_key
             data_type: STRING
             description: The unique primary key for the revenue data in Stitch
@@ -95,3 +104,7 @@ sources:
           - name: __bbcrmlookupid_
             data_type: STRING
             description: The lookup ID in Salesforce CRM for the revenue data
+            tests:
+              - not_null:
+                  config:
+                    severity: warn

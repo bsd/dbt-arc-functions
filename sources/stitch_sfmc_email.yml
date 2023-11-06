@@ -6,19 +6,43 @@ sources:
     loader: stitch - sftp
     database: "{{ var('database') }}"
     schema: src_stitch_sfmc_authorized
+    freshness:
+      warn_after:
+        count: 2
+        period: day
+      error_after:
+        count: 14
+        period: day
+    loaded_at_field: _sdc_batched_at
     tables:
       - name: bounce
         description: Bounce data for emails from your Marketing Cloud account, query
           the _bounce data view in Automation Studio. Records dating back six months
           from the day the query runs are available.
+        freshness:
+          warn_after:
+            count: 2
+            period: day
+          error_after:
+            count: 14
+            period: day
+        loaded_at_field: _sdc_batched_at
         columns:
           - name: subscriberid
             description: The subscriber ID for the affected subscriber. This number
               represents the unique ID for each subscriber record.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: triggerersenddefinitionobjectid
             description: The object ID for the triggered send definition
             data_type: STRING
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: bouncetype
             description: The type of bounce that occurred
             data_type: STRING
@@ -28,6 +52,10 @@ sources:
           - name: batchid
             description: The batch ID number for any batches used in the send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: subscriberkey
             description: The subscriber key for the affected subscriber. This serves
               as the primary key.
@@ -40,6 +68,10 @@ sources:
             description: The account ID number for any related On-Your-Behalf accounts.
               This field applies to enterprise accounts only.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: domain
             description: The domain at which the bounce occurred
             data_type: STRING
@@ -66,18 +98,38 @@ sources:
           - name: jobid
             description: The job ID number for the email send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: __accountid_
             description: 'Your account ID number '
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: listid
             description: 'The list ID number for the list used in the send '
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
             data_type: INT64
           - name: bouncesubcategoryid
             description: 'The ID number for the bounce subcategory '
             data_type: STRING
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: bouncetypeid
             description: The ID number for the bounce type
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: bouncecategory
             description: 'The category of the bounce '
             data_type: STRING
@@ -95,6 +147,10 @@ sources:
           - name: bouncecategoryid
             description: 'The category of the bounce '
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: eventdate
             description: 'The date the bounce took place '
             data_type: STRING
@@ -118,9 +174,17 @@ sources:
             description: The subscriber ID for the affected subscriber. This number
               represents the unique ID for each subscriber record.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: triggerersenddefinitionobjectid
             description: 'he object ID for the triggered send definition '
             data_type: STRING
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: url
             description: 'The URL for the link clicked. No AMPscript or variables
               are populated in this column, for example, www.example.com?%%attribute%% '
@@ -133,6 +197,10 @@ sources:
           - name: batchid
             description: The batch ID number for any batches used in the send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: subscriberkey
             description: "\tThe subscriber key for the affected subscriber"
             data_type: STRING
@@ -147,6 +215,10 @@ sources:
             description: The account ID number for any related On-Your-Behalf (OYB)
               accounts. This field applies to enterprise accounts only.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: linkcontent
             description: "\tThe link content assigned in the email send. AMPscript\
               \               and variables are populated in this column, such as\
@@ -175,12 +247,24 @@ sources:
           - name: jobid
             description: The job ID number for the email send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: __accountid_
             description: The account ID number of the Marketing Cloud account.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: listid
             description: The list ID number for the list used in the send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: _sdc_batched_at
             description: Timestamp indicating when Stitch loaded the batch the record
               was a part of into the destination.
@@ -208,12 +292,20 @@ sources:
             description: The subscriber ID for the affected subscriber. This number
               represents the unique ID for each subscriber record.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: isunique
             description: Whether the event is unique or repeated
             data_type: STRING
           - name: batchid
             description: The batch ID number for any batches used in the send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: subscriberkey
             description: The subscriber key for the affected subscriber
             data_type: STRING
@@ -225,6 +317,10 @@ sources:
             description: The account ID number for any related On-Your-Behalf (OYB)
               accounts. This field applies to enterprise accounts only.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: domain
             description: The domain at which the complaint occurred
             data_type: STRING
@@ -248,12 +344,24 @@ sources:
           - name: jobid
             description: The job ID number for the email send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: __accountid_
             description: Your account ID number
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: listid
             description: The list ID number for the list used in the send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: _sdc_batched_at
             description: Timestamp indicating when Stitch loaded the batch the record
               was a part of into the destination.
@@ -279,9 +387,17 @@ sources:
           - name: __jobid_
             description: The job ID number for the email send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: triggerersenddefinitionobjectid
             description: The object ID for the triggered send definition
             data_type: STRING
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: schedtime
             description: The time the job was scheduled
             data_type: STRING
@@ -325,6 +441,10 @@ sources:
           - name: eventid
             description: The ID for the job event
             data_type: STRING
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: iswrapped
             description: Whether the links in the email were wrapped for tracking
             data_type: STRING
@@ -347,6 +467,10 @@ sources:
           - name: accountid
             description: The ID number for the account that performed the job
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: ipaddress
             description: This value is always null.
             data_type: STRING
@@ -410,6 +534,10 @@ sources:
           - name: accountuserid
             description: The ID number for the account user that performed the job
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: originalschedtime
             description: The original scheduled time for the job
             data_type: STRING
@@ -432,9 +560,17 @@ sources:
             description: The unique identifier for the journey. There are one or more
               VersionID’s associated to a JourneyID.
             data_type: STRING
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: __versionid_
             description: The unique identifier for the version of the journey
             data_type: STRING
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: modifieddate
             description: The date that the version of the journey was last edited
             data_type: STRING
@@ -491,18 +627,34 @@ sources:
           - name: activityexternalkey
             description: The external key associated with the activity
             data_type: STRING
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: __versionid_
             description: The unique identifier for the version of the journey
             data_type: STRING
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: journeyactivityobjectid
             description: "\tUse this unique identifier to join to email tracking system\
               \               data views to identify a journey email’s Triggered Send\
               \ Definition."
             data_type: STRING
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: activityid
             description: The unique identifier for the activity. There are one or
-              more ActivityID’s associated to a VersionID.
+              more ActivityID's associated to a VersionID.
             data_type: STRING
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: activityname
             description: The name of the activity
             data_type: STRING
@@ -549,15 +701,27 @@ sources:
             description: The subscriber ID for the affected subscriber. This number
               represents the unique ID for each subscriber record.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: triggerersenddefinitionobjectid
             description: The object ID for the triggered send definition
             data_type: STRING
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: isunique
             description: Whether the event is unique or repeated
             data_type: STRING
           - name: batchid
             description: The batch ID number for any batches used in the send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: subscriberkey
             description: The subscriber key for the affected subscriber
             data_type: STRING
@@ -569,6 +733,10 @@ sources:
             description: The account ID number for any related On-Your-Behalf accounts.
               This field applies to enterprise accounts only.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: domain
             description: The domain at which the open occurred
             data_type: STRING
@@ -591,12 +759,24 @@ sources:
           - name: jobid
             description: The job ID number for the email send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: __accountid_
             description: Your account ID number
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: listid
             description: The job ID number for the email send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: _sdc_batched_at
             description: Timestamp indicating when Stitch loaded the batch the record
               was a part of into the destination.
@@ -624,12 +804,20 @@ sources:
             description: The subscriber ID for the affected subscriber. This number
               represents the unique ID for each subscriber record.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: triggerersenddefinitionobjectid
             description: The object ID for the triggered send definition
             data_type: STRING
           - name: batchid
             description: The batch ID number for any batches used in the send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: subscriberkey
             description: The subscriber key for the affected subscriber
             data_type: STRING
@@ -641,6 +829,10 @@ sources:
             description: The account ID number for any related On-Your-Behalf accounts.
               This field applies to enterprise accounts only.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: domain
             description: The domain at which the send occurred
             data_type: STRING
@@ -664,12 +856,24 @@ sources:
           - name: jobid
             description: "\tThe job ID number for the email send"
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: __accountid_
             description: Your account ID number
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: listid
             description: The list ID number for the list used in the send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: _sdc_batched_at
             description: Timestamp indicating when Stitch loaded the batch the record
               was a part of into the destination.
@@ -906,12 +1110,20 @@ sources:
             description: The subscriber ID for the affected subscriber. This number
               represents the unique ID for each subscriber record.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: isunique
             description: "\tWhether the event is unique or repeated"
             data_type: STRING
           - name: batchid
             description: The batch ID number for any batches used in the send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: subscriberkey
             description: The subscriber key for the affected subscriber
             data_type: STRING
@@ -922,6 +1134,10 @@ sources:
           - name: accountid
             description: Your account ID number
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: domain
             description: The domain at which the unsubscribe occurred
             data_type: STRING
@@ -946,12 +1162,24 @@ sources:
             description: The account ID number for any related On-Your-Behalf accounts.
               This field applies to enterprise accounts only.
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: jobid
             description: The job ID number for the email send
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: listid
             description: "\tThe list ID number for the list used in the send"
             data_type: INT64
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: _sdc_batched_at
             description: Timestamp indicating when Stitch loaded the batch the record
               was a part of into the destination.
