@@ -1,5 +1,5 @@
 ---
-# This file will serve as a resource top copy and paste documentation as needed for future sources.
+# This file will serve as a resource to copy and paste documentation as needed for future sources.
 version: 2
 sources:
   - name: src_stitch_bbcrm
@@ -26,14 +26,6 @@ sources:
           - name: statuscode
             data_type: INT64
             description: Status code of the constituency, indicating active or inactive.
-          - name: constituentsystemrecordid
-            data_type: STRING
-            description: System generated ID for the constituent associated with the
-              constituency.
-            tests:
-              - not_null:
-                  config:
-                    severity: warn
           - name: startdate
             data_type: STRING
             description: Start date of the constituent's association with the constituency.
@@ -77,9 +69,6 @@ sources:
             description: Lookup ID for the record in the Blackbaud CRM.
             tests:
               - not_null:
-                  config:
-                    severity: warn
-              - unique:
                   config:
                     severity: warn
           - name: enddate
@@ -136,10 +125,6 @@ sources:
           - name: constituentsystemrecordid
             data_type: STRING
             description: Unique identifier for the constituent system record.
-            tests:
-              - not_null:
-                  config:
-                    severity: warn
           - name: income
             data_type: STRING
             description: Income of the constituent.

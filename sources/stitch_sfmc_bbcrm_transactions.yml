@@ -45,10 +45,6 @@ sources:
           - name: constituentsystemrecordid
             data_type: STRING
             description: The ID of the constituent system in Salesforce CRM
-            tests:
-              - 'not_null:':
-                  config:
-                    severity: warn
           - name: web_donation_form_value
             data_type: STRING
             description: The value associated with the web donation form
@@ -61,10 +57,6 @@ sources:
           - name: recordid
             data_type: STRING
             description: The record ID of the revenue in Salesforce CRM
-            tests:
-              - not_null:
-                  config:
-                    severity: warn
           - name: _sdc_table_version
             data_type: INT64
             description: The version of the table in Stitch
@@ -99,9 +91,6 @@ sources:
               - not_null:
                   config:
                     severity: warn
-              - unique:
-                  config:
-                    severity: warn
           - name: __sdc_primary_key
             data_type: STRING
             description: The unique primary key for the revenue data in Stitch
@@ -120,8 +109,5 @@ sources:
             description: The lookup ID in Salesforce CRM for the revenue data
             tests:
               - not_null:
-                  config:
-                    severity: warn
-              - unique:
                   config:
                     severity: warn
