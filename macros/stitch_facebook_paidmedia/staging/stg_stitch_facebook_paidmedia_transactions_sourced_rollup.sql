@@ -3,8 +3,8 @@
     source_table="ads_insights"
 ) %}
     select
-        null as message_id,
-        null as date_timestamp,
+        cast(null AS string) as message_id,
+        cast(null as timestamp) as date_timestamp,
         null as total_revenue,
         null as total_gifts,
         null as total_donors,
