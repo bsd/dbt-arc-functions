@@ -8,5 +8,5 @@
         platform as join_source,
         total_donors_by_day as recur_total_donor_count_budget,
     from {{ ref(reference_name) }} as stg_audience_budget_by_day
-    where lower(donor_audience) = 'recurring'
+    where lower(donor_audience) = 'recurring' or lower(donor_audience) = 'monthly'
 {% endmacro %}

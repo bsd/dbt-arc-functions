@@ -25,7 +25,7 @@
     full join
         {{ ref(recur_donor_counts_budget) }} as audience_budget
         on recur_donor_counts.date_day = audience_budget.date_day
-        and lower(recur_donor_counts.donor_audience) = lower(audience_budget.donor_audience)
-        and lower(recur_donor_counts.interval_type) = lower(audience_budget.interval_type)
+        and recur_donor_counts.donor_audience = audience_budget.donor_audience
+        and recur_donor_counts.interval_type = audience_budget.interval_type
         and lower(recur_donor_counts.platform) = lower(audience_budget.join_source)
 {% endmacro %}

@@ -11,6 +11,7 @@
             from {{ ref("stg_audience_budget_by_day") }}
             where
                 lower(donor_audience) != 'recurring'
+                and lower(donor_audience) != 'monthly'
             group by 1, 2, 3, 4
         )
 
