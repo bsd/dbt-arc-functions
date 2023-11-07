@@ -1,0 +1,194 @@
+---
+version: 2
+sources:
+  - name: src_stitch_facebook_paidmedia
+    description: Stitch data connector for Facebook Paid Media
+    loader: stitch - sftp
+    database: bsd-stitch
+    schema: "{{ var('stitch_facebook_paidmedia_schema') }}"
+    tables:
+      - name: ads_insights
+        description: The ads_insights table contains entries for each campaign/set/ad
+          combination for each day, along with detailed statistics.
+        freshness:
+          warn_after:
+            count: 2
+            period: day
+          error_after:
+            count: 14
+            period: day
+        loaded_at_field: _sdc_batched_at
+        columns:
+          - name: ad_id
+            data_type: STRING
+            description: "The ID of the ad.\n\nReferenced in\n\nads.id\nads.targeting.id\n\
+              ads_insights.ad_id\nads_insights.ad_id\nads_insights_age_and_gender.ad_id\n\
+              ads_insights_country.ad_id\nads_insights_dma.ad_id\nads_insights_platform_and_device.ad_id\n\
+              ads_insights_region.ad_id\ncampaigns.ads.id"
+          - name: adset_id
+            data_type: STRING
+            description: "The ID of the ad set. An ad set is a group of ads that share\
+              \ the same budget, schedule, delivery optimization, and targeting.\n\
+              \nReferenced in\n\nads.adset_id\nadsets.id\nads_insights.adset_id\n\
+              ads_insights.adset_id\nads_insights_age_and_gender.adset_id\nads_insights_country.adset_id\n\
+              ads_insights_dma.adset_id\nads_insights_platform_and_device.adset_id\n\
+              ads_insights_region.adset_id"
+          - name: campaign_id
+            data_type: STRING
+            description: "The ID of the campaign. Campaigns contain ad sets and ads.\n\
+              \nReferenced in\n\ncampaigns.id\nads.campaign_id\nads_insights.campaign_id\n\
+              ads_insights.campaign_id\nads_insights_age_and_gender.campaign_id\n\
+              ads_insights_country.campaign_id\nads_insights_dma.campaign_id\nads_insights_platform_and_device.campaign_id\n\
+              ads_insights_region.campaign_id"
+          - name: date_start
+            data_type: DATE-TIME
+            description: The start date.
+          - name: actions
+            data_type: ARRAY
+            description: "The total number of actions people took that are attributed\
+              \ to the ad.\n\nClick to expand actions\nads_insights (table), actions\
+              \ (attribute)"
+          - name: action_values
+            data_type: ARRAY
+            description: "The total value of all conversions attributed to the ad.\n\
+              \nClick to expand action_values\nads_insights (table), action_values\
+              \ (attribute)"
+          - name: ad_name
+            data_type: INTEGER
+            description: The name of the ad.
+          - name: adset_name
+            data_type: STRING
+            description: The name of the adset.
+          - name: campaign_name
+            data_type: INTEGER
+            description: The name of the campaign.
+          - name: clicks
+            data_type: INTEGER
+            description: The number of clicks on your ads.
+          - name: conversion_values
+            data_type: ARRAY
+            description: "Click to expand conversion_values\nads_insights (table),\
+              \ conversion_values (attribute)"
+          - name: conversions
+            data_type: ARRAY
+            description: "Click to expand conversions\nads_insights (table), conversions\
+              \ (attribute)"
+          - name: date_stop
+            data_type: DATE-TIME
+            description: The end date.
+          - name: website_ctr
+            data_type: ARRAY
+            description: "The percentage of times people saw the ad and performed\
+              \ a link click.\n\nClick to expand website_ctr\nads_insights (table),\
+              \ website_ctr (attribute)"
+          - name: unique_inline_link_click_ctr
+            data_type: NUMBER
+            description: The percentage of times people saw the ad and performed a
+              link click. Inline click-through rate uses a fixed 1-day-click attribution
+              window.
+          - name: frequency
+            data_type: NUMBER
+            description: The average number of times each person saw your ad.
+          - name: account_id
+            data_type: STRING
+            description: "The ID number of your ad account.\n\nReferenced in\n\nadcreative.account_id\n\
+              ads.account_id\nads_insights.account_id\nads_insights_age_and_gender.account_id\n\
+              ads_insights_country.account_id\nads_insights_dma.account_id\nads_insights_platform_and_device.account_id\n\
+              ads_insights_region.account_id"
+          - name: account_name
+            data_type: STRING
+            description: The name of your ad account.
+          - name: canvas_avg_view_time
+            data_type: NUMBER
+            description: The average total time, in seconds, that people spent viewing
+              a Facebook Canvas.
+          - name: unique_inline_link_clicks
+            data_type: INTEGER
+            description: The number of people who performed an inline link click.
+          - name: cost_per_unique_action_type
+            data_type: ARRAY
+            description: "Details about the average cost of unique actions.\n\nClick\
+              \ to expand cost_per_unique_action_type\nads_insights (table), cost_per_unique_action_type\
+              \ (attribute)"
+          - name: inline_post_engagement
+            data_type: INTEGER
+            description: The total number of actions that people take involving the
+              ad. Inline post engagements use a fixed 1-day-click attribution window.
+          - name: relevance_score
+            data_type: OBJECT
+            description: "Details about the relevance score of the ad.\n\nClick to\
+              \ expand relevance_score\nads_insights (table), relevance_score (attribute)"
+          - name: inline_link_clicks
+            data_type: INTEGER
+            description: The number of clicks on links to select destinations or experiences,
+              on or off Facebook-owned properties. Inline link clicks use a fixed
+              1-day-click attribution window.
+          - name: cpc
+            data_type: NUMBER
+            description: The average cost for each click (all).
+          - name: cost_per_unique_inline_link_click
+            data_type: NUMBER
+            description: The average cost of each unique inline link click.
+          - name: cpm
+            data_type: NUMBER
+            description: The average cost for 1,000 impressions.
+          - name: cost_per_inline_post_engagement
+            data_type: NUMBER
+            description: The average cost of each inline post engagement.
+          - name: inline_link_click_ctr
+            data_type: NUMBER
+            description: The percentage of time people saw your ads and performed
+              an inline link click.
+          - name: cpp
+            data_type: NUMBER
+            description: The average cost to reach 1,000 people.
+          - name: cost_per_action_type
+            data_type: ARRAY
+            description: "Details about the average cost of a relevant action.\n\n\
+              Click to expand cost_per_action_type\nads_insights (table), cost_per_action_type\
+              \ (attribute)"
+          - name: unique_link_clicks_ctr
+            data_type: NUMBER
+            description: The percentage of people who saw the ad and performed a link
+              click.
+          - name: spend
+            data_type: NUMBER
+            description: The estimated total amount of money spent on the campaign,
+              ad set, or ad during its schedule.
+          - name: cost_per_unique_click
+            data_type: NUMBER
+            description: The average cost of each unique click (all).
+          - name: unique_clicks
+            data_type: INTEGER
+            description: The number of people who performed a click (all).
+          - name: social_spend
+            data_type: NUMBER
+            description: The total amount spent so far for the ad showed with social
+              information. Stitch Data likes this.
+          - name: reach
+            data_type: INTEGER
+            description: "The number of people who saw the ad at least once.\n\nreach\
+              \ is different than impressions, which may include multiple views of\
+              \ the ads by the same people."
+          - name: canvas_avg_view_percent
+            data_type: NUMBER
+            description: The average percentage of the Facebook Canvas that people
+              saw.
+          - name: objective
+            data_type: STRING
+            description: The objective selected for the campaign. This reflects the
+              goal you want to achieve with your advertising.
+          - name: impressions
+            data_type: INTEGER
+            description: The number of times the ad was on screen.
+          - name: unique_ctr
+            data_type: NUMBER
+            description: The percentage of people who saw your ad and performed a
+              unique click (all).
+          - name: cost_per_inline_link_click
+            data_type: NUMBER
+            description: The average cost of each inline link click.
+          - name: ctr
+            data_type: NUMBER
+            description: The percentage of times people saw your ad and performed
+              a click (all).
