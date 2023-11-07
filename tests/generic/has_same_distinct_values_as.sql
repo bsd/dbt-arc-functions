@@ -17,7 +17,7 @@
 
         )
 
-    select *
+    select count(*)
     from this_model
     full outer join other_model on this_model.test_column = other_model.test_column
     where
