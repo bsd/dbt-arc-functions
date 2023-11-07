@@ -1,0 +1,65 @@
+---
+version: 2
+models:
+  - name: stg_stitch_facebook_paidmedia_transactions_sourced_rollup
+    description: This model represents the rollup of paid media transactions from
+      Facebook ad campaigns.
+    columns:
+      - name: message_id
+        data_type: string
+        description: The ID of the ad. This ID is referenced in various tables such
+          as ads.id, ads.targeting.id, ads_insights.ad_id, ads_insights_age_and_gender.ad_id,
+          ads_insights_country.ad_id, ads_insights_dma.ad_id, ads_insights_platform_and_device.ad_id,
+          ads_insights_region.ad_id, and campaigns.ads.id.
+      - name: date_timestamp
+        data_type: timestamp
+        description: The timestamp indicating the date and time of the transaction.
+      - name: total_revenue
+        data_type: int64
+        description: The total revenue generated from the paid media campaign.
+      - name: total_gifts
+        data_type: int64
+        description: The total number of gifts received from the paid media campaign.
+      - name: total_donors
+        data_type: int64
+        description: The total number of unique donors contributing to the paid media
+          campaign.
+      - name: one_time_revenue
+        data_type: int64
+        description: The revenue generated from one-time gifts in the paid media campaign.
+      - name: one_time_gifts
+        data_type: int64
+        description: The number of one-time gifts received in the paid media campaign.
+      - name: new_monthly_revenue
+        data_type: int64
+        description: The revenue generated from new monthly gifts in the paid media
+          campaign.
+      - name: new_monthly_gifts
+        data_type: int64
+        description: The number of new monthly gifts received in the paid media campaign.
+      - name: total_monthly_revenue
+        data_type: int64
+        description: The total revenue generated from monthly gifts in the paid media
+          campaign.
+      - name: total_monthly_gifts
+        data_type: int64
+        description: The total number of monthly gifts received in the paid media
+          campaign.
+      - name: objective
+        data_type: string
+        description: The objective of the ad campaign.
+      - name: campaign
+        data_type: string
+        description: The name of the ad campaign.
+      - name: campaign_label
+        data_type: string
+        description: The label associated with the ad campaign.
+      - name: audience
+        data_type: string
+        description: The target audience for the ad campaign.
+      - name: appeal
+        data_type: string
+        description: The appeal of the ad campaign.
+      - name: source_code
+        data_type: string
+        description: The source code associated with the ad campaign.

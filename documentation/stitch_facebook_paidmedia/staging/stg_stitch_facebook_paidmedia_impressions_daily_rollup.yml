@@ -1,0 +1,20 @@
+---
+version: 2
+models:
+  - name: stg_stitch_facebook_paidmedia_impressions_daily_rollup
+    description: Impressions daily rollup data for paid media on Facebook
+    columns:
+      - name: message_id
+        data_type: string
+        description: The ID of the ad. Referenced in ads.id, ads.targeting.id, ads_insights.ad_id,
+          ads_insights_age_and_gender.ad_id, ads_insights_country.ad_id, ads_insights_dma.ad_id,
+          ads_insights_platform_and_device.ad_id, ads_insights_region.ad_id, campaigns.ads.id
+      - name: date_timestamp
+        data_type: timestamp
+        description: The timestamp of the daily rollup data
+      - name: total_impressions
+        data_type: int64
+        description: The total number of impressions for the ad on a specific day
+      - name: unique_impressions
+        data_type: int64
+        description: The number of unique impressions for the ad on a specific day
