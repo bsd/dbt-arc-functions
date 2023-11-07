@@ -1,6 +1,6 @@
 {% macro create_stg_stitch_sfmc_arc_calculated_audience_by_date_day(
     date_spine="stg_stitch_sfmc_audience_transaction_calculated_date_spine",
-    calcualted_audience_scd="stg_stitch_sfmc_donor_audience_calculated_scd"
+    calculated_audience_scd="stg_stitch_sfmc_donor_audience_calculated_scd"
 ) %}
 
     with
@@ -11,7 +11,7 @@
                 calc_audience_scd.donor_audience
             from {{ ref(date_spine) }} as date_spine
             inner join
-                {{ ref(calcualted_audience_scd) }} as calc_audience_scd
+                {{ ref(calculated_audience_scd) }} as calc_audience_scd
                 on date_spine.date >= date(calc_audience_scd.start_date)
                 and (
                     date_spine.date <= date(calc_audience_scd.end_date)

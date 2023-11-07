@@ -6,7 +6,7 @@
     with
         arc_audience as (
 
-            select date_day, person_id, donor_audience  -- UUSA custom audience naming code
+            select date_day, person_id, donor_audience  
             from {{ ref(arc_audience) }}
 
         ),
