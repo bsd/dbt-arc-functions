@@ -1,4 +1,4 @@
-{% macro create_stg_frakture_global_message_paidmedia_transactions_sourced_rollup(
+{% macro create_stg_stitch_facebook_paidmedia_transactions_sourced_rollup(
     source_name="src_stitch_facebook_paidmedia",
     source_table="ads_insights"
 ) %}
