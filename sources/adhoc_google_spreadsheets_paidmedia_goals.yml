@@ -7,6 +7,11 @@ sources:
     tables:
       - name: spreadsheet_paidmedia_monthly_goals
         description: Table containing monthly paid media goals from a Google Spreadsheet.
+        tests:
+          - unique:
+              column_name: concat(month, year, objective, channel, platform)
+              config:
+                severity: warn
         columns:
           - name: month
             data_type: STRING

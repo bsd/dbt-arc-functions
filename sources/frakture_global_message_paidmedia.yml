@@ -15,6 +15,10 @@ sources:
           - name: message_id
             data_type: INT64
             description: Unique identifier for each message.
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
           - name: date
             data_type: DATE
             description: The date the message was sent.
@@ -213,6 +217,13 @@ sources:
           - name: message_id
             data_type: INT64
             description: Unique identifier for each global message.
+            tests:
+              - not_null:
+                  config:
+                    severity: warn
+              - unique:
+                  config:
+                    severity: warn
           - name: channel
             data_type: STRING
             description: Platform used to send the global message.
