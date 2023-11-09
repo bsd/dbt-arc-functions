@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_arc_donor_loyalty_by_fiscal_year(
-    audience_union_transaction_joined="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
+    audience_union_transaction_joined="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched"
 ) %}
 
     with donor_loyalty_counts as (
