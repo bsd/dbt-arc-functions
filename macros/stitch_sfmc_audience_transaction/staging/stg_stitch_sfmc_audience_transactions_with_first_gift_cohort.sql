@@ -13,13 +13,18 @@ lpad(
     2,
     '0'
 )
-as month_diff,
+as month_diff_str,
+cast(
+        date_diff(date_trunc(transaction_date_day, month), join_month_year, month) as integer
+    ) 
+    as month_diff_int,
 transactions.recurring,
 transactions.amounts,
 first_gift.join_month_year_str,
 first_gift.join_month_year_date,
 first_gift.first_gift_join_source,
 first_gift.join_gift_size_string,
+first_gift.join_gift_size_string_recur,
 first_gift.first_gift_donor_audience,
 case when first_gift.first_gift_recur_status = True then 'recur' 
 when first_gift.first_gift_recur_status = False then 'one_time'
@@ -29,3 +34,4 @@ left join {{ ref(first_gift)}} first_gift
 on transactions.person_id =  first_gift.person_id
 
 
+{% endmacro %}
