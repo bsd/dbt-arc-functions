@@ -1,10 +1,26 @@
 {% macro create_stg_stitch_sfmc_arc_donor_loyalty_by_fiscal_year(
     audience_union_transaction_joined="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
-    donor_loyalty_count="stg_stitch_sfmc_arc_donor_loyalty_fiscal_year_count"
 ) %}
 
-    with
-        donation_history as (
+    with donor_loyalty_counts as (
+
+     select
+        person_id,
+        fiscal_year,
+        min(transaction_date_day) as start_date,
+        date_sub(
+            date(concat(fiscal_year, '-', '{{ var('fiscal_year_start') }}')),
+            interval 1 day
+        ) as end_date,
+
+        row_number() over (partition by person_id order by fiscal_year desc) as row_num
+    from {{ ref(audience_union_transaction_joined) }}
+    group by person_id, fiscal_year
+    order by person_id, fiscal_year        
+    )
+
+
+    ,    donation_history as (
             select
                 person_id,
                 fiscal_year,
@@ -41,7 +57,7 @@
                 <> donor_loyalty_counts.fiscal_year - 1
             then 'reactivated_donor'
         end as donor_loyalty
-    from {{ ref(donor_loyalty_count) }} donor_loyalty_counts
+    from donor_loyalty_counts
     left join
         donation_history
         on donor_loyalty_counts.person_id = donation_history.person_id
