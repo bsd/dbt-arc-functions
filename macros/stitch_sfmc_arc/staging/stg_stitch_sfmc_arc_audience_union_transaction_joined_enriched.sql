@@ -61,10 +61,9 @@ with audience_union_transaction_joined as (
             else 'audience_calculated_alldates.donor_audience'
         end as source_column
     from
-        {{ ref("stg_stitch_sfmc_arc_audience_union_transaction_joined") }}
-        as audience_union_transaction_joined
+        audience_union_transaction_joined
     left join
-        {{ ref("stg_stitch_sfmc_audience_transaction_calculated_alldates") }}
+        {{ ref(audience_calculated_alldates) }}
         as audience_calculated_alldates
         on audience_calculated_alldates.transaction_date_day
         = audience_union_transaction_joined.transaction_date_day
