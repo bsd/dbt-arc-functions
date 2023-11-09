@@ -34,7 +34,7 @@ from
 
     ),
 
-with calculated_with_date_spine as (
+ calculated_with_date_spine as (
 
 select transaction_date_day, person_id, donor_audience
 from {{ ref(calculated_audience) }} calc_audience
