@@ -2,7 +2,7 @@
     donor_audience_unioned="stg_stitch_sfmc_arc_audience_unioned",
     donor_engagement_by_day="stg_stitch_sfmc_donor_engagement_by_date_day",
     donor_transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched",
-    audience_calculated_alldates="stg_stitch_sfmc_audience_transaction_calculated_alldates",
+    audience_calculated_alldates="stg_stitch_sfmc_audience_transaction_calculated_alldates"
 ) %}
 
 
