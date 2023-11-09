@@ -12,7 +12,7 @@ with
             safe_cast(amount as int64) as first_transaction_amount,
             best_guess_inbound_channel,
             case when recurring = True then 'recur'
-            case when recurring = False then 'one_time' as first_gift_recur_status,
+            case when recurring = False then 'one_time' end as first_gift_recur_status,
             row_number() over (
                 partition by person_id order by transaction_date_day asc
             ) as row_number
