@@ -6,6 +6,14 @@
 select
 transactions.person_id,
 transactions.transaction_date_day,
+lpad(
+    cast(
+        date_diff(date_trunc(transaction_date_day, month), join_month_year, month) as string
+    ),
+    2,
+    '0'
+)
+as month_diff,
 transactions.recurring,
 transactions.amounts,
 first_gift.join_month_year_str,
