@@ -11,6 +11,8 @@ with
             inbound_channel as first_transaction_inbound_channel,
             safe_cast(amount as int64) as first_transaction_amount,
             best_guess_inbound_channel,
+            case when recurring = True then 'recur'
+            case when recurring = False then 'one_time' as first_gift_recur_status,
             row_number() over (
                 partition by person_id order by transaction_date_day asc
             ) as row_number
@@ -23,6 +25,7 @@ select
     first_transaction_date,
     cast(timestamp_trunc(first_transaction_date, day) as date) as join_month_year_date,
     best_guess_inbound_channel as first_gift_join_source,
+    first_gift_recur_status,
     first_transaction_amount as first_gift_amount_int,
     (
         case
