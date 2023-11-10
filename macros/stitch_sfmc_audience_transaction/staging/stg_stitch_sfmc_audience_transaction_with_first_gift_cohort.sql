@@ -8,14 +8,14 @@ transactions.person_id,
 transactions.transaction_date_day,
 lpad(
     cast(
-        date_diff(date_trunc(transaction_date_day, month), join_month_year, month) as string
+        date_diff(date_trunc(transaction_date_day, month), join_month_year_date, month) as string
     ),
     2,
     '0'
 )
 as month_diff_str,
 cast(
-        date_diff(date_trunc(transaction_date_day, month), join_month_year, month) as integer
+        date_diff(date_trunc(transaction_date_day, month), join_month_year_date, month) as integer
     ) 
     as month_diff_int,
 transactions.recurring,
