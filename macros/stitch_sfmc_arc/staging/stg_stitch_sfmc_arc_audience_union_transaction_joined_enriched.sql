@@ -50,7 +50,7 @@ with audience_union_transaction_joined as (
         ) as end_date,
 
         row_number() over (partition by person_id order by fiscal_year desc) as row_num
-    from {{ ref(donor_transaction_enriched) }}
+    from audience_union_transaction_joined
     group by person_id, fiscal_year
     order by person_id, fiscal_year        
     )
@@ -67,7 +67,7 @@ with audience_union_transaction_joined as (
                     partition by person_id order by fiscal_year
                 ) as fiscal_year_before_previous,
                 max(transaction_date_day) as last_donation_date
-            from {{ ref(donor_transaction_enriched) }}
+            from audience_union_transaction_joined
             group by person_id, fiscal_year
         )
 
