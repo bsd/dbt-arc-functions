@@ -66,7 +66,6 @@
                 on budget.start_date <= date_spine.date_day
                 and budget.end_date >= date_spine.date_day
             order by 1, 2, 3
-            {% endset %}
         )
 
     select
