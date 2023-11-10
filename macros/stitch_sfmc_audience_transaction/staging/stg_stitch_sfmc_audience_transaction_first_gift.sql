@@ -6,7 +6,7 @@
 {{ config(
     materialized='table',
     partition_by={
-      "field": "transaction_date_day",
+      "field": "first_transaction_date",
       "data_type": "date",
       "granularity": "day"
     },
