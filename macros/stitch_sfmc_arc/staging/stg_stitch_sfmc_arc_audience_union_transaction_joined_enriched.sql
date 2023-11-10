@@ -2,7 +2,8 @@
     donor_audience_unioned="stg_stitch_sfmc_arc_audience_unioned",
     donor_engagement_by_day="stg_stitch_sfmc_donor_engagement_by_date_day",
     donor_transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched",
-    audience_calculated_alldates="stg_stitch_sfmc_audience_transaction_calculated_alldates"
+    audience_calculated_alldates="stg_stitch_sfmc_audience_transaction_calculated_alldates",
+    jobs_append="stg_stitch_sfmc_audience_transaction_jobs_append"
 ) %}
 
 
@@ -101,6 +102,12 @@ with audience_union_transaction_joined as (
         on donor_loyalty_counts.person_id = donation_history.person_id
         and donor_loyalty_counts.fiscal_year = donation_history.fiscal_year
     order by donor_loyalty_counts.person_id, donor_loyalty_counts.fiscal_year
+
+),
+
+audience_calculated_alldates as (
+
+    select transaction_date_day, person_id, donor_audience from jobs_append
 
 )
 
