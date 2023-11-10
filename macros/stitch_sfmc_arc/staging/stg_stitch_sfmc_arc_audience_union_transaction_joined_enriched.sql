@@ -142,7 +142,7 @@ from the jobs_append source.
 */
 
 
-    select transaction_date_day, person_id, donor_audience from jobs_append
+    select transaction_date_day, person_id, donor_audience from {{ ref(jobs_append) }}
 
 )
 
