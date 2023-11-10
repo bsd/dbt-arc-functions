@@ -25,20 +25,27 @@ with first_transactions as (
 , enriched_first_transactions as (
     select
         first_transactions.person_id,
-         first_transactions.first_transaction_date,
+        first_transactions.first_transaction_date,
+        transactions.transaction_day_day,
         transactions.inbound_channel as first_gift_join_source,
         safe_cast(transactions.amount as int64) as first_gift_amount_int,
-        transactions.recurring as first_gift_recur_status
+        transactions.recurring as first_gift_recur_status,
+        audience.coalesced_audience as first_gift_donor_audience
     from first_transactions 
     join {{ ref(transactions) }} transactions
     on  first_transactions.person_id = transactions.person_id and  first_transactions.first_transaction_date = transactions.transaction_date_day
+    join {{ ref(audience)}} audience
+    on  first_transactions.person_id = audience.person_id and first_transactions.first_transaction_date = audience.transaction_day_day
 )
 
 select 
-enriched_first_transactions.*,
+transaction_date_day,
+person_id,
+first_transaction_date,
 cast(timestamp_trunc(first_transaction_date, day) as date) as join_month_year_date,
 format_timestamp('%b %Y', timestamp_trunc(first_transaction_date, month)) as join_month_year_str,
-audience.coalesced_audience as first_gift_donor_audience,
+first_gift_join_source,
+first_gift_donor_audience,
 (
         case
             when first_gift_amount_int between 0 and 25
@@ -81,10 +88,9 @@ audience.coalesced_audience as first_gift_donor_audience,
             when first_gift_amount_int > 100
             then '100+'
         end
-    ) as join_gift_size_string_recur
+    ) as join_gift_size_string_recur,
+    first_gift_amount_int
 from enriched_first_transactions
-left join {{ ref(audience) }} audience
-on enriched_first_transactions.first_transaction_date = audience.transaction_date_day
 
 
 {% endmacro %}
