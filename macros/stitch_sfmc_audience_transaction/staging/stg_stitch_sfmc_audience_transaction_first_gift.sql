@@ -35,7 +35,7 @@ with first_transactions as (
     join {{ ref(transactions) }} transactions
     on  first_transactions.person_id = transactions.person_id and  first_transactions.first_transaction_date = transactions.transaction_date_day
     join {{ ref(audience)}} audience
-    on  first_transactions.person_id = audience.person_id and first_transactions.first_transaction_date = audience.transaction_day_day
+    on  first_transactions.person_id = audience.person_id and first_transactions.first_transaction_date = audience.transaction_date_day
 )
 
 select 
