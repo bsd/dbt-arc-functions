@@ -24,14 +24,14 @@ with first_transactions as (
 
 , enriched_first_transactions as (
     select
-        ft.person_id,
-        ft.first_transaction_date,
-        t.inbound_channel as first_gift_join_source,
-        safe_cast(t.amount as int64) as first_gift_amount_int,
-        t.recurring as first_gift_recur_status
-    from first_transactions ft
-    join {{ ref(transactions) }} t
-    on ft.person_id = t.person_id and ft.first_transaction_date = t.transaction_date_day
+        first_transactions.person_id,
+         first_transactions.first_transaction_date,
+        transactions.inbound_channel as first_gift_join_source,
+        safe_cast(transactions.amount as int64) as first_gift_amount_int,
+        transactions.recurring as first_gift_recur_status
+    from first_transactions 
+    join {{ ref(transactions) }} transactions
+    on  first_transactions.person_id = transactions.person_id and  first_transactions.first_transaction_date = transactions.transaction_date_day
 )
 
 select 
