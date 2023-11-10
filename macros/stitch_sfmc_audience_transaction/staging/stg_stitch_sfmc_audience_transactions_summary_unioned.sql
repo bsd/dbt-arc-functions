@@ -2,6 +2,16 @@
 {% set relations = dbt_arc_functions.relations_that_match_regex(
     "^stg_stitch_.*_transactions$"
 ) %}
+{{ config(
+    materialized='table',
+    partition_by={
+      "field": "transaction_date_day",
+      "data_type": "date",
+      "granularity": "day"
+    }
+)}}
+
+
 with base as ({{ dbt_utils.union_relations(relations) }})
 
 select
