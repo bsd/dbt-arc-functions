@@ -18,9 +18,8 @@ with
         select
             person_id,
             transaction_date_day as first_transaction_date,
-            inbound_channel as first_transaction_inbound_channel,
-            safe_cast(amount as int64) as first_transaction_amount,
-            best_guess_inbound_channel,
+            inbound_channel as first_gift_join_source,
+            safe_cast(amount as int64) as first_gift_amount_int,
             recurring as first_gift_recur_status,
             row_number() over (
                 partition by person_id order by transaction_date_day asc
@@ -34,9 +33,9 @@ select
     first_transaction_date,
     cast(timestamp_trunc(first_transaction_date, day) as date) as join_month_year_date,
     format_timestamp('%b %Y', timestamp_trunc(first_transaction_date, month)) as join_month_year_str,
-    best_guess_inbound_channel as first_gift_join_source,
+    first_gift_join_source,
     first_gift_recur_status,
-    first_transaction_amount as first_gift_amount_int,
+    first_gift_amount_int,
     (
         case
             when first_transaction_amount between 0 and 25

@@ -10,7 +10,7 @@
       "data_type": "date",
       "granularity": "day"
     },
-    cluster_by = ["recurring"]
+    cluster_by = ["recurring", "person_id"]
 )}}
 
 select
