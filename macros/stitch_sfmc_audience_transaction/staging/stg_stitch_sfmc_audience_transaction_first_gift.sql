@@ -21,8 +21,6 @@ with first_transactions as (
     from {{ ref(transactions) }}
     group by person_id
 )
-
-, enriched_first_transactions as  (
     select
         first_transactions.person_id,
         first_transactions.first_transaction_date,
@@ -80,7 +78,7 @@ with first_transactions as (
     on  first_transactions.person_id = transactions.person_id and  first_transactions.first_transaction_date = transactions.transaction_date_day
     join {{ ref(audience)}} audience
     on  first_transactions.person_id = audience.person_id and first_transactions.first_transaction_date = audience.transaction_date_day
-)
+
 
 
 {% endmacro %}
