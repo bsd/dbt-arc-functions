@@ -5,16 +5,21 @@
     jobs_append="stg_stitch_sfmc_audience_transaction_jobs_append"
 ) %}
 
+
+
+
+
+
+
+with audience_union_transaction_joined as (
+
 /*
-audience_union_transaction_joined combines data from donor_transaction_enriched, donor_audience_unioned,
+ audience_union_transaction_joined combines data from donor_transaction_enriched, donor_audience_unioned,
  and donor_engagement_by_day by performing several joins based on common columns 
  like transaction_date_day and person_id. It selects various attributes from these 
  sources and calculates the fiscal year. The purpose is to create a consolidated dataset 
  that includes transaction details, audience information, and engagement data.
-
 */
-
-with audience_union_transaction_joined as (
 
     select
         transaction_enriched.transaction_date_day,
@@ -45,6 +50,9 @@ with audience_union_transaction_joined as (
 
 )
 
+
+, donor_loyalty_counts as (
+
 /*
 
 donor_loyalty_counts calculates donor loyalty-related information. 
@@ -53,9 +61,6 @@ assigns a row number to each donor within a fiscal year,
 and organizes the data for further analysis.
 
 */
-
-, donor_loyalty_counts as (
-
      select
         person_id,
         fiscal_year,
@@ -71,13 +76,14 @@ and organizes the data for further analysis.
     order by person_id, fiscal_year        
     )
 
-/*
+
+
+    ,    donation_history as (
+        /*
 donation_history computes the donation history for each donor, 
 including the previous fiscal year, fiscal year before previous, 
 and the last donation date.
 */
-
-    ,    donation_history as (
             select
                 person_id,
                 fiscal_year,
@@ -92,14 +98,15 @@ and the last donation date.
             group by person_id, fiscal_year
         )
 
-/*
+
+
+        , arc_donor_loyalty as (
+            /*
 Based on the data from donor_loyalty_counts and donation_history,
 arc_donor_loyalty determines the donor's loyalty status for each fiscal year. 
 It classifies donors as new, retained, retained with three or more years, 
 or reactivated donors.
 */
-
-        , arc_donor_loyalty as (
     select
         donor_loyalty_counts.person_id,
         donor_loyalty_counts.fiscal_year,
@@ -132,12 +139,13 @@ or reactivated donors.
 
 ),
 
-/*
+
+audience_calculated_alldates as (
+    /*
 audience_calculated_alldates retrieves calculated audience data for all dates 
 from the jobs_append source.
 */
 
-audience_calculated_alldates as (
 
     select transaction_date_day, person_id, donor_audience from jobs_append
 
