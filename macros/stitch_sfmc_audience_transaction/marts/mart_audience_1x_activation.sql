@@ -39,7 +39,7 @@ select
 join_month_year_str as join_month_year,
 first_gift_join_source as join_source,
 join_gift_size_string as join_gift_size,
-first_gift_donor_audience as join_donor_audience
+first_gift_donor_audience as join_donor_audience,
 activation_str,
 total_amount,
 cumulative_amount,
