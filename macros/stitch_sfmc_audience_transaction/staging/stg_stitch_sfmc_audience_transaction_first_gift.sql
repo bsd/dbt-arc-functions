@@ -13,29 +13,25 @@
     cluster_by = ["first_gift_recur_status"]
 )}}
 
-with
-    renamed as (
-        select
-            person_id,
-            transaction_date_day as first_transaction_date,
-            inbound_channel as first_gift_join_source,
-            safe_cast(amount as int64) as first_gift_amount_int,
-            recurring as first_gift_recur_status,
-            row_number() over (
-                partition by person_id order by transaction_date_day asc
-            ) as row_number
-        from {{ ref(transactions) }} 
-    )
 
-, first_transactions as (
-select
-    person_id,
-    first_transaction_date,
-    first_gift_join_source,
-    first_gift_recur_status,
-    first_gift_amount_int
-from renamed
-where row_number = 1
+with first_transactions as (
+    select
+        person_id,
+        min(transaction_date_day) as first_transaction_date
+    from {{ ref(transactions) }}
+    group by person_id
+)
+
+, enriched_first_transactions as (
+    select
+        ft.person_id,
+        ft.first_transaction_date,
+        t.inbound_channel as first_gift_join_source,
+        safe_cast(t.amount as int64) as first_gift_amount_int,
+        t.recurring as first_gift_recur_status
+    from first_transactions ft
+    join {{ ref(transactions) }} t
+    on ft.person_id = t.person_id and ft.first_transaction_date = t.transaction_date_day
 )
 
 select 
@@ -86,9 +82,9 @@ audience.coalesced_audience as first_gift_donor_audience,
             then '100+'
         end
     ) as join_gift_size_string_recur
-from first_transactions
+from enriched_first_transactions
 left join {{ ref(audience) }} audience
-on first_transactions.first_transaction_date = audience.transaction_date_day
+on enriched_first_transactions.first_transaction_date = audience.transaction_date_day
 
 
 {% endmacro %}
