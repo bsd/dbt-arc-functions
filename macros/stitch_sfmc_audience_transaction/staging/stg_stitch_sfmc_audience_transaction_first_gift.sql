@@ -23,7 +23,7 @@ select
     person_id,
     first_transaction_date,
     cast(timestamp_trunc(first_transaction_date, day) as date) as join_month_year_date,
-    format_timestamp('%b %Y', timestamp_trunc(first_transaction_date, month) as join_month_year_str,
+    format_timestamp('%b %Y', timestamp_trunc(first_transaction_date, month)) as join_month_year_str,
     best_guess_inbound_channel as first_gift_join_source,
     first_gift_recur_status,
     first_transaction_amount as first_gift_amount_int,
