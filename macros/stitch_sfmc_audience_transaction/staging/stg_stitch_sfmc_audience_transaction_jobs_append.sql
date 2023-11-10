@@ -9,8 +9,7 @@
       "field": "transaction_date_day",
       "data_type": "date",
       "granularity": "day"
-    },
-    cluster_by = ["recurring"]
+    }
 )}}
 
 {#
