@@ -5,6 +5,14 @@
     jobs_append="stg_stitch_sfmc_audience_transaction_jobs_append"
 ) %}
 
+/*
+audience_union_transaction_joined combines data from donor_transaction_enriched, donor_audience_unioned,
+ and donor_engagement_by_day by performing several joins based on common columns 
+ like transaction_date_day and person_id. It selects various attributes from these 
+ sources and calculates the fiscal year. The purpose is to create a consolidated dataset 
+ that includes transaction details, audience information, and engagement data.
+
+*/
 
 with audience_union_transaction_joined as (
 
@@ -37,6 +45,14 @@ with audience_union_transaction_joined as (
 
 )
 
+/*
+
+donor_loyalty_counts calculates donor loyalty-related information. 
+It determines the start and end dates for each fiscal year, 
+assigns a row number to each donor within a fiscal year, 
+and organizes the data for further analysis.
+
+*/
 
 , donor_loyalty_counts as (
 
@@ -55,6 +71,11 @@ with audience_union_transaction_joined as (
     order by person_id, fiscal_year        
     )
 
+/*
+donation_history computes the donation history for each donor, 
+including the previous fiscal year, fiscal year before previous, 
+and the last donation date.
+*/
 
     ,    donation_history as (
             select
@@ -70,6 +91,13 @@ with audience_union_transaction_joined as (
             from audience_union_transaction_joined
             group by person_id, fiscal_year
         )
+
+/*
+Based on the data from donor_loyalty_counts and donation_history,
+arc_donor_loyalty determines the donor's loyalty status for each fiscal year. 
+It classifies donors as new, retained, retained with three or more years, 
+or reactivated donors.
+*/
 
         , arc_donor_loyalty as (
     select
@@ -104,11 +132,25 @@ with audience_union_transaction_joined as (
 
 ),
 
+/*
+audience_calculated_alldates retrieves calculated audience data for all dates 
+from the jobs_append source.
+*/
+
 audience_calculated_alldates as (
 
     select transaction_date_day, person_id, donor_audience from jobs_append
 
 )
+
+/*
+In the final query, the code selects data from audience_union_transaction_joined, 
+left joins it with audience_calculated_alldates and arc_donor_loyalty, 
+and creates a consolidated dataset. 
+This dataset includes various attributes related to donors, 
+such as transaction details, audience information, engagement data, 
+loyalty status, and more.
+*/
 
     select
         audience_union_transaction_joined.transaction_date_day,
@@ -136,8 +178,7 @@ audience_calculated_alldates as (
     from
         audience_union_transaction_joined
     left join
-        {{ ref(audience_calculated_alldates) }}
-        as audience_calculated_alldates
+        audience_calculated_alldates
         on audience_calculated_alldates.transaction_date_day
         = audience_union_transaction_joined.transaction_date_day
         and audience_calculated_alldates.person_id
