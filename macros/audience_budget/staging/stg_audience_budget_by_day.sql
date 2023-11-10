@@ -62,7 +62,7 @@
 
             from {{ ref(google_spreadsheets_audience_monthly_budget) }} as budget
             inner join
-                {{ ref(date_spine) }} as date_spine
+                date_spine
                 on budget.start_date <= date_spine.date_day
                 and budget.end_date >= date_spine.date_day
             order by 1, 2, 3
