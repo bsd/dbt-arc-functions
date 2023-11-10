@@ -35,7 +35,7 @@ with first_transactions as (
 )
 
 select 
-first_transactions.*,
+enriched_first_transactions.*,
 cast(timestamp_trunc(first_transaction_date, day) as date) as join_month_year_date,
 format_timestamp('%b %Y', timestamp_trunc(first_transaction_date, month)) as join_month_year_str,
 audience.coalesced_audience as first_gift_donor_audience,
