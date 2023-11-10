@@ -1,5 +1,5 @@
 {% macro create_stg_audience_budget_by_day(
-    google_spreadsheets_audience_monthly_budget="stg_adhoc_google_spreadsheets_audience_monthly_budget",
+    google_spreadsheets_audience_monthly_budget="stg_adhoc_google_spreadsheets_audience_monthly_budget"
 ) %}
     
 
@@ -29,9 +29,7 @@
 
     ,
         dailies as (
-            {% set number_of_days_in_budget = (
-        "date_diff(budget.end_date, budget.start_date, day)"
-            ) %}
+        {% set number_of_days_in_budget = ("date_diff(budget.end_date, budget.start_date, day)") %}
             select
                 platform,
                 donor_audience,
@@ -68,6 +66,7 @@
                 on budget.start_date <= date_spine.date_day
                 and budget.end_date >= date_spine.date_day
             order by 1, 2, 3
+            {% endset %}
         )
 
     select
