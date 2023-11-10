@@ -3,6 +3,16 @@
     audience='stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched'
 ) %}
 
+{{ config(
+    materialized='table',
+    partition_by={
+      "field": "transaction_date_day",
+      "data_type": "date",
+      "granularity": "day"
+    },
+    cluster_by = ["first_gift_recur_status"]
+)}}
+
 with
     renamed as (
         select
