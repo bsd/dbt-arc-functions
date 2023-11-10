@@ -5,6 +5,15 @@
     jobs_append="stg_stitch_sfmc_audience_transaction_jobs_append"
 ) %}
 
+{{ config(
+    materialized='table',
+    partition_by={
+      "field": "transaction_date_day",
+      "data_type": "date",
+      "granularity": "day"
+    }
+)}}
+
 
 with audience_union_transaction_joined as (
 
