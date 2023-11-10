@@ -6,11 +6,6 @@
 ) %}
 
 
-
-
-
-
-
 with audience_union_transaction_joined as (
 
 /*
