@@ -8,7 +8,7 @@ with rev_by_cohort as (
 select 
 join_month_year_str,
 first_gift_join_source,
-join_gift_size_string, 
+join_gift_size_string_recur, 
 first_gift_donor_audience,
 month_diff_int,
 concat('Ret' || month_diff_str ) as retention_str,
@@ -23,13 +23,13 @@ group by 1, 2, 3, 4, 5, 6
 select 
 join_month_year_str,
 first_gift_join_source,
-join_gift_size_string, 
+join_gift_size_string_recur, 
 first_gift_donor_audience,
 retention_str,
 month_diff_int,
 total_amount,
 SUM(total_amount) OVER (
-    PARTITION BY join_month_year_str, first_gift_join_source, join_gift_size_string, first_gift_donor_audience, retention_str
+    PARTITION BY join_month_year_str, first_gift_join_source, join_gift_size_string_recur, first_gift_donor_audience, retention_str
     ORDER BY month_diff_int
   ) AS cumulative_amount
   from rev_by_cohort
@@ -44,7 +44,7 @@ from add_cumulative
 left join {{ref(donors_in_cohort) }} donors_in_cohort
 on add_cumulative.join_month_year_str = donors_in_cohort.join_month_year_str
 and add_cumulative.first_gift_join_source = donors_in_cohort.first_gift_join_source
-and add_cumulative.join_gift_size_string = donors_in_cohort.join_gift_size_string
+and add_cumulative.join_gift_size_string_recur = donors_in_cohort.join_gift_size_strin_recur
 and add_cumulative.first_gift_donor_audience = donors_in_cohort.first_gift_donor_audience
 where donors_in_cohort.first_gift_recur_status = 'recur'
 
