@@ -25,7 +25,7 @@ first_gift_join_source,
 join_gift_size_string, 
 first_gift_donor_audience,
 retention_str,
-total_amount
+total_amount,
 SUM(total_amount) OVER (
     PARTITION BY join_month_year_str, first_gift_join_source, join_gift_size_string, first_gift_donor_audience, retention_str
     ORDER BY month_diff_int
