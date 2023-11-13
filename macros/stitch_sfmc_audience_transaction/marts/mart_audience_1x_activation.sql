@@ -12,7 +12,7 @@ first_gift_donor_audience,
 concat('Act' || month_diff_str ) as activation_str,
 sum(amounts) as total_amount,
 SUM(amounts) OVER (
-    PARTITION BY join_month_year_str, first_gift_join_source, join_gift_size_string, first_gift_donor_audience, activation_str
+    PARTITION BY join_month_year_str, first_gift_join_source, join_gift_size_string, first_gift_donor_audience, month_diff_str
     ORDER BY month_diff_int
   ) AS cumulative_amount
 from {{ref(transactions)}} 
