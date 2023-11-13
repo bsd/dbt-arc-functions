@@ -1,4 +1,4 @@
-{% macro util_mart_audience_retention_activation(recur_status, donors_in_cohort_table=donors_in_cohort, transactions='stg_stitch_sfmc_audience_transaction_with_first_gift_cohort') %}
+{% macro util_mart_audience_retention_activation(recur_status, first_gift_table='stg_stitch_sfmc_audience_transaction_first_gift', transactions='stg_stitch_sfmc_audience_transaction_with_first_gift_cohort') %}
 
 
  {% if recur_status not in ['recurring', 'onetime'] %}
@@ -6,12 +6,27 @@
     {% endif %}
 
 {% set recur_suffix = '_recur' if recur_status == 'recurring' else '' %}
+{% set boolean_status = True if recur_status == 'recurring' else False %}
 {% set ret_or_act = 'Ret' if recur_status == 'recurring' else 'Act' %}
 {% set retention_or_activation = 'retention' if recur_status == 'recurring' else 'activation' %}
 {% set donors_in_cohort = 'stg_stitch_sfmc_audience_transaction_first_gift_recur_rollup' if recur_status == 'recurring' else 'stg_stitch_sfmc_audience_transaction_first_gift_1x_rollup' %}
 {% set transactions_table = transactions %}
 
-with rev_by_cohort as (
+
+with first_gift_rollup as (
+select
+join_month_year_str,
+first_gift_join_source,
+join_gift_size_string{{recur_suffix}},
+first_gift_donor_audience,
+count(distinct person_id) as donors_in_cohort
+from {{ ref(first_gift)}}
+where first_gift_recur_status = {{boolean_status}}
+group by 1, 2, 3, 4
+
+)
+
+, rev_by_cohort as (
     select 
         join_month_year_str,
         first_gift_join_source,
@@ -44,12 +59,12 @@ add_cumulative as (
 donors_in_cohort as (
     select 
         add_cumulative.*,
-        donors_in_cohort.donors_in_cohort
+        first_gift_rollup.donors_in_cohort
     from add_cumulative
-    left join {{ ref(donors_in_cohort_table) }} donors_in_cohort
-    on add_cumulative.join_month_year_str = donors_in_cohort.join_month_year_str
-    and add_cumulative.first_gift_join_source = donors_in_cohort.first_gift_join_source
-    and add_cumulative.join_gift_size_str{{recur_suffix}}, = donors_in_cohort.join_gift_size_str{{recur_suffix}},
+    left join first_gift_rollup
+    on add_cumulative.join_month_year_str = first_gift_rollup.join_month_year_str
+    and add_cumulative.first_gift_join_source = first_gift_rollup.first_gift_join_source
+    and add_cumulative.join_gift_size_str{{recur_suffix}} = first_gift_rollup.join_gift_size_string{{recur_suffix}}
     and add_cumulative.first_gift_donor_audience = donors_in_cohort.first_gift_donor_audience
 )
 
