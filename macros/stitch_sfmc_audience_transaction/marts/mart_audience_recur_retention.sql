@@ -43,7 +43,7 @@ donors_in_cohort.donors_in_cohort,
 from add_cumulative
 left join {{ref(donors_in_cohort) }} donors_in_cohort
 on add_cumulative.join_month_year_str = donors_in_cohort.join_month_year_str
-and add_cumulativet.first_gift_join_source = donors_in_cohort.first_gift_join_source
+and add_cumulative.first_gift_join_source = donors_in_cohort.first_gift_join_source
 and add_cumulative.join_gift_size_string = donors_in_cohort.join_gift_size_string
 and add_cumulative.first_gift_donor_audience = donors_in_cohort.first_gift_donor_audience
 where donors_in_cohort.first_gift_recur_status = 'recur'
