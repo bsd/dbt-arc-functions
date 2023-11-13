@@ -10,11 +10,12 @@ join_month_year_str,
 first_gift_join_source,
 join_gift_size_string, 
 first_gift_donor_audience,
+month_diff_int,
 concat('Ret' || month_diff_str ) as retention_str,
 sum(amounts) as total_amount,
 from {{ref(transactions)}} 
 where first_gift_recur_status = 'one_time'
-group by 1, 2, 3, 4, 5
+group by 1, 2, 3, 4, 5, 6
 
 )
 
@@ -25,6 +26,7 @@ first_gift_join_source,
 join_gift_size_string, 
 first_gift_donor_audience,
 retention_str,
+month_diff_int,
 total_amount,
 SUM(total_amount) OVER (
     PARTITION BY join_month_year_str, first_gift_join_source, join_gift_size_string, first_gift_donor_audience, retention_str
