@@ -46,7 +46,6 @@ on add_cumulative.join_month_year_str = donors_in_cohort.join_month_year_str
 and add_cumulative.first_gift_join_source = donors_in_cohort.first_gift_join_source
 and add_cumulative.join_gift_size_string_recur = donors_in_cohort.join_gift_size_strin_recur
 and add_cumulative.first_gift_donor_audience = donors_in_cohort.first_gift_donor_audience
-where donors_in_cohort.first_gift_recur_status = 'recur'
 
 
 )
