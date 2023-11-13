@@ -1,4 +1,4 @@
-{% macro util_mart_audience_retention_activation(recur_status, first_gift_table='stg_stitch_sfmc_audience_transaction_first_gift', transactions='stg_stitch_sfmc_audience_transaction_with_first_gift_cohort') %}
+{% macro util_mart_audience_retention_activation(recur_status, first_gift_table='stg_stitch_sfmc_audience_transaction_first_gift', transactions_table='stg_stitch_sfmc_audience_transaction_with_first_gift_cohort') %}
 
 
  {% if recur_status not in ['recurring', 'onetime'] %}
@@ -10,7 +10,6 @@
 {% set ret_or_act = 'Ret' if recur_status == 'recurring' else 'Act' %}
 {% set retention_or_activation = 'retention' if recur_status == 'recurring' else 'activation' %}
 {% set donors_in_cohort = 'stg_stitch_sfmc_audience_transaction_first_gift_recur_rollup' if recur_status == 'recurring' else 'stg_stitch_sfmc_audience_transaction_first_gift_1x_rollup' %}
-{% set transactions_table = transactions %}
 
 
 with first_gift_rollup as (
@@ -20,7 +19,7 @@ first_gift_join_source,
 join_gift_size_string{{recur_suffix}},
 first_gift_donor_audience,
 count(distinct person_id) as donors_in_cohort
-from {{ ref(first_gift)}}
+from {{ ref(first_gift_table)}}
 where first_gift_recur_status = {{boolean_status}}
 group by 1, 2, 3, 4
 
