@@ -50,7 +50,7 @@ add_cumulative as (
         total_amount,
         SUM(total_amount) OVER (
             PARTITION BY join_month_year_str, first_gift_join_source, join_gift_size_string{{recur_suffix}}, first_gift_donor_audience
-            ORDER BY month_diff_int
+            ORDER BY month_diff_int asc
         ) AS cumulative_amount
     from rev_by_cohort
 )
