@@ -35,7 +35,7 @@ group by 1, 2, 3, 4
         month_diff_int,
         sum(amounts) as total_amount
     from {{ ref(transactions_table) }} 
-    where first_gift_recur_status = '{{ recur_status }}'
+    where first_gift_recur_status = {{boolean_status}}
     group by 1, 2, 3, 4, 5, 6
 ),
 

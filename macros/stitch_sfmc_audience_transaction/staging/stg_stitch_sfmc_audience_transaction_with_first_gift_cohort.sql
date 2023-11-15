@@ -26,9 +26,10 @@ first_gift.first_gift_join_source,
 first_gift.join_gift_size_string,
 first_gift.join_gift_size_string_recur,
 first_gift.first_gift_donor_audience,
+first_gift.first_gift_recur_status,
 case when first_gift.first_gift_recur_status = True then 'recur' 
 when first_gift.first_gift_recur_status = False then 'one_time'
-end as first_gift_recur_status
+end as first_gift_recur_status_string
 from {{ ref(transactions)}} transactions
 left join {{ ref(first_gift)}} first_gift
 on transactions.person_id =  first_gift.person_id
