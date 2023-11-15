@@ -71,7 +71,7 @@ CROSS JOIN month_diff_sequence
         when (coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) between 1000 and 9999
         then '{{ ret_or_act }}' || LPAD(CAST(coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) AS STRING), 4, '0') 
         else '{{ ret_or_act }}' || LPAD(CAST(coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) AS STRING), 5, '0') 
-        as {{retention_or_activation}}_str,
+        end as {{retention_or_activation}}_str,
         coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) as month_diff_int,
         rev_by_cohort.total_amount as total_amount,
         first_gift_rollup.donors_in_cohort
