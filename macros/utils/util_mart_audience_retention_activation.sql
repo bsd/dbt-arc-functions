@@ -21,7 +21,7 @@ first_gift_donor_audience,
 count(distinct person_id) as donors_in_cohort
 from {{ ref(first_gift_table)}}
 where first_gift_recur_status = {{boolean_status}}
-group by 1, 2, 3, 4, 5
+group by 1, 2, 3, 4
 
 )
 
@@ -36,7 +36,7 @@ group by 1, 2, 3, 4, 5
         sum(amounts) as total_amount
     from {{ ref(transactions_table) }} 
     where first_gift_recur_status = {{boolean_status}}
-    group by 1, 2, 3, 4, 5, 6, 7
+    group by 1, 2, 3, 4, 5, 6
 ),
 
 add_cumulative as (
