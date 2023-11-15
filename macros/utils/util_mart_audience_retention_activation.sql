@@ -79,7 +79,7 @@ CROSS JOIN month_diff_sequence
 
         select *,
         SUM(total_amount) OVER (
-            PARTITION BY join_month_year_str, first_gift_join_source, join_gift_size_string{{recur_suffix}}, first_gift_donor_audience
+            PARTITION BY join_month_year_str, join_source, join_gift_size, join_donor_audience
             ORDER BY month_diff_int asc
         ) AS cumulative_amount
         from join_cohorts
