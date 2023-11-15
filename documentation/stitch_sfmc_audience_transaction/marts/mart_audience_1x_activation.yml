@@ -1,25 +1,4 @@
-version mismatch
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_audience_transaction_calculated_date_spine' in the 'models' section of file 'models/staging/stitch_sfmc_audience_transaction/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_audience_transaction_monthly_recurring_rollup' in the 'models' section of file 'models/staging/stitch_sfmc_audience_transaction/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_audience_transaction_monthly_recurring_rollup_with_activation' in the 'models' section of file 'models/staging/stitch_sfmc_audience_transaction/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_donor_engagement_date_spine' in the 'models' section of file 'models/staging/stitch_sfmc_audience_transaction/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_donor_audience_calculated_with_date_spine' in the 'models' section of file 'models/staging/stitch_sfmc_audience_transaction/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_audience_transaction_with_join_date' in the 'models' section of file 'models/staging/stitch_sfmc_audience_transaction/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_audience_transaction_monthly_1x_rollup' in the 'models' section of file 'models/staging/stitch_sfmc_audience_transaction/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_audience_transaction_monthly_1x_rollup_with_activation' in the 'models' section of file 'models/staging/stitch_sfmc_audience_transaction/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_audience_transaction_jobs' in the 'models' section of file 'models/staging/stitch_sfmc_audience_transaction/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_audience_transactions_join' in the 'models' section of file 'models/staging/stitch_sfmc_audience_transaction/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_audience_transaction_calculated_alldates' in the 'models' section of file 'models/staging/stitch_sfmc_arc/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_arc_donor_loyalty_validation' in the 'models' section of file 'models/staging/stitch_sfmc_arc/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_arc_audience_date_spine' in the 'models' section of file 'models/staging/stitch_sfmc_arc/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_arc_audience_union_transaction_joined' in the 'models' section of file 'models/staging/stitch_sfmc_arc/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_arc_donor_loyalty_by_fiscal_year' in the 'models' section of file 'models/staging/stitch_sfmc_arc/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_stitch_sfmc_arc_donor_loyalty_fiscal_year_count' in the 'models' section of file 'models/staging/stitch_sfmc_arc/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'stg_audience_budget_date_spine' in the 'models' section of file 'models/staging/audience_budget/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'mart_stitch_sfmc_audience_transaction_recur_revenue_by_monthly_cohort' in the 'models' section of file 'models/marts/stitch_sfmc_audience_transaction/schema.yml'
-[0m18:18:12  [[33mWARNING[0m]: Did not find matching node for patch with name 'mart_stitch_sfmc_audience_transaction_1x_revenue_by_monthly_cohort' in the 'models' section of file 'models/marts/stitch_sfmc_audience_transaction/schema.yml'
-[0m18:18:13  Found 189 models, 88 tests, 1 snapshot, 0 analyses, 1052 macros, 1 operation, 1 seed file, 18 sources, 0 exposures, 0 metrics, 0 groups
-[0m18:18:13  version: 2
+version: 2
 
 models:
   - name: mart_audience_1x_activation
@@ -27,23 +6,23 @@ models:
     columns:
       - name: join_month_year
         data_type: string
-        description: ""
+        description: The month and year when the donor joined the organization or made their first donation.
 
       - name: join_source
         data_type: string
-        description: ""
+        description: The platform or medium through which the donor was acquired or made their first donation.
 
       - name: join_gift_size
         data_type: string
-        description: ""
+        description: he size of the donor's initial gift, categorized into different size ranges.
 
       - name: join_donor_audience
         data_type: string
-        description: ""
+        description: The classification of the donor based on their audience segment or type at the time of joining.
 
       - name: activation_str
         data_type: string
-        description: ""
+        description: A string representing the distance from join month year
 
       - name: total_amount
         data_type: float64
@@ -51,45 +30,10 @@ models:
 
       - name: cumulative_amount
         data_type: float64
-        description: ""
+        description: The cumulative monetary value of all donations made by the donor up to a certain point.
 
       - name: donors_in_cohort
         data_type: record
-        description: ""
+        description: A record or count of all donors within a specific cohort or group.
 
-      - name: donors_in_cohort.join_month_year_str
-        data_type: string
-        description: ""
-
-      - name: donors_in_cohort.first_gift_join_source
-        data_type: string
-        description: "The join source for the first gift"
-
-      - name: donors_in_cohort.join_gift_size_string
-        data_type: string
-        description: "The gift size of the first gift as a category string"
-
-      - name: donors_in_cohort.first_gift_donor_audience
-        data_type: string
-        description: ""
-
-      - name: donors_in_cohort.activation_str
-        data_type: string
-        description: ""
-
-      - name: donors_in_cohort.month_diff_int
-        data_type: int64
-        description: ""
-
-      - name: donors_in_cohort.total_amount
-        data_type: float64
-        description: ""
-
-      - name: donors_in_cohort.cumulative_amount
-        data_type: float64
-        description: ""
-
-      - name: donors_in_cohort.donors_in_cohort
-        data_type: int64
-        description: ""
 
