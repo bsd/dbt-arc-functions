@@ -21,7 +21,7 @@ first_gift_donor_audience,
 count(distinct person_id) as donors_in_cohort
 from {{ ref(first_gift_table)}}
 where first_gift_recur_status = {{boolean_status}}
-group by 1, 2, 3, 4
+group by 1, 2, 3, 4, 5
 
 )
 
@@ -36,7 +36,7 @@ group by 1, 2, 3, 4
         sum(amounts) as total_amount
     from {{ ref(transactions_table) }} 
     where first_gift_recur_status = {{boolean_status}}
-    group by 1, 2, 3, 4, 5, 6
+    group by 1, 2, 3, 4, 5, 6, 7
 ),
 
 add_cumulative as (
@@ -49,7 +49,7 @@ add_cumulative as (
         month_diff_int,
         total_amount,
         SUM(total_amount) OVER (
-            PARTITION BY join_month_year_str, first_gift_join_source, join_gift_size_string{{recur_suffix}}, first_gift_donor_audience, {{retention_or_activation}}_str
+            PARTITION BY join_month_year_str, first_gift_join_source, join_gift_size_string{{recur_suffix}}, first_gift_donor_audience
             ORDER BY month_diff_int
         ) AS cumulative_amount
     from rev_by_cohort
