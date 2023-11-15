@@ -29,7 +29,7 @@ group by 1, 2, 3, 4
     select 
         join_month_year_str,
         first_gift_join_source,
-        join_gift_size_str{{recur_suffix}},
+        join_gift_size_string{{recur_suffix}},
         first_gift_donor_audience,
         concat('{{ ret_or_act }}' || month_diff_str ) as {{retention_or_activation}}_str,
         month_diff_int,
@@ -43,13 +43,13 @@ add_cumulative as (
     select 
         join_month_year_str,
         first_gift_join_source,
-        join_gift_size_str{{recur_suffix}},
+        join_gift_size_string{{recur_suffix}},
         first_gift_donor_audience,
-        status_str,
+        {{retention_or_activation}}_str,
         month_diff_int,
         total_amount,
         SUM(total_amount) OVER (
-            PARTITION BY join_month_year_str, first_gift_join_source, join_gift_size_str{{recur_suffix}}, first_gift_donor_audience, {{retention_or_activation}}_str
+            PARTITION BY join_month_year_str, first_gift_join_source, join_gift_size_string{{recur_suffix}}, first_gift_donor_audience, {{retention_or_activation}}_str
             ORDER BY month_diff_int
         ) AS cumulative_amount
     from rev_by_cohort
@@ -63,16 +63,16 @@ donors_in_cohort as (
     left join first_gift_rollup
     on add_cumulative.join_month_year_str = first_gift_rollup.join_month_year_str
     and add_cumulative.first_gift_join_source = first_gift_rollup.first_gift_join_source
-    and add_cumulative.join_gift_size_str{{recur_suffix}} = first_gift_rollup.join_gift_size_string{{recur_suffix}}
-    and add_cumulative.first_gift_donor_audience = donors_in_cohort.first_gift_donor_audience
+    and add_cumulative.join_gift_size_string{{recur_suffix}} = first_gift_rollup.join_gift_size_string{{recur_suffix}}
+    and add_cumulative.first_gift_donor_audience = first_gift_rollup.first_gift_donor_audience
 )
 
 select
     join_month_year_str as join_month_year,
     first_gift_join_source as join_source,
-    join_gift_size_str{{recur_suffix}}, as join_gift_size,
+    join_gift_size_string{{recur_suffix}} as join_gift_size,
     first_gift_donor_audience as join_donor_audience,
-    status_str,
+    {{retention_or_activation}}_str,
     total_amount,
     cumulative_amount,
     donors_in_cohort
