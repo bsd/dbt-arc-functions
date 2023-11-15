@@ -53,7 +53,7 @@ add_cumulative as (
             ORDER BY month_diff_int
         ) AS cumulative_amount
     from rev_by_cohort
-),
+)
 
     select 
         add_cumulative.join_month_year_str as join_month_year,
