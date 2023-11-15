@@ -31,7 +31,7 @@ with
             join_month_year_str,
             coalesce(first_gift_join_source, 'Unknown') as first_gift_join_source,
             join_gift_size_string{{ recur_suffix }},
-            coalesce(first_gift_donor_audience, 'Unknown') as first_gift_donor_audience,
+            first_gift_donor_audience,
             count(distinct person_id) as donors_in_cohort
         from {{ ref(first_gift_table) }}
         where first_gift_recur_status = {{ boolean_status }}
@@ -43,7 +43,7 @@ with
             join_month_year_str,
             coalesce(first_gift_join_source, 'Unknown') as first_gift_join_source,
             join_gift_size_string{{ recur_suffix }},
-            coalesce(first_gift_donor_audience, 'Unknown') as first_gift_donor_audience,
+            first_gift_donor_audience,
             month_diff_int,
             sum(amounts) as total_amount
         from {{ ref(transactions_table) }}
@@ -73,8 +73,7 @@ with
             ) as join_month_year_str,
             coalesce(
                 rev_by_cohort.first_gift_join_source,
-                first_gift_rollup.first_gift_join_source,
-                'Unknown'
+                first_gift_rollup.first_gift_join_source
             ) as join_source,
             coalesce(
                 rev_by_cohort.join_gift_size_string{{ recur_suffix }},
