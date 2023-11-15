@@ -61,10 +61,17 @@ CROSS JOIN month_diff_sequence
 , join_cohorts as (
     select 
         coalesce(rev_by_cohort.join_month_year_str, first_gift_rollup.join_month_year_str) as join_month_year_str,
-        coalesce(rev_by_cohort.first_gift_join_source, first_gift_rollup.first_gift_join_source) as join_source,
+        coalesce(rev_by_cohort.first_gift_join_source, first_gift_rollup.first_gift_join_source, 'Unknown') as join_source,
         coalesce(rev_by_cohort.join_gift_size_string{{recur_suffix}}, first_gift_rollup.join_gift_size_string{{recur_suffix}}) as join_gift_size,
         coalesce(rev_by_cohort.first_gift_donor_audience, first_gift_rollup.first_gift_donor_audience) as join_donor_audience,
-        '{{ ret_or_act }}' || LPAD(CAST(coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) AS STRING), 4, '0') as {{retention_or_activation}}_str,
+        case when (coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) < 100 
+        then '{{ ret_or_act }}' || LPAD(CAST(coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) AS STRING), 2, '0') 
+        when (coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) between 100 and 999 
+        then '{{ ret_or_act }}' || LPAD(CAST(coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) AS STRING), 3, '0') 
+        when (coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) between 1000 and 9999
+        then '{{ ret_or_act }}' || LPAD(CAST(coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) AS STRING), 4, '0') 
+        else '{{ ret_or_act }}' || LPAD(CAST(coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) AS STRING), 5, '0') 
+        as {{retention_or_activation}}_str,
         coalesce(rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int) as month_diff_int,
         rev_by_cohort.total_amount as total_amount,
         first_gift_rollup.donors_in_cohort
