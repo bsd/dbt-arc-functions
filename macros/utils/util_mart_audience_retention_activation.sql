@@ -55,9 +55,15 @@ add_cumulative as (
     from rev_by_cohort
 ),
 
-donors_in_cohort as (
     select 
-        add_cumulative.*,
+        add_cumulative.join_month_year_str as join_month_year,
+        add_cumulative.first_gift_join_source as join_source,
+        add_cumulative.join_gift_size_string{{recur_suffix}} as join_gift_size,
+        add_cumulative.first_gift_donor_audience as join_donor_audience,
+        add_cumulative.{{retention_or_activation}}_str,
+        add_cumulative.month_diff_int as {{retention_or_activation}}_int,
+        add_cumulative.total_amount,
+        add_cumulative.cumulative_amount,
         first_gift_rollup.donors_in_cohort
     from add_cumulative
     left join first_gift_rollup
@@ -65,17 +71,6 @@ donors_in_cohort as (
     and add_cumulative.first_gift_join_source = first_gift_rollup.first_gift_join_source
     and add_cumulative.join_gift_size_string{{recur_suffix}} = first_gift_rollup.join_gift_size_string{{recur_suffix}}
     and add_cumulative.first_gift_donor_audience = first_gift_rollup.first_gift_donor_audience
-)
 
-select
-    join_month_year_str as join_month_year,
-    first_gift_join_source as join_source,
-    join_gift_size_string{{recur_suffix}} as join_gift_size,
-    first_gift_donor_audience as join_donor_audience,
-    {{retention_or_activation}}_str,
-    total_amount,
-    cumulative_amount,
-    donors_in_cohort
-from donors_in_cohort
 
 {% endmacro %}
