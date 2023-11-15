@@ -58,7 +58,7 @@ add_cumulative as (
     select 
         coalesce(add_cumulative.join_month_year_str, first_gift_rollup.join_month_year_str) as join_month_year_str,
         coalesce(add_cumulative.first_gift_join_source, first_gift_rollup.first_gift_join_source) as join_source,
-        coalesce(add_cumulative.join_gift_size_string{{recur_suffix}}, first_gift_rollup.join_gift_size_string{{recur_suffix}} as join_gift_size,
+        coalesce(add_cumulative.join_gift_size_string{{recur_suffix}}, first_gift_rollup.join_gift_size_string{{recur_suffix}}) as join_gift_size,
         coalesce(add_cumulative.first_gift_donor_audience, first_gift_rollup.first_gift_donor_audience) as join_donor_audience,
         add_cumulative.{{retention_or_activation}}_str,
         add_cumulative.month_diff_int as {{retention_or_activation}}_int,
