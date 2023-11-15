@@ -67,7 +67,7 @@ add_cumulative as (
         coalesce(add_cumulative.{{retention_or_activation}}_str, first_gift_rollup.{{retention_or_activation}}_str) as {{retention_or_activation}}_str,
         coalesce(add_cumulative.month_diff_int, first_gift_rollup.month_diff_int) as {{retention_or_activation}}_int,
         coalesce(add_cumulative.total_amount, first_gift_rollup.total_amount) as total_amount,
-        coalesce(add_cumulative.cumulative_amount, first_gift_rollup.cumulative_amount) as cumulative_amount
+        coalesce(add_cumulative.cumulative_amount, first_gift_rollup.cumulative_amount) as cumulative_amount,
         first_gift_rollup.donors_in_cohort
     from add_cumulative
     full outer join first_gift_rollup
