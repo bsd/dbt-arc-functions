@@ -18,10 +18,10 @@ join_month_year_str,
 first_gift_join_source,
 join_gift_size_string{{recur_suffix}},
 first_gift_donor_audience,
-NULL as {{retention_or_activation}}_str,
-NULL as month_diff_int,
-NULL as total_amount,
-NULL as cumulative_amount,
+CAST(NULL as string) as {{retention_or_activation}}_str,
+cast(NULL as int64) as month_diff_int,
+cast(NULL as float64) as total_amount,
+cast(NULL as float64) as cumulative_amount,
 count(distinct person_id) as donors_in_cohort
 from {{ ref(first_gift_table)}}
 where first_gift_recur_status = {{boolean_status}}
