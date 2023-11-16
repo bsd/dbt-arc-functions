@@ -66,11 +66,7 @@ select
     case
         when month_diff_int < 100
         then 'Act' || lpad(cast(month_diff_int as string), 2, '0')
-        when month_diff_int between 100 and 999
-        then 'Act' || lpad(cast(month_diff_int as string), 3, '0')
-        when month_diff_int between 1000 and 9999
-        then 'Act' || lpad(cast(month_diff_int as string), 4, '0')
-        else 'Act' || lpad(cast(month_diff_int as string), 5, '0')
+        else 'Act' || cast(month_diff_int as string)
     end as activation_str,
     sum(donors_in_activation) over (
         partition by
