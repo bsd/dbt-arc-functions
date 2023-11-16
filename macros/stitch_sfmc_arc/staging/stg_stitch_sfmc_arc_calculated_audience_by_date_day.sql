@@ -1,17 +1,47 @@
 {% macro create_stg_stitch_sfmc_arc_calculated_audience_by_date_day(
-    date_spine="stg_stitch_sfmc_audience_transaction_calculated_date_spine",
-    calcualted_audience_scd="stg_stitch_sfmc_donor_audience_calculated_scd"
+    calculated_audience="stg_stitch_sfmc_audience_transaction_jobs_append",
+    audience_snapshot="snp_stitch_sfmc_arc_audience",
+    calculated_audience_scd="stg_stitch_sfmc_donor_audience_calculated_scd"
 ) %}
 
-    with
+with date_spine as (
+select date
+from
+    unnest(
+        generate_date_array(
+            (select min(transaction_date_day), from {{ ref(calculated_audience) }}),
+            ifnull(
+                (
+                    select
+                        min(
+                            date(
+                                cast(
+                                    concat(
+                                        substr(dbt_valid_from, 0, 22),
+                                        " America/New_York"
+                                    ) as timestamp
+                                ),
+                                "America/New_York"
+                            )
+                            - 1
+                        )
+
+                    from {{ ref(audience_snapshot) }}
+                ),
+                current_date()
+            )
+        )
+    ) as date
+
+),
         audience_by_date_day as (
             select
                 date_spine.date as date_day,
                 calc_audience_scd.person_id,
                 calc_audience_scd.donor_audience
-            from {{ ref(date_spine) }} as date_spine
+            from date_spine
             inner join
-                {{ ref(calcualted_audience_scd) }} as calc_audience_scd
+                {{ ref(calculated_audience_scd) }} as calc_audience_scd
                 on date_spine.date >= date(calc_audience_scd.start_date)
                 and (
                     date_spine.date <= date(calc_audience_scd.end_date)
