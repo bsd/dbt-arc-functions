@@ -39,15 +39,15 @@
         from {{ref(rev_by_cohort)}} rev_by_cohort
         left join
             {{ref(second_gift_by_cohort)}}   second_gift_by_cohort
-            on second_gift_by_cohort.join_month_year_str
+            on rev_by_cohort.join_month_year_str
             = second_gift_by_cohort.join_month_year_str
-            and second_gift_by_cohort.first_gift_join_source
+            and rev_by_cohort.first_gift_join_source
             = second_gift_by_cohort.first_gift_join_source
-            and second_gift_by_cohort.join_gift_size_string
+            and rev_by_cohort.join_gift_size_string
             = second_gift_by_cohort.join_gift_size_string
-            and second_gift_by_cohort.first_gift_donor_audience
+            and rev_by_cohort.first_gift_donor_audience
             = second_gift_by_cohort.first_gift_donor_audience
-            and second_gift_by_cohort.month_diff_int
+            and rev_by_cohort.month_diff_int
             = second_gift_by_cohort.month_diff_int
         full outer join
             {{ref(first_gift_explode)}} first_gift_explode
