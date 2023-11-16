@@ -55,9 +55,4 @@ with
         cross join month_diff_sequence
 
 
-        {% endmacro %}
-
-
-
-
 {% endmacro %}
