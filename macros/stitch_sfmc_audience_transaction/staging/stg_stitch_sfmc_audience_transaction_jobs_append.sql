@@ -66,7 +66,7 @@ with
             case
                 when cumulative_amount_24_months >= 25000
                 then 'Major'
-                when cumulative_amount_24_months between 1000 and 24999
+                when cumulative_amount_24_months between 1000 and 24999.99
                 then 'Leadership Giving'
                 when cumulative_amount_90_days_recur > 0
                 then 'Monthly'
@@ -75,7 +75,7 @@ with
             case
                 when cumulative_amount_24_months >= 25000
                 then 'Major'
-                when cumulative_amount_24_months between 1000 and 24999
+                when cumulative_amount_24_months between 1000 and 24999.99
                 then 'Leadership Giving'
                 when cumulative_amount_90_days_recur > 0
                 then 'Monthly'
