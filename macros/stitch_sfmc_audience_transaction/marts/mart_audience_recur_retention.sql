@@ -33,7 +33,7 @@
                 rev_by_cohort.month_diff_int,
                 donors_by_cohort.month_diff_int,
                 first_gift_explode.month_diff_int
-            ) activation_int,
+            ) retention_int,
             rev_by_cohort.total_amount,
             first_gift_explode.donors_in_cohort,
             donors_by_cohort.unique_donors
