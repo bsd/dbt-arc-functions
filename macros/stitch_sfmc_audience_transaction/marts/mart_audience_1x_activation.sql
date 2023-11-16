@@ -38,7 +38,7 @@
             second_gift_by_cohort.donors_in_activation 
         from {{ref(rev_by_cohort)}} rev_by_cohort
         left join
-            {{ref(second_gift_by_cohort)}}   second_gift_by_cohort
+            {{ref(second_gift_by_cohort)}} second_gift_by_cohort
             on rev_by_cohort.join_month_year_str
             = second_gift_by_cohort.join_month_year_str
             and rev_by_cohort.first_gift_join_source

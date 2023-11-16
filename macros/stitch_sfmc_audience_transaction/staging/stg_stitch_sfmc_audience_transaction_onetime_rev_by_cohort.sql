@@ -10,6 +10,7 @@
             join_gift_size_string,
             first_gift_donor_audience,
             month_diff_int,
+            count(person_id) as total_gifts,
             sum(amounts) as total_amount
         from {{ ref(transactions_table) }}
         where first_gift_recur_status = false
