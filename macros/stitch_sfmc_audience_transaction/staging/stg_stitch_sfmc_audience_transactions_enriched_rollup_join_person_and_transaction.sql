@@ -6,7 +6,10 @@
     select
         donor_engagement.date_day as date_day,
         donor_engagement.person_id as person_id,
-        transactions.coalesced_audience as donor_audience,
+        last_value(transactions.coalesced_audience IGNORE NULLS) OVER (
+            partition by donor_engagement.person_id order by donor_engagement.date_day
+            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+        ) as donor_audience,
         transactions.donor_loyalty as donor_loyalty,
         transactions.nth_transaction_this_fiscal_year
         as nth_transaction_this_fiscal_year,
