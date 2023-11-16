@@ -20,9 +20,9 @@
                 donors_by_cohort.first_gift_join_source
             ) as join_source,
             coalesce(
-                rev_by_cohort.join_gift_size_string,
-                first_gift_explode.join_gift_size_string,
-                donors_by_cohort.join_gift_size_string
+                rev_by_cohort.join_gift_size_string_recur,
+                first_gift_explode.join_gift_size_string_recur,
+                donors_by_cohort.join_gift_size_string_recur
             ) as join_gift_size,
             coalesce(
                 rev_by_cohort.first_gift_donor_audience,
@@ -44,8 +44,8 @@
             = donors_by_cohort.join_month_year_str
             and rev_by_cohort.first_gift_join_source
             = donors_by_cohort.first_gift_join_source
-            and rev_by_cohort.join_gift_size_string
-            = donors_by_cohort.join_gift_size_string
+            and rev_by_cohort.join_gift_size_string_recur
+            = donors_by_cohort.join_gift_size_string_recur
             and rev_by_cohort.first_gift_donor_audience
             = donors_by_cohort.first_gift_donor_audience
             and rev_by_cohort.month_diff_int
@@ -55,8 +55,8 @@
             on rev_by_cohort.join_month_year_str = first_gift_explode.join_month_year_str
             and rev_by_cohort.first_gift_join_source
             = first_gift_explode.first_gift_join_source
-            and rev_by_cohort.join_gift_size_string
-            = first_gift_explode.join_gift_size_string
+            and rev_by_cohort.join_gift_size_string_recur
+            = first_gift_explode.join_gift_size_string_recur
             and rev_by_cohort.first_gift_donor_audience
             = first_gift_explode.first_gift_donor_audience
             and rev_by_cohort.month_diff_int = first_gift_explode.month_diff_int
