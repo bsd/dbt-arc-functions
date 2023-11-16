@@ -118,7 +118,7 @@ with
             ) as month_diff_int,
             rev_by_cohort.total_amount,
             first_gift_rollup.donors_in_cohort,
-            second_gift_by_cohort.donors_in_activation, as donors_in_activation
+            second_gift_by_cohort.donors_in_activation 
         from rev_by_cohort
         left join
             second_gift_by_cohort
