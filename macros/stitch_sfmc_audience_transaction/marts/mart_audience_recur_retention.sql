@@ -10,8 +10,8 @@
     big_join as (
         select
             coalesce(
-                rev_by_cohort.join_month_year_str,,
-                donors_by_cohort.join_month_year_str,,
+                rev_by_cohort.join_month_year_str,
+                donors_by_cohort.join_month_year_str,
                 first_gift_explode.join_month_year_str
             ) as join_month_year_str,
             coalesce(
