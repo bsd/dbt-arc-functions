@@ -64,7 +64,7 @@ with
             join_gift_size_string,
             first_gift_donor_audience,
             month_diff_str,
-            month_diff_int
+            month_diff_int,
             count(distinct person_id) as donors_in_activation
         from second_1x_transactions
         group by 1, 2, 3, 4, 5, 6
