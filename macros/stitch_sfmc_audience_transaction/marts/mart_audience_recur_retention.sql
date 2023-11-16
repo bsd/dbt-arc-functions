@@ -10,35 +10,35 @@
     big_join as (
         select
             coalesce(
-                rev_by_cohort.join_month_year_str,
-                first_gift_explode.join_month_year_str,
-                donors_by_cohort.join_month_year_str
+                rev_by_cohort.month_diff_int,
+                donors_by_cohort.month_diff_int,
+                first_gift_explode.month_diff_int
             ) as join_month_year_str,
             coalesce(
-                rev_by_cohort.first_gift_join_source,
-                first_gift_explode.first_gift_join_source,
-                donors_by_cohort.first_gift_join_source
+                rev_by_cohort.month_diff_int,
+                donors_by_cohort.month_diff_int,
+                first_gift_explode.month_diff_int
             ) as join_source,
             coalesce(
-                rev_by_cohort.join_gift_size_string_recur,
-                first_gift_explode.join_gift_size_string_recur,
-                donors_by_cohort.join_gift_size_string_recur
+                rev_by_cohort.month_diff_int,
+                donors_by_cohort.month_diff_int,
+                first_gift_explode.month_diff_int
             ) as join_gift_size,
             coalesce(
-                rev_by_cohort.first_gift_donor_audience,
-                first_gift_explode.first_gift_donor_audience,
-                donors_by_cohort.first_gift_donor_audience
+                rev_by_cohort.month_diff_int,
+                donors_by_cohort.month_diff_int,
+                first_gift_explode.month_diff_int
             ) as join_donor_audience,
             coalesce(
                 rev_by_cohort.month_diff_int,
-                first_gift_explode.month_diff_int,
-                donors_by_cohort.month_diff_int
+                donors_by_cohort.month_diff_int,
+                first_gift_explode.month_diff_int
             ) activation_int,
             rev_by_cohort.total_amount,
             first_gift_explode.donors_in_cohort,
             donors_by_cohort.unique_donors
         from {{ref(rev_by_cohort)}} rev_by_cohort
-        full outer join
+        left join
             {{ref(donors_by_cohort)}} donors_by_cohort
             on rev_by_cohort.join_month_year_str
             = donors_by_cohort.join_month_year_str
