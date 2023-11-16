@@ -12,6 +12,7 @@ transactions.fiscal_year,
 extract(month from transactions.transaction_date_day) as month,
 transactions.transaction_date_day,
 transactions.donor_loyalty,
+transactions.coalesced_audience as donor_audience,
 person.first_gift_join_source as channel,
 person.join_gift_size_string_recur as join_amount_string_recur,
 CASE person.join_gift_size_string_recur
