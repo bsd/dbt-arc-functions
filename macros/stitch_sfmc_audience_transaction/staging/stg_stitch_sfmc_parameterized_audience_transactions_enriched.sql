@@ -36,7 +36,7 @@ select
             when amount between 1001 and 10000.99
             then '1001-10000'
             when amount > 10000
-            else '10000+'
+            then '10000+'
         end
     ) as gift_size_string,
     (
