@@ -38,7 +38,7 @@
             first_gift_explode.donors_in_cohort,
             donors_by_cohort.unique_donors
         from {{ref(rev_by_cohort)}} rev_by_cohort
-        left join
+        full outer join
             {{ref(donors_by_cohort)}} donors_by_cohort
             on rev_by_cohort.join_month_year_str
             = donors_by_cohort.join_month_year_str
