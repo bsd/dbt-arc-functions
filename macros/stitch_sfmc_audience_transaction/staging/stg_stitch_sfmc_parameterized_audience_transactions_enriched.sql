@@ -64,7 +64,7 @@ select
             when amount > 100
             then '100+'
         end
-    ) as gift_size_string_recur
+    ) as gift_size_string_recur,
     row_number() over (
         partition by person_id order by transaction_date_day
     ) as gift_count
