@@ -1,127 +1,44 @@
 {% macro create_mart_audience_1x_activation(
-    cohort="stg_stitch_sfmc_audience_transaction_with_first_gift_cohort",
-    first_gift_table="stg_stitch_sfmc_audience_transaction_first_gift",
-    transactions_table="stg_stitch_sfmc_audience_transaction_with_first_gift_cohort"
+    second_gift_by_cohort='stg_sfmc_audience_transaction_onetime_second_gift_by_cohort',
+    rev_by_cohort='stg_stitch_sfmc_audience_transaction_onetime_rev_by_cohort',
+    first_gift_explode='stg_stitch_sfmc_audience_transaction_onetime_first_gift_by_cohort'
 ) %}
 
-with
-    rev_by_cohort as (
-        select
-            join_month_year_str,
-            coalesce(first_gift_join_source, 'Unknown') as first_gift_join_source,
-            join_gift_size_string,
-            first_gift_donor_audience,
-            month_diff_int,
-            sum(amounts) as total_amount
-        from {{ ref(transactions_table) }}
-        where first_gift_recur_status = false
-        group by 1, 2, 3, 4, 5
-    ),
-    second_1x_transactions as (
-        /*
-    filter the cohort transaction table to just the second gift,
-    only select people who entered as 1x donors
-    only look at 1x donations
-    */
-        select
-            person_id,
-            transaction_date_day,
-            month_diff_str,
-            month_diff_int,
-            join_month_year_str,
-            first_gift_join_source,
-            join_gift_size_string,
-            first_gift_donor_audience
-        from {{ ref(cohort) }}
-        where txn_rank = 2 and recurring = false and first_gift_recur_status = false
-    ),
-    -- this table that creates initial donors in cohort value... might drop if I merge
-    -- these results into the retention/activation mart
-    first_gift_by_cohort as (
-        /*
-    group cohort in order to count people in cohort 
-    cohort = entered as 1x donors and have other features in common
-    */
-        select
-            join_month_year_str,
-            coalesce(first_gift_join_source, 'Unknown') as first_gift_join_source,
-            join_gift_size_string,
-            first_gift_donor_audience,
-            count(distinct person_id) as donors_in_cohort
-        from {{ ref(first_gift_table) }}
-        where first_gift_recur_status = false
-        group by 1, 2, 3, 4
 
-    ),
-    second_gift_by_cohort as (
-        /*
-    number of donors who made their second donation, 
-    by their cohort and by their month_diff_str, essentially their activation
-    */
-        select
-            join_month_year_str,
-            first_gift_join_source,
-            join_gift_size_string,
-            first_gift_donor_audience,
-            month_diff_str,
-            month_diff_int,
-            count(distinct person_id) as donors_in_activation
-        from second_1x_transactions
-        group by 1, 2, 3, 4, 5, 6
-
-    ),
-    month_diff_sequence as (
-        select number as month_diff_int from unnest(generate_array(0, 1000)) as number
-    ),
-    first_gift_rollup as (
-        /*
-    use month_diff_sequence to explode the first gift table
-    so that we have one row per every activation possibility
-    */
-        select
-            first_gift_by_cohort.join_month_year_str,
-            first_gift_by_cohort.first_gift_join_source,
-            first_gift_by_cohort.join_gift_size_string,
-            first_gift_by_cohort.first_gift_donor_audience,
-            month_diff_sequence.month_diff_int,
-            first_gift_by_cohort.donors_in_cohort
-        from first_gift_by_cohort
-        cross join month_diff_sequence
-
-    ),
+  with 
     big_join as (
         select
             coalesce(
                 rev_by_cohort.join_month_year_str,
-                first_gift_rollup.join_month_year_str,
+                first_gift_explode.join_month_year_str,
                 second_gift_by_cohort.join_month_year_str
             ) as join_month_year_str,
             coalesce(
                 rev_by_cohort.first_gift_join_source,
-                first_gift_rollup.first_gift_join_source,
+                first_gift_explode.first_gift_join_source,
                 second_gift_by_cohort.first_gift_join_source
             ) as join_source,
             coalesce(
                 rev_by_cohort.join_gift_size_string,
-                first_gift_rollup.join_gift_size_string,
+                first_gift_explode.join_gift_size_string,
                 second_gift_by_cohort.join_gift_size_string
             ) as join_gift_size,
             coalesce(
                 rev_by_cohort.first_gift_donor_audience,
-                first_gift_rollup.first_gift_donor_audience,
+                first_gift_explode.first_gift_donor_audience,
                 second_gift_by_cohort.first_gift_donor_audience
             ) as join_donor_audience,
             coalesce(
                 rev_by_cohort.month_diff_int,
-                first_gift_rollup.month_diff_int,
+                first_gift_explode.month_diff_int,
                 second_gift_by_cohort.month_diff_int
             ) as month_diff_int,
             rev_by_cohort.total_amount,
-            first_gift_rollup.donors_in_cohort,
+            first_gift_explode.donors_in_cohort,
             second_gift_by_cohort.donors_in_activation 
-        from rev_by_cohort
+        from {{ref(rev_by_cohort)}} rev_by_cohort
         left join
-            second_gift_by_cohort
+            {{ref(second_gift_by_cohort)}}   second_gift_by_cohort
             on second_gift_by_cohort.join_month_year_str
             = second_gift_by_cohort.join_month_year_str
             and second_gift_by_cohort.first_gift_join_source
@@ -133,15 +50,15 @@ with
             and second_gift_by_cohort.month_diff_int
             = second_gift_by_cohort.month_diff_int
         full outer join
-            first_gift_rollup
-            on rev_by_cohort.join_month_year_str = first_gift_rollup.join_month_year_str
+            {{ref(first_gift_explode)}} first_gift_explode
+            on rev_by_cohort.join_month_year_str = first_gift_explode.join_month_year_str
             and rev_by_cohort.first_gift_join_source
-            = first_gift_rollup.first_gift_join_source
+            = first_gift_explode.first_gift_join_source
             and rev_by_cohort.join_gift_size_string
-            = first_gift_rollup.join_gift_size_string
+            = first_gift_explode.join_gift_size_string
             and rev_by_cohort.first_gift_donor_audience
-            = first_gift_rollup.first_gift_donor_audience
-            and rev_by_cohort.month_diff_int = first_gift_rollup.month_diff_int
+            = first_gift_explode.first_gift_donor_audience
+            and rev_by_cohort.month_diff_int = first_gift_explode.month_diff_int
     )
 
 select
