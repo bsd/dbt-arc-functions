@@ -1,0 +1,19 @@
+---
+version: 2
+models:
+  - name: stg_stitch_facebook_paidmedia_spends_daily_rollup
+    description: This model represents the daily rollup of paid media spends from
+      Facebook.
+    columns:
+      - name: message_id
+        data_type: string
+        description: "The ID of the ad.\n\nReferenced in\n\nads.id\nads.targeting.id\n\
+          ads_insights.ad_id\nads_insights.ad_id\nads_insights_age_and_gender.ad_id\n\
+          ads_insights_country.ad_id\nads_insights_dma.ad_id\nads_insights_platform_and_device.ad_id\n\
+          ads_insights_region.ad_id\ncampaigns.ads.id"
+      - name: date_timestamp
+        data_type: timestamp
+        description: The timestamp of when the spend occurred.
+      - name: spend_amount
+        data_type: float64
+        description: The amount spent on the ad.

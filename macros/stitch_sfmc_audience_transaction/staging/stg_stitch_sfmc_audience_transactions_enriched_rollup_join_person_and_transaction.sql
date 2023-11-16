@@ -3,6 +3,12 @@
     transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
     donor_engagement="stg_stitch_sfmc_donor_engagement_by_date_day"
 ) %}
+{{
+  config(
+    materialized = "table",
+    cluster_by = "recurring",
+  )
+}}
     select
         donor_engagement.date_day as date_day,
         donor_engagement.person_id as person_id,
