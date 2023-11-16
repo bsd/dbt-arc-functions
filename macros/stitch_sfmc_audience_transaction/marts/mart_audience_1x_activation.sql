@@ -65,7 +65,7 @@ select
     *,
     case
         when activation_int < 10
-        then 'Act' || lpad(cast( activation_int as string), 2, '0')
+        then 'Act' || lpad(cast(activation_int as string), 2, '0')
         else 'Act' || cast(activation_int as string)
     end as activation_str,
     sum(donors_in_activation) over (
