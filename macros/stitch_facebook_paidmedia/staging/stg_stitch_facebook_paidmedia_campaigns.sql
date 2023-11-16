@@ -2,7 +2,7 @@
     source_name="src_stitch_facebook_paidmedia",
     source_table="ads_insights"
 ) %}
-    select
+    select distinct
         campaign_id as campaign_id,
         ad_id as message_id,
         'social' as channel_category,
