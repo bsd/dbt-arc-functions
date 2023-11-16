@@ -32,7 +32,7 @@
                 rev_by_cohort.month_diff_int,
                 first_gift_explode.month_diff_int,
                 second_gift_by_cohort.month_diff_int
-            ) as month_diff_int,
+            ) activation_int,
             rev_by_cohort.total_amount,
             first_gift_explode.donors_in_cohort,
             second_gift_by_cohort.donors_in_activation 
@@ -64,19 +64,19 @@
 select
     *,
     case
-        when month_diff_int < 10
-        then 'Act' || lpad(cast(month_diff_int as string), 2, '0')
-        else 'Act' || cast(month_diff_int as string)
+        when activation_int < 10
+        then 'Act' || lpad(cast( activation_int as string), 2, '0')
+        else 'Act' || cast(activation_int as string)
     end as activation_str,
     sum(donors_in_activation) over (
         partition by
             join_month_year_str, join_source, join_gift_size, join_donor_audience
-        order by month_diff_int asc
+        order by  activation_int asc
     ) as cumulative_donors_in_activation,
     sum(total_amount) over (
         partition by
             join_month_year_str, join_source, join_gift_size, join_donor_audience
-        order by month_diff_int asc
+        order by  activation_int asc
     ) as cumulative_amount
 from big_join
 
