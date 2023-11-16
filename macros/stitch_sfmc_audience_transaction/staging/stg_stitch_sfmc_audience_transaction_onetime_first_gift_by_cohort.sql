@@ -24,7 +24,7 @@ with
     month_diff_sequence as (
         -- is referenced in first_gift_rollup
         select number as month_diff_int from unnest(generate_array(0, 1000)) as number
-    ),
+    )
    
         /*
     use month_diff_sequence to explode the first gift table

@@ -20,7 +20,7 @@ with
             first_gift_donor_audience
         from {{ ref(cohort) }}
         where txn_rank = 2 and recurring = false and first_gift_recur_status = false
-    ),
+    )
     
         /*
     number of donors who made their second donation, 
