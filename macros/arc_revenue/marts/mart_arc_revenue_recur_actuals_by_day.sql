@@ -35,7 +35,7 @@ from
 left join
 {{ ref(arc_first_gift) }} person
 on person.person_id= transactions.person_id
-where transactions.coalesced_audience = 'recurring' or recurring = True
+where recurring = True
 group by 1,2,3,4,5,6,7,8
 order by 1,2,3,4,5,6,7,8
 
