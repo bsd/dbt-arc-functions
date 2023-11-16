@@ -64,7 +64,7 @@
 select
     *,
     case
-        when month_diff_int < 100
+        when month_diff_int < 10
         then 'Act' || lpad(cast(month_diff_int as string), 2, '0')
         else 'Act' || cast(month_diff_int as string)
     end as activation_str,
