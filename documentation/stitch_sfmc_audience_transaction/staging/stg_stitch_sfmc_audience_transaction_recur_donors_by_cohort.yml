@@ -1,30 +1,24 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_audience_transaction_recur_donors_by_cohort
-    description: ""
+    description: ''
     columns:
       - name: join_month_year_str
         data_type: string
-        description: ""
-
+        description: ''
       - name: first_gift_join_source
         data_type: string
-        description: "The join source for the first gift"
-
+        description: The join source for the first gift
       - name: join_gift_size_string_recur
         data_type: string
-        description: ""
-
+        description: ''
       - name: first_gift_donor_audience
         data_type: string
-        description: ""
-
+        description: ''
       - name: month_diff_int
         data_type: int64
-        description: ""
-
+        description: ''
       - name: unique_donors
         data_type: int64
-        description: ""
-
+        description: ''
