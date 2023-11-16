@@ -8,8 +8,7 @@
             join_gift_size_string_recur,
             first_gift_donor_audience,
             month_diff_int,
-            count(distinct person_id) as unique_donations,
-            sum(amounts) as total_amount
+            count(distinct person_id) as unique_donors
         from {{ ref(transactions_table) }}
         where first_gift_recur_status = True
         and recurring = True
