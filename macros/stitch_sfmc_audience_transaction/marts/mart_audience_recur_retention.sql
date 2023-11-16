@@ -20,9 +20,9 @@
                 first_gift_explode.first_gift_join_source
             ) as join_source,
             coalesce(
-                rev_by_cohort.join_gift_size_string,
-                donors_by_cohort.join_gift_size_string,
-                first_gift_explode.join_gift_size_string
+                rev_by_cohort.join_gift_size_string_recur,
+                donors_by_cohort.join_gift_size_string_recur,
+                first_gift_explode.join_gift_size_string_recur
             ) as join_gift_size,
             coalesce(
                 rev_by_cohort.first_gift_donor_audience,
