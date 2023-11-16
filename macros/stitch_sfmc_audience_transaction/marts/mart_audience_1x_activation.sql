@@ -35,7 +35,7 @@
             ) activation_int,
             rev_by_cohort.total_amount,
             first_gift_explode.donors_in_cohort,
-            second_gift_by_cohort.donors_in_activation 
+            second_gift_by_cohort.donors_in_activation as donors_activated
         from {{ref(rev_by_cohort)}} rev_by_cohort
         left join
             {{ref(second_gift_by_cohort)}} second_gift_by_cohort

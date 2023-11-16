@@ -36,7 +36,7 @@
             ) retention_int,
             rev_by_cohort.total_amount,
             first_gift_explode.donors_in_cohort,
-            donors_by_cohort.unique_donors
+            donors_by_cohort.unique_donors as donors_retained
         from {{ref(rev_by_cohort)}} rev_by_cohort
         full outer join
             {{ref(donors_by_cohort)}} donors_by_cohort
