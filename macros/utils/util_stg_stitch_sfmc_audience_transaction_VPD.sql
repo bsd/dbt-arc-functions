@@ -1,4 +1,4 @@
-{% macro util_mart_audience_retention_activation(
+{% macro util_stg_stitch_sfmc_audience_transaction_VPD(
     recur_status,
     first_gift_table="stg_stitch_sfmc_audience_transaction_first_gift",
     transactions_table="stg_stitch_sfmc_audience_transaction_with_first_gift_cohort"
@@ -7,7 +7,7 @@
 {% if recur_status not in ["recurring", "onetime"] %}
 {{
     exceptions.raise_compiler_error(
-        "'recur_status' argument to util_mart_audience_retention_activation must be 'recurring' or 'onetime', got "
+        "'recur_status' argument to util_stg_stitch_sfmc_audience_transaction_VPD must be 'recurring' or 'onetime', got "
         ~ recur_status
     )
 }}
@@ -15,15 +15,7 @@
 
 {% set recur_suffix = "_recur" if recur_status == "recurring" else "" %}
 {% set boolean_status = True if recur_status == "recurring" else False %}
-{% set ret_or_act = "Ret" if recur_status == "recurring" else "Act" %}
-{% set retention_or_activation = (
-    "retention" if recur_status == "recurring" else "activation"
-) %}
-{% set donors_in_cohort = (
-    "stg_stitch_sfmc_audience_transaction_first_gift_recur_rollup"
-    if recur_status == "recurring"
-    else "stg_stitch_sfmc_audience_transaction_first_gift_1x_rollup"
-) %}
+
 
 with
     first_gift_by_cohort as (
@@ -83,67 +75,6 @@ with
                 rev_by_cohort.first_gift_donor_audience,
                 first_gift_rollup.first_gift_donor_audience
             ) as join_donor_audience,
-            case
-                when
-                    coalesce(
-                        rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int
-                    )
-                    < 100
-                then
-                    '{{ ret_or_act }}' || lpad(
-                        cast(
-                            coalesce(
-                                rev_by_cohort.month_diff_int,
-                                first_gift_rollup.month_diff_int
-                            ) as string
-                        ),
-                        2,
-                        '0'
-                    )
-                when
-                    coalesce(
-                        rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int
-                    )
-                    between 100 and 999
-                then
-                    '{{ ret_or_act }}' || lpad(
-                        cast(
-                            coalesce(
-                                rev_by_cohort.month_diff_int,
-                                first_gift_rollup.month_diff_int
-                            ) as string
-                        ),
-                        3,
-                        '0'
-                    )
-                when
-                    coalesce(
-                        rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int
-                    )
-                    between 1000 and 9999
-                then
-                    '{{ ret_or_act }}' || lpad(
-                        cast(
-                            coalesce(
-                                rev_by_cohort.month_diff_int,
-                                first_gift_rollup.month_diff_int
-                            ) as string
-                        ),
-                        4,
-                        '0'
-                    )
-                else
-                    '{{ ret_or_act }}' || lpad(
-                        cast(
-                            coalesce(
-                                rev_by_cohort.month_diff_int,
-                                first_gift_rollup.month_diff_int
-                            ) as string
-                        ),
-                        5,
-                        '0'
-                    )
-            end as {{ retention_or_activation }}_str,
             coalesce(
                 rev_by_cohort.month_diff_int, first_gift_rollup.month_diff_int
             ) as month_diff_int,

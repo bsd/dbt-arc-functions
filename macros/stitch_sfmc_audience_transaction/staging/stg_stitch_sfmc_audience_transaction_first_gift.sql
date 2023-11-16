@@ -14,6 +14,14 @@
 )}}
 
 
+/*
+
+This macro finds the first gift that a person gave, 
+and pulls attributes from that first gift. 
+
+*/
+
+
 with first_transactions as (
     select
         person_id,
