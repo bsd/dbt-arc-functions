@@ -70,8 +70,8 @@ select
         then 'Act' || lpad(cast(month_diff_int as string), 3, '0')
         when month_diff_int between 1000 and 9999
         then 'Act' || lpad(cast(month_diff_int as string), 4, '0')
-        else '{{ ret_or_act }}' || lpad(cast(month_diff_int as string), 5, '0')
-    end as {{ retention_or_activation }}_str,
+        else 'Act' || lpad(cast(month_diff_int as string), 5, '0')
+    end as activation_str,
     sum(donors_in_activation) over (
         partition by
             join_month_year_str, join_source, join_gift_size, join_donor_audience
