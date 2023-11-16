@@ -10,24 +10,24 @@
     big_join as (
         select
             coalesce(
-                rev_by_cohort.month_diff_int,
-                donors_by_cohort.month_diff_int,
-                first_gift_explode.month_diff_int
+                rev_by_cohort.join_month_year_str,,
+                donors_by_cohort.join_month_year_str,,
+                first_gift_explode.join_month_year_str
             ) as join_month_year_str,
             coalesce(
-                rev_by_cohort.month_diff_int,
-                donors_by_cohort.month_diff_int,
-                first_gift_explode.month_diff_int
+                rev_by_cohort.first_gift_join_source,
+                donors_by_cohort.first_gift_join_source,
+                first_gift_explode.first_gift_join_source
             ) as join_source,
             coalesce(
-                rev_by_cohort.month_diff_int,
-                donors_by_cohort.month_diff_int,
-                first_gift_explode.month_diff_int
+                rev_by_cohort.join_gift_size_string,
+                donors_by_cohort.join_gift_size_string,
+                first_gift_explode.join_gift_size_string
             ) as join_gift_size,
             coalesce(
-                rev_by_cohort.month_diff_int,
-                donors_by_cohort.month_diff_int,
-                first_gift_explode.month_diff_int
+                rev_by_cohort.first_gift_donor_audience,
+                donors_by_cohort.first_gift_donor_audience,
+                first_gift_explode.first_gift_donor_audience
             ) as join_donor_audience,
             coalesce(
                 rev_by_cohort.month_diff_int,
