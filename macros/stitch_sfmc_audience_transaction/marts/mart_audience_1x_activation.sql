@@ -1,6 +1,7 @@
 {% macro create_mart_audience_1x_activation(
     cohort='stg_stitch_sfmc_audience_transaction_with_first_gift_cohort',
     first_gift_table="stg_stitch_sfmc_audience_transaction_first_gift",
+    transactions_table="stg_stitch_sfmc_audience_transaction_with_first_gift_cohort"
 ) %}
 
 
@@ -8,12 +9,12 @@ with rev_by_cohort as (
         select
             join_month_year_str,
             coalesce(first_gift_join_source, 'Unknown') as first_gift_join_source,
-            join_gift_size_string{{ recur_suffix }},
+            join_gift_size_string,
             first_gift_donor_audience,
             month_diff_int,
             sum(amounts) as total_amount
         from {{ ref(transactions_table) }}
-        where first_gift_recur_status = {{ boolean_status }}
+        where first_gift_recur_status = False
         group by 1, 2, 3, 4, 5
     ),
 
@@ -33,7 +34,7 @@ with rev_by_cohort as (
     first_gift_join_source,
     join_gift_size_string,
     first_gift_donor_audience
-    FROM from {{ref(cohort)}} cohort 
+    FROM from {{ref(cohort)}} 
     WHERE txn_rank = 2
     and recurring = False
     and first_gift_recur_status = False
@@ -107,20 +108,73 @@ with rev_by_cohort as (
     rev_by_cohort.total_amount,
     first_gift_rollup.donors_in_cohort,
     second_gift_by_cohort.donors_in_activation, as donors_in_activation
-    from first_gift_rollup 
-    full outer join  second_gift_by_cohort
-    on second_gift_by_cohort.join_month_year_str = first_gift_rollup.join_month_year_str
+    from rev_by_cohort
+    left join  second_gift_by_cohort 
+    on second_gift_by_cohort.join_month_year_str = second_gift_by_cohort.join_month_year_str
     and second_gift_by_cohort.first_gift_join_source
-    = first_gift_rollup.first_gift_join_source
+    = second_gift_by_cohort.first_gift_join_source
     and second_gift_by_cohort.join_gift_size_string
-    = first_gift_rollup.join_gift_size_string
+    = second_gift_by_cohort.join_gift_size_string
     and second_gift_by_cohort.first_gift_donor_audience
+    = second_gift_by_cohort.first_gift_donor_audience
+    and second_gift_by_cohort.month_diff_int = second_gift_by_cohort.month_diff_int
+    full outer join first_gift_rollup 
+    on rev_by_cohort.join_month_year_str = first_gift_rollup.join_month_year_str
+    and rev_by_cohort.first_gift_join_source
+    = first_gift_rollup.first_gift_join_source
+    and rev_by_cohort.join_gift_size_string
+    = first_gift_rollup.join_gift_size_string
+    and rev_by_cohort.first_gift_donor_audience
     = first_gift_rollup.first_gift_donor_audience
-    and second_gift_by_cohort.month_diff_int = first_gift_rollup.month_diff_int
+    and rev_by_cohort.month_diff_int = first_gift_rollup.month_diff_int
 )
 
 select
     *,
+    case
+    when
+        month_diff_int < 100
+    then
+        'Act' || lpad(
+            cast(
+                month_diff_int as string
+            ),
+            2,
+            '0'
+        )
+    when
+        month_diff_int
+        between 100 and 999
+    then
+        'Act' || lpad(
+            cast(
+            
+                    month_diff_int
+                as string
+            ),
+            3,
+            '0'
+        )
+    when
+        month_diff_int
+        between 1000 and 9999
+    then
+        'Act' || lpad(
+            cast(
+                month_diff_int as string
+            ),
+            4,
+            '0'
+        )
+    else
+        '{{ ret_or_act }}' || lpad(
+            cast(
+                month_diff_int as string
+            ),
+            5,
+            '0'
+        )
+end as {{ retention_or_activation }}_str,
     sum(donors_in_activation) over (
         partition by
             join_month_year_str, join_source, join_gift_size, join_donor_audience
