@@ -16,7 +16,7 @@ with rev_by_cohort as (
         from {{ ref(transactions_table) }}
         where first_gift_recur_status = False
         group by 1, 2, 3, 4, 5
-    ),
+    )
 
 
 , second_1x_transactions as (
