@@ -34,7 +34,7 @@ with first_transactions as (
         first_transactions.first_transaction_date,
         cast(timestamp_trunc(first_transactions.first_transaction_date, day) as date) as join_month_year_date,
         format_timestamp('%b %Y', timestamp_trunc(first_transactions.first_transaction_date, month)) as join_month_year_str,
-        transactions.inbound_channel as first_gift_join_source,
+        transactions.best_guess_inbound_channel as first_gift_join_source,
 (
         case
             when transactions.amount between 0 and 25.99
