@@ -28,7 +28,7 @@
         safe_cast(null as boolean) as new_recurring_revenue,  -- required for transaction rollup
         application,
         case
-        when appeal_business_unit = 'IM_DIG' then safe_cast(1 as boolean)   --sustainer revenue falls into IM_DIG business unit only
+        when appeal_business_unit in ('IM_DIG','IM_FTF', 'IM_DTV','IM_PLG','IM_TEL') then safe_cast(1 as boolean)   --sustainer revenue falls into IM_DIG business unit only
         when appeal like '%IM_DIG%' then safe_cast(1 as boolean)
         else safe_cast(0 as boolean)
        end as recurring,
