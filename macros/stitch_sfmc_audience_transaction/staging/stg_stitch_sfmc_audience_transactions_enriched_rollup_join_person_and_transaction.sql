@@ -3,7 +3,7 @@
     transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
     donor_engagement="stg_stitch_sfmc_donor_engagement_by_date_day"
 ) %}
-{{
+    {{
   config(
     materialized = "table",
     cluster_by = "recurring",
@@ -12,9 +12,10 @@
     select
         donor_engagement.date_day as date_day,
         donor_engagement.person_id as person_id,
-        last_value(transactions.coalesced_audience IGNORE NULLS) OVER (
-            partition by donor_engagement.person_id order by donor_engagement.date_day
-            ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+        last_value(transactions.coalesced_audience ignore nulls) over (
+            partition by donor_engagement.person_id
+            order by donor_engagement.date_day
+            rows between unbounded preceding and current row
         ) as donor_audience,
         transactions.donor_loyalty as donor_loyalty,
         transactions.nth_transaction_this_fiscal_year
@@ -27,7 +28,7 @@
         first_gift.join_gift_size_string_recur as join_amount_str_recur,
         first_gift.join_month_year_date as join_month_year_str,
     from
-           (
+        (
             select date_day, person_id, donor_engagement
             from {{ ref(donor_engagement) }}
         ) as donor_engagement
@@ -45,8 +46,8 @@
                 ) as nth_transaction_this_fiscal_year
             from {{ ref(transactions) }}
         ) as transactions
-    on donor_engagement.person_id = transactions.person_id
-    and donor_engagement.date_day = transactions.transaction_date_day
+        on donor_engagement.person_id = transactions.person_id
+        and donor_engagement.date_day = transactions.transaction_date_day
     left join
         (
             select
