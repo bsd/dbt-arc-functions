@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_arc_revenue_and_donor_count_by_lifetime_gifts(
-    reference_name="stg_stitch_sfmc_arc_audience_union_transaction_joined"
+    reference_name="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched"
 ) %}
     select
         extract(year from transaction_date_day) as transaction_date_year,

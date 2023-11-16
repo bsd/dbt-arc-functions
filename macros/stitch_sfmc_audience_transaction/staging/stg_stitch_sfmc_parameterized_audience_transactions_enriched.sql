@@ -3,11 +3,21 @@
     reference_name="stg_stitch_sfmc_audience_transactions_summary_unioned"
 ) %}
 
+{{ config(
+    materialized='table',
+    partition_by={
+      "field": "transaction_date_day",
+      "data_type": "date",
+      "granularity": "day"
+    },
+    cluster_by = ["recurring", "person_id"]
+)}}
+
 select
     transaction_id,
     person_id,
     transaction_date_day,
-    amount,
+    cast(amount as float64) as amount,
     initcap(inbound_channel) as inbound_channel,
     initcap({{ best_guess_inbound_channel }}) as best_guess_inbound_channel,
     recurring,

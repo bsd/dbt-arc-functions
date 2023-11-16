@@ -1,12 +1,35 @@
 {% macro create_stg_audience_budget_by_day(
-    google_spreadsheets_audience_monthly_budget="stg_adhoc_google_spreadsheets_audience_monthly_budget",
-    date_spine="stg_audience_budget_date_spine"
+    google_spreadsheets_audience_monthly_budget="stg_adhoc_google_spreadsheets_audience_monthly_budget"
 ) %}
-    {% set number_of_days_in_budget = (
-        "date_diff(budget.end_date, budget.start_date, day)"
-    ) %}
-    with
+    
+
+    with date_spine as (
+        {% set min_date_query %}
+        SELECT min(start_date) FROM {{ ref(google_spreadsheets_audience_monthly_budget) }}
+        {% endset %}
+        {% set min_date_results = run_query(min_date_query) %}
+        {% if execute %}
+            {% set min_date %}'{{min_date_results.columns[0].values()[0]}}'{% endset %}
+        {% else %} {% set min_date = "2020-01-01" %}
+        {% endif %}
+
+        {% set max_date_query %}
+        SELECT max(end_date) FROM {{ ref(google_spreadsheets_audience_monthly_budget) }}
+        {% endset %}
+        {% set max_date_results = run_query(max_date_query) %}
+        {% if execute %}
+            {% set max_date %}'{{max_date_results.columns[0].values()[0]}}'{% endset %}
+        {% else %} {% set max_date = "2020-01-01" %}
+        {% endif %}
+
+        {{ dbt_utils.date_spine(datepart="day", start_date=min_date, end_date=max_date) }}
+
+
+    )
+
+    ,
         dailies as (
+        {% set number_of_days_in_budget = ("date_diff(budget.end_date, budget.start_date, day)") %}
             select
                 platform,
                 donor_audience,
@@ -39,7 +62,7 @@
 
             from {{ ref(google_spreadsheets_audience_monthly_budget) }} as budget
             inner join
-                {{ ref(date_spine) }} as date_spine
+                date_spine
                 on budget.start_date <= date_spine.date_day
                 and budget.end_date >= date_spine.date_day
             order by 1, 2, 3

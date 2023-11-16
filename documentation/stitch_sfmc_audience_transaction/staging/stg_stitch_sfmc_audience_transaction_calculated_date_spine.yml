@@ -1,9 +1,0 @@
----
-version: 2
-models:
-  - name: stg_stitch_sfmc_audience_transaction_calculated_date_spine
-    description: This table is a date spine for the calculated audience from transaction
-      data
-    columns:
-      - name: date
-        description: this is a date column
