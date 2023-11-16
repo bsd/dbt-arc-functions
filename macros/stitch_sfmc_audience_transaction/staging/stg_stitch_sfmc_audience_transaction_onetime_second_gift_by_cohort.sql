@@ -1,4 +1,4 @@
-{% macro create_stg_sfmc_audience_transaction_onetime_second_gift_by_cohort(
+{% macro create_stg_stitch_sfmc_audience_transaction_onetime_second_gift_by_cohort(
     cohort="stg_stitch_sfmc_audience_transaction_with_first_gift_cohort"
 ) %}
 
