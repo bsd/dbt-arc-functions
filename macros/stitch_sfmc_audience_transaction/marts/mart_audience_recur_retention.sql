@@ -9,7 +9,7 @@
         select
             coalesce(
                 rev_by_cohort.join_month_year_str,
-                first_gift_explode.join_month_year_str,
+                first_gift_explode.join_month_year_str
             ) as join_month_year_str,
             coalesce(
                 rev_by_cohort.first_gift_join_source,
@@ -21,11 +21,11 @@
             ) as join_gift_size,
             coalesce(
                 rev_by_cohort.first_gift_donor_audience,
-                first_gift_explode.first_gift_donor_audience,
+                first_gift_explode.first_gift_donor_audience
             ) as join_donor_audience,
             coalesce(
                 rev_by_cohort.month_diff_int,
-                first_gift_explode.month_diff_int,
+                first_gift_explode.month_diff_int
             ) retention_int,
             rev_by_cohort.total_amount,
             rev_by_cohort.unique_donations,
