@@ -68,11 +68,11 @@ select
         then 'Act' || lpad(cast(activation_int as string), 2, '0')
         else 'Act' || cast(activation_int as string)
     end as activation_str,
-    sum(donors_in_activation) over (
+    sum(donors_activated) over (
         partition by
             join_month_year_str, join_source, join_gift_size, join_donor_audience
         order by  activation_int asc
-    ) as cumulative_donors_in_activation,
+    ) as cumulative_donors_activated,
     sum(total_amount) over (
         partition by
             join_month_year_str, join_source, join_gift_size, join_donor_audience
