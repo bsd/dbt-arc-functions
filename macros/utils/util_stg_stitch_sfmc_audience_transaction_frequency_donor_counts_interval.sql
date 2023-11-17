@@ -21,7 +21,7 @@
                 {% elif interval == 'year' %} 'yearly' as interval_type,
                 {% endif %}
                 donor_audience,
-                best_guess_inbound_channel as platform,
+                channel as platform, -- from best_guess_inbound_channel
                 {{
                     dbt_arc_functions.get_fiscal_year(
                         "date_day", var("fiscal_year_start")
