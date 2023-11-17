@@ -12,6 +12,7 @@ transactions.fiscal_year,
 extract(month from transactions.transaction_date_day) as month,
 transactions.transaction_date_day,
 transactions.donor_loyalty,
+transactions.coalesced_audience as donor_audience,
 person.first_gift_join_source as channel,
 person.join_gift_size_string_recur as join_amount_string_recur,
 CASE person.join_gift_size_string_recur
@@ -35,7 +36,7 @@ left join
 {{ ref(arc_first_gift) }} person
 on person.person_id= transactions.person_id
 where recurring = True
-group by 1,2,3,4,5,6,7
-order by 1,2,3,4,5,6,7
+group by 1,2,3,4,5,6,7,8
+order by 1,2,3,4,5,6,7,8
 
 {% endmacro %}

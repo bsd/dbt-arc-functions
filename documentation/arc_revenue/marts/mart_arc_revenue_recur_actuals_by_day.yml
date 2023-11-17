@@ -14,6 +14,8 @@ models:
         description: Date of transaction in Day format
       - name: donor_loyalty
         description: the assigned donor loyalty category
+      - name: donor_audience
+        description: the assigned donor audience category
       - name: channel
         description: the source channel of each transaction
       - name: join_amount_string_recur
