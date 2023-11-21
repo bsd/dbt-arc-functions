@@ -1,6 +1,6 @@
 {% macro create_stg_stitch_facebook_paidmedia_transactions_sourced_rollup(
     source_name="src_stitch_facebook_paidmedia",
-    source_table="ads_insights"
+    source_table="ads_insights",
     extract_fields='stg_stitch_facebook_paidmedia_extract_fields_from_adcreative'
 ) %}
     select
