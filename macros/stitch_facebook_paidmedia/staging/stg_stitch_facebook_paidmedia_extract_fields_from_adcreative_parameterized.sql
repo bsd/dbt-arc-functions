@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_facebook_paidmedia_extract_fields_from_adcreative(
+{% macro create_stg_stitch_facebook_paidmedia_extract_fields_from_adcreative_parameterized(
     campaign_regex,
     objective_regex,
     audience_regex,
