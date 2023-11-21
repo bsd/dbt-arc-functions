@@ -1,0 +1,27 @@
+---
+version: 2
+models:
+  - name: stg_stitch_facebook_paidmedia_extract_fields_from_adcreative_parameterized
+    description: Parameterized model to pull info from source codes.
+    columns:
+      - name: ad_id
+        data_type: string
+        description: The ID of the ad.
+      - name: source_code_single
+        data_type: string
+        description: The source code associated with the ad, single value even if
+          multiple source codes are associated with the ad.
+      - name: source_code_array
+        data_type: string
+        description: The source code associated with the ad, multiple values if multiple
+          source codes are associated with the ad.
+      - name: audience
+        data_type: string
+        description: The audience associated with the ad.
+      - name: campaign
+        data_type: string
+        description: The campaign associated with the ad.
+      - name: objective
+        data_type: string
+        description: The objective associated with the ad. This is the objective that
+          the ad is optimized for.
