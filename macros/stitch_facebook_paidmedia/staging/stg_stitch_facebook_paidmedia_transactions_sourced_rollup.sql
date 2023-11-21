@@ -4,7 +4,7 @@
     extract_fields='stg_stitch_facebook_paidmedia_extract_fields_from_adcreative'
 ) %}
     select
-        ad_id as message_id,
+        ad_summary.ad_id as message_id,
         safe_cast(date_start as timestamp) as date_timestamp,
         cast(null as int) as total_revenue,
         cast(null as int) as total_gifts,
