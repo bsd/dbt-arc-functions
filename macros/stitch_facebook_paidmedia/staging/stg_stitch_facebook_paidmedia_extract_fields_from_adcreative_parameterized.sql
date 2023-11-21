@@ -1,12 +1,12 @@
 {% macro create_stg_stitch_facebook_paidmedia_extract_fields_from_adcreative(
+    campaign_regex,
+    objective_regex,
+    audience_regex,
     source_adcreative_name='src_stitch_facebook_paidmedia',
     source_adcreative_table_name='adcreative',
     source_ads_name='src_stitch_facebook_paidmedia',
     source_ads_table_name='ads',
-    source_code_regex='\\?(.*)',
-    campaign_regex,
-    objective_regex,
-    audience_regex
+    source_code_regex='\\?(.*)'
     ) %}
     with
         adcreative_id_to_source_code as (
