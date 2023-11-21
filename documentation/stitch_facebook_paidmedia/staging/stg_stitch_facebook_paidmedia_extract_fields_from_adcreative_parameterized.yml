@@ -9,8 +9,8 @@ models:
         description: The ID of the ad.
       - name: source_code_single
         data_type: string
-        description: The source code associated with the ad, single value even if multiple
-          source codes are associated with the ad.
+        description: The source code associated with the ad, single value even if
+          multiple source codes are associated with the ad.
       - name: source_code_array
         data_type: string
         description: The source code associated with the ad, multiple values if multiple
