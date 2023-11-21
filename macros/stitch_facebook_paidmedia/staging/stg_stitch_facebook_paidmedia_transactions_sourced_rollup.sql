@@ -20,7 +20,7 @@
         cast(null as string) as campaign_label,
         extract_fields.audience as audience,
         cast(null as string) as appeal,
-        extract_fields.source_code as source_code,
+        extract_fields.source_code_single as source_code,
     from {{ source(source_name, source_table) }} ad_summary
     left join {{ ref(extract_fields) }} extract_fields
         on ad_summary.ad_id = extract_fields.ad_id
