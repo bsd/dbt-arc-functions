@@ -244,7 +244,7 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
             output = DBT_STRING.format(github_path=github_path, function=function)
         else:
             output = content
-        if "_parameterized_" in destination_file_path:
+        if "parameterized" in destination_file_path:
             parameters = parameters_regex.search(function)[1]
             parameters_list = parameters.split(",")
             parameters_without_whitespace = [
@@ -261,8 +261,8 @@ def write_to_file(file_path, destination_path, file, source, model_type, create)
             output = unfilled_parameters_warning + output
         if path.exists(destination_file_path) and not create:
             if (
-                "_customizable_" in destination_file_path
-                or "_parameterized_" in destination_file_path
+                "customizable" in destination_file_path
+                or "parameterized" in destination_file_path
             ):
                 print(
                     f"\n{destination_file_path}"
