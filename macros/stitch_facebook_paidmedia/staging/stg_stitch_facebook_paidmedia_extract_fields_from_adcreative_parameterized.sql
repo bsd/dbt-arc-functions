@@ -15,7 +15,7 @@
                 regexp_extract(
                     coalesce(link_url, child_attachments.value.link),
                     {% if source_code_regex == '' %} null
-                    {% else %} {{ source_code_regex }}
+                    {% else %} '{{ source_code_regex }}'
                     {% endif %}
                 ) as source_code
             from {{ source(source_adcreative_name,source_adcreative_table_name) }}
@@ -56,19 +56,19 @@
         regexp_extract(
             source_code_single,
             {% if audience_regex == '' %} null
-            {% else %} {{ audience_regex }}
+            {% else %} '{{ audience_regex }}'
             {% endif %}
         ) as audience,
         regexp_extract(
             source_code_single,
             {% if campaign_regex == '' %} null
-            {% else %} {{ campaign_regex }}
+            {% else %} '{{ campaign_regex }}'
             {% endif %}
         ) as campaign,
         regexp_extract(
             source_code_single,
             {% if objective_regex == '' %} null
-            {% else %} {{ objective_regex }}
+            {% else %} '{{ objective_regex }}'
             {% endif %}
         ) as objective
     from ad_id_to_single_source_code
