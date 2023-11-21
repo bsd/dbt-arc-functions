@@ -3,6 +3,20 @@
     first_gift="stg_stitch_sfmc_audience_transaction_first_gift"
 ) %}
 
+
+/*
+
+This macro appends first gift related values to the transaction table on person_id, 
+so that every transaction has a record of first-gift-related attributes:
+- donor audience
+- gift size
+- join source
+- recur or 1x status
+
+*/
+
+
+
 select
 transactions.person_id,
 transactions.transaction_date_day,
@@ -27,6 +41,7 @@ first_gift.join_gift_size_string,
 first_gift.join_gift_size_string_recur,
 first_gift.first_gift_donor_audience,
 first_gift.first_gift_recur_status,
+ROW_NUMBER() OVER (PARTITION BY transactions.person_id ORDER BY transactions.transaction_date_day) AS txn_rank,
 case when first_gift.first_gift_recur_status = True then 'recur' 
 when first_gift.first_gift_recur_status = False then 'one_time'
 end as first_gift_recur_status_string
