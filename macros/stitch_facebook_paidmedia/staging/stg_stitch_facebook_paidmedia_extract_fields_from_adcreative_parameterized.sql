@@ -17,7 +17,7 @@
                         link_url,
                         object_story_spec.link_data.link,
                         object_story_spec.video_data.call_to_action.value.link,
-                        child_attachments.value.link
+                        ca.value.link
                     ),
                     {% if source_code_regex == '' %} null
                     {% else %} '{{ source_code_regex }}'
@@ -27,16 +27,16 @@
                     link_url,
                     object_story_spec.link_data.link,
                     object_story_spec.video_data.call_to_action.value.link,
-                    child_attachments.value.link
+                    ca.value.link
                 ) as link,
             from {{ source(source_adcreative_name,source_adcreative_table_name) }}
             cross join
                 unnest(
                     object_story_spec.link_data.child_attachments
-                ) as child_attachments
+                )as ca
             where
                 link_url is not null
-                or child_attachments.value.link is not null
+                or ca.value.link is not null
                 or object_story_spec.link_data.link is not null
                 or object_story_spec.video_data.call_to_action.value.link is not null
         ),
