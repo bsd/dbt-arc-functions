@@ -43,7 +43,7 @@
 
         ad_id_to_adcreative_id as (
             select distinct id as ad_id, creative.id as adcreative_id
-            from {{ source(source_ads_name,source_ads_table_name) }}
+            from {{ source(source_ads_name, source_ads_table_name) }}
         ),
 
         ad_id_to_source_code as (
@@ -74,19 +74,19 @@
         link_array,
         regexp_extract(
             source_code_single,
-            {% if audience_regex == '' %} null
+            {% if audience_regex == "" %} null
             {% else %} '{{ audience_regex }}'
             {% endif %}
         ) as audience,
         regexp_extract(
             source_code_single,
-            {% if campaign_regex == '' %} null
+            {% if campaign_regex == "" %} null
             {% else %} '{{ campaign_regex }}'
             {% endif %}
         ) as campaign,
         regexp_extract(
             source_code_single,
-            {% if objective_regex == '' %} null
+            {% if objective_regex == "" %} null
             {% else %} '{{ objective_regex }}'
             {% endif %}
         ) as objective

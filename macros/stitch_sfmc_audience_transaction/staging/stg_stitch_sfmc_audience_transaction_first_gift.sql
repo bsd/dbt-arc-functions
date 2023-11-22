@@ -1,17 +1,19 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_first_gift(
     transactions="stg_stitch_sfmc_parameterized_audience_transactions_enriched",
-    audience='stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched'
+    audience="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched"
 ) %}
 
-    {{ config(
-    materialized='table',
-    partition_by={
-      "field": "first_transaction_date",
-      "data_type": "date",
-      "granularity": "day"
-    },
-    cluster_by = ["first_gift_recur_status"]
-)}}
+    {{
+        config(
+            materialized="table",
+            partition_by={
+                "field": "first_transaction_date",
+                "data_type": "date",
+                "granularity": "day",
+            },
+            cluster_by=["first_gift_recur_status"],
+        )
+    }}
 
     /*
 
