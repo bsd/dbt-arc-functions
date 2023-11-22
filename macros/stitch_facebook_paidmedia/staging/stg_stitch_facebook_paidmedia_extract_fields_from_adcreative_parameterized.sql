@@ -30,10 +30,7 @@
                     ca.value.link
                 ) as link,
             from {{ source(source_adcreative_name,source_adcreative_table_name) }}
-            cross join
-                unnest(
-                    object_story_spec.link_data.child_attachments
-                )as ca
+            cross join unnest(object_story_spec.link_data.child_attachments) as ca
             where
                 link_url is not null
                 or ca.value.link is not null
