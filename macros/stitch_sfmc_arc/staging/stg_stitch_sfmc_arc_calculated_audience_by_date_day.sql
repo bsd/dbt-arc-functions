@@ -4,36 +4,40 @@
     calculated_audience_scd="stg_stitch_sfmc_donor_audience_calculated_scd"
 ) %}
 
-with date_spine as (
-select date
-from
-    unnest(
-        generate_date_array(
-            (select min(transaction_date_day), from {{ ref(calculated_audience) }}),
-            ifnull(
-                (
-                    select
-                        min(
-                            date(
-                                cast(
-                                    concat(
-                                        substr(dbt_valid_from, 0, 22),
-                                        " America/New_York"
-                                    ) as timestamp
-                                ),
-                                "America/New_York"
-                            )
-                            - 1
+    with
+        date_spine as (
+            select date
+            from
+                unnest(
+                    generate_date_array(
+                        (
+                            select min(transaction_date_day),
+                            from {{ ref(calculated_audience) }}
+                        ),
+                        ifnull(
+                            (
+                                select
+                                    min(
+                                        date(
+                                            cast(
+                                                concat(
+                                                    substr(dbt_valid_from, 0, 22),
+                                                    " America/New_York"
+                                                ) as timestamp
+                                            ),
+                                            "America/New_York"
+                                        )
+                                        - 1
+                                    )
+
+                                from {{ ref(audience_snapshot) }}
+                            ),
+                            current_date()
                         )
+                    )
+                ) as date
 
-                    from {{ ref(audience_snapshot) }}
-                ),
-                current_date()
-            )
-        )
-    ) as date
-
-),
+        ),
         audience_by_date_day as (
             select
                 date_spine.date as date_day,
