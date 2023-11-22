@@ -16,6 +16,7 @@
                     coalesce(
                         link_url,
                         object_story_spec.link_data.link,
+                        object_story_spec.video_data.call_to_action.value.link,
                         child_attachments.value.link
                     ),
                     {% if source_code_regex == '' %} null
@@ -25,6 +26,7 @@
                 coalesce(
                     link_url,
                     object_story_spec.link_data.link,
+                    object_story_spec.video_data.call_to_action.value.link,
                     child_attachments.value.link
                 ) as link,
             from {{ source(source_adcreative_name,source_adcreative_table_name) }}
