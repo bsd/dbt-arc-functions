@@ -5,9 +5,11 @@
 
     select
         transactions.fiscal_year,
-        {{dbt_arc_functions.get_fiscal_month(
-      'transactions.transaction_date_day',
-      var('fiscal_year_start'))}} as fiscal_month,
+        {{
+            dbt_arc_functions.get_fiscal_month(
+                "transactions.transaction_date_day", var("fiscal_year_start")
+            )
+        }} as fiscal_month,
         extract(month from transactions.transaction_date_day) as month,
         transactions.transaction_date_day,
         transactions.donor_loyalty,

@@ -154,11 +154,11 @@
 
     select
         {{
-        dbt_arc_functions.get_fiscal_year(
-            "date_day",
-            var("fiscal_year_start"),
-        )
-    }} as fiscal_year,
+            dbt_arc_functions.get_fiscal_year(
+                "date_day",
+                var("fiscal_year_start"),
+            )
+        }} as fiscal_year,
         extract(year from date_day) as year,
         extract(month from date_day) as month,
         extract(day from date_day) as day,
