@@ -26,7 +26,6 @@ with audience_union_transaction_joined as (
  sources and calculates the fiscal year. The purpose is to create a consolidated dataset 
  that includes transaction details, audience information, and engagement data.
 */
-
     select
         transaction_enriched.transaction_date_day,
         {{
@@ -151,8 +150,6 @@ audience_calculated_alldates as (
 audience_calculated_alldates retrieves calculated audience data for all dates 
 from the jobs_append source.
 */
-
-
     select transaction_date_day, person_id, donor_audience from {{ ref(jobs_append) }}
 
 )
@@ -165,7 +162,6 @@ This dataset includes various attributes related to donors,
 such as transaction details, audience information, engagement data, 
 loyalty status, and more.
 */
-
     select
         audience_union_transaction_joined.transaction_date_day,
         audience_union_transaction_joined.fiscal_year,
