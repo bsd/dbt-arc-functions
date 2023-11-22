@@ -21,15 +21,6 @@ Mass: Is not in Sustainer, Midlevel or Major.
 
 #}
     with
-        calculations as (
-            select
-                transaction_date_day,
-                person_id,
-                recurring,
-                sum(amount) as amount
-            from {{ ref(reference_name) }}
-            group by 1, 2, 3
-        ),
         day_person_rollup as (
             select
                 transaction_date_day,
@@ -51,7 +42,7 @@ Mass: Is not in Sustainer, Midlevel or Major.
                         )
                     else 0
                 end as cumulative_amount_90_days_recur
-            from calculations
+            from {{ref(reference_name)}}
             group by 1, 2
         ),
         base as
