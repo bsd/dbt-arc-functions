@@ -25,9 +25,10 @@ Mass: Is not in Sustainer, Midlevel or Major.
             select
                 transaction_date_day,
                 person_id,
+                recurring,
                 sum(amount) as amount
             from {{ ref(reference_name) }}
-            group by 1, 2
+            group by 1, 2, 3
         ),
         day_person_rollup as (
             select
