@@ -22,11 +22,17 @@
             {% else %} {% set max_date = "2020-01-01" %}
             {% endif %}
 
-            {{ dbt_utils.date_spine(datepart="day", start_date=min_date, end_date=max_date) }}
+            {{
+                dbt_utils.date_spine(
+                    datepart="day", start_date=min_date, end_date=max_date
+                )
+            }}
 
         ),
         dailies as (
-            {% set number_of_days_in_budget = ("date_diff(budget.end_date, budget.start_date, day)") %}
+            {% set number_of_days_in_budget = (
+                "date_diff(budget.end_date, budget.start_date, day)"
+            ) %}
             select
                 platform,
                 donor_audience,

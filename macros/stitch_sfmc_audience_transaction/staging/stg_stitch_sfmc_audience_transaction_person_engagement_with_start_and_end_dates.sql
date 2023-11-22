@@ -50,7 +50,11 @@
                     select distinct
                         person_id, date(transaction_date) as transaction_date
                     from
-                        {{ ref('stg_stitch_sfmc_audience_transactions_summary_unioned') }}
+                        {{
+                            ref(
+                                "stg_stitch_sfmc_audience_transactions_summary_unioned"
+                            )
+                        }}
                 ) as person_with_all_transaction_dates
 
             order by 1, 2
