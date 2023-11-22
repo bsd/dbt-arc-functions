@@ -3,14 +3,16 @@
     calculated_audience="stg_stitch_sfmc_arc_calculated_audience_by_date_day"
 ) %}
 
-{{ config(
-    materialized='table',
-    partition_by={
-      "field": "date_day",
-      "data_type": "date",
-      "granularity": "day"
-    }
-)}}
+    {{
+        config(
+            materialized="table",
+            partition_by={
+                "field": "date_day",
+                "data_type": "date",
+                "granularity": "day",
+            },
+        )
+    }}
 
     with
         arc_audience as (

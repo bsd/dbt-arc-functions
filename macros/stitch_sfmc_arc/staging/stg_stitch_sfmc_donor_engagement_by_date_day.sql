@@ -2,29 +2,39 @@
     donor_engagement_scd_table="stg_stitch_sfmc_donor_engagement_scd"
 ) %}
 
-{{ config(
-    materialized='table',
-    partition_by={
-      "field": "date_day",
-      "data_type": "date",
-      "granularity": "day"
-    }
-)}}
-
-with date_spine as (
-select date_day
-from
-    unnest(
-        generate_date_array(
-            (select min(start_date), from {{ ref(donor_engagement_scd_table) }}),
-            ifnull(
-                (select max(start_date) from {{ ref(donor_engagement_scd_table) }}), current_date()
-            )
+    {{
+        config(
+            materialized="table",
+            partition_by={
+                "field": "date_day",
+                "data_type": "date",
+                "granularity": "day",
+            },
         )
-    ) as date_day
+    }}
 
-)
-        , engagement_by_date_day as (
+    with
+        date_spine as (
+            select date_day
+            from
+                unnest(
+                    generate_date_array(
+                        (
+                            select min(start_date),
+                            from {{ ref(donor_engagement_scd_table) }}
+                        ),
+                        ifnull(
+                            (
+                                select max(start_date)
+                                from {{ ref(donor_engagement_scd_table) }}
+                            ),
+                            current_date()
+                        )
+                    )
+                ) as date_day
+
+        ),
+        engagement_by_date_day as (
             select
                 date_spine.date_day,
                 donor_engagement_scd.person_id,

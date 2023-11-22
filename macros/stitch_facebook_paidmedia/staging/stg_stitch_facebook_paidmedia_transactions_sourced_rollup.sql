@@ -1,7 +1,7 @@
 {% macro create_stg_stitch_facebook_paidmedia_transactions_sourced_rollup(
     source_name="src_stitch_facebook_paidmedia",
     source_table="ads_insights",
-    extract_fields='stg_stitch_facebook_paidmedia_extract_fields_from_adcreative_parameterized'
+    extract_fields="stg_stitch_facebook_paidmedia_extract_fields_from_adcreative_parameterized"
 ) %}
     select
         ad_summary.ad_id as message_id,
@@ -22,6 +22,7 @@
         cast(null as string) as appeal,
         extract_fields.source_code_single as source_code,
     from {{ source(source_name, source_table) }} ad_summary
-    left join {{ ref(extract_fields) }} extract_fields
+    left join
+        {{ ref(extract_fields) }} extract_fields
         on ad_summary.ad_id = extract_fields.ad_id
 {% endmacro %}

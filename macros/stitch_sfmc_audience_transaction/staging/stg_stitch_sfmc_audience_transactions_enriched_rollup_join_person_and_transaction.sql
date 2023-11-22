@@ -4,11 +4,11 @@
     donor_engagement="stg_stitch_sfmc_donor_engagement_by_date_day"
 ) %}
     {{
-  config(
-    materialized = "table",
-    cluster_by = "recurring",
-  )
-}}
+        config(
+            materialized="table",
+            cluster_by="recurring",
+        )
+    }}
     select
         donor_engagement.date_day as date_day,
         donor_engagement.person_id as person_id,
@@ -23,7 +23,7 @@
         transactions.recurring as recurring,
         donor_engagement.donor_engagement as donor_engagement,
         transactions.gift_size_string as gift_size_str,
-        transactions.channel as channel, -- from best_guess_inbound_channel
+        transactions.channel as channel,  -- from best_guess_inbound_channel
         first_gift.first_gift_join_source as join_source,
         first_gift.join_gift_size_string as join_amount_str,
         first_gift.join_gift_size_string_recur as join_amount_str_recur,
@@ -42,7 +42,7 @@
                 recurring,
                 gift_size_string,
                 coalesced_audience,
-                channel, -- from best_guess_inbound_channel
+                channel,  -- from best_guess_inbound_channel
                 row_number() over (
                     partition by person_id, fiscal_year order by transaction_date_day
                 ) as nth_transaction_this_fiscal_year

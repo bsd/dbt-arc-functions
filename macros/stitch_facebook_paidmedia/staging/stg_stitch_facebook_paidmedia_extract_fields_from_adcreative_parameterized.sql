@@ -2,23 +2,23 @@
     campaign_regex,
     objective_regex,
     audience_regex,
-    source_adcreative_name='src_stitch_facebook_paidmedia',
-    source_adcreative_table_name='adcreative',
-    source_ads_name='src_stitch_facebook_paidmedia',
-    source_ads_table_name='ads',
-    source_code_regex='\\?(.*)'
-    ) %}
+    source_adcreative_name="src_stitch_facebook_paidmedia",
+    source_adcreative_table_name="adcreative",
+    source_ads_name="src_stitch_facebook_paidmedia",
+    source_ads_table_name="ads",
+    source_code_regex="\\?(.*)"
+) %}
     with
         adcreative_id_to_source_code as (
             select distinct
                 id as adcreative_id,
                 regexp_extract(
                     coalesce(link_url, child_attachments.value.link),
-                    {% if source_code_regex == '' %} null
+                    {% if source_code_regex == "" %} null
                     {% else %} '{{ source_code_regex }}'
                     {% endif %}
                 ) as source_code
-            from {{ source(source_adcreative_name,source_adcreative_table_name) }}
+            from {{ source(source_adcreative_name, source_adcreative_table_name) }}
             cross join
                 unnest(
                     object_story_spec.link_data.child_attachments
@@ -28,7 +28,7 @@
 
         ad_id_to_adcreative_id as (
             select distinct id as ad_id, creative.id as adcreative_id
-            from {{ source(source_ads_name,source_ads_table_name) }}
+            from {{ source(source_ads_name, source_ads_table_name) }}
         ),
 
         ad_id_to_source_code as (
@@ -55,19 +55,19 @@
         source_code_array,
         regexp_extract(
             source_code_single,
-            {% if audience_regex == '' %} null
+            {% if audience_regex == "" %} null
             {% else %} '{{ audience_regex }}'
             {% endif %}
         ) as audience,
         regexp_extract(
             source_code_single,
-            {% if campaign_regex == '' %} null
+            {% if campaign_regex == "" %} null
             {% else %} '{{ campaign_regex }}'
             {% endif %}
         ) as campaign,
         regexp_extract(
             source_code_single,
-            {% if objective_regex == '' %} null
+            {% if objective_regex == "" %} null
             {% else %} '{{ objective_regex }}'
             {% endif %}
         ) as objective
