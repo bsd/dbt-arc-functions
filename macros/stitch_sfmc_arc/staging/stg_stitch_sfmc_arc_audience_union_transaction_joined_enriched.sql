@@ -5,15 +5,17 @@
     jobs_append="stg_stitch_sfmc_audience_transaction_jobs_append"
 ) %}
 
-    {{ config(
-    materialized='table',
-    partition_by={
-      "field": "transaction_date_day",
-      "data_type": "date",
-      "granularity": "day"
-    },
-    cluster_by = ["recurring"]
-)}}
+    {{
+        config(
+            materialized="table",
+            partition_by={
+                "field": "transaction_date_day",
+                "data_type": "date",
+                "granularity": "day",
+            },
+            cluster_by=["recurring"],
+        )
+    }}
 
     with
         audience_union_transaction_joined as (
@@ -28,11 +30,11 @@
             select
                 transaction_enriched.transaction_date_day,
                 {{
-            dbt_arc_functions.get_fiscal_year(
-                "transaction_enriched.transaction_date_day",
-                var("fiscal_year_start"),
-            )
-        }} as fiscal_year,
+                    dbt_arc_functions.get_fiscal_year(
+                        "transaction_enriched.transaction_date_day",
+                        var("fiscal_year_start"),
+                    )
+                }} as fiscal_year,
                 transaction_enriched.person_id,
                 audience_unioned.donor_audience,
                 donor_engagement.donor_engagement,

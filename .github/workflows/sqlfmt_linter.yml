@@ -21,15 +21,17 @@ jobs:
           pip install 'shandy-sqlfmt[jinjafmt]'
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Run sqlfmt
+        id: sqlfmt
         continue-on-error: true
         run: |-
           SQLFMT_OUTPUT=$(sqlfmt . 2>&1)
-          if [[ $SQLFMT_OUTPUT =~ "[0-9]+ files* formatted\." ]]; then
+          if [[ $SQLFMT_OUTPUT =~ [0-9][[:space:]]files*[[:space:]]formatted ]]; then
             echo "Run sqlfmt . to fix the errors below"
             echo $SQLFMT_OUTPUT
             echo "is_formatted=true" >> "$GITHUB_OUTPUT"
           else
             echo "is_formatted=false" >> "$GITHUB_OUTPUT"
+            echo $SQLFMT_OUTPUT
           fi
           sqlfmt .
       - name: Create Pull Request
