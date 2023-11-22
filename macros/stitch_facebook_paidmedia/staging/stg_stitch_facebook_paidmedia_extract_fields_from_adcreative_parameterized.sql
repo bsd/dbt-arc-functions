@@ -38,6 +38,7 @@
                 link_url is not null
                 or child_attachments.value.link is not null
                 or object_story_spec.link_data.link is not null
+                or object_story_spec.video_data.call_to_action.value.link is not null
         ),
 
         ad_id_to_adcreative_id as (
