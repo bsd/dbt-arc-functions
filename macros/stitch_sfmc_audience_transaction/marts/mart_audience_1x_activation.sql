@@ -1,7 +1,7 @@
 {% macro create_mart_audience_1x_activation(
-    second_gift_by_cohort='stg_stitch_sfmc_audience_transaction_onetime_second_gift_by_cohort',
-    rev_by_cohort='stg_stitch_sfmc_audience_transaction_onetime_rev_by_cohort',
-    first_gift_explode='stg_stitch_sfmc_audience_transaction_onetime_first_gift_by_cohort'
+    second_gift_by_cohort="stg_stitch_sfmc_audience_transaction_onetime_second_gift_by_cohort",
+    rev_by_cohort="stg_stitch_sfmc_audience_transaction_onetime_rev_by_cohort",
+    first_gift_explode="stg_stitch_sfmc_audience_transaction_onetime_first_gift_by_cohort"
 ) %}
 
     with

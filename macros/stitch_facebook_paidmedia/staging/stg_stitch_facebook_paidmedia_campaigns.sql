@@ -1,6 +1,5 @@
 {% macro create_stg_stitch_facebook_paidmedia_campaigns(
-    source_name="src_stitch_facebook_paidmedia",
-    source_table="ads_insights"
+    source_name="src_stitch_facebook_paidmedia", source_table="ads_insights"
 ) %}
     select distinct
         campaign_id as campaign_id,
