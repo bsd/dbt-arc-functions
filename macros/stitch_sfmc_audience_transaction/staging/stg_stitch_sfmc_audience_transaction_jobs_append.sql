@@ -25,6 +25,14 @@ Mass: Is not in Sustainer, Midlevel or Major.
             select
                 transaction_date_day,
                 person_id,
+                sum(amount) as amount
+            from {{ ref(reference_name) }}
+            group by 1, 2
+        ),
+        day_person_rollup as (
+            select
+                transaction_date_day,
+                person_id,
                 -- Calculate cumulative recur and 1x amount for the past 24 months
                 sum(amount) over (
                     partition by person_id
@@ -42,15 +50,6 @@ Mass: Is not in Sustainer, Midlevel or Major.
                         )
                     else 0
                 end as cumulative_amount_90_days_recur
-            from {{ ref(reference_name) }}
-            group by transaction_date_day, person_id, amount, recurring
-        ),
-        day_person_rollup as (
-            select
-                transaction_date_day,
-                person_id,
-                sum(cumulative_amount_24_months) as cumulative_amount_24_months,
-                sum(cumulative_amount_90_days_recur) as cumulative_amount_90_days_recur
             from calculations
             group by 1, 2
         ),
