@@ -2,12 +2,12 @@
     campaign_regex,
     objective_regex,
     audience_regex,
-    source_adcreative_name='src_stitch_facebook_paidmedia',
-    source_adcreative_table_name='adcreative',
-    source_ads_name='src_stitch_facebook_paidmedia',
-    source_ads_table_name='ads',
-    source_code_regex='\\\\?(.*)'
-    ) %}
+    source_adcreative_name="src_stitch_facebook_paidmedia",
+    source_adcreative_table_name="adcreative",
+    source_ads_name="src_stitch_facebook_paidmedia",
+    source_ads_table_name="ads",
+    source_code_regex="\\\\?(.*)"
+) %}
     with
         adcreative_id_to_source_code as (
             select distinct
@@ -19,7 +19,7 @@
                         object_story_spec.video_data.call_to_action.value.link,
                         ca.value.link
                     ),
-                    {% if source_code_regex == '' %} null
+                    {% if source_code_regex == "" %} null
                     {% else %} '{{ source_code_regex }}'
                     {% endif %}
                 ) as source_code,
@@ -29,7 +29,7 @@
                     object_story_spec.video_data.call_to_action.value.link,
                     ca.value.link
                 ) as link,
-            from {{ source(source_adcreative_name,source_adcreative_table_name) }}
+            from {{ source(source_adcreative_name, source_adcreative_table_name) }}
             cross join unnest(object_story_spec.link_data.child_attachments) as ca
             where
                 link_url is not null
