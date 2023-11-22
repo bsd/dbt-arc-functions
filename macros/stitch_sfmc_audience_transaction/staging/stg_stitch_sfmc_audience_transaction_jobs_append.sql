@@ -25,16 +25,15 @@ Mass: Is not in Sustainer, Midlevel or Major.
             select
                 transaction_date_day,
                 person_id,
-                recurring,
-                sum(amount) as total_amount
+                sum(amount) as total_amount, 
+                sum(case when recurring = true then amount else 0) end as recur_amount
             from {{ ref(reference_name) }}
-            group by 1, 2, 3
+            group by 1, 2
         ),
         day_person_rollup as (
             select
                 transaction_date_day,
                 person_id,
-                total_amount,
                 -- Calculate cumulative recur and 1x amount for the past 24 months
                 sum(total_amount) over (
                     partition by person_id
@@ -42,18 +41,13 @@ Mass: Is not in Sustainer, Midlevel or Major.
                     range between 63113904 preceding and current row  -- 63,113,904 seconds in 24 months
                 ) as cumulative_amount_24_months,
                 -- Calculate cumulative recurring amount over past 90 days
-                case
-                    when recurring = true
-                    then
-                        sum(total_amount) over (
-                            partition by person_id
-                            order by unix_seconds(timestamp(transaction_date_day))  -- Convert date to Unix timestamp
-                            range between 7776000 preceding and current row  -- unix seconds in 90 days
-                        )
-                    else 0
-                end as cumulative_amount_90_days_recur
+                sum(recur_amount) over (
+                    partition by person_id
+                    order by unix_seconds(timestamp(transaction_date_day))  -- Convert date to Unix timestamp
+                    range between 7776000 preceding and current row  -- unix seconds in 90 days
+                ) as cumulative_amount_90_days_recur
             from calculations
-            group by 1, 2, 3
+            group by transaction_date_day, person_id, total_amount, recur_amount
         ),
         base as
 
