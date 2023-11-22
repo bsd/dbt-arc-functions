@@ -21,12 +21,22 @@ Mass: Is not in Sustainer, Midlevel or Major.
 
 #}
     with
+        calculations as (
+            select
+                transaction_date_day,
+                person_id,
+                recurring,
+                sum(amount) as total_amount
+            from {{ ref(reference_name) }}
+            group by 1, 2, 3
+        ),
         day_person_rollup as (
             select
                 transaction_date_day,
                 person_id,
+                total_amount,
                 -- Calculate cumulative recur and 1x amount for the past 24 months
-                sum(amount) over (
+                sum(total_amount) over (
                     partition by person_id
                     order by unix_seconds(timestamp(transaction_date_day))  -- Convert date to Unix timestamp
                     range between 63113904 preceding and current row  -- 63,113,904 seconds in 24 months
@@ -35,15 +45,15 @@ Mass: Is not in Sustainer, Midlevel or Major.
                 case
                     when recurring = true
                     then
-                        sum(amount) over (
+                        sum(total_amount) over (
                             partition by person_id
                             order by unix_seconds(timestamp(transaction_date_day))  -- Convert date to Unix timestamp
                             range between 7776000 preceding and current row  -- unix seconds in 90 days
                         )
                     else 0
                 end as cumulative_amount_90_days_recur
-            from {{ref(reference_name)}}
-            group by 1, 2
+            from calculations
+            group by 1, 2, 3
         ),
         base as
 
