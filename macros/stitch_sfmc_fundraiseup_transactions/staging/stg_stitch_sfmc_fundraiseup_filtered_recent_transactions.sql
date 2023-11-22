@@ -26,13 +26,15 @@
         gift_type,
         appeal,
         case
-        when appeal like '%IM_DIG%' then safe_cast(1 as boolean) ----sustainer revenue falls into IM_DIG business unit only
-        else safe_cast(0 as boolean)
-       end as recurring,
+            when appeal like '%IM_DIG%'
+            then safe_cast(1 as boolean)  -- --sustainer revenue falls into IM_DIG business unit only
+            else safe_cast(0 as boolean)
+        end as recurring,
         case
-        when appeal like '%IM_DIG%' then safe_cast(1 as boolean) ----sustainer revenue falls into IM_DIG business unit only
-        else safe_cast(0 as boolean)
-       end as recurring_revenue,  -- required for transaction rollup
+            when appeal like '%IM_DIG%'
+            then safe_cast(1 as boolean)  -- --sustainer revenue falls into IM_DIG business unit only
+            else safe_cast(0 as boolean)
+        end as recurring_revenue,  -- required for transaction rollup
         safe_cast(null as string) as best_guess_message_id  -- required for transaction rollup
     from {{ ref(reference_name) }}
     where transaction_date > (select max(transaction_date) from bbcrm)

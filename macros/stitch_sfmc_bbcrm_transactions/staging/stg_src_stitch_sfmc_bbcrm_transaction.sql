@@ -24,8 +24,7 @@
                 revenue_platform,
                 sfmc_dateadded,
                 sfmc_updatedate
-            from
-                {{ source("src_uusa_bbcrm_historical","revenue_historical") }}
+            from {{ source("src_uusa_bbcrm_historical","revenue_historical") }}
 
         ),
 

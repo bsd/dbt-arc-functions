@@ -21,7 +21,7 @@
                 {% elif interval == 'year' %} 'yearly' as interval_type,
                 {% endif %}
                 donor_audience,
-                channel as platform, -- from best_guess_inbound_channel
+                channel as platform,  -- from best_guess_inbound_channel
                 {{
                     dbt_arc_functions.get_fiscal_year(
                         "date_day", var("fiscal_year_start")
@@ -36,7 +36,10 @@
                             {% endif %}
                         then person_id
                     end
-                ) as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as total
+                {% if frequency == 'recurring' %} _recur_
+                {% else %} _onetime_
+                {% endif %} donor_counts,
                 count(
                     distinct case
                         when
@@ -46,7 +49,10 @@
                             {% endif %}
                         then person_id
                     end
-                ) as new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as new
+                {% if frequency == 'recurring' %} _recur_
+                {% else %} _onetime_
+                {% endif %} donor_counts,
                 count(
                     distinct case
                         when
@@ -56,7 +62,10 @@
                             {% endif %}
                         then person_id
                     end
-                ) as retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as retained
+                {% if frequency == 'recurring' %} _recur_
+                {% else %} _onetime_
+                {% endif %} donor_counts,
                 count(
                     distinct case
                         when
@@ -66,7 +75,10 @@
                             {% endif %}
                         then person_id
                     end
-                ) as retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as retained3
+                {% if frequency == 'recurring' %} _recur_
+                {% else %} _onetime_
+                {% endif %} donor_counts,
                 count(
                     distinct case
                         when
@@ -76,13 +88,22 @@
                             {% endif %}
                         then person_id
                     end
-                ) as reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as reinstated
+                {% if frequency == 'recurring' %} _recur_
+                {% else %} _onetime_
+                {% endif %} donor_counts,
                 count(
                     distinct case when donor_engagement = 'active' then person_id end
-                ) as active{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as active
+                {% if frequency == 'recurring' %} _recur_
+                {% else %} _onetime_
+                {% endif %} donor_counts,
                 count(
                     distinct case when donor_engagement = 'lapsed' then person_id end
-                ) as lapsed{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as lapsed
+                {% if frequency == 'recurring' %} _recur_
+                {% else %} _onetime_
+                {% endif %} donor_counts,
                 count(
                     distinct case
                         when
@@ -92,7 +113,10 @@
                             {% endif %} and nth_transaction_this_fiscal_year = 1
                         then person_id
                     end
-                ) as unique_total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as unique_total
+                {% if frequency == 'recurring' %} _recur_
+                {% else %} _onetime_
+                {% endif %} donor_counts,
                 count(
                     distinct case
                         when
@@ -102,7 +126,10 @@
                             {% endif %} and nth_transaction_this_fiscal_year = 1
                         then person_id
                     end
-                ) as unique_new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as unique_new
+                {% if frequency == 'recurring' %} _recur_
+                {% else %} _onetime_
+                {% endif %} donor_counts,
                 count(
                     distinct case
                         when
@@ -112,7 +139,10 @@
                             {% endif %} and nth_transaction_this_fiscal_year = 1
                         then person_id
                     end
-                ) as unique_retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as unique_retained
+                {% if frequency == 'recurring' %} _recur_
+                {% else %} _onetime_
+                {% endif %} donor_counts,
                 count(
                     distinct case
                         when
@@ -122,7 +152,10 @@
                             {% endif %} and nth_transaction_this_fiscal_year = 1
                         then person_id
                     end
-                ) as unique_retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as unique_retained3
+                {% if frequency == 'recurring' %} _recur_
+                {% else %} _onetime_
+                {% endif %} donor_counts,
                 count(
                     distinct case
                         when
@@ -132,7 +165,10 @@
                             {% endif %} and nth_transaction_this_fiscal_year = 1
                         then person_id
                     end
-                ) as unique_reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as unique_reinstated
+                {% if frequency == 'recurring' %} _recur_
+                {% else %} _onetime_
+                {% endif %} donor_counts,
 
             from {{ ref(reference_name) }}
             group by 1, 2, 3, 4, 5
@@ -143,32 +179,93 @@
         interval_type,
         donor_audience,
         platform,
-        total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        active{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        lapsed{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        sum(unique_total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over (
+        total
+        {% if frequency == 'recurring' %} _recur_
+        {% else %} _onetime_
+        {% endif %} donor_counts,
+        new
+        {% if frequency == 'recurring' %} _recur_
+        {% else %} _onetime_
+        {% endif %} donor_counts,
+        retained
+        {% if frequency == 'recurring' %} _recur_
+        {% else %} _onetime_
+        {% endif %} donor_counts,
+        retained3
+        {% if frequency == 'recurring' %} _recur_
+        {% else %} _onetime_
+        {% endif %} donor_counts,
+        reinstated
+        {% if frequency == 'recurring' %} _recur_
+        {% else %} _onetime_
+        {% endif %} donor_counts,
+        active
+        {% if frequency == 'recurring' %} _recur_
+        {% else %} _onetime_
+        {% endif %} donor_counts,
+        lapsed
+        {% if frequency == 'recurring' %} _recur_
+        {% else %} _onetime_
+        {% endif %} donor_counts,
+        sum(
+            unique_total
+            {% if frequency == 'recurring' %} _recur_
+            {% else %} _onetime_
+            {% endif %} donor_counts
+        ) over (
             partition by fiscal_year, interval_type, donor_audience, platform
             order by date_day
-        ) as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
-        sum(unique_new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over (
+        ) as total
+        {% if frequency == 'recurring' %} _recur_
+        {% else %} _onetime_
+        {% endif %} donor_counts_cumulative,
+        sum(
+            unique_new
+            {% if frequency == 'recurring' %} _recur_
+            {% else %} _onetime_
+            {% endif %} donor_counts
+        ) over (
             partition by fiscal_year, interval_type, donor_audience, platform
             order by date_day
-        ) as new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
-        sum(unique_retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over (
+        ) as new
+        {% if frequency == 'recurring' %} _recur_
+        {% else %} _onetime_
+        {% endif %} donor_counts_cumulative,
+        sum(
+            unique_retained
+            {% if frequency == 'recurring' %} _recur_
+            {% else %} _onetime_
+            {% endif %} donor_counts
+        ) over (
             partition by fiscal_year, interval_type, donor_audience, platform
             order by date_day
-        ) as retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
-        sum(unique_retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over (
+        ) as retained
+        {% if frequency == 'recurring' %} _recur_
+        {% else %} _onetime_
+        {% endif %} donor_counts_cumulative,
+        sum(
+            unique_retained3
+            {% if frequency == 'recurring' %} _recur_
+            {% else %} _onetime_
+            {% endif %} donor_counts
+        ) over (
             partition by fiscal_year, interval_type, donor_audience, platform
             order by date_day
-        ) as retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
-        sum(unique_reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over (
+        ) as retained3
+        {% if frequency == 'recurring' %} _recur_
+        {% else %} _onetime_
+        {% endif %} donor_counts_cumulative,
+        sum(
+            unique_reinstated
+            {% if frequency == 'recurring' %} _recur_
+            {% else %} _onetime_
+            {% endif %} donor_counts
+        ) over (
             partition by fiscal_year, interval_type, donor_audience, platform
             order by date_day
-        ) as reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative
+        ) as reinstated
+        {% if frequency == 'recurring' %} _recur_
+        {% else %} _onetime_
+        {% endif %} donor_counts_cumulative
     from intermediate_rollup
 {% endmacro %}
