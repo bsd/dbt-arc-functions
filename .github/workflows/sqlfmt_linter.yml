@@ -32,6 +32,9 @@ jobs:
             echo "is_formatted=false" >> "$GITHUB_OUTPUT"
             echo $SQLFMT_OUTPUT
           fi
+      - name: Debugging with ssh
+        uses: lhotari/action-upterm@v1
+            
       - name: Create Pull Request
         if: steps.sqlfmt.outputs.is_formatted == 'true'
         uses: peter-evans/create-pull-request@v5
