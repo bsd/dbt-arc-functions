@@ -5,11 +5,11 @@
 
     {% if recur_status not in ["recurring", "onetime"] %}
         {{
-    exceptions.raise_compiler_error(
-        "'recur_status' argument to util_stg_stitch_sfmc_audience_transaction_rev_by_cohort must be 'recurring' or 'onetime', got "
-        ~ recur_status
-    )
-}}
+            exceptions.raise_compiler_error(
+                "'recur_status' argument to util_stg_stitch_sfmc_audience_transaction_rev_by_cohort must be 'recurring' or 'onetime', got "
+                ~ recur_status
+            )
+        }}
     {% endif %}
 
     {% set recur_suffix = "_recur" if recur_status == "recurring" else "" %}

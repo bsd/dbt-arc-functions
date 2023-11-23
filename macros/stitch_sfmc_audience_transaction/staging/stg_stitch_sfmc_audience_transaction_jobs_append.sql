@@ -2,14 +2,16 @@
     reference_name="stg_stitch_sfmc_audience_transactions_summary_unioned"
 ) %}
 
-    {{ config(
-    materialized='table',
-    partition_by={
-      "field": "transaction_date_day",
-      "data_type": "date",
-      "granularity": "day"
-    }
-)}}
+    {{
+        config(
+            materialized="table",
+            partition_by={
+                "field": "transaction_date_day",
+                "data_type": "date",
+                "granularity": "day",
+            },
+        )
+    }}
 
     {#
 
