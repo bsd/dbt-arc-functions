@@ -62,6 +62,7 @@
 
     select
         *,
+        PARSE_DATE('%b %Y', CONCAT(SPLIT(join_month_year_str, ' ')[OFFSET(0)], ' 01 ', SPLIT(join_month_year_str, ' ')[OFFSET(1)])) as join_month_year_date,
         case
             when activation_int < 10
             then 'Act' || lpad(cast(activation_int as string), 2, '0')
@@ -78,5 +79,9 @@
             order by activation_int asc
         ) as cumulative_amount
     from big_join
+    
+
+
+
 
 {% endmacro %}
