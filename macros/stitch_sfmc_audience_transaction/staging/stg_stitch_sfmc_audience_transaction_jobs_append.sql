@@ -27,7 +27,7 @@ Mass: Is not in Sustainer, Midlevel or Major.
             select
                 transaction_date_day,
                 person_id,
-                sum(amount) as total_amount, 
+                sum(amount) as total_amount,
                 sum(case when recurring = true then amount else 0 end) as recur_amount
             from {{ ref(reference_name) }}
             group by 1, 2
