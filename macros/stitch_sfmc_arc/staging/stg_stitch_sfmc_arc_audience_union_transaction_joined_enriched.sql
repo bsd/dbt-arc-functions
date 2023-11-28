@@ -35,6 +35,7 @@ with audience_union_transaction_joined as (
             )
         }} as fiscal_year,
         transaction_enriched.person_id,
+        transaction_enriched.transaction_id,
         audience_unioned.donor_audience,
         donor_engagement.donor_engagement,
         transaction_enriched.best_guess_inbound_channel as channel,
