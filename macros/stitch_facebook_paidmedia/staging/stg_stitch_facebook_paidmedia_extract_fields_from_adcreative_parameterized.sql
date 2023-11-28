@@ -83,7 +83,7 @@
                         }}
                     cross join
                         unnest(object_story_spec.link_data.child_attachments) as ca
-                    where or ca.value.link is not null
+                    where ca.value.link is not null
                 )
         ),
 
