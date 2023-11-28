@@ -157,7 +157,7 @@ from the jobs_append source.
     row_number() over (partition by person_id order by transaction_date_day) as row_number
      from {{ ref(jobs_append) }}
 
-)
+), 
 
 audience_calculated_alldates as (
      /*
