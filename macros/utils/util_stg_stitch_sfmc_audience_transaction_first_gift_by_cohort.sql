@@ -71,7 +71,7 @@
     first_gift_join_source,
     join_gift_size_string{{ recur_suffix }},
     first_gift_donor_audience,
-    DATE_ADD(join_month_year_date, INTERVAL month_diff_int MONTH) AS transaction_date
+    DATE_ADD(join_month_year_date, INTERVAL month_diff_int MONTH) AS transaction_date,
     month_diff_int,
     donors_in_cohort
     from cross_join
