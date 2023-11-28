@@ -15,7 +15,7 @@
         )
     }}
 
-    select
+    with base as (select
         transaction_id,
         person_id,
         transaction_date_day,
@@ -67,9 +67,20 @@
                 then '100+'
             end
         ) as gift_size_string_recur,
-        row_number() over (
+        row_number() over (partition_by transaction_id order by transaction_date_day) as row_number
+    from {{ ref(reference_name) }}
+    
+     )
+
+select *, 
+    row_number() over (
             partition by person_id order by transaction_date_day
         ) as gift_count
-    from {{ ref(reference_name) }}
+        from base
+        where row_number = 1
+
+
+
+
 
 {% endmacro %}
