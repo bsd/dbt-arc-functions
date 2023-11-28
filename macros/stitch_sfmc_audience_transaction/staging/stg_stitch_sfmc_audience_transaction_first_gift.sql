@@ -20,30 +20,31 @@ This macro finds the first gift that a person gave,
 and pulls attributes from that first gift. 
 
 */
-  WITH dedupe AS (
-    SELECT
-        person_id,
-        transaction_id,
-        transaction_date_day
-    FROM (
-        SELECT
-            person_id,
-            transaction_id,
-            transaction_date_day,
-            ROW_NUMBER() OVER (PARTITION BY person_id ORDER BY transaction_date_day) as rn
-        FROM {{ ref(audience) }}
-    ) subquery
-    WHERE rn = 1
-)
- , first_transactions as(
+    with
+        dedupe as (
+            select person_id, transaction_id, transaction_date_day
+            from
+                (
+                    select
+                        person_id,
+                        transaction_id,
+                        transaction_date_day,
+                        row_number() over (
+                            partition by person_id order by transaction_date_day
+                        ) as rn
+                    from {{ ref(audience) }}
+                ) subquery
+            where rn = 1
+        ),
+        first_transactions as (
 
-SELECT
-    person_id,
-    transaction_id,
-    transaction_date_day as first_transaction_date
-FROM dedupe
+            select
+                person_id,
+                transaction_id,
+                transaction_date_day as first_transaction_date
+            from dedupe
 
- )
+        )
 
     select
         first_transactions.person_id,
@@ -105,6 +106,6 @@ FROM dedupe
         audience.amount
     from first_transactions
     left join
-    {{ ref(audience) }} audience
-    on first_transactions.transaction_id = audience.transaction_id
+        {{ ref(audience) }} audience
+        on first_transactions.transaction_id = audience.transaction_id
 {% endmacro %}
