@@ -22,6 +22,7 @@
         cast(
             timestamp_trunc(base.transaction_date, day) as date
         ) as transaction_date_day,
+        -- deduping by transaction_id since there are multiple
         row_number() over (partition by transaction_id order by transaction_date asc) as row_number
     from base
     where
