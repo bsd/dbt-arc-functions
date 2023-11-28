@@ -38,7 +38,7 @@
                             {% else %} '{{ source_code_regex }}'
                             {% endif %}
                         ) as source_code,
-                        object_story_spec.link_data.link, as link,
+                        object_story_spec.link_data.link as link,
                     from
                         {{
                             source(
@@ -55,7 +55,7 @@
                             {% else %} '{{ source_code_regex }}'
                             {% endif %}
                         ) as source_code,
-                        object_story_spec.video_data.call_to_action.value.link, as link,
+                        object_story_spec.video_data.call_to_action.value.link as link,
                     from
                         {{
                             source(
