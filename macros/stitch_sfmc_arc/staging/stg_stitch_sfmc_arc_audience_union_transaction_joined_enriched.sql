@@ -190,7 +190,7 @@ making sure to finally dedupe on transaction_id.
             then 'audience_union_transaction_joined.donor_audience'
             else 'audience_calculated_alldates.donor_audience'
         end as source_column,
-        row_number() over (partition by transaction_id order by transaction_date_day asc) as row_number
+        row_number() over (partition by audience_union_transaction_joined.transaction_id order by audience_union_transaction_joined.transaction_date_day asc) as row_number
     from
         audience_union_transaction_joined
     left join
