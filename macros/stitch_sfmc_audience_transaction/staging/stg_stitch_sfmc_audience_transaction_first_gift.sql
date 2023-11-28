@@ -101,7 +101,7 @@ FROM dedupe
             end
         ) as join_gift_size_string_recur,
         audience.recurring as first_gift_recur_status,
-        audience.donor_audience as first_gift_donor_audience,
+        audience.coalesced_audience as first_gift_donor_audience,
         audience.amount
     from first_transactions
     left join
