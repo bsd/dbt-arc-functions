@@ -13,7 +13,7 @@
     with
         date_spine as (
             {% set min_date_query %}
-        SELECT min(start_date) FROM {{ ref(person_and_transaction) }}
+        SELECT min(date_day) FROM {{ ref(person_and_transaction) }}
             {% endset %}
             {% set min_date_results = run_query(min_date_query) %}
             {% if execute %}
@@ -22,7 +22,7 @@
             {% endif %}
 
             {% set max_date_query %}
-        SELECT max(end_date) FROM {{ ref(person_and_transaction) }}
+        SELECT max(date_day) FROM {{ ref(person_and_transaction) }}
             {% endset %}
             {% set max_date_results = run_query(max_date_query) %}
             {% if execute %}
