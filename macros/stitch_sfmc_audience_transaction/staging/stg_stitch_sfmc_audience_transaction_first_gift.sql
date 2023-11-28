@@ -47,7 +47,7 @@ FROM dedupe
 
     select
         first_transactions.person_id,
-        audience.transaction_id
+        audience.transaction_id,
         first_transactions.first_transaction_date,
         cast(
             timestamp_trunc(first_transactions.first_transaction_date, day) as date
