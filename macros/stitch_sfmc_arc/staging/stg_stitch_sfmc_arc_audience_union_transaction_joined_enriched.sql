@@ -146,12 +146,30 @@ or reactivated donors.
 ),
 
 
-audience_calculated_alldates as (
+audience_calculated_dedupe as (
     /*
-audience_calculated_alldates retrieves calculated audience data for all dates 
+audience_calculated_dedupe retrieves calculated audience data for all dates 
 from the jobs_append source.
 */
-    select transaction_date_day, person_id, donor_audience from {{ ref(jobs_append) }}
+    select transaction_date_day, 
+    person_id, 
+    donor_audience,
+    row_number() over (partition by person_id order by transaction_date_day) as row_number
+     from {{ ref(jobs_append) }}
+
+)
+
+audience_calculated_alldates as (
+     /*
+audience_calculated_alldates selects just one donor audience value for each person per day
+*/
+    select 
+    transaction_date_day,
+    person_id,
+    donor_audience
+    from audience_calculated_dedupe
+    where row_number = 1
+
 
 )
 
