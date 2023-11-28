@@ -70,7 +70,7 @@
                     end
                 ) as gift_size_string_recur,
                 row_number() over (
-                    partition_by transaction_id order by transaction_date_day
+                    partition by transaction_id order by transaction_date_day
                 ) as row_number
             from {{ ref(reference_name) }}
 
