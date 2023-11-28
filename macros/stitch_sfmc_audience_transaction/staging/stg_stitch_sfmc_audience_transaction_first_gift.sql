@@ -31,7 +31,7 @@ and pulls attributes from that first gift.
             transaction_id,
             transaction_date_day,
             ROW_NUMBER() OVER (PARTITION BY person_id ORDER BY transaction_date_day) as rn
-        FROM {{ ref('audience') }}
+        FROM {{ ref(audience) }}
     ) subquery
     WHERE rn = 1
 )
