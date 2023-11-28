@@ -100,7 +100,12 @@ FROM dedupe
                 then '100+'
             end
         ) as join_gift_size_string_recur,
-        audience.recurring as first_gift_recur_status,
+        /*
+        there are some cases with two transactions on their first gift date, and one of them is recurring
+        for these cases, we will defer to the audience value
+        */
+        case when audience.recurring = False and audience.coalesced_audience = 'Monthly' then True 
+        else audience.recurring end as first_gift_recur_status,
         audience.coalesced_audience as first_gift_donor_audience,
         audience.amount
     from first_transactions
