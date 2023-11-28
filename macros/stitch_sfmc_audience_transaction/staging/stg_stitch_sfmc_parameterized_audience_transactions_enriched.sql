@@ -24,7 +24,7 @@
                 cast(amount as float64) as amount,
                 initcap(inbound_channel) as inbound_channel,
                 initcap({{ best_guess_inbound_channel }}) as best_guess_inbound_channel,
-                recurring,  
+                recurring,
                 (
                     case
                         when amount between 0 and 25.99
