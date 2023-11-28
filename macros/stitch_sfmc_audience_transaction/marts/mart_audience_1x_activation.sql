@@ -79,9 +79,5 @@
             order by activation_int asc
         ) as cumulative_amount
     from big_join
-    
-
-
-
 
 {% endmacro %}

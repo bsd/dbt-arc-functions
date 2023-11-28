@@ -65,7 +65,6 @@
     use month_diff to create a transaction_date that corresponds with the 
     activation or retention month value
     */
-
     select
     join_month_year_str, 
     join_month_year_date,
@@ -86,7 +85,6 @@
 /*
 filter the whole table to only those transaction values occuring up to today's date
 */
-
 select 
 join_month_year_str,
 join_month_year_date,
