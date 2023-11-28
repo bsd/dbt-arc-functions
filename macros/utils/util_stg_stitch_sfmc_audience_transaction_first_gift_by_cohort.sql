@@ -71,11 +71,7 @@
     first_gift_join_source,
     join_gift_size_string{{ recur_suffix }},
     first_gift_donor_audience,
-    CASE 
-        WHEN EXTRACT(DAY FROM join_month_year_date) > EXTRACT(DAY FROM DATE_ADD(LAST_DAY(join_month_year_date, MONTH), INTERVAL month_diff_int MONTH))
-        THEN LAST_DAY(DATE_ADD(LAST_DAY(join_month_year_date, MONTH), INTERVAL month_diff_int MONTH))
-        ELSE DATE_ADD(DATE_ADD(DATE_TRUNC(join_month_year_date, MONTH), INTERVAL month_diff_int MONTH), INTERVAL EXTRACT(DAY FROM join_month_year_date) - 1 DAY)
-    END AS transaction_date,
+    DATE_ADD(join_month_year_date, INTERVAL month_diff_int MONTH) AS transaction_date
     month_diff_int,
     donors_in_cohort
     from cross_join
