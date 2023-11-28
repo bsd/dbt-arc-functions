@@ -24,18 +24,18 @@
                 cast(amount as float64) as amount,
                 initcap(inbound_channel) as inbound_channel,
                 initcap({{ best_guess_inbound_channel }}) as best_guess_inbound_channel,
-                recurring,
+                recurring,  
                 (
                     case
-                        when amount between 0 and 25.00
+                        when amount between 0 and 25.99
                         then '0-25'
-                        when amount between 26 and 100.00
+                        when amount between 26 and 100.99
                         then '26-100'
-                        when amount between 101 and 250.00
+                        when amount between 101 and 250.99
                         then '101-250'
-                        when amount between 251 and 500.00
+                        when amount between 251 and 500.99
                         then '251-500'
-                        when amount between 501 and 1000.00
+                        when amount between 501 and 1000.99
                         then '501-1000'
                         when amount between 1001 and 10000.99
                         then '1001-10000'
