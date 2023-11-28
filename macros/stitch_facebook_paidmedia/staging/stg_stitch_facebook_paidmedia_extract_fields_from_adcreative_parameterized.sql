@@ -10,32 +10,81 @@
 ) %}
     with
         adcreative_id_to_source_code as (
-            select distinct
-                id as adcreative_id,
-                regexp_extract(
-                    coalesce(
-                        link_url,
-                        object_story_spec.link_data.link,
-                        object_story_spec.video_data.call_to_action.value.link,
-                        ca.value.link
-                    ),
-                    {% if source_code_regex == "" %} null
-                    {% else %} '{{ source_code_regex }}'
-                    {% endif %}
-                ) as source_code,
-                coalesce(
-                    link_url,
-                    object_story_spec.link_data.link,
-                    object_story_spec.video_data.call_to_action.value.link,
-                    ca.value.link
-                ) as link,
-            from {{ source(source_adcreative_name, source_adcreative_table_name) }}
-            cross join unnest(object_story_spec.link_data.child_attachments) as ca
-            where
-                link_url is not null
-                or ca.value.link is not null
-                or object_story_spec.link_data.link is not null
-                or object_story_spec.video_data.call_to_action.value.link is not null
+            select distinct *
+            from
+                (
+                    select
+                        id as adcreative_id,
+                        regexp_extract(
+                            link_url,
+                            {% if source_code_regex == "" %} null
+                            {% else %} '{{ source_code_regex }}'
+                            {% endif %}
+                        ) as source_code,
+                        link_url as link,
+                    from
+                        {{
+                            source(
+                                source_adcreative_name, source_adcreative_table_name
+                            )
+                        }}
+                    where link_url is not null
+                    union all
+                    select
+                        id as adcreative_id,
+                        regexp_extract(
+                            object_story_spec.link_data.link,
+                            {% if source_code_regex == "" %} null
+                            {% else %} '{{ source_code_regex }}'
+                            {% endif %}
+                        ) as source_code,
+                        object_story_spec.link_data.link, as link,
+                    from
+                        {{
+                            source(
+                                source_adcreative_name, source_adcreative_table_name
+                            )
+                        }}
+                    where object_story_spec.link_data.link is not null
+                    union all
+                    select
+                        id as adcreative_id,
+                        regexp_extract(
+                            object_story_spec.video_data.call_to_action.value.link,
+                            {% if source_code_regex == "" %} null
+                            {% else %} '{{ source_code_regex }}'
+                            {% endif %}
+                        ) as source_code,
+                        object_story_spec.video_data.call_to_action.value.link, as link,
+                    from
+                        {{
+                            source(
+                                source_adcreative_name, source_adcreative_table_name
+                            )
+                        }}
+                    where
+                        object_story_spec.video_data.call_to_action.value.link
+                        is not null
+                    union all
+                    select
+                        id as adcreative_id,
+                        regexp_extract(
+                            ca.value.link,
+                            {% if source_code_regex == "" %} null
+                            {% else %} '{{ source_code_regex }}'
+                            {% endif %}
+                        ) as source_code,
+                        ca.value.link as link,
+                    from
+                        {{
+                            source(
+                                source_adcreative_name, source_adcreative_table_name
+                            )
+                        }}
+                    cross join
+                        unnest(object_story_spec.link_data.child_attachments) as ca
+                    where or ca.value.link is not null
+                )
         ),
 
         ad_id_to_adcreative_id as (
