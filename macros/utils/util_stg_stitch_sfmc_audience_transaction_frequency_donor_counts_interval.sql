@@ -122,10 +122,10 @@
                     end
                 ) as reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
                 count(
-                    distinct case when donor_engagement = 'active' then person_id end
+                    distinct case when person_and_transaction.donor_engagement = 'active' then person_id end
                 ) as active{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
                 count(
-                    distinct case when donor_engagement = 'lapsed' then person_id end
+                    distinct case when person_and_transaction.donor_engagement = 'lapsed' then person_id end
                 ) as lapsed{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
                 count(
                     distinct case
