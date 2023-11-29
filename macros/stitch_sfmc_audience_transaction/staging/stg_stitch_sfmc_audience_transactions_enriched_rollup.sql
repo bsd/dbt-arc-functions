@@ -5,7 +5,7 @@
     select
         transaction_date_day,
         person_id,
-        inbound_channel,
+        best_guess_inbound_channel as channel,
         recurring,
         (case when recurring is true then gift_size_string end) as recurring_gift_size,
         sum(amount) as amounts,

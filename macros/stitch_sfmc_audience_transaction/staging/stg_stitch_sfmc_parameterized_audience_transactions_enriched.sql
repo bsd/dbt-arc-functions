@@ -20,7 +20,7 @@
         person_id,
         transaction_date_day,
         cast(amount as float64) as amount,
-        initcap(inbound_channel) as inbound_channel,
+        appeal_business_unit,
         initcap({{ best_guess_inbound_channel }}) as best_guess_inbound_channel,
         recurring,
         (

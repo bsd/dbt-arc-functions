@@ -14,7 +14,6 @@
         coalesced_audience as donor_audience,
         donor_engagement,
         donor_loyalty,
-        channel_category,
         channel,
         gift_size_string,
         case
