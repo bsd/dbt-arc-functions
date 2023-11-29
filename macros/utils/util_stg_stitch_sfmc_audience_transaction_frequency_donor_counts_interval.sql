@@ -41,7 +41,8 @@
             select
                 date_day,
                 donor_audience,
-                channel as platform -- from best_guess_inbound_channel
+                channel as platform, -- from best_guess_inbound_channel
+                donor_engagement,
             from date_spine
             cross join (
                 select distinct donor_audience from {{ ref(person_and_transaction) }}
