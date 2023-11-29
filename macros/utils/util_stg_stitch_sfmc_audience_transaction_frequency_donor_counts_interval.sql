@@ -49,6 +49,9 @@
             cross join (
                 select distinct channel from {{ ref(person_and_transaction) }}
             )
+            cross join (
+                select distinct donor_engagement from {{ ref(person_and_transaction) }}
+            )
         ),
         intermediate_rollup as (
             select
@@ -178,6 +181,7 @@
             on date_spine_with_audience_and_platform.date_day = person_and_transaction.date_day
             and date_spine_with_audience_and_platform.donor_audience = person_and_transaction.donor_audience
             and date_spine_with_audience_and_platform.platform = person_and_transaction.channel
+            and date_spine_with_audience_and_platform.donor_engagement = person_and_transaction.donor_engagement
             group by 1, 2, 3, 4, 5
         )
     select
