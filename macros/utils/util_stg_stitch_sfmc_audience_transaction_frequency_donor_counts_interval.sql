@@ -60,8 +60,8 @@
                 {% elif interval == 'month' %} 'monthly' as interval_type,
                 {% elif interval == 'year' %} 'yearly' as interval_type,
                 {% endif %}
-                coalesce(date_spine_with_audience_and_platform.donor_audience, person_and_transaction.donor_audience),
-                coalesce(date_spine_with_audience_and_platform.platform, person_and_transaction.platform), -- from best_guess_inbound_channel
+                coalesce(date_spine_with_audience_and_platform.donor_audience, person_and_transaction.donor_audience) donor_audience,
+                coalesce(date_spine_with_audience_and_platform.platform, person_and_transaction.channel) platform, -- from best_guess_inbound_channel
                 {{
                     dbt_arc_functions.get_fiscal_year(
                         "coalesce(date_spine_with_audience_and_platform.date_day, person_and_transaction.date_day)", var("fiscal_year_start")
