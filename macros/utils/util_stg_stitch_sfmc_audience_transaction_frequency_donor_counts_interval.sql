@@ -42,16 +42,12 @@
                 date_day,
                 donor_audience,
                 channel as platform, -- from best_guess_inbound_channel
-                donor_engagement,
             from date_spine
             cross join (
                 select distinct donor_audience from {{ ref(person_and_transaction) }}
             )
             cross join (
                 select distinct channel from {{ ref(person_and_transaction) }}
-            )
-            cross join (
-                select distinct donor_engagement from {{ ref(person_and_transaction) }}
             )
         ),
         intermediate_rollup as (
@@ -178,11 +174,10 @@
                     end
                 ) as unique_reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
             from date_spine_with_audience_and_platform
-            left join {{ ref(person_and_transaction) }} person_and_transaction
+            full outer join {{ ref(person_and_transaction) }} person_and_transaction
             on date_spine_with_audience_and_platform.date_day = person_and_transaction.date_day
             and date_spine_with_audience_and_platform.donor_audience = person_and_transaction.donor_audience
             and date_spine_with_audience_and_platform.platform = person_and_transaction.channel
-            and date_spine_with_audience_and_platform.donor_engagement = person_and_transaction.donor_engagement
             group by 1, 2, 3, 4, 5
         )
     select
