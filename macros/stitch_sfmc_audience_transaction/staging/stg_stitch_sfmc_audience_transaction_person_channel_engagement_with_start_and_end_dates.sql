@@ -60,12 +60,12 @@
         ),
         donor_engagement_start_dates as (
             select
-                person_id, 'active' as donor_engagement, start_of_active as start_date,
+                person_id, channel, 'active' as donor_engagement, start_of_active as start_date,
             from start_of_active_and_lapsed
             where start_of_active is not null
             union all
             select
-                person_id, 'lapsed' as donor_engagement, start_of_lapsed as start_date,
+                person_id, channel, 'lapsed' as donor_engagement, start_of_lapsed as start_date,
             from start_of_active_and_lapsed
             where start_of_lapsed is not null
             order by 1, 3
