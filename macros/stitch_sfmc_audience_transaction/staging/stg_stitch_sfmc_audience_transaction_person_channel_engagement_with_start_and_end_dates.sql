@@ -47,7 +47,7 @@
             from
                 (
                     select distinct
-                        person_id, date(transaction_date) as transaction_date
+                        person_id, channel, date(transaction_date) as transaction_date
                     from
                         {{
                             ref(
