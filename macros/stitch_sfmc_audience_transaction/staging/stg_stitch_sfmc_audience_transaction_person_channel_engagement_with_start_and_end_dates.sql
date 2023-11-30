@@ -6,55 +6,55 @@
             select
                 person_id,
                 channel,
-                transaction_date,
+                transaction_date_day,
                 case
                     when
-                        lag(transaction_date) over (
-                            partition by person_id, channel order by transaction_date
+                        lag(transaction_date_day) over (
+                            partition by person_id, channel order by transaction_date_day
                         )
                         is null
-                    then transaction_date
+                    then transaction_date_day
                     when
                         date_diff(
-                            transaction_date,
-                            lag(transaction_date) over (
-                                partition by person_id, channel order by transaction_date
+                            transaction_date_day,
+                            lag(transaction_date_day) over (
+                                partition by person_id, channel order by transaction_date_day
                             ),
                             day
                         )
                         > 426
-                    then transaction_date
+                    then transaction_date_day
                 end as start_of_active,
                 case
                     when
                         date_diff(
-                            lead(transaction_date) over (
-                                partition by person_id, channel order by transaction_date
+                            lead(transaction_date_day) over (
+                                partition by person_id, channel order by transaction_date_day
                             ),
-                            transaction_date,
+                            transaction_date_day,
                             day
                         )
                         > 426
-                    then date_add(transaction_date, interval 426 day)
+                    then date_add(transaction_date_day, interval 426 day)
                     when
-                        lead(transaction_date) over (
-                            partition by person_id, channel order by transaction_date
+                        lead(transaction_date_day) over (
+                            partition by person_id, channel order by transaction_date_day
                         )
                         is null
-                        and date_diff(current_date, transaction_date, day) > 426
-                    then date_add(transaction_date, interval 426 day)
+                        and date_diff(current_date, transaction_date_day, day) > 426
+                    then date_add(transaction_date_day, interval 426 day)
                 end as start_of_lapsed
             from
                 (
                     select distinct
-                        person_id, channel, date(transaction_date) as transaction_date
+                        person_id, channel, date(transaction_date_day) as transaction_date_day
                     from
                         {{
                             ref(
                                 stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched
                             )
                         }}
-                ) as person_with_all_transaction_dates
+                ) as person_with_all_transaction_date_days
 
             order by 1, 2
         ),
