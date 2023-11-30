@@ -9,7 +9,8 @@
                 audience_transactions.transaction_date_day as date_day,
                 audience_transactions.fiscal_year,
                 audience_transactions.coalesced_audience as donor_audience,
-                lower(audience_transactions.channel) as channel,
+                -- appeal business unit as channel for ONLY this mart
+                audience_transactions.appeal_business_unit as channel,
                 sum(audience_transactions.amount) as total_revenue_actuals,
                 sum(audience_transactions.gift_count) as total_gifts_actuals
             from {{ ref(audience_transactions) }} as audience_transactions
