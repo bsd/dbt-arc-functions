@@ -72,12 +72,12 @@
         )
     select
         person_id,
-        donor_engagement,
         channel,
+        donor_engagement,
         start_date,
         lead(start_date) over (partition by person_id, channel order by start_date)
         - 1 as end_date
     from donor_engagement_start_dates
-    order by 1, 3
+    order by 1, 2, 4
 
 {% endmacro %}
