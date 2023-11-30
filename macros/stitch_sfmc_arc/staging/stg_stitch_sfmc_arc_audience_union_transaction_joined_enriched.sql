@@ -35,6 +35,7 @@ with audience_union_transaction_joined as (
             )
         }} as fiscal_year,
         transaction_enriched.person_id,
+        transaction_enriched.transaction_id,
         audience_unioned.donor_audience,
         donor_engagement.donor_engagement,
         transaction_enriched.best_guess_inbound_channel as channel,
@@ -145,25 +146,47 @@ or reactivated donors.
 ),
 
 
-audience_calculated_alldates as (
+audience_calculated_dedupe as (
     /*
-audience_calculated_alldates retrieves calculated audience data for all dates 
+audience_calculated_dedupe retrieves calculated audience data for all dates 
 from the jobs_append source.
 */
-    select transaction_date_day, person_id, donor_audience from {{ ref(jobs_append) }}
+    select transaction_date_day, 
+    person_id, 
+    donor_audience,
+    row_number() over (partition by person_id order by transaction_date_day) as row_number
+     from {{ ref(jobs_append) }}
+
+), 
+
+audience_calculated_alldates as (
+     /*
+audience_calculated_alldates selects just one donor audience value for each person per day
+*/
+    select 
+    transaction_date_day,
+    person_id,
+    donor_audience
+    from audience_calculated_dedupe
+    where row_number = 1
+
 
 )
 
+, dedupe as (
+
 /*
-In the final query, the code selects data from audience_union_transaction_joined, 
+the code selects data from audience_union_transaction_joined, 
 left joins it with audience_calculated_alldates and arc_donor_loyalty, 
 and creates a consolidated dataset. 
 This dataset includes various attributes related to donors, 
 such as transaction details, audience information, engagement data, 
 loyalty status, and more.
+making sure to finally dedupe on transaction_id.
 */
     select
         audience_union_transaction_joined.transaction_date_day,
+        audience_union_transaction_joined.transaction_id,
         audience_union_transaction_joined.fiscal_year,
         audience_union_transaction_joined.person_id,
         audience_union_transaction_joined.donor_audience as audience_unioned,
@@ -184,7 +207,8 @@ loyalty status, and more.
             when audience_union_transaction_joined.donor_audience is not null
             then 'audience_union_transaction_joined.donor_audience'
             else 'audience_calculated_alldates.donor_audience'
-        end as source_column
+        end as source_column,
+        row_number() over (partition by audience_union_transaction_joined.transaction_id order by audience_union_transaction_joined.transaction_date_day asc) as row_number
     from
         audience_union_transaction_joined
     left join
@@ -198,5 +222,10 @@ loyalty status, and more.
         on audience_union_transaction_joined.person_id = arc_donor_loyalty.person_id
         and audience_union_transaction_joined.transaction_date_day
         between arc_donor_loyalty.start_date and arc_donor_loyalty.end_date
+
+)
+
+select * from dedupe 
+where row_number = 1
 
 {% endmacro %}

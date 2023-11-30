@@ -13,20 +13,32 @@
         )
     }}
 
-    with base as ({{ dbt_utils.union_relations(relations) }})
+    with
+        base as ({{ dbt_utils.union_relations(relations) }}),
+        dedupe as (
 
-    select
-        base.*,
-        cast(
-            timestamp_trunc(base.transaction_date, day) as date
-        ) as transaction_date_day
-    from base
-    where
-        transaction_date is not null
-        and person_id is not null
-        and amount > 0
-        -- and only the last 10 years of transactions because we won't go further for
-        -- audience data
-        and transaction_date >= date_sub(current_date(), interval 10 year)
+            select
+                base.*,
+                cast(
+                    timestamp_trunc(base.transaction_date, day) as date
+                ) as transaction_date_day,
+                -- deduping by transaction_id since there are multiple
+                row_number() over (
+                    partition by transaction_id order by transaction_date asc
+                ) as row_number
+            from base
+            where
+                transaction_date is not null
+                and person_id is not null
+                and amount > 0
+                -- and only the last 10 years of transactions because we won't go
+                -- further for
+                -- audience data
+                and transaction_date >= date_sub(current_date(), interval 10 year)
+        )
+
+    select *
+    from dedupe
+    where row_number = 1
 
 {% endmacro %}

@@ -32,6 +32,7 @@
                     first_gift_explode.month_diff_int,
                     second_gift_by_cohort.month_diff_int
                 ) activation_int,
+                first_gift_explode.join_month_year_date,
                 rev_by_cohort.total_amount,
                 first_gift_explode.donors_in_cohort,
                 second_gift_by_cohort.donors_in_activation as donors_activated
