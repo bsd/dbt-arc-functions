@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_person_channel_engagement_with_start_and_end_dates(
-    stg_stitch_sfmc_audience_transactions_summary_unioned="stg_stitch_sfmc_audience_transactions_summary_unioned") %}
+    stg_stitch_sfmc_audience_transactions_summary_unioned="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched") %}
 
     with
         start_of_active_and_lapsed as (
