@@ -9,11 +9,13 @@ models:
         description: Date of the record
       - name: channel
         data_type: string
-        description: The channel through which the donor was acquired or made their first donation.
+        description: The channel through which the donor was acquired or made their
+          first donation.
       - name: active_donors
         data_type: integer
-        description: The number of donors who were active within the last 13 months in this channel on this date.
+        description: The number of donors who were active within the last 13 months
+          in this channel on this date.
       - name: lapsed_donors
         data_type: integer
-        description: The number of donors who were not active within the last 13 months in this channel on this date.
-
+        description: The number of donors who were not active within the last 13 months
+          in this channel on this date.
