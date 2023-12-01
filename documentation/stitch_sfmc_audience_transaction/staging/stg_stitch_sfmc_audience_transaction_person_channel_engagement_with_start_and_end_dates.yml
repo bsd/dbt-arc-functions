@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_audience_transaction_person_engagement_with_start_and_end_dates
+  - name: stg_stitch_sfmc_audience_transaction_person_channel_engagement_with_start_and_end_dates
     description: ''
     columns:
       - name: person_id
