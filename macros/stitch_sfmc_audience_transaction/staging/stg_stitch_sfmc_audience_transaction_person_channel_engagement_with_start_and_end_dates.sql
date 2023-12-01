@@ -1,5 +1,6 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_person_channel_engagement_with_start_and_end_dates(
-    stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched") %}
+    stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched"
+) %}
 
     with
         start_of_active_and_lapsed as (
@@ -10,7 +11,8 @@
                 case
                     when
                         lag(transaction_date_day) over (
-                            partition by person_id, channel order by transaction_date_day
+                            partition by person_id, channel
+                            order by transaction_date_day
                         )
                         is null
                     then transaction_date_day
@@ -18,7 +20,8 @@
                         date_diff(
                             transaction_date_day,
                             lag(transaction_date_day) over (
-                                partition by person_id, channel order by transaction_date_day
+                                partition by person_id, channel
+                                order by transaction_date_day
                             ),
                             day
                         )
@@ -29,7 +32,8 @@
                     when
                         date_diff(
                             lead(transaction_date_day) over (
-                                partition by person_id, channel order by transaction_date_day
+                                partition by person_id, channel
+                                order by transaction_date_day
                             ),
                             transaction_date_day,
                             day
@@ -38,7 +42,8 @@
                     then date_add(transaction_date_day, interval 426 day)
                     when
                         lead(transaction_date_day) over (
-                            partition by person_id, channel order by transaction_date_day
+                            partition by person_id, channel
+                            order by transaction_date_day
                         )
                         is null
                         and date_diff(current_date, transaction_date_day, day) > 426
@@ -47,7 +52,9 @@
             from
                 (
                     select distinct
-                        person_id, channel, date(transaction_date_day) as transaction_date_day
+                        person_id,
+                        channel,
+                        date(transaction_date_day) as transaction_date_day
                     from
                         {{
                             ref(
@@ -60,12 +67,18 @@
         ),
         donor_engagement_start_dates as (
             select
-                person_id, channel, 'active' as donor_engagement, start_of_active as start_date,
+                person_id,
+                channel,
+                'active' as donor_engagement,
+                start_of_active as start_date,
             from start_of_active_and_lapsed
             where start_of_active is not null
             union all
             select
-                person_id, channel, 'lapsed' as donor_engagement, start_of_lapsed as start_date,
+                person_id,
+                channel,
+                'lapsed' as donor_engagement,
+                start_of_lapsed as start_date,
             from start_of_active_and_lapsed
             where start_of_lapsed is not null
             order by 1, 3
