@@ -35,7 +35,7 @@
         sum(amount) as total_revenue,
         sum(gift_count) as total_gifts
     from {{ ref(audience_transactions) }}
-    where recurring = false and coalesced_audience != 'Monthly'
+    where recurring = false
     group by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
     order by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
