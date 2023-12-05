@@ -24,8 +24,8 @@
                 channel,
                 person_id,
                 amount,
-                sum(gift_count) over (partition by person_id
-                    order by transaction_date_day
+                sum(gift_count) over (
+                    partition by person_id order by transaction_date_day
                 ) as cumulative_gift_count
             from base
             group by
@@ -35,24 +35,24 @@
                 person_id,
                 amount,
                 gift_count
+        ),
+        add_string as (
+            select
+                *,
+                case
+                    when cumulative_gift_count < 6
+                    then "less than 6"
+                    when cumulative_gift_count between 6 and 12
+                    then "6-12"
+                    when cumulative_gift_count between 13 and 24
+                    then "13-24"
+                    when cumulative_gift_count between 25 and 36
+                    then "25-36"
+                    else "37+"
+                end as recurring_gift_cumulative_str
+            from cumulative_base
+
         )
-
-    , add_string as (
-        select *,
-        case
-            when cumulative_gift_count < 6
-            then "less than 6"
-            when cumulative_gift_count between 6 and 12
-            then "6-12"
-            when cumulative_gift_count between 13 and 24
-            then "13-24"
-            when cumulative_gift_count between 25 and 36
-            then "25-36"
-            else "37+"
-        end as recurring_gift_cumulative_str
-        from cumulative_base
-
-    )
 
     select
         transaction_date_day,
