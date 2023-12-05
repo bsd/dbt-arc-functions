@@ -7,7 +7,7 @@ with base as (
         extract(year from transaction_date_day) as transaction_date_year,
         extract(month from transaction_date_day) as transaction_date_month,
         transaction_date_day as transaction_date_day,
-        SUM(gift_count) OVER (ORDER BY transaction_date_day) AS cumulative_gift_count
+        SUM(gift_count) OVER (ORDER BY transaction_date_day) AS cumulative_gift_count,
         count(distinct person_id) as donors,
         sum(amount) as summed_amount,
     from {{ ref(reference_name) }}
@@ -32,7 +32,7 @@ case
     then "6-12"
     when cumulative_gift_count between 13 and 24
     then "13-24"
-    when cumulatiove_gift_count between 25 and 36
+    when cumulative_gift_count between 25 and 36
     then "25-36"
     else "37+"
 end as recurring_gift_cumulative_str
