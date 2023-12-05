@@ -10,7 +10,7 @@
         coalesce(
             onetime_donor_counts.donor_audience, audience_budget.donor_audience
         ) as donor_audience,
-        coalesce(onetime_donor_counts.platform, audience_budget.join_source) as channel,
+        coalesce(initcap(onetime_donor_counts.platform), initcap(audience_budget.join_source)) as channel,
         onetime_donor_counts.total_onetime_donor_counts as total_onetime_donor_counts,
         onetime_donor_counts.new_onetime_donor_counts as new_onetime_donor_counts,
         onetime_donor_counts.retained_onetime_donor_counts
