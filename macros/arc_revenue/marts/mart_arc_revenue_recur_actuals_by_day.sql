@@ -14,7 +14,7 @@
         transactions.transaction_date_day,
         transactions.donor_loyalty,
         transactions.coalesced_audience as donor_audience,
-        transactions.channel as channel,
+        initcap(transactions.channel) as channel,
         person.join_gift_size_string_recur as join_amount_string_recur,
         case
             person.join_gift_size_string_recur
