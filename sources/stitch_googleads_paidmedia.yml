@@ -7,7 +7,7 @@ sources:
     loader: stitch - sftp
     schema : src_stitch
     tables:
-      - name: ad_group
+      - name: ad_groups
         description: ""
         columns:
           - name: effective_target_cpa_micros
@@ -80,7 +80,7 @@ sources:
             data_type: int64
             description: ""
 
-      - name: campaign
+      - name: campaigns
         description: ""
         columns:
           - name: network_settings
@@ -183,7 +183,7 @@ sources:
             data_type: record
             description: ""
 
-      - name: google_ad
+      - name: ad
         description: ""
         columns:
           - name: expanded_dynamic_search_ad
@@ -256,7 +256,7 @@ sources:
             data_type: record
             description: ""
 
-      - name: google_ad_performance
+      - name: ad_performance_report
         description: ""
         columns:
           - name: ad_group_name
