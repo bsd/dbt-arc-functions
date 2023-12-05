@@ -24,7 +24,7 @@
                 channel,
                 person_id,
                 amount,
-                sum(gift_count) over (
+                sum(gift_count) over (partition by person_id
                     order by transaction_date_day
                 ) as cumulative_gift_count
             from base
