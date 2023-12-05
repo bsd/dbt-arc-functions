@@ -14,7 +14,7 @@
         coalesced_audience as donor_audience,
         donor_engagement,
         donor_loyalty,
-        channel,
+        initcap(channel) as channel,
         gift_size_string,
         case
             when gift_size_string = "0-25"
