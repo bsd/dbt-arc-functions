@@ -26,7 +26,7 @@ with base as (
     amount,
     sum(gift_count) OVER (ORDER BY transaction_date_day) AS cumulative_gift_count
     from base
-    group by 1, 2, 3, 4, 5
+    group by 1, 2
 )
 
 select 
