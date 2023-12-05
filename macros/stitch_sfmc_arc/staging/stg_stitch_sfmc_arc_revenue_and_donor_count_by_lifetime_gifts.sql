@@ -8,7 +8,7 @@
                 transaction_date_day as transaction_date_day,
                 coalesced_audience as donor_audience,
                 channel,
-                person_id
+                person_id,
                 sum(gift_count) as gift_count,
                 sum(amount) as amount
             from {{ ref(reference_name) }}
