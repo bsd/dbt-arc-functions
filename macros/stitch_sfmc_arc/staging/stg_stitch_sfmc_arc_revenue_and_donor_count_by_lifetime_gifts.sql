@@ -4,27 +4,38 @@
 
 with base as (
     select
-        extract(year from transaction_date_day) as transaction_date_year,
-        extract(month from transaction_date_day) as transaction_date_month,
         transaction_date_day as transaction_date_day,
-        SUM(gift_count) OVER (ORDER BY transaction_date_day) AS cumulative_gift_count,
+        coalesced_audience as donor_audience,
+        channel,
+        SUM(gift_count) as gift_count,
         count(distinct person_id) as donors,
-        sum(amount) as summed_amount
+        sum(amount) as amount
     from {{ ref(reference_name) }}
     where recurring = true
-    group by 1, 2, 3, 4
-    order by 1, 2, 3, 4
+    group by 1, 2, 3
+    order by 1, 2, 3
 
 )
 
+, cumulative_base as (
+    select 
+    transaction_date_day,
+    new_donor_audience,
+    channel,
+    donors
+    amount,
+    sum(gift_count) OVER (ORDER BY transaction_date_day) AS cumulative_gift_count
+    from base
+    group by 1, 2, 3, 4, 5
+)
+
 select 
-transaction_date_year,
-transaction_date_month,
 transaction_date_day,
-cumulative_gift_count,
+new_donor_audience,
+channel,
 donors,
 summed_amount,
--- create cumulative value for gift count
+cumulative_gift_count,
 case
     when cumulative_gift_count < 6
     then "less than 6"
