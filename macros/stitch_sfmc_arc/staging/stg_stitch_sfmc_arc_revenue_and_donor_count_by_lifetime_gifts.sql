@@ -32,7 +32,7 @@
                 transaction_date_day,
                 donor_audience,
                 channel,
-                person_id
+                person_id,
                 amount,
                 gift_count
         )
