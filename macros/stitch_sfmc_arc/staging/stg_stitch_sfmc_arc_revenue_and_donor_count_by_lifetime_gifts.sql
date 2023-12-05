@@ -9,7 +9,7 @@ with base as (
         transaction_date_day as transaction_date_day,
         SUM(gift_count) OVER (ORDER BY transaction_date_day) AS cumulative_gift_count,
         count(distinct person_id) as donors,
-        sum(amount) as summed_amount,
+        sum(amount) as summed_amount
     from {{ ref(reference_name) }}
     where recurring = true
     group by 1, 2, 3, 4
