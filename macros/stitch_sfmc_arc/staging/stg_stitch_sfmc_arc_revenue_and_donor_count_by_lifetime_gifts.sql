@@ -8,13 +8,13 @@
                 transaction_date_day as transaction_date_day,
                 coalesced_audience as donor_audience,
                 channel,
+                person_id
                 sum(gift_count) as gift_count,
-                count(distinct person_id) as donors,
                 sum(amount) as amount
             from {{ ref(reference_name) }}
             where recurring = true
-            group by 1, 2, 3
-            order by 1, 2, 3
+            group by 1, 2, 3, 4
+            order by 1, 2, 3, 4
 
         ),
         cumulative_base as (
@@ -22,7 +22,7 @@
                 transaction_date_day,
                 donor_audience,
                 channel,
-                donors,
+                person_id,
                 amount,
                 sum(gift_count) over (
                     order by transaction_date_day
@@ -32,18 +32,13 @@
                 transaction_date_day,
                 donor_audience,
                 channel,
-                donors,
+                person_id
                 amount,
                 gift_count
         )
 
-    select
-        transaction_date_day,
-        donor_audience,
-        channel,
-        donors,
-        amount,
-        cumulative_gift_count,
+    , add_string as (
+        select *,
         case
             when cumulative_gift_count < 6
             then "less than 6"
@@ -55,6 +50,18 @@
             then "25-36"
             else "37+"
         end as recurring_gift_cumulative_str
-    from cumulative_base
+        from cumulative_base
+
+    )
+
+    select
+        transaction_date_day,
+        donor_audience,
+        channel,
+        recurring_gift_cumulative_str,
+        count(distinct person_id) as donors,
+        sum(amount) as amount
+    from add_string
+    group by 1, 2, 3, 4
 
 {% endmacro %}
