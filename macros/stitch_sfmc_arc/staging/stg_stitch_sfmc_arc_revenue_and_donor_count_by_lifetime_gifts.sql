@@ -20,7 +20,7 @@ with base as (
 , cumulative_base as (
     select 
     transaction_date_day,
-    new_donor_audience,
+    donor_audience,
     channel,
     donors
     amount,
@@ -31,7 +31,7 @@ with base as (
 
 select 
 transaction_date_day,
-new_donor_audience,
+donor_audience,
 channel,
 donors,
 summed_amount,
