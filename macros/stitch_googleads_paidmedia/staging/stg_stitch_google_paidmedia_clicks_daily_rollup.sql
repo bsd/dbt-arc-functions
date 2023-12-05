@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_google_paidmedia_clicks_daily_rollup(
-    source_name="src_stitch_googleads_paidmedia", source_table="google_ad_performance"
+    source_name="src_stitch_googleads_paidmedia", source_table="ad_performance_report"
 ) %}
 Select 
 id as message_id,
