@@ -22,11 +22,11 @@ with base as (
     transaction_date_day,
     donor_audience,
     channel,
-    donors
+    donors,
     amount,
     sum(gift_count) OVER (ORDER BY transaction_date_day) AS cumulative_gift_count
     from base
-    group by 1, 2, 3
+    group by transaction_date_day, donor_audience, channel, donors, amount, gift_count
 )
 
 select 
@@ -34,7 +34,7 @@ transaction_date_day,
 donor_audience,
 channel,
 donors,
-summed_amount,
+amount,
 cumulative_gift_count,
 case
     when cumulative_gift_count < 6
@@ -47,6 +47,6 @@ case
     then "25-36"
     else "37+"
 end as recurring_gift_cumulative_str
-from base
+from cumulative_base
 
 {% endmacro %}
