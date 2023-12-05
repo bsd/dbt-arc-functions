@@ -11,8 +11,8 @@
                 audience_transactions.coalesced_audience as donor_audience,
                 case
                     when recurring = true
-                    then audience_transactions.appeal_business_unit
-                    else audience_transactions.channel
+                    then initcap(audience_transactions.appeal_business_unit)
+                    else initcap(audience_transactions.channel)
                 end as channel,
                 sum(audience_transactions.amount) as total_revenue_actuals,
                 sum(audience_transactions.gift_count) as total_gifts_actuals

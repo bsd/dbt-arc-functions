@@ -10,7 +10,7 @@
         coalesce(
             audience_budget.donor_audience, recur_donor_counts.donor_audience
         ) as donor_audience,
-        coalesce(recur_donor_counts.platform, audience_budget.join_source) as platform,
+        coalesce(initcap(recur_donor_counts.platform), initcap(audience_budget.join_source)) as channel,
         recur_donor_counts.total_recur_donor_counts as total_recur_donor_counts,
         recur_donor_counts.new_recur_donor_counts as new_recur_donor_counts,
         recur_donor_counts.retained_recur_donor_counts as retained_recur_donor_counts,
