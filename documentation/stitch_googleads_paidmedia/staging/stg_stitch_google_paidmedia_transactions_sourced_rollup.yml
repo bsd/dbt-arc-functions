@@ -1,0 +1,57 @@
+---
+version: 2
+models:
+  - name: stg_stitch_google_paidmedia_transactions_sourced_rollup
+    description: ''
+    columns:
+      - name: message_id
+        data_type: string
+        description: the id of the ad
+      - name: date_timestamp
+        data_type: timestamp
+        description: the date in timestamp format
+      - name: total_revenue
+        data_type: int64
+        description: the total amount of revenue for that ad
+      - name: total_gifts
+        data_type: int64
+        description: the total number of gifts for that ad
+      - name: total_donors
+        data_type: int64
+        description: the total number of donors
+      - name: one_time_revenue
+        data_type: int64
+        description: the total amount of non recurring revenue for that ad
+      - name: one_time_gifts
+        data_type: int64
+        description: total amount of non recurring donors
+      - name: new_monthly_revenue
+        data_type: int64
+        description: new recurring revenue amount for that ad
+      - name: new_monthly_gifts
+        data_type: int64
+        description: new recurring gits for that ad
+      - name: total_monthly_revenue
+        data_type: int64
+        description: total recurring revenue for that ad
+      - name: total_monthly_gifts
+        data_type: int64
+        description: total amount of recurring gifts for that ad
+      - name: objective
+        data_type: string
+        description: the objective of the ad
+      - name: campaign
+        data_type: string
+        description: the name of the campaign
+      - name: campaign_label
+        data_type: string
+        description: the label for the campaign
+      - name: audience
+        data_type: string
+        description: the audience value target for the campaign
+      - name: appeal
+        data_type: string
+        description: the appeal for the campaign
+      - name: source_code
+        data_type: string
+        description: the source code for the campaign
