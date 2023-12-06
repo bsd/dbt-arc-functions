@@ -3,7 +3,7 @@
 ) %}
 Select 
 id as message_id,
-date as date,
+cast(date as timestamp) as date,
 sum(clicks) as clicks
 from {{ source(source_name,source_table) }}
 group by 1,2
