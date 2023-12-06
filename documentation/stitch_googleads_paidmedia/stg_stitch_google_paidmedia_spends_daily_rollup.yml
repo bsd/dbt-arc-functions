@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_stitch_google_paidmedia_spends_daily_rollup
+    description: ""
+    columns:
+      - name: message_id
+        data_type: string
+        description: "the id of the ad"
+
+      - name: date_timestamp
+        data_type: timestamp
+        description: "the date in timestamp format"
+
+      - name: spend_amount
+        data_type: float64
+        description: "the amount of ad spend rolled up by day"
+

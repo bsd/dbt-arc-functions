@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_stitch_google_paidmedia_clicks_daily_rollup
+    description: ""
+    columns:
+      - name: message_id
+        data_type: string
+        description: "The id of the ad"
+
+      - name: date_timestamp
+        data_type: timestamp
+        description: "The date in timestamp format"
+
+      - name: total_clicks
+        data_type: int64
+        description: "Total clicks"
+
+      - name: unique_clicks
+        data_type: int64
+        description: "unique clicks"
+
