@@ -5,6 +5,6 @@
 Select
 id as message_id,
 date as date_timestamp,
-cast(null as string) as subscribes
+cast(null as INT64) as subscribes
 from {{ source(source_name, source_table ) }}
 {% endmacro %}
