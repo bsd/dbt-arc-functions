@@ -4,7 +4,7 @@
 
 Select
 id as message_id,
-date as date,
+date as date_timestamp,
 cast(null as string) as subscribes
 from {{ source(source_name, source_table ) }}
 {% endmacro %}
