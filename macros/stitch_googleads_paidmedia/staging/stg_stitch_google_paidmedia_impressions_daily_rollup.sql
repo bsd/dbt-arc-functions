@@ -2,9 +2,10 @@
     source_name="src_stitch_googleads_paidmedia", source_table="ad_performance_report"
 ) %}
 Select 
-id as message_id,
+cast(id as string) as message_id,
 cast(date as timestamp) as date_timestamp,
-sum(impressions) as impressions
+sum(impressions) as total_impressions,
+sum(impressions) as unique_impressions
 from {{ source(source_name, source_table ) }}
 group by 1,2 
 {% endmacro %}

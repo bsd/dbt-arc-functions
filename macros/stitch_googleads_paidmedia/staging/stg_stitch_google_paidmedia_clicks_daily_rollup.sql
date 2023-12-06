@@ -2,7 +2,7 @@
     source_name="src_stitch_googleads_paidmedia", source_table="ad_performance_report"
 ) %}
 Select 
-id as message_id,
+cast(id as string) as message_id,
 cast(date as timestamp) as date_timestamp,
 sum(clicks) as total_clicks,
 sum(clicks) as unique_clicks

@@ -3,7 +3,7 @@
 ) %}
 select distinct
     campaign_id as campaign_id,
-    id as message_id,
+    cast(id as string) as message_id,
     'search' as channel_category,
     'google_ad' as channel,
     cast(null as string) as channel_type,

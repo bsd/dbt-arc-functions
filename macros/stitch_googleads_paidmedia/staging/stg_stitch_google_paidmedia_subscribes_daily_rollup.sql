@@ -3,7 +3,7 @@
 ) %}
 
 Select
-id as message_id,
+cast(id as string) as message_id,
 cast(date as timestamp) as date_timestamp,
 cast(null as INT64) as subscribes
 from {{ source(source_name, source_table ) }}
