@@ -3,7 +3,7 @@
 ) %}
 Select 
 id as message_id,
-cast(date as timestamp) as date,
+cast(date as timestamp) as date_timestamp,
 sum(clicks) as total_clicks,
 sum(clicks) as unique_clicks
 from {{ source(source_name,source_table) }}
