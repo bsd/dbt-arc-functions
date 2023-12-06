@@ -8,7 +8,7 @@
             select
                 audience_transactions.transaction_date_day as date_day,
                 audience_transactions.coalesced_audience as donor_audience,
-                lower(audience_transactions.channel) as channel,
+                initcap(audience_transactions.channel) as channel,
                 audience_transactions.recurring as recur_flag,
                 audience_transactions.fiscal_year,
                 sum(audience_transactions.amount) as total_revenue_actuals,
