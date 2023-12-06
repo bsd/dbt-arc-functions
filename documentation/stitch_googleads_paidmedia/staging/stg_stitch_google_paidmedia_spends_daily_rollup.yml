@@ -12,4 +12,4 @@ models:
         description: the date in timestamp format
       - name: spend_amount
         data_type: float64
-        description: the amount of ad spend rolled up by day
+        description: the amount of ad spend rolled up by day divided by 1000000
