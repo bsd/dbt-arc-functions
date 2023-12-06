@@ -4,7 +4,7 @@
 ) %}
 Select 
 id as message_id,
-cast (date timestamp) as date_timestamp,
+cast(date as timestamp) as date_timestamp,
 (cost_micros/1000000) as spend
 from {{ source(source_name, source_table ) }}
 

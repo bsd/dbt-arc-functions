@@ -3,7 +3,7 @@
 ) %}
 Select 
 id as message_id,
-cast (date timestamp) as date_timestamp,
+cast(date as timestamp) as date_timestamp,
 sum(impressions) as impressions
 from {{ source(source_name, source_table ) }}
 group by 1,2 

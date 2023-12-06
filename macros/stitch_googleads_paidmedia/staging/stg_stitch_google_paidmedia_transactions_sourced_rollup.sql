@@ -4,7 +4,7 @@
 ) %}
    select
         id as message_id,
-        cast (date timestamp) as date_timestamp,,
+        cast(date as timestamp) as date_timestamp,
         cast(null as int) as total_revenue,
         cast(null as int) as total_gifts,
         cast(null as int) as total_donors,
