@@ -1,22 +1,18 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_google_paidmedia_impressions_daily_rollup
-    description: ""
+    description: ''
     columns:
       - name: message_id
         data_type: string
-        description: "THe id of the ad "
-
+        description: 'THe id of the ad '
       - name: date_timestamp
         data_type: timestamp
-        description: "the date in timestamp format"
-
+        description: the date in timestamp format
       - name: total_impressions
         data_type: int64
-        description: "total impressions"
-
+        description: total impressions
       - name: unique_impressions
         data_type: int64
-        description: "unique impressions"
-
+        description: unique impressions
