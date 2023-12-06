@@ -1,18 +1,15 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_google_paidmedia_subscribes_daily_rollup
-    description: ""
+    description: ''
     columns:
       - name: message_id
         data_type: string
-        description: "the id of the ad"
-
+        description: the id of the ad
       - name: date_timestamp
         data_type: timestamp
-        description: "the date in timestamp format"
-
+        description: the date in timestamp format
       - name: subscribes
         data_type: int64
-        description: "the number of subscribes for the ad "
-
+        description: 'the number of subscribes for the ad '
