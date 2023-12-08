@@ -6,12 +6,12 @@ models:
     tests:
       - dbt_expectations.expect_multicolumn_sum_to_equal:
           column_list: ["active_onetime_donor_counts", "lapsed_onetime_donor_counts"]
-          sum_total: "total_onetime_donor_counts"
+          sum_total: "sum(total_onetime_donor_counts)"
           group_by: ["date_day", "interval_type", "donor_audience", "channel"] 
           severity: warn
       - dbt_expectations.expect_multicolumn_sum_to_equal:
           column_list: ["new_onetime_donor_counts", "retained_onetime_donor_counts", "retained3_onetime_donor_counts"]
-          sum_total: "total_onetime_donor_counts"
+          sum_total: "sum(total_onetime_donor_counts)"
           group_by: ["date_day", "interval_type", "donor_audience", "channel"] 
           severity: warn
     columns:
