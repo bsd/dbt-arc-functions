@@ -18,4 +18,4 @@
         {{ cumulative_column }} < prev_value
         or ({{ cumulative_column }} is null and prev_value is not null)
 
-{% endmacro %}
+{% endtest %}
