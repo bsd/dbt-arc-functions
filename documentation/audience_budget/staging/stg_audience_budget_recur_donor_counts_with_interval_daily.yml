@@ -10,6 +10,11 @@ models:
       - name: interval_type
         description: The type of interval for the audience monthly budget (e.g. daily,
           weekly, monthly)
+        tests:
+          - accepted_values:
+              values: ['daily']
+              config:
+                severity: warn
       - name: donor_audience
         description: The donor audience for the audience monthly budget, usually a
           donor segment based on client criteria

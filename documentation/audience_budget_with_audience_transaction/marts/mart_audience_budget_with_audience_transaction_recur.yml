@@ -8,6 +8,11 @@ models:
         description: The day of the date.
       - name: interval_type
         description: The type of interval used for recurring transactions.
+        tests:
+          - accepted_values:
+              values: ['daily', 'monthly', 'yearly']
+              config:
+                severity: warn
       - name: donor_audience
         description: The audience of donors.
       - name: platform

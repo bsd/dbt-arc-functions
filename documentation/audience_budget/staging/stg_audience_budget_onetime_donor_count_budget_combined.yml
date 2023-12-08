@@ -8,6 +8,11 @@ models:
         description: The day of the date
       - name: interval_type
         description: The type of time interval
+        tests:
+          - accepted_values:
+              values: ['daily', 'monthly', 'yearly']
+              config:
+                severity: warn
       - name: donor_audience
         description: The audience of the donor
       - name: join_source
