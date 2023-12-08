@@ -9,7 +9,7 @@ models:
       - name: interval_type
         description: The interval type for the audience monthly budget (e.g., monthly,
           yearly)
-          tests:
+        tests:
           - accepted_values:
               values: ['monthly']
               config:
