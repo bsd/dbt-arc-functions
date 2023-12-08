@@ -23,6 +23,9 @@ models:
       - name: activation_str
         data_type: string
         description: A string representing the distance from join month year
+      - name: activation_int
+        data_type: integer
+        description: An integer representing the distance from join month year
       - name: total_amount
         data_type: float64
         description: ''
