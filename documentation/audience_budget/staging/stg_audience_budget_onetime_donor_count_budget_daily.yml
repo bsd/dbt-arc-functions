@@ -8,7 +8,7 @@ models:
         description: The date with a day granularity
       - name: interval_type
         description: The type of interval for the budget (e.g. daily, weekly, monthly)
-                tests:
+        tests:
           - accepted_values:
               values: ['daily']
               config:
