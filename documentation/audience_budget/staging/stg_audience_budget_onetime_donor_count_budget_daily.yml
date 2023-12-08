@@ -10,7 +10,7 @@ models:
         description: The type of interval for the budget (e.g. daily, weekly, monthly)
         tests:
           - accepted_values:
-              values: ['daily']
+              values: [daily]
               config:
                 severity: warn
       - name: donor_audience

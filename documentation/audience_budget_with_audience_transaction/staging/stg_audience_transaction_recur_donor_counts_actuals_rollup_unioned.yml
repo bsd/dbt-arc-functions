@@ -16,7 +16,7 @@ models:
         description: The type of interval for the recurring donation.
         tests:
           - accepted_values:
-              values: ['daily', 'monthly', 'yearly']
+              values: [daily, monthly, yearly]
               config:
                 severity: warn
       - name: donor_audience

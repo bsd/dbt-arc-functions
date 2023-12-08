@@ -10,7 +10,7 @@ models:
         description: The donor count interval, can be daily, monthly, or yearly
         tests:
           - accepted_values:
-              values: ['daily', 'monthly', 'yearly']
+              values: [daily, monthly, yearly]
               config:
                 severity: warn
       - name: channel

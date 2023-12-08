@@ -11,7 +11,7 @@ models:
         description: The type of interval for the transaction
         tests:
           - accepted_values:
-              values: ['daily']
+              values: [daily]
               config:
                 severity: warn
       - name: donor_audience

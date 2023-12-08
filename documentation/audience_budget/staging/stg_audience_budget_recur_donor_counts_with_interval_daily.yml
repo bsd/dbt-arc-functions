@@ -12,7 +12,7 @@ models:
           weekly, monthly)
         tests:
           - accepted_values:
-              values: ['daily']
+              values: [daily]
               config:
                 severity: warn
       - name: donor_audience

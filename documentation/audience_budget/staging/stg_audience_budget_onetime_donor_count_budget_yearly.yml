@@ -10,7 +10,7 @@ models:
         description: The type of interval for the audience budget (e.g. monthly, yearly)
         tests:
           - accepted_values:
-              values: ['yearly']
+              values: [yearly]
               config:
                 severity: warn
       - name: donor_audience
