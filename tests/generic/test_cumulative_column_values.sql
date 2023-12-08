@@ -5,10 +5,7 @@
     with validating as (
         select
             *,
-            lag({{ cumulative_column }}) over (
-                partition by {{ partition_by | join(', ') }}
-                order by {{ order_by | join(', ') }}
-            ) as prev_value
+            lag({{ cumulative_column }}) over (partition by {{ partition_by }} order by {{ order_by }}) as prev_value
         from
             {{ model }}
     )
@@ -21,4 +18,4 @@
         {{ cumulative_column }} < prev_value
         or ({{ cumulative_column }} is null and prev_value is not null)
 
-{% endtest %}
+{% endmacro %}
