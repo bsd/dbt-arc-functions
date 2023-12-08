@@ -2,10 +2,20 @@
 
 {{ config(severity = 'warn') }}
 
+    {% if partition_by is string %}
+        {% set partition_by = [partition_by] %}
+    {% endif %}
+    {% if order_by is string %}
+        {% set order_by = [order_by] %}
+    {% endif %}
+
     with validating as (
         select
             *,
-            lag({{ cumulative_column }}) over (partition by {{ partition_by }} order by {{ order_by }}) as prev_value
+            lag({{ cumulative_column }}) over (
+                partition by {{ partition_by | join(', ') }}
+                order by {{ order_by | join(', ') }}
+            ) as prev_value
         from
             {{ model }}
     )
