@@ -7,7 +7,7 @@ sources:
     schema: src_stitch
     tables:
       - name: ad_performance_report
-        description: 'a report aggregating ad performance metrics by ad by day'
+        description: a report aggregating ad performance metrics by ad by day
         freshness:
           warn_after:
             count: 2
@@ -19,64 +19,64 @@ sources:
         columns:
           - name: ad_group_name
             data_type: string
-            description: 'The name of the ad group'
+            description: The name of the ad group
           - name: impressions
             data_type: int64
-            description: 'the number of impressions'
+            description: the number of impressions
           - name: campaign_id
             data_type: int64
-            description: 'the id of the campaign'
+            description: the id of the campaign
           - name: campaign_name
             data_type: string
-            description: 'The name of the campaign from google'
+            description: The name of the campaign from google
           - name: cost_micros
             data_type: int64
-            description: 'the spend of the ad in millionths of a dollar.'
+            description: the spend of the ad in millionths of a dollar.
           - name: clicks
             data_type: int64
-            description: 'the number of clicks for an ad'
+            description: the number of clicks for an ad
           - name: id
             data_type: int64
-            description: 'the id of the ad'
+            description: the id of the ad
           - name: _sdc_table_version
             data_type: int64
-            description: 'stitch based field used to  control the stitch table version'
+            description: stitch based field used to  control the stitch table version
           - name: ad_group_status
             data_type: string
-            description: 'the status of the ad group'
+            description: the status of the ad group
           - name: _sdc_record_hash
             data_type: string
-            description: 'primary key for stitch'
+            description: primary key for stitch
           - name: ad_group_id
             data_type: int64
-            description: 'The id of the ad group'
+            description: The id of the ad group
           - name: _sdc_received_at
             data_type: timestamp
-            description: 'The stitch timestamp field'
+            description: The stitch timestamp field
           - name: customer_id
             data_type: int64
-            description: 'The id of the customer'
+            description: The id of the customer
           - name: _sdc_sequence
             data_type: int64
-            description: 'The stitch based sequence field'
+            description: The stitch based sequence field
           - name: interactions
             data_type: int64
-            description: 'The number of interactions from an ad'
+            description: The number of interactions from an ad
           - name: campaign_status
             data_type: string
-            description: 'The status of the campaign'
+            description: The status of the campaign
           - name: date
             data_type: timestamp
-            description: 'The date of the metrics occurence'
+            description: The date of the metrics occurence
           - name: campaign_base_campaign
             data_type: string
-            description: 'The base campaign of the ad'
+            description: The base campaign of the ad
           - name: final_urls
             data_type: string
-            description: 'The final URL of the ad'
+            description: The final URL of the ad
           - name: _sdc_batched_at
             data_type: timestamp
-            description: 'The stitch batched datestamp'
+            description: The stitch batched datestamp
           - name: engagements
             data_type: int64
-            description: 'The number of engagements for an ad'
+            description: The number of engagements for an ad
