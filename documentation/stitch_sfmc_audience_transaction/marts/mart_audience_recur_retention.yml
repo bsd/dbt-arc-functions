@@ -3,6 +3,15 @@ version: 2
 models:
   - name: mart_audience_recur_retention
     description: ''
+    tests:
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: cumulative_amount
+          partition_by:
+            - join_month_year_str
+            - join_source
+            - join_gift_size
+            - join_donor_audience
+          order_by: retention_int
     columns:
       - name: join_month_year
         data_type: string

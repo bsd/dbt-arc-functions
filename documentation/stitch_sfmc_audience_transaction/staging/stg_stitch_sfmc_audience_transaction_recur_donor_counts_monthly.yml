@@ -10,6 +10,11 @@ models:
       - name: interval_type
         description: The type of interval for the recurring donation. This can be
           daily, weekly, monthly, etc.
+        tests:
+          - accepted_values:
+              values: [monthly]
+              config:
+                severity: warn
       - name: donor_audience
         description: The audience associated with the transaction
       - name: platform
