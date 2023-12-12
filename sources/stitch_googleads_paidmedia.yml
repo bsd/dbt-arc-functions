@@ -7,7 +7,7 @@ sources:
     schema: src_stitch
     tables:
       - name: ad_performance_report
-        description: 'a report agregating ad performance metrics by ad by day'
+        description: 'a report aggregating ad performance metrics by ad by day'
         freshness:
           warn_after:
             count: 2
