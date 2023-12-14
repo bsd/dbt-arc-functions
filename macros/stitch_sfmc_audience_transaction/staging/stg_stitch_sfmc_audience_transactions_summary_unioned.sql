@@ -40,5 +40,10 @@
     select *
     from dedupe
     where row_number = 1
+    and (appeal_business_unit in ('IM_DIG','WB_EMM','WB_XXX')
+    OR appeal like '%WB_EMM%'
+    OR appeal like '%WB_XXX%'
+    OR appeal like '%IM_DIG%')
+
 
 {% endmacro %}
