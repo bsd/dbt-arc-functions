@@ -1,3 +1,4 @@
+-- fmt: off
 {% macro util_stg_audience_budget_frequency_donor_counts_interval_type (
     frequency,
     interval,
