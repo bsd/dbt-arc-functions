@@ -11,7 +11,7 @@
         {{ exceptions.raise_compiler_error("'interval' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'day', 'week', 'month', or 'year', got " ~ interval) }}
     {% endif %}
 
-     {% set recur_onetime = "recur" if recur_status == "recurring" else "onetime" %}
+     {% set recur_onetime = "recur" if frequency == "recurring" else "onetime" %}
 
     with
         sums as (
