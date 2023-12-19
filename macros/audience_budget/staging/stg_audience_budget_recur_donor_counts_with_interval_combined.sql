@@ -1,15 +1,13 @@
 {% macro create_stg_audience_budget_recur_donor_counts_with_interval_combined(
-    reference_0_name="stg_audience_budget_recur_donor_counts_with_interval_daily",
-    reference_1_name="stg_audience_budget_recur_donor_counts_with_interval_monthly",
-    reference_2_name="stg_audience_budget_recur_donor_counts_with_interval_yearly"
+    daily='stg_audience_budget_recur_donor_count_daily',
+    monthly='stg_audience_budget_recur_donor_count_monthly',
+    yearly='stg_audience_budget_recur_donor_count_yearly'
 ) %}
-    select *
-    from {{ ref(reference_0_name) }}
-    union all
-    select *
-    from {{ ref(reference_1_name) }}
-    union all
-    select *
-    from {{ ref(reference_2_name) }}
+
+select * from {{ref('daily')}} 
+union all 
+select * from {{ref('monthly')}}
+union all
+select * from {{ref('yearly')}}
 
 {% endmacro %}

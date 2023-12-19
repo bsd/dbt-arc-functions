@@ -2,7 +2,7 @@
 {% macro util_mart_audience_budget_with_audience_transaction(
     recur_status,
     onetime_donor_counts_table="stg_audience_transaction_onetime_donor_counts_actuals_rollup_unioned",
-    onetime_audience_budget_table="stg_audience_budget_onetime_donor_count_budget_combined",
+    onetime_audience_budget_table="stg_audience_budget_onetime_donor_counts_with_interval_combined",
     recur_donor_counts_table="stg_audience_transaction_recur_donor_counts_actuals_rollup_unioned",
     recur_audience_budget_table="stg_audience_budget_recur_donor_counts_with_interval_combined"
 ) %}
@@ -49,7 +49,7 @@
         as retained3_{{ recur_onetime }}_donor_counts_cumulative,
         donor_counts.reinstated_{{ recur_onetime }}_donor_counts_cumulative
         as reinstated_{{ recur_onetime }}_donor_counts_cumulative,
-        audience_budget.{{ recur_onetime }}_donor_count_budget as {{ recur_onetime }}_donor_count_budget,
+        audience_budget.{{ recur_onetime }}_donor_count_budget, 
         audience_budget.{{ recur_onetime }}_new_donor_count_budget
         as {{ recur_onetime }}_new_donor_count_budget,
         audience_budget.{{ recur_onetime }}_donor_count_budget_cumulative
