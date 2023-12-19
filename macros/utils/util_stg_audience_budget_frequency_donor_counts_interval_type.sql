@@ -1,45 +1,53 @@
-{% macro util_stg_audience_budget_frequency_donor_counts_interval_type (
-    frequency,
-    interval,
-    budget_table = "stg_audience_budget_by_day"
-)%}
+{% macro util_stg_audience_budget_frequency_donor_counts_interval_type(
+    frequency, interval, budget_table="stg_audience_budget_by_day"
+) %}
 
-    {% if frequency not in ['recurring', 'onetime'] %}
-        {{ exceptions.raise_compiler_error("'frequency' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'recurring' or 'onetime', got " ~ frequency) }}
+    {% if frequency not in ["recurring", "onetime"] %}
+        {{
+            exceptions.raise_compiler_error(
+                "'frequency' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'recurring' or 'onetime', got "
+                ~ frequency
+            )
+        }}
     {% endif %}
-    {% if interval not in ['day', 'week','month','year'] %}
-        {{ exceptions.raise_compiler_error("'interval' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'day', 'week', 'month', or 'year', got " ~ interval) }}
+    {% if interval not in ["day", "week", "month", "year"] %}
+        {{
+            exceptions.raise_compiler_error(
+                "'interval' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'day', 'week', 'month', or 'year', got "
+                ~ interval
+            )
+        }}
     {% endif %}
 
-     {% set recur_onetime = "recur" if frequency == "recurring" else "onetime" %}
+    {% set recur_onetime = "recur" if frequency == "recurring" else "onetime" %}
 
     with
         sums as (
             select
 
-    {% if interval == 'day' %}
-                date_day,
-                'daily' as interval_type,
-    {% elif interval == 'month' %}
-                last_day(date_day, month) as date_day,
-                'monthly' as interval_type,
-    {% elif interval == 'year' %}
-                last_day(date_day, year) as date_day,
-                'yearly' as interval_type,
-    {% endif %}
+                {% if interval == "day" %} date_day, 'daily' as interval_type,
+                {% elif interval == "month" %}
+                    last_day(date_day, month) as date_day, 'monthly' as interval_type,
+                {% elif interval == "year" %}
+                    last_day(date_day, year) as date_day, 'yearly' as interval_type,
+                {% endif %}
                 donor_audience,
                 platform as join_source,
-                sum(total_revenue_budget_by_day) as {{recur_onetime}}_donor_count_budget,
-                sum(loyalty_new_donor_targets_by_day) as {{recur_onetime}}_new_donor_count_budget
+                sum(
+                    total_revenue_budget_by_day
+                ) as {{ recur_onetime }}_donor_count_budget,
+                sum(
+                    loyalty_new_donor_targets_by_day
+                ) as {{ recur_onetime }}_new_donor_count_budget
             from {{ ref(budget_table) }}
             where
-    {% if frequency == 'onetime' %}
-                lower(donor_audience) != 'recurring'
-                and lower(donor_audience) != 'monthly'
-    {% elif frequency == 'recurring' %}
-                lower(donor_audience) = 'recurring'
-                or lower(donor_audience) = 'monthly'
-    {% endif %}
+                {% if frequency == "onetime" %}
+                    lower(donor_audience) != 'recurring'
+                    and lower(donor_audience) != 'monthly'
+                {% elif frequency == "recurring" %}
+                    lower(donor_audience) = 'recurring'
+                    or lower(donor_audience) = 'monthly'
+                {% endif %}
             group by 1, 2, 3, 4
         )
 
@@ -48,9 +56,9 @@
         interval_type,
         donor_audience,
         join_source,
-        {{recur_onetime}}_donor_count_budget,
-        {{recur_onetime}}_new_donor_count_budget,
-        sum({{recur_onetime}}_donor_count_budget) over (
+        {{ recur_onetime }}_donor_count_budget,
+        {{ recur_onetime }}_new_donor_count_budget,
+        sum({{ recur_onetime }}_donor_count_budget) over (
             partition by
                 donor_audience,
                 join_source,
@@ -60,8 +68,8 @@
                     )
                 }}
             order by date_day
-        ) as {{recur_onetime}}_donor_count_budget_cumulative,
-        sum({{recur_onetime}}_new_donor_count_budget) over (
+        ) as {{ recur_onetime }}_donor_count_budget_cumulative,
+        sum({{ recur_onetime }}_new_donor_count_budget) over (
             partition by
                 donor_audience,
                 join_source,
@@ -71,7 +79,7 @@
                     )
                 }}
             order by date_day
-        ) as {{recur_onetime}}_new_donor_count_cumulative
+        ) as {{ recur_onetime }}_new_donor_count_cumulative
     from sums
 
 {% endmacro %}
