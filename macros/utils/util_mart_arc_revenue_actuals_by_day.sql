@@ -81,10 +81,10 @@
         {% endif %}
         sum(transactions.amount) as total_revenue,
         sum(transactions.gift_count) as total_gifts
-    from {{ ref('audience_transactions_table') }} transactions
+    from {{ ref(audience_transactions_table) }} transactions
     {% if recur_status == "recurring" %}
     left join
-        {{ ref('arc_first_gift') }} person on person.person_id = transactions.person_id
+        {{ ref(arc_first_gift) }} person on person.person_id = transactions.person_id
     {% endif %}
     where recurring = {{recur_boolean}}
     group by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
