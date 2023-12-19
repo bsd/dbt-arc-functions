@@ -48,7 +48,7 @@
                 then 6
                 when transactions.gift_size_string = "10000+"
                 then 7
-            end transactions.gift_size_string_sort,
+            end as gift_size_string_sort,
 
         {% elif recur_status == "recurring"%}
 
@@ -77,7 +77,7 @@
                 then 10
                 when '100+'
                 then 11
-            end join_amount_string_recur_sort,
+            end as join_amount_string_recur_sort,
         {% endif %}
         sum(transactions.amount) as total_revenue,
         sum(transactions.gift_count) as total_gifts
