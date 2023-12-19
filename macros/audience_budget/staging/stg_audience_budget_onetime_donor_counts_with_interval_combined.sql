@@ -4,10 +4,10 @@
     yearly='stg_audience_budget_onetime_donor_count_yearly'
 ) %}
 
-select * from {{ref('daily')}} 
+select * from {{ref(daily)}} 
 union all 
-select * from {{ref('monthly')}}
+select * from {{ref(monthly)}}
 union all
-select * from {{ref('yearly')}}
+select * from {{ref(yearly)}}
 
 {% endmacro %}
