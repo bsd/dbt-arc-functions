@@ -1,6 +1,6 @@
 {% macro util_stg_audience_budget_frequency_donor_counts_interval_type (
     frequency,
-    interval_type,
+    interval,
     budget_table = "stg_audience_budget_by_day"
 )%}
 
