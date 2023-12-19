@@ -56,7 +56,7 @@
         as {{ recur_onetime }}_donor_count_budget_cumulative,
         audience_budget.{{ recur_onetime }}_new_donor_count_cumulative
         as {{ recur_onetime }}_new_donor_count_budget_cumulative
-    
+
     {% if recur_status == "onetime" %}
         from {{ ref(onetime_donor_counts_table) }} as donor_counts
         full join
@@ -74,6 +74,3 @@
         and upper(donor_counts.platform) = upper(audience_budget.join_source) 
 
 {% endmacro %}
-
-
-
