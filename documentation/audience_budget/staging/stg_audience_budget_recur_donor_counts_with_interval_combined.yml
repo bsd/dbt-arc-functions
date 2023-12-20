@@ -9,6 +9,11 @@ models:
         description: The date of the day.
       - name: interval_type
         description: The type of interval.
+        tests:
+          - accepted_values:
+              values: [daily, monthly, yearly]
+              config:
+                severity: warn
       - name: donor_audience
         description: The audience of the donor.
       - name: join_source

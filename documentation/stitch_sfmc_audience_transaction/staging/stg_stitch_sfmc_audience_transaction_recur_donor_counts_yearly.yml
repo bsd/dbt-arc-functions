@@ -14,6 +14,11 @@ models:
       - name: interval_type
         description: The type of interval the transaction belongs to (e.g., daily,
           weekly, monthly)
+        tests:
+          - accepted_values:
+              values: [yearly]
+              config:
+                severity: warn
       - name: donor_audience
         description: The audience associated with the transaction
       - name: platform
