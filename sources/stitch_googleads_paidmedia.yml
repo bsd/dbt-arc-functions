@@ -6,315 +6,77 @@ sources:
     loader: stitch - sftp
     schema: src_stitch
     tables:
-      - name: ad_groups
-        description: ''
-        columns:
-          - name: effective_target_cpa_micros
-            data_type: int64
-            description: ''
-          - name: target_cpa_micros
-            data_type: int64
-            description: ''
-          - name: url_custom_parameters
-            data_type: string
-            description: ''
-          - name: campaign_id
-            data_type: int64
-            description: ''
-          - name: id
-            data_type: int64
-            description: ''
-          - name: effective_target_cpa_source
-            data_type: string
-            description: ''
-          - name: effective_cpc_bid_micros
-            data_type: int64
-            description: ''
-          - name: cpv_bid_micros
-            data_type: int64
-            description: ''
-          - name: target_cpm_micros
-            data_type: int64
-            description: ''
-          - name: name
-            data_type: string
-            description: ''
-          - name: _sdc_table_version
-            data_type: int64
-            description: ''
-          - name: campaign
-            data_type: string
-            description: ''
-          - name: status
-            data_type: string
-            description: ''
-          - name: _sdc_received_at
-            data_type: timestamp
-            description: ''
-          - name: customer_id
-            data_type: int64
-            description: ''
-          - name: _sdc_sequence
-            data_type: int64
-            description: ''
-          - name: type
-            data_type: string
-            description: ''
-          - name: base_ad_group
-            data_type: string
-            description: ''
-          - name: cpc_bid_micros
-            data_type: int64
-            description: ''
-          - name: resource_name
-            data_type: string
-            description: ''
-          - name: _sdc_batched_at
-            data_type: timestamp
-            description: ''
-          - name: targeting_setting
-            data_type: record
-            description: ''
-          - name: cpm_bid_micros
-            data_type: int64
-            description: ''
-      - name: campaigns
-        description: ''
-        columns:
-          - name: network_settings
-            data_type: record
-            description: ''
-          - name: optimization_score
-            data_type: numeric
-            description: ''
-          - name: geo_target_type_setting
-            data_type: record
-            description: ''
-          - name: bidding_strategy_type
-            data_type: string
-            description: ''
-          - name: primary_status
-            data_type: string
-            description: ''
-          - name: end_date
-            data_type: timestamp
-            description: ''
-          - name: primary_status_reasons
-            data_type: string
-            description: ''
-          - name: url_custom_parameters
-            data_type: string
-            description: ''
-          - name: advertising_channel_type
-            data_type: string
-            description: ''
-          - name: audience_setting
-            data_type: record
-            description: ''
-          - name: bidding_strategy_system_status
-            data_type: string
-            description: ''
-          - name: id
-            data_type: int64
-            description: ''
-          - name: experiment_type
-            data_type: string
-            description: ''
-          - name: manual_cpc
-            data_type: record
-            description: ''
-          - name: base_campaign
-            data_type: string
-            description: ''
-          - name: campaign_budget_id
-            data_type: int64
-            description: ''
-          - name: serving_status
-            data_type: string
-            description: ''
-          - name: name
-            data_type: string
-            description: ''
-          - name: _sdc_table_version
-            data_type: int64
-            description: ''
-          - name: labels
-            data_type: string
-            description: ''
-          - name: ad_serving_optimization_status
-            data_type: string
-            description: ''
-          - name: maximize_conversions
-            data_type: record
-            description: ''
-          - name: status
-            data_type: string
-            description: ''
-          - name: campaign_budget
-            data_type: string
-            description: ''
-          - name: _sdc_received_at
-            data_type: timestamp
-            description: ''
-          - name: customer_id
-            data_type: int64
-            description: ''
-          - name: _sdc_sequence
-            data_type: int64
-            description: ''
-          - name: payment_mode
-            data_type: string
-            description: ''
-          - name: start_date
-            data_type: timestamp
-            description: ''
-          - name: resource_name
-            data_type: string
-            description: ''
-          - name: _sdc_batched_at
-            data_type: timestamp
-            description: ''
-          - name: targeting_setting
-            data_type: record
-            description: ''
-          - name: dynamic_search_ads_setting
-            data_type: record
-            description: ''
-      - name: ad
-        description: ''
-        columns:
-          - name: expanded_dynamic_search_ad
-            data_type: record
-            description: ''
-          - name: responsive_search_ad
-            data_type: record
-            description: ''
-          - name: campaign_id
-            data_type: int64
-            description: ''
-          - name: id
-            data_type: int64
-            description: ''
-          - name: display_url
-            data_type: string
-            description: ''
-          - name: _sdc_table_version
-            data_type: int64
-            description: ''
-          - name: labels
-            data_type: string
-            description: ''
-          - name: status
-            data_type: string
-            description: ''
-          - name: ad_group_id
-            data_type: int64
-            description: ''
-          - name: _sdc_received_at
-            data_type: timestamp
-            description: ''
-          - name: customer_id
-            data_type: int64
-            description: ''
-          - name: _sdc_sequence
-            data_type: int64
-            description: ''
-          - name: type
-            data_type: string
-            description: ''
-          - name: action_items
-            data_type: string
-            description: ''
-          - name: text_ad
-            data_type: record
-            description: ''
-          - name: ad_group
-            data_type: string
-            description: ''
-          - name: ad_strength
-            data_type: string
-            description: ''
-          - name: policy_summary
-            data_type: record
-            description: ''
-          - name: final_urls
-            data_type: string
-            description: ''
-          - name: resource_name
-            data_type: string
-            description: ''
-          - name: _sdc_batched_at
-            data_type: timestamp
-            description: ''
-          - name: added_by_google_ads
-            data_type: boolean
-            description: ''
-          - name: expanded_text_ad
-            data_type: record
-            description: ''
       - name: ad_performance_report
-        description: ''
+        description: a report aggregating ad performance metrics by ad by day
+        freshness:
+          warn_after:
+            count: 2
+            period: day
+          error_after:
+            count: 14
+            period: day
+        loaded_at_field: _sdc_received_at
         columns:
           - name: ad_group_name
             data_type: string
-            description: ''
+            description: The name of the ad group
           - name: impressions
             data_type: int64
-            description: ''
+            description: the number of impressions
           - name: campaign_id
             data_type: int64
-            description: ''
+            description: the id of the campaign
           - name: campaign_name
             data_type: string
-            description: ''
+            description: The name of the campaign from google
           - name: cost_micros
             data_type: int64
-            description: ''
+            description: the spend of the ad in millionths of a dollar.
           - name: clicks
             data_type: int64
-            description: ''
+            description: the number of clicks for an ad
           - name: id
             data_type: int64
-            description: ''
+            description: the id of the ad
           - name: _sdc_table_version
             data_type: int64
-            description: ''
+            description: stitch based field used to  control the stitch table version
           - name: ad_group_status
             data_type: string
-            description: ''
+            description: the status of the ad group
           - name: _sdc_record_hash
             data_type: string
-            description: ''
+            description: primary key for stitch
           - name: ad_group_id
             data_type: int64
-            description: ''
+            description: The id of the ad group
           - name: _sdc_received_at
             data_type: timestamp
-            description: ''
+            description: The stitch timestamp field
           - name: customer_id
             data_type: int64
-            description: ''
+            description: The id of the customer
           - name: _sdc_sequence
             data_type: int64
-            description: ''
+            description: The stitch based sequence field
           - name: interactions
             data_type: int64
-            description: ''
+            description: The number of interactions from an ad
           - name: campaign_status
             data_type: string
-            description: ''
+            description: The status of the campaign
           - name: date
             data_type: timestamp
-            description: ''
+            description: The date of the metrics occurence
           - name: campaign_base_campaign
             data_type: string
-            description: ''
+            description: The base campaign of the ad
           - name: final_urls
             data_type: string
-            description: ''
+            description: The final URL of the ad
           - name: _sdc_batched_at
             data_type: timestamp
-            description: ''
+            description: The stitch batched datestamp
           - name: engagements
             data_type: int64
-            description: ''
+            description: The number of engagements for an ad
