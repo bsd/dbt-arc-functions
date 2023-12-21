@@ -1,5 +1,6 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_first_gift(
-    audience="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched"
+    audience="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
+    first_gift_recur_status=NULL
 ) %}
 
     {{
@@ -105,11 +106,7 @@ and pulls attributes from that first gift.
         there are some cases with two transactions on their first gift date, and one of them is recurring
         for these cases, we will defer to the audience value
         */
-        case
-            when audience.recurring = false and audience.coalesced_audience = 'Monthly'
-            then true
-            else audience.recurring
-        end as first_gift_recur_status,
+        cast({{first_gift_recur_status}} as boolean) as first_gift_recur_status,
         audience.coalesced_audience as first_gift_donor_audience,
         audience.amount
     from first_transactions
