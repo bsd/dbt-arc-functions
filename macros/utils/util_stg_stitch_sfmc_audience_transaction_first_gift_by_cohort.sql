@@ -1,5 +1,5 @@
 -- fmt: off
-{% macro util_stg_stitch_sfmc_audience_transaction_first_gift_by_cohort(
+{% macro util_stg_stitch_sfmc_parameterized_audience_transaction_first_gift_by_cohort(
     recur_status,
     first_gift_table="stg_stitch_sfmc_parameterized_audience_transaction_first_gift"
 ) %}

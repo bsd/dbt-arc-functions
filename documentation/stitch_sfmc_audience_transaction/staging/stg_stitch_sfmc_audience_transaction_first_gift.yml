@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_audience_transaction_first_gift
+  - name: stg_stitch_sfmc_parameterized_audience_transaction_first_gift
     description: Table that is organized to show the first gift for each person_id
     columns:
       - name: person_id
