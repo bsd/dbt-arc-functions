@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_audience_budget_recur_donor_count_daily
+    description: ""
+    columns:
+      - name: date_day
+        data_type: datetime
+        description: "The date of the audience monthly budget, with a day granularity"
+
+      - name: interval_type
+        data_type: string
+        description: ""
+
+      - name: donor_audience
+        data_type: string
+        description: "The donor audience for the audience monthly budget, usually a donor segment based on client criteria"
+
+      - name: join_source
+        data_type: string
+        description: ""
+
+      - name: recur_donor_count_budget
+        data_type: float64
+        description: ""
+
+      - name: recur_new_donor_count_budget
+        data_type: float64
+        description: ""
+
+      - name: recur_donor_count_budget_cumulative
+        data_type: float64
+        description: ""
+
+      - name: recur_new_donor_count_cumulative
+        data_type: float64
+        description: ""
+
