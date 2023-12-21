@@ -2,7 +2,7 @@
     reference_name="stg_src_stitch_sfmc_fundraiseup_recent_transaction",
     reference_name1="stg_stitch_sfmc_bbcrm_transactions",
     message_id=NULL,
-    recurring=NULL
+    recurring=NULL,
     recurring_revenue=NULL
 ) %}
     with bbcrm as (select * from {{ ref(reference_name1) }})
