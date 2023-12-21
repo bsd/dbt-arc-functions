@@ -41,9 +41,6 @@
 
     select *
     from dedupe
-    where
-        row_number = 1
-        {{ where_clause_1 }}
-        
+    where row_number = 1 {{ where_clause_1 }}
 
 {% endmacro %}
