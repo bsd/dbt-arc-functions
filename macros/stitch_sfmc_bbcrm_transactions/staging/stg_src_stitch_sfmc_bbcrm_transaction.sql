@@ -10,7 +10,7 @@
                 revenue_id,
                 cast(transaction_date as datetime) as transaction_date,
                 payment_method,
-                cast(recognition_amount as string) as amount,
+                cast(recognition_amount as float64) as amount,
                 inbound_channel,
                 appeal,
                 appeal_business_unit,
