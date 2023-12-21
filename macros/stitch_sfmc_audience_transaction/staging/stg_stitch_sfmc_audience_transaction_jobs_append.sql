@@ -1,5 +1,6 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_jobs_append(
-    reference_name="stg_stitch_sfmc_audience_transactions_summary_unioned"
+    reference_name="stg_stitch_sfmc_audience_transactions_summary_unioned",
+    client_donor_audience=NULL
 ) %}
 
     {{
@@ -66,15 +67,7 @@ Mass: Is not in Sustainer, Midlevel or Major.
                     then 'Monthly'
                     else 'Mass'
                 end as bluestate_donor_audience,  -- modeled after UUSA
-                case
-                    when cumulative_amount_24_months >= 25000
-                    then 'Major'
-                    when cumulative_amount_24_months between 1000 and 24999.99
-                    then 'Leadership Giving'
-                    when cumulative_amount_90_days_recur > 0
-                    then 'Monthly'
-                    else 'Mass'
-                end as donor_audience
+                {{ client_donor_audience }} as donor_audience
             from day_person_rollup
         ),
         dedupe as (
