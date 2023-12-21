@@ -14,15 +14,6 @@
         )
     }}
 
-    {#
-
-UUSA Client Audience Requirements: 
-Major: 25,000 cumulative or more in the last 24 months including 1x and recurring gifts.
-Midlevel: 1,000 to 24,999 cumulative in the last 24 months including 1x and recurring
-Sustainer: Has a recurring gift in the last 90 days and is not in either midlevel or major
-Mass: Is not in Sustainer, Midlevel or Major. 
-
-#}
     with
         calculations as (
             select

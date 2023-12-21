@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_customized_email_transactions_sourced_rollup(
+{% macro create_stg_stitch_sfmc_email_transactions_sourced_rollup(
     email_summary="stg_stitch_sfmc_email_jobs",
     transactions="stg_stitch_sfmc_email_transactions_summary_unioned"
 ) %}
