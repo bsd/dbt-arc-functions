@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_email_campaign_dates_rollup(
-    reference_name="stg_stitch_sfmc_customized_email_campaign_dates"
+    reference_name="stg_stitch_sfmc_parameterized_email_campaign_dates"
 ) %}
     select
         coalesce(crm_campaign, source_code_campaign) as campaign_name,
