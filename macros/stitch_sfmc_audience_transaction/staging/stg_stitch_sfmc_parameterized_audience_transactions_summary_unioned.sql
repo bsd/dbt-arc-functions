@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_audience_transactions_summary_unioned(
+{% macro create_stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned(
     where_clause_1=NULL
 ) %}
     {% set relations = dbt_arc_functions.relations_that_match_regex(
