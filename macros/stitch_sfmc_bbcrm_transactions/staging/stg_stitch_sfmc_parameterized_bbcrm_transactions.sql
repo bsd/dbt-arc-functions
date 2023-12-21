@@ -13,9 +13,7 @@
         initial_market_source as transaction_source_code,  -- required for transaction rollup
         safe_cast('sfmc_bbcrm' as string) as crm,
         safe_cast('sfmc_bbcrm' as string) as crm_entity,  -- required for transaction rollup
-        safe_cast(
-            {{ message_id }} as int
-        ) as message_id,
+        safe_cast({{ message_id }} as int) as message_id,
         inbound_channel,
         inbound_channel as channel,  -- required field for transaction rollups
         safe_cast(null as string) as channel_from_source_code,  -- this can be regex later
@@ -27,10 +25,10 @@
         safe_cast(null as string) as campaign,  -- required for transaction rollup
         safe_cast(null as string) as audience,  -- required for transaction rollup
         safe_cast(null as string) as source_code_entity,  -- required for transaction rollup
-        safe_cast({{recurring_revenue}} as float64) as recurring_revenue,  -- required for transaction rollup
+        safe_cast({{ recurring_revenue }} as float64) as recurring_revenue,  -- required for transaction rollup
         safe_cast(null as float64) as new_recurring_revenue,  -- required for transaction rollup
         application,
-        safe_cast( {{ recurring }} as boolean) as recurring,
+        safe_cast({{ recurring }} as boolean) as recurring,
         safe_cast(null as string) as best_guess_message_id  -- required for transaction rollup
     from {{ ref(reference_name) }}
 

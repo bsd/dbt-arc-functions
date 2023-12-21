@@ -19,17 +19,15 @@
         safe_cast('sfmc_fundraiseup' as string) as crm,
         safe_cast('sfmc_fundraiseup' as string) as crm_entity,
         safe_cast(null as string) as source_code_entity,  -- required for transaction rollup
-        safe_cast(
-            {{message_id}} as int
-        ) as message_id,
+        safe_cast({{ message_id }} as int) as message_id,
         transaction_date,
         timestamp(transaction_date) as transaction_timestamp,
         amount,
         safe_cast(null as float64) as new_recurring_revenue,  -- required for transaction rollup
         gift_type,
         appeal,
-        cast( {{recurring}} as boolean) as recurring,
-        cast( {{recurring_revenue}} as float64) as recurring_revenue,
+        cast({{ recurring }} as boolean) as recurring,
+        cast({{ recurring_revenue }} as float64) as recurring_revenue,
         safe_cast(null as string) as best_guess_message_id  -- required for transaction rollup
     from {{ ref(reference_name) }}
     where transaction_date > (select max(transaction_date) from bbcrm)
