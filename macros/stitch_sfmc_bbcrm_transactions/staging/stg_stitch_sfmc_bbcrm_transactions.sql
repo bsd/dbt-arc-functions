@@ -1,5 +1,6 @@
 {% macro create_stg_stitch_sfmc_bbcrm_transactions(
-    reference_name="stg_src_stitch_sfmc_bbcrm_transaction"
+    reference_name="stg_src_stitch_sfmc_bbcrm_transaction",
+    message_id=NULL
 ) %}
 
     select
