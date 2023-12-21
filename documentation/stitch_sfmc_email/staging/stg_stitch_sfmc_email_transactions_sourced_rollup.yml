@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_customized_email_transactions_sourced_rollup
+  - name: stg_stitch_sfmc_email_transactions_sourced_rollup
     description: Rollup of customized email transactions sourced from Salesforce Marketing
       Cloud (SFMC)
     columns:
