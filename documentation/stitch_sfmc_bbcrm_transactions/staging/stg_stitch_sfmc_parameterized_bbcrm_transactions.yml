@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_bbcrm_transactions
+  - name: stg_stitch_sfmc_parameterized_bbcrm_transactions
     description: This model records historic transactions against people.
     columns:
       - name: transaction_id
