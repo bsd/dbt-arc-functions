@@ -7,7 +7,7 @@
         grouped as (
             select
                 cast(email_summary.message_id as string) as message_id,
-                cast(sum(transactions.amount) as float64) as total_revenue,
+                sum(transactions.amount) as total_revenue,
                 count(distinct transactions.transaction_id) as total_gifts,
                 count(distinct transactions.person_id) as total_donors,
                 sum(
