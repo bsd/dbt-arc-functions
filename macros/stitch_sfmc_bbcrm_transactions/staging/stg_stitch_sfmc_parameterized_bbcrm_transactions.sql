@@ -1,7 +1,7 @@
 {% macro create_stg_stitch_sfmc_parameterized_bbcrm_transactions(
     reference_name="stg_src_stitch_sfmc_bbcrm_transaction",
-    message_id='NULL',
-    recurring='NULL'
+    message_id="NULL",
+    recurring="NULL"
 ) %}
 
     select
@@ -24,7 +24,7 @@
         safe_cast(null as string) as campaign,  -- required for transaction rollup
         safe_cast(null as string) as audience,  -- required for transaction rollup
         safe_cast(null as string) as source_code_entity,  -- required for transaction rollup
-        safe_cast({{recurring}} as boolean) as recurring_revenue,  -- required for transaction rollup
+        safe_cast({{ recurring }} as boolean) as recurring_revenue,  -- required for transaction rollup
         safe_cast(null as boolean) as new_recurring_revenue,  -- required for transaction rollup
         application,
         safe_cast({{ recurring }} as boolean) as recurring,

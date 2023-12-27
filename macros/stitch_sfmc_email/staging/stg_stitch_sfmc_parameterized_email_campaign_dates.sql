@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_parameterized_email_campaign_dates(
-    reference_name="stg_src_stitch_email_job", source_code_campaign='NULL'
+    reference_name="stg_src_stitch_email_job", source_code_campaign="NULL"
 ) %}
 
     -- reference campaigns model so that no repetition is necessary in case when for

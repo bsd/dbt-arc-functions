@@ -1,6 +1,6 @@
 {% macro create_stg_stitch_sfmc_parameterized_email_campaigns(
-    audience='NULL',
-    source_code_campaign='NULL',
+    audience="NULL",
+    source_code_campaign="NULL",
     reference_name="stg_src_stitch_email_job"
 ) %}
 
