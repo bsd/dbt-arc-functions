@@ -1,3 +1,4 @@
+-- fmt: off
 {% macro util_stg_stitch_sfmc_audience_transaction_rev_by_cohort(
     recur_status,
     transactions_table="stg_stitch_sfmc_audience_transaction_with_first_gift_cohort"
