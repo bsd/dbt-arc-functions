@@ -1,8 +1,8 @@
 {% macro create_stg_stitch_sfmc_parameterized_fundraiseup_filtered_recent_transactions(
     reference_name="stg_src_stitch_sfmc_fundraiseup_recent_transaction",
     reference_name1="stg_stitch_sfmc_parameterized_bbcrm_transactions",
-    message_id='NULL',
-    recurring='NULL'
+    message_id="NULL",
+    recurring="NULL"
 ) %}
     with bbcrm as (select * from {{ ref(reference_name1) }})
     select
@@ -26,7 +26,7 @@
         gift_type,
         appeal,
         cast({{ recurring }} as boolean) as recurring,
-        cast({{recurring }} as boolean) as recurring_revenue,
+        cast({{ recurring }} as boolean) as recurring_revenue,
         safe_cast(null as string) as best_guess_message_id  -- required for transaction rollup
     from {{ ref(reference_name) }}
     where transaction_date > (select max(transaction_date) from bbcrm)
