@@ -21,18 +21,9 @@
             {% else %} {% set min_date = "2020-01-01" %}
             {% endif %}
 
-            {% set max_date_query %}
-        SELECT max(date_day) FROM {{ ref(person_and_transaction) }}
-            {% endset %}
-            {% set max_date_results = run_query(max_date_query) %}
-            {% if execute %}
-                {% set max_date %}'{{max_date_results.columns[0].values()[0]}}'{% endset %}
-            {% else %} {% set max_date = "2020-01-01" %}
-            {% endif %}
-
             {{
                 dbt_utils.date_spine(
-                    datepart="day", start_date=min_date, end_date=max_date
+                    datepart="day", start_date=min_date, end_date='current_date()'
                 )
             }}
 
