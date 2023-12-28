@@ -12,7 +12,7 @@
                 fru_donation_id as revenue_id,
                 __initial_market_source_ as initial_market_source,
                 email_address as email,
-                amount,
+                cast(amount as float64) as amount,
                 gift_type,
                 safe_cast(transaction_date as datetime) as transaction_date,
                 appeal,

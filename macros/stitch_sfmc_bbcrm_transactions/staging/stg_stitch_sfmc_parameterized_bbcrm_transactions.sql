@@ -1,5 +1,8 @@
-{% macro create_stg_stitch_sfmc_bbcrm_transactions(
-    reference_name="stg_src_stitch_sfmc_bbcrm_transaction"
+{% macro create_stg_stitch_sfmc_parameterized_bbcrm_transactions(
+    reference_name="stg_src_stitch_sfmc_bbcrm_transaction",
+    message_id="NULL",
+    recurring="NULL",
+    channel="NULL"
 ) %}
 
     select
@@ -10,11 +13,9 @@
         initial_market_source as transaction_source_code,  -- required for transaction rollup
         safe_cast('sfmc_bbcrm' as string) as crm,
         safe_cast('sfmc_bbcrm' as string) as crm_entity,  -- required for transaction rollup
-        safe_cast(
-            regexp_extract(initial_market_source, r"sfmc(\d{6})") as int
-        ) as message_id,
+        safe_cast({{ message_id }} as int) as message_id,
         inbound_channel,
-        inbound_channel as channel,  -- required field for transaction rollups
+        cast(initcap({{ channel }}) as string) as channel,  -- required field for transaction rollups
         safe_cast(null as string) as channel_from_source_code,  -- this can be regex later
         transaction_date,
         timestamp(transaction_date) as transaction_timestamp,  -- required for transaction rollups
@@ -24,18 +25,10 @@
         safe_cast(null as string) as campaign,  -- required for transaction rollup
         safe_cast(null as string) as audience,  -- required for transaction rollup
         safe_cast(null as string) as source_code_entity,  -- required for transaction rollup
-        safe_cast(null as boolean) as recurring_revenue,  -- required for transaction rollup
+        safe_cast({{ recurring }} as boolean) as recurring_revenue,  -- required for transaction rollup
         safe_cast(null as boolean) as new_recurring_revenue,  -- required for transaction rollup
         application,
-        case
-            when
-                appeal_business_unit
-                in ('IM_DIG', 'IM_FTF', 'IM_DTV', 'IM_PLG', 'IM_TEL')
-            then safe_cast(1 as boolean)  -- sustainer revenue falls into IM_DIG business unit only
-            when appeal like '%IM_DIG%'
-            then safe_cast(1 as boolean)
-            else safe_cast(0 as boolean)
-        end as recurring,
+        safe_cast({{ recurring }} as boolean) as recurring,
         safe_cast(null as string) as best_guess_message_id  -- required for transaction rollup
     from {{ ref(reference_name) }}
 

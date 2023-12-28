@@ -1,6 +1,6 @@
 {% macro create_stg_stitch_sfmc_parameterized_audience_transactions_enriched(
     best_guess_inbound_channel,
-    reference_name="stg_stitch_sfmc_audience_transactions_summary_unioned"
+    reference_name="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned"
 ) %}
 
     {{
@@ -23,7 +23,7 @@
                 transaction_date_day,
                 cast(amount as float64) as amount,
                 appeal_business_unit,
-                initcap({{ best_guess_inbound_channel }}) as best_guess_inbound_channel,
+                {{ best_guess_inbound_channel }} as best_guess_inbound_channel,
                 recurring,
                 (
                     case

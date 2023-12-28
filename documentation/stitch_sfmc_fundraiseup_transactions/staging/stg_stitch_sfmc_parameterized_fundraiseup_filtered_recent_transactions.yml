@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_fundraiseup_filtered_recent_transactions
+  - name: stg_stitch_sfmc_parameterized_fundraiseup_filtered_recent_transactions
     description: Model that describes recent transactions within Salesforce Marketing
       Cloud Fundraise Up
     columns:

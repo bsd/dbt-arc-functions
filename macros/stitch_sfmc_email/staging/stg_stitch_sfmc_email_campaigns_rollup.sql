@@ -1,6 +1,6 @@
 null
 {% macro create_stg_stitch_sfmc_email_campaigns_rollup(
-    reference_name="stg_stitch_sfmc_customizable_email_campaigns"
+    reference_name="stg_stitch_sfmc_parameterized_email_campaigns"
 ) %}
     select distinct
         message_id,

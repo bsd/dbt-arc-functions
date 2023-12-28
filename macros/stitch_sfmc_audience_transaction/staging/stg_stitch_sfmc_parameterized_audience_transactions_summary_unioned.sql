@@ -1,4 +1,6 @@
-{% macro create_stg_stitch_sfmc_audience_transactions_summary_unioned() %}
+{% macro create_stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned(
+    where_clause_1
+) %}
     {% set relations = dbt_arc_functions.relations_that_match_regex(
         "^stg_stitch_.*_transactions$"
     ) %}
@@ -39,13 +41,6 @@
 
     select *
     from dedupe
-    where
-        row_number = 1
-        and (
-            appeal_business_unit in ('IM_DIG', 'WB_EMM', 'WB_XXX')
-            or appeal like '%WB_EMM%'
-            or appeal like '%WB_XXX%'
-            or appeal like '%IM_DIG%'
-        )
+    where row_number = 1 {{ where_clause_1 }}
 
 {% endmacro %}

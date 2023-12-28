@@ -2,7 +2,7 @@
 {% macro util_mart_arc_revenue_actuals_by_day(
     recur_status,
     audience_transactions_table="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
-    first_gift_table="stg_stitch_sfmc_audience_transaction_first_gift"
+    first_gift_table="stg_stitch_sfmc_parameterized_audience_transaction_first_gift"
 ) %}
 
     {% if recur_status not in ["recurring", "onetime"] %}
