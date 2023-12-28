@@ -38,7 +38,7 @@
 
         ),
         date_spine_with_audience_and_platform as (
-            select
+            select distinct
                 date_day,
                 donor_audience,
                 channel as platform, -- from best_guess_inbound_channel
