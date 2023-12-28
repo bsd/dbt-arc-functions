@@ -2,7 +2,8 @@
     reference_name="stg_src_stitch_sfmc_fundraiseup_recent_transaction",
     reference_name1="stg_stitch_sfmc_parameterized_bbcrm_transactions",
     message_id="NULL",
-    recurring="NULL"
+    recurring="NULL",
+    channel="NULL"
 ) %}
     with bbcrm as (select * from {{ ref(reference_name1) }})
     select
@@ -12,7 +13,7 @@
         initial_market_source as source_code,
         initial_market_source as transaction_source_code,  -- required for transaction rollup
         safe_cast(null as string) as channel_from_source_code,  -- this can be regex later
-        safe_cast(null as string) as channel,  -- required for transaction rollup
+        safe_cast({{channel}} as string) as channel,  -- required for transaction rollup
         safe_cast(null as string) as campaign,  -- required for transaction rollup
         safe_cast(null as string) as audience,  -- required for transaction rollup
         safe_cast('sfmc_fundraiseup' as string) as crm,

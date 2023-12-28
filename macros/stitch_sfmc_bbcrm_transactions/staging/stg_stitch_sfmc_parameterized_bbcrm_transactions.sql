@@ -1,7 +1,8 @@
 {% macro create_stg_stitch_sfmc_parameterized_bbcrm_transactions(
     reference_name="stg_src_stitch_sfmc_bbcrm_transaction",
     message_id="NULL",
-    recurring="NULL"
+    recurring="NULL",
+    channel="NULL"
 ) %}
 
     select
@@ -14,7 +15,7 @@
         safe_cast('sfmc_bbcrm' as string) as crm_entity,  -- required for transaction rollup
         safe_cast({{ message_id }} as int) as message_id,
         inbound_channel,
-        inbound_channel as channel,  -- required field for transaction rollups
+        cast(initcap({{channel}}) as string) as channel,  -- required field for transaction rollups
         safe_cast(null as string) as channel_from_source_code,  -- this can be regex later
         transaction_date,
         timestamp(transaction_date) as transaction_timestamp,  -- required for transaction rollups
