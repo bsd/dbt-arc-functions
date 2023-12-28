@@ -11,10 +11,10 @@
     }}
     select
         coalesce(donor_engagement.date_day, today_transactions.transaction_date_day) as date_day,
-        donor_engagement.person_id as person_id,
+        coalesce(donor_engagement.person_id, today_transactions.person_id) as person_id,
         last_value(coalesce(transactions.coalesced_audience, today_transactions.coalesced_audience) ignore nulls) over (
-            partition by donor_engagement.person_id
-            order by donor_engagement.date_day
+            partition by coalesce(donor_engagement.person_id, today_transactions.person_id)
+            order by coalesce(donor_engagement.date_day, today_transactions.transaction_date_day)
             rows between unbounded preceding and current row
         ) as donor_audience,
         coalesce(transactions.donor_loyalty, today_transactions.donor_loyalty) as donor_loyalty,
