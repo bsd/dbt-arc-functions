@@ -23,7 +23,7 @@
                 transaction_date_day,
                 cast(amount as float64) as amount,
                 appeal_business_unit,
-                initcap({{ best_guess_inbound_channel }}) as best_guess_inbound_channel,
+                {{ best_guess_inbound_channel }} as best_guess_inbound_channel,
                 recurring,
                 (
                     case
