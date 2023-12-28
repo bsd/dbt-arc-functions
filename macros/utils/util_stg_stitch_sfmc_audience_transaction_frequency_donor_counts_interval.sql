@@ -180,28 +180,48 @@
             and date_spine_with_audience_and_platform.platform = person_and_transaction.channel
             group by 1, 2, 3, 4, 5
         )
+
+, all_combinations as (
+    select distinct
+        date_spine.date_day,
+        platform_channel.channel AS platform,
+        audience.donor_audience AS donor_audience
+    from date_spine
+    cross join (
+        SELECT DISTINCT channel FROM {{ ref(person_and_transaction) }}
+    ) AS platform_channel
+    cross join (
+        SELECT DISTINCT donor_audience FROM {{ ref(person_and_transaction) }}
+    ) AS audience
+)
+
+    
     select
-        date_day,
-        fiscal_year,
-        interval_type,
-        donor_audience,
-        platform,
-        total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        active{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        lapsed{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        sum(unique_total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
-        sum(unique_new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
-        sum(unique_retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
-        sum(unique_retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
-        sum(unique_reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative
-    from intermediate_rollup
+        all_combinations.date_day,
+        intermediate_rollup.fiscal_year,
+        intermediate_rollup.interval_type,
+        all_combinations.donor_audience,
+        all_combinations.platform,
+        intermediate_rollup.total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        intermediate_rollup.new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        intermediate_rollup.retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        intermediate_rollup.retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        intermediate_rollup.reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        intermediate_rollup.active{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        intermediate_rollup.lapsed{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        sum(intermediate_rollup.unique_total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
+        sum(intermediate_rollup.unique_new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
+        sum(intermediate_rollup.unique_retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
+        sum(intermediate_rollup.unique_retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
+        sum(intermediate_rollup.unique_reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative
+    from all_combinations
+    left join intermediate_rollup
+    ON all_combinations.date_day = intermediate_rollup.date_day
+    AND all_combinations.platform = intermediate_rollup.platform
+    AND all_combinations.donor_audience = intermediate_rollup.donor_audience
     window w as (
-        partition by fiscal_year, interval_type, donor_audience, platform
-        order by date_day
+        partition by intermediate_rollup.fiscal_year, intermediate_rollup.interval_type, all_combinations.donor_audience, all_combinations.platform
+        order by all_combinations.date_day
         rows between unbounded preceding and current row
     )
 {% endmacro %}
