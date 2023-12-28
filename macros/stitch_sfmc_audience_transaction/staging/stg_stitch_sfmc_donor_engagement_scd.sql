@@ -25,8 +25,6 @@
                         )
                     )
                 ) as date
-            union all
-            select current_date() as date -- includes current date regardless
 
         )
 
