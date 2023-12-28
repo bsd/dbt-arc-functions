@@ -15,7 +15,7 @@
         safe_cast('sfmc_bbcrm' as string) as crm_entity,  -- required for transaction rollup
         safe_cast({{ message_id }} as int) as message_id,
         inbound_channel,
-        cast(initcap({{channel}}) as string) as channel,  -- required field for transaction rollups
+        cast(initcap({{ channel }}) as string) as channel,  -- required field for transaction rollups
         safe_cast(null as string) as channel_from_source_code,  -- this can be regex later
         transaction_date,
         timestamp(transaction_date) as transaction_timestamp,  -- required for transaction rollups
