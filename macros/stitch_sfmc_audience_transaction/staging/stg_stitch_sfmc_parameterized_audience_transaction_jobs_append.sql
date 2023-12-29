@@ -75,7 +75,7 @@
     , deduped_person_audience as (
 
     select transaction_date_day, person_id, donor_audience
-    from dedupe
+    from dedupe_person_audience
     where row_number = 1
 
     )
@@ -90,11 +90,11 @@ audience_calculated_dedupe retrieves calculated audience data for all dates
     row_number() over (partition by person_id order by transaction_date_day) as row_number
      from deduped_person_audience
 
-), 
+)
 
-audience_calculated_alldates as (
+
      /*
-audience_calculated_alldates selects just one donor audience value for each person per day
+ selects just one donor audience value for each person per day
 */
     select 
     transaction_date_day,
@@ -104,6 +104,6 @@ audience_calculated_alldates selects just one donor audience value for each pers
     where row_number = 1
 
 
-)
+
 
 {% endmacro %}
