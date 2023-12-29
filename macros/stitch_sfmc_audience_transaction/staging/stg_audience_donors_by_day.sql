@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction(
+{% macro create_stg_audience_donors_by_day(
     first_gift="stg_stitch_sfmc_parameterized_audience_transaction_first_gift",
     transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
     donor_engagement="stg_stitch_sfmc_donor_engagement_by_date_day"

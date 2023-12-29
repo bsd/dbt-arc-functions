@@ -2,7 +2,7 @@
 {% macro util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval(
     frequency,
     interval,
-    person_and_transaction="stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction"
+    person_and_transaction="stg_audience_donors_by_day"
 ) %}
     {% if frequency not in ['recurring', 'onetime'] %}
         {{ exceptions.raise_compiler_error("'frequency' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'recurring' or 'onetime', got " ~ frequency) }}
