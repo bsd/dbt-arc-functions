@@ -55,7 +55,7 @@ with base as (
         row_number() over (partition by transaction_enriched.transaction_id order by transaction_enriched.transaction_date_day asc) as row_number
     from {{ ref(transaction_enriched) }} transaction_enriched
     left join
-        {{ ref(donor_audience_by_day) }} donor_audience_by_ay
+        {{ ref(donor_audience_by_day) }} donor_audience_by_day
         on transaction_enriched.transaction_date_day = donor_audience_by_day.date_day
         and transaction_enriched.person_id = donor_audience_by_day.person_id
     left join
