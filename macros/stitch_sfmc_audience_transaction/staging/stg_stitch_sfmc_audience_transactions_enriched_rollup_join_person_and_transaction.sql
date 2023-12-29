@@ -51,7 +51,8 @@
         ) as transactions
         on donor_engagement.person_id = transactions.person_id
         and donor_engagement.date_day = transactions.transaction_date_day
-    left join {{ ref(first_gift) }} as first_gift
-    on donor_engagement.person_id = first_gift.person_id
-    
+    left join
+        {{ ref(first_gift) }} as first_gift
+        on donor_engagement.person_id = first_gift.person_id
+
 {% endmacro %}
