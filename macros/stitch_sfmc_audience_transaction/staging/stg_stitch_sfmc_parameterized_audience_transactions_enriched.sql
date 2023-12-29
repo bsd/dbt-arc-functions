@@ -78,6 +78,12 @@
 
     select
         *,
+        {{
+            dbt_arc_functions.get_fiscal_year(
+                "transaction_date_day",
+                var("fiscal_year_start"),
+            )
+        }} as fiscal_year,
         row_number() over (
             partition by person_id order by transaction_date_day
         ) as gift_count
