@@ -38,7 +38,7 @@ with base as (
         transaction_enriched.transaction_id,
         audience_unioned.donor_audience as audience_unioned,
         calculated_audience.donor_audience as audience_calculated,
-        coalesce(audience_unioned.donor_audience, calculated_audience.donor_audience) as coalesced_audience
+        coalesce(audience_unioned.donor_audience, calculated_audience.donor_audience) as coalesced_audience,
         donor_engagement.donor_engagement,
         donor_loyalty.donor_loyalty,
         transaction_enriched.best_guess_inbound_channel as channel,
