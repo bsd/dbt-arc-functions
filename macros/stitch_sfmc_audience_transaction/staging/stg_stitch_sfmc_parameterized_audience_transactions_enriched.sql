@@ -75,30 +75,30 @@
             from {{ ref(reference_name) }}
 
         ),
-    
-    dedupe as (
+
+        dedupe as (
+
+            select
+                *,
+                {{
+                    dbt_arc_functions.get_fiscal_year(
+                        "transaction_date_day",
+                        var("fiscal_year_start"),
+                    )
+                }} as fiscal_year,
+                row_number() over (
+                    partition by person_id order by transaction_date_day
+                ) as gift_count
+
+            from base
+            where row_number = 1
+        )
 
     select
         *,
-        {{
-            dbt_arc_functions.get_fiscal_year(
-                "transaction_date_day",
-                var("fiscal_year_start"),
-            )
-        }} as fiscal_year,
         row_number() over (
-            partition by person_id order by transaction_date_day
-        ) as gift_count
-
-    from base
-    where row_number = 1
-    )
-
-
-    select * ,
-    row_number() over (
-                partition by person_id, fiscal_year order by transaction_date_day
-                ) as nth_transaction_this_fiscal_year
+            partition by person_id, fiscal_year order by transaction_date_day
+        ) as nth_transaction_this_fiscal_year
     from dedupe
 
 {% endmacro %}
