@@ -15,7 +15,7 @@
     select
         coalesce(donor_engagement.date_day, donor_audience.date_day) as date_day,
         coalesce(donor_engagement.person_id, donor_audience.person_id, donor_loyalty.person_id) as person_id,
-        donor_audience.donor_audience,
+        donor_audience.coalesced_audience as donor_audience,
         donor_loyalty.donor_loyalty,
         donor_engagement.donor_engagement,
         transactions.nth_transaction_this_fiscal_year,
