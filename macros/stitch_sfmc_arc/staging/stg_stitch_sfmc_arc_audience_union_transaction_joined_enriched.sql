@@ -48,7 +48,7 @@ with base as (
         transaction_enriched.amount,
         transaction_enriched.gift_count,
         case
-            when donor_audience_by_day.donor_audience is not null
+            when donor_audience_by_day.coalesced_audience is not null
             then 'unioned_donor_audience'
             else 'calculated_donor_audience'
         end as source_column,
