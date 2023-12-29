@@ -22,7 +22,7 @@
         transactions.recurring,
         donor_engagement.donor_engagement,
         transactions.gift_size_string as gift_size_str,
-        transactions.channel, 
+        transactions.channel,
         first_gift.first_gift_join_source as join_source,
         first_gift.join_gift_size_string as join_amount_str,
         first_gift.join_gift_size_string_recur as join_amount_str_recur,
