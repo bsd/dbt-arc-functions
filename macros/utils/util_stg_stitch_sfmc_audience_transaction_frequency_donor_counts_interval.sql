@@ -32,7 +32,7 @@
             select distinct
                 date_day,
                 donor_audience,
-                channel, -- from best_guess_inbound_channel
+                channel, 
             from date_spine
             cross join (
                 select distinct donor_audience from {{ ref(person_and_transaction) }}
@@ -52,7 +52,7 @@
                 {% elif interval == 'year' %} 'yearly' as interval_type,
                 {% endif %}
                 coalesce(date_spine_with_audience_and_channel.donor_audience, person_and_transaction.donor_audience) donor_audience,
-                coalesce(date_spine_with_audience_and_channel.channel, person_and_transaction.channel) channel, -- from best_guess_inbound_channel
+                coalesce(date_spine_with_audience_and_channel.channel, person_and_transaction.channel) channel, 
                 {{
                     dbt_arc_functions.get_fiscal_year(
                         "coalesce(date_spine_with_audience_and_channel.date_day, person_and_transaction.date_day)", var("fiscal_year_start")
