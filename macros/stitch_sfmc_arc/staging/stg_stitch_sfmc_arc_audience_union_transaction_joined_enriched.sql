@@ -54,7 +54,7 @@ with base as (
             else 'calculated_donor_audience'
         end as source_column,
         row_number() over (partition by transaction_enriched.transaction_id order by transaction_enriched.transaction_date_day asc) as row_number
-    from {{ ref(donor_transaction_enriched) }} transaction_enriched
+    from {{ ref(transaction_enriched) }} transaction_enriched
     left join {{ref(jobs_append)}} calculated_audience
     on transaction_enriched.transaction_date_day = calculated_audience.transaction_date_day
     and transaction_enriched.person_id = calculated_audience.person_id
