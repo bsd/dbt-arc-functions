@@ -191,7 +191,7 @@
         sum(unique_reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative
     from intermediate_rollup
     window w as (
-        partition by fiscal_year, interval_type, donor_audience, platform
+        partition by fiscal_year, donor_audience, platform
         order by date_day
         rows between unbounded preceding and current row
     )
