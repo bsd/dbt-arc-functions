@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_audience_donor_audience_by_day
+    description: ""
+    columns:
+      - name: date_day
+        data_type: date
+        description: ""
+
+      - name: person_id
+        data_type: string
+        description: ""
+
+      - name: audience_unioned
+        data_type: string
+        description: ""
+
+      - name: audience_calculated
+        data_type: string
+        description: ""
+
+      - name: coalesced_audience
+        data_type: string
+        description: ""
