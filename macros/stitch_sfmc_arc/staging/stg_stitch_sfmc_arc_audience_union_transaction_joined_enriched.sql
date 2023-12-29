@@ -1,10 +1,10 @@
 -- fmt: off
 {% macro create_stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched(
-    donor_audience_unioned="stg_stitch_sfmc_arc_audience_unioned",
+    donor_audience_by_day="stg_audience_donor_audience_by_day"
     donor_engagement_by_day="stg_stitch_sfmc_donor_engagement_by_date_day",
     donor_loyalty='stg_stitch_sfmc_donor_loyalty_start_and_end',
-    transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched",
-    jobs_append="stg_stitch_sfmc_parameterized_audience_transaction_jobs_append"
+    transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched"
+    
 ) %}
 
 {{ config(
@@ -36,9 +36,9 @@ with base as (
         transaction_enriched.fiscal_year,
         transaction_enriched.person_id,
         transaction_enriched.transaction_id,
-        audience_unioned.donor_audience as audience_unioned,
-        calculated_audience.donor_audience as audience_calculated,
-        coalesce(audience_unioned.donor_audience, calculated_audience.donor_audience) as coalesced_audience,
+        donor_audience_by_day.donor_audience as audience_unioned,
+        donor_audience_by_day.donor_audience as audience_calculated,
+        donor_audience_by_day.coalesced_audience,
         donor_engagement.donor_engagement,
         donor_loyalty.donor_loyalty,
         transaction_enriched.best_guess_inbound_channel as channel,
@@ -48,17 +48,14 @@ with base as (
         transaction_enriched.amount,
         transaction_enriched.gift_count,
         case
-            when audience_unioned.donor_audience is not null
+            when donor_audience_by_day.donor_audience is not null
             then 'unioned_donor_audience'
             else 'calculated_donor_audience'
         end as source_column,
         row_number() over (partition by transaction_enriched.transaction_id order by transaction_enriched.transaction_date_day asc) as row_number
     from {{ ref(transaction_enriched) }} transaction_enriched
-    left join {{ref(jobs_append)}} calculated_audience
-    on transaction_enriched.transaction_date_day = calculated_audience.transaction_date_day
-    and transaction_enriched.person_id = calculated_audience.person_id
     left join
-        {{ ref(donor_audience_unioned) }} audience_unioned
+        {{ ref(donor_audience_by_day) }} audience_unioned
         on transaction_enriched.transaction_date_day = audience_unioned.date_day
         and transaction_enriched.person_id = audience_unioned.person_id
     left join
@@ -73,7 +70,15 @@ with base as (
 
 )
 
+, dedupe as (
 select * from base
 where row_number = 1
+)
+
+select *,
+row_number() over (
+                partition by person_id, fiscal_year order by transaction_date_day
+                ) as nth_transaction_this_fiscal_year
+from dedupe 
 
 {% endmacro %}
