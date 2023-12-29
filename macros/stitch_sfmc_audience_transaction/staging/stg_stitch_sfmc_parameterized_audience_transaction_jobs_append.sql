@@ -62,8 +62,8 @@
             from day_person_rollup
         ),
 
-audience_calculated_dedupe as (
-    /*
+        audience_calculated_dedupe as (
+            /*
 audience_calculated_dedupe retrieves calculated audience data for all dates 
 */
             select
