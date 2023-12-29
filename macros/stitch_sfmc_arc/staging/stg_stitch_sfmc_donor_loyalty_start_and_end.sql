@@ -1,13 +1,11 @@
-
 {% macro create_stg_stitch_sfmc_donor_loyalty_start_and_end(
     transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched"
 ) %}
 
+    with
+        donor_loyalty_counts as (
 
-
-with donor_loyalty_counts as (
-
-/*
+            /*
 
 donor_loyalty_counts calculates donor loyalty-related information. 
 It determines the start and end dates for each fiscal year, 
@@ -15,25 +13,24 @@ assigns a row number to each donor within a fiscal year,
 and organizes the data for further analysis.
 
 */
-     select
-        person_id,
-        fiscal_year,
-        min(transaction_date_day) as start_date,
-        date_sub(
-            date(concat(fiscal_year, '-', '{{ var('fiscal_year_start') }}')),
-            interval 1 day
-        ) as end_date,
+            select
+                person_id,
+                fiscal_year,
+                min(transaction_date_day) as start_date,
+                date_sub(
+                    date(concat(fiscal_year, '-', '{{ var(' fiscal_year_start ') }}')),
+                    interval 1 day
+                ) as end_date,
 
-        row_number() over (partition by person_id order by fiscal_year desc) as row_num
-    from {{ref(transaction_enriched)}}
-    group by person_id, fiscal_year
-    order by person_id, fiscal_year        
-    )
-
-
-
-    ,    donation_history as (
-        /*
+                row_number() over (
+                    partition by person_id order by fiscal_year desc
+                ) as row_num
+            from {{ ref(transaction_enriched) }}
+            group by person_id, fiscal_year
+            order by person_id, fiscal_year
+        ),
+        donation_history as (
+            /*
 donation_history computes the donation history for each donor, 
 including the previous fiscal year, fiscal year before previous, 
 and the last donation date.
@@ -48,12 +45,11 @@ and the last donation date.
                     partition by person_id order by fiscal_year
                 ) as fiscal_year_before_previous,
                 max(transaction_date_day) as last_donation_date
-            from {{ref(transaction_enriched)}}
+            from {{ ref(transaction_enriched) }}
             group by person_id, fiscal_year
         )
 
-
-            /*
+    /*
 Based on the data from donor_loyalty_counts and donation_history,
 arc_donor_loyalty determines the donor's loyalty status for each fiscal year. 
 It classifies donors as new, retained, retained with three or more years, 
@@ -88,10 +84,5 @@ or reactivated donors.
         on donor_loyalty_counts.person_id = donation_history.person_id
         and donor_loyalty_counts.fiscal_year = donation_history.fiscal_year
     order by donor_loyalty_counts.person_id, donor_loyalty_counts.fiscal_year
-
-
-
-
-
 
 {% endmacro %}
