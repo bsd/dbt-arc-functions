@@ -75,10 +75,7 @@ select * from base
 where row_number = 1
 )
 
-select *,
-row_number() over (
-                partition by person_id, fiscal_year order by transaction_date_day
-                ) as nth_transaction_this_fiscal_year
+select *
 from dedupe 
 
 {% endmacro %}

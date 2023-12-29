@@ -74,7 +74,9 @@
                 ) as row_number
             from {{ ref(reference_name) }}
 
-        )
+        ),
+    
+    dedupe as (
 
     select
         *,
@@ -87,7 +89,16 @@
         row_number() over (
             partition by person_id order by transaction_date_day
         ) as gift_count
+
     from base
     where row_number = 1
+    )
+
+
+    select * ,
+    row_number() over (
+                partition by person_id, fiscal_year order by transaction_date_day
+                ) as nth_transaction_this_fiscal_year
+    from dedupe
 
 {% endmacro %}
