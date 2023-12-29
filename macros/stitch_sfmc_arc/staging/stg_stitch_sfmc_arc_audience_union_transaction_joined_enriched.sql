@@ -68,8 +68,9 @@ with base as (
         and transaction_enriched.person_id = donor_engagement.person_id
     left join
         {{ref(donor_loyalty)}} donor_loyalty
-        on transaction_enriched.transaction_date_day = donor_loyalty.date_day
-        and transaction_enriched.person_id = donor_loyalty.person_id
+        on transaction_enriched.person_id = donor_loyalty.person_id
+        and transaction_enriched.transaction_date_day 
+        between donor_loyalty.start_date and donor_loyalty.end_date
 
 )
 
