@@ -28,7 +28,7 @@
             }}
 
         ),
-        date_spine_with_audience_and_platform as (
+        date_spine_with_audience_and_channel as (
             select distinct
                 date_day,
                 donor_audience,
@@ -43,19 +43,19 @@
         ),
         intermediate_rollup as (
             select
-                {% if interval == 'day' %} coalesce(date_spine_with_audience_and_platform.date_day, person_and_transaction.date_day) as date_day,
-                {% else %} last_day(coalesce(date_spine_with_audience_and_platform.date_day, person_and_transaction.date_day), {{ interval }}) as date_day,
+                {% if interval == 'day' %} coalesce(date_spine_with_audience_and_channel.date_day, person_and_transaction.date_day) as date_day,
+                {% else %} last_day(coalesce(date_spine_with_audience_and_channel.date_day, person_and_transaction.date_day), {{ interval }}) as date_day,
                 {% endif %}
                 {% if interval == 'day' %} 'daily' as interval_type,
                 {% elif interval == 'week' %} 'weekly' as interval_type,
                 {% elif interval == 'month' %} 'monthly' as interval_type,
                 {% elif interval == 'year' %} 'yearly' as interval_type,
                 {% endif %}
-                coalesce(date_spine_with_audience_and_platform.donor_audience, person_and_transaction.donor_audience) donor_audience,
-                coalesce(date_spine_with_audience_and_platform.platform, person_and_transaction.channel) platform, -- from best_guess_inbound_channel
+                coalesce(date_spine_with_audience_and_channel.donor_audience, person_and_transaction.donor_audience) donor_audience,
+                coalesce(date_spine_with_audience_and_channel.channel, person_and_transaction.channel) channel, -- from best_guess_inbound_channel
                 {{
                     dbt_arc_functions.get_fiscal_year(
-                        "coalesce(date_spine_with_audience_and_platform.date_day, person_and_transaction.date_day)", var("fiscal_year_start")
+                        "coalesce(date_spine_with_audience_and_channel.date_day, person_and_transaction.date_day)", var("fiscal_year_start")
                     )
                 }} as fiscal_year,
                 count(
@@ -164,11 +164,11 @@
                         then person_id
                     end
                 ) as unique_reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-            from date_spine_with_audience_and_platform
+            from date_spine_with_audience_and_channel
             full outer join {{ ref(person_and_transaction) }} person_and_transaction
-            on date_spine_with_audience_and_platform.date_day = person_and_transaction.date_day
-            and date_spine_with_audience_and_platform.donor_audience = person_and_transaction.donor_audience
-            and date_spine_with_audience_and_platform.platform = person_and_transaction.channel
+            on date_spine_with_audience_and_channel.date_day = person_and_transaction.date_day
+            and date_spine_with_audience_and_channel.donor_audience = person_and_transaction.donor_audience
+            and date_spine_with_audience_and_channel.channel = person_and_transaction.channel
             group by 1, 2, 3, 4, 5
         )
         
@@ -177,7 +177,7 @@
         fiscal_year,
         interval_type,
         donor_audience,
-        platform,
+        channel,
         total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
@@ -192,7 +192,7 @@
         sum(unique_reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative
     from intermediate_rollup
     window w as (
-        partition by fiscal_year, donor_audience, platform
+        partition by fiscal_year, donor_audience, channel
         order by date_day
         rows between unbounded preceding and current row
     )
