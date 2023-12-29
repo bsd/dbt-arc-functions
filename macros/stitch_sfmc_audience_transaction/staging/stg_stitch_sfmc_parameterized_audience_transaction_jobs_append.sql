@@ -60,32 +60,28 @@
                 end as bluestate_donor_audience,  -- modeled after UUSA
                 {{ client_donor_audience }} as donor_audience
             from day_person_rollup
-        ),
-
-    , audience_calculated_dedupe as (
-    /*
+        ),,
+        audience_calculated_dedupe as (
+            /*
 audience_calculated_dedupe retrieves calculated audience data for all dates 
 */
-    select transaction_date_day, 
-    person_id, 
-    donor_audience,
-    row_number() over (partition by person_id, transaction_date_day order by transaction_date_day) as row_number
-     from base
+            select
+                transaction_date_day,
+                person_id,
+                donor_audience,
+                row_number() over (
+                    partition by person_id, transaction_date_day
+                    order by transaction_date_day
+                ) as row_number
+            from base
 
-)
+        )
 
-
-     /*
+    /*
  selects just one donor audience value for each person per day
 */
-    select 
-    transaction_date_day,
-    person_id,
-    donor_audience
+    select transaction_date_day, person_id, donor_audience
     from audience_calculated_dedupe
     where row_number = 1
-
-
-
 
 {% endmacro %}

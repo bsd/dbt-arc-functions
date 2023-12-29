@@ -29,7 +29,6 @@ such as transaction details, audience information, engagement data,
 loyalty status, and more.
 making sure to finally dedupe on transaction_id.
 */
-
 with base as (
 
     select
