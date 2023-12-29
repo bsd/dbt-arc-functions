@@ -1,3 +1,4 @@
+-- fmt: off
 {% macro create_stg_stitch_sfmc_donor_loyalty_start_and_end(
     transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched"
 ) %}
@@ -18,7 +19,7 @@ and organizes the data for further analysis.
                 fiscal_year,
                 min(transaction_date_day) as start_date,
                 date_sub(
-                    date(concat(fiscal_year, '-', '{{ var(' fiscal_year_start ') }}')),
+                    date(concat(fiscal_year, '-', '{{ var('fiscal_year_start') }}')),
                     interval 1 day
                 ) as end_date,
 
