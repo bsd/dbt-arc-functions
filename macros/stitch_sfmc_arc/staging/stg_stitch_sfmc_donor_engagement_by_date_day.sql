@@ -14,6 +14,7 @@
     }}
 
     with
+    -- Creates a date spine spanning the range of dates present in the donor engagement SCD table
         date_spine as (
             select date_day
             from
@@ -35,6 +36,7 @@
 
         ),
         engagement_by_date_day as (
+        -- Joins the generated date spine with the donor engagement SCD table to determine engagement status for each date
             select
                 date_spine.date_day,
                 donor_engagement_scd.person_id,
@@ -49,6 +51,7 @@
                 )
         ),
         deduplicated_table as (
+        -- Deduplicates engagement statuses for each person on each date to fetch the first record per person
             select
                 date_day,
                 person_id,
@@ -60,6 +63,7 @@
 
         )
 
+     -- Selects the deduplicated engagement statuses for each person on each date
     select date_day, person_id, donor_engagement
     from deduplicated_table
     where row_num = 1
