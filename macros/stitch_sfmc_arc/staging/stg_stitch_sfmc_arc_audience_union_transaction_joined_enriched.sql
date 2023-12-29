@@ -41,7 +41,7 @@ with base as (
         donor_audience_by_day.coalesced_audience,
         donor_engagement.donor_engagement,
         donor_loyalty.donor_loyalty,
-        transaction_enriched.best_guess_inbound_channel as channel,
+        transaction_enriched.channel,
         transaction_enriched.appeal_business_unit,
         transaction_enriched.gift_size_string,
         transaction_enriched.recurring,
