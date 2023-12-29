@@ -171,7 +171,7 @@
             and date_spine_with_audience_and_platform.platform = person_and_transaction.channel
             group by 1, 2, 3, 4, 5
         )
-        
+
     select
         date_day,
         fiscal_year,
