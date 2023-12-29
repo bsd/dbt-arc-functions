@@ -27,7 +27,7 @@
             donor_counts.donor_audience, audience_budget.donor_audience
         ) as donor_audience,
         coalesce(
-            initcap(donor_counts.platform), initcap(audience_budget.join_source)
+            initcap(donor_counts.channel), initcap(audience_budget.join_source)
         ) as channel,
         donor_counts.total_{{ recur_onetime }}_donor_counts as total_{{ recur_onetime }}_donor_counts,
         donor_counts.new_{{ recur_onetime }}_donor_counts as new_{{ recur_onetime }}_donor_counts,
@@ -71,6 +71,6 @@
         = upper(audience_budget.interval_type)
         and upper(donor_counts.donor_audience)
         = upper(audience_budget.donor_audience)
-        and upper(donor_counts.platform) = upper(audience_budget.join_source) 
+        and upper(donor_counts.channel) = upper(audience_budget.join_source) 
 
 {% endmacro %}
