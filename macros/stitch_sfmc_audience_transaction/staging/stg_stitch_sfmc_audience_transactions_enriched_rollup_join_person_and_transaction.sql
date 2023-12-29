@@ -27,7 +27,8 @@
         first_gift.first_gift_join_source as join_source,
         first_gift.join_gift_size_string as join_amount_str,
         first_gift.join_gift_size_string_recur as join_amount_str_recur,
-        first_gift.join_month_year_date as join_month_year_str,
+        first_gift.join_month_year_date,
+        first_gift.join_month_year_str
     from
         (
             select date_day, person_id, donor_engagement
@@ -50,15 +51,7 @@
         ) as transactions
         on donor_engagement.person_id = transactions.person_id
         and donor_engagement.date_day = transactions.transaction_date_day
-    left join
-        (
-            select
-                person_id,
-                first_gift_join_source,
-                join_gift_size_string,
-                join_gift_size_string_recur,
-                join_month_year_date
-            from {{ ref(first_gift) }}
-        ) as first_gift
-        on donor_engagement.person_id = first_gift.person_id
+    left join {{ ref(first_gift) }} as first_gift
+    on donor_engagement.person_id = first_gift.person_id
+    
 {% endmacro %}
