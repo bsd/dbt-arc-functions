@@ -1,6 +1,5 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_person_engagement_with_start_and_end_dates(
     stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned",
-    max_date=""
 ) %}
 
     with
