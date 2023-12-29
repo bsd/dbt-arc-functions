@@ -10,18 +10,17 @@
         )
     }}
     select
-        donor_engagement.date_day as date_day,
-        donor_engagement.person_id as person_id,
+        donor_engagement.date_day,
+        donor_engagement.person_id,
         last_value(transactions.coalesced_audience ignore nulls) over (
             partition by donor_engagement.person_id
             order by donor_engagement.date_day
             rows between unbounded preceding and current row
         ) as donor_audience,
-        transactions.donor_loyalty as donor_loyalty,
-        transactions.nth_transaction_this_fiscal_year
-        as nth_transaction_this_fiscal_year,
-        transactions.recurring as recurring,
-        donor_engagement.donor_engagement as donor_engagement,
+        transactions.donor_loyalty,
+        transactions.nth_transaction_this_fiscal_year,
+        transactions.recurring,
+        donor_engagement.donor_engagement,
         transactions.gift_size_string as gift_size_str,
         transactions.channel as channel,  -- from best_guess_inbound_channel
         first_gift.first_gift_join_source as join_source,
