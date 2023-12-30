@@ -38,7 +38,6 @@ and organizes the data for further analysis.
                 ) as row_num
             from {{ ref(transaction_enriched) }}
             group by person_id, fiscal_year
-            order by person_id, fiscal_year
         ),
         donation_history as (
             /*
@@ -67,7 +66,6 @@ It classifies donors as new, retained, retained with three or more years,
 or reactivated donors.
 */
     select
-        {{dbt_utils.generate_surrogate_key(['person_id', ['fiscal_year']])}} as id,
         donor_loyalty_counts.person_id,
         donor_loyalty_counts.fiscal_year,
         donor_loyalty_counts.start_date,
