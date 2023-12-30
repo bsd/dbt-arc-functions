@@ -1,23 +1,12 @@
 {% macro create_stg_audience_donors_by_day(
     first_gift="stg_stitch_sfmc_parameterized_audience_transaction_first_gift",
-    transactions="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned",
+    first_fy="stg_audience_first_transaction_this_fy"
     donor_engagement="stg_stitch_sfmc_donor_engagement_by_date_day",
     donor_loyalty="stg_stitch_sfmc_donor_loyalty_start_and_end",
     donor_audience="stg_audience_donor_audience_by_day_unioned"
 ) %}
 
-    with
-        first_transaction_fy as (
-
-            select
-                transaction_date_day,
-                person_id,
-                min(
-                    nth_transaction_this_fiscal_year
-                ) as nth_transaction_this_fiscal_year
-            from {{ ref(transactions) }}
-            group by 1, 2
-        )
+   
 
     select
         donor_audience.date_day as date_day,
@@ -29,7 +18,7 @@
         donor_audience.donor_audience,
         donor_loyalty.donor_loyalty,
         donor_engagement.donor_engagement,
-        first_transaction_fy.nth_transaction_this_fiscal_year,
+        first_fy.1st_transaction_this_fiscal_year,
         first_gift.first_gift_join_source as channel,
         first_gift.first_transaction_date as join_date,
         first_gift.first_gift_recur_status as recurring,
@@ -45,9 +34,9 @@
         and donor_audience.date_day
         between donor_loyalty.start_date and donor_loyalty.end_date
     left join
-        first_transaction_fy
-        on donor_audience.person_id = first_transaction_fy.person_id
-        and donor_audience.date_day = first_transaction_fy.transaction_date_day
+        {{ref(first_fy)}} first_fy
+        on donor_audience.person_id = first_fy.person_id
+        and donor_audience.date_day = first_fy.transaction_date_day
     left join
         {{ ref(first_gift) }} as first_gift
         on donor_engagement.person_id = first_gift.person_id
