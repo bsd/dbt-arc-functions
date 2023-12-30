@@ -1,5 +1,5 @@
 {% macro create_stg_audience_first_transaction_this_fy(
-    first_transaction_FY="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned"
+    transactions="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned"
 ) %}
 
  with
