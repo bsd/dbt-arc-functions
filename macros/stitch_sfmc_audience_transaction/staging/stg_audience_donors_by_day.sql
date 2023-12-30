@@ -33,11 +33,7 @@ with first_transaction_FY as (
         donor_engagement.donor_engagement,
         first_transaction_FY.nth_transaction_this_fiscal_year,
         first_gift.first_gift_join_source as channel,
-        first_gift.join_gift_size_string as join_amount_str,
-        first_gift.join_gift_size_string_recur as join_amount_str_recur,
         first_gift.first_transaction_date as join_date,
-        first_gift.join_month_year_date,
-        first_gift.join_month_year_str,
         first_gift.first_gift_recur_status as recurring,
         first_gift.first_gift_donor_audience as join_donor_audience
     from {{ ref(donor_audience) }} as donor_audience
