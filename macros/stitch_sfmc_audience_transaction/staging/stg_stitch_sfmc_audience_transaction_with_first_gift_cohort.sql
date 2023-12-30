@@ -1,8 +1,23 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_with_first_gift_cohort(
-    transactions="stg_stitch_sfmc_audience_transactions_enriched_rollup",
+    transactions="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned",
     first_gift="stg_stitch_sfmc_parameterized_audience_transaction_first_gift"
 ) %}
 
+
+with transactions_rollup as (
+
+    select
+        transaction_date_day,
+        person_id,
+        channel,
+        recurring,
+        (case when recurring is true then gift_size_string end) as recurring_gift_size,
+        sum(amount) as amounts,
+        count(*) as gifts
+    from {{ ref(transactions) }}
+    group by 1, 2, 3, 4, 5
+
+)
     /*
 
 This macro appends first gift related values to the transaction table on person_id, 
@@ -49,7 +64,7 @@ so that every transaction has a record of first-gift-related attributes:
             when first_gift.first_gift_recur_status = false
             then 'one_time'
         end as first_gift_recur_status_string
-    from {{ ref(transactions) }} transactions
+    from {{ ref(transactions_rollup) }} transactions
     left join
         {{ ref(first_gift) }} first_gift
         on transactions.person_id = first_gift.person_id
