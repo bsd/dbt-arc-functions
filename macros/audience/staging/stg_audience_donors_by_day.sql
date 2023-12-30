@@ -3,7 +3,7 @@
     transactions="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned",
     donor_engagement="stg_stitch_sfmc_donor_engagement_by_date_day",
     donor_loyalty="stg_stitch_sfmc_donor_loyalty_start_and_end",
-    donor_audience="stg_audience_donor_audience_by_day"
+    donor_audience="stg_audience_donor_audience_by_day_unioned"
 ) %}
 
     with
