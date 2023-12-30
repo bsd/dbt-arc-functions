@@ -1,22 +1,94 @@
-{% macro create_stg_stitch_sfmc_audience_donor_audience_by_day(
-    audience_snapshot="stg_stitch_sfmc_parameterized_arc_audience",
-    calculated_audience="stg_stitch_sfmc_parameterized_calculated_audience"
+{% macro create_stg_stitch_sfmc_parameterized_calculated_audience(
+    reference_name="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned",
+    client_donor_audience="NULL"
 ) %}
 
     {{
         config(
             materialized="table",
             partition_by={
-                "field": "date_day",
+                "field": "transaction_date_day",
                 "data_type": "date",
                 "granularity": "day",
             },
-            cluster_by="donor_audience",
         )
     }}
 
+    with
+        calculations as (
+            select
+                transaction_date_day,
+                person_id,
+                sum(amount) as total_amount,
+                sum(case when recurring = true then amount else 0 end) as recur_amount
+            from {{ ref(reference_name) }}
+            group by 1, 2
+        ),
+        day_person_rollup as (
+            select
+                transaction_date_day,
+                person_id,
+                -- Calculate cumulative recur and 1x amount for the past 24 months
+                sum(total_amount) over (
+                    partition by person_id
+                    order by unix_seconds(timestamp(transaction_date_day))  -- Convert date to Unix timestamp
+                    range between 63113904 preceding and current row  -- 63,113,904 seconds in 24 months
+                ) as cumulative_amount_24_months,
+                -- Calculate cumulative recurring amount over past 90 days
+                sum(recur_amount) over (
+                    partition by person_id
+                    order by unix_seconds(timestamp(transaction_date_day))  -- Convert date to Unix timestamp
+                    range between 7776000 preceding and current row  -- unix seconds in 90 days
+                ) as cumulative_amount_90_days_recur
+            from calculations
+            group by transaction_date_day, person_id, total_amount, recur_amount
+        ),
+        base as
 
-with
+        (
+            select distinct
+                transaction_date_day,
+                person_id,
+                case
+                    when cumulative_amount_24_months >= 25000
+                    then 'Major'
+                    when cumulative_amount_24_months between 1000 and 24999.99
+                    then 'Leadership Giving'
+                    when cumulative_amount_90_days_recur > 0
+                    then 'Monthly'
+                    else 'Mass'
+                end as bluestate_donor_audience,  -- modeled after UUSA
+                {{ client_donor_audience }} as donor_audience
+            from day_person_rollup
+        ),
+
+        audience_calculated_dedupe as (
+            /*
+audience_calculated_dedupe retrieves calculated audience data for all dates 
+*/
+            select
+                transaction_date_day,
+                person_id,
+                donor_audience,
+                row_number() over (
+                    partition by person_id, transaction_date_day
+                    order by transaction_date_day
+                ) as row_number
+            from base
+
+        ),
+
+calculated_audience as (
+    /*
+ selects just one donor audience value for each person per day
+*/
+    select transaction_date_day, person_id, donor_audience
+    from audience_calculated_dedupe
+    where row_number = 1
+)
+
+
+
         calc_date_spine as (
             select date
             from
@@ -24,7 +96,7 @@ with
                     generate_date_array(
                         (
                             select min(transaction_date_day),
-                            from {{ ref(calculated_audience) }}
+                            from calculated_audience
                         ),
                         ifnull(
                             (
@@ -119,47 +191,11 @@ calculated_audience_scd as (
                 ) as row_num
             from calc_audience_by_date_day
 
-        ),
-    
-    calculated_audience_by_date_day as (
+        )
 
     select date_day, person_id, donor_audience
     from dedup_calc_audience_by_date_day
     where row_num = 1
-    ),
-
-
-
-        audience_unioned as (
-            select *
-            from {{ref(audience_snapshot)}} arc_audience
-            union all
-            select *
-            from calculated_audience_by_date_day
-
-        )
-
-
-   
-
-/* rejoin calculated audience into the final audience, filling in blanks */
-            select
-                coalesce(
-                    audience_unioned.date_day, calculated_audience.transaction_date_day
-                ) as date_day,
-                audience_unioned.person_id,
-                coalesce(
-                    audience_unioned.donor_audience, calculated_audience.donor_audience
-                ) as donor_audience,
-                case
-                    when audience_unioned.donor_audience is not null
-                    then 'unioned_donor_audience'
-                    else 'calculated_donor_audience'
-                end as source_column
-            from audience_unioned
-            left join
-                {{ ref(calculated_audience) }} calculated_audience
-                on audience_unioned.date_day = calculated_audience.transaction_date_day
 
 
 {% endmacro %}
