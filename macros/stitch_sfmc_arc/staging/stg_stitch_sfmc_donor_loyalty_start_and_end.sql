@@ -1,6 +1,6 @@
 -- fmt: off
 {% macro create_stg_stitch_sfmc_donor_loyalty_start_and_end(
-    transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched"
+    transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned"
 ) %}
 
     with

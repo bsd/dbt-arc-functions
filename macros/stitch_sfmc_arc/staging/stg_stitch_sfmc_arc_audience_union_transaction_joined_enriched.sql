@@ -3,7 +3,8 @@
     donor_audience_by_day="stg_audience_donor_audience_by_day",
     donor_engagement_by_day="stg_stitch_sfmc_donor_engagement_by_date_day",
     donor_loyalty='stg_stitch_sfmc_donor_loyalty_start_and_end',
-    transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched"
+    channel="NULL",
+    transactions="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned"
     
 ) %}
 
@@ -18,64 +19,102 @@
 )}}
 
 
-
-
-/*
-the code selects data from audience_union_transaction_joined, 
-left joins it with audience_calculated_alldates and arc_donor_loyalty, 
-and creates a consolidated dataset. 
-This dataset includes various attributes related to donors, 
-such as transaction details, audience information, engagement data, 
-loyalty status, and more.
-making sure to finally dedupe on transaction_id.
-*/
-with base as (
-
+ with base as (
     select
-        transaction_enriched.transaction_date_day,
-        transaction_enriched.fiscal_year,
-        transaction_enriched.person_id,
-        transaction_enriched.transaction_id,
+        transactions.transaction_id,
+        transactions.person_id,
+        transactions.transaction_date_day,
+        transactions.fiscal_year,
+        cast(transactions.amount as float64) as amount,
+        transactions.appeal_business_unit,
+        {{ channel }} as channel,
+        transactions.recurring,
+        (
+            case
+                when transactions.amount between 0 and 25.99
+                then '0-25'
+                when transactions.amount between 26 and 100.99
+                then '26-100'
+                when transactions.amount between 101 and 250.99
+                then '101-250'
+                when transactions.amount between 251 and 500.99
+                then '251-500'
+                when transactions.amount between 501 and 1000.99
+                then '501-1000'
+                when transactions.amount between 1001 and 10000.99
+                then '1001-10000'
+                when transactions.amount > 10000
+                then '10000+'
+            end
+        ) as gift_size_string,
+        (
+            case
+                when transactions.amount between 0 and 10.99
+                then '0-10'
+                when transactions.amount between 11 and 20.99
+                then '11-20'
+                when transactions.amount between 21 and 30.99
+                then '21-30'
+                when transactions.amount between 31 and 40.99
+                then '31-40'
+                when transactions.amount between 41 and 50.99
+                then '41-50'
+                when transactions.amount between 51 and 60.99
+                then '51-60'
+                when transactions.amount between 61 and 70.99
+                then '61-70'
+                when transactions.amount between 71 and 80.99
+                then '71-80'
+                when transactions.amount between 81 and 90.99
+                then '81-90'
+                when transactions.amount between 91 and 100.99
+                then '91-100'
+                when transactions.amount > 100
+                then '100+'
+            end
+        ) as gift_size_string_recur,
         donor_audience_by_day.audience_unioned,
         donor_audience_by_day.audience_calculated,
         donor_audience_by_day.coalesced_audience,
         donor_engagement.donor_engagement,
         donor_loyalty.donor_loyalty,
-        transaction_enriched.channel,
-        transaction_enriched.appeal_business_unit,
-        transaction_enriched.gift_size_string,
-        transaction_enriched.recurring,
-        transaction_enriched.amount,
-        transaction_enriched.gift_count,
-        case
-            when donor_audience_by_day.coalesced_audience is not null
-            then 'unioned_donor_audience'
-            else 'calculated_donor_audience'
-        end as source_column,
-        row_number() over (partition by transaction_enriched.transaction_id order by transaction_enriched.transaction_date_day asc) as row_number
-    from {{ ref(transaction_enriched) }} transaction_enriched
+        row_number() over (
+            partition by transactions.transaction_id order by transactions.transaction_date_day
+        ) as transactions_by_day,
+         row_number() over (
+                    partition by transactions.person_id order by transactions.transaction_date_day
+                ) as gift_count
+    from {{ref(transactions)}} transactions
     left join
         {{ ref(donor_audience_by_day) }} donor_audience_by_day
-        on transaction_enriched.transaction_date_day = donor_audience_by_day.date_day
-        and transaction_enriched.person_id = donor_audience_by_day.person_id
+        on transactions.transaction_date_day = donor_audience_by_day.date_day
+        and transactions.person_id = donor_audience_by_day.person_id
     left join
         {{ ref(donor_engagement_by_day) }} donor_engagement
-        on transaction_enriched.transaction_date_day = donor_engagement.date_day
-        and transaction_enriched.person_id = donor_engagement.person_id
+        on transactions.transaction_date_day = donor_engagement.date_day
+        and transactions.person_id = donor_engagement.person_id
     left join
         {{ref(donor_loyalty)}} donor_loyalty
-        on transaction_enriched.person_id = donor_loyalty.person_id
-        and transaction_enriched.transaction_date_day 
+        on transactions.person_id = donor_loyalty.person_id
+        and transactions.transaction_date_day 
         between donor_loyalty.start_date and donor_loyalty.end_date
 
-)
+        ),
 
-, dedupe as (
-select * from base
-where row_number = 1
-)
+        dedupe as (
+            select *,
+            row_number() over (
+            partition by person_id, fiscal_year order by transaction_date_day
+        ) as nth_transaction_this_fiscal_year
+            from base
+            where transactions_by_day = 1
+        ),
 
-select *
-from dedupe 
+
+select * from dedupe
 
 {% endmacro %}
+
+
+
+   

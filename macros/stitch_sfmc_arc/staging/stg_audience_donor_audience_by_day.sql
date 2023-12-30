@@ -12,7 +12,12 @@
         calculated_audience.donor_audience as audience_calculated,
         coalesce(
             audience_unioned.donor_audience, calculated_audience.donor_audience
-        ) as coalesced_audience
+        ) as coalesced_audience,
+        case
+            when audience_unioned.donor_audience is not null
+            then 'unioned_donor_audience'
+            else 'calculated_donor_audience'
+        end as source_column
     from {{ ref(audience_unioned) }} audience_unioned
     left join
         {{ ref(calculated_audience) }} calculated_audience

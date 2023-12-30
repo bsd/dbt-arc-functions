@@ -39,7 +39,13 @@
                 and transaction_date >= date_sub(current_date(), interval 10 year)
         )
 
-    select *
+    select *,
+    {{
+            dbt_arc_functions.get_fiscal_year(
+                "transaction_date_day",
+                var("fiscal_year_start"),
+            )
+                }} as fiscal_year
     from dedupe
     where row_number = 1 {{ where_clause_1 }}
 
