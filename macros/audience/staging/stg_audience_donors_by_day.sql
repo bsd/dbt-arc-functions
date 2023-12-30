@@ -21,8 +21,7 @@
         first_fy.1st_transaction_this_fiscal_year,
         first_gift.first_gift_join_source as channel,
         first_gift.first_transaction_date as join_date,
-        first_gift.first_gift_recur_status as recurring,
-        first_gift.first_gift_donor_audience as join_donor_audience
+        first_gift.first_gift_recur_status as recurring
     from {{ ref(donor_audience) }} as donor_audience
     full outer join
         {{ ref(donor_engagement) }} as donor_engagement
