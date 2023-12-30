@@ -18,7 +18,7 @@ with first_transaction_FY as (
     select transaction_date_day, person_id, min(nth_transaction_this_fiscal_year) as nth_transaction_this_fiscal_year
     from {{ref(transactions)}}
     group by 1, 2
-),
+)
 
 
     select
