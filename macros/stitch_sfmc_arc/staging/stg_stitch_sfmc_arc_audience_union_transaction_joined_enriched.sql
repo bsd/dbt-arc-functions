@@ -106,7 +106,7 @@
             select *
             from base
             where transactions_by_day = 1
-        ),
+        )
 
 
 select * from dedupe
