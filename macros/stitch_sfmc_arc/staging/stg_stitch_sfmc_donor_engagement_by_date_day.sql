@@ -2,17 +2,6 @@
     donor_engagement_scd_table="stg_stitch_sfmc_donor_engagement_scd"
 ) %}
 
-    {{
-        config(
-            materialized="table",
-            partition_by={
-                "field": "date_day",
-                "data_type": "date",
-                "granularity": "day",
-            },
-        )
-    }}
-
     with
         -- Creates a date spine spanning the range of dates present in the donor
         -- engagement SCD table

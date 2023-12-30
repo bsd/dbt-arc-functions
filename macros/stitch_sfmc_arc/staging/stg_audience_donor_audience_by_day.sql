@@ -4,9 +4,16 @@
 ) %}
 
 {{config(
-    materialized='incremental',
-    unique_key='id'
-)}}
+    materialized='table',
+    partition_by={
+        "field": "date_day",
+        "data_type": "date",
+        "granularity": "day",
+    },
+    cluster_by='coalesced_audience'
+        )
+    }}
+
 
 with base as (
 
@@ -36,11 +43,6 @@ with base as (
     {{dbt_utils.generate_surrogate_key(['date_day', 'person_id'])}} as id,
     * 
     from base 
-
-    {% if is_incremental() %}
-    where date_day >= (select date_sub(max(date_day), 7 day) from {{ this }})
-
-    {% endif %}
 
 
 {% endmacro %}
