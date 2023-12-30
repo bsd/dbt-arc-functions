@@ -29,14 +29,14 @@ with base as (
     left join
         {{ ref(calculated_audience) }} calculated_audience
         on audience_unioned.date_day = calculated_audience.transaction_date_day
-),
+)
 
 
     select 
     {{dbt_utils.generate_surrogate_key(['date_day', 'person_id'])}} as id,
     * 
     from base 
-    
+
     {% if is_incremental() %}
     where date_day >= (select date_sub(max(date_day), 7 day) from {{ this }})
 
