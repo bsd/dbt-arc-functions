@@ -5,13 +5,6 @@
     donor_loyalty="stg_stitch_sfmc_donor_loyalty_start_and_end",
     donor_audience="stg_audience_donor_audience_by_day"
 ) %}
-    {{
-        config(
-            materialized="table",
-            cluster_by="recurring",
-        )
-    }}
-
 
 with first_transaction_FY as (
 
