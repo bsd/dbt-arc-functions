@@ -15,7 +15,7 @@ with first_transaction_FY as (
 
 
     select
-        coalesce(donor_engagement.date_day, donor_audience.date_day) as date_day,
+        donor_audience.date_day as date_day,
         coalesce(
             donor_engagement.person_id,
             donor_audience.person_id,
@@ -30,19 +30,19 @@ with first_transaction_FY as (
         first_gift.first_gift_recur_status as recurring,
         first_gift.first_gift_donor_audience as join_donor_audience
     from {{ ref(donor_audience) }} as donor_audience
-    left join
+    full outer join
         {{ ref(donor_engagement) }} as donor_engagement
         on donor_audience.person_id = donor_engagement.person_id
         and donor_engagement.date_day = donor_audience.date_day
-    left join
+    full outer join
         {{ ref(donor_loyalty) }} as donor_loyalty
         on donor_audience.person_id = donor_loyalty.person_id
         and donor_audience.date_day
         between donor_loyalty.start_date and donor_loyalty.end_date
     left join
-        {{ ref(transactions) }} as transactions
-        on donor_audience.person_id = transactions.person_id
-        and donor_audience.date_day = transactions.transaction_date_day
+        first_transaction_FY
+        on donor_audience.person_id = first_transaction_FY.person_id
+        and donor_audience.date_day = first_transaction_FY.transaction_date_day
     left join
         {{ ref(first_gift) }} as first_gift
         on donor_engagement.person_id = first_gift.person_id
