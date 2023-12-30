@@ -9,7 +9,7 @@
                 transaction_date_day,
                 person_id,
                 case when nth_transaction_this_fiscal_year = 1 then True 
-                else False as 1st_transaction_this_fiscal_year
+                else False end as 1st_transaction_this_fiscal_year
             from {{ ref(transactions) }}
         )
     

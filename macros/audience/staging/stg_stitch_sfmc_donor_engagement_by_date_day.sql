@@ -117,6 +117,7 @@ change as (
                     )
                 ) as date
 
+        )
         ),
 
     filtered_changes as (

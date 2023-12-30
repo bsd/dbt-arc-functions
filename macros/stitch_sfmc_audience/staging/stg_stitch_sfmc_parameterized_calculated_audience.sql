@@ -76,7 +76,7 @@ audience_calculated_dedupe retrieves calculated audience data for all dates
                 ) as row_number
             from base
 
-        ),
+        )
 
 
     /*
