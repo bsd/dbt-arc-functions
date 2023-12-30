@@ -6,7 +6,7 @@
         base as (
             select
                 transaction_date_day as transaction_date_day,
-                coalesced_audience as donor_audience,
+                donor_audience,
                 channel,
                 person_id,
                 sum(gift_count) as gift_count,

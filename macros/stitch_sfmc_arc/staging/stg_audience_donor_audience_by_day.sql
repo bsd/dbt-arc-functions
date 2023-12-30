@@ -10,7 +10,7 @@
         "data_type": "date",
         "granularity": "day",
     },
-    cluster_by='coalesced_audience'
+    cluster_by='donor_audience'
         )
     }}
 
@@ -22,11 +22,9 @@ with base as (
             audience_unioned.date_day, calculated_audience.transaction_date_day
         ) as date_day,
         audience_unioned.person_id,
-        audience_unioned.donor_audience as audience_unioned,
-        calculated_audience.donor_audience as audience_calculated,
         coalesce(
             audience_unioned.donor_audience, calculated_audience.donor_audience
-        ) as coalesced_audience,
+        ) as donor_audience,
         case
             when audience_unioned.donor_audience is not null
             then 'unioned_donor_audience'

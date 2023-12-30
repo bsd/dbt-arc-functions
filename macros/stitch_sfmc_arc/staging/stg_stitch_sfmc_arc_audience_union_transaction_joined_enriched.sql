@@ -73,9 +73,7 @@
                 then '100+'
             end
         ) as gift_size_string_recur,
-        donor_audience_by_day.audience_unioned,
-        donor_audience_by_day.audience_calculated,
-        donor_audience_by_day.coalesced_audience,
+        donor_audience_by_day.donor_audience,
         donor_engagement.donor_engagement,
         donor_loyalty.donor_loyalty,
         row_number() over (

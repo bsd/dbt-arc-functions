@@ -28,7 +28,7 @@ with first_transaction_FY as (
             donor_audience.person_id,
             donor_loyalty.person_id
         ) as person_id,
-        donor_audience.coalesced_audience as donor_audience,
+        donor_audience.donor_audience,
         donor_loyalty.donor_loyalty,
         donor_engagement.donor_engagement,
         first_transaction_FY.nth_transaction_this_fiscal_year,

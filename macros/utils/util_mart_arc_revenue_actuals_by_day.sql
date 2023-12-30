@@ -26,7 +26,7 @@
         }} as fiscal_month,
         extract(month from transactions.transaction_date_day) as month,
         transactions.transaction_date_day,
-        transactions.coalesced_audience as donor_audience,
+        transactions.donor_audience,
         transactions.donor_engagement,
         transactions.donor_loyalty,
         initcap(transactions.channel) as channel,

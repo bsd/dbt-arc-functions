@@ -8,7 +8,7 @@
             select
                 audience_transactions.transaction_date_day as date_day,
                 audience_transactions.fiscal_year,
-                audience_transactions.coalesced_audience as donor_audience,
+                audience_transactions.donor_audience,
                 case
                     when recurring = true
                     then initcap(audience_transactions.appeal_business_unit)
