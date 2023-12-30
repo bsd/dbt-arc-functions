@@ -30,6 +30,7 @@
             initcap(donor_counts.channel), initcap(audience_budget.join_source)
         ) as channel,
         donor_counts.total_{{ recur_onetime }}_donor_counts as total_{{ recur_onetime }}_donor_counts,
+        donor_counts.newFY_{{ recur_onetime }}_donor_counts as new_{{ recur_onetime }}_donor_counts,
         donor_counts.new_{{ recur_onetime }}_donor_counts as new_{{ recur_onetime }}_donor_counts,
         donor_counts.retained_{{ recur_onetime }}_donor_counts
         as retained_{{ recur_onetime }}_donor_counts,
@@ -42,6 +43,8 @@
         donor_counts.total_{{ recur_onetime }}_donor_counts_cumulative
         as total_{{ recur_onetime }}_donor_counts_cumulative,
         donor_counts.new_{{ recur_onetime }}_donor_counts_cumulative
+        as new_{{ recur_onetime }}_donor_counts_cumulative,
+        donor_counts.newFY_{{ recur_onetime }}_donor_counts_cumulative
         as new_{{ recur_onetime }}_donor_counts_cumulative,
         donor_counts.retained_{{ recur_onetime }}_donor_counts_cumulative
         as retained_{{ recur_onetime }}_donor_counts_cumulative,
