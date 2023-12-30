@@ -39,20 +39,22 @@
                 and transaction_date >= date_sub(current_date(), interval 10 year)
         ),
 
-add_fiscal_year as (
-    select *,
-    {{
-            dbt_arc_functions.get_fiscal_year(
-                "transaction_date_day",
-                var("fiscal_year_start"),
-            )
+        add_fiscal_year as (
+            select
+                *,
+                {{
+                    dbt_arc_functions.get_fiscal_year(
+                        "transaction_date_day",
+                        var("fiscal_year_start"),
+                    )
                 }} as fiscal_year
-    from dedupe
-    where row_number = 1 {{ where_clause_1 }}
-)
+            from dedupe
+            where row_number = 1 {{ where_clause_1 }}
+        )
 
-select *,
-row_number() over (
+    select
+        *,
+        row_number() over (
             partition by person_id, fiscal_year order by transaction_date_day
         ) as nth_transaction_this_fiscal_year
     from add_fiscal_year

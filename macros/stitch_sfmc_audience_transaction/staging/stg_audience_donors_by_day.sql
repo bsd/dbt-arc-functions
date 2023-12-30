@@ -6,13 +6,18 @@
     donor_audience="stg_audience_donor_audience_by_day"
 ) %}
 
-with first_transaction_FY as (
+    with
+        first_transaction_fy as (
 
-    select transaction_date_day, person_id, min(nth_transaction_this_fiscal_year) as nth_transaction_this_fiscal_year
-    from {{ref(transactions)}}
-    group by 1, 2
-)
-
+            select
+                transaction_date_day,
+                person_id,
+                min(
+                    nth_transaction_this_fiscal_year
+                ) as nth_transaction_this_fiscal_year
+            from {{ ref(transactions) }}
+            group by 1, 2
+        )
 
     select
         donor_audience.date_day as date_day,
@@ -24,7 +29,7 @@ with first_transaction_FY as (
         donor_audience.donor_audience,
         donor_loyalty.donor_loyalty,
         donor_engagement.donor_engagement,
-        first_transaction_FY.nth_transaction_this_fiscal_year,
+        first_transaction_fy.nth_transaction_this_fiscal_year,
         first_gift.first_gift_join_source as channel,
         first_gift.first_transaction_date as join_date,
         first_gift.first_gift_recur_status as recurring,
@@ -40,9 +45,9 @@ with first_transaction_FY as (
         and donor_audience.date_day
         between donor_loyalty.start_date and donor_loyalty.end_date
     left join
-        first_transaction_FY
-        on donor_audience.person_id = first_transaction_FY.person_id
-        and donor_audience.date_day = first_transaction_FY.transaction_date_day
+        first_transaction_fy
+        on donor_audience.person_id = first_transaction_fy.person_id
+        and donor_audience.date_day = first_transaction_fy.transaction_date_day
     left join
         {{ ref(first_gift) }} as first_gift
         on donor_engagement.person_id = first_gift.person_id

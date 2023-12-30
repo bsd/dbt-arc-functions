@@ -94,7 +94,7 @@ or reactivated donors.
         donation_history
         on donor_loyalty_counts.person_id = donation_history.person_id
         and donor_loyalty_counts.fiscal_year = donation_history.fiscal_year
-    
+
 
 
 {% endmacro %}
