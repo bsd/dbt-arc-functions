@@ -66,7 +66,7 @@ It classifies donors as new, retained, retained with three or more years,
 or reactivated donors.
 */
     select
-        {{dbt_utils.generate_surrogate_key(['donor_loyalty_counts.person_id', ['donor_loyalty_counts.fiscal_year']])}} as id,
+        {{dbt_utils.generate_surrogate_key(['donor_loyalty_counts.person_id', 'donor_loyalty_counts.fiscal_year'])}} as id,
         donor_loyalty_counts.person_id,
         donor_loyalty_counts.fiscal_year,
         donor_loyalty_counts.start_date,
