@@ -6,8 +6,12 @@
     ) %}
     {{
         config(
-            materialized="incremental",
-            unique_key="transaction_id"
+            materialized="table",
+            partition_by={
+                "field": "transaction_date_day",
+                "data_type": "date",
+                "granularity": "day",
+            },
         )
     }}
 
@@ -52,11 +56,5 @@ row_number() over (
             partition by person_id, fiscal_year order by transaction_date_day
         ) as nth_transaction_this_fiscal_year
     from add_fiscal_year
-
-{% if is_incremental() %}
-
-where transaction_date_day >= (select date_sub(max(transaction_date_day), 14 day) from {{ this }})
-
-{% endif %}
 
 {% endmacro %}
