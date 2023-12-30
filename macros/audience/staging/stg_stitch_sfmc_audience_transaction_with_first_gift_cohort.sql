@@ -9,13 +9,10 @@ with transactions_rollup as (
     select
         transaction_date_day,
         person_id,
-        channel,
         recurring,
-        (case when recurring is true then gift_size_string end) as recurring_gift_size,
         sum(amount) as amounts,
-        count(*) as gifts
     from {{ ref(transactions) }}
-    group by 1, 2, 3, 4, 5
+    group by 1, 2, 3
 
 )
     /*
@@ -29,8 +26,8 @@ so that every transaction has a record of first-gift-related attributes:
 
 */
     select
-        transactions.person_id,
-        transactions.transaction_date_day,
+        transactions_rollup.person_id,
+        transactions_rollup.transaction_date_day,
         lpad(
             cast(
                 date_diff(
@@ -45,8 +42,8 @@ so that every transaction has a record of first-gift-related attributes:
                 date_trunc(transaction_date_day, month), join_month_year_date, month
             ) as integer
         ) as month_diff_int,
-        transactions.recurring,
-        transactions.amounts,
+        transactions_rollup.recurring,
+        transactions_rollup.amounts,
         first_gift.join_month_year_str,
         first_gift.join_month_year_date,
         first_gift.first_gift_join_source,
@@ -55,8 +52,8 @@ so that every transaction has a record of first-gift-related attributes:
         first_gift.first_gift_donor_audience,
         first_gift.first_gift_recur_status,
         row_number() over (
-            partition by transactions.person_id
-            order by transactions.transaction_date_day
+            partition by transactions_rollup.person_id
+            order by transactions_rollup.transaction_date_day
         ) as txn_rank,
         case
             when first_gift.first_gift_recur_status = true
@@ -64,9 +61,9 @@ so that every transaction has a record of first-gift-related attributes:
             when first_gift.first_gift_recur_status = false
             then 'one_time'
         end as first_gift_recur_status_string
-    from {{ ref(transactions_rollup) }} transactions
+    from transactions_rollup
     left join
         {{ ref(first_gift) }} first_gift
-        on transactions.person_id = first_gift.person_id
+        on transactions_rollup.person_id = first_gift.person_id
 
 {% endmacro %}
