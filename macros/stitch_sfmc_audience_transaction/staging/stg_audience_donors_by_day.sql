@@ -35,6 +35,7 @@ with first_transaction_FY as (
         first_gift.first_gift_join_source as channel,
         first_gift.join_gift_size_string as join_amount_str,
         first_gift.join_gift_size_string_recur as join_amount_str_recur,
+        first_gift.first_transaction_date as join_date,
         first_gift.join_month_year_date,
         first_gift.join_month_year_str,
         first_gift.first_gift_recur_status as recurring,

@@ -77,7 +77,27 @@
                             {% endif %}
                         then person_id
                     end
+                ) as newFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                count(
+                    distinct case
+                        when
+                            {% if interval == 'day'%}
+                            join_date = coalesce(person_and_transaction.date_day, date_spine_with_audience_and_channel.donor_audience) 
+                            {% elif interval == 'month'%}
+                            join_date 
+                                between first_day(coalesce(person_and_transaction.date_day,date_spine_with_audience_and_channel.donor_audience), {{ interval }}) 
+                                and last_day(coalesce(person_and_transaction.date_day,date_spine_with_audience_and_channel.donor_audience), {{ interval }}) 
+                            {% elif interval == 'year' %}
+                            extract(year from join_date) = extract(year from person_and_transaction.date_day)
+                            {% endif %}
+                            and recurring
+                            {% if frequency == 'recurring' %} = true
+                            {% else %} = false
+                            {% endif %}
+                        then person_id
+                    end
                 ) as new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+
                 count(
                     distinct case
                         when
@@ -133,7 +153,7 @@
                             {% endif %} and nth_transaction_this_fiscal_year = 1
                         then person_id
                     end
-                ) as unique_new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                ) as unique_newFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
                 count(
                     distinct case
                         when
@@ -179,13 +199,14 @@
         donor_audience,
         channel,
         total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        newFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         active{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         lapsed{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         sum(unique_total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
+        sum(unique_newFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
         sum(unique_new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
         sum(unique_retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
         sum(unique_retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
