@@ -85,15 +85,15 @@ calculated_audience_scd as (
         audience_by_date_day as (
             select
                 date_spine.date as date_day,
-                calc_audience_scd.person_id,
-                calc_audience_scd.donor_audience
+                calculated_audience_scd.person_id,
+                calculated_audience_scd.donor_audience
             from date_spine
             inner join
-                {{ ref(calculated_audience_scd) }} as calc_audience_scd
-                on date_spine.date >= date(calc_audience_scd.start_date)
+                calculated_audience_scd
+                on date_spine.date >= date(calculated_audience_scd.start_date)
                 and (
-                    date_spine.date <= date(calc_audience_scd.end_date)
-                    or date(calc_audience_scd.start_date) is null
+                    date_spine.date <= date(calculated_audience_scd.end_date)
+                    or date(calculated_audience_scd.start_date) is null
                 )
         ),
         deduplicated_table as (
