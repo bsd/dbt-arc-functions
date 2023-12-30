@@ -83,7 +83,8 @@
         ) as transactions_by_day,
          row_number() over (
                     partition by transactions.person_id order by transactions.transaction_date_day
-                ) as gift_count
+                ) as gift_count,
+        transactions.nth_transaction_this_fiscal_year
     from {{ref(transactions)}} transactions
     left join
         {{ ref(donor_audience_by_day) }} donor_audience_by_day
@@ -102,10 +103,7 @@
         ),
 
         dedupe as (
-            select *,
-            row_number() over (
-            partition by person_id, fiscal_year order by transaction_date_day
-        ) as nth_transaction_this_fiscal_year
+            select *
             from base
             where transactions_by_day = 1
         ),

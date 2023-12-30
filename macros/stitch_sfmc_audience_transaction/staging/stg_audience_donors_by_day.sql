@@ -12,6 +12,13 @@
         )
     }}
 
+
+with first_transaction_FY as (
+
+    select 
+)
+
+
     select
         coalesce(donor_engagement.date_day, donor_audience.date_day) as date_day,
         coalesce(
@@ -23,15 +30,12 @@
         donor_loyalty.donor_loyalty,
         donor_engagement.donor_engagement,
         transactions.nth_transaction_this_fiscal_year,
-        transactions.recurring,
-        transactions.gift_size_string as gift_size_str,
-        transactions.channel,
-        first_gift.first_gift_join_source as join_source,
+        first_gift.first_gift_join_source as channel,
         first_gift.join_gift_size_string as join_amount_str,
         first_gift.join_gift_size_string_recur as join_amount_str_recur,
         first_gift.join_month_year_date,
         first_gift.join_month_year_str,
-        first_gift.first_gift_recur_status as join_recur_status,
+        first_gift.first_gift_recur_status as recurring,
         first_gift.first_gift_donor_audience as join_donor_audience
     from {{ ref(donor_audience) }} as donor_audience
     left join
