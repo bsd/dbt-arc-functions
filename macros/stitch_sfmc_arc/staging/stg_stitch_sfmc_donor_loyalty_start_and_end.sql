@@ -3,6 +3,16 @@
     transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned"
 ) %}
 
+    {{config(
+        materialized='table',
+        partition_by={
+            "field": "start_date",
+            "data_type": "date",
+            "granularity": "day"
+            },
+        cluster_by='donor_loyalty'
+    )}}
+
     with
         donor_loyalty_counts as (
 
@@ -57,6 +67,7 @@ It classifies donors as new, retained, retained with three or more years,
 or reactivated donors.
 */
     select
+        {{dbt_utils.generate_surrogate_key(['person_id', ['fiscal_year']])}} as id,
         donor_loyalty_counts.person_id,
         donor_loyalty_counts.fiscal_year,
         donor_loyalty_counts.start_date,
@@ -84,6 +95,7 @@ or reactivated donors.
         donation_history
         on donor_loyalty_counts.person_id = donation_history.person_id
         and donor_loyalty_counts.fiscal_year = donation_history.fiscal_year
-    order by donor_loyalty_counts.person_id, donor_loyalty_counts.fiscal_year
+    
+
 
 {% endmacro %}
