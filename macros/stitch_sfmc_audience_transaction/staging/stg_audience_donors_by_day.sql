@@ -15,8 +15,10 @@
 
 with first_transaction_FY as (
 
-    select 
-)
+    select transaction_date_day, person_id, min(nth_transaction_this_fiscal_year) as nth_transaction_this_fiscal_year
+    from {{ref(transactions)}}
+    group by 1, 2
+),
 
 
     select
@@ -29,7 +31,7 @@ with first_transaction_FY as (
         donor_audience.coalesced_audience as donor_audience,
         donor_loyalty.donor_loyalty,
         donor_engagement.donor_engagement,
-        transactions.nth_transaction_this_fiscal_year,
+        first_transaction_FY.nth_transaction_this_fiscal_year,
         first_gift.first_gift_join_source as channel,
         first_gift.join_gift_size_string as join_amount_str,
         first_gift.join_gift_size_string_recur as join_amount_str_recur,
