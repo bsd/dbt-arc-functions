@@ -104,21 +104,21 @@ change as (
         ) as prev_donor_engagement
     from donor_engagement
 ),
-        date_spine as (
-            select date
-            from
-                unnest(
-                    generate_date_array(
-                        (select min(start_date), from donor_engagement,
-                        ifnull(
-                            (select max(start_date) from donor_engagement),
-                            current_date()
-                        )
-                    )
-                ) as date
+date_spine as (
+    select date
+    from
+        unnest(
+            generate_date_array(
+                (select min(start_date) from donor_engagement,
+                ifnull(
+                    (select max(start_date) from donor_engagement),
+                    current_date()
+                )
+            )
+        ) as date
 
-        )
-        ),
+)
+),
 
     filtered_changes as (
             select

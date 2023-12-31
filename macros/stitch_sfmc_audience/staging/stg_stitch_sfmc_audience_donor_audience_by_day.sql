@@ -17,7 +17,7 @@
 
 
 with
-        calc_date_spine as (
+        date_spine as (
             select date
             from
                 unnest(
@@ -55,9 +55,9 @@ with
 
             select transaction_date_day, person_id, donor_audience
             from {{ ref(calculated_audience) }} calc_audience
-            join calc_date_spine on calc_date_spine.date = calc_audience.transaction_date_day
+            join date_spine on date_spine.date = calc_audience.transaction_date_day
             where
-                calc_audience.transaction_date_day < (select max(date) from calc_date_spine)
+                calc_audience.transaction_date_day < (select max(date) from date_spine)
                 and donor_audience is not null
 
         ),
