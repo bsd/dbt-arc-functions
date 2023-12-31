@@ -1,9 +1,9 @@
 -- fmt: off
 {% macro util_mart_audience_budget_with_audience_transaction(
     recur_status,
-    onetime_donor_counts_table="stg_audience_transaction_onetime_donor_counts_actuals_rollup",
+    onetime_donor_counts_table="stg_audience_transaction_onetime_donor_counts_combined",
     onetime_audience_budget_table="stg_audience_budget_onetime_donor_counts_with_interval_combined",
-    recur_donor_counts_table="stg_audience_transaction_recur_donor_counts_actuals_rollup",
+    recur_donor_counts_table="stg_audience_transaction_recur_donor_counts_combined",
     recur_audience_budget_table="stg_audience_budget_recur_donor_counts_with_interval_combined"
 ) %}
 
