@@ -8,5 +8,4 @@
 this is meant to retrieve whatever version of donor audience by day is produced by the client
 
 */
-
 {% endmacro %}

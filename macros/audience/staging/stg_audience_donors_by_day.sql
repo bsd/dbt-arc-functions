@@ -6,8 +6,6 @@
     donor_audience="stg_audience_donor_audience_by_day_unioned"
 ) %}
 
-   
-
     select
         donor_audience.date_day as date_day,
         coalesce(
@@ -33,7 +31,7 @@
         and donor_audience.date_day
         between donor_loyalty.start_date and donor_loyalty.end_date
     left join
-        {{ref(first_fy)}} first_fy
+        {{ ref(first_fy) }} first_fy
         on donor_audience.person_id = first_fy.person_id
         and donor_audience.date_day = first_fy.transaction_date_day
     left join

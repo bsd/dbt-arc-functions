@@ -78,13 +78,11 @@ audience_calculated_dedupe retrieves calculated audience data for all dates
 
         )
 
-
     /*
  selects just one donor audience value for each person per day
 */
     select transaction_date_day, person_id, donor_audience
     from audience_calculated_dedupe
     where row_number = 1
-
 
 {% endmacro %}

@@ -1,20 +1,16 @@
 {% macro create_stg_audience_transaction_with_first_gift_cohort(
-      transactions="stg_audience_parameterized_transactions_summary_unioned",
+    transactions="stg_audience_parameterized_transactions_summary_unioned",
     first_gift="stg_audience_parameterized_transaction_first_gift"
 ) %}
 
+    with
+        transactions_rollup as (
 
-with transactions_rollup as (
+            select transaction_date_day, person_id, recurring, sum(amount) as amounts,
+            from {{ ref(transactions) }}
+            group by 1, 2, 3
 
-    select
-        transaction_date_day,
-        person_id,
-        recurring,
-        sum(amount) as amounts,
-    from {{ ref(transactions) }}
-    group by 1, 2, 3
-
-)
+        )
     /*
 
 This macro appends first gift related values to the transaction table on person_id, 
