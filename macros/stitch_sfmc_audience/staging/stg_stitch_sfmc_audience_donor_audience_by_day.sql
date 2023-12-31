@@ -23,24 +23,13 @@ with
                 unnest(
                     generate_date_array(
                         (
-                            select min(transaction_date_day),
+                            select min(transaction_date_day)
                             from {{ ref(calculated_audience) }}
                         ),
                         ifnull(
                             (
                                 select
-                                    min(
-                                        date(
-                                            cast(
-                                                concat(
-                                                    substr(dbt_valid_from, 0, 22),
-                                                    " America/New_York"
-                                                ) as timestamp
-                                            ),
-                                            "America/New_York"
-                                        )
-                                        - 1
-                                    )
+                                    min(date_day - 1)
 
                                 from {{ ref(audience_snapshot) }}
                             ),
