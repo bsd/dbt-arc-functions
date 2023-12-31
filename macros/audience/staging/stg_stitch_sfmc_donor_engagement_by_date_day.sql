@@ -89,7 +89,7 @@ donor_engagement_start_dates as (
     where start_of_lapsed is not null
 ),
 
-donor_engagement as (
+donor_engagement_table as (
 select
     person_id,
     donor_engagement,
@@ -109,7 +109,7 @@ change as (
         lag(donor_engagement) over (
             partition by person_id order by start_date
         ) as prev_donor_engagement
-    from donor_engagement
+    from donor_engagement_table
 ),
 
     filtered_changes as (
@@ -131,9 +131,9 @@ date_spine as (
     select date
     FROM unnest(
         generate_date_array(
-            (select min(start_date) from donor_engagement),
+            (select min(start_date) from donor_engagement_table),
             coalesce(
-                (select max(start_date) from donor_engagement),
+                (select max(start_date) from donor_engagement_table),
                 current_date())
         )
     ) AS date
