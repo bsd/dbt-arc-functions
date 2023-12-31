@@ -100,11 +100,11 @@
                     partition by person_id order by transaction_date_day
                 ) as gift_count
         from base
-        )
+        ),
 
         dedupe as (
             select *
-            from base
+            from add_window
             where transactions_by_day = 1
         )
 
