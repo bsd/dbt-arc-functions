@@ -1,5 +1,4 @@
 -- fmt: off
--- new name: stg_audience_transaction_and_audience_summary
 {% macro create_stg_audience_transactions_and_audience_summary(
     donor_audience_by_day="stg_audience_donor_audience_by_day_unioned",
     donor_engagement_by_day="stg_audience_donor_engagement_by_date_day",
@@ -26,11 +25,10 @@
         transactions.person_id,
         transactions.transaction_date_day,
         transactions.fiscal_year,
-        cast(transactions.amount as float64) as amount,
+        transactions.amount,
         transactions.appeal_business_unit,
         {{ channel }} as channel,
         transactions.recurring,
-        (
             case
                 when transactions.amount between 0 and 25.99
                 then '0-25'
@@ -47,8 +45,7 @@
                 when transactions.amount > 10000
                 then '10000+'
             end
-        ) as gift_size_string,
-        (
+         as gift_size_string,
             case
                 when transactions.amount between 0 and 10.99
                 then '0-10'
@@ -73,17 +70,10 @@
                 when transactions.amount > 100
                 then '100+'
             end
-        ) as gift_size_string_recur,
+         as gift_size_string_recur,
         donor_audience_by_day.donor_audience,
         donor_engagement.donor_engagement,
-        donor_loyalty.donor_loyalty,
-        row_number() over (
-            partition by transactions.transaction_id order by transactions.transaction_date_day
-        ) as transactions_by_day,
-         row_number() over (
-                    partition by transactions.person_id order by transactions.transaction_date_day
-                ) as gift_count,
-        transactions.nth_transaction_this_fiscal_year
+        donor_loyalty.donor_loyalty
     from {{ref(transactions)}} transactions
     left join
         {{ ref(donor_audience_by_day) }} donor_audience_by_day
@@ -100,6 +90,17 @@
         between donor_loyalty.start_date and donor_loyalty.end_date
 
         ),
+
+        add_window as (
+            select *,
+            row_number() over (
+            partition by transaction_id order by transaction_date_day
+        ) as transactions_by_day,
+         row_number() over (
+                    partition by person_id order by transaction_date_day
+                ) as gift_count
+        from base
+        )
 
         dedupe as (
             select *
