@@ -57,9 +57,9 @@ date_spine as (
     select date
     FROM unnest(
         generate_date_array(
-            (select min(start_date) from donor_engagement_table),
+            (select min(start_date) from {{ref(start_and_end)}}),
             coalesce(
-                (select max(start_date) from donor_engagement_table),
+                (select max(start_date) from {{ref(start_and_end)}}),
                 current_date())
         )
     ) AS date
