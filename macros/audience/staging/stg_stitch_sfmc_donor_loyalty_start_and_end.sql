@@ -3,15 +3,26 @@
     transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned"
 ) %}
 
-    {{config(
-        materialized='table',
-        partition_by={
-            "field": "start_date",
-            "data_type": "date",
-            "granularity": "day"
-            },
-        cluster_by='donor_loyalty'
-    )}}
+/*
+
+## Purpose
+The purpose of this macro is to calculate donor loyalty-related metrics by determining the start and end dates for each fiscal year, understanding donation history, and classifying donors into different loyalty categories such as 'new donor', 'retained donor', 'retained 3+ donor', and 'reactivated donor'.
+
+## Parameters
+- `transaction_enriched`: Specifies the table containing enriched audience transactions data. Defaults to `stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned`.
+
+## Configuration
+The macro has a configured materialized table with partitioning and clustering settings. It's partitioned by the 'start_date' field with a daily granularity and clustered by 'donor_loyalty' for optimized storage and querying performance.
+
+## Steps
+1. **donor_loyalty_counts**: Determines start and end dates for each fiscal year, assigns a row number to each donor within a fiscal year for further analysis.
+2. **donation_history**: Computes donation history for each donor, including the previous fiscal year, fiscal year before previous, and the last donation date.
+3. **arc_donor_loyalty**: Derives donor loyalty status based on donor loyalty counts and donation history, classifying donors into specific loyalty categories.
+
+## Output
+The final output includes a table with a generated surrogate key ('id'), person ID, fiscal year, start and end dates for each fiscal year, and donor loyalty classification ('new donor', 'retained donor', 'retained 3+ donor', 'reactivated donor').
+
+*/
 
     with
         donor_loyalty_counts as (

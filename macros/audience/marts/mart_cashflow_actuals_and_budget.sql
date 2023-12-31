@@ -1,5 +1,5 @@
 {% macro create_mart_cashflow_actuals_and_budget(
-    audience_transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
+    audience_transactions="stg_audience_transactions_and_audience_summary",
     budget_revenue="stg_audience_budget_by_day_enriched"
 ) %}
 

@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_parameterized_audience_transaction_first_gift(
-    audience="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
+    audience="stg_audience_transactions_and_audience_summary",
     first_gift_recur_status="NULL"
 ) %}
 

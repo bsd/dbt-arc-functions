@@ -1,5 +1,7 @@
 -- fmt: off
-{% macro create_stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched(
+-- new name: stg_audience_transaction_and_audience_summary
+
+{% macro create_stg_audience_transactions_and_audience_summary(
     donor_audience_by_day="stg_audience_donor_audience_by_day_unioned",
     donor_engagement_by_day="stg_stitch_sfmc_donor_engagement_by_date_day",
     donor_loyalty='stg_stitch_sfmc_donor_loyalty_start_and_end',

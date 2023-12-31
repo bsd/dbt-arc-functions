@@ -4,6 +4,33 @@
 ) %}
 
 
+/*
+
+## Purpose
+The purpose of this macro is to unify audience data from two different sources - `stg_stitch_sfmc_parameterized_arc_audience` (referred to as 'audience_snapshot') and `stg_stitch_sfmc_parameterized_calculated_audience` (referred to as 'calculated_audience'). The objective is to merge these sources, generate a date spine, deduplicate audience statuses for each person on each date, and then create a unified table combining data from both sources.
+
+## Parameters
+- `audience_snapshot`: Specifies the table containing the audience snapshot data. Defaults to `stg_stitch_sfmc_parameterized_arc_audience`.
+- `calculated_audience`: Specifies the table containing the calculated audience data. Defaults to `stg_stitch_sfmc_parameterized_calculated_audience`.
+
+## Steps
+1. **date_spine**: Generates a date spine based on the range of transaction dates from the calculated audience and audience snapshot tables.
+2. **calculated_with_date_spine**: Joins the calculated audience data with the date spine to retain non-null donor audience records within the date range.
+3. **calc_change**: Prepares a table with previous donor audience information.
+4. **calc_filtered_changes**: Filters and retains relevant changes in donor audience status.
+5. **calculated_audience_scd**: Determines the start and end dates for each person and donor audience type.
+6. **calc_audience_by_date_day**: Joins the date spine with the calculated audience SCD table to identify donor audience status for each date.
+7. **dedup_calc_audience_by_date_day**: Deduplicates donor audience statuses for each person on each date, retaining the first record per person.
+8. **calculated_audience_by_date_day**: Presents the deduplicated calculated audience statuses for each person on each date.
+9. **audience_unioned**: Combines audience snapshot data and calculated audience data into a unified table.
+
+## Final Output
+The final output is a unified table containing the merged audience data from both sources. 
+It includes date, person ID, donor audience status, and a column
+indicating the source of the audience data ('unioned_donor_audience' or 'calculated_donor_audience').
+
+*/
+
 with
         date_spine as (
             select date
@@ -115,9 +142,6 @@ calculated_audience_scd as (
             from calculated_audience_by_date_day
 
         )
-
-
-   
 
 /* rejoin calculated audience into the final audience, filling in blanks */
             select

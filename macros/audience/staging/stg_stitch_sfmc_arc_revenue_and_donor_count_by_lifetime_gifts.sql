@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_arc_revenue_and_donor_count_by_lifetime_gifts(
-    reference_name="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched"
+    reference_name="stg_audience_transactions_and_audience_summary"
 ) %}
 
     with
