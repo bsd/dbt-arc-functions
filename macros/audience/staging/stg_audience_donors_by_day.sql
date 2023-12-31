@@ -18,7 +18,7 @@
         donor_audience.donor_audience,
         donor_loyalty.donor_loyalty,
         donor_engagement.donor_engagement,
-        first_fy.1st_transaction_this_fiscal_year,
+        first_fy.first_transaction_this_fiscal_year,
         first_gift.first_gift_join_source as channel,
         first_gift.first_transaction_date as join_date,
         first_gift.first_gift_recur_status as recurring

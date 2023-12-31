@@ -11,12 +11,12 @@ select
     case when nth_transaction_this_fiscal_year = 1 
     then True 
     else False 
-    end as 1st_transaction_this_fiscal_year
+    end as first_transaction_this_fiscal_year
 from {{ ref(transactions) }}
 )
     
     
 select * from transaction_fy 
-where 1st_transaction_this_fiscal_year = True
+where first_transaction_this_fiscal_year = True
 
 {% endmacro %}

@@ -140,7 +140,7 @@
                             recurring
                             {% if frequency == 'recurring' %} = true
                             {% else %} = false
-                            {% endif %} and 1st_transaction_this_fiscal_year = True
+                            {% endif %} and first_transaction_this_fiscal_year = True
                         then person_id
                     end
                 ) as unique_total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
@@ -150,7 +150,7 @@
                             donor_loyalty = 'new_donor' and recurring
                             {% if frequency == 'recurring' %} = true
                             {% else %} = false
-                            {% endif %} and 1st_transaction_this_fiscal_year = True
+                            {% endif %} and first_transaction_this_fiscal_year = True
                         then person_id
                     end
                 ) as unique_newFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
@@ -160,7 +160,7 @@
                             donor_loyalty = 'retained_donor' and recurring
                             {% if frequency == 'recurring' %} = true
                             {% else %} = false
-                            {% endif %} and 1st_transaction_this_fiscal_year = True
+                            {% endif %} and first_transaction_this_fiscal_year = True
                         then person_id
                     end
                 ) as unique_retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
@@ -170,7 +170,7 @@
                             donor_loyalty = 'retained_3+_donor' and recurring
                             {% if frequency == 'recurring' %} = true
                             {% else %} = false
-                            {% endif %} and 1st_transaction_this_fiscal_year = True
+                            {% endif %} and first_transaction_this_fiscal_year = True
                         then person_id
                     end
                 ) as unique_retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
@@ -180,7 +180,7 @@
                             donor_loyalty = 'reactivated_donor' and recurring
                             {% if frequency == 'recurring' %} = true
                             {% else %} = false
-                            {% endif %} and 1st_transaction_this_fiscal_year = True
+                            {% endif %} and first_transaction_this_fiscal_year = True
                         then person_id
                     end
                 ) as unique_reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
