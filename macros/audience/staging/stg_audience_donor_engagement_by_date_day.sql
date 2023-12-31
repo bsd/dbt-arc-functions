@@ -51,7 +51,6 @@ The final output provides the deduplicated engagement statuses for each person o
 
         ),
 
-<<<<<<< HEAD
 date_spine as (
     select date
     FROM unnest(
@@ -62,20 +61,6 @@ date_spine as (
                 current_date())
         )
     ) AS date
-=======
-        date_spine as (
-            select date
-            from
-                unnest(
-                    generate_date_array(
-                        (select min(start_date) from donor_engagement_table),
-                        coalesce(
-                            (select max(start_date) from donor_engagement_table),
-                            current_date()
-                        )
-                    )
-                ) as date
->>>>>>> 646096ba51ba5c1f7c3b4abbc2bdb4d7952d2219
 
         ),
 
