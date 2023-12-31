@@ -2,7 +2,6 @@
     transactions="stg_audience_parameterized_transactions_summary_unioned"
 ) %}
 
-
     with
         start_of_active_and_lapsed as (
             select
@@ -56,12 +55,7 @@
                         person_id,
                         channel,
                         date(transaction_date_day) as transaction_date_day
-                    from
-                        {{
-                            ref(
-                                transactions
-                            )
-                        }}
+                    from {{ ref(transactions) }}
                 ) as person_with_all_transaction_date_days
 
             order by 1, 2
@@ -95,5 +89,3 @@
     order by 1, 2, 4
 
 {% endmacro %}
-
-   

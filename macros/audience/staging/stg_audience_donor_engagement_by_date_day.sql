@@ -51,16 +51,18 @@ The final output provides the deduplicated engagement statuses for each person o
 
         ),
 
-date_spine as (
-    select date
-    FROM unnest(
-        generate_date_array(
-            (select min(start_date) from {{ref(start_and_end)}}),
-            coalesce(
-                (select max(start_date) from {{ref(start_and_end)}}),
-                current_date())
-        )
-    ) AS date
+        date_spine as (
+            select date
+            from
+                unnest(
+                    generate_date_array(
+                        (select min(start_date) from {{ ref(start_and_end) }}),
+                        coalesce(
+                            (select max(start_date) from {{ ref(start_and_end) }}),
+                            current_date()
+                        )
+                    )
+                ) as date
 
         ),
 
