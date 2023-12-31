@@ -2,7 +2,7 @@
 version: 2
 ---
 models:
-  - name: stg_stitch_sfmc_donor_loyalty_start_and_end
+  - name: stg_audience_donor_loyalty_start_and_end
     description: donor loyalty values per person_id with start and end dates
     columns:
       - name: person_id
