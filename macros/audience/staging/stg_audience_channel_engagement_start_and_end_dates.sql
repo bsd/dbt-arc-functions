@@ -48,12 +48,7 @@
                 (
                     select distinct
                         person_id, date(transaction_date) as transaction_date
-                    from
-                        {{
-                            ref(
-                                transactions_summary
-                            )
-                        }}
+                    from {{ ref(transactions_summary) }}
                 ) as person_with_all_transaction_dates
 
             order by 1, 2

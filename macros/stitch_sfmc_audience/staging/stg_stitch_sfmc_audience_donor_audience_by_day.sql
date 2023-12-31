@@ -3,8 +3,7 @@
     calculated_audience="stg_stitch_sfmc_audience_parameterized_calculated_audience"
 ) %}
 
-
-/*
+    /*
 
 ## Purpose
 The purpose of this macro is to unify audience data from two different sources - `stg_stitch_sfmc_parameterized_arc_audience` (referred to as 'audience_snapshot') and `stg_stitch_sfmc_parameterized_calculated_audience` (referred to as 'calculated_audience'). The objective is to merge these sources, generate a date spine, deduplicate audience statuses for each person on each date, and then create a unified table combining data from both sources.
@@ -30,8 +29,7 @@ It includes date, person ID, donor audience status, and a column
 indicating the source of the audience data ('unioned_donor_audience' or 'calculated_donor_audience').
 
 */
-
-with
+    with
         date_spine as (
             select date
             from
@@ -43,8 +41,7 @@ with
                         ),
                         ifnull(
                             (
-                                select
-                                    min(date_day - 1)
+                                select min(date_day - 1)
 
                                 from {{ ref(audience_snapshot) }}
                             ),
@@ -88,16 +85,18 @@ with
 
         ),
 
-calculated_audience_scd as (
-    select
-        person_id,
-        min(transaction_date_day) as start_date,
-        ifnull(max(next_date) - 1, (select max(date) from date_spine)) as end_date,
-        donor_audience
-    from calc_filtered_changes
-    group by person_id, donor_audience, next_date
-    order by person_id, start_date
-),
+        calculated_audience_scd as (
+            select
+                person_id,
+                min(transaction_date_day) as start_date,
+                ifnull(
+                    max(next_date) - 1, (select max(date) from date_spine)
+                ) as end_date,
+                donor_audience
+            from calc_filtered_changes
+            group by person_id, donor_audience, next_date
+            order by person_id, start_date
+        ),
 
         calc_audience_by_date_day as (
             select
@@ -124,43 +123,40 @@ calculated_audience_scd as (
             from calc_audience_by_date_day
 
         ),
-    
-    calculated_audience_by_date_day as (
 
-    select date_day, person_id, donor_audience
-    from dedup_calc_audience_by_date_day
-    where row_num = 1
-    ),
+        calculated_audience_by_date_day as (
 
-
+            select date_day, person_id, donor_audience
+            from dedup_calc_audience_by_date_day
+            where row_num = 1
+        ),
 
         audience_unioned as (
             select *
-            from {{ref(audience_snapshot)}} arc_audience
+            from {{ ref(audience_snapshot) }} arc_audience
             union all
             select *
             from calculated_audience_by_date_day
 
         )
 
-/* rejoin calculated audience into the final audience, filling in blanks */
-            select
-                coalesce(
-                    audience_unioned.date_day, calculated_audience.transaction_date_day
-                ) as date_day,
-                audience_unioned.person_id,
-                coalesce(
-                    audience_unioned.donor_audience, calculated_audience.donor_audience
-                ) as donor_audience,
-                case
-                    when audience_unioned.donor_audience is not null
-                    then 'unioned_donor_audience'
-                    else 'calculated_donor_audience'
-                end as source_column
-            from audience_unioned
-            left join
-                {{ ref(calculated_audience) }} calculated_audience
-                on audience_unioned.date_day = calculated_audience.transaction_date_day
-
+    /* rejoin calculated audience into the final audience, filling in blanks */
+    select
+        coalesce(
+            audience_unioned.date_day, calculated_audience.transaction_date_day
+        ) as date_day,
+        audience_unioned.person_id,
+        coalesce(
+            audience_unioned.donor_audience, calculated_audience.donor_audience
+        ) as donor_audience,
+        case
+            when audience_unioned.donor_audience is not null
+            then 'unioned_donor_audience'
+            else 'calculated_donor_audience'
+        end as source_column
+    from audience_unioned
+    left join
+        {{ ref(calculated_audience) }} calculated_audience
+        on audience_unioned.date_day = calculated_audience.transaction_date_day
 
 {% endmacro %}

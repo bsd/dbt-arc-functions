@@ -1,10 +1,8 @@
 {% macro create_stg_stitch_sfmc_audience_parameterized_arc_audience(
-    audience_snapshot="snp_stitch_sfmc_arc_audience",
-    donor_audience="NULL"
-    )
-%}
+    audience_snapshot="snp_stitch_sfmc_arc_audience", donor_audience="NULL"
+) %}
 
-with
+    with
         date_spine as (
 
             select date
@@ -92,7 +90,7 @@ with
             select
                 date_day,
                 person_id,
-                {{donor_audience}} as donor_audience,
+                {{ donor_audience }} as donor_audience,
                 row_number() over (
                     partition by date_day, person_id order by donor_audience
                 ) as row_num
@@ -100,17 +98,8 @@ with
 
         )
 
-
-    select
-        date_day,
-        person_id,
-        donor_audience,
+    select date_day, person_id, donor_audience,
     from dedup_audience_by_date_day
     where row_num = 1
 
-
-
-
-
-
-    {% endmacro %}
+{% endmacro %}
