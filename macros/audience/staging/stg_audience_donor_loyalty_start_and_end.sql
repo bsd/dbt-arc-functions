@@ -23,7 +23,6 @@ The macro has a configured materialized table with partitioning and clustering s
 The final output includes a table with a generated surrogate key ('id'), person ID, fiscal year, start and end dates for each fiscal year, and donor loyalty classification ('new donor', 'retained donor', 'retained 3+ donor', 'reactivated donor').
 
 */
-
     with
         donor_loyalty_counts as (
 

@@ -7,15 +7,7 @@
             from
                 unnest(
                     generate_date_array(
-                        (
-                            select min(start_date),
-                            from
-                                {{
-                                    ref(
-                                        start_and_end
-                                    )
-                                }}
-                        ),
+                        (select min(start_date), from {{ ref(start_and_end) }}),
 
                         current_date()
                     )
@@ -24,11 +16,7 @@
         ),
         channel_date_spine as (
             select channel, date_day
-            from
-                (
-                    select distinct channel
-                    from {{ ref(start_and_end) }}
-                )
+            from (select distinct channel from {{ ref(start_and_end) }})
             cross join date_spine
         )
 

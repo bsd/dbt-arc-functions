@@ -2,7 +2,7 @@
     start_and_end="stg_audience_channel_engagement_start_and_end_dates"
 ) %}
 
-/*
+    /*
 
 ## Purpose
 The purpose of this macro is to identify and categorize donor engagements as "active" or "lapsed" based on transaction dates, and then generate a deduplicated table containing the first record per person for each date indicating their engagement status.
@@ -23,22 +23,20 @@ The purpose of this macro is to identify and categorize donor engagements as "ac
 The final output provides the deduplicated engagement statuses for each person on each date, filtering to select the first record per person for each date.
 
 */
+    with
 
+        change as (
+            select
+                person_id,
+                start_date as transaction_date_day,
+                donor_engagement,
+                lag(donor_engagement) over (
+                    partition by person_id order by start_date
+                ) as prev_donor_engagement
+            from {{ ref(start_and_end) }}
+        ),
 
-with
-
-change as (
-    select
-        person_id,
-        start_date as transaction_date_day,
-        donor_engagement,
-        lag(donor_engagement) over (
-            partition by person_id order by start_date
-        ) as prev_donor_engagement
-    from {{ref(start_and_end)}}
-),
-
-    filtered_changes as (
+        filtered_changes as (
             select
                 person_id,
                 transaction_date_day,
@@ -51,8 +49,9 @@ change as (
                 prev_donor_engagement is null
                 or donor_engagement != prev_donor_engagement
 
-    ),
+        ),
 
+<<<<<<< HEAD
 date_spine as (
     select date
     FROM unnest(
@@ -63,20 +62,36 @@ date_spine as (
                 current_date())
         )
     ) AS date
+=======
+        date_spine as (
+            select date
+            from
+                unnest(
+                    generate_date_array(
+                        (select min(start_date) from donor_engagement_table),
+                        coalesce(
+                            (select max(start_date) from donor_engagement_table),
+                            current_date()
+                        )
+                    )
+                ) as date
+>>>>>>> 646096ba51ba5c1f7c3b4abbc2bdb4d7952d2219
 
-),
+        ),
 
-    donor_engagement_scd as (
-    select
-        person_id,
-        min(transaction_date_day) as start_date,
-        ifnull(max(next_date) - 1, (select max(date) from date_spine)) as end_date,
-        donor_engagement
-    from filtered_changes
-    group by person_id, donor_engagement, next_date
-    order by person_id, start_date
+        donor_engagement_scd as (
+            select
+                person_id,
+                min(transaction_date_day) as start_date,
+                ifnull(
+                    max(next_date) - 1, (select max(date) from date_spine)
+                ) as end_date,
+                donor_engagement
+            from filtered_changes
+            group by person_id, donor_engagement, next_date
+            order by person_id, start_date
 
-    ),
+        ),
 
         -- Creates a date spine spanning the range of dates present in the donor
         -- engagement SCD table
@@ -85,15 +100,9 @@ date_spine as (
             from
                 unnest(
                     generate_date_array(
-                        (
-                            select min(start_date),
-                            from donor_engagement_scd
-                        ),
+                        (select min(start_date), from donor_engagement_scd),
                         ifnull(
-                            (
-                                select max(start_date)
-                                from donor_engagement_scd
-                            ),
+                            (select max(start_date) from donor_engagement_scd),
                             current_date()
                         )
                     )
