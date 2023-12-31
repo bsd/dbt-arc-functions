@@ -1,7 +1,7 @@
 {% macro create_mart_audience_recur_retention(
-    rev_by_cohort="stg_stitch_sfmc_audience_transaction_recur_rev_by_cohort",
-    first_gift_explode="stg_stitch_sfmc_audience_transaction_recur_first_gift_by_cohort",
-    donors_by_cohort="stg_stitch_sfmc_audience_transaction_recur_donors_by_cohort"
+    rev_by_cohort="stg_audience_transaction_recur_rev_by_cohort",
+    first_gift_explode="stg_audience_transaction_recur_first_gift_by_cohort",
+    donors_by_cohort="stg_audience_transaction_recur_donors_by_cohort"
 ) %}
 
     with

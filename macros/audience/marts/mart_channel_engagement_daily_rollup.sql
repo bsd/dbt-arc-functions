@@ -1,5 +1,5 @@
 {% macro create_mart_channel_engagement_daily_rollup(
-    person_channel_engagement_with_start_and_end_dates="stg_stitch_sfmc_audience_transaction_person_channel_engagement_with_start_and_end_dates"
+    start_and_end="stg_audience_channel_engagement_start_and_end_dates"
 ) %}
     with
         date_spine as (
@@ -12,7 +12,7 @@
                             from
                                 {{
                                     ref(
-                                        person_channel_engagement_with_start_and_end_dates
+                                        start_and_end
                                     )
                                 }}
                         ),
@@ -27,7 +27,7 @@
             from
                 (
                     select distinct channel
-                    from {{ ref(person_channel_engagement_with_start_and_end_dates) }}
+                    from {{ ref(start_and_end) }}
                 )
             cross join date_spine
         )
@@ -43,7 +43,7 @@
         ) as lapsed_donors,
     from channel_date_spine
     left join
-        {{ ref(person_channel_engagement_with_start_and_end_dates) }} engagement
+        {{ ref(start_and_end) }} engagement
         on channel_date_spine.date_day >= engagement.start_date
         and channel_date_spine.date_day <= coalesce(engagement.end_date, current_date())
         and channel_date_spine.channel = engagement.channel
