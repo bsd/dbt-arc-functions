@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_with_first_gift_cohort(
-    transactions="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned",
+    transactions="stg_audience_parameterized_transactions_summary_unioned",
     first_gift="stg_stitch_sfmc_parameterized_audience_transaction_first_gift"
 ) %}
 

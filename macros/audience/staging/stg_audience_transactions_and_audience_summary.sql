@@ -6,7 +6,7 @@
     donor_engagement_by_day="stg_stitch_sfmc_donor_engagement_by_date_day",
     donor_loyalty='stg_stitch_sfmc_donor_loyalty_start_and_end',
     channel="NULL",
-    transactions="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned"
+    transactions="stg_audience_parameterized_transactions_summary_unioned"
     
 ) %}
 

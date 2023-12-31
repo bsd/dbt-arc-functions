@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned
+  - name: stg_audience_parameterized_transactions_summary_unioned
     description: Summary of all transactions from SFMC Audience
     columns:
       - name: _dbt_source_relation

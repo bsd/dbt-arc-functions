@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_donor_engagement_by_date_day(
-    audience_transactions_summary_unioned="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned"
+    audience_transactions_summary_unioned="stg_audience_parameterized_transactions_summary_unioned"
 ) %}
 
 /*
@@ -8,7 +8,7 @@
 The purpose of this macro is to identify and categorize donor engagements as "active" or "lapsed" based on transaction dates, and then generate a deduplicated table containing the first record per person for each date indicating their engagement status.
 
 ## Parameters
-- `audience_transactions_summary_unioned`: Specifies the source table containing transactional data. Defaults to `stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned`.
+- `audience_transactions_summary_unioned`: Specifies the source table containing transactional data. Defaults to `stg_audience_parameterized_transactions_summary_unioned`.
 
 ## Steps
 1. **person_with_all_transaction_dates**: Selects unique person IDs with their respective transaction dates from the specified summary table.

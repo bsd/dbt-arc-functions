@@ -1,6 +1,6 @@
 -- fmt: off
 {% macro create_stg_stitch_sfmc_donor_loyalty_start_and_end(
-    transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned"
+    transaction_enriched="stg_audience_parameterized_transactions_summary_unioned"
 ) %}
 
 /*
@@ -9,7 +9,7 @@
 The purpose of this macro is to calculate donor loyalty-related metrics by determining the start and end dates for each fiscal year, understanding donation history, and classifying donors into different loyalty categories such as 'new donor', 'retained donor', 'retained 3+ donor', and 'reactivated donor'.
 
 ## Parameters
-- `transaction_enriched`: Specifies the table containing enriched audience transactions data. Defaults to `stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned`.
+- `transaction_enriched`: Specifies the table containing enriched audience transactions data. Defaults to `stg_audience_parameterized_transactions_summary_unioned`.
 
 ## Configuration
 The macro has a configured materialized table with partitioning and clustering settings. It's partitioned by the 'start_date' field with a daily granularity and clustered by 'donor_loyalty' for optimized storage and querying performance.
