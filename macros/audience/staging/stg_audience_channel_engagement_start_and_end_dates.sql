@@ -1,5 +1,5 @@
 {% macro create_stg_audience_channel_engagement_start_and_end_dates(
-    transactions_summary="stg_audience_parameterized_transactions_summary_unioned",
+    transactions_summary="stg_audience_parameterized_transactions_summary_unioned"
 ) %}
 
     with
