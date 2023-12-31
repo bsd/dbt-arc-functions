@@ -73,12 +73,18 @@ start_of_active_and_lapsed as (
 donor_engagement_start_dates as (
     -- Collects the start dates for active and lapsed engagements.
     select
-        person_id, 'active' as donor_engagement, start_of_active as start_date,
+        person_id,
+        'active' as donor_engagement, 
+        start_of_active as start_date
     from start_of_active_and_lapsed
     where start_of_active is not null
+
     union all
+
     select
-        person_id, 'lapsed' as donor_engagement, start_of_lapsed as start_date,
+        person_id,
+        'lapsed' as donor_engagement,
+        start_of_lapsed as start_date
     from start_of_active_and_lapsed
     where start_of_lapsed is not null
 ),
@@ -94,6 +100,7 @@ select
     - 1 as end_date
 from donor_engagement_start_dates
 ),
+
 change as (
     select
         person_id,
@@ -103,19 +110,6 @@ change as (
             partition by person_id order by start_date
         ) as prev_donor_engagement
     from donor_engagement
-),
-
-date_spine as (
-    select date
-    FROM unnest(
-        generate_date_array(
-            (select min(start_date) from donor_engagement),
-            coalesce(
-                (select max(start_date) from donor_engagement),
-                current_date())
-        )
-    ) AS date
-
 ),
 
     filtered_changes as (
@@ -132,6 +126,19 @@ date_spine as (
                 or donor_engagement != prev_donor_engagement
 
     ),
+
+date_spine as (
+    select date
+    FROM unnest(
+        generate_date_array(
+            (select min(start_date) from donor_engagement),
+            coalesce(
+                (select max(start_date) from donor_engagement),
+                current_date())
+        )
+    ) AS date
+
+),
 
     donor_engagement_scd as (
     select
@@ -171,7 +178,7 @@ date_spine as (
             -- Joins the generated date spine with the donor engagement SCD table to
             -- determine engagement status for each date
             select
-                date_spine.date_day,
+                scd_date_spine.date_day,
                 donor_engagement_scd.person_id,
                 donor_engagement_scd.donor_engagement
             from scd_date_spine
