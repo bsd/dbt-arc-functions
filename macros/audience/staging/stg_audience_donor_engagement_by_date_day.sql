@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_donor_engagement_by_date_day(
+{% macro create_stg_audience_donor_engagement_by_date_day(
     audience_transactions_summary_unioned="stg_audience_parameterized_transactions_summary_unioned"
 ) %}
 

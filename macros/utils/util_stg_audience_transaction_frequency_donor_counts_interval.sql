@@ -1,5 +1,5 @@
 -- fmt: off
-{% macro util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval(
+{% macro util_stg_audience_transaction_frequency_donor_counts_interval(
     frequency,
     interval,
     person_and_transaction="stg_audience_donors_by_day"

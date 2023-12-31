@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_arc_recur_donor_counts_by_gift_size_yearly(
+{% macro create_stg_audience_recur_donor_counts_by_gift_size_yearly(
     audience_transaction="stg_audience_transactions_and_audience_summary"
 ) %}
 

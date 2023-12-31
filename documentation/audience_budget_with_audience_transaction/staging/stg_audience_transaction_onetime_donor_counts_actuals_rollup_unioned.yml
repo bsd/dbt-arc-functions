@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_audience_transaction_onetime_donor_counts_actuals_rollup_unioned
+  - name: stg_audience_onetime_donor_counts_actuals_rollup
     description: Rollup of the actual onetime donor counts by date for onetime transactions.
     columns:
       - name: _dbt_source_relation

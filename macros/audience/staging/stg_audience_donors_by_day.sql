@@ -1,7 +1,7 @@
 {% macro create_stg_audience_donors_by_day(
-    first_gift="stg_stitch_sfmc_parameterized_audience_transaction_first_gift",
+    first_gift="stg_audience_parameterized_transaction_first_gift",
     first_fy="stg_audience_first_transaction_this_fy",
-    donor_engagement="stg_stitch_sfmc_donor_engagement_by_date_day",
+    donor_engagement="stg_audience_donor_engagement_by_date_day",
     donor_loyalty="stg_audience_donor_loyalty_start_and_end",
     donor_audience="stg_audience_donor_audience_by_day_unioned"
 ) %}

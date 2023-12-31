@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_parameterized_audience_transaction_first_gift(
+{% macro create_stg_audience_parameterized_transaction_first_gift(
     audience="stg_audience_transactions_and_audience_summary",
     first_gift_recur_status="NULL"
 ) %}

@@ -1,5 +1,5 @@
-{% macro create_stg_stitch_sfmc_audience_transaction_recur_donors_by_cohort(
-    transactions_table="stg_stitch_sfmc_audience_transaction_with_first_gift_cohort"
+{% macro create_stg_audience_transaction_recur_donors_by_cohort(
+    transactions_table="stg_audience_transaction_with_first_gift_cohort"
 ) %}
 
     select

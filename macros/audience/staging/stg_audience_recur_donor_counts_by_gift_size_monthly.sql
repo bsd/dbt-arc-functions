@@ -1,11 +1,11 @@
-{% macro create_stg_stitch_sfmc_arc_recur_donor_counts_by_gift_size_daily(
+{% macro create_stg_audience_recur_donor_counts_by_gift_size_monthly(
     audience_transaction="stg_audience_transactions_and_audience_summary"
 ) %}
 
     with
         base as (
             select
-                transaction_date_day as date_day,
+                last_day(transaction_date_day, month) as date_day,
                 channel,
                 donor_audience,
                 gift_size_string as gift_size,
@@ -15,7 +15,7 @@
             group by 1, 2, 3, 4
             order by 1 desc, 4
         )
-    select 'daily' as interval_type, *
-    from base
 
+    select 'monthly' as interval_type, *
+    from base
 {% endmacro %}

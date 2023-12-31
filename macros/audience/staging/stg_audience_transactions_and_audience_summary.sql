@@ -3,7 +3,7 @@
 
 {% macro create_stg_audience_transactions_and_audience_summary(
     donor_audience_by_day="stg_audience_donor_audience_by_day_unioned",
-    donor_engagement_by_day="stg_stitch_sfmc_donor_engagement_by_date_day",
+    donor_engagement_by_day="stg_audience_donor_engagement_by_date_day",
     donor_loyalty='stg_audience_donor_loyalty_start_and_end',
     channel="NULL",
     transactions="stg_audience_parameterized_transactions_summary_unioned"
