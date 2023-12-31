@@ -1,5 +1,5 @@
 {% macro create_stg_audience_channel_engagement_start_and_end_dates(
-    transactions_summary="stg_audience_parameterized_transactions_summary_unioned"
+    transactions="stg_audience_parameterized_transactions_summary_unioned"
 ) %}
 
 
@@ -59,7 +59,7 @@
                     from
                         {{
                             ref(
-                                start_and_end
+                                transactions
                             )
                         }}
                 ) as person_with_all_transaction_date_days
@@ -95,3 +95,5 @@
     order by 1, 2, 4
 
 {% endmacro %}
+
+   
