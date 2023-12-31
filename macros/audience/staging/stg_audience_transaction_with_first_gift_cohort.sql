@@ -1,6 +1,6 @@
 {% macro create_stg_audience_transaction_with_first_gift_cohort(
-    transactions="stg_audience_parameterized_transactions_summary_unioned",
-    first_gift="stg_parameterized_audience_transaction_first_gift"
+      transactions="stg_audience_parameterized_transactions_summary_unioned",
+    first_gift="stg_audience_parameterized_transaction_first_gift"
 ) %}
 
 
