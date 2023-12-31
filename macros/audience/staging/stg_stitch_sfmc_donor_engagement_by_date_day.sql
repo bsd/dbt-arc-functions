@@ -2,6 +2,32 @@
     audience_transactions_summary_unioned="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned"
 ) %}
 
+/*
+
+## Purpose
+The purpose of this macro is to identify and categorize donor engagements as "active" or "lapsed" based on transaction dates, and then generate a deduplicated table containing the first record per person for each date indicating their engagement status.
+
+## Parameters
+- `audience_transactions_summary_unioned`: Specifies the source table containing transactional data. Defaults to `stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned`.
+
+## Steps
+1. **person_with_all_transaction_dates**: Selects unique person IDs with their respective transaction dates from the specified summary table.
+2. **start_of_active_and_lapsed**: Determines the start of "active" and "lapsed" donor engagements based on transaction dates. It calculates the start date for each engagement type.
+3. **donor_engagement_start_dates**: Collects the start dates for "active" and "lapsed" engagements.
+4. **donor_engagement_table**: Calculates the end date for each engagement type based on the next start date or the current date.
+5. **change**: Prepares a table with previous engagement status information.
+6. **filtered_changes**: Filters and retains only the relevant changes in donor engagement status.
+7. **date_spine**: Generates a date spine spanning the range of dates present in the donor engagement table.
+8. **donor_engagement_scd**: Aggregates donor engagement changes and determines start and end dates for each person and engagement type.
+9. **scd_date_spine**: Generates a date spine based on the engagement table's date range.
+10. **engagement_by_date_day**: Joins the date spine with the donor engagement table to identify engagement status for each date.
+11. **deduplicated_table**: Deduplicates engagement statuses for each person on each date, retaining the first record per person.
+
+## Output
+The final output provides the deduplicated engagement statuses for each person on each date, filtering to select the first record per person for each date.
+
+*/
+
 
 with
 
