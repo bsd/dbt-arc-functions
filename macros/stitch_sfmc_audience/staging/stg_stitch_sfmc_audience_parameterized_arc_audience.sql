@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_parameterized_arc_audience(
+{% macro create_stg_stitch_sfmc_audience_parameterized_arc_audience(
     audience_snapshot="snp_stitch_sfmc_arc_audience",
     donor_audience="NULL"
     )

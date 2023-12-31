@@ -1,4 +1,4 @@
-{% macro create_stg_stitch_sfmc_parameterized_calculated_audience(
+{% macro create_stg_stitch_sfmc_audience_parameterized_calculated_audience(
     reference_name="stg_audience_parameterized_transactions_summary_unioned",
     client_donor_audience="NULL"
 ) %}
