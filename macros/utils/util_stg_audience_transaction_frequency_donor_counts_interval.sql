@@ -219,6 +219,7 @@
         channel,
         total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         newFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
