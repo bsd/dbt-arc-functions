@@ -65,7 +65,7 @@ with
                 person_id,
                 transaction_date_day,
                 donor_audience,
-                max_date
+                max_date,
                 lead(transaction_date_day) over (
                     partition by person_id order by transaction_date_day
                 ) as next_date
