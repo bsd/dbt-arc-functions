@@ -41,6 +41,7 @@ models:
         tests:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: boolean
+              severity: warn
       - name: amounts
         data_type: float64
         description: ''

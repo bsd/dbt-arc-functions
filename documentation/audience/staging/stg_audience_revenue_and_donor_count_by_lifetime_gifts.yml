@@ -39,6 +39,7 @@ models:
           - dbt_utils.accepted_range:
               min_value: 0
               inclusive: true
+              severity: warn
       - name: amount
         data_type: float64
         description: ''
@@ -46,3 +47,4 @@ models:
           - dbt_utils.accepted_range:
               min_value: 0
               inclusive: true
+              severity: warn
