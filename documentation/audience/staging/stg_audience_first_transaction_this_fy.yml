@@ -1,18 +1,15 @@
+---
 version: 2
-
 models:
   - name: stg_audience_first_transaction_this_fy
-    description: ""
+    description: ''
     columns:
       - name: transaction_date_day
         data_type: date
-        description: ""
-
+        description: ''
       - name: person_id
         data_type: string
-        description: ""
-
+        description: ''
       - name: first_transaction_this_fiscal_year
         data_type: boolean
-        description: ""
-
+        description: ''
