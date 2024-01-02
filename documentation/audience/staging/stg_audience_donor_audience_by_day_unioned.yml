@@ -1,40 +1,35 @@
+---
 version: 2
-
 models:
   - name: stg_audience_donor_audience_by_day_unioned
-    description: ""
+    description: ''
     columns:
       - name: _dbt_source_relation
         data_type: string
-        description: ""
-
+        description: ''
       - name: date_day
         data_type: date
-        description: ""
+        description: ''
         tests:
           - dbt_utils.sequential_values:
               interval: 1
-              datepart: 'day'
+              datepart: day
               severity: warn
-              group_by_columns: ['person_id']
-
+              group_by_columns: [person_id]
       - name: person_id
         data_type: string
-        description: ""
+        description: ''
         tests:
           - not_null:
               config:
                 severity: warn
-
       - name: donor_audience
         data_type: string
-        description: ""
+        description: ''
         tests:
           - not_null:
               config:
                 severity: warn
-
       - name: source_column
         data_type: string
-        description: ""
-
+        description: ''

@@ -17,10 +17,6 @@ models:
           sum_total: sum(total_onetime_donor_counts)
           group_by: [date_day, interval_type, donor_audience, channel]
           severity: warn
-      - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: total_onetime_donor_counts_cumulative
-          partition_by: [donor_audience, channel, interval_type]
-          order_by: date_day
     columns:
       - name: total_onetime_donor_counts
         description: The total number of donors who made a onetime donation.

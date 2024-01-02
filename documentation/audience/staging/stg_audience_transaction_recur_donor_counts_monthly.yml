@@ -1,194 +1,115 @@
+---
 version: 2
-
 models:
   - name: stg_audience_transaction_recur_donor_counts_monthly
-    description: ""
-    tests:
-        - dbt_arc_functions.cumulative_column_values:
-            cumulative_column: total_recur_donor_counts_cumulative
-            partition_by:
-              - fiscal_year
-              - donor_audience
-              - channel
-            order_by:
-              - date_day
-         - dbt_arc_functions.cumulative_column_values:
-            cumulative_column: newfy_recur_donor_counts_cumulative
-            partition_by:
-              - fiscal_year
-              - donor_audience
-              - channel
-            order_by:
-              - date_day
-        - dbt_arc_functions.cumulative_column_values:
-            cumulative_column: new_recur_donor_counts_cumulative
-            partition_by:
-              - fiscal_year
-              - donor_audience
-              - channel
-            order_by:
-              - date_day
-        - dbt_arc_functions.cumulative_column_values:
-            cumulative_column: retained_recur_donor_counts_cumulative
-            partition_by:
-              - fiscal_year
-              - donor_audience
-              - channel
-            order_by:
-              - date_day
-        - dbt_arc_functions.cumulative_column_values:
-            cumulative_column: retained3_recur_donor_counts_cumulative
-            partition_by:
-              - fiscal_year
-              - donor_audience
-              - channel
-            order_by:
-              - date_day
-        - dbt_arc_functions.cumulative_column_values:
-            cumulative_column: reinstated_recur_donor_counts_cumulative
-            partition_by:
-              - fiscal_year
-              - donor_audience
-              - channel
-            order_by:
-              - date_day
-            
+    description: ''
     columns:
       - name: date_day
         data_type: date
-        description: ""
+        description: ''
         tests:
           - dbt_utils.sequential_values:
               interval: 1
-              datepart: 'month'
+              datepart: month
               severity: warn
-
       - name: fiscal_year
         data_type: int64
-        description: ""
-
+        description: ''
       - name: interval_type
         data_type: string
-        description: ""
+        description: ''
         tests:
           - accepted_values:
-              values: ['monthly']
-
+              values: [monthly]
       - name: donor_audience
         data_type: string
-        description: ""
+        description: ''
         tests:
           - not_null:
               config:
                 severity: warn
-
       - name: channel
         data_type: string
-        description: ""
+        description: ''
         tests:
           - not_null:
               config:
                 severity: warn
-
       - name: total_recur_donor_counts
         data_type: int64
-        description: ""
+        description: ''
         tests:
           - dbt_utils.accepted_range:
-                min_value: 0
-                inclusive: true
-
-
+              min_value: 0
+              inclusive: true
       - name: newfy_recur_donor_counts
         data_type: int64
-        description: ""
+        description: ''
         tests:
           - dbt_utils.accepted_range:
-                min_value: 0
-                inclusive: true
-
-
+              min_value: 0
+              inclusive: true
       - name: new_recur_donor_counts
         data_type: int64
-        description: ""
+        description: ''
         tests:
           - dbt_utils.accepted_range:
-                min_value: 0
-                inclusive: true
-
-
+              min_value: 0
+              inclusive: true
       - name: retained_recur_donor_counts
         data_type: int64
-        description: ""
+        description: ''
         tests:
           - dbt_utils.accepted_range:
-                min_value: 0
-                inclusive: true
-
-
+              min_value: 0
+              inclusive: true
       - name: retained3_recur_donor_counts
         data_type: int64
-        description: ""
+        description: ''
         tests:
           - dbt_utils.accepted_range:
-                min_value: 0
-                inclusive: true
-
-
+              min_value: 0
+              inclusive: true
       - name: reinstated_recur_donor_counts
         data_type: int64
-        description: ""
+        description: ''
         tests:
           - dbt_utils.accepted_range:
-                min_value: 0
-                inclusive: true
-
-
+              min_value: 0
+              inclusive: true
       - name: active_recur_donor_counts
         data_type: int64
-        description: ""
+        description: ''
         tests:
           - dbt_utils.accepted_range:
-                min_value: 0
-                inclusive: true
-
-
+              min_value: 0
+              inclusive: true
       - name: lapsed_recur_donor_counts
         data_type: int64
-        description: ""
+        description: ''
         tests:
           - dbt_utils.accepted_range:
-                min_value: 0
-                inclusive: true
-
-
+              min_value: 0
+              inclusive: true
       - name: total_recur_donor_counts_cumulative
         data_type: int64
-        description: ""
+        description: ''
         tests:
           - dbt_utils.accepted_range:
-                min_value: 0
-                inclusive: true
-
-
+              min_value: 0
+              inclusive: true
       - name: newfy_recur_donor_counts_cumulative
         data_type: int64
-        description: ""
-
+        description: ''
       - name: new_recur_donor_counts_cumulative
         data_type: int64
-        description: ""
-
+        description: ''
       - name: retained_recur_donor_counts_cumulative
         data_type: int64
-        description: ""
-
+        description: ''
       - name: retained3_recur_donor_counts_cumulative
         data_type: int64
-        description: ""
-
+        description: ''
       - name: reinstated_recur_donor_counts_cumulative
         data_type: int64
-        description: ""
-
-
+        description: ''

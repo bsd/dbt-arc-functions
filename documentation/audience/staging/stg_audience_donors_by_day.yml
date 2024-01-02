@@ -1,65 +1,55 @@
+---
 version: 2
-
 models:
   - name: stg_audience_donors_by_day
-    description: ""
+    description: ''
     columns:
       - name: date_day
         data_type: date
-        description: ""
+        description: ''
         tests:
           - dbt_utils.sequential_values:
               interval: 1
-              datepart: 'day'
+              datepart: day
               severity: warn
-              group_by_columns: ['person_id']
-
+              group_by_columns: [person_id]
       - name: person_id
         data_type: string
-        description: ""
+        description: ''
         tests:
           - not_null:
               config:
                 severity: warn
-
       - name: donor_audience
         data_type: string
-        description: ""
+        description: ''
         tests:
           - not_null:
               config:
                 severity: warn
-
       - name: donor_loyalty
         data_type: string
-        description: ""
-  
-
+        description: ''
       - name: donor_engagement
         data_type: string
-        description: ""
-
+        description: ''
       - name: first_transaction_this_fiscal_year
         data_type: boolean
-        description: ""
-
+        description: ''
       - name: channel
         data_type: string
-        description: ""
-
+        description: ''
       - name: join_date
         data_type: date
-        description: ""
+        description: ''
         tests:
           - not_null:
               config:
                 severity: warn
-
       - name: recurring
         data_type: boolean
-        description: ""
+        description: ''
         tests:
           - not_null:
               config:
                 severity: warn
-
