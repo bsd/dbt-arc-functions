@@ -218,7 +218,7 @@
         )
 
     select
-        {{dbt_utils.generate_surrogate_key(['date_day', 'interval_type', 'donor_audience', 'channel'])}} as donor_count_actual_id
+        {{dbt_utils.generate_surrogate_key(['date_day', 'interval_type', 'donor_audience', 'channel'])}} as donor_count_actual_id,
         date_day,
         fiscal_year,
         interval_type,

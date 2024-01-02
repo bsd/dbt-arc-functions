@@ -45,7 +45,7 @@
         )
 
     select
-        {{dbt_utils.generate_surrogate_key(['date_day', 'interval_type', 'donor_audience', 'join_source'])}} as donor_count_budget_id
+        {{dbt_utils.generate_surrogate_key(['date_day', 'interval_type', 'donor_audience', 'join_source'])}} as donor_count_budget_id,
         date_day,
         interval_type,
         donor_audience,
