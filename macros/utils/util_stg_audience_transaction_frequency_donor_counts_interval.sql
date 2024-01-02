@@ -157,6 +157,25 @@
                 count(
                     distinct case
                         when
+                            {% if interval == 'day'%}
+                            join_date = coalesce(person_and_transaction.date_day, date_spine_with_audience_and_channel.donor_audience) 
+                            {% elif interval == 'month'%}
+                            join_date 
+                                between first_day(coalesce(person_and_transaction.date_day,date_spine_with_audience_and_channel.donor_audience), {{ interval }}) 
+                                and last_day(coalesce(person_and_transaction.date_day,date_spine_with_audience_and_channel.donor_audience), {{ interval }}) 
+                            {% elif interval == 'year' %}
+                            extract(year from join_date) = extract(year from person_and_transaction.date_day)
+                            {% endif %}
+                            and recurring
+                            {% if frequency == 'recurring' %} = true
+                            {% else %} = false
+                            {% endif %}
+                        then person_id
+                    end
+                ) as unique_new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+                count(
+                    distinct case
+                        when
                             donor_loyalty = 'retained_donor' and recurring
                             {% if frequency == 'recurring' %} = true
                             {% else %} = false
