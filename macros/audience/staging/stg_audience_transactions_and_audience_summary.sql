@@ -2,7 +2,7 @@
 {% macro create_stg_audience_transactions_and_audience_summary(
     donor_audience_by_day="stg_audience_donor_audience_by_day_unioned",
     donor_engagement_by_day="stg_audience_donor_engagement_by_date_day",
-    donor_loyalty_by_day='stg_audience_donor_loyalty_by_day',
+    donor_loyalty='stg_audience_donor_loyalty_start_and_end',
     channel="NULL",
     transactions="stg_audience_parameterized_transactions_summary_unioned"
     
@@ -84,9 +84,10 @@
         on transactions.transaction_date_day = donor_engagement.date_day
         and transactions.person_id = donor_engagement.person_id
     left join
-        {{ref(donor_loyalty_by_day)}} donor_loyalty
+        {{ref(donor_loyalty)}} donor_loyalty
         on transactions.person_id = donor_loyalty.person_id
-        and transactions.transaction_date_day = donor_loyalty.date_day
+        and transactions.transaction_date_day 
+        between donor_loyalty.start_date and donor_loyalty.end_date
 
         ),
 
@@ -94,8 +95,8 @@
             select *,
             row_number() over (
             partition by transaction_id order by transaction_date_day
-            ) as transactions_by_day,
-            row_number() over (
+        ) as transactions_by_day,
+         row_number() over (
                     partition by person_id order by transaction_date_day
                 ) as gift_count
         from base
