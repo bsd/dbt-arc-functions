@@ -15,7 +15,7 @@
                 transactions.fiscal_year,
                 transactions.amount,
                 transactions.appeal_business_unit,
-                {{ channel }} as channel,
+                cast({{ channel }} as string) as channel,
                 transactions.recurring,
                 case
                     when transactions.amount between 0 and 25.99
