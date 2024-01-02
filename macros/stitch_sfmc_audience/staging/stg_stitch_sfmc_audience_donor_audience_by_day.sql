@@ -24,9 +24,7 @@ indicating the source of the audience data ('unioned_donor_audience' or 'calcula
 
     /* rejoin calculated audience into the final audience, filling in blanks */
     select
-        coalesce(
-            audience_unioned.date_day, calculated_audience.transaction_date_day
-        ) as date_day,
+        audience_unioned.date_day,
         audience_unioned.person_id,
         coalesce(
             audience_unioned.donor_audience, calculated_audience.donor_audience
