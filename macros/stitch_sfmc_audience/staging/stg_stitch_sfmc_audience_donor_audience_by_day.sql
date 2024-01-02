@@ -55,7 +55,7 @@ indicating the source of the audience data ('unioned_donor_audience' or 'calcula
         calculated_with_date_spine as (
 
             select 
-            calculated_audience.transaction_date_day
+            calculated_audience.transaction_date_day,
             calculated_audience.person_id,
             calculated_audience.donor_audience
             from date_spine
