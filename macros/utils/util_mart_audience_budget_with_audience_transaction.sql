@@ -19,10 +19,8 @@
     {% set recur_onetime = "recur" if recur_status == "recurring" else "onetime" %}
 
    select
-        coalesce(donor_counts.date_day, audience_budget.date_day) as date_day,
-        coalesce(
-            donor_counts.interval_type, audience_budget.interval_type
-        ) as interval_type,
+        donor_counts.date_day,
+        donor_counts.interval_type,
         coalesce(
             donor_counts.donor_audience, audience_budget.donor_audience
         ) as donor_audience,
@@ -57,10 +55,8 @@
             {{ ref(recur_audience_budget_table) }} as audience_budget
     {% endif %}
         on donor_counts.date_day = audience_budget.date_day
-        and upper(donor_counts.interval_type)
-        = upper(audience_budget.interval_type)
-        and upper(donor_counts.donor_audience)
-        = upper(audience_budget.donor_audience)
+        and upper(donor_counts.interval_type) = upper(audience_budget.interval_type)
+        and upper(donor_counts.donor_audience) = upper(audience_budget.donor_audience)
         and upper(donor_counts.channel) = upper(audience_budget.join_source) 
 
 {% endmacro %}
