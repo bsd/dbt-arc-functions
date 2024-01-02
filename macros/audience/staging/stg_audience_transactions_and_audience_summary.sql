@@ -8,16 +8,6 @@
     
 ) %}
 
-{{ config(
-    materialized='table',
-    partition_by={
-      "field": "transaction_date_day",
-      "data_type": "date",
-      "granularity": "day"
-    },
-    cluster_by = ["recurring"]
-)}}
-
 
  with base as (
     select
