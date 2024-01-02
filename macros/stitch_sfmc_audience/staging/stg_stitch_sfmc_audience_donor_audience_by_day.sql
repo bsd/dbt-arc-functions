@@ -38,7 +38,7 @@ indicating the source of the audience data ('unioned_donor_audience' or 'calcula
         end as source_column
     from audience_unioned
     left join
-        {{ ref(calculated_audience) }} calculated_audience
+        {{ ref(calculated_audience_by_day) }} calculated_audience
         on audience_unioned.date_day = calculated_audience.transaction_date_day
 
 {% endmacro %}
