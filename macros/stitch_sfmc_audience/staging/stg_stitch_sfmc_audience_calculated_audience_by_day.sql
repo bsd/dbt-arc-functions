@@ -50,7 +50,7 @@ with
                 ) as prev_donor_audience
             from calculated_with_date_spine
         ),
-        
+
         calc_filtered_changes as (
             select
                 person_id,
@@ -101,7 +101,7 @@ with
                 ) as row_num
             from calc_audience_by_date_day
 
-        ),
+        )
 
 
             select date_day, person_id, donor_audience
