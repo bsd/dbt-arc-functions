@@ -3,18 +3,6 @@
     first_gift_recur_status="NULL"
 ) %}
 
-    {{
-        config(
-            materialized="table",
-            partition_by={
-                "field": "first_transaction_date",
-                "data_type": "date",
-                "granularity": "day",
-            },
-            cluster_by=["first_gift_recur_status"],
-        )
-    }}
-
     /*
 
 This macro finds the first gift that a person gave, 
