@@ -11,7 +11,7 @@ with
                     generate_date_array(
                         (
                             select min(transaction_date_day)
-                            from {{ ref(calculated_audience) }}
+                            from {{ref(calculated_audience)}}
                         ),
                         ifnull(
                             (
@@ -26,24 +26,33 @@ with
 
         ),
 
+        date_spine_max_date as (
+            select 
+            date,
+            max(date) as max_date
+            from date_spine
+        ),
+
         calculated_with_date_spine as (
 
             select 
             calculated_audience.transaction_date_day,
+            date_spine_max_date.max_date,
             calculated_audience.person_id,
             calculated_audience.donor_audience
             from date_spine
             join {{ ref(calculated_audience) }} calculated_audience on
-            date_spine.date = calculated_audience.transaction_date_day
+            date_spine_max_date.date = calculated_audience.transaction_date_day
             where
-                calculated_audience.transaction_date_day < (select max(date) from date_spine)
-                and donor_audience is not null
+                calculated_audience.transaction_date_day < date_spine.max_date
+        
 
         ),
         calc_change as (
             select
                 person_id,
                 transaction_date_day,
+                max_date,
                 donor_audience,
                 lag(donor_audience) over (
                     partition by person_id order by transaction_date_day
@@ -56,6 +65,7 @@ with
                 person_id,
                 transaction_date_day,
                 donor_audience,
+                max_date
                 lead(transaction_date_day) over (
                     partition by person_id order by transaction_date_day
                 ) as next_date
@@ -64,12 +74,13 @@ with
 
         ),
 
+
         calculated_audience_scd as (
             select
                 person_id,
                 min(transaction_date_day) as start_date,
                 ifnull(
-                    max(next_date) - 1, (select max(date) from date_spine)
+                    max(next_date) - 1, max_date
                 ) as end_date,
                 donor_audience
             from calc_filtered_changes
