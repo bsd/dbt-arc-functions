@@ -54,11 +54,15 @@ indicating the source of the audience data ('unioned_donor_audience' or 'calcula
 
         calculated_with_date_spine as (
 
-            select transaction_date_day, person_id, donor_audience
-            from {{ ref(calculated_audience) }} calc_audience
-            join date_spine on date_spine.date = calc_audience.transaction_date_day
+            select 
+            calculated_audience.transaction_date_day
+            calculated_audience.person_id,
+            calculated_audience.donor_audience
+            from date_spine
+            join {{ ref(calculated_audience) }} calculated_audience on
+            date_spine.date = calculated_audience.transaction_date_day
             where
-                calc_audience.transaction_date_day < (select max(date) from date_spine)
+                calculated_audience.transaction_date_day < (select max(date) from date_spine)
                 and donor_audience is not null
 
         ),
@@ -133,7 +137,7 @@ indicating the source of the audience data ('unioned_donor_audience' or 'calcula
 
         audience_unioned as (
             select *
-            from {{ ref(audience_snapshot) }} arc_audience
+            from {{ ref(audience_snapshot) }}
             union all
             select *
             from calculated_audience_by_date_day
