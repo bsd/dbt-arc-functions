@@ -1,26 +1,21 @@
+---
 version: 2
-
 models:
   - name: stg_audience_channel_engagement_start_and_end_dates
-    description: ""
+    description: ''
     columns:
       - name: person_id
         data_type: string
-        description: ""
-
+        description: ''
       - name: channel
         data_type: string
-        description: ""
-
+        description: ''
       - name: donor_engagement
         data_type: string
-        description: ""
-
+        description: ''
       - name: start_date
         data_type: date
-        description: ""
-
+        description: ''
       - name: end_date
         data_type: date
-        description: ""
-
+        description: ''

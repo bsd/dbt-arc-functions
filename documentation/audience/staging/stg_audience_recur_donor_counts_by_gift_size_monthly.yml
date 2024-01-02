@@ -1,30 +1,24 @@
+---
 version: 2
-
 models:
   - name: stg_audience_recur_donor_counts_by_gift_size_monthly
-    description: ""
+    description: ''
     columns:
       - name: interval_type
         data_type: string
-        description: ""
-
+        description: ''
       - name: date_day
         data_type: date
-        description: ""
-
+        description: ''
       - name: channel
         data_type: string
-        description: ""
-
+        description: ''
       - name: donor_audience
         data_type: string
-        description: ""
-
+        description: ''
       - name: gift_size
         data_type: string
-        description: ""
-
+        description: ''
       - name: donor_counts
         data_type: int64
-        description: ""
-
+        description: ''
