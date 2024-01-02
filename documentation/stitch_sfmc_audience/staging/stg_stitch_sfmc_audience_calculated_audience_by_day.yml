@@ -8,10 +8,11 @@ models:
         data_type: date
         description: ""
         tests:
-          - dbt_utils.sequential_values:
-              interval: 1
-              datepart: 'day'
-              severity: warn
+        - dbt_utils.sequential_values:
+                interval: 1
+                datepart: 'day'
+                group_by_columns: ['person_id']
+                severity: warn
 
       - name: person_id
         data_type: string
