@@ -28,18 +28,24 @@
             }}
 
         ),
+
+        distinct_audience as (
+            select distinct donor_audience from {{ ref(person_and_transaction) }}
+        ),
+
+        distinct_channel as (
+            select distinct channel from {{ ref(person_and_transaction) }}
+        ),
+
+
         date_spine_with_audience_and_channel as (
             select distinct
                 date_day,
                 donor_audience,
                 channel, 
             from date_spine
-            cross join (
-                select distinct donor_audience from {{ ref(person_and_transaction) }}
-            )
-            cross join (
-                select distinct channel from {{ ref(person_and_transaction) }}
-            )
+            cross join distinct_audience
+            cross join distinct_channel
         ),
         intermediate_rollup as (
             select
