@@ -83,5 +83,6 @@ audience_calculated_dedupe retrieves calculated audience data for all dates
     select transaction_date_day, person_id, donor_audience
     from audience_calculated_dedupe
     where row_number = 1
+    and donor_audience is not null
 
 {% endmacro %}
