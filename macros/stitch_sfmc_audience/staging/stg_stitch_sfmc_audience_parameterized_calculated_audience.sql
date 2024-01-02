@@ -77,7 +77,6 @@ audience_calculated_dedupe retrieves calculated audience data for all dates
             from base
 
         )
-
     /*
  selects just one donor audience value for each person per day
 */
