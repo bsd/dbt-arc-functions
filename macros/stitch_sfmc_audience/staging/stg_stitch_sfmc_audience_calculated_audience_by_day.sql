@@ -31,6 +31,7 @@ with
             date,
             max(date) as max_date
             from date_spine
+            group by 1
         ),
 
         calculated_with_date_spine as (
@@ -40,11 +41,11 @@ with
             date_spine_max_date.max_date,
             calculated_audience.person_id,
             calculated_audience.donor_audience
-            from date_spine
+            from date_spine_max_date
             join {{ ref(calculated_audience) }} calculated_audience on
             date_spine_max_date.date = calculated_audience.transaction_date_day
             where
-                calculated_audience.transaction_date_day < date_spine.max_date
+                calculated_audience.transaction_date_day < date_spine_max_date.max_date
         
 
         ),
@@ -84,8 +85,7 @@ with
                 ) as end_date,
                 donor_audience
             from calc_filtered_changes
-            group by person_id, donor_audience, next_date
-            order by person_id, start_date
+            group by person_id, donor_audience, next_date, max_date
         ),
 
         calc_audience_by_date_day as (
