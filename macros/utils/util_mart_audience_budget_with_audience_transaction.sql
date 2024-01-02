@@ -29,37 +29,24 @@
         coalesce(
             initcap(donor_counts.channel), initcap(audience_budget.join_source)
         ) as channel,
-        donor_counts.total_{{ recur_onetime }}_donor_counts as total_{{ recur_onetime }}_donor_counts,
-        donor_counts.newFY_{{ recur_onetime }}_donor_counts as new_{{ recur_onetime }}_donor_counts,
-        donor_counts.new_{{ recur_onetime }}_donor_counts as new_{{ recur_onetime }}_donor_counts,
-        donor_counts.retained_{{ recur_onetime }}_donor_counts
-        as retained_{{ recur_onetime }}_donor_counts,
-        donor_counts.retained3_{{ recur_onetime }}_donor_counts
-        as retained3_{{ recur_onetime }}_donor_counts,
-        donor_counts.reinstated_{{ recur_onetime }}_donor_counts
-        as reinstated_{{ recur_onetime }}_donor_counts,
-        donor_counts.active_{{ recur_onetime }}_donor_counts as active_{{ recur_onetime }}_donor_counts,
-        donor_counts.lapsed_{{ recur_onetime }}_donor_counts as lapsed_{{ recur_onetime }}_donor_counts,
-        donor_counts.total_{{ recur_onetime }}_donor_counts_cumulative
-        as total_{{ recur_onetime }}_donor_counts_cumulative,
-        donor_counts.new_{{ recur_onetime }}_donor_counts_cumulative
-        as new_{{ recur_onetime }}_donor_counts_cumulative,
-        donor_counts.newFY_{{ recur_onetime }}_donor_counts_cumulative
-        as new_{{ recur_onetime }}_donor_counts_cumulative,
-        donor_counts.retained_{{ recur_onetime }}_donor_counts_cumulative
-        as retained_{{ recur_onetime }}_donor_counts_cumulative,
-        donor_counts.retained3_{{ recur_onetime }}_donor_counts_cumulative
-        as retained3_{{ recur_onetime }}_donor_counts_cumulative,
-        donor_counts.reinstated_{{ recur_onetime }}_donor_counts_cumulative
-        as reinstated_{{ recur_onetime }}_donor_counts_cumulative,
+        donor_counts.total_{{ recur_onetime }}_donor_counts,
+        donor_counts.newFY_{{ recur_onetime }}_donor_counts,
+        donor_counts.new_{{ recur_onetime }}_donor_counts,
+        donor_counts.retained_{{ recur_onetime }}_donor_counts,
+        donor_counts.retained3_{{ recur_onetime }}_donor_counts,
+        donor_counts.reinstated_{{ recur_onetime }}_donor_counts,
+        donor_counts.active_{{ recur_onetime }}_donor_counts,
+        donor_counts.lapsed_{{ recur_onetime }}_donor_counts,
+        donor_counts.total_{{ recur_onetime }}_donor_counts_cumulative,
+        donor_counts.new_{{ recur_onetime }}_donor_counts_cumulative,
+        donor_counts.newFY_{{ recur_onetime }}_donor_counts_cumulative,
+        donor_counts.retained_{{ recur_onetime }}_donor_counts_cumulative,
+        donor_counts.retained3_{{ recur_onetime }}_donor_counts_cumulative,
+        donor_counts.reinstated_{{ recur_onetime }}_donor_counts_cumulative,
         audience_budget.{{ recur_onetime }}_donor_count_budget, 
-        audience_budget.{{ recur_onetime }}_new_donor_count_budget
-        as {{ recur_onetime }}_new_donor_count_budget,
-        audience_budget.{{ recur_onetime }}_donor_count_budget_cumulative
-        as {{ recur_onetime }}_donor_count_budget_cumulative,
+        audience_budget.{{ recur_onetime }}_new_donor_count_budget,
+        audience_budget.{{ recur_onetime }}_donor_count_budget_cumulative,
         audience_budget.{{ recur_onetime }}_new_donor_count_cumulative
-        as {{ recur_onetime }}_new_donor_count_budget_cumulative
-
     {% if recur_status == "onetime" %}
         from {{ ref(onetime_donor_counts_table) }} as donor_counts
         full outer join

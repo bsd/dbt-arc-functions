@@ -1,45 +1,66 @@
----
 version: 2
+
 models:
-  - name: stg_stitch_sfmc_audience_transaction_with_first_gift_cohort
-    description: ''
+  - name: stg_audience_transaction_with_first_gift_cohort
+    description: ""
     columns:
       - name: person_id
         data_type: string
-        description: Unique ID of the individual
+        description: ""
+
       - name: transaction_date_day
         data_type: date
-        description: Date of transaction in Day format
+        description: ""
+
       - name: month_diff_str
         data_type: string
-        description: ''
+        description: ""
+
       - name: month_diff_int
         data_type: int64
-        description: ''
+        description: ""
+
       - name: recurring
         data_type: boolean
-        description: If the transaction is part of a recurring donation
+        description: ""
+
       - name: amounts
         data_type: float64
-        description: the rolled-up sum of all of a person's transactions by day
+        description: ""
+
       - name: join_month_year_str
         data_type: string
-        description: ''
+        description: ""
+
       - name: join_month_year_date
         data_type: date
-        description: The date of the first transaction for each person_id
+        description: ""
+
       - name: first_gift_join_source
         data_type: string
-        description: The join source for the first gift
+        description: ""
+
       - name: join_gift_size_string
         data_type: string
-        description: The gift size of the first gift as a category string
+        description: ""
+
       - name: join_gift_size_string_recur
         data_type: string
-        description: ''
+        description: ""
+
       - name: first_gift_donor_audience
         data_type: string
-        description: ''
+        description: ""
+
       - name: first_gift_recur_status
+        data_type: boolean
+        description: ""
+
+      - name: txn_rank
+        data_type: int64
+        description: ""
+
+      - name: first_gift_recur_status_string
         data_type: string
-        description: ''
+        description: ""
+

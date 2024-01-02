@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: stg_audience_parameterized_transaction_first_gift
+    description: ""
+    columns:
+      - name: person_id
+        data_type: string
+        description: ""
+
+      - name: transaction_id
+        data_type: string
+        description: ""
+
+      - name: first_transaction_date
+        data_type: date
+        description: ""
+
+      - name: join_month_year_date
+        data_type: date
+        description: ""
+
+      - name: join_month_year_str
+        data_type: string
+        description: ""
+
+      - name: first_gift_join_source
+        data_type: string
+        description: ""
+
+      - name: join_gift_size_string
+        data_type: string
+        description: ""
+
+      - name: join_gift_size_string_recur
+        data_type: string
+        description: ""
+
+      - name: first_gift_recur_status
+        data_type: boolean
+        description: ""
+
+      - name: first_gift_donor_audience
+        data_type: string
+        description: ""
+
+      - name: amount
+        data_type: float64
+        description: ""
+
