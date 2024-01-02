@@ -158,11 +158,11 @@
                     distinct case
                         when
                             {% if interval == 'day'%}
-                            join_date = coalesce(person_and_transaction.date_day, date_spine_with_audience_and_channel.donor_day) 
+                            join_date = coalesce(person_and_transaction.date_day, date_spine_with_audience_and_channel.date_day) 
                             {% elif interval == 'month'%}
                             join_date 
                                 between date_trunc(coalesce(person_and_transaction.date_day,date_spine_with_audience_and_channel.date_day), {{ interval }}) 
-                                and last_day(coalesce(person_and_transaction.date_day,date_spine_with_audience_and_channel.donor_day), {{ interval }}) 
+                                and last_day(coalesce(person_and_transaction.date_day,date_spine_with_audience_and_channel.date_day), {{ interval }}) 
                             {% elif interval == 'year' %}
                             extract(year from join_date) = extract(year from person_and_transaction.date_day)
                             {% endif %}
