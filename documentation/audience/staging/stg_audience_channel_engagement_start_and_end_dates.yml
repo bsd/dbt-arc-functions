@@ -7,18 +7,34 @@ models:
       - name: person_id
         data_type: string
         description: ""
+        tests:
+          - not_null:
+              config:
+                severity: warn
 
       - name: channel
         data_type: string
         description: ""
+        tests:
+          - not_null:
+              config:
+                severity: warn
 
       - name: donor_engagement
         data_type: string
         description: ""
+        tests:
+          - not_null:
+              config:
+                severity: warn
 
       - name: start_date
         data_type: date
         description: ""
+        tests:
+          - not_null:
+              config:
+                severity: warn
 
       - name: end_date
         data_type: date

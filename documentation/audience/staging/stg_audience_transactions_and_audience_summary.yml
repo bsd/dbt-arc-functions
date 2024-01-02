@@ -7,10 +7,18 @@ models:
       - name: transaction_id
         data_type: string
         description: ""
+        tests:
+          - unique:
+              config: 
+                severity: warn
 
       - name: person_id
         data_type: string
         description: ""
+        tests:
+          - not_null:
+              config:
+                severity: warn
 
       - name: transaction_date_day
         data_type: date
@@ -19,6 +27,11 @@ models:
       - name: fiscal_year
         data_type: int64
         description: ""
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 1900  
+              max_value: 3000
+              severity: warn
 
       - name: amount
         data_type: float64
@@ -35,6 +48,9 @@ models:
       - name: recurring
         data_type: boolean
         description: ""
+        tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: boolean
 
       - name: gift_size_string
         data_type: string

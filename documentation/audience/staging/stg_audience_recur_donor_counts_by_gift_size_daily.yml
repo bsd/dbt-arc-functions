@@ -7,24 +7,49 @@ models:
       - name: interval_type
         data_type: string
         description: ""
+        tests:
+          - accepted_values:
+              values: ['daily']
 
       - name: date_day
         data_type: date
         description: ""
+        tests:
+          - dbt_utils.sequential_values:
+              interval: 1
+              datepart: 'day'
+              severity: warn
+
 
       - name: channel
         data_type: string
         description: ""
+        tests:
+          - not_null:
+              config:
+                severity: warn
 
       - name: donor_audience
         data_type: string
         description: ""
+        tests:
+          - not_null:
+              config:
+                severity: warn
 
       - name: gift_size
         data_type: string
         description: ""
+        tests:
+          - not_null:
+              config:
+                severity: warn
 
       - name: donor_counts
         data_type: int64
         description: ""
+        tests:
+          - dbt_utils.accepted_range:
+                min_value: 0
+                inclusive: true
 

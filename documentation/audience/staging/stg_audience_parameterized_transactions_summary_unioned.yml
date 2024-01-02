@@ -11,6 +11,14 @@ models:
       - name: transaction_id
         data_type: string
         description: "Unique identifier for each transaction"
+        tests:
+          - unique:
+              config: 
+                severity: warn
+          - not_null:
+              config:
+                severity: warn
+
 
       - name: transaction_id_in_source_crm
         data_type: string
@@ -19,6 +27,10 @@ models:
       - name: person_id
         data_type: string
         description: "Unique identifier for the person associated with the transaction"
+        test:
+            - not_null:
+              config:
+                severity: warn
 
       - name: source_code
         data_type: string
