@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_stitch_sfmc_audience_parameterized_arc_audience
+    description: "staging the crm-generated snapshotted donor audience data by day"
+    columns:
+      - name: date_day
+        data_type: date
+        description: ""
+
+      - name: person_id
+        data_type: string
+        description: ""
+
+      - name: donor_audience
+        data_type: string
+        description: ""
+
