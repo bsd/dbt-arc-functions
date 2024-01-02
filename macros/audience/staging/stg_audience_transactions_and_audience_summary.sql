@@ -1,4 +1,4 @@
--- fmt: off
+
 {% macro create_stg_audience_transactions_and_audience_summary(
     donor_audience_by_day="stg_audience_donor_audience_by_day_unioned",
     donor_engagement_by_day="stg_audience_donor_engagement_by_date_day",
