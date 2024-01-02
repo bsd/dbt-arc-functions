@@ -5,53 +5,53 @@ models:
     description: ""
     tests:
         - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: total_onetime_donor_counts_cumulative
-          partition_by:
-            - fiscal_year
-            - donor_audience
-            - channel
-          order_by:
-            - date_day
+            cumulative_column: total_onetime_donor_counts_cumulative
+            partition_by:
+              - fiscal_year
+              - donor_audience
+              - channel
+            order_by:
+              - date_day
          - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: newfy_onetime_donor_counts_cumulative
-          partition_by:
-            - fiscal_year
-            - donor_audience
-            - channel
-          order_by:
-            - date_day
+            cumulative_column: newfy_onetime_donor_counts_cumulative
+            partition_by:
+              - fiscal_year
+              - donor_audience
+              - channel
+            order_by:
+              - date_day
         - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: new_onetime_donor_counts_cumulative
-          partition_by:
-            - fiscal_year
-            - donor_audience
-            - channel
-          order_by:
-            - date_day
+            cumulative_column: new_onetime_donor_counts_cumulative
+            partition_by:
+              - fiscal_year
+              - donor_audience
+              - channel
+            order_by:
+              - date_day
         - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: retained_onetime_donor_counts_cumulative
-          partition_by:
-            - fiscal_year
-            - donor_audience
-            - channel
-          order_by:
-            - date_day
+            cumulative_column: retained_onetime_donor_counts_cumulative
+            partition_by:
+              - fiscal_year
+              - donor_audience
+              - channel
+            order_by:
+              - date_day
         - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: retained3_onetime_donor_counts_cumulative
-          partition_by:
-            - fiscal_year
-            - donor_audience
-            - channel
-          order_by:
-            - date_day
+            cumulative_column: retained3_onetime_donor_counts_cumulative
+            partition_by:
+              - fiscal_year
+              - donor_audience
+              - channel
+            order_by:
+              - date_day
         - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: reinstated_onetime_donor_counts_cumulative
-          partition_by:
-            - fiscal_year
-            - donor_audience
-            - channel
-          order_by:
-            - date_day
+            cumulative_column: reinstated_onetime_donor_counts_cumulative
+            partition_by:
+              - fiscal_year
+              - donor_audience
+              - channel
+            order_by:
+              - date_day
           
     columns:
       - name: date_day
