@@ -11,14 +11,14 @@ It includes date, person ID, donor audience status, and a column
 indicating the source of the audience data ('unioned_donor_audience' or 'calculated_donor_audience').
 
 */
-   with 
+    with
 
         audience_unioned as (
             select *
             from {{ ref(audience_snapshot) }}
             union all
             select *
-            from {{ref(calculated_audience_by_day)}}
+            from {{ ref(calculated_audience_by_day) }}
 
         )
 

@@ -3,7 +3,7 @@
     calculated_audience="stg_stitch_sfmc_audience_parameterized_calculated_audience"
 ) %}
 
-with
+    with
         date_spine as (
             select date
             from
@@ -11,7 +11,7 @@ with
                     generate_date_array(
                         (
                             select min(transaction_date_day)
-                            from {{ref(calculated_audience)}}
+                            from {{ ref(calculated_audience) }}
                         ),
                         ifnull(
                             (
@@ -27,26 +27,22 @@ with
         ),
 
         date_spine_max_date as (
-            select 
-            date,
-            max(date) as max_date
-            from date_spine
-            group by 1
+            select date, max(date) as max_date from date_spine group by 1
         ),
 
         calculated_with_date_spine as (
 
-            select 
-            calculated_audience.transaction_date_day,
-            date_spine_max_date.max_date,
-            calculated_audience.person_id,
-            calculated_audience.donor_audience
+            select
+                calculated_audience.transaction_date_day,
+                date_spine_max_date.max_date,
+                calculated_audience.person_id,
+                calculated_audience.donor_audience
             from date_spine_max_date
-            join {{ ref(calculated_audience) }} calculated_audience on
-            date_spine_max_date.date = calculated_audience.transaction_date_day
+            join
+                {{ ref(calculated_audience) }} calculated_audience
+                on date_spine_max_date.date = calculated_audience.transaction_date_day
             where
                 calculated_audience.transaction_date_day < date_spine_max_date.max_date
-        
 
         ),
         calc_change as (
@@ -75,14 +71,11 @@ with
 
         ),
 
-
         calculated_audience_scd as (
             select
                 person_id,
                 min(transaction_date_day) as start_date,
-                ifnull(
-                    max(next_date) - 1, max_date
-                ) as end_date,
+                ifnull(max(next_date) - 1, max_date) as end_date,
                 donor_audience
             from calc_filtered_changes
             group by person_id, donor_audience, next_date, max_date
@@ -114,9 +107,8 @@ with
 
         )
 
-
-            select date_day, person_id, donor_audience
-            from dedup_calc_audience_by_date_day
-            where row_num = 1
+    select date_day, person_id, donor_audience
+    from dedup_calc_audience_by_date_day
+    where row_num = 1
 
 {% endmacro %}
