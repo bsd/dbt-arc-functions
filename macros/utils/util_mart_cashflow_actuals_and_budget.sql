@@ -4,11 +4,14 @@
     budget_revenue="stg_audience_budget_by_day"
 ) %}
 
-    {% if combined_or_onetime not in ['combined', 'onetime'] %}
-        {{ exceptions.raise_compiler_error("'combined_or_onetime' argument to util must be 'combined' or 'onetime', got " ~ combined_or_onetime) }}
+    {% if combined_or_onetime not in ["combined", "onetime"] %}
+        {{
+            exceptions.raise_compiler_error(
+                "'combined_or_onetime' argument to util must be 'combined' or 'onetime', got "
+                ~ combined_or_onetime
+            )
+        }}
     {% endif %}
-
-
 
     with
         base as (
@@ -19,11 +22,11 @@
                 sum(amount) as total_revenue_actuals,
                 sum(gift_count) as total_gifts_actuals
             from {{ ref(audience_transactions) }} as audience_transactions
-            {% if combined_or_onetime == 'onetime'%}
-            where recurring is null or recurring = false
+            {% if combined_or_onetime == "onetime" %}
+                where recurring is null or recurring = false
             {% endif %}
-            group by 1, 2, 3, 4 
-    
+            group by 1, 2, 3, 4
+
         ),
 
 budget_join as (
@@ -50,7 +53,7 @@ budget_join as (
                 and lower(base.donor_audience) = lower(budget_revenue.donor_audience)
                 and lower(base.channel) = lower(budget_revenue.platform)
         ),
-        
+
         dateoffset as (
             select
                 *,
@@ -117,7 +120,7 @@ budget_join as (
             select
                 coalesce(
                     date_day, prevyear_date_day, prevtwoyears_date_day
-                ) as date_day, 
+                ) as date_day,
                 donor_audience,
                 channel,
                 sum(total_revenue_actuals) as total_revenue_actuals,
