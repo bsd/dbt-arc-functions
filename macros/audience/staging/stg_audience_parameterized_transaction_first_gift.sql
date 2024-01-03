@@ -9,6 +9,8 @@ This macro finds the first gift that a person gave,
 and pulls attributes from that first gift. 
 
 */
+
+
     with
         dedupe as (
             select person_id, transaction_id, transaction_date_day
