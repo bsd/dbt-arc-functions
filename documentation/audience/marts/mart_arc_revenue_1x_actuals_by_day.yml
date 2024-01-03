@@ -17,6 +17,10 @@ models:
         description: Date of transaction in Day format
       - name: donor_audience
         description: the membership value for donor audience
+        tests:
+          - not_null:
+              config:
+                severity: warn
       - name: donor_engagement
         description: The donor engagement value of each person by day and date
       - name: donor_loyalty

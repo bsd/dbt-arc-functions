@@ -10,6 +10,10 @@ models:
       - name: date_day
         data_type: date
         description: Date of the record
+        tests:
+          - not_null:
+              config:
+                severity: warn
       - name: channel
         data_type: string
         description: The channel through which the donor was acquired or made their

@@ -7,8 +7,6 @@ models:
       - dbt_arc_functions.has_unique_combinations_by_date:
           date_column: date_day
     columns:
-      - name: recur_flag
-        description: this is a flag to represent the if the transactions are recurring
       - name: total_revenue_budget_by_day
         description: this is the revenue budget amount by date_day
       - name: fiscal_year
@@ -21,8 +19,16 @@ models:
         description: The calendar day of the month value
       - name: date_day
         description: The calendar date expressed as a year-month-day
+        tests:
+          - not_null:
+              config:
+                severity: warn
       - name: donor_audience
         description: The donor audience value
+        tests:
+          - not_null:
+              config:
+                severity: warn
       - name: channel
         description: The source channel of the donation or group of donations
       - name: total_revenue_actuals
