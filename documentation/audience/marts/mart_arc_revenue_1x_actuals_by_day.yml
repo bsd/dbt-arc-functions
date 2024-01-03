@@ -43,7 +43,7 @@ models:
                 severity: warn
       - name: total_gifts
         description: total gifts by date by dimension
-         tests:
+        tests:
           - not_null:
               config:
                 severity: warn
