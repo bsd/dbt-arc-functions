@@ -231,7 +231,7 @@
         )
 
     select
-        date_day,
+        date(date_day) as date_day,
         interval_type,
         donor_audience,
         channel,
