@@ -37,15 +37,6 @@
                 platform,
                 donor_audience,
                 date_spine.date_day,
-                safe_cast(
-                    extract(year from date_spine.date_day) as int
-                ) as date_spine_year,
-                safe_cast(
-                    extract(month from date_spine.date_day) as int
-                ) as date_spine_month,
-                safe_cast(
-                    extract(day from date_spine.date_day) as int
-                ) as date_spine_day,
                 total_revenue_budget
                 / {{ number_of_days_in_budget }} as total_revenue_budget_by_day,
                 loyalty_new_donor_targets
@@ -75,20 +66,17 @@
         platform,
         donor_audience,
         date_day,
-        date_spine_year,
-        date_spine_month,
-        date_spine_day,
         total_revenue_budget_by_day,
         loyalty_new_donor_targets_by_day,
         loyalty_unknown_donor_targets_by_day,
         loyalty_retained_donor_targets_by_day,
         loyalty_retained_three_donor_targets_by_day,
         loyalty_reinstated_donor_targets_by_day,
-        loyalty_new_donor_targets_by_day
+        (loyalty_new_donor_targets_by_day
         + loyalty_unknown_donor_targets_by_day
         + loyalty_retained_donor_targets_by_day
         + loyalty_retained_three_donor_targets_by_day
-        + loyalty_reinstated_donor_targets_by_day as total_donors_by_day
+        + loyalty_reinstated_donor_targets_by_day) as total_donors_by_day
     from dailies
 
 {% endmacro %}
