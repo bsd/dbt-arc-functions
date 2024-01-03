@@ -1,6 +1,6 @@
 {% macro create_mart_cashflow_actuals_and_budget_1x_revenue(
     audience_transactions="stg_audience_transactions_and_audience_summary",
-    budget_revenue="stg_audience_budget_by_day_enriched"
+    budget_revenue="stg_audience_budget_by_day"
 ) %}
 
     with

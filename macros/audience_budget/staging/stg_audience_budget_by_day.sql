@@ -63,9 +63,11 @@
         )
 
     select
-        platform,
-        donor_audience,
-        date_day,
+        initcap(platform) as platform,
+        initcap(donor_audience) as donor_audience,
+        date(date_day) as date_day,
+        {{ dbt_arc_functions.get_fiscal_year("date_day", var("fiscal_year_start")) }}
+        as fiscal_year,
         total_revenue_budget_by_day,
         loyalty_new_donor_targets_by_day,
         loyalty_unknown_donor_targets_by_day,

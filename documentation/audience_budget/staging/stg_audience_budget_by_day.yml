@@ -4,6 +4,16 @@ models:
   - name: stg_audience_budget_by_day
     description: Staging table that pulls from Google Spreadsheets and datespine for
       audience monthly budget, with a by_day granularity rollup/rolldown
+       - dbt_expectations.expect_multicolumn_sum_to_equal:
+            column_list:
+              - loyalty_new_donor_targets_by_day
+              - loyalty_unknown_donor_targets_by_day
+              - loyalty_retained_donor_targets_by_day
+              - loyalty_retained_three_donor_targets_by_day
+              - loyalty_reinstated_donor_targets_by_day
+            sum_total: sum(total_donors_by_day)
+            group_by: [platform, donor_audience, date_day]
+            severity: warn
     columns:
       - name: platform
         description: Platform for the audience monthly budget, usually an ad provider
