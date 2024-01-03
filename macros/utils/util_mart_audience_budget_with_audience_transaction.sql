@@ -27,9 +27,8 @@
         coalesce(
             donor_counts.channel, audience_budget.channel
         ) as channel,
-         /* removed the below unused columns to improve performance */
         donor_counts.total_{{ recur_onetime }}_donor_counts, 
-        --donor_counts.newFY_{{ recur_onetime }}_donor_counts,
+        donor_counts.newFY_{{ recur_onetime }}_donor_counts,
         donor_counts.new_{{ recur_onetime }}_donor_counts, 
         donor_counts.retained_{{ recur_onetime }}_donor_counts, 
         donor_counts.retained3_{{ recur_onetime }}_donor_counts, 
@@ -38,10 +37,10 @@
         donor_counts.lapsed_{{ recur_onetime }}_donor_counts, 
         donor_counts.total_{{ recur_onetime }}_donor_counts_cumulative, 
         donor_counts.new_{{ recur_onetime }}_donor_counts_cumulative, 
-        --donor_counts.newFY_{{ recur_onetime }}_donor_counts_cumulative,
-        --donor_counts.retained_{{ recur_onetime }}_donor_counts_cumulative,
-        --donor_counts.retained3_{{ recur_onetime }}_donor_counts_cumulative,
-        --donor_counts.reinstated_{{ recur_onetime }}_donor_counts_cumulative,
+        donor_counts.newFY_{{ recur_onetime }}_donor_counts_cumulative,
+        donor_counts.retained_{{ recur_onetime }}_donor_counts_cumulative,
+        donor_counts.retained3_{{ recur_onetime }}_donor_counts_cumulative,
+        donor_counts.reinstated_{{ recur_onetime }}_donor_counts_cumulative,
         audience_budget.{{ recur_onetime }}_donor_count_budget, 
         audience_budget.{{ recur_onetime }}_new_donor_count_budget,
         audience_budget.{{ recur_onetime }}_donor_count_budget_cumulative,
