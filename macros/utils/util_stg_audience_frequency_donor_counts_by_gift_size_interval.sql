@@ -29,7 +29,7 @@ select
     count(distinct person_id) as donor_counts
 from {{ ref(audience_transaction) }}
 where recurring = true
-group by 1, 2, 3, 4
+group by 1, 2, 3, 4, 5
         
 
 {% endmacro %}
