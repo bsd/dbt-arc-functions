@@ -4,17 +4,17 @@
     yearly="stg_audience_transaction_recur_donor_counts_yearly"
 ) %}
 
-{{
-    config(
-        materialized="table",
-        partition_by={
+    {{
+        config(
+            materialized="table",
+            partition_by={
                 "field": "date_day",
                 "data_type": "date",
                 "granularity": "day",
             },
-        cluster_by='donor_audience'
-    )
-}}
+            cluster_by="donor_audience",
+        )
+    }}
     select *
     from {{ ref(daily) }}
     union all
