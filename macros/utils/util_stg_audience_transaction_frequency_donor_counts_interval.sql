@@ -7,7 +7,7 @@
     {% if frequency not in ['recurring', 'onetime'] %}
         {{ exceptions.raise_compiler_error("'frequency' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'recurring' or 'onetime', got " ~ frequency) }}
     {% endif %}
-    {% if interval not in ['day', 'week','month','year'] %}
+    {% if interval not in ['day', 'month','year'] %}
         {{ exceptions.raise_compiler_error("'interval' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'day', 'week', 'month', or 'year', got " ~ interval) }}
     {% endif %}
 
