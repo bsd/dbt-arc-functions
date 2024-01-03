@@ -10,6 +10,11 @@ models:
       - name: interval_type
         data_type: string
         description: ''
+        tests:
+          - accepted_values:
+                values: [daily, monthly, yearly]
+                config:
+                  severity: warn
       - name: donor_audience
         data_type: string
         description: ''
