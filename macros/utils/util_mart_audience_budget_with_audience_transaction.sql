@@ -25,7 +25,7 @@
             donor_counts.donor_audience, audience_budget.donor_audience
         ) as donor_audience,
         coalesce(
-            initcap(donor_counts.channel), initcap(audience_budget.join_source)
+            initcap(donor_counts.channel), initcap(audience_budget.channel)
         ) as channel,
          /* removed the below unused columns to improve performance */
         donor_counts.total_{{ recur_onetime }}_donor_counts, 
