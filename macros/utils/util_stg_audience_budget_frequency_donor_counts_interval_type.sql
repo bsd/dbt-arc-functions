@@ -14,6 +14,18 @@
 
      {% set recur_onetime = "recur" if frequency == "recurring" else "onetime" %}
 
+    {{
+    config(
+        materialized="table",
+        partition_by={
+                "field": "date_day",
+                "data_type": "date",
+                "granularity": "day",
+            },
+        cluster_by='donor_audience'
+    )
+}}
+
     with
         sums as (
             select

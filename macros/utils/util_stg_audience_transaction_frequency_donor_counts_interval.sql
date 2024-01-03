@@ -10,6 +10,19 @@
     {% if interval not in ['day', 'week','month','year'] %}
         {{ exceptions.raise_compiler_error("'interval' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'day', 'week', 'month', or 'year', got " ~ interval) }}
     {% endif %}
+
+{{
+    config(
+        materialized="table",
+        partition_by={
+                "field": "date_day",
+                "data_type": "date",
+                "granularity": "day",
+            },
+        cluster_by='donor_audience'
+    )
+}}
+
     with
         date_spine as (
             {% set min_date_query %}
