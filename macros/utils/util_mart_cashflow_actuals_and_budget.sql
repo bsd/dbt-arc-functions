@@ -1,7 +1,7 @@
 {% macro util_mart_cashflow_actuals_and_budget(
+    combined_or_onetime,
     audience_transactions="stg_audience_transactions_and_audience_summary",
-    budget_revenue="stg_audience_budget_by_day",
-    combined_or_onetime
+    budget_revenue="stg_audience_budget_by_day"
 ) %}
 
     {% if combined_or_onetime not in ['combined', 'onetime'] %}
