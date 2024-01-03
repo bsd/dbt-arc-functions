@@ -2,7 +2,6 @@
     donor_audience_by_day="stg_audience_donor_audience_by_day_unioned",
     donor_engagement_by_day="stg_audience_donor_engagement_by_date_day",
     donor_loyalty="stg_audience_donor_loyalty_start_and_end",
-    channel="NULL",
     transactions="stg_audience_parameterized_transactions_summary_unioned"
 ) %}
 
@@ -15,7 +14,7 @@
                 transactions.fiscal_year,
                 transactions.amount,
                 transactions.appeal_business_unit,
-                cast({{ channel }} as string) as channel,
+                cast(transactions.channel as string) as channel,
                 transactions.recurring,
                 case
                     when transactions.amount between 0 and 25.99
