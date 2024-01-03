@@ -26,11 +26,10 @@
 
         ),
 
-       /* date_spine_max_date as (
+        /* date_spine_max_date as (
             select date, max(date) as max_date from date_spine group by 1
         ),
         */
-
         calculated_with_date_spine as (
 
             select
@@ -42,7 +41,8 @@
                 {{ ref(calculated_audience) }} calculated_audience
                 on date_spine.date = calculated_audience.transaction_date_day
             where
-                calculated_audience.transaction_date_day < date_sub(current_date(), interval 1 day)
+                calculated_audience.transaction_date_day
+                < date_sub(current_date(), interval 1 day)
 
         ),
         calc_change as (
@@ -73,7 +73,9 @@
             select
                 person_id,
                 min(transaction_date_day) as start_date,
-                ifnull(max(next_date) - 1, date_sub(current_date(), interval 1 day)) as end_date,
+                ifnull(
+                    max(next_date) - 1, date_sub(current_date(), interval 1 day)
+                ) as end_date,
                 donor_audience
             from calc_filtered_changes
             group by person_id, donor_audience, next_date, max_date
