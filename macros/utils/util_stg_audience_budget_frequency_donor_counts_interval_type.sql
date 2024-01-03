@@ -31,7 +31,7 @@
             select
 
     {% if interval == 'day' %}
-                date_day,
+                date(date_day) as date_day,
                 'daily' as interval_type,
     {% elif interval == 'month' %}
                 last_day(date_day, month) as date_day,
