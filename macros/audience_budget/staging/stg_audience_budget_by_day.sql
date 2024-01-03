@@ -72,11 +72,13 @@
         loyalty_retained_donor_targets_by_day,
         loyalty_retained_three_donor_targets_by_day,
         loyalty_reinstated_donor_targets_by_day,
-        (loyalty_new_donor_targets_by_day
-        + loyalty_unknown_donor_targets_by_day
-        + loyalty_retained_donor_targets_by_day
-        + loyalty_retained_three_donor_targets_by_day
-        + loyalty_reinstated_donor_targets_by_day) as total_donors_by_day
+        (
+            loyalty_new_donor_targets_by_day
+            + loyalty_unknown_donor_targets_by_day
+            + loyalty_retained_donor_targets_by_day
+            + loyalty_retained_three_donor_targets_by_day
+            + loyalty_reinstated_donor_targets_by_day
+        ) as total_donors_by_day
     from dailies
 
 {% endmacro %}
