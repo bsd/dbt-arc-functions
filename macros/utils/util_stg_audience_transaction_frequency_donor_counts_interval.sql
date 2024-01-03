@@ -219,7 +219,6 @@
 
     select
         date_day,
-        fiscal_year,
         interval_type,
         donor_audience,
         channel,
