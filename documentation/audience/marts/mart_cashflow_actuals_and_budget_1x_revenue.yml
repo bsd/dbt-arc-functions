@@ -3,6 +3,9 @@ version: 2
 models:
   - name: mart_cashflow_actuals_and_budget_1x_revenue
     description: A version of the cashflow actuals and budget mart
+    tests:
+      - dbt_arc_functions.has_unique_combinations_by_date:
+          date_column: date_day
     columns:
       - name: recur_flag
         description: this is a flag to represent the if the transactions are recurring

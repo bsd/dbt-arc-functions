@@ -3,6 +3,9 @@ version: 2
 models:
   - name: mart_audience_budget_with_audience_transaction
     description: Mart lining up audience budget with audience transaction.
+    tests:
+      - dbt_arc_functions.has_unique_combinations_by_date:
+          date_column: date_day
     columns:
       - name: total_onetime_donor_counts
         description: The total number of donors who made a onetime donation.

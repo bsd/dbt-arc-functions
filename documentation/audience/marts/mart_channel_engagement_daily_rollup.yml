@@ -3,6 +3,9 @@ version: 2
 models:
   - name: mart_channel_engagement_daily_rollup
     description: ''
+    tests:
+      - dbt_arc_functions.has_unique_combinations_by_date:
+          date_column: date_day
     columns:
       - name: date_day
         data_type: date
