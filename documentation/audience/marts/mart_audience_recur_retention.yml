@@ -9,17 +9,17 @@ models:
         description: The month and year when the donor joined the organization or
           made their first donation.
         tests:
-        - not_null:
-            config:
-              severity: warn
+          - not_null:
+              config:
+                severity: warn
       - name: join_source
         data_type: string
         description: The platform or medium through which the donor was acquired or
           made their first donation.
         tests:
-        - not_null:
-            config:
-              severity: warn
+          - not_null:
+              config:
+                severity: warn
       - name: join_gift_size
         data_type: string
         description: he size of the donor's initial gift, categorized into different
