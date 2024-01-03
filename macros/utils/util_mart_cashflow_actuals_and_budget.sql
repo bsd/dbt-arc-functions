@@ -29,7 +29,7 @@
 
         ),
 
-budget_join as (
+        budget_join as (
             select
                 coalesce(base.date_day, budget_revenue.date_day) as date_day,
                 coalesce(
