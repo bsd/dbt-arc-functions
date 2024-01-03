@@ -11,9 +11,7 @@ models:
               interval: 1
               datepart: year
               severity: warn
-              group_by_columns: 
-                  - donor_audience
-                  - channel
+              group_by_columns: [donor_audience, channel]
       - name: fiscal_year
         data_type: int64
         description: ''
