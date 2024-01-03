@@ -48,16 +48,13 @@
         audience_budget.{{ recur_onetime }}_new_donor_count_cumulative
     {% if recur_status == "onetime" %}
         from {{ ref(onetime_donor_counts_table) }} as donor_counts
-        left join
+        full join
             {{ ref(onetime_audience_budget_table) }} as audience_budget
     {% elif recur_status == "recurring" %}
         from {{ ref(recur_donor_counts_table) }} as donor_counts
-        left join
+        full join
             {{ ref(recur_audience_budget_table) }} as audience_budget
     {% endif %}
-        on donor_counts.date_day = audience_budget.date_day
-        and upper(donor_counts.interval_type) = upper(audience_budget.interval_type)
-        and upper(donor_counts.donor_audience) = upper(audience_budget.donor_audience)
-        and upper(donor_counts.channel) = upper(audience_budget.join_source) 
+        using (date_day, donor_audience, channel)
 
 {% endmacro %}

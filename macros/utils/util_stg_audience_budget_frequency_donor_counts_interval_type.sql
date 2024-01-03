@@ -29,7 +29,7 @@
                 'yearly' as interval_type,
     {% endif %}
                 donor_audience,
-                platform as join_source,
+                platform as channel,
                 sum(total_revenue_budget_by_day) as {{recur_onetime}}_donor_count_budget,
                 sum(loyalty_new_donor_targets_by_day) as {{recur_onetime}}_new_donor_count_budget
             from {{ ref(budget_table) }}
@@ -48,13 +48,13 @@
         date_day,
         interval_type,
         donor_audience,
-        join_source,
+        channel,
         {{recur_onetime}}_donor_count_budget,
         {{recur_onetime}}_new_donor_count_budget,
         sum({{recur_onetime}}_donor_count_budget) over (
             partition by
                 donor_audience,
-                join_source,
+                channel,
                 {{
                     dbt_arc_functions.get_fiscal_year(
                         "date_day", var("fiscal_year_start")
@@ -65,7 +65,7 @@
         sum({{recur_onetime}}_new_donor_count_budget) over (
             partition by
                 donor_audience,
-                join_source,
+                channel,
                 {{
                     dbt_arc_functions.get_fiscal_year(
                         "date_day", var("fiscal_year_start")
