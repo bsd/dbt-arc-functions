@@ -4,10 +4,9 @@
     combined_or_onetime
 ) %}
 
- {% if combined_or_onetime not in ['combined', 'onetime'] %}
+    {% if combined_or_onetime not in ['combined', 'onetime'] %}
         {{ exceptions.raise_compiler_error("'combined_or_onetime' argument to util must be 'combined' or 'onetime', got " ~ combined_or_onetime) }}
     {% endif %}
-
 
 
 
@@ -15,7 +14,6 @@
         base as (
             select
                 transaction_date_day as date_day,
-                fiscal_year,
                 donor_audience,
                 channel,
                 sum(amount) as total_revenue_actuals,
@@ -27,7 +25,6 @@
             group by 1, 2, 3, 4 
     
         ),
-----
 
 budget_join as (
             select
