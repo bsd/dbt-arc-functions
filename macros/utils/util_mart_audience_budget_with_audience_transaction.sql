@@ -18,6 +18,18 @@
 
     {% set recur_onetime = "recur" if recur_status == "recurring" else "onetime" %}
 
+    {{
+    config(
+        materialized="table",
+        partition_by={
+                "field": "date_day",
+                "data_type": "date",
+                "granularity": "day",
+            },
+        cluster_by='donor_audience'
+    )
+}}
+
    select
         donor_counts.date_day,
         donor_counts.interval_type,
