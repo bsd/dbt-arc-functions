@@ -18,10 +18,7 @@ models:
               interval: 1
               datepart: day
               severity: warn
-              group_by_columns: 
-                  - donor_audience
-                  - channel
-                  - gift_size
+              group_by_columns: [donor_audience, channel, gift_size]
       - name: channel
         data_type: string
         description: ''
