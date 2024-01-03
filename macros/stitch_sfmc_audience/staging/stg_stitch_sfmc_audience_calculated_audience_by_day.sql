@@ -26,10 +26,6 @@
 
         ),
 
-        /* date_spine_max_date as (
-            select date, max(date) as max_date from date_spine group by 1
-        ),
-        */
         calculated_with_date_spine as (
 
             select
@@ -78,7 +74,7 @@
                 ) as end_date,
                 donor_audience
             from calc_filtered_changes
-            group by person_id, donor_audience, next_date, max_date
+            group by person_id, donor_audience, next_date
         ),
 
         calc_audience_by_date_day as (
