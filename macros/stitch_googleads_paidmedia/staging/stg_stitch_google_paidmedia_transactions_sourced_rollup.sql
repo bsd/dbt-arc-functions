@@ -27,4 +27,5 @@
         cast(null as string) as appeal,
         cast(null as string) as source_code,
     from {{ source(source_name, source_table) }}
+    where campaign_status = 'ENABLED'
 {% endmacro %}

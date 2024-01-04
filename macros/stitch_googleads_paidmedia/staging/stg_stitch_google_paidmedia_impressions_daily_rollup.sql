@@ -9,4 +9,5 @@
         sum(impressions) as unique_impressions
     from {{ source(source_name, source_table) }}
     group by 1, 2
+    where campaign_status = 'ENABLED'
 {% endmacro %}
