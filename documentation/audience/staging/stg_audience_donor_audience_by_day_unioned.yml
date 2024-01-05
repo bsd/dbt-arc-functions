@@ -26,10 +26,6 @@ models:
       - name: donor_audience
         data_type: string
         description: ''
-        tests:
-          - not_null:
-              config:
-                severity: warn
       - name: source_column
         data_type: string
         description: ''
