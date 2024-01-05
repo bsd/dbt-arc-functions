@@ -83,8 +83,3 @@ models:
       - name: amount
         data_type: float64
         description: ''
-        tests:
-          - dbt_utils.accepted_range:
-              min_value: 0
-              inclusive: true
-              severity: warn

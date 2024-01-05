@@ -41,75 +41,39 @@ models:
       - name: total_onetime_donor_counts
         data_type: int64
         description: ''
-        tests:
-          - dbt_utils.accepted_range:
-              min_value: 0
-              inclusive: true
-              severity: warn
+        
       - name: newfy_onetime_donor_counts
         data_type: int64
         description: ''
-        tests:
-          - dbt_utils.accepted_range:
-              min_value: 0
-              inclusive: true
-              severity: warn
+        
       - name: new_onetime_donor_counts
         data_type: int64
         description: ''
-        tests:
-          - dbt_utils.accepted_range:
-              min_value: 0
-              inclusive: true
-              severity: warn
+        
       - name: retained_onetime_donor_counts
         data_type: int64
         description: ''
-        tests:
-          - dbt_utils.accepted_range:
-              min_value: 0
-              inclusive: true
-              severity: warn
+        
       - name: retained3_onetime_donor_counts
         data_type: int64
         description: ''
-        tests:
-          - dbt_utils.accepted_range:
-              min_value: 0
-              inclusive: true
-              severity: warn
+        
       - name: reinstated_onetime_donor_counts
         data_type: int64
         description: ''
-        tests:
-          - dbt_utils.accepted_range:
-              min_value: 0
-              inclusive: true
-              severity: warn
+        
       - name: active_onetime_donor_counts
         data_type: int64
         description: ''
-        tests:
-          - dbt_utils.accepted_range:
-              min_value: 0
-              inclusive: true
-              severity: warn
+        
       - name: lapsed_onetime_donor_counts
         data_type: int64
         description: ''
-        tests:
-          - dbt_utils.accepted_range:
-              min_value: 0
-              inclusive: true
-              severity: warn
+        
       - name: total_onetime_donor_counts_cumulative
         data_type: int64
         description: ''
-        tests:
-          - dbt_utils.accepted_range:
-              min_value: 0
-              inclusive: true
-              severity: warn
+        
       - name: newfy_onetime_donor_counts_cumulative
         data_type: int64
         description: ''

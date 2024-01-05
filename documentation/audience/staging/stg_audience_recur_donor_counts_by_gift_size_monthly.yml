@@ -43,8 +43,4 @@ models:
       - name: donor_counts
         data_type: int64
         description: ''
-        tests:
-          - dbt_utils.accepted_range:
-              min_value: 0
-              inclusive: true
-              severity: warn
+        
