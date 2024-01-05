@@ -35,39 +35,30 @@ models:
       - name: total_onetime_donor_counts
         data_type: int64
         description: ''
-
       - name: newfy_onetime_donor_counts
         data_type: int64
         description: ''
-
       - name: new_onetime_donor_counts
         data_type: int64
         description: ''
-
       - name: retained_onetime_donor_counts
         data_type: int64
         description: ''
-  
       - name: retained3_onetime_donor_counts
         data_type: int64
         description: ''
- 
       - name: reinstated_onetime_donor_counts
         data_type: int64
         description: ''
-     
       - name: active_onetime_donor_counts
         data_type: int64
         description: ''
-        
       - name: lapsed_onetime_donor_counts
         data_type: int64
         description: ''
-        
       - name: total_onetime_donor_counts_cumulative
         data_type: int64
         description: ''
-        
       - name: newfy_onetime_donor_counts_cumulative
         data_type: int64
         description: ''

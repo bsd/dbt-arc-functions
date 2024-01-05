@@ -49,4 +49,3 @@ models:
       - name: donors_in_activation
         data_type: int64
         description: ''
-        
