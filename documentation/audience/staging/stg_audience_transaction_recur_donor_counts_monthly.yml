@@ -41,39 +41,30 @@ models:
       - name: total_recur_donor_counts
         data_type: int64
         description: ''
-        
       - name: newfy_recur_donor_counts
         data_type: int64
         description: ''
-        
       - name: new_recur_donor_counts
         data_type: int64
         description: ''
-        
       - name: retained_recur_donor_counts
         data_type: int64
         description: ''
-        
       - name: retained3_recur_donor_counts
         data_type: int64
         description: ''
-        
       - name: reinstated_recur_donor_counts
         data_type: int64
         description: ''
-        
       - name: active_recur_donor_counts
         data_type: int64
         description: ''
-        
       - name: lapsed_recur_donor_counts
         data_type: int64
         description: ''
-        
       - name: total_recur_donor_counts_cumulative
         data_type: int64
         description: ''
-        
       - name: newfy_recur_donor_counts_cumulative
         data_type: int64
         description: ''
