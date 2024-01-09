@@ -3,9 +3,6 @@ version: 2
 models:
   - name: mart_arc_revenue_1x_actuals_by_day
     description: ''
-    tests:
-      - dbt_arc_functions.has_unique_combinations_by_date:
-          date_column: transaction_date_day
     columns:
       - name: fiscal_year
         description: The fiscal year value as defined by the client

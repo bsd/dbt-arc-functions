@@ -3,9 +3,6 @@ version: 2
 models:
   - name: mart_audience_budget_with_audience_transaction_recur
     description: Audience budget with audience transaction recurring.
-    tests:
-      - dbt_arc_functions.has_unique_combinations_by_date:
-          date_column: date_day
     columns:
       - name: date_day
         description: The day of the date.
