@@ -18,13 +18,6 @@
     {% set recur_boolean = True if recur_status == "recurring" else False %}
 
     select
-        transactions.fiscal_year,
-        {{
-            dbt_arc_functions.get_fiscal_month(
-                "transactions.transaction_date_day", var("fiscal_year_start")
-            )
-        }} as fiscal_month,
-        extract(month from transactions.transaction_date_day) as month,
         transactions.transaction_date_day,
         transactions.donor_audience,
         transactions.donor_engagement,
@@ -86,6 +79,6 @@
             left join {{ ref(first_gift_table) }} person on person.person_id = transactions.person_id
         {% endif %}
     where recurring = {{recur_boolean}}
-    group by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    group by 1, 2, 3, 4, 5, 6, 7
 
 {% endmacro %}
