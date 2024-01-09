@@ -10,12 +10,6 @@ models:
         tests:
           - not_null
           - unique
-      - name: transaction_id
-        data_type: string
-        description: ''
-        tests:
-          - not_null
-          - unique
       - name: first_transaction_date
         data_type: date
         description: ''
