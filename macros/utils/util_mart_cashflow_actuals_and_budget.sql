@@ -59,7 +59,7 @@
                 *,
                 date_sub(date_day, interval 1 year) as prev_year_date_day,
                 date_sub(date_day, interval 2 year) as prev_two_year_date_day
-            from original_mart
+            from budget_join
         ),
 
         prevyear as (
