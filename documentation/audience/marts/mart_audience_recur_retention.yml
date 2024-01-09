@@ -4,7 +4,7 @@ models:
   - name: mart_audience_recur_retention
     description: ''
     columns:
-      - name: join_month_year
+      - name: join_month_year_str
         data_type: string
         description: The month and year when the donor joined the organization or
           made their first donation.
