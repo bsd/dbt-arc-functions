@@ -18,7 +18,6 @@
                 transactions.transaction_date_day,
                 transactions.fiscal_year,
                 transactions.amount,
-                transactions.appeal_business_unit,
                 cast(transactions.channel as string) as channel,
                 transactions.recurring,
                 case
