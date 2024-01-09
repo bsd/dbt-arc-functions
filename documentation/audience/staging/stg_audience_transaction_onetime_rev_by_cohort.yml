@@ -7,28 +7,23 @@ models:
       - name: join_month_year_str
         data_type: string
         description: ''
-        tests:
-          - not_null
+        tests: [not_null]
       - name: first_gift_join_source
         data_type: string
         description: ''
-        tests:
-          - not_null
+        tests: [not_null]
       - name: join_gift_size_string
         data_type: string
         description: ''
-        tests:
-          - not_null
+        tests: [not_null]
       - name: first_gift_donor_audience
         data_type: string
         description: ''
-        tests:
-          - not_null
+        tests: [not_null]
       - name: month_diff_int
         data_type: int64
         description: ''
-        tests:
-          - not_null
+        tests: [not_null]
       - name: unique_donations
         data_type: int64
         description: ''
