@@ -14,8 +14,7 @@ models:
         description: Date of transaction in Day format
       - name: donor_audience
         description: the membership value for donor audience
-        tests:
-          - not_null
+        tests: [not_null]
       - name: donor_engagement
         description: The donor engagement value of each person by day and date
       - name: donor_loyalty
@@ -32,9 +31,7 @@ models:
           smallest to largest
       - name: total_revenue
         description: Total revenue by day by dimension
-        tests:
-          - not_null
+        tests: [not_null]
       - name: total_gifts
         description: total gifts by date by dimension
-        tests:
-          - not_null
+        tests: [not_null]

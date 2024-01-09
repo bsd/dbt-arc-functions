@@ -6,8 +6,7 @@ models:
     columns:
       - name: date_day
         description: The day of the date.
-        tests:
-          - not_null
+        tests: [not_null]
       - name: interval_type
         description: The type of interval used for recurring transactions.
         tests:
@@ -17,8 +16,7 @@ models:
                 severity: warn
       - name: donor_audience
         description: The audience of donors.
-        tests:
-          - not_null
+        tests: [not_null]
       - name: channel
         description: The channel used for transactions.
       - name: total_recur_donor_counts
