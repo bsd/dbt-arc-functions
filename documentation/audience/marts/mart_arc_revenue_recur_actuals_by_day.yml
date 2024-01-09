@@ -17,9 +17,7 @@ models:
       - name: donor_audience
         description: the assigned donor audience category
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: channel
         description: the source channel of each transaction
       - name: join_amount_string_recur
@@ -29,12 +27,8 @@ models:
       - name: total_revenue
         description: Total revenue by day by dimension
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: total_gifts
         description: total gifts by day by dimension
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null

@@ -7,9 +7,7 @@ models:
       - name: date_day
         description: The day representing the day the transaction occured
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: interval_type
         description: The donor count interval, can be daily, monthly, or yearly
         tests:
@@ -23,14 +21,10 @@ models:
         description: The donor audience membership of the donor at the time of the
           transaction
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: gift_size
         description: the size range of the gifts
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: donor_counts
         description: the number of donors

@@ -44,9 +44,7 @@ models:
       - name: date_day
         description: The day of the date
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: interval_type
         description: The type of time interval
         tests:
@@ -57,8 +55,6 @@ models:
       - name: donor_audience
         description: The audience of the donor
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: channel
         description: The platform on which the transaction occurred.

@@ -8,20 +8,14 @@ models:
         data_type: date
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: person_id
         data_type: string
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: donor_audience
         data_type: string
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null

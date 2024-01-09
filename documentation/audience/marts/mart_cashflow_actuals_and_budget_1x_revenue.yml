@@ -17,15 +17,11 @@ models:
       - name: date_day
         description: The calendar date expressed as a year-month-day
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: donor_audience
         description: The donor audience value
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: channel
         description: The source channel of the donation or group of donations
       - name: total_revenue_actuals

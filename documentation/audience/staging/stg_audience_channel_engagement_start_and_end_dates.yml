@@ -8,30 +8,22 @@ models:
         data_type: string
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: channel
         data_type: string
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: donor_engagement
         data_type: string
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: start_date
         data_type: date
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: end_date
         data_type: date
         description: ''

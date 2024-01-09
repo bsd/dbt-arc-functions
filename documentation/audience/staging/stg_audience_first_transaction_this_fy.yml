@@ -8,16 +8,12 @@ models:
         data_type: date
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: person_id
         data_type: string
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: first_transaction_this_fiscal_year
         data_type: boolean
         description: ''

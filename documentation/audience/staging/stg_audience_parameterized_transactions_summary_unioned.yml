@@ -11,12 +11,8 @@ models:
         data_type: string
         description: Unique identifier for each transaction
         tests:
-          - unique:
-              config:
-                severity: warn
-          - not_null:
-              config:
-                severity: warn
+          - unique
+          - not_null
       - name: transaction_id_in_source_crm
         data_type: string
         description: ''

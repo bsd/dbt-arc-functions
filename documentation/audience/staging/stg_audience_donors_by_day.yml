@@ -17,16 +17,12 @@ models:
         data_type: string
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: donor_audience
         data_type: string
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: donor_loyalty
         data_type: string
         description: ''
@@ -43,13 +39,9 @@ models:
         data_type: date
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: recurring
         data_type: boolean
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null

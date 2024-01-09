@@ -11,23 +11,17 @@ models:
         data_type: string
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: fiscal_year
         data_type: int64
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: start_date
         data_type: date
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: end_date
         data_type: date
         description: ''
@@ -35,6 +29,4 @@ models:
         data_type: string
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null

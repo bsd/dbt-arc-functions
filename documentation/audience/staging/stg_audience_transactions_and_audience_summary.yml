@@ -8,16 +8,13 @@ models:
         data_type: string
         description: ''
         tests:
-          - unique:
-              config:
-                severity: warn
+          - unique
+          - not_null
       - name: person_id
         data_type: string
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: transaction_date_day
         data_type: date
         description: ''
@@ -55,9 +52,7 @@ models:
         data_type: string
         description: ''
         tests:
-          - not_null:
-              config:
-                severity: warn
+          - not_null
       - name: donor_engagement
         data_type: string
         description: ''
