@@ -28,9 +28,3 @@ models:
           - not_null:
               config:
                 severity: warn
-      - name: summed_amount
-        description: Summed amount of donations
-        tests:
-          - not_null:
-              config:
-                severity: warn
