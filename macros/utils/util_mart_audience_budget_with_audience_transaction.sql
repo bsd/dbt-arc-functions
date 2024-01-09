@@ -31,8 +31,8 @@
 }}
 
    select
-        donor_counts.date_day,
-        donor_counts.interval_type,
+        coalesce(donor_counts.date_day, audience_budget.date_day) as date_day,
+        coalesce(donor_counts.interval_type, audience_budget.interval_type) as interval_type
         coalesce(
             donor_counts.donor_audience, audience_budget.donor_audience
         ) as donor_audience,
