@@ -25,7 +25,7 @@
             {% if combined_or_onetime == "onetime" %}
                 where recurring is null or recurring = false
             {% endif %}
-            group by 1, 2, 3, 4
+            group by 1, 2, 3
 
         ),
 
