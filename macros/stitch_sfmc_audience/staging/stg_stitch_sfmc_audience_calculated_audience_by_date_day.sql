@@ -50,7 +50,7 @@ WHERE calc_audience.transaction_date_day < (SELECT MAX(date) FROM stg_stitch_sfm
 
 -- macros/stitch_sfmc_audience_transaction/staging/stg_stitch_sfmc_donor_audience_calculated_scd.sql
 
-WITH changes AS (
+changes AS (
   SELECT
     person_id,
     transaction_date_day,
@@ -105,7 +105,7 @@ deduplicated_table_scd as (
         ) as row_num
     from audience_by_date_day
 
-),
+)
 
 select date_day, person_id, donor_audience
 from deduplicated_table_scd
