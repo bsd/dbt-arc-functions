@@ -26,13 +26,11 @@ models:
       - name: donor_audience
         data_type: string
         description: ''
-        tests:
-          - not_null
+        tests: [not_null]
       - name: channel
         data_type: string
         description: ''
-        tests:
-          - not_null
+        tests: [not_null]
       - name: total_onetime_donor_counts
         data_type: int64
         description: ''
