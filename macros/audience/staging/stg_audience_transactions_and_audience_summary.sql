@@ -5,11 +5,6 @@
     transactions="stg_audience_parameterized_transactions_summary_unioned"
 ) %}
 
-{{ config(
-    materialized='incremental',
-    unique_key='transaction_id'
-)}}
-
     with
         base as (
             select
@@ -96,13 +91,5 @@
 
     select *
     from dedupe
-
-    {% if is_incremental() %}
-
-    -- this filter will only be applied on an incremental run
-    -- (uses >= to include records arriving within 7 days of last run of this model)
-    where date_day >= (select date_sub(max(date_day), interval 7 day) from {{ this }})
-
-    {% endif %}
 
 {% endmacro %}
