@@ -92,7 +92,7 @@ with date_spine as (
             select
                 date_day,
                 person_id,
-                {{donor_audience}},
+                {{donor_audience}} as donor_audience,
                 row_number() over (
                     partition by date_day, person_id order by {{donor_audience}}
                 ) as row_num
