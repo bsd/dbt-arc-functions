@@ -140,5 +140,4 @@
         adjusted_date_day.*
     from adjusted_date_day
 
-
 {% endmacro %}
