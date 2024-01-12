@@ -10,9 +10,7 @@ models:
       - name: transaction_id
         data_type: string
         description: Unique identifier for each transaction
-        tests:
-          - unique
-          - not_null
+        tests: [unique, not_null]
       - name: transaction_id_in_source_crm
         data_type: string
         description: ''
