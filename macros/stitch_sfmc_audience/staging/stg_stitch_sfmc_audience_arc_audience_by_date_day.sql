@@ -1,5 +1,6 @@
-{% macro create_stg_stitch_sfmc_audience_arc_audience_by_date_day(
-    audience_snapshot="snp_stitch_sfmc_arc_audience"
+{% macro create_stg_stitch_sfmc_audience_parameterized_arc_audience_by_date_day(
+    audience_snapshot="snp_stitch_sfmc_arc_audience",
+    donor_audience="NULL"
 ) %}
 
 
@@ -91,9 +92,9 @@ with date_spine as (
             select
                 date_day,
                 person_id,
-                donor_audience,
+                {{donor_audience}},
                 row_number() over (
-                    partition by date_day, person_id order by donor_audience
+                    partition by date_day, person_id order by {{donor_audience}}
                 ) as row_num
             from audience_by_date_day
 
