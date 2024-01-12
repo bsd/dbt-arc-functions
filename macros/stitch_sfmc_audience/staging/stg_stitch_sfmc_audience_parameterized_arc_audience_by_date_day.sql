@@ -54,7 +54,7 @@ with date_spine as (
                 date_spine.date as date_day,
                 audience_snapshot.subscriberkey as person_id,
                 audience_snapshot.__donoraudience_ as donor_audience
-            from {{ ref(date_spine) }} as date_spine
+            from date_spine
             inner join
                 {{ ref(audience_snapshot) }} as audience_snapshot
                 on date_spine.date >= date(
