@@ -21,7 +21,7 @@ indicating the source of the audience data ('unioned_donor_audience' or 'calcula
             then 'unioned_donor_audience'
             else 'calculated_donor_audience'
         end as source_column
-    from {{ref(audience_unioned)}}
+    from {{ref(audience_unioned)}} audience_unioned
     left join
         {{ ref(calculated_audience_by_day) }} calculated_audience
         on audience_unioned.date_day = calculated_audience.date_day
