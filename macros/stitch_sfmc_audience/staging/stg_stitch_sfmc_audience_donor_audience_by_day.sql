@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_audience_donor_audience_by_day(
-    audience_snapshot="stg_stitch_sfmc_audience_parameterized_arc_audience",
+    audience_snapshot="snp_stitch_sfmc_arc_audience",
     calculated_audience_by_day="stg_stitch_sfmc_audience_calculated_audience_by_day"
 ) %}
 
