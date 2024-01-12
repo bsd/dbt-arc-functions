@@ -6,7 +6,7 @@
 
 -- macros/stitch_sfmc_audience_transaction/staging/stg_stitch_sfmc_audience_transaction_calculated_date_spine.sql
 
-stg_stitch_sfmc_audience_transaction_calculated_date_spine as (
+with stg_stitch_sfmc_audience_transaction_calculated_date_spine as (
 
 select date
     from
