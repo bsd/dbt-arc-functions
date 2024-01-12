@@ -1,53 +1,51 @@
 {% macro create_stg_stitch_sfmc_audience_parameterized_arc_audience_by_date_day(
-    audience_snapshot="snp_stitch_sfmc_arc_audience",
-    donor_audience="NULL"
+    audience_snapshot="snp_stitch_sfmc_arc_audience", donor_audience="NULL"
 ) %}
 
-
-with date_spine as (
-  select date
-    from
-        unnest(
-            generate_date_array(
-                (
-                    select
-                        min(
-                            date(
-                                cast(
-                                    concat(
-                                        substr(dbt_valid_from, 0, 22),
-                                        " America/New_York"
-                                    ) as timestamp
-                                ),
-                                "America/New_York"
-                            )
-                        )
-                    from {{ ref(audience_snapshot) }}
-                ),
-
-                ifnull(
-                    (
-                        select
-                            max(
-                                date(
-                                    cast(
-                                        concat(
-                                            substr(dbt_valid_to, 0, 22),
-                                            " America/New_York"
-                                        ) as timestamp
-                                    ),
-                                    "America/New_York"
+    with
+        date_spine as (
+            select date
+            from
+                unnest(
+                    generate_date_array(
+                        (
+                            select
+                                min(
+                                    date(
+                                        cast(
+                                            concat(
+                                                substr(dbt_valid_from, 0, 22),
+                                                " America/New_York"
+                                            ) as timestamp
+                                        ),
+                                        "America/New_York"
+                                    )
                                 )
-                            )
+                            from {{ ref(audience_snapshot) }}
+                        ),
 
-                        from {{ ref(audience_snapshot) }}
-                    ),
-                    current_date()
-                )
-            )
-        ) as date
-),
+                        ifnull(
+                            (
+                                select
+                                    max(
+                                        date(
+                                            cast(
+                                                concat(
+                                                    substr(dbt_valid_to, 0, 22),
+                                                    " America/New_York"
+                                                ) as timestamp
+                                            ),
+                                            "America/New_York"
+                                        )
+                                    )
 
+                                from {{ ref(audience_snapshot) }}
+                            ),
+                            current_date()
+                        )
+                    )
+                ) as date
+        ),
 
         audience_by_date_day as (
             select
@@ -92,9 +90,9 @@ with date_spine as (
             select
                 date_day,
                 person_id,
-                {{donor_audience}} as donor_audience,
+                {{ donor_audience }} as donor_audience,
                 row_number() over (
-                    partition by date_day, person_id order by {{donor_audience}}
+                    partition by date_day, person_id order by {{ donor_audience }}
                 ) as row_num
             from audience_by_date_day
 
