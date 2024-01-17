@@ -1,4 +1,4 @@
-{% macro create_stg_paidmedia_actuals_goals_unioned_transform(
+{% macro create_stg_paidmedia_parameterized_actuals_goals_unioned_transform(
     channel="null",
     objective="null",
     platform="null",
