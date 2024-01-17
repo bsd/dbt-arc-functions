@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_paidmedia_actuals_goals_unioned_transform
+  - name: stg_paidmedia_parameterized_actuals_goals_unioned_transform
     description: Model provides an interim storage of paid media actuals and projected
       goals
     columns:
