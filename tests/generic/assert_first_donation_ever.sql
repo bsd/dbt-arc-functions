@@ -3,29 +3,30 @@
 {{ config(severity="warn") }}
 
 with first_donations_ever as (
-  select person_id, min(date_day) as first_donation_date
-  from  {{ref('stg_audience_donors_by_day')}}
-  where recurring = {% if frequency == 'recurring'%} true {% else %} false {% endif %}
-  group by person_id
+  select  first_transaction_date,
+          count(distinct person_id) as actual_new_donors
+  from  {{ref('stg_audience_parameterized_transaction_first_gift')}}
+  where first_gift_recur_status = {% if frequency == 'recurring'%} true {% else %} false {% endif %}
+  group by 1
 ),
+
 potential_first_donations as (
-  select date_day, donor_audience, channel, person_id
+  select date_day,
+  {% if frequency == 'recurring' %} new_recur_donor_counts {% else %} new_onetime_donor_counts {% endif %} as potential_new_donors
   from {{model}}
   where 
-  {% if frequency == 'recurring' %} new_recur_donor_counts > 0 {% else %} new_onetime_donor_counts > 0 {% endif %}
+  
 ),
 
 incorrect_first_donations as (
   select 
     potential_first_donations.date_day,
-    potential_first_donations.donor_audience,
-    potential_first_donations.channel,
-    potential_first_donations.person_id
+    potential_first_donations.potential_new_donors
   from potential_first_donations
-  left join first_donations_ever
-    on potential_first_donations.person_id = first_donations_ever.person_id 
-    and potential_first_donations.date_day = first_donations_ever.first_donation_date
-  where first_donations_ever.person_id is null  -- Not the person's actual first donation
+  left join first_donations_ever on
+   potential_first_donations.date_day = first_donations_ever.first_transaction_date
+   where potential_first_donations.potential_new_donors != first_donations_ever.actual_new_donors
+  
 ),
 
 counts as (
