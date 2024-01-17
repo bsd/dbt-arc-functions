@@ -26,9 +26,13 @@ incorrect_first_donations as (
     on potential_first_donations.person_id = first_donations_ever.person_id 
     and potential_first_donations.date_day = first_donations_ever.first_donation_date
   where first_donations_ever.person_id is null  -- Not the person's actual first donation
+),
+
+counts as (
+  select count(*) as errors from incorrect_first_donations
 )
 
-select *
-from incorrect_first_donations
+select * from counts
+where errors > 0
 
 {% endtest %}
