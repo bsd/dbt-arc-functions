@@ -1,6 +1,6 @@
 {% test assert_first_donation_ever(model, frequency) %}
 
-{% config(severity=warn)%}
+{{ config(severity="warn") }}
 
 with first_donations_ever as (
   select person_id, min(date_day) as first_donation_date
