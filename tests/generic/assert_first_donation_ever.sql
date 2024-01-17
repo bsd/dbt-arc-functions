@@ -3,9 +3,9 @@
 {{ config(severity="warn") }}
 
 with first_donations_ever as (
-  select  first_transaction_date,
+  select first_transaction_date,
           count(distinct person_id) as actual_new_donors
-  from  {{ref('stg_audience_parameterized_transaction_first_gift')}}
+  from  prod_staging.stg_audience_parameterized_transaction_first_gift
   where first_gift_recur_status = {% if frequency == 'recurring'%} true {% else %} false {% endif %}
   group by 1
 ),
