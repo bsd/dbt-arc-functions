@@ -16,10 +16,8 @@ models:
       - name: person_id
         data_type: string
         description: ''
-        tests:
-          - not_null
+        tests: [not_null]
       - name: donor_engagement
         data_type: string
         description: ''
-        tests:
-          - not_null
+        tests: [not_null]

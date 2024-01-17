@@ -14,12 +14,10 @@ models:
         description: The day of the month value
       - name: date_day
         description: The date expressed as a year-month-day
-        tests:
-          - not_null
+        tests: [not_null]
       - name: donor_audience
         description: The donor audience value
-        tests:
-          - not_null
+        tests: [not_null]
       - name: channel
         description: The source channel of the donation or group of donations
       - name: total_revenue_actuals

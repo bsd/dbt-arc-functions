@@ -22,18 +22,15 @@ models:
       - name: channel
         data_type: string
         description: ''
-        tests:
-          - not_null
+        tests: [not_null]
       - name: donor_audience
         data_type: string
         description: ''
-        tests:
-          - not_null
+        tests: [not_null]
       - name: gift_size
         data_type: string
         description: ''
-        tests:
-          - not_null
+        tests: [not_null]
       - name: donor_counts
         data_type: int64
         description: ''
