@@ -14,7 +14,6 @@ potential_first_donations as (
   select date_day,
   {% if frequency == 'recurring' %} new_recur_donor_counts {% else %} new_onetime_donor_counts {% endif %} as potential_new_donors
   from {{model}}
-  where 
   
 ),
 
