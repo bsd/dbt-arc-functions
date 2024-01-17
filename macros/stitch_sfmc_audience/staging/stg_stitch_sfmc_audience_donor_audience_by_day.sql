@@ -20,7 +20,9 @@ indicating the source of the audience data ('unioned_donor_audience' or 'calcula
         case
             when audience_unioned.donor_audience is not null
             then 'unioned_donor_audience'
-            else 'calculated_donor_audience'
+            when calculated_audience.donor_audience is not null 
+            then 'calculated_donor_audience'
+            else 'missing_audience'
         end as source_column
     from {{ ref(audience_unioned) }} audience_unioned
     left join

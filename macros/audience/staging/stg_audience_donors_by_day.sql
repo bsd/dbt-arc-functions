@@ -7,7 +7,7 @@
 ) %}
 
     select
-        donor_audience.date_day as date_day,
+        coalesce(donor_audience.date_day, donor_engagement.date_day, donor_loyalty.date_day) as date_day,
         coalesce(
             donor_engagement.person_id,
             donor_audience.person_id,
