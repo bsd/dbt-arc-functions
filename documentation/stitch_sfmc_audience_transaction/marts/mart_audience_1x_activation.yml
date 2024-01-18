@@ -21,25 +21,30 @@ models:
             - join_donor_audience
           order_by: activation_int
     columns:
-      - name: join_month_year
+      - name: join_month_year_str
         data_type: string
         description: The month and year when the donor joined the organization or
           made their first donation.
+        tests: [not_null]
       - name: join_source
         data_type: string
         description: The platform or medium through which the donor was acquired or
           made their first donation.
+        tests: [not_null]
       - name: join_gift_size
         data_type: string
         description: he size of the donor's initial gift, categorized into different
           size ranges.
+        tests: [not_null]
       - name: join_donor_audience
         data_type: string
         description: The classification of the donor based on their audience segment
           or type at the time of joining.
+        tests: [not_null]
       - name: activation_str
         data_type: string
         description: A string representing the distance from join month year
+        tests: [not_null]
       - name: activation_int
         data_type: integer
         description: An integer representing the distance from join month year

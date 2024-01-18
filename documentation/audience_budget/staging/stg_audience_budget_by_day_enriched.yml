@@ -17,6 +17,7 @@ models:
     columns:
       - name: platform
         description: Platform for the audience monthly budget, usually an ad provider
+        tests: [not_null]
       - name: date_spine_year
         description: Year pulled from date_day
       - name: date_spine_month

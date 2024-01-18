@@ -18,6 +18,7 @@ models:
         description: The donor audience value
       - name: channel
         description: The source channel of the donation or group of donations
+        tests: [not_null]
       - name: total_revenue_actuals
         description: The summed total of all transactions
       - name: total_gifts_actuals

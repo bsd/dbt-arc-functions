@@ -26,6 +26,7 @@ models:
         description: The campaign associated with the transaction
       - name: channel
         description: The channel associated with the transaction
+        tests: [not_null]
       - name: audience
         description: The audience associated with the transaction
       - name: crm_entity

@@ -13,6 +13,7 @@ models:
       - name: channel
         data_type: string
         description: what channel this status is for
+        tests: [not_null]
       - name: start_date
         data_type: date
         description: first date of engagement status

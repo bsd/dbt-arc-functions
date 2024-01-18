@@ -18,5 +18,6 @@ models:
         description: The audience of the donor.
       - name: join_source
         description: The source of the join.
+        tests: [not_null]
       - name: recur_total_donor_count_budget
         description: The budget for the total recurring donor count.

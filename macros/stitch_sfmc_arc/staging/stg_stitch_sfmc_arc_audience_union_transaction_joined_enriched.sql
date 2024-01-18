@@ -17,6 +17,7 @@
 )}}
 
 
+
 with audience_union_transaction_joined as (
 
 /*
@@ -38,7 +39,7 @@ with audience_union_transaction_joined as (
         transaction_enriched.transaction_id,
         audience_unioned.donor_audience,
         donor_engagement.donor_engagement,
-        transaction_enriched.best_guess_inbound_channel as channel,
+        transaction_enriched.channel as channel,
         transaction_enriched.appeal_business_unit,
         transaction_enriched.gift_size_string,
         transaction_enriched.recurring,
@@ -193,8 +194,8 @@ making sure to finally dedupe on transaction_id.
         audience_calculated_alldates.donor_audience as audience_calculated,
         audience_union_transaction_joined.donor_engagement,
         arc_donor_loyalty.donor_loyalty,
-        audience_union_transaction_joined.appeal_business_unit,
         audience_union_transaction_joined.channel,
+        audience_union_transaction_joined.appeal_business_unit,
         audience_union_transaction_joined.gift_size_string,
         audience_union_transaction_joined.recurring,
         audience_union_transaction_joined.amount,
@@ -222,10 +223,15 @@ making sure to finally dedupe on transaction_id.
         on audience_union_transaction_joined.person_id = arc_donor_loyalty.person_id
         and audience_union_transaction_joined.transaction_date_day
         between arc_donor_loyalty.start_date and arc_donor_loyalty.end_date
+    qualify row_number = 1
 
 )
 
-select * from dedupe 
-where row_number = 1
+select 
+    *, 
+    row_number() over (
+    partition by person_id, fiscal_year order by transaction_date_day
+    ) as nth_transaction_this_fiscal_year 
+from dedupe 
 
 {% endmacro %}

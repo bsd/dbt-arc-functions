@@ -19,6 +19,7 @@ models:
         description: The audience associated with the transaction
       - name: platform
         description: The platform from which the recurring donation was made
+        tests: [not_null]
       - name: total_recur_donor_counts
         description: The total number of recurring donors for the specified audience,
           interval, and platform

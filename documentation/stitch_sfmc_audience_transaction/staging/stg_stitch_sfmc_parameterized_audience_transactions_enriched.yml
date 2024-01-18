@@ -12,13 +12,7 @@ models:
         description: Date of transaction in Day format
       - name: amount
         description: Amount of the transaction
-      - name: inbound_channel
-        description: Channel of donation
-      - name: best_guess_inbound_channel
-        description: This is a case when statement that fills in the inbound_channel
-          for all transactions that are non-digital. This uses the channel from the
-          source code as the main dimension and uses the inbound_channel when the
-          donation is not digital.
+      - name: channel
       - name: recurring
         description: If the transaction is part of a recurring donation
       - name: gift_size_string

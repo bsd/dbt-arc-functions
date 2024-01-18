@@ -1,5 +1,6 @@
 {% macro create_stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned(
-    where_clause_1
+    where_clause_1,
+    channel="NULL"
 ) %}
     {% set relations = dbt_arc_functions.relations_that_match_regex(
         "^stg_stitch_.*_transactions$"
@@ -20,9 +21,9 @@
         dedupe as (
 
             select
-                base.*,
+                *,
                 cast(
-                    timestamp_trunc(base.transaction_date, day) as date
+                    timestamp_trunc(transaction_date, day) as date
                 ) as transaction_date_day,
                 -- deduping by transaction_id since there are multiple
                 row_number() over (
@@ -39,7 +40,16 @@
                 and transaction_date >= date_sub(current_date(), interval 10 year)
         )
 
-    select *
+    select 
+        _dbt_source_relation,
+        transaction_id,
+        transaction_date,
+        transaction_date_day,
+        person_id,
+        recurring,
+        {{channel}} as channel,
+        appeal_business_unit,
+        amount
     from dedupe
     where row_number = 1 {{ where_clause_1 }}
 

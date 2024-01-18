@@ -3,62 +3,90 @@
     transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
     donor_engagement="stg_stitch_sfmc_donor_engagement_by_date_day"
 ) %}
-    {{
-        config(
-            materialized="table",
-            cluster_by="recurring",
-        )
-    }}
+{{
+    config(
+        materialized="table",
+        cluster_by="recurring",
+        partition_by={
+            "field": "date_day",
+            "data_type": "date",
+            "granularity": "day"
+    },
+    )
+}}
+
+
+with
+
+transaction_per_day as (
     select
-        donor_engagement.date_day as date_day,
-        donor_engagement.person_id as person_id,
-        last_value(transactions.coalesced_audience ignore nulls) over (
-            partition by donor_engagement.person_id
-            order by donor_engagement.date_day
-            rows between unbounded preceding and current row
-        ) as donor_audience,
-        transactions.donor_loyalty as donor_loyalty,
-        transactions.nth_transaction_this_fiscal_year
-        as nth_transaction_this_fiscal_year,
-        transactions.recurring as recurring,
-        donor_engagement.donor_engagement as donor_engagement,
-        transactions.gift_size_string as gift_size_str,
-        transactions.channel as channel,  -- from best_guess_inbound_channel
-        first_gift.first_gift_join_source as join_source,
-        first_gift.join_gift_size_string as join_amount_str,
-        first_gift.join_gift_size_string_recur as join_amount_str_recur,
-        first_gift.join_month_year_date as join_month_year_str,
-    from
-        (
-            select date_day, person_id, donor_engagement
-            from {{ ref(donor_engagement) }}
-        ) as donor_engagement
-    left join
-        (
-            select
-                person_id,
-                transaction_date_day,
-                donor_loyalty,
-                recurring,
-                gift_size_string,
-                coalesced_audience,
-                channel,  -- from best_guess_inbound_channel
-                row_number() over (
-                    partition by person_id, fiscal_year order by transaction_date_day
-                ) as nth_transaction_this_fiscal_year
-            from {{ ref(transactions) }}
-        ) as transactions
-        on donor_engagement.person_id = transactions.person_id
-        and donor_engagement.date_day = transactions.transaction_date_day
-    left join
-        (
-            select
-                person_id,
-                first_gift_join_source,
-                join_gift_size_string,
-                join_gift_size_string_recur,
-                join_month_year_date
-            from {{ ref(first_gift) }}
-        ) as first_gift
-        on donor_engagement.person_id = first_gift.person_id
+    transaction_date_day,
+    person_id,
+    donor_loyalty,
+    coalesced_audience as donor_audience,
+    case when nth_transaction_this_fiscal_year = 1 then True else False end as first_transaction_this_fiscal_year,
+    recurring,
+    gift_size_string,
+    channel,
+    row_number() over (partition by transaction_date_day, person_id order by transaction_id asc) as dup
+    from {{ref(transactions)}}
+    qualify dup = 1
+),
+
+datespine as (
+
+    select date
+            from
+                unnest(
+                    generate_date_array(
+                        (select min(transaction_date_day) from transaction_per_day),
+                        ifnull(
+                            (select max(transaction_date_day) from transaction_per_day),
+                            current_date()
+                        )
+                    )
+                ) as date
+
+        ),
+
+transaction_datespine as (
+    select 
+        datespine.date as date_day,
+        transaction_per_day.person_id,
+        transaction_per_day.donor_loyalty,
+        transaction_per_day.donor_audience,
+        transaction_per_day.first_transaction_this_fiscal_year,
+        transaction_per_day.recurring,
+        transaction_per_day.gift_size_string,
+        transaction_per_day.channel
+    from datespine
+    left join transaction_per_day on 
+    datespine.date = transaction_per_day.transaction_date_day
+)
+
+select
+    donor_engagement.date_day,
+    donor_engagement.person_id,
+    transaction_datespine.donor_audience,
+    transaction_datespine.donor_loyalty,
+    case when transaction_datespine.first_transaction_this_fiscal_year = True
+    then cast( 1 as int64)
+    else cast(0 as int64) end as nth_transaction_this_fiscal_year,
+    transaction_datespine.recurring,
+    donor_engagement.donor_engagement,
+    transaction_datespine.gift_size_string as gift_size_str,
+    transaction_datespine.channel,
+    first_gift.first_gift_join_source as join_source,
+    first_gift.join_gift_size_string as join_amount_str,
+    first_gift.join_gift_size_string_recur as join_amount_str_recur,
+    first_gift.join_month_year_date as join_month_year_str,
+    first_gift.first_transaction_date as join_date,
+from transaction_datespine
+left join {{ref(donor_engagement)}} as donor_engagement
+    on donor_engagement.person_id = transaction_datespine.person_id
+    and donor_engagement.date_day = transaction_datespine.date_day
+left join {{ref(first_gift)}} as first_gift
+    on donor_engagement.person_id = first_gift.person_id
+  
+
 {% endmacro %}

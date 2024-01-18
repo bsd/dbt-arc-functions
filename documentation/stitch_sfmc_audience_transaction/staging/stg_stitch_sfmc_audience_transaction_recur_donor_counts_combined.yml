@@ -17,6 +17,7 @@ models:
         description: The audience of donors
       - name: platform
         description: The platform used by the donors
+        tests: [not_null]
       - name: total_recur_donor_counts
         description: Total counts of recurring donors
       - name: new_recur_donor_counts

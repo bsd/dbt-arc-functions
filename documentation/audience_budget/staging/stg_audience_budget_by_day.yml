@@ -7,6 +7,7 @@ models:
     columns:
       - name: platform
         description: Platform for the audience monthly budget, usually an ad provider
+        tests: [not_null]
       - name: donor_audience
         description: The donor audience for the audience monthly budget, usually a
           donor segment based on client criteria
