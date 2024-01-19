@@ -2,6 +2,16 @@
 {% macro create_stg_audience_channel_by_day_cross_join(
     person_and_transaction="stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction"
 ) %}
+
+{{ config(
+    materialized='table',
+    partition_by={
+      "field": "date_day",
+      "data_type": "date",
+      "granularity": "day"
+    },
+    cluster_by = ["donor_audience"]
+)}}
  
 select
     date_day,

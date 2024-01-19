@@ -11,6 +11,16 @@
     {% if interval not in ['day', 'month','year'] %}
         {{ exceptions.raise_compiler_error("'interval' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'day', 'week', 'month', or 'year', got " ~ interval) }}
     {% endif %}
+
+     {{ config(
+    materialized='table',
+    partition_by={
+      "field": "date_day",
+      "data_type": "date",
+      "granularity": "day"
+    },
+    cluster_by = ["interval_type"]
+)}}
     
     
     select
@@ -24,58 +34,36 @@
         {% endif %}
         date_spine_with_audience_and_channel.donor_audience,
         date_spine_with_audience_and_channel.channel, 
-        {{
-            dbt_arc_functions.get_fiscal_year(
-                "date_spine_with_audience_and_channel.date_day", var("fiscal_year_start")
-            )
-        }} as fiscal_year,
+        count(distinct person_id) as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        count(distinct 
+            case when is_first_transaction_this_fy then
+            person_id end
+        ) as unique_total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         count(
             distinct case
                 when
-                    recurring
-                    {% if frequency == 'recurring' %} = true
-                    {% else %} = false
-                    {% endif %}
-                then person_id
-            end
-        ) as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        count(
-            distinct case
-                when
-                    donor_loyalty = 'new_donor' and recurring
-                    {% if frequency == 'recurring' %} = true
-                    {% else %} = false
-                    {% endif %}
+                donor_loyalty = 'new_donor'
                 then person_id
             end
         ) as new_donor_loyalty_{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         count(
             distinct case
                 when
-                    donor_loyalty = 'retained_donor' and recurring
-                    {% if frequency == 'recurring' %} = true
-                    {% else %} = false
-                    {% endif %}
+                donor_loyalty = 'retained_donor'
                 then person_id
             end
         ) as retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         count(
             distinct case
                 when
-                    donor_loyalty = 'retained_3+_donor' and recurring
-                    {% if frequency == 'recurring' %} = true
-                    {% else %} = false
-                    {% endif %}
+                    donor_loyalty = 'retained_3+_donor'
                 then person_id
             end
         ) as retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         count(
             distinct case
                 when
-                    donor_loyalty = 'reactivated_donor' and recurring
-                    {% if frequency == 'recurring' %} = true
-                    {% else %} = false
-                    {% endif %}
+                    donor_loyalty = 'reactivated_donor'
                 then person_id
             end
         ) as reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
@@ -88,20 +76,8 @@
         count(
             distinct case
                 when
-                    recurring
-                    {% if frequency == 'recurring' %} = true
-                    {% else %} = false
-                    {% endif %} and nth_transaction_this_fiscal_year = 1
-                then person_id
-            end
-        ) as unique_total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        count(
-            distinct case
-                when
-                    donor_loyalty = 'new_donor' and recurring
-                    {% if frequency == 'recurring' %} = true
-                    {% else %} = false
-                    {% endif %} and nth_transaction_this_fiscal_year = 1
+                    donor_loyalty = 'new_donor' 
+                    and is_first_transaction_this_fy
                 then person_id
             end
         ) as unique_newFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
@@ -117,40 +93,27 @@
                     {% elif interval == 'year' %}
                     extract(year from join_date) = extract(year from date_spine_with_audience_and_channel.date_day)
                     {% endif %}
-                    and recurring
-                    {% if frequency == 'recurring' %} = true
-                    {% else %} = false
-                    {% endif %}
                 then person_id
             end
         ) as new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         count(
             distinct case
                 when
-                    donor_loyalty = 'retained_donor' and recurring
-                    {% if frequency == 'recurring' %} = true
-                    {% else %} = false
-                    {% endif %} and nth_transaction_this_fiscal_year = 1
+                    donor_loyalty = 'retained_donor' and is_first_transaction_this_fy
                 then person_id
             end
         ) as unique_retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         count(
             distinct case
                 when
-                    donor_loyalty = 'retained_3+_donor' and recurring
-                    {% if frequency == 'recurring' %} = true
-                    {% else %} = false
-                    {% endif %} and nth_transaction_this_fiscal_year = 1
+                    donor_loyalty = 'retained_3+_donor' and is_first_transaction_this_fy
                 then person_id
             end
         ) as unique_retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         count(
             distinct case
                 when
-                    donor_loyalty = 'reactivated_donor' and recurring
-                    {% if frequency == 'recurring' %} = true
-                    {% else %} = false
-                    {% endif %} and nth_transaction_this_fiscal_year = 1
+                    donor_loyalty = 'reactivated_donor' and is_first_transaction_this_fy
                 then person_id
             end
         ) as unique_reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
@@ -159,6 +122,7 @@
     on date_spine_with_audience_and_channel.date_day = person_and_transaction.date_day
     and date_spine_with_audience_and_channel.donor_audience = person_and_transaction.donor_audience
     and date_spine_with_audience_and_channel.channel = person_and_transaction.channel
-    group by 1, 2, 3, 4, 5
+    where recurring{% if frequency == 'recurring' %}= true{% else %} = false{% endif %}
+    group by 1, 2, 3, 4
 
 {% endmacro %}

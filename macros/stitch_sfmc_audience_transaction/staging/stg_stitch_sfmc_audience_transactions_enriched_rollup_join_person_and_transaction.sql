@@ -24,7 +24,7 @@ transaction_per_day as (
     person_id,
     donor_loyalty,
     coalesced_audience as donor_audience,
-    case when nth_transaction_this_fiscal_year = 1 then True else False end as first_transaction_this_fiscal_year,
+    case when nth_transaction_this_fiscal_year = 1 then True else False end as is_first_transaction_this_fy,
     recurring,
     gift_size_string,
     channel,
@@ -55,7 +55,7 @@ transaction_datespine as (
         transaction_per_day.person_id,
         transaction_per_day.donor_loyalty,
         transaction_per_day.donor_audience,
-        transaction_per_day.first_transaction_this_fiscal_year,
+        transaction_per_day.is_first_transaction_this_fy,
         transaction_per_day.recurring,
         transaction_per_day.gift_size_string,
         transaction_per_day.channel
@@ -69,9 +69,7 @@ select
     donor_engagement.person_id,
     transaction_datespine.donor_audience,
     transaction_datespine.donor_loyalty,
-    case when transaction_datespine.first_transaction_this_fiscal_year = True
-    then cast( 1 as int64)
-    else cast(0 as int64) end as nth_transaction_this_fiscal_year,
+    transaction_datespine.is_first_transaction_this_fy,
     transaction_datespine.recurring,
     donor_engagement.donor_engagement,
     transaction_datespine.gift_size_string as gift_size_str,
