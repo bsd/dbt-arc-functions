@@ -16,11 +16,9 @@
     cluster_by = ["recurring"]
 )}}
 
-
-
 with audience_union_transaction_joined as (
 
-/*
+        /*
  audience_union_transaction_joined combines data from donor_transaction_enriched, donor_audience_unioned,
  and donor_engagement_by_day by performing several joins based on common columns 
  like transaction_date_day and person_id. It selects various attributes from these 
@@ -57,10 +55,9 @@ with audience_union_transaction_joined as (
 
 )
 
-
 , donor_loyalty_counts as (
 
-/*
+        /*
 
 donor_loyalty_counts calculates donor loyalty-related information. 
 It determines the start and end dates for each fiscal year, 
@@ -83,8 +80,6 @@ and organizes the data for further analysis.
     order by person_id, fiscal_year        
     )
 
-
-
     ,    donation_history as (
         /*
 donation_history computes the donation history for each donor, 
@@ -105,10 +100,8 @@ and the last donation date.
             group by person_id, fiscal_year
         )
 
-
-
         , arc_donor_loyalty as (
-            /*
+        /*
 Based on the data from donor_loyalty_counts and donation_history,
 arc_donor_loyalty determines the donor's loyalty status for each fiscal year. 
 It classifies donors as new, retained, retained with three or more years, 
@@ -146,9 +139,8 @@ or reactivated donors.
 
 ),
 
-
 audience_calculated_dedupe as (
-    /*
+        /*
 audience_calculated_dedupe retrieves calculated audience data for all dates 
 from the jobs_append source.
 */
@@ -161,7 +153,7 @@ from the jobs_append source.
 ), 
 
 audience_calculated_alldates as (
-     /*
+        /*
 audience_calculated_alldates selects just one donor audience value for each person per day
 */
     select 
@@ -171,12 +163,11 @@ audience_calculated_alldates selects just one donor audience value for each pers
     from audience_calculated_dedupe
     where row_number = 1
 
-
 )
 
 , dedupe as (
 
-/*
+        /*
 the code selects data from audience_union_transaction_joined, 
 left joins it with audience_calculated_alldates and arc_donor_loyalty, 
 and creates a consolidated dataset. 

@@ -15,7 +15,7 @@ models:
                 severity: warn
       - name: donor_audience
         description: The audience of donors
-      - name: platform
+      - name: channel
         description: The platform used by the donors
         tests: [not_null]
       - name: total_recur_donor_counts

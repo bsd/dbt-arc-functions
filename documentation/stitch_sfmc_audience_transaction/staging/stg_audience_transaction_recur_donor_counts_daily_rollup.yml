@@ -1,11 +1,18 @@
+
+
+
+
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_audience_transaction_onetime_donor_counts_actuals_rollup
-    description: This model contains the actual onetime donor counts for each audience
+  - name: stg_audience_transaction_recur_donor_counts_daily_rollup
+    description: This model contains the actual recurring donor counts for each audience
       and transaction in Salesforce Marketing Cloud (SFMC). It provides a rollup of
       the counts based on different intervals.
     columns:
+      - name: unique_id
+        tests:
+            - unique
       - name: date_day
         description: The date of each day. This column has one row per day per person.
       - name: interval_type
@@ -13,7 +20,7 @@ models:
           weekly, monthly).
         tests:
           - accepted_values:
-              values: [daily, monthly, yearly]
+              values: [monthly]
               config:
                 severity: warn
       - name: donor_audience
@@ -34,19 +41,3 @@ models:
         description: The number of active donors who made a onetime donation.
       - name: lapsed_onetime_donor_counts
         description: The number of lapsed donors who made a onetime donation.
-      - name: total_onetime_donor_counts_cumulative
-        description: The cumulative total number of onetime donor counts.
-      - name: new_onetime_donor_counts_cumulative
-        description: The cumulative number of new donors who made a onetime donation.
-      - name: retained_onetime_donor_counts_cumulative
-        description: The cumulative number of retained donors who made a onetime donation.
-      - name: retained3_onetime_donor_counts_cumulative
-        description: The cumulative number of donors retained for at least 3 months
-          who made a onetime donation.
-      - name: reinstated_onetime_donor_counts_cumulative
-        description: The cumulative number of reinstated donors who made a onetime
-          donation.
-      - name: active_onetime_donor_counts_cumulative
-        description: The cumulative number of active donors who made a onetime donation.
-      - name: lapsed_onetime_donor_counts_cumulative
-        description: The cumulative number of lapsed donors who made a onetime donation.

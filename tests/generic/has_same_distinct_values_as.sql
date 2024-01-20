@@ -2,35 +2,27 @@
     model, column_name, other_model, other_column_name
 ) %}
 
-    with
-        this_model as (
+with
+    this_model as (select distinct {{ column_name }} as test_column from {{ model }}),
 
-            select distinct {{ column_name }} as test_column from {{ model }}
+    other_model as (
 
-        ),
+        select distinct {{ other_column_name }} as test_column from {{ other_model }}
 
-        other_model as (
+    ),
 
-            select distinct {{ other_column_name }} as test_column
+    counts as (
 
-            from {{ other_model }}
+        select count(*) as totals
+        from this_model
+        full outer join other_model on this_model.test_column = other_model.test_column
+        where
+            (this_model.test_column is null or other_model.test_column is null)
+            and coalesce(this_model.test_column, other_model.test_column) is not null
+    )
 
-        ),
-
-        counts as (
-
-            select count(*) as totals
-            from this_model
-            full outer join
-                other_model on this_model.test_column = other_model.test_column
-            where
-                (this_model.test_column is null or other_model.test_column is null)
-                and coalesce(this_model.test_column, other_model.test_column)
-                is not null
-        )
-
-    select *
-    from counts
-    where totals > 0
+select *
+from counts
+where totals > 0
 
 {% endtest %}

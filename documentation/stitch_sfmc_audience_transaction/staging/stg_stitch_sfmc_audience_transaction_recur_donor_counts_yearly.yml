@@ -21,7 +21,7 @@ models:
                 severity: warn
       - name: donor_audience
         description: The audience associated with the transaction
-      - name: platform
+      - name: channel
         description: The platform where the transaction occurred
         tests: [not_null]
       - name: total_recur_donor_counts
