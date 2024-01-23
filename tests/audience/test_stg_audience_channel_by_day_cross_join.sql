@@ -1,6 +1,3 @@
-{{ config(severity="error", warn_if=">1", error_if=">10") }}
-
-
 with combined_data as (
     SELECT
     date_day,
