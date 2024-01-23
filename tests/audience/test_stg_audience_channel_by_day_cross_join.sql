@@ -7,9 +7,7 @@ FROM (
     date_day,
     donor_audience,
     channel
-  FROM {{ ref(create_stg_audience_channel_by_day_cross_join(
-      person_and_transaction="stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction"
-    )) }}
+  FROM {{ ref('stg_audience_channel_by_day_cross_join') }}
 ) AS combined_data
 -- Check for significant difference between total rows and unique audience/channel counts
 HAVING
