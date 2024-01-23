@@ -12,6 +12,7 @@
         cast(null as string) as source_code_entity,
         cast(null as string) as preview_url
     from {{ source(source_name, source_table) }} ads
-    join {{ source(source_name, "campaigns") }} campaigns
+    join
+        {{ source(source_name, "campaigns") }} campaigns
         on ads.campaign_id = campaigns.id
 {% endmacro %}
