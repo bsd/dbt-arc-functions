@@ -8,19 +8,21 @@ with base_table_grouped as (
   group by 1
 ),
 
-possible_explosions as (
+add_lag as (
 
 select 
 {{date_column}},
 row_count,
 lag(row_count) over (order by {{date_column}}) as previous_row_count
 from base_table_grouped
-where row_count > previous_row_count
 order by date_day asc
 )
+    select 
+    count(*)
+    from add_lag
+    where row_count > previous_row_count
+    having count(*) > 0
 
-select count(*) from possible_explosions 
-having count(*) > 0
 
 
 {% endtest %}
