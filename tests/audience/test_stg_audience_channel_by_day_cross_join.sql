@@ -8,10 +8,10 @@ with combined_data as (
 
 distinct_data as (
 select
-  count(distinct date_day) as distinct_days,
-  count(distinct donor_audience) as distinct_audiences,
-  count(distinct channel) as distinct_channels,
-from combined_data
+  count(*) as valid_combinations
+from (
+  select distinct donor_audience, channel from combined_data
+)
 ),
 
 actual_data as (
@@ -23,13 +23,7 @@ actual_data as (
   group by 1
 ),
 
-mult_distinct_data as (
-  select 
-  distinct_audiences,
-  distinct_channels,
-  (distinct_audiences * distinct_channels) as valid_combinations
-  from distinct_data
-),
+
 
 potential_explosions as (
   SELECT
