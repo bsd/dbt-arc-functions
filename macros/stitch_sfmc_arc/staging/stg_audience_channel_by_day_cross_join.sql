@@ -10,13 +10,33 @@
     )
 }}
 
-select date_day, distinct_donor_audience.donor_audience, distinct_channel.channel
-from {{ ref(person_and_transaction) }}
-cross join
-    (
-        select distinct donor_audience from {{ ref(person_and_transaction) }}
-    ) as distinct_donor_audience
-cross join
-    (select distinct channel from {{ ref(person_and_transaction) }}) as distinct_channel
+-- Calculate minimum and maximum dates from base table
+with min_max_dates as (
+    select min(date_day) as min_date, max(date_day) as max_date
+    from {{ ref(person_and_transaction) }}
+),
+
+-- Generate all dates between min and max (inclusive)
+date_array as (
+    select generate_date_array(min_date, max_date) as date_day
+    from min_max_dates
+),
+
+-- Generate distinct combinations of audience and channel values
+distinct_combinations as (
+    select distinct donor_audience, channel
+    from {{ ref(person_and_transaction) }}
+)
+
+-- Cross-join with distinct combinations and generated dates
+select date_array.date_day, distinct_combinations.donor_audience, distinct_combinations.channel
+from distinct_combinations
+cross join date_array
 
 {% endmacro %}
+
+
+
+
+
+
