@@ -42,4 +42,4 @@ potential_explosions as (
   WHERE (donor_audiences * channels) > valid_combinations
 )
 
-select count(*) from potential_explosions having count(*) > 0
+select date_day, count(*) from potential_explosions group by 1 having count(*) > 0
