@@ -10,17 +10,28 @@
     )
 }}
 
--- Calculate minimum and maximum dates from base table
-with min_max_dates as (
-    select min(date_day) as min_date, max(date_day) as max_date
-    from {{ ref(person_and_transaction) }}
-),
+-- generate date spine 
+with date_spine as (
+        select date_day
+        from
+            unnest(
+                generate_date_array(
+                    (
+                        select min(date_day),
+                        from {{ ref(person_and_transaction) }}
+                    ),
+                    ifnull(
+                        (
+                            select max(date_day)
+                            from {{ ref(person_and_transaction) }}
+                        ),
+                        current_date()
+                    )
+                )
+            ) as date_day
 
--- Generate all dates between min and max (inclusive)
-date_array as (
-    select generate_date_array(min_date, max_date) as date_day
-    from min_max_dates
-),
+    ),
+
 
 -- Generate distinct combinations of audience and channel values
 distinct_combinations as (
@@ -29,9 +40,9 @@ distinct_combinations as (
 )
 
 -- Cross-join with distinct combinations and generated dates
-select date_array_unnest.date_day, distinct_combinations.donor_audience, distinct_combinations.channel
+select date_spine.date_day, distinct_combinations.donor_audience, distinct_combinations.channel
 from distinct_combinations
-cross join unnest(date_day) as date_array_unnest
+cross join date_spine
 
 {% endmacro %}
 
