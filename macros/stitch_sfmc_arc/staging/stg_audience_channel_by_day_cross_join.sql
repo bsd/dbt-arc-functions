@@ -31,7 +31,7 @@ distinct_combinations as (
 -- Cross-join with distinct combinations and generated dates
 select date_array_unnest.date_day, distinct_combinations.donor_audience, distinct_combinations.channel
 from distinct_combinations
-cross join unnest(date_array) date_array_unnest
+cross join unnest(date_array) as date_array_unnest
 
 {% endmacro %}
 
