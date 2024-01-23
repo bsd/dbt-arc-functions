@@ -1,3 +1,5 @@
+{{ config(severity="error", warn_if=">10", error_if=">100") }}
+
 SELECT
   COUNT(*) AS total_rows,
   COUNT(DISTINCT donor_audience) AS distinct_audiences,
