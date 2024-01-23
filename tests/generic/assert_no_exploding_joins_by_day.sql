@@ -14,6 +14,7 @@ select
 {{date_column}},
 row_count,
 lag(row_count) over (order by {{date_column}}) as previous_row_count
+from base_table_grouped
 where row_count > previous_row_count
 order by date_day asc
 )
