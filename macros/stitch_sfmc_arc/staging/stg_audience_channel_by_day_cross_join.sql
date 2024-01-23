@@ -37,9 +37,9 @@ distinct_combinations as (
 )
 
 -- Cross-join with distinct combinations and generated dates
-select date_spine.date_day, distinct_combinations.donor_audience, distinct_combinations.channel
-from distinct_combinations
-cross join date_spine
+select date_day, donor_audience, channel
+from date_spine
+cross join distinct_combinations
 
 {% endmacro %}
 
