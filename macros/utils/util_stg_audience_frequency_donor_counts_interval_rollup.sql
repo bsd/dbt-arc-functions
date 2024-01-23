@@ -44,7 +44,7 @@ with base as (
         count(distinct 
             case when is_first_transaction_this_fy then
             person_id end
-        ) as unique_total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        ) as unique_totalFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
         /* new donor counts */
         count(
@@ -81,7 +81,7 @@ with base as (
                     donor_loyalty = 'retained_donor' and is_first_transaction_this_fy
                 then person_id
             end
-        ) as unique_retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        ) as unique_retainedFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
         /* retained 3 years+ donor counts */
         count(
@@ -97,7 +97,7 @@ with base as (
                     donor_loyalty = 'retained_3+_donor' and is_first_transaction_this_fy
                 then person_id
             end
-        ) as unique_retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        ) as unique_retained3FY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
         /* reinstated donor counts */
         count(
@@ -113,7 +113,7 @@ with base as (
                     donor_loyalty = 'reactivated_donor' and is_first_transaction_this_fy
                 then person_id
             end
-        ) as unique_reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        ) as unique_reinstatedFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
         /* active and lapsed donor counts */
         count(
