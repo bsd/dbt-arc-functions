@@ -1,0 +1,33 @@
+---
+version: 2
+models:
+  - name: stg_audience_transaction_recur_first_gift_by_cohort
+    description: ''
+    columns:
+      - name: join_month_year_str
+        data_type: string
+        description: ''
+        tests: [not_null]
+      - name: join_month_year_date
+        data_type: date
+        description: ''
+        tests: [not_null]
+      - name: first_gift_join_source
+        data_type: string
+        description: ''
+        tests: [not_null]
+      - name: join_gift_size_string_recur
+        data_type: string
+        description: ''
+        tests: [not_null]
+      - name: first_gift_donor_audience
+        data_type: string
+        description: ''
+        tests: [not_null]
+      - name: month_diff_int
+        data_type: int64
+        description: ''
+        tests: [not_null]
+      - name: donors_in_cohort
+        data_type: int64
+        description: ''

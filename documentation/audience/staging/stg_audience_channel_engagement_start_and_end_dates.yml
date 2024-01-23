@@ -1,0 +1,28 @@
+---
+version: 2
+models:
+  - name: stg_audience_channel_engagement_start_and_end_dates
+    description: Captures audience engagement data across different channels, including
+      start and end dates for each engagement.
+    columns:
+      - name: person_id
+        data_type: string
+        description: Unique identifier for a person
+        tests: [not_null]
+      - name: channel
+        data_type: string
+        description: The channel through which the person engaged (e.g., email, social
+          media, website)
+        tests: [not_null]
+      - name: donor_engagement
+        data_type: string
+        description: The type of donor engagement (e.g., opened email, clicked link,
+          made donation, attended event)
+        tests: [not_null]
+      - name: start_date
+        data_type: date
+        description: The date the donor engagement started
+        tests: [not_null]
+      - name: end_date
+        data_type: date
+        description: The date the donor engagement ended (if applicable)

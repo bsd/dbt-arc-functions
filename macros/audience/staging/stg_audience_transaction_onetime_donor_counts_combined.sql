@@ -1,7 +1,7 @@
-{% macro create_stg_audience_budget_onetime_donor_counts_with_interval_combined(
-    daily="stg_audience_budget_onetime_donor_count_daily",
-    monthly="stg_audience_budget_onetime_donor_count_monthly",
-    yearly="stg_audience_budget_onetime_donor_count_yearly"
+{% macro create_stg_audience_transaction_onetime_donor_counts_combined(
+    daily="stg_audience_transaction_onetime_donor_counts_daily",
+    monthly="stg_audience_transaction_onetime_donor_counts_monthly",
+    yearly="stg_audience_transaction_onetime_donor_counts_yearly"
 ) %}
 
     {{
@@ -23,5 +23,4 @@
     union all
     select *
     from {{ ref(yearly) }}
-
 {% endmacro %}

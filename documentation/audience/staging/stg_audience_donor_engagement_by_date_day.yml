@@ -1,0 +1,23 @@
+---
+version: 2
+models:
+  - name: stg_audience_donor_engagement_by_date_day
+    description: ''
+    columns:
+      - name: date_day
+        data_type: date
+        description: ''
+        tests:
+          - dbt_utils.sequential_values:
+              interval: 1
+              datepart: day
+              severity: warn
+              group_by_columns: [person_id]
+      - name: person_id
+        data_type: string
+        description: ''
+        tests: [not_null]
+      - name: donor_engagement
+        data_type: string
+        description: ''
+        tests: [not_null]

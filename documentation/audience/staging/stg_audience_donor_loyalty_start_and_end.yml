@@ -1,0 +1,28 @@
+---
+version: 2
+models:
+  - name: stg_audience_donor_loyalty_start_and_end
+    description: ''
+    columns:
+      - name: id
+        data_type: string
+        description: ''
+      - name: person_id
+        data_type: string
+        description: ''
+        tests: [not_null]
+      - name: fiscal_year
+        data_type: int64
+        description: ''
+        tests: [not_null]
+      - name: start_date
+        data_type: date
+        description: ''
+        tests: [not_null]
+      - name: end_date
+        data_type: date
+        description: ''
+      - name: donor_loyalty
+        data_type: string
+        description: ''
+        tests: [not_null]

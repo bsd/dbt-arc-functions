@@ -1,8 +1,8 @@
 -- fmt: off
 {% macro util_mart_arc_revenue_actuals_by_day(
     recur_status,
-    audience_transactions_table="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
-    first_gift_table="stg_stitch_sfmc_parameterized_audience_transaction_first_gift"
+    audience_transactions_table="stg_audience_transactions_and_audience_summary",
+    first_gift_table="stg_audience_parameterized_transaction_first_gift"
 ) %}
 
     {% if recur_status not in ["recurring", "onetime"] %}
@@ -18,15 +18,8 @@
     {% set recur_boolean = True if recur_status == "recurring" else False %}
 
     select
-        transactions.fiscal_year,
-        {{
-            dbt_arc_functions.get_fiscal_month(
-                "transactions.transaction_date_day", var("fiscal_year_start")
-            )
-        }} as fiscal_month,
-        extract(month from transactions.transaction_date_day) as month,
         transactions.transaction_date_day,
-        transactions.coalesced_audience as donor_audience,
+        transactions.donor_audience,
         transactions.donor_engagement,
         transactions.donor_loyalty,
         initcap(transactions.channel) as channel,
@@ -86,6 +79,6 @@
             left join {{ ref(first_gift_table) }} person on person.person_id = transactions.person_id
         {% endif %}
     where recurring = {{recur_boolean}}
-    group by 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    group by 1, 2, 3, 4, 5, 6, 7
 
 {% endmacro %}
