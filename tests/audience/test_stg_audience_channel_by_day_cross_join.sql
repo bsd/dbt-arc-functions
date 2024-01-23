@@ -1,4 +1,4 @@
-{{ config(severity="error", warn_if=">10", error_if=">100") }}
+{{ config(severity="error", warn_if=">1", error_if=">10") }}
 
 SELECT
   COUNT(*) AS total_rows,
