@@ -9,6 +9,7 @@ models:
         description: Date timestamp of the revenue performance metrics
       - name: channel
         description: Channel associated with the revenue performance metrics
+        tests: [not_null]
       - name: best_guess_entity
         description: The entity associated with the revenue performance metrics
       - name: total_revenue

@@ -1,0 +1,38 @@
+---
+version: 2
+models:
+  - name: stg_audience_transaction_onetime_donor_counts_yearly_rollup
+    description: This model contains the actual onetime donor counts for each audience
+      and transaction in Salesforce Marketing Cloud (SFMC). It provides a rollup of
+      the counts based on different intervals.
+    columns:
+      - name: unique_id
+        tests: [unique]
+      - name: date_day
+        description: The date of each day. This column has one row per day per person.
+      - name: interval_type
+        description: The type of interval used to calculate the counts (e.g., daily,
+          weekly, monthly).
+        tests:
+          - accepted_values:
+              values: [monthly]
+              config:
+                severity: warn
+      - name: donor_audience
+        description: The audience associated with the transaction.
+      - name: channel
+        description: The platform on which the transaction occurred.
+        tests: [not_null]
+      - name: total_onetime_donor_counts
+        description: The total number of donors who made a onetime donation.
+      - name: new_onetime_donor_counts
+        description: The number of new donors who made a onetime donation.
+      - name: retained_onetime_donor_counts
+        description: The number of retained donors who made a onetime donation.
+      - name: retained3_onetime_donor_counts
+        description: The number of donors retained for at least 3 months who mad a
+          onetime donation.
+      - name: active_onetime_donor_counts
+        description: The number of active donors who made a onetime donation.
+      - name: lapsed_onetime_donor_counts
+        description: The number of lapsed donors who made a onetime donation.

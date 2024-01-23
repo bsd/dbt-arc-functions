@@ -1,0 +1,16 @@
+---
+version: 2
+models:
+  - name: stg_audience_channel_by_day_cross_join
+    description: cross join of channel and audience values possibly by day
+    tests: [dbt_arc_functions.assert_no_exploding_joins_by_day]
+    columns:
+      - name: date_day
+        description: The date of each day, This column have one row per day per person
+        tests: [not_null]
+      - name: channel
+        description: the distinct channel possibilities for each day
+        tests: [not_null]
+      - name: donor_audience
+        description: the distinct audience possibilities for each day
+        tests: [not_null]

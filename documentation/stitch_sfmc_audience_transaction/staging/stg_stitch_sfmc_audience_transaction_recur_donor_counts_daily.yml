@@ -4,6 +4,9 @@ models:
   - name: stg_stitch_sfmc_audience_transaction_recur_donor_counts_daily
     description: Contains daily transaction counts for recurring donors in the Salesforce
       Marketing Cloud audience
+    tests:
+      - dbt_arc_functions.assert_first_donation_ever:
+          frequency: recurring
     columns:
       - name: date_day
         description: The date of each day. This column has one row per day per person
@@ -16,8 +19,9 @@ models:
                 severity: warn
       - name: donor_audience
         description: The audience associated with the transaction
-      - name: platform
+      - name: channel
         description: The platform where the transaction is made on
+        tests: [not_null]
       - name: total_recur_donor_counts
         description: Total count of recurring donors
       - name: new_recur_donor_counts

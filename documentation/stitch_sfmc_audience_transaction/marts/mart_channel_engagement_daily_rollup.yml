@@ -7,10 +7,12 @@ models:
       - name: date_day
         data_type: date
         description: Date of the record
+        tests: [not_null]
       - name: channel
         data_type: string
         description: The channel through which the donor was acquired or made their
           first donation.
+        tests: [not_null]
       - name: active_donors
         data_type: integer
         description: The number of donors who were active within the last 13 months

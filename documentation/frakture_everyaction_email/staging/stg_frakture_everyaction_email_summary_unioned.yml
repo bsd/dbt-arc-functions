@@ -57,6 +57,7 @@ models:
         description: Name of the campaign.
       - name: channel
         description: The channel used for the email action.
+        tests: [not_null]
       - name: department
         description: The department involved in the email action.
       - name: department_label

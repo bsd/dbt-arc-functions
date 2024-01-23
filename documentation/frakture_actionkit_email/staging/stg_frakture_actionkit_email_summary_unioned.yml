@@ -64,6 +64,7 @@ models:
         description: Name of the campaign under which the email was sent.
       - name: channel
         description: The communication channel used for the email.
+        tests: [not_null]
       - name: department
         description: The department from which the email was sent.
       - name: department_label

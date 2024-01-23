@@ -16,13 +16,17 @@ models:
         description: the assigned donor loyalty category
       - name: donor_audience
         description: the assigned donor audience category
+        tests: [not_null]
       - name: channel
         description: the source channel of each transaction
+        tests: [not_null]
       - name: join_amount_string_recur
         description: the gift size category of the fist gift
       - name: join_amount_string_recur_sort
         description: a sort field for join_amount_string, organizing smallest to largest
       - name: total_revenue
         description: Total revenue by day by dimension
+        tests: [not_null]
       - name: total_gifts
         description: total gifts by dat by dimension
+        tests: [not_null]
