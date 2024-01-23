@@ -32,7 +32,7 @@ potential_explosions as (
     actual_data.channels,
     valid_combinations
   FROM actual_data
-  CROSS JOIN mult_distinct_data
+  CROSS JOIN distinct_data
   WHERE (donor_audiences * channels) > valid_combinations
 )
 
