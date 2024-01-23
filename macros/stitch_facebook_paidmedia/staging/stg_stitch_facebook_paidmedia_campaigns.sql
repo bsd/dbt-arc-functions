@@ -13,5 +13,5 @@
         cast(null as string) as preview_url
     from {{ source(source_name, source_table) }} ads
     join {{ source(source_name, "campaigns") }} campaigns
-        on {{ source(source_name, source_table) }}.campaign_id = {{ source(source_name, "campaigns") }}.campaign_id
+        on ads.campaign_id = campaigns.campaign_id
 {% endmacro %}
