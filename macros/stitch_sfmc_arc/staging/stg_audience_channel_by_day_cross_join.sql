@@ -11,30 +11,23 @@
 }}
 
 -- generate date spine 
-with date_spine as (
+with
+    date_spine as (
         select date_day
         from
             unnest(
                 generate_date_array(
-                    (
-                        select min(date_day),
-                        from {{ ref(person_and_transaction) }}
-                    ),
-                    (
-                        select max(date_day)
-                        from {{ ref(person_and_transaction) }}
-                    )
+                    (select min(date_day), from {{ ref(person_and_transaction) }}),
+                    (select max(date_day) from {{ ref(person_and_transaction) }})
                 )
             ) as date_day
 
     ),
 
-
--- Generate distinct combinations of audience and channel values
-distinct_combinations as (
-    select distinct donor_audience, channel
-    from {{ ref(person_and_transaction) }}
-)
+    -- Generate distinct combinations of audience and channel values
+    distinct_combinations as (
+        select distinct donor_audience, channel from {{ ref(person_and_transaction) }}
+    )
 
 -- Cross-join with distinct combinations and generated dates
 select date_day, donor_audience, channel
@@ -42,9 +35,3 @@ from date_spine
 cross join distinct_combinations
 
 {% endmacro %}
-
-
-
-
-
-

@@ -13,7 +13,6 @@
     {% endif %}
 
 /* note: these models take the longest to build -- good candidate for intermediate */
-
 {{ config(
     materialized='incremental',
     unique_key='unique_id',
@@ -24,10 +23,10 @@
     },
     cluster_by = ["interval_type"]
 )}}
-    
+
 with base as (    
     select
-        /* dimensions: date_day, interval_type, donor_audience, channel */
+            /* dimensions: date_day, interval_type, donor_audience, channel */
         {% if interval == 'day' %} date_spine_with_audience_and_channel.date_day,
         {% else %} last_day(date_spine_with_audience_and_channel.date_day, {{ interval }}) as date_day,
         {% endif %}
@@ -39,14 +38,14 @@ with base as (
         date_spine_with_audience_and_channel.donor_audience,
         date_spine_with_audience_and_channel.channel, 
 
-        /* total donor counts */
+            /* total donor counts */
         count(distinct person_id) as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         count(distinct 
             case when is_first_transaction_this_fy then
             person_id end
         ) as unique_totalFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
-        /* new donor counts */
+            /* new donor counts */
         count(
             distinct case
                 when
@@ -67,7 +66,7 @@ with base as (
             end
         ) as new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
-        /* retained donor counts */
+            /* retained donor counts */
         count(
             distinct case
                 when
@@ -83,7 +82,7 @@ with base as (
             end
         ) as unique_retainedFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
-        /* retained 3 years+ donor counts */
+            /* retained 3 years+ donor counts */
         count(
             distinct case
                 when
@@ -99,7 +98,7 @@ with base as (
             end
         ) as unique_retained3FY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
-        /* reinstated donor counts */
+            /* reinstated donor counts */
         count(
             distinct case
                 when
@@ -115,14 +114,13 @@ with base as (
             end
         ) as unique_reinstatedFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
-        /* active and lapsed donor counts */
+            /* active and lapsed donor counts */
         count(
             distinct case when person_and_transaction.donor_engagement = 'active' then person_id end
         ) as active{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         count(
             distinct case when person_and_transaction.donor_engagement = 'lapsed' then person_id end
         ) as lapsed{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        
 
     from {{ref(cross_join)}} as date_spine_with_audience_and_channel
     left join {{ ref(person_and_transaction) }} person_and_transaction
@@ -149,20 +147,16 @@ select * from add_surrogate
 {% if is_incremental() %}
 
     {% if interval == 'day' %}
-     -- pulls in all records on same day or after the latest day 
+-- pulls in all records on same day or after the latest day 
      where date_day >= (select max(date_day) from {{ this }})
 
     {% else %}
-    -- pulls in all records from previous month and current {{interval}}
-    -- (since we typically have a date_day) of last day of the {{interval}}
+-- pulls in all records from previous month and current {{interval}}
+-- (since we typically have a date_day) of last day of the {{interval}}
     where date_day >= (select date_sub(max(date_day), interval 1 {{interval}}) from {{this}})
 
     {% endif %}
 
 {% endif %}
-
-
-
-
 
 {% endmacro %}

@@ -18,7 +18,7 @@
 
     with
         first_gift_by_cohort as (
-            /*
+        /*
             group cohort in order to count people in cohort 
             cohort = entered as 1x donors and have other features in common
             make join_month_year_date set to the first date of the month
@@ -37,13 +37,13 @@
         ),
 
         month_diff_sequence as (
-            -- is referenced in first_gift_rollup
+        -- is referenced in first_gift_rollup
             select number as month_diff_int
             from unnest(generate_array(0, 1000)) as number
         )
 
 , cross_join as (
-    /*
+        /*
     use month_diff_sequence to explode the first gift table
     so that we have one row per every activation possibility
     */
@@ -61,7 +61,7 @@
 )
 
 , add_transaction_date as (
-    /*
+        /*
     use month_diff to create a transaction_date that corresponds with the 
     activation or retention month value
     */
@@ -91,6 +91,5 @@ month_diff_int,
 donors_in_cohort
 from add_transaction_date
 where transaction_date <= current_date()
-
 
 {% endmacro %}

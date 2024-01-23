@@ -9,7 +9,7 @@
     {% if interval not in ['day', 'week','month','year'] %}
         {{ exceptions.raise_compiler_error("'interval' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'day', 'week', 'month', or 'year', got " ~ interval) }}
     {% endif %}
-    
+
     {{ config(
     materialized='table',
     partition_by={
@@ -60,7 +60,6 @@ from
     {{ref("stg_audience_transaction_recur_donor_counts_yearly_rollup")}}
     {% endif %}
 )
-
 
     select
         unique_id,
