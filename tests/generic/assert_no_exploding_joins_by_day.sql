@@ -8,6 +8,7 @@ from (
     lag(row_count) over (order by {{date_column}}) as previous_row_count
   from {{model}}
   group by 1
+  order by date_day asc
 ) as base_table_grouped
 where row_count > previous_row_count
 
