@@ -7,11 +7,11 @@
         'social' as channel_category,
         'facebook_ad' as channel,
         cast(null as string) as channel_type,
-        campaigns.campaign_name as campaign_name,
+        campaigns.name as campaign_name,
         cast(null as string) as crm_entity,
         cast(null as string) as source_code_entity,
         cast(null as string) as preview_url
     from {{ source(source_name, source_table) }} ads
     join {{ source(source_name, "campaigns") }} campaigns
-        on ads.campaign_id = campaigns.campaign_id
+        on ads.campaign_id = campaigns.sid
 {% endmacro %}
