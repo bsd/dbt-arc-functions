@@ -20,12 +20,9 @@ with date_spine as (
                         select min(date_day),
                         from {{ ref(person_and_transaction) }}
                     ),
-                    ifnull(
-                        (
-                            select max(date_day)
-                            from {{ ref(person_and_transaction) }}
-                        ),
-                        current_date()
+                    (
+                        select max(date_day)
+                        from {{ ref(person_and_transaction) }}
                     )
                 )
             ) as date_day
