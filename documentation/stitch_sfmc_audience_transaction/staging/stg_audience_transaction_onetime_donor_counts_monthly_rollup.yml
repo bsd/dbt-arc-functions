@@ -1,5 +1,3 @@
-
-
 ---
 version: 2
 models:
@@ -9,8 +7,7 @@ models:
       the counts based on different intervals.
     columns:
       - name: unique_id
-        tests:
-            - unique
+        tests: [unique]
       - name: date_day
         description: The date of each day. This column has one row per day per person.
       - name: interval_type

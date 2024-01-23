@@ -4,9 +4,9 @@ models:
   - name: stg_audience_transaction_recur_donor_counts_actuals_rollup_unioned
     description: This is the staging table for the rollup of actuals for recurring
       donor counts. It includes information on the source relation, date day, interval
-      type, donor audience, channel, total recurring donor counts, new recurring
-      donor counts, retained recurring donor counts, retained3 recurring donor counts,
-      active recurring donor counts, and lapsed recurring donor counts.
+      type, donor audience, channel, total recurring donor counts, new recurring donor
+      counts, retained recurring donor counts, retained3 recurring donor counts, active
+      recurring donor counts, and lapsed recurring donor counts.
     columns:
       - name: _dbt_source_relation
         description: The source relation from which the data is obtained.
