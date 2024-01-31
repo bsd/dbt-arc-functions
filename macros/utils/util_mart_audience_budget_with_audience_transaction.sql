@@ -31,6 +31,7 @@
         ) as channel,
         donor_counts.total_{{ recur_onetime }}_donor_counts,
         donor_counts.new_{{ recur_onetime }}_donor_counts,
+        donor_counts.new_to_fy_{{ recur_onetime }}_donor_counts,
         donor_counts.retained_{{ recur_onetime }}_donor_counts,
         donor_counts.retained3_{{ recur_onetime }}_donor_counts,
         donor_counts.reinstated_{{ recur_onetime }}_donor_counts,
