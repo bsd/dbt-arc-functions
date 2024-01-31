@@ -7,13 +7,8 @@
 ) %}
 
 {{ config(
-    materialized='table',
-    partition_by={
-      "field": "transaction_date_day",
-      "data_type": "date",
-      "granularity": "day"
-    },
-    cluster_by = ["recurring"]
+    materialized='incremental',
+    unique_key='transaction_id'
 )}}
 
 with audience_union_transaction_joined as (
@@ -178,7 +173,9 @@ making sure to finally dedupe on transaction_id.
         between arc_donor_loyalty.start_date and arc_donor_loyalty.end_date
     qualify row_number = 1
 
-)
+), 
+
+final as (
 
 select 
     *, 
@@ -186,5 +183,12 @@ select
     partition by person_id, fiscal_year order by transaction_date_day
     ) as nth_transaction_this_fiscal_year 
 from dedupe 
+)
+
+select * from final 
+{% if is_incremental() %}
+-- pulls in all records within 7 days of max transaction date day
+where transaction_date_day >= (select date_sub(max(transaction_date_day), interval 7 day) from {{ this }})
+{% endif %}
 
 {% endmacro %}
