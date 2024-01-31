@@ -1,0 +1,33 @@
+---
+version: 2
+models:
+  - name: stg_stitch_google_grant_paidmedia_campaigns
+    description: ''
+    columns:
+      - name: campaign_id
+        data_type: int64
+        description: The ID of the campaign
+      - name: message_id
+        data_type: string
+        description: The ID of the message
+      - name: channel_category
+        data_type: string
+        description: The category of the channel
+      - name: channel
+        data_type: string
+        description: the channel of the message
+      - name: channel_type
+        data_type: string
+        description: The type of the channel
+      - name: campaign_name
+        data_type: string
+        description: The name of the campaign
+      - name: crm_entity
+        data_type: string
+        description: The name of the crm
+      - name: preview_url
+        data_type: string
+        description: the url of the ad
+      - name: source_code_entity
+        data_type: string
+        description: the source code
