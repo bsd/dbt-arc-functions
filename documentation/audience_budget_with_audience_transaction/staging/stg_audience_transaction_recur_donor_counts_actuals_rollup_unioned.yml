@@ -21,6 +21,7 @@ models:
                 severity: warn
       - name: donor_audience
         description: The specific audience of the donor.
+        tests: [not_null]
       - name: channel
         description: The channel on which the transaction took place.
         tests: [not_null]

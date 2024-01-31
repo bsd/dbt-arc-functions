@@ -10,6 +10,7 @@ models:
       - name: donor_engagement
         data_type: string
         description: active or lapsed
+        tests: [not_null]
       - name: channel
         data_type: string
         description: what channel this status is for

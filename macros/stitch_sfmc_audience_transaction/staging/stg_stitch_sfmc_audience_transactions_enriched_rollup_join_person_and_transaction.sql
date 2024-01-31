@@ -5,9 +5,8 @@
 ) %}
 {{
     config(
-        materialized="table",
-        cluster_by="recurring",
-        partition_by={"field": "date_day", "data_type": "date", "granularity": "day"},
+        materialized="incremental",
+        unique_key='unique_id'
     )
 }}
 
@@ -62,9 +61,12 @@ with
         left join
             transaction_per_day
             on datespine.date = transaction_per_day.transaction_date_day
-    )
+    ),
+
+final as (
 
 select
+    {{dbt_utils.generate_surrogate_key(['donor_engagement.date_day', 'donor_engagement.person_id'])}} as unique_id,
     donor_engagement.date_day,
     donor_engagement.person_id,
     transaction_datespine.donor_audience,
@@ -87,5 +89,12 @@ left join
 left join
     {{ ref(first_gift) }} as first_gift
     on donor_engagement.person_id = first_gift.person_id
+)
+
+select * from final
+{% if is_incremental() %}
+-- pulls in all records within 7 days of max day
+where date_day >= (select date_sub(max(date_day), interval 7 day) from {{ this }})
+{% endif %}
 
 {% endmacro %}

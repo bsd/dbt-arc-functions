@@ -35,7 +35,7 @@ with audience_union_transaction_joined as (
         }} as fiscal_year,
         transaction_enriched.person_id,
         transaction_enriched.transaction_id,
-        audience_unioned.donor_audience,
+        coalesce(audience_unioned.donor_audience, calculated_audience.donor_audience) as coalesced_audience,
         donor_engagement.donor_engagement,
         transaction_enriched.channel as channel,
         transaction_enriched.appeal_business_unit,
@@ -48,6 +48,10 @@ with audience_union_transaction_joined as (
         {{ ref(donor_audience_unioned) }} audience_unioned
         on transaction_enriched.transaction_date_day = audience_unioned.date_day
         and transaction_enriched.person_id = audience_unioned.person_id
+    left join 
+        {{ref(jobs_append)}} calculated_audience 
+        on transaction_enriched.transaction_date_day = calculated_audience.transaction_date_day
+        and transaction_enriched.person_id = calculated_audience.person_id
     left join
         {{ ref(donor_engagement_by_day) }} donor_engagement
         on transaction_enriched.transaction_date_day = donor_engagement.date_day
@@ -139,33 +143,7 @@ or reactivated donors.
 
 ),
 
-audience_calculated_dedupe as (
-        /*
-audience_calculated_dedupe retrieves calculated audience data for all dates 
-from the jobs_append source.
-*/
-    select transaction_date_day, 
-    person_id, 
-    donor_audience,
-    row_number() over (partition by person_id order by transaction_date_day) as row_number
-     from {{ ref(jobs_append) }}
-
-), 
-
-audience_calculated_alldates as (
-        /*
-audience_calculated_alldates selects just one donor audience value for each person per day
-*/
-    select 
-    transaction_date_day,
-    person_id,
-    donor_audience
-    from audience_calculated_dedupe
-    where row_number = 1
-
-)
-
-, dedupe as (
+dedupe as (
 
         /*
 the code selects data from audience_union_transaction_joined, 
@@ -181,8 +159,7 @@ making sure to finally dedupe on transaction_id.
         audience_union_transaction_joined.transaction_id,
         audience_union_transaction_joined.fiscal_year,
         audience_union_transaction_joined.person_id,
-        audience_union_transaction_joined.donor_audience as audience_unioned,
-        audience_calculated_alldates.donor_audience as audience_calculated,
+        audience_union_transaction_joined.coalesced_audience,
         audience_union_transaction_joined.donor_engagement,
         arc_donor_loyalty.donor_loyalty,
         audience_union_transaction_joined.channel,
@@ -191,24 +168,9 @@ making sure to finally dedupe on transaction_id.
         audience_union_transaction_joined.recurring,
         audience_union_transaction_joined.amount,
         1 as gift_count,
-        coalesce(
-            audience_union_transaction_joined.donor_audience,
-            audience_calculated_alldates.donor_audience
-        ) as coalesced_audience,
-        case
-            when audience_union_transaction_joined.donor_audience is not null
-            then 'audience_union_transaction_joined.donor_audience'
-            else 'audience_calculated_alldates.donor_audience'
-        end as source_column,
         row_number() over (partition by audience_union_transaction_joined.transaction_id order by audience_union_transaction_joined.transaction_date_day asc) as row_number
     from
         audience_union_transaction_joined
-    left join
-        audience_calculated_alldates
-        on audience_calculated_alldates.transaction_date_day
-        = audience_union_transaction_joined.transaction_date_day
-        and audience_calculated_alldates.person_id
-        = audience_union_transaction_joined.person_id
     left join
          arc_donor_loyalty
         on audience_union_transaction_joined.person_id = arc_donor_loyalty.person_id

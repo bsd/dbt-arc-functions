@@ -15,6 +15,7 @@ models:
                 severity: warn
       - name: donor_audience
         description: The audience of donors
+        tests: [not_null]
       - name: channel
         description: The platform used by the donors
         tests: [not_null]

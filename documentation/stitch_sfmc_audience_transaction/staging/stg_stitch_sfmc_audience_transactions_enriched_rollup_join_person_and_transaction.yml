@@ -10,10 +10,13 @@ models:
         description: The ID identifier of the person associated with the transaction
       - name: donor_audience
         description: The audience associated with the transaction
+        tests: [not_null]
       - name: donor_engagement
         description: The engagement level associated with the transaction
+        tests: [not_null]
       - name: donor_loyalty
         description: The loyalty level associated with the transaction
+        tests: [not_null]
       - name: gift_size_str
         description: Size of the gift associated with the transaction
       - name: join_source

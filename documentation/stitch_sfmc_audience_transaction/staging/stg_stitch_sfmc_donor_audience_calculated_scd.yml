@@ -14,3 +14,4 @@ models:
       - name: donor_audience
         description: Indicates whether the person belongs to the donor audience or
           not.
+        tests: [not_null]
