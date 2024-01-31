@@ -58,12 +58,16 @@ with
             transaction_per_day.gift_size_string,
             transaction_per_day.channel
         from datespine
-        left join
-            transaction_per_day
-            on datespine.date = transaction_per_day.transaction_date_day
+        left join (
+            select *,
+                LAG(transaction_date_day, 1, transaction_date_day + interval '1 day') OVER (PARTITION BY person_id ORDER BY transaction_date_day) AS next_transaction_date
+            from transaction_per_day
+        ) as transaction_per_day_with_next_date
+        on datespine.date >= transaction_per_day_with_next_date.transaction_date_day
+        and datespine.date < transaction_per_day_with_next_date.next_transaction_date
         {% if is_incremental() %}
         -- pulls in all records within 7 days of max day
-        where transaction_date_day >= (select date_sub(max(transaction_date_day), interval 7 day) from transaction_per_day)
+        where transaction_per_day.transaction_date_day >= (select date_sub(max(transaction_date_day), interval 7 day) from transaction_per_day)
         {% endif %}
     ),
 
