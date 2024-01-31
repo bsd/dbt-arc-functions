@@ -34,7 +34,9 @@ with
     transaction_per_day_with_next_date as (
         select 
             *,
-            LAG(transaction_date_day, 1, transaction_date_day + interval 1 day) OVER (PARTITION BY person_id ORDER BY transaction_date_day) AS next_transaction_date
+            lead(transaction_date_day) over (
+                partition by person_id order by transaction_date_day
+            ) as next_transaction_date
         from transaction_per_day
 
     ),
