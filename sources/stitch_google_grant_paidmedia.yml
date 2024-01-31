@@ -4,7 +4,7 @@ sources:
   - name: src_stitch_google_grant_paidmedia
     description: Stitch data connector for Google Ads Paid Media
     loader: stitch - sftp
-    schema: src_stitch
+    schema: src_stitch_google_grant
     tables:
       - name: ad_performance_report
         description: a report aggregating ad performance metrics by ad by day
