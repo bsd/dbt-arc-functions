@@ -61,6 +61,10 @@ with
         left join
             transaction_per_day
             on datespine.date = transaction_per_day.transaction_date_day
+        {% if is_incremental() %}
+        -- pulls in all records within 7 days of max day
+        where transaction_date_day >= (select date_sub(max(transaction_date_day), interval 7 day) from transaction_per_day)
+        {% endif %}
     ),
 
 final as (
@@ -92,9 +96,6 @@ left join
 )
 
 select * from final
-{% if is_incremental() %}
--- pulls in all records within 7 days of max day
-where date_day >= (select date_sub(max(date_day), interval 7 day) from {{ this }})
-{% endif %}
+
 
 {% endmacro %}
