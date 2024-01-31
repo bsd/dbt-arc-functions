@@ -80,3 +80,6 @@ sources:
           - name: engagements
             data_type: int64
             description: The number of engagements for an ad
+          - name: type
+            data_type: string
+            description: The type of ad
