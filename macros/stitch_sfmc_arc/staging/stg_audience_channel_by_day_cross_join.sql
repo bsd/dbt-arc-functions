@@ -27,6 +27,7 @@ with
     -- Generate distinct combinations of audience and channel values
     distinct_combinations as (
         select distinct donor_audience, channel from {{ ref(person_and_transaction) }}
+        where donor_audience is not null
     )
 
 -- Cross-join with distinct combinations and generated dates
