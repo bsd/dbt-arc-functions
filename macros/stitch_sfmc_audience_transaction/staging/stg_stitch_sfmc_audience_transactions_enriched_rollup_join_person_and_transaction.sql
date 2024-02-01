@@ -103,6 +103,7 @@ left join
 left join
     {{ ref(first_gift) }} as first_gift
     on donor_engagement.person_id = first_gift.person_id
+where donor_engagement.date_day is not null
 )
 
 select * from final
