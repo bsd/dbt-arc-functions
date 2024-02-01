@@ -2,7 +2,7 @@
 
 {{ config(severity="warn") }}
 
-{% if group_by_columns|length() > 0 %}
+{% if group_by|length() > 0 %}
   {% set select_group_by = group_by|join(' ,') + ', ' %}
   {% set group_by_clause = 'group by ' + group_by|join(',') %}
 {% endif %}
