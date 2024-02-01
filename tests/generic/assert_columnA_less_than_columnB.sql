@@ -1,4 +1,4 @@
-{% test assert_columnA_less_than_columnB(model, column_A, column_B, group_by ) %}
+{% test assert_columnA_less_than_columnB(model, column_A, column_B, group_by, where=None ) %}
 
 {{ config(severity="warn") }}
 
@@ -10,6 +10,10 @@ select
 {{ column_A }} as column_A,
 {{column_B}} as column_B
 from {{ model }}
+{% if where_clause is none %}
+{% else %}
+where {{where_clause}}
+{% endif %}
 group by {{ group_by | join(", ") }}
 )
 

@@ -4,6 +4,11 @@ models:
   - name: mart_email_deliverability_by_domain_and_date
     description: A data model that provides a historical summary of email performance
       by domain and date
+    tests:
+      - dbt_arc_functions.assert_columnA_less_than_columnB:
+          column_A: sum(clicks)
+          column_B: sum(opens)
+          group_by: message_id
     columns:
       - name: unique_id
         tests:
