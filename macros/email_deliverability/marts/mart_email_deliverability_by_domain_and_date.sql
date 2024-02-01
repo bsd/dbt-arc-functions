@@ -7,6 +7,13 @@
     recipients="stg_email_deliverability_recipients_daily_rollup_unioned",
     unsubscribes="stg_email_deliverability_unsubscribes_daily_rollup_unioned"
 ) %}
+
+{{ config(
+    materialized='incremental',
+    unique_key='unique_id'
+)}}
+
+with base as (
 select
     jobs.sent_date,
     jobs.message_id,
@@ -79,4 +86,21 @@ left join
     on jobs.message_id = unsubscribes.message_id
     and jobs.sent_date = unsubscribes.sent_date
     and lower(jobs.email_domain) = lower(unsubscribes.email_domain)
+
+),
+
+add_unique_id as (
+    select 
+        {{dbt_utils.generate_surrogate_key(['sent_date', 'message_id', 'email_domain'])}} as unique_id,
+        *
+    from base
+)
+
+select * from add_unique_id
+{% if is_incremental() %}
+-- 7 day lookback period for incremental loads
+ where sent_date >= (select date_sub(max(sent_date), interval 7 day) from {{ this }})
+ {% endif %}
+
+
 {% endmacro %}
