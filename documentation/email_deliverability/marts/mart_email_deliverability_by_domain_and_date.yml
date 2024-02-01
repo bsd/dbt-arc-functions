@@ -4,72 +4,51 @@ models:
   - name: mart_email_deliverability_by_domain_and_date
     description: A data model that provides a historical summary of email performance
       by domain and date
-     tests:
+    tests:
       - dbt_arc_functions.assert_columnA_less_than_columnB:
           column_A: sum(clicks)
           column_B: sum(opens)
-          group_by: 
-            - message_id
-            - sent_date
+          group_by: [message_id, sent_date]
       - dbt_arc_functions.assert_columnA_less_than_columnB:
           column_A: sum(total_bounces)
           column_B: sum(hard_bounces)
-          group_by: 
-            - message_id
-            - sent_date
+          group_by: [message_id, sent_date]
     columns:
       - name: unique_id
-        tests:
-          - unique
-          - dbt_expectations.expect_column_to_exist
+        tests: [unique, dbt_expectations.expect_column_to_exist]
       - name: sent_date
         description: The date the email was sent
-        tests:
-          - not_null
-          - dbt_expectations.expect_column_to_exist
+        tests: [not_null, dbt_expectations.expect_column_to_exist]
       - name: message_id
         description: The unique message id for the email sent
-        tests:
-          - not_null
-          - dbt_expectations.expect_column_to_exist
+        tests: [not_null, dbt_expectations.expect_column_to_exist]
       - name: email_domain
         description: The domain of the emails that was sent
-        tests:
-          - not_null
-          - dbt_expectations.expect_column_to_exist
+        tests: [not_null, dbt_expectations.expect_column_to_exist]
       - name: domain_category
         description: The category the domain belongs to, e.g. bulk, monitoring etc
-        tests:
-          - dbt_expectations.expect_column_to_exist
+        tests: [dbt_expectations.expect_column_to_exist]
       - name: recipients
         description: The amount of recipients that were sent to
-        tests:
-          - dbt_expectations.expect_column_to_exist
+        tests: [dbt_expectations.expect_column_to_exist]
       - name: opens
         description: The amount of opens for the email
-        tests:
-          - dbt_expectations.expect_column_to_exist
+        tests: [dbt_expectations.expect_column_to_exist]
       - name: clicks
         description: The amount of clicks for the email
-        tests:
-          - dbt_expectations.expect_column_to_exist
+        tests: [dbt_expectations.expect_column_to_exist]
       - name: actions
         description: The total amount of interactions/actions for the email
-        tests:
-          - dbt_expectations.expect_column_to_exist
+        tests: [dbt_expectations.expect_column_to_exist]
       - name: total_bounces
         description: The total amount of bounces for the email
-        tests:
-          - dbt_expectations.expect_column_to_exist
+        tests: [dbt_expectations.expect_column_to_exist]
       - name: soft_bounces
         description: The amount of soft bounces for the email
-        tests:
-          - dbt_expectations.expect_column_to_exist
+        tests: [dbt_expectations.expect_column_to_exist]
       - name: hard_bounces
         description: The amount of hard bounces for the email
-        tests:
-          - dbt_expectations.expect_column_to_exist
+        tests: [dbt_expectations.expect_column_to_exist]
       - name: unsubscribes
         description: The amount of unsubscribes for the email
-        tests:
-          - dbt_expectations.expect_column_to_exist
+        tests: [dbt_expectations.expect_column_to_exist]
