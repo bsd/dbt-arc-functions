@@ -11,9 +11,3 @@ models:
       - name: donor_audience
         description: The audience associated with the transaction
         tests: [not_null]
-      - name: donor_engagement
-        description: The engagement level associated with the transaction
-        tests: [not_null]
-      - name: donor_loyalty
-        description: The loyalty level associated with the transaction
-        tests: [not_null]
