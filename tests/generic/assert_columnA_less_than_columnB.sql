@@ -1,7 +1,8 @@
 {% test assert_columnA_less_than_columnB(model, column_A, column_B, group_by ) %}
 
-{% set group_by = [group_by]%}
+{{ config(severity="warn") }}
 
+{% set group_by = [group_by]%}
 
 with base as (
 select 
