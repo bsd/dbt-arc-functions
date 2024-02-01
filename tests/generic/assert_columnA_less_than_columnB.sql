@@ -10,9 +10,9 @@ select
 {{ column_A }} as column_A,
 {{column_B}} as column_B
 from {{ model }}
-{% if where_clause is none %}
+{% if where is none %}
 {% else %}
-where {{where_clause}}
+where {{where}}
 {% endif %}
 group by {{ group_by | join(", ") }}
 )
