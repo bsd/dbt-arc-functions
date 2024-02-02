@@ -1,13 +1,13 @@
 ---
 version: 2
 sources:
-  - name: src_stitch_googleads_paidmedia
+  - name: src_stitch_google_grant_paidmedia
     description: Stitch data connector for Google Ads Paid Media
     loader: stitch - sftp
-    schema: src_stitch
+    schema: src_stitch_google_grant
     tables:
       - name: ad_performance_report
-        description: a report aggregating ad performance metrics by ad by day
+        description: a report  aggregating ad performance metrics by ad by day
         freshness:
           warn_after:
             count: 2
@@ -80,6 +80,3 @@ sources:
           - name: engagements
             data_type: int64
             description: The number of engagements for an ad
-          - name: type
-            data_type: string
-            description: The type of ad
