@@ -26,12 +26,14 @@ with
 
     -- Generate distinct combinations of audience and channel values
     distinct_audiences as (
-        select distinct donor_audience from {{ ref(person_and_transaction) }}
+        select distinct donor_audience
+        from {{ ref(person_and_transaction) }}
         where donor_audience is not null
     ),
 
     distinct_channels as (
-        select distinct channel from {{ ref(person_and_transaction) }}
+        select distinct channel
+        from {{ ref(person_and_transaction) }}
         where channel is not null
     )
 
