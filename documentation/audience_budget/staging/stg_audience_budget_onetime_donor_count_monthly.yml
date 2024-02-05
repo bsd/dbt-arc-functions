@@ -14,6 +14,7 @@ models:
         data_type: string
         description: The donor audience for the audience monthly budget, usually a
           donor segment based on client criteria
+        tests: [not_null]
       - name: join_source
         data_type: string
         description: ''

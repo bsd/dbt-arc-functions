@@ -10,3 +10,4 @@ models:
         description: Unique identifier for a person
       - name: donor_audience
         description: Indicator for donor audience
+        tests: [not_null]

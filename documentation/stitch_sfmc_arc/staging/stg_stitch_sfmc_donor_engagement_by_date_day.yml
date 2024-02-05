@@ -10,3 +10,4 @@ models:
         description: the unique identifier of each person record
       - name: donor_engagement
         description: the donor engagement value of each person record by day
+        tests: [not_null]

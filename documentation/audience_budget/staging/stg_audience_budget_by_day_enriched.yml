@@ -49,3 +49,4 @@ models:
       - name: donor_audience
         description: The donor audience for the audience monthly budget, usually a
           donor segment based on client criteria
+        tests: [not_null]

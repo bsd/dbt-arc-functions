@@ -13,3 +13,4 @@ models:
         description: the end date of the value for the person record
       - name: donor_engagement
         description: the donor engagement value
+        tests: [not_null]

@@ -17,8 +17,10 @@ models:
         tests: [not_null]
       - name: donor_engagement
         description: The donor engagement value of each person by day and date
+        tests: [not_null]
       - name: donor_loyalty
         description: the assigned donor loyalty category
+        tests: [not_null]
       - name: channel_category
         description: This is a grouping of channel values
       - name: channel

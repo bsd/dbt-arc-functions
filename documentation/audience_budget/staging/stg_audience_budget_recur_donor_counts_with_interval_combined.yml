@@ -16,6 +16,7 @@ models:
                 severity: warn
       - name: donor_audience
         description: The audience of the donor.
+        tests: [not_null]
       - name: join_source
         description: The source of the join.
         tests: [not_null]

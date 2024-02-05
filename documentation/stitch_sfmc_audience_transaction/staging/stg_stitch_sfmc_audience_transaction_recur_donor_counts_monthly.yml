@@ -17,6 +17,7 @@ models:
                 severity: warn
       - name: donor_audience
         description: The audience associated with the transaction
+        tests: [not_null]
       - name: channel
         description: The platform from which the recurring donation was made
         tests: [not_null]

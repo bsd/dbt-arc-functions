@@ -11,6 +11,7 @@ models:
       - name: donor_audience
         description: The donor audience for the audience monthly budget, usually a
           donor segment based on client criteria
+        tests: [not_null]
       - name: date_day
         description: The date of the audience monthly budget, with a day granularity
       - name: date_spine_year
