@@ -14,6 +14,7 @@ models:
       - name: donor_audience
         description: Audience segment for the audience monthly budget, usually a donor
           segment based on client criteria
+        tests: [not_null]
       - name: total_revenue_budget
         description: Budget for the audience campaign
       - name: loyalty_new_donor_targets

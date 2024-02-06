@@ -11,3 +11,4 @@ models:
         description: The Unique identifier of each person record
       - name: donor_audience
         description: the audience of each person by day and date
+        tests: [not_null]

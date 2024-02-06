@@ -19,5 +19,6 @@ select
         loyalty_reinstated_donor_targets as float64
     ) as loyalty_reinstated_donor_targets,
 from {{ source("audience_budget", "spreadsheet_audience_monthly_budget") }}
+where start_date is not null
 
 {% endmacro %}
