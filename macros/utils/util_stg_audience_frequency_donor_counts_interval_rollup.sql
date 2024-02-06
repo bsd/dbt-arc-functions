@@ -66,6 +66,15 @@ with base as (
             end
         ) as new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
+        /* new donors */
+        count(
+            distinct case
+                when
+                    donor_loyalty = 'new_donor' 
+                then person_id
+            end
+        ) as new_to_FY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+
             /* retained donor counts */
         count(
             distinct case
