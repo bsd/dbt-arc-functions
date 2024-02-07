@@ -47,7 +47,11 @@ models:
         data_type: datetime
         description: ""
         description: The day of the date.
-        tests: [not_null]
+        tests: 
+          - not_null
+          - dbt_expectations.expect_row_values_to_have_recent_data:
+              datepart: day
+              interval: 2
 
       - name: interval_type
         description: The type of interval used for onetimering transactions.
