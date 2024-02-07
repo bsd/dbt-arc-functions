@@ -22,10 +22,10 @@
                 date_day,
                 'daily' as interval_type,
     {% elif interval == 'month' %}
-                last_day(date_day, month) as date_day,
+                date(extract (year from date_day), extract(month from date_day), 1) as date_day,
                 'monthly' as interval_type,
     {% elif interval == 'year' %}
-                last_day(date_day, year) as date_day,
+                date(extract (year from date_day), 1, 1) as date_day,
                 'yearly' as interval_type,
     {% endif %}
                 donor_audience,
