@@ -29,9 +29,9 @@ with base as (
             /* dimensions: date_day, interval_type, donor_audience, channel */
         {% if interval == 'day' %} date_spine_with_audience_and_channel.date_day,
         {% elif interval == 'month' %}
-        date(year(date_spine_with_audience_and_channel.date_day), month(date_spine_with_audience_and_channel.date_day), 1) as date_day,
+        date(extract(year from date_spine_with_audience_and_channel.date_day), extract(month from date_spine_with_audience_and_channel.date_day), 1) as date_day,
         {% elif interval == 'year' %}
-        date(year(date_spine_with_audience_and_channel.date_day), 1, 1) as date_day,
+        date(extract(year from date_spine_with_audience_and_channel.date_day), 1, 1) as date_day,
         {% endif %}
         {% if interval == 'day' %} 'daily' as interval_type,
         {% elif interval == 'week' %} 'weekly' as interval_type,
