@@ -3,7 +3,12 @@
     transactions="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
     donor_engagement="stg_stitch_sfmc_donor_engagement_by_date_day"
 ) %}
-{{ config(materialized="incremental", unique_key="unique_id") }}
+{{ config(materialized="table",
+         partition_by={
+            "field": "date_day",
+            "data_type": "date",
+            "granularity": "day",
+        }) }}
 
 with
 
