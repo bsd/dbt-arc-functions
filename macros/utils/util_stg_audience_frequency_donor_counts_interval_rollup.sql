@@ -55,7 +55,7 @@ with base as (
                 then person_id
             end
         ) as unique_newFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        count(
+        count(distinct 
             case
                 when
                     {% if interval == 'day'%}
