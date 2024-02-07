@@ -34,7 +34,7 @@ models:
             - retained_recur_donor_counts
             - retained3_recur_donor_counts
             - reinstated_recur_donor_counts
-          sum_total: total_recur_donor_counts
+          sum_total: sum(total_recur_donor_counts)
           group_by: [date_day, interval_type]
     columns:
       - name: date_day
