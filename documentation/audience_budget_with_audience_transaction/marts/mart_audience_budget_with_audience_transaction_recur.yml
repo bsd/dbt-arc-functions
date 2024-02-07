@@ -36,6 +36,13 @@ models:
             - reinstated_recur_donor_counts
           sum_total: sum(total_recur_donor_counts)
           group_by: [date_day, interval_type]
+      - dbt_expectations.expect_multicolumn_sum_to_equal:
+          column_list: 
+            - active_recur_donor_counts
+            - lapsed_recur_donor_counts
+          sum_total: sum(total_recur_donor_counts)
+          group_by: [date_day, interval_type]
+          severity: warn
     columns:
       - name: date_day
         data_type: datetime
