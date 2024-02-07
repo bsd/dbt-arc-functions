@@ -66,7 +66,7 @@ with base as (
             end
         ) as new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
-        /* new donors */
+            /* new donors */
         count(
             distinct case
                 when
