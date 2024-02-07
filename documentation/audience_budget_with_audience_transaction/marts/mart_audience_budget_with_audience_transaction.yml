@@ -3,30 +3,38 @@ version: 2
 models:
   - name: mart_audience_budget_with_audience_transaction
     description: ""
-     - dbt_arc_functions.test_cumulative_column_values:
+     - dbt_arc_functions.cumulative_column_values:
           cumulative_column: total_onetime_donor_counts_cumulative
           partition_by: [date_day, interval_type, donor_audience, channel]
           order_by: [date_day]
-      - dbt_arc_functions.test_cumulative_column_values:
+      - dbt_arc_functions.cumulative_column_values:
           cumulative_column: new_recur_donor_counts_cumulative
           partition_by: [date_day, interval_type, donor_audience, channel]
           order_by: [date_day]
-      - dbt_arc_functions.test_cumulative_column_values:
+      - dbt_arc_functions.cumulative_column_values:
           cumulative_column: new_to_fy_recur_donor_counts_cumulative
           partition_by: [date_day, interval_type, donor_audience, channel]
           order_by: [date_day]
-      - dbt_arc_functions.test_cumulative_column_values:
+      - dbt_arc_functions.cumulative_column_values:
           cumulative_column: retained_recur_donor_counts_cumulative
           partition_by: [date_day, interval_type, donor_audience, channel]
           order_by: [date_day]
-      - dbt_arc_functions.test_cumulative_column_values:
+      - dbt_arc_functions.cumulative_column_values:
           cumulative_column: retained3_recur_donor_counts
           partition_by: [date_day, interval_type, donor_audience, channel]
           order_by: [date_day]
-      - dbt_arc_functions.test_cumulative_column_values:
+      - dbt_arc_functions.cumulative_column_values:
           cumulative_column: reinstated_recur_donor_counts
           partition_by: [date_day, interval_type, donor_audience, channel]
           order_by: [date_day]
+     - dbt_expectations.expect_multicolumn_sum_to_equal:
+          column_list: 
+            - new_to_fy_onetime_donor_counts
+            - retained_onetime_donor_counts
+            - retained3_onetime_donor_counts
+            - reinstated_onetime_donor_counts
+          sum_total: total_onetime_donor_counts
+          group_by: [date_day, interval_type]
     columns:
       - name: date_day
         data_type: datetime
