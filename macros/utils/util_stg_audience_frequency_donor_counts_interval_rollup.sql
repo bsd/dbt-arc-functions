@@ -148,10 +148,6 @@ select
 {{dbt_utils.generate_surrogate_key(['date_day', "interval_type", "donor_audience", "channel"])}} as unique_id,
 *
 from base
- {% if target.name != 'prod' %}
-where date_day >= date_sub(current_date(), interval 1 year)
-{% else %}
-{% endif %}
 )
 
 select * from add_surrogate
