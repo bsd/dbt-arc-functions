@@ -37,7 +37,9 @@ from {{ref('mart_audience_budget_with_audience_transaction')}}
 where interval_type = 'daily'
 group by 1 
 
-)
+),
+
+full_join as (
     select 
         coalesce(a.date_day, b.date_day, c.date_day, d.date_day) as date_day,
         d.onetime_donors_d,
@@ -48,10 +50,31 @@ group by 1
     full join b using (date_day)
     full join c using (date_day)
     full join d using (date_day)
-    where 
-        c.recur_donors_c != b.recur_donors_b 
-        or d.onetime_donors_d + c.recur_donors_c > a.all_donors_a 
-        or d.onetime_donors_d + b.recur_donors_b > a.all_donors_a
+
+),
+
+issues as (
+select 
+    date_day, 
+    sum(case
+            when recur_donors_c !=recur_donors_b 
+            then 1 else 0 
+        end) as c_not_equal_b,
+    sum(case 
+            when (onetime_donors_d + recur_donors_c > all_donors_a)
+            then 1 else 0
+        end) as d_and_c_greater_than_a,
+    sum(case 
+            when (onetime_donors_d + recur_donors_b > all_donors_a)
+            then 1 else 0
+        end) as d_and_b_greater_than_a
+    from full_join
+)
+
+select * from full_join 
+where c_not_equal_b > 0
+or d_and_c_greater_than_a > 0
+or d_and_b_greater_than_a > 0
 
 
 
