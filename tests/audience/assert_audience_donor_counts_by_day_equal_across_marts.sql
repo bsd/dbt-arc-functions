@@ -2,7 +2,7 @@
 
 with a as (
     select 
- date_day as date_day,
+ transaction_date_day as date_day,
  sum(donors) as all_donors_a
 from {{ref('mart_arc_revenue_and_donor_count_by_lifetime_gifts')}}
 group by 1 

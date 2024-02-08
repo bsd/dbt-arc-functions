@@ -17,12 +17,15 @@ group by 1 ),
 c as (select 
  date_day as date_day,
  sum(total_revenue_actuals) as all_revenue_c
-from {{ref('mart_cashflow_actuals_and_budget')}}),
+from {{ref('mart_cashflow_actuals_and_budget')}}
+group by 1
+),
 
 d as (select 
  transaction_date_day as date_day,
  sum(amount) as all_revenue_d
   from  {{ref('mart_arc_revenue_and_donor_count_by_lifetime_gifts')}}
+  group by 1
 )
     select 
         coalesce(a.date_day, b.date_day, c.date_day, d.date_day) as date_day,
