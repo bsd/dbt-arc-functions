@@ -1,5 +1,5 @@
 {% macro create_stg_audience_transaction_onetime_donor_counts_yearly_rollup(
-    person_and_transaction="stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction",
+    person_and_transaction="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
     cross_join="stg_audience_channel_by_day_cross_join"
 ) %}
 {{

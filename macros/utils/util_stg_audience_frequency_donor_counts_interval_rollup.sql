@@ -2,8 +2,7 @@
 {% macro util_stg_audience_transaction_frequency_donor_counts_interval_rollup(
     frequency,
     interval,
-    person_and_transaction="stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction",
-    cross_join="stg_audience_channel_by_day_cross_join"
+    person_and_transaction="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched"
 ) %}
     {% if frequency not in ['recurring', 'onetime'] %}
         {{ exceptions.raise_compiler_error("'frequency' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'recurring' or 'onetime', got " ~ frequency) }}
@@ -22,23 +21,23 @@
     cluster_by = ["interval_type"]
 )}}
 
+
 with base as (    
     select
             /* dimensions: date_day, interval_type, donor_audience, channel */
-        {% if interval == 'day' %} date_spine_with_audience_and_channel.date_day,
+        {% if interval == 'day' %} transaction_date_day as date_day,
         {% elif interval == 'month' %}
-        date(extract(year from date_spine_with_audience_and_channel.date_day), extract(month from date_spine_with_audience_and_channel.date_day), 1) as date_day,
+        date(extract(year from transaction_date_day), extract(month from transaction_date_day), 1) as date_day,
         {% elif interval == 'year' %}
-        date(extract(year from date_spine_with_audience_and_channel.date_day), 1, 1) as date_day,
+        date(extract(year from transaction_date_day), 1, 1) as date_day,
         {% endif %}
         {% if interval == 'day' %} 'daily' as interval_type,
         {% elif interval == 'week' %} 'weekly' as interval_type,
         {% elif interval == 'month' %} 'monthly' as interval_type,
         {% elif interval == 'year' %} 'yearly' as interval_type,
         {% endif %}
-        date_spine_with_audience_and_channel.donor_audience,
-        date_spine_with_audience_and_channel.channel, 
-
+        donor_audience,
+        channel, 
             /* total donor counts */
         count(distinct person_id) as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         count(distinct 
@@ -132,11 +131,7 @@ with base as (
             distinct case when person_and_transaction.donor_engagement = 'lapsed' then person_id end
         ) as lapsed{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
-    from {{ref(cross_join)}} as date_spine_with_audience_and_channel
-    left join {{ ref(person_and_transaction) }} person_and_transaction
-    on date_spine_with_audience_and_channel.date_day = person_and_transaction.date_day
-    and date_spine_with_audience_and_channel.donor_audience = person_and_transaction.donor_audience
-    and date_spine_with_audience_and_channel.channel = person_and_transaction.channel
+    from {{ref(person_and_transaction)}}
     where recurring{% if frequency == 'recurring' %}= true{% else %} = false{% endif %}
     group by 1, 2, 3, 4
 )

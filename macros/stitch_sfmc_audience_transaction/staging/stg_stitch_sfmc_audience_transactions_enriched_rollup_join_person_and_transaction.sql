@@ -18,9 +18,7 @@ with
             person_id,
             donor_loyalty,
             donor_audience,
-            case
-                when nth_transaction_this_fiscal_year = 1 then true else false
-            end as is_first_transaction_this_fy,
+            is_first_transaction_this_fy,
             recurring,
             gift_size_string,
             channel,
@@ -104,7 +102,7 @@ with
             first_gift.join_gift_size_string as join_amount_str,
             first_gift.join_gift_size_string_recur as join_amount_str_recur,
             first_gift.join_month_year_date as join_month_year_str,
-            first_gift.first_transaction_date as join_date,
+            first_gift.first_transaction_date as join_date
         from transaction_datespine
         left join
             {{ ref(donor_engagement) }} as donor_engagement
