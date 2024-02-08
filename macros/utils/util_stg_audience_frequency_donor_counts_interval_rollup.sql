@@ -2,7 +2,8 @@
 {% macro util_stg_audience_transaction_frequency_donor_counts_interval_rollup(
     frequency,
     interval,
-    person_and_transaction="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched"
+    person_and_transaction="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
+    first_gift="stg_stitch_sfmc_parameterized_audience_transaction_first_gift"
 ) %}
     {% if frequency not in ['recurring', 'onetime'] %}
         {{ exceptions.raise_compiler_error("'frequency' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'recurring' or 'onetime', got " ~ frequency) }}
@@ -22,7 +23,27 @@
 )}}
 
 
-with base as (    
+with base as (
+    select 
+        person_and_transaction.transaction_date_day,
+        person_and_transaction.person_id,
+        person_and_transaction.channel,
+        person_and_transaction.donor_audience,
+        person_and_transaction.donor_engagement,
+        person_and_transaction.donor_loyalty,
+        person_and_transaction.is_first_transaction_this_fy,
+        first_gift.first_gift_join_source as join_source,
+        first_gift.join_gift_size_string as join_amount_str,
+        first_gift.join_gift_size_string_recur as join_amount_str_recur,
+        first_gift.join_month_year_date as join_month_year_str,
+        first_gift.first_transaction_date as join_date
+        from {{ref(person_and_transaction)}} person_and_transaction
+        left join
+            {{ ref(first_gift) }} as first_gift
+            on transaction_enriched.person_id = first_gift.person_id
+        where recurring{% if frequency == 'recurring' %}= true{% else %} = false{% endif %}
+)
+ 
     select
             /* dimensions: date_day, interval_type, donor_audience, channel */
         {% if interval == 'day' %} transaction_date_day as date_day,
@@ -131,10 +152,8 @@ with base as (
             distinct case when person_and_transaction.donor_engagement = 'lapsed' then person_id end
         ) as lapsed{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
-    from {{ref(person_and_transaction)}}
-    where recurring{% if frequency == 'recurring' %}= true{% else %} = false{% endif %}
+    from base
     group by 1, 2, 3, 4
-)
 
 select * from base
 

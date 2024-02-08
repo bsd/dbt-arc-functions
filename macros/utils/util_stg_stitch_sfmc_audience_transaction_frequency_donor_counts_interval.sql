@@ -20,6 +20,7 @@
     cluster_by = ["interval_type"]
 )}}
 
+
 with base as (
     select 
     date_day,

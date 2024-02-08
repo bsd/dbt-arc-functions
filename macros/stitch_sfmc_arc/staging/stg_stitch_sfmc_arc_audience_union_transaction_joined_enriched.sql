@@ -3,8 +3,7 @@
     donor_audience_unioned="stg_stitch_sfmc_arc_audience_unioned",
     donor_engagement_by_day="stg_stitch_sfmc_donor_engagement_by_date_day",
     donor_transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched",
-    jobs_append="stg_stitch_sfmc_parameterized_audience_transaction_jobs_append",
-    first_gift="stg_stitch_sfmc_parameterized_audience_transaction_first_gift"
+    jobs_append="stg_stitch_sfmc_parameterized_audience_transaction_jobs_append"
 ) %}
 
 {{ config(
@@ -38,12 +37,7 @@ with audience_union_transaction_joined as (
         transaction_enriched.gift_size_string,
         transaction_enriched.recurring,
         transaction_enriched.amount,
-        transaction_enriched.gift_count,
-        first_gift.first_gift_join_source as join_source,
-        first_gift.join_gift_size_string as join_amount_str,
-        first_gift.join_gift_size_string_recur as join_amount_str_recur,
-        first_gift.join_month_year_date as join_month_year_str,
-        first_gift.first_transaction_date as join_date
+        transaction_enriched.gift_count
     from {{ ref(donor_transaction_enriched) }} transaction_enriched
     left join
         {{ ref(donor_audience_unioned) }} audience_unioned
@@ -57,9 +51,6 @@ with audience_union_transaction_joined as (
         {{ ref(donor_engagement_by_day) }} donor_engagement
         on transaction_enriched.transaction_date_day = donor_engagement.date_day
         and transaction_enriched.person_id = donor_engagement.person_id
-    left join
-            {{ ref(first_gift) }} as first_gift
-            on transaction_enriched.person_id = first_gift.person_id
 
 )
 
@@ -170,12 +161,7 @@ making sure to finally dedupe on transaction_id.
         audience_union_transaction_joined.appeal_business_unit,
         audience_union_transaction_joined.gift_size_string,
         audience_union_transaction_joined.recurring,
-        audience_union_transaction_joined.amount,
-        audience_union_transaction_joined.join_source,
-        audience_union_transaction_joined.join_amount_str,
-        audience_union_transaction_joined.join_amount_str_recur,
-        audience_union_transaction_joined.join_month_year_str,
-        audience_union_transaction_joined.join_date
+        audience_union_transaction_joined.amount
         1 as gift_count,
         row_number() over (partition by audience_union_transaction_joined.transaction_id order by audience_union_transaction_joined.transaction_date_day asc) as row_number
     from
