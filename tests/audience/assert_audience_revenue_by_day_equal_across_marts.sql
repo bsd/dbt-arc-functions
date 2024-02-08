@@ -1,7 +1,7 @@
 {% macro revenue_CTE(revenue_column='total_revenue',
+                    day_column='transaction_date_day'
                     mart_name,
-                    frequency,
-                    day_column='transaction_date_day',
+                    frequency
                     ) %}
 
 
