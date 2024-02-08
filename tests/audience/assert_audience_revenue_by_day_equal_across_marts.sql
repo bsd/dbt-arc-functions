@@ -31,8 +31,8 @@ d as (select
         c.all_revenue_c,
         d.all_revenue_d
     from a 
-    full join b using date_day
-    full join c using date_day
+    full join b using (date_day)
+    full join c using (date_day)
     where a.onetime_revenue + b.recur_revenue > c.all_revenue_c 
     or a.onetime_revenue + b.recur_revenue > d.all_revenue_d
     or c.all_revenue_c != d.all_revenue_d

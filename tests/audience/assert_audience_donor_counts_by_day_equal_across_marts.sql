@@ -44,8 +44,8 @@ group by 1
         b.recur_donors_b
         a.all_donors_a
     from a 
-    full join b using date_day
-    full join c using date_day
+    full join b using (date_day)
+    full join c using (date_day)
     where 
         c.recur_donors_c != b.recur_donors_b 
         or d.onetime_donors_d + c.recur_donors_c > a.all_donors_a 
