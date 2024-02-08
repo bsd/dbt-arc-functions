@@ -8,7 +8,7 @@
 select 
  {{day_column}} as date_day,
  sum({{revenue_column}}) as {{frequency}}_revenue
-from {{ref('{{mart_name}}')}}
+from {{ref(mart_name)}}
 group by 1
 
 {% endmacro %}
