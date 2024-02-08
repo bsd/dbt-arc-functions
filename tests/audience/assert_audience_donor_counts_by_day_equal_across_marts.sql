@@ -3,7 +3,7 @@
 
 with a as (
     select 
- transaction_date_day as date_day,
+ date(extract(year from transaction_date_day), extract(month from transaction_date_day), 1) as date_day,
  sum(donors) as all_donors_a
 from {{ref('mart_arc_revenue_and_donor_count_by_lifetime_gifts')}}
 group by 1 
@@ -11,20 +11,20 @@ group by 1
 
 b as (
     select 
- date_day as date_day,
+ date_day,
  sum(donor_counts) as recur_donors_b
 from {{ref('mart_arc_revenue_recur_donor_counts_by_gift_size')}}
-where interval_type = 'daily'
+where interval_type = 'monthly'
 group by 1 
 
 ),
 
 c as (
     select 
- date_day as date_day,
+ date_day,
  sum(total_recur_donor_counts) as recur_donors_c
 from {{ref('mart_audience_budget_with_audience_transaction_recur')}}
-where interval_type = 'daily'
+where interval_type = 'monthly'
 group by 1 
 
 ),
@@ -34,7 +34,7 @@ d as (
  date_day as date_day,
  sum(total_onetime_donor_counts) as onetime_donors_d
 from {{ref('mart_audience_budget_with_audience_transaction')}}
-where interval_type = 'daily'
+where interval_type = 'monthly'
 group by 1 
 
 ),
