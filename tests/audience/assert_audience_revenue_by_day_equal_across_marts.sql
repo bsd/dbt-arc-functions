@@ -1,7 +1,7 @@
-{% macro revenue_CTE(revenue_column,
+{% macro revenue_CTE(revenue_column='total_revenue',
                     mart_name,
                     frequency,
-                    day_column='date_day',
+                    day_column='transaction_date_day',
                     ) %}
 
 
@@ -15,21 +15,15 @@ group by 1
 
 
 with a as (
- {{revenue_CTE(date_column='transaction_date_day',
-                        revenue_column='total_revenue',
-                        mart_name='mart_arc_revenue_1x_actuals_by_day',
-                        frequency='onetime')}}
+ {{revenue_CTE(mart_name='mart_arc_revenue_1x_actuals_by_day',
+              frequency='onetime')}}
 ),
 
-b as ({{revenue_CTE(date_column='transaction_date_day',
-                        revenue_column='total_revenue',
-                        mart_name='mart_arc_revenue_recur_actuals_by_day',
-                        frequency='recur')}}),
+b as ({{revenue_CTE(mart_name='mart_arc_revenue_recur_actuals_by_day',
+                    frequency='recur')}}),
 
-c as ({{revenue_CTE(date_column='transaction_date_day',
-                        revenue_column='total_revenue',
-                        mart_name='mart_cashflow_actuals_and_budget',
-                        frequency='all')}}),
+c as ({{revenue_CTE(mart_name='mart_cashflow_actuals_and_budget',
+                    frequency='all')}}),
 
 exceptions as (
     select 
