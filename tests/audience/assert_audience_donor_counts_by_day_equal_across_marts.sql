@@ -32,7 +32,7 @@ group by 1
 d as (
     select 
  date_day as date_day,
- sum(total_recur_donor_counts) as onetime_donors_d
+ sum(total_onetime_donor_counts) as onetime_donors_d
 from {{ref('mart_audience_budget_with_audience_transaction')}}
 where interval_type = 'daily'
 group by 1 
