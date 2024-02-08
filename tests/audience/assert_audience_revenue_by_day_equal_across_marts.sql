@@ -60,7 +60,7 @@ select
     group by 1 
 )
 
-select * from full_join
+select * from issues
 where c_not_equal_d > 0 or b_and_a_greater_than_d > 0 or b_and_a_greater_than_c >0
 
 
