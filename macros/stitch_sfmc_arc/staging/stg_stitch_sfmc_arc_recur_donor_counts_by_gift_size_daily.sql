@@ -7,7 +7,7 @@ with
         select
             transaction_date_day as date_day,
             channel,
-            coalesced_audience as donor_audience,
+            donor_audience,
             gift_size_string as gift_size,
             count(distinct person_id) as donor_counts
         from {{ ref(audience_transaction) }}

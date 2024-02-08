@@ -17,7 +17,7 @@ with
             transaction_date_day,
             person_id,
             donor_loyalty,
-            coalesced_audience as donor_audience,
+            donor_audience,
             case
                 when nth_transaction_this_fiscal_year = 1 then true else false
             end as is_first_transaction_this_fy,

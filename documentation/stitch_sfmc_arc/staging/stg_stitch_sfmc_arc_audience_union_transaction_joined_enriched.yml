@@ -31,7 +31,7 @@ models:
       - name: gift_count
         description: the number of cumulative gifts for each person_id, This number
           increases with every donation.
-      - name: coalesced_audience
+      - name: donor_audience
         description: The audience unioned values coalesced with the audience calculated
           values to fill in any nulls that are present
         tests:

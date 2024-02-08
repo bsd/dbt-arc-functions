@@ -104,7 +104,7 @@ select
         for these cases, we will defer to the audience value
         */
     cast({{ first_gift_recur_status }} as boolean) as first_gift_recur_status,
-    audience.coalesced_audience as first_gift_donor_audience,
+    audience.donor_audience as first_gift_donor_audience,
     audience.amount
 from first_transactions
 left join
