@@ -12,7 +12,7 @@ group by 1
 b as (
     select 
  date_day as date_day,
- sum(donors) as recur_donors_b
+ sum(donor_counts) as recur_donors_b
 from {{ref('mart_arc_revenue_recur_donor_counts_by_gift_size')}}
 where interval_type = 'daily'
 group by 1 
