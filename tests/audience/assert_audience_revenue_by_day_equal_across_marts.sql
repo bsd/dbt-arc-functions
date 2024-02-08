@@ -31,10 +31,10 @@ d as (select
 full_join as (
     select 
         coalesce(a.date_day, b.date_day, c.date_day, d.date_day) as date_day,
-        a.onetime_revenue_a,
-        b.recur_revenue_b,
-        c.all_revenue_c,
-        d.all_revenue_d
+        round(a.onetime_revenue_a, 0) as onetime_revenue_a,
+        round(b.recur_revenue_b, 0) as recur_revenue_b,
+        round(c.all_revenue_c, 0) as all_revenue_c,
+        round(d.all_revenue_d, 0) as all_revenue_d
     from a 
     full join b using (date_day)
     full join c using (date_day)

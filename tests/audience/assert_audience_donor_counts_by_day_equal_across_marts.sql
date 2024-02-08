@@ -42,10 +42,10 @@ group by 1
 full_join as (
     select 
         coalesce(a.date_day, b.date_day, c.date_day, d.date_day) as date_day,
-        d.onetime_donors_d,
-        c.recur_donors_c,
-        b.recur_donors_b,
-        a.all_donors_a
+        round(d.onetime_donors_d, 0) onetime_donors_d,
+        round(c.recur_donors_c, 0) as recur_donors_c,
+        round(b.recur_donors_b,0) as recur_donors_b,
+        round(a.all_donors_a,0) as all_donors_a
     from a 
     full join b using (date_day)
     full join c using (date_day)
