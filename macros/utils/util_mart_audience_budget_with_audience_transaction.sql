@@ -20,6 +20,7 @@
 
    select
         coalesce(donor_counts.date_day, audience_budget.date_day) as date_day,
+        donor_counts.fiscal_year,
         coalesce(
             donor_counts.interval_type, audience_budget.interval_type
         ) as interval_type,

@@ -12,10 +12,8 @@
         {{ exceptions.raise_compiler_error("'interval' argument to util_stg_stitch_sfmc_audience_transaction_frequency_donor_counts_interval must be 'day', 'week', 'month', or 'year', got " ~ interval) }}
     {% endif %}
 
-/* note: these models take the longest to build -- good candidate for intermediate */
 {{ config(
-    materialized='incremental',
-    unique_key='unique_id',
+    materialized='table',
     partition_by={
       "field": "date_day",
       "data_type": "date",
@@ -57,7 +55,7 @@ with base as (
                 then person_id
             end
         ) as unique_newFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
-        count(
+        count(distinct 
             case
                 when
                     {% if interval == 'day'%}
@@ -141,34 +139,9 @@ with base as (
     and date_spine_with_audience_and_channel.channel = person_and_transaction.channel
     where recurring{% if frequency == 'recurring' %}= true{% else %} = false{% endif %}
     group by 1, 2, 3, 4
-),
-
-add_surrogate as (
-select 
-{{dbt_utils.generate_surrogate_key(['date_day', "interval_type", "donor_audience", "channel"])}} as unique_id,
-*
-from base
- {% if target.name != 'prod' %}
-where date_day >= date_sub(current_date(), interval 1 year)
-{% else %}
-{% endif %}
 )
 
-select * from add_surrogate
+select * from base
 
-{% if is_incremental() %}
-
-    {% if interval == 'day' %}
--- pulls in all records on same day or after the latest day 
-     where date_day >= (select max(date_day) from {{ this }})
-
-    {% else %}
--- pulls in all records from previous month and current {{interval}}
--- (since we typically have a date_day) of last day of the {{interval}}
-    where date_day >= (select date_sub(max(date_day), interval 1 {{interval}}) from {{this}})
-
-    {% endif %}
-
-{% endif %}
 
 {% endmacro %}

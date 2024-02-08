@@ -22,7 +22,6 @@
 
 with base as (
     select 
-    unique_id,
     date_day,
     {{
             dbt_arc_functions.get_fiscal_year(
@@ -62,7 +61,6 @@ from
 )
 
     select
-        unique_id,
         date_day,
         interval_type,
         fiscal_year,
