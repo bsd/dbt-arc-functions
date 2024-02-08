@@ -13,7 +13,6 @@ with
         from {{ ref(audience_transaction) }}
         where recurring = true
         group by 1, 2, 3, 4
-        order by 1 desc, 4
     )
 
 select 'monthly' as interval_type, *
