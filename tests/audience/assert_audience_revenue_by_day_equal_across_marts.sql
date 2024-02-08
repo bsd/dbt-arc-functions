@@ -57,6 +57,7 @@ select
             then 1 else 0
         end) as b_and_a_greater_than_c
     from full_join
+    group by 1 
 )
 
 select * from full_join
