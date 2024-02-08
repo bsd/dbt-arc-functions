@@ -1,28 +1,23 @@
-{% macro revenue_CTE(revenue_column='total_revenue',
-                    day_column='transaction_date_day'
-                    mart_name,
-                    frequency
-                    ) %}
 
-
-select 
- {{day_column}} as date_day,
- sum({{revenue_column}}) as {{frequency}}_revenue
-from {{ref(mart_name)}}
-group by 1
-
-{% endmacro %}
 
 with a as (
- {{revenue_CTE(mart_name='mart_arc_revenue_1x_actuals_by_day',
-              frequency='onetime')}}
+    select 
+ transaction_date_day as date_day,
+ sum(total_revenue) as onetime_revenue
+from {{ref('mart_arc_revenue_1x_actuals_by_day')}}
+group by 1 
 ),
 
-b as ({{revenue_CTE(mart_name='mart_arc_revenue_recur_actuals_by_day',
-                    frequency='recur')}}),
+b as (select 
+ transaction_date_day as date_day,
+ sum(total_revenue) as recur_revenue
+from {{ref('mart_arc_revenue_recur_actuals_by_day')}}
+group by 1 ),
 
-c as ({{revenue_CTE(mart_name='mart_cashflow_actuals_and_budget',
-                    frequency='all')}}),
+c as (select 
+ transaction_date_day as date_day,
+ sum(total_revenue) as all_revenue
+from {{ref('mart_cashflow_actuals_and_budget')}}),
 
 exceptions as (
     select 
