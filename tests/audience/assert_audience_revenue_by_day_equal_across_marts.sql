@@ -15,7 +15,7 @@ from {{ref('mart_arc_revenue_recur_actuals_by_day')}}
 group by 1 ),
 
 c as (select 
- date(extract(year from transaction_date_day), extract(month from transaction_date_day), 1) as date_day,
+ date(extract(year from date_day), extract(month from date_day), 1) as date_day,
  sum(total_revenue_actuals) as all_revenue_c
 from {{ref('mart_cashflow_actuals_and_budget')}}
 group by 1
