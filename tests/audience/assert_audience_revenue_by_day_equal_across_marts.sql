@@ -2,7 +2,7 @@
                     mart_name,
                     frequency,
                     day_column='date_day',
-                    )%}
+                    ) %}
 
 
 select 
