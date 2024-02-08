@@ -38,18 +38,18 @@ group by 1
 
 )
     select 
-        date_day,
-        onetime_donors_d,
-        recur_donors_c,
-        recur_donors_b
-        all_donors_a
+        coalesce(a.date_day, b.date_day, c.date_day, d.date_day) as date_day,
+        d.onetime_donors_d,
+        c.recur_donors_c,
+        b.recur_donors_b
+        a.all_donors_a
     from a 
     full join b using date_day
     full join c using date_day
     where 
-        recur_donors_c != recur_donors_b 
-        or onetime_donors_d + recur_donors_c > all_donors_a 
-        or onetime_donors_d + recur_donors_b > all_donors_a
+        c.recur_donors_c != b.recur_donors_b 
+        or d.onetime_donors_d + c.recur_donors_c > a.all_donors_a 
+        or d.onetime_donors_d + b.recur_donors_b > a.all_donors_a
 
 
 

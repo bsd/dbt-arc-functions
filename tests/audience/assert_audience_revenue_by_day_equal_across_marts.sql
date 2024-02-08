@@ -25,17 +25,17 @@ d as (select
   from  {{ref('mart_arc_revenue_and_donor_count_by_lifetime_gifts')}}
 )
     select 
-        date_day,
-        onetime_revenue,
-        recur_revenue,
-        all_revenue_c,
-        all_revenue_d
+        coalesce(a.date_day, b.date_day, c.date_day, d.date_day) as date_day,
+        a.onetime_revenue,
+        b.recur_revenue,
+        c.all_revenue_c,
+        d.all_revenue_d
     from a 
     full join b using date_day
     full join c using date_day
-    where onetime_revenue + recur_revenue > all_revenue_c 
-    or onetime_revenue + recur_revenue > all_revenue_d
-    or all_revenue_c != all_revenue_d
+    where a.onetime_revenue + b.recur_revenue > c.all_revenue_c 
+    or a.onetime_revenue + b.recur_revenue > d.all_revenue_d
+    or c.all_revenue_c != d.all_revenue_d
 
 
 
