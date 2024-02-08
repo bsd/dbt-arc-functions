@@ -16,22 +16,27 @@ group by 1 ),
 
 c as (select 
  transaction_date_day as date_day,
- sum(total_revenue) as all_revenue
+ sum(total_revenue) as all_revenue_c
 from {{ref('mart_cashflow_actuals_and_budget')}}),
 
-exceptions as (
+d as (select 
+ transaction_date_day as date_day,
+ sum(amount) as all_revenue_d
+  from  {{ref('mart_arc_revenue_and_donor_count_by_lifetime_gifts')}}
+)
     select 
         date_day,
         onetime_revenue,
         recur_revenue,
-        all_revenue
+        all_revenue_c,
+        all_revenue_d
     from a 
     full join b using date_day
     full join c using date_day
-    where onetime_revenue + recur_revenue > all_revenue
-)
+    where onetime_revenue + recur_revenue > all_revenue_c 
+    or onetime_revenue + recur_revenue > all_revenue_d
+    or all_revenue_c != all_revenue_d
 
-select date_day, count(*) from exceptions group by 1
 
 
 
