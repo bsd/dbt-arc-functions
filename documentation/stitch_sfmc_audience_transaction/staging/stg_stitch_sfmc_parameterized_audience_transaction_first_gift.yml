@@ -6,10 +6,14 @@ models:
     columns:
       - name: person_id
         description: Unique ID of the individual
+        tests: 
+          - not_null
       - name: join_month_year_date
         description: The date of the first transaction for each person_id
       - name: first_gift_join_source
         description: The join source for the first gift
+        tests:
+          - not_null
       - name: first_gift_amount_int
         description: the amount of the first gift as an integer
       - name: join_gift_size_string

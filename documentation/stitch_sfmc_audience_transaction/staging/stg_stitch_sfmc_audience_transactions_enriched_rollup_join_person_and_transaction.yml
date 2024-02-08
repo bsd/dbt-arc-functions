@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction
+- name: stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction
     description: A table joining audience, person and transaction details
     columns:
       - name: date_day
@@ -9,19 +9,46 @@ models:
       - name: person_id
         description: The ID identifier of the person associated with the transaction
       - name: donor_audience
-        description: The audience associated with the transaction
-        tests: [not_null]
+        description: the assigned donor audience category
+        tests:
+          - not_null:
+              config:
+                severity: error
+                warn_if: '>1'
+                error_if: '>2'
       - name: donor_engagement
         description: The engagement level associated with the transaction
-        tests: [not_null]
+        tests:
+          - not_null:
+              config:
+                severity: warn
       - name: donor_loyalty
         description: The loyalty level associated with the transaction
-        tests: [not_null]
+        tests:
+          - not_null:
+              config:
+                severity: warn
+                warn_if: ">10"
+                error_if: ">50"
       - name: gift_size_str
         description: Size of the gift associated with the transaction
+      - name: channel
+        tests:
+          - not_null:
+              config:
+                severity: error
+                warn_if: '>1'
+                error_if: '>2'
       - name: join_source
         description: Join source based on first gift
+        tests:
+          - not_null:
+              config:
+                severity: warn
+                warn_if: '>40'
+                error_if: '>100'
       - name: join_amount_str
         description: The amount of the first gift
       - name: join_month_year_str
         description: The date of the first gift in the format of YYYY-MM-DD
+  
