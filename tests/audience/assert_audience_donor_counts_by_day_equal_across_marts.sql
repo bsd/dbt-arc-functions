@@ -26,7 +26,7 @@ from {{ref('mart_audience_budget_with_audience_transaction_recur')}}
 where interval_type = 'daily'
 group by 1 
 
-)
+),
 
 d as (
     select 
@@ -41,7 +41,7 @@ group by 1
         coalesce(a.date_day, b.date_day, c.date_day, d.date_day) as date_day,
         d.onetime_donors_d,
         c.recur_donors_c,
-        b.recur_donors_b
+        b.recur_donors_b,
         a.all_donors_a
     from a 
     full join b using (date_day)

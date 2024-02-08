@@ -16,7 +16,7 @@ group by 1 ),
 
 c as (select 
  date_day as date_day,
- sum(total_revenue) as all_revenue_c
+ sum(total_revenue_actuals) as all_revenue_c
 from {{ref('mart_cashflow_actuals_and_budget')}}),
 
 d as (select 
