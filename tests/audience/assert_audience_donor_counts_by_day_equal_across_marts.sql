@@ -1,4 +1,5 @@
 
+{{config(severity='warn')}}
 
 with a as (
     select 

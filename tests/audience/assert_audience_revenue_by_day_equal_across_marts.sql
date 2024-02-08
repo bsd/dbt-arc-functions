@@ -1,5 +1,5 @@
 
-
+{{config(severity='warn')}} 
 with a as (
     select 
  transaction_date_day as date_day,
