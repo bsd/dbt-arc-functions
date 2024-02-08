@@ -162,7 +162,7 @@ making sure to finally dedupe on transaction_id.
         audience_union_transaction_joined.gift_size_string,
         audience_union_transaction_joined.recurring,
         audience_union_transaction_joined.amount,
-        1 as gift_count
+        1 as gift_count,
         row_number() over (partition by audience_union_transaction_joined.transaction_id order by audience_union_transaction_joined.transaction_date_day asc) as row_number
     from
         audience_union_transaction_joined
