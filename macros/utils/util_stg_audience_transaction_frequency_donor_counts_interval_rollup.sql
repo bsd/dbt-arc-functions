@@ -40,7 +40,7 @@ with base as (
         from {{ref(person_and_transaction)}} person_and_transaction
         left join
             {{ ref(first_gift) }} as first_gift
-            on transaction_enriched.person_id = first_gift.person_id
+            on person_and_transaction.person_id = first_gift.person_id
         where recurring{% if frequency == 'recurring' %}= true{% else %} = false{% endif %}
 )
  
