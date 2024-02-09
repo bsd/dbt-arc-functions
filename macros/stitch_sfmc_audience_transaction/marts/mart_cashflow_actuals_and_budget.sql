@@ -18,7 +18,6 @@ with
             sum(audience_transactions.gift_count) as total_gifts_actuals
         from {{ ref(audience_transactions) }} as audience_transactions
         group by 1, 2, 3, 4
-        order by 2 desc
     ),
     original_mart as (
         select
@@ -47,7 +46,6 @@ with
             on base.date_day = date(budget_revenue.date_day)
             and lower(base.donor_audience) = lower(budget_revenue.donor_audience)
             and lower(base.channel) = lower(budget_revenue.platform)
-        order by 2, 3, 4, 5, 6
     ),
     dateoffset as (
         select
