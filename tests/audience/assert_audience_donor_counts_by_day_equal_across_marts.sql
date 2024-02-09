@@ -5,7 +5,7 @@ with a as (
     select 
  date(extract(year from transaction_date_day), extract(month from transaction_date_day), 1) as date_day,
  sum(donors) as recur_donors_a
-from {{ref('mart_arc_revenue_and_donor_count_by_lifetime_gifts')}}
+from {{ref('mart_audience_revenue_and_donor_count_recur_by_lifetime_gifts')}}
 group by 1 
 ),
 
