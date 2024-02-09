@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-- name: stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction
+  - name: stg_stitch_sfmc_audience_transactions_enriched_rollup_join_person_and_transaction
     description: A table joining audience, person and transaction details
     columns:
       - name: date_day
@@ -28,8 +28,8 @@ models:
           - not_null:
               config:
                 severity: warn
-                warn_if: ">10"
-                error_if: ">50"
+                warn_if: '>10'
+                error_if: '>50'
       - name: gift_size_str
         description: Size of the gift associated with the transaction
       - name: channel
@@ -51,4 +51,3 @@ models:
         description: The amount of the first gift
       - name: join_month_year_str
         description: The date of the first gift in the format of YYYY-MM-DD
-  

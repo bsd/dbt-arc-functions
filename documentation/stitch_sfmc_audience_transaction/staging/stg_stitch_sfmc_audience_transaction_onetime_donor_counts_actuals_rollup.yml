@@ -1,8 +1,10 @@
 ---
 version: 2
 models:
-   - name: stg_stitch_sfmc_audience_transaction_onetime_donor_counts_actuals_rollup
-    description: This model contains the actual onetime donor counts for each audience and transaction in Salesforce Marketing Cloud (SFMC). It provides a rollup of the counts based on different intervals.
+  - name: stg_stitch_sfmc_audience_transaction_onetime_donor_counts_actuals_rollup
+    description: This model contains the actual onetime donor counts for each audience
+      and transaction in Salesforce Marketing Cloud (SFMC). It provides a rollup of
+      the counts based on different intervals.
     tests:
       - dbt_arc_functions.cumulative_column_values:
           cumulative_column: total_onetime_donor_counts_cumulative
@@ -46,12 +48,13 @@ models:
       - name: date_day
         description: The date of each day. This column has one row per day per person.
       - name: interval_type
-        description: The type of interval used to calculate the counts (e.g., daily, weekly, monthly).
+        description: The type of interval used to calculate the counts (e.g., daily,
+          weekly, monthly).
         tests:
           - accepted_values:
-                values: [daily, monthly, yearly]
-                config:
-                    severity: warn
+              values: [daily, monthly, yearly]
+              config:
+                severity: warn
       - name: donor_audience
         description: the assigned donor audience category
         tests:
@@ -71,7 +74,8 @@ models:
       - name: retained_onetime_donor_counts
         description: The number of retained donors who made a onetime donation.
       - name: retained3_onetime_donor_counts
-        description: The number of donors retained for at least 3 months who mad a onetime donation.
+        description: The number of donors retained for at least 3 months who mad a
+          onetime donation.
       - name: active_onetime_donor_counts
         description: The number of active donors who made a onetime donation.
       - name: lapsed_onetime_donor_counts
@@ -83,9 +87,11 @@ models:
       - name: retained_onetime_donor_counts_cumulative
         description: The cumulative number of retained donors who made a onetime donation.
       - name: retained3_onetime_donor_counts_cumulative
-        description: The cumulative number of donors retained for at least 3 months who made a onetime donation.
+        description: The cumulative number of donors retained for at least 3 months
+          who made a onetime donation.
       - name: reinstated_onetime_donor_counts_cumulative
-        description: The cumulative number of reinstated donors who made a onetime donation.
+        description: The cumulative number of reinstated donors who made a onetime
+          donation.
       - name: active_onetime_donor_counts_cumulative
         description: The cumulative number of active donors who made a onetime donation.
       - name: lapsed_onetime_donor_counts_cumulative

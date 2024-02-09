@@ -2,7 +2,8 @@
 version: 2
 models:
   - name: stg_stitch_sfmc_audience_transaction_recur_donor_counts_daily
-    description: Contains daily transaction counts for recurring donors in the Salesforce Marketing Cloud audience
+    description: Contains daily transaction counts for recurring donors in the Salesforce
+      Marketing Cloud audience
     tests:
       - dbt_arc_functions.assert_first_donation_ever:
           frequency: recurring
@@ -51,9 +52,9 @@ models:
         description: The type of interval for the transaction
         tests:
           - accepted_values:
-                values: [daily]
-                config:
-                    severity: warn
+              values: [daily]
+              config:
+                severity: warn
       - name: donor_audience
         description: the assigned donor audience category
         tests:

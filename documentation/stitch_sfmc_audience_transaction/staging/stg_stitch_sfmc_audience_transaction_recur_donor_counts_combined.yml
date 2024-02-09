@@ -49,9 +49,9 @@ models:
         description: The type of time interval
         tests:
           - accepted_values:
-                values: [daily, monthly, yearly]
-                config:
-                    severity: warn
+              values: [daily, monthly, yearly]
+              config:
+                severity: warn
       - name: donor_audience
         description: the assigned donor audience category
         tests:

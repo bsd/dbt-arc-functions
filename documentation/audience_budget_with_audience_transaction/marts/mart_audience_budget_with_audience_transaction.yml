@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-   - name: mart_audience_budget_with_audience_transaction
+  - name: mart_audience_budget_with_audience_transaction
     description: ''
     tests:
       - dbt_arc_functions.cumulative_column_values:
@@ -120,4 +120,3 @@ models:
       - name: onetime_new_donor_count_cumulative
         data_type: float64
         description: ''
-  

@@ -4,9 +4,9 @@ models:
   - name: stg_audience_transaction_recur_donor_counts_actuals_rollup_unioned
     description: This is the staging table for the rollup of actuals for recurring
       donor counts. It includes information on the source relation, date day, interval
-      type, donor audience, channel, total recurring donor counts, new recurring
-      donor counts, retained recurring donor counts, retained3 recurring donor counts,
-      active recurring donor counts, and lapsed recurring donor counts.
+      type, donor audience, channel, total recurring donor counts, new recurring donor
+      counts, retained recurring donor counts, retained3 recurring donor counts, active
+      recurring donor counts, and lapsed recurring donor counts.
     tests:
       - dbt_arc_functions.cumulative_column_values:
           cumulative_column: total_recur_donor_counts_cumulative
@@ -55,9 +55,9 @@ models:
         description: The type of interval for the recurring donation.
         tests:
           - accepted_values:
-                values: [daily, monthly, yearly]
-                config:
-                    severity: warn
+              values: [daily, monthly, yearly]
+              config:
+                severity: warn
       - name: donor_audience
         description: the assigned donor audience category
         tests:
@@ -76,7 +76,7 @@ models:
         description: The number of totally new recurring donors in the given interval.
       - name: new_to_fy_recur_donor_counts
         data_type: int64
-        description: "# of donors in new donor loyalty category this FY"
+        description: '# of donors in new donor loyalty category this FY'
       - name: retained_recur_donor_counts
         description: The number of retained recurring donors.
       - name: retained3_recur_donor_counts
@@ -87,24 +87,19 @@ models:
         description: The number of lapsed recurring donors.
       - name: total_recur_donor_counts_cumulative
         data_type: int64
-        description: ""
-
+        description: ''
       - name: new_to_fy_recur_donor_counts_cumulative
         data_type: int64
-        description: ""
-
+        description: ''
       - name: new_recur_donor_counts_cumulative
         data_type: int64
-        description: ""
-
+        description: ''
       - name: retained_recur_donor_counts_cumulative
         data_type: int64
-        description: ""
-
+        description: ''
       - name: retained3_recur_donor_counts_cumulative
         data_type: int64
-        description: ""
-
+        description: ''
       - name: reinstated_recur_donor_counts_cumulative
         data_type: int64
-        description: ""
+        description: ''
