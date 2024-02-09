@@ -4,7 +4,7 @@
 with a as (
     select 
  date(extract(year from transaction_date_day), extract(month from transaction_date_day), 1) as date_day,
- sum(donors) as all_donors_a
+ sum(donors) as recur_donors_a
 from {{ref('mart_arc_revenue_and_donor_count_by_lifetime_gifts')}}
 group by 1 
 ),
@@ -45,7 +45,7 @@ full_join as (
         round(d.onetime_donors_d, 0) onetime_donors_d,
         round(c.recur_donors_c, 0) as recur_donors_c,
         round(b.recur_donors_b,0) as recur_donors_b,
-        round(a.all_donors_a,0) as all_donors_a
+        round(a.recur_donors_a,0) as recur_donors_a
     from a 
     full join b using (date_day)
     full join c using (date_day)
@@ -57,25 +57,27 @@ issues as (
 select 
     date_day, 
     sum(case
-            when recur_donors_c !=recur_donors_b 
+            when recur_donors_a !=recur_donors_b
             then 1 else 0 
-        end) as c_not_equal_b,
-    sum(case 
-            when (onetime_donors_d + recur_donors_c > all_donors_a)
-            then 1 else 0
-        end) as d_and_c_greater_than_a,
-    sum(case 
-            when (onetime_donors_d + recur_donors_b > all_donors_a)
-            then 1 else 0
-        end) as d_and_b_greater_than_a
+        end) as a_not_equal_b,
+    sum(case
+            when recur_donors_a !=recur_donors_c
+            then 1 else 0 
+        end) as a_not_equal_c,
+    sum(case
+            when recur_donors_b !=recur_donors_c
+            then 1 else 0 
+        end) as b_not_equal_c
     from full_join
     group by 1
 )
 
 select * from issues
-where c_not_equal_b > 0
-or d_and_c_greater_than_a > 0
-or d_and_b_greater_than_a > 0
+where a_not_equal_b > 0
+or a_not_equal_c > 0
+or b_not_equal_c > 0
+
+/* to do: the one model representing 1x donor counts doesn't have another mart for comparision */
 
 
 
