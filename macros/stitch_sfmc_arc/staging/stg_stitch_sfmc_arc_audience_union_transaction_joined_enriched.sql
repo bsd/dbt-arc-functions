@@ -30,14 +30,14 @@ with audience_union_transaction_joined as (
         }} as fiscal_year,
         transaction_enriched.person_id,
         transaction_enriched.transaction_id,
-        coalesce(audience_unioned.donor_audience, calculated_audience.donor_audience) as coalesced_audience,
+        coalesce(audience_unioned.donor_audience, calculated_audience.donor_audience) as donor_audience,
         donor_engagement.donor_engagement,
         transaction_enriched.channel as channel,
         transaction_enriched.appeal_business_unit,
         transaction_enriched.gift_size_string,
         transaction_enriched.recurring,
         transaction_enriched.amount,
-        transaction_enriched.gift_count,
+        transaction_enriched.gift_count
     from {{ ref(donor_transaction_enriched) }} transaction_enriched
     left join
         {{ ref(donor_audience_unioned) }} audience_unioned
@@ -154,7 +154,7 @@ making sure to finally dedupe on transaction_id.
         audience_union_transaction_joined.transaction_id,
         audience_union_transaction_joined.fiscal_year,
         audience_union_transaction_joined.person_id,
-        audience_union_transaction_joined.coalesced_audience,
+        audience_union_transaction_joined.donor_audience,
         audience_union_transaction_joined.donor_engagement,
         arc_donor_loyalty.donor_loyalty,
         audience_union_transaction_joined.channel,
@@ -185,7 +185,11 @@ select
 from dedupe 
 )
 
-select * from final 
+select *,
+case
+    when nth_transaction_this_fiscal_year = 1 then true else false
+    end as is_first_transaction_this_fy
+ from final 
 {% if is_incremental() %}
 -- pulls in all records within 7 days of max transaction date day
 where transaction_date_day >= (select date_sub(max(transaction_date_day), interval 7 day) from {{ this }})

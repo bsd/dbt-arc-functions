@@ -7,13 +7,12 @@ with
         select
             last_day(transaction_date_day, year) as date_day,
             channel,
-            coalesced_audience as donor_audience,
+            donor_audience,
             gift_size_string as gift_size,
             count(distinct person_id) as donor_counts
         from {{ ref(audience_transaction) }}
         where recurring = true
         group by 1, 2, 3, 4
-        order by 1 desc, 4
     )
 
 select 'yearly' as interval_type, *

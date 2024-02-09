@@ -8,6 +8,45 @@ models:
       the platform, total recurring donor counts, new recurring donor counts, retained
       recurring donor counts, retained3 recurring donor counts, active recurring donor
       counts, and lapsed recurring donor counts.
+    tests:
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: total_recur_donor_counts_cumulative
+          partition_by: [interval_type, fiscal_year, donor_audience, channel]
+          order_by: [date_day]
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: new_recur_donor_counts_cumulative
+          partition_by: [interval_type, fiscal_year, donor_audience, channel]
+          order_by: [date_day]
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: new_to_fy_recur_donor_counts_cumulative
+          partition_by: [interval_type, fiscal_year, donor_audience, channel]
+          order_by: [date_day]
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: retained_recur_donor_counts_cumulative
+          partition_by: [interval_type, fiscal_year, donor_audience, channel]
+          order_by: [date_day]
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: retained3_recur_donor_counts
+          partition_by: [interval_type, fiscal_year, donor_audience, channel]
+          order_by: [date_day]
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: reinstated_recur_donor_counts
+          partition_by: [interval_type, fiscal_year, donor_audience, channel]
+          order_by: [date_day]
+      - dbt_expectations.expect_multicolumn_sum_to_equal:
+          column_list:
+            - new_to_fy_recur_donor_counts
+            - retained_recur_donor_counts
+            - retained3_recur_donor_counts
+            - reinstated_recur_donor_counts
+          sum_total: sum(total_recur_donor_counts)
+          group_by: [date_day, interval_type]
+          severity: warn
+      - dbt_expectations.expect_multicolumn_sum_to_equal:
+          column_list: [active_recur_donor_counts, lapsed_recur_donor_counts]
+          sum_total: sum(total_recur_donor_counts)
+          group_by: [date_day, interval_type]
+          severity: warn
     columns:
       - name: date_day
         description: The date of each day. This column has one row per day per person
@@ -20,11 +59,17 @@ models:
               config:
                 severity: warn
       - name: donor_audience
-        description: The audience associated with the transaction
-        tests: [not_null]
+        description: the assigned donor audience category
+        tests:
+          - not_null:
+              config:
+                severity: warn
       - name: channel
         description: The platform where the transaction occurred
-        tests: [not_null]
+        tests:
+          - not_null:
+              config:
+                severity: warn
       - name: total_recur_donor_counts
         description: The total count of recurring donors
       - name: new_recur_donor_counts

@@ -1,7 +1,7 @@
 ---
 version: 2
 models:
-  - name: mart_arc_revenue_and_donor_count_by_lifetime_gifts
+  - name: mart_audience_revenue_and_donor_count_recur_by_lifetime_gifts
     description: A mart that contains revenue and donor count by lifetime gifts
     columns:
       - name: transaction_date_year

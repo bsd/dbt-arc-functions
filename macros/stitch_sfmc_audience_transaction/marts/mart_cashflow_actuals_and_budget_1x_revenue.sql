@@ -7,7 +7,7 @@ with
     base as (
         select
             audience_transactions.transaction_date_day as date_day,
-            audience_transactions.coalesced_audience as donor_audience,
+            audience_transactions.donor_audience,
             initcap(audience_transactions.channel) as channel,
             audience_transactions.recurring as recur_flag,
             audience_transactions.fiscal_year,
