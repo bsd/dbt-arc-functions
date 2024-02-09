@@ -45,11 +45,11 @@ issues as (
 select 
     date_day, 
     sum(case 
-            when (recur_revenue_b + onetime_revenue_a > all_revenue_c)
+            when (recur_revenue_b + onetime_revenue_a > (1.5 * all_revenue_c))
             then 1 else 0
         end) as b_and_a_greater_than_c,
     sum(case 
-        when (recur_revenue_d + onetime_revenue_a > all_revenue_c)
+        when (recur_revenue_d + onetime_revenue_a > (1.5 * all_revenue_c))
         then 1 else 0
     end) as d_and_a_greater_than_c,
     sum(case 
