@@ -155,7 +155,5 @@ with base as (
     from base
     group by 1, 2, 3, 4
 
-select * from base
-
 
 {% endmacro %}
