@@ -79,9 +79,9 @@ with base as (
             case
                 when
                     {% if interval == 'day'%}
-                    join_date = date_day
+                    join_date = transaction_date_day
                     {% else %}
-                    date_trunc(join_date, {{ interval }}) = date_trunc(date_day, {{ interval }}) 
+                    date_trunc(join_date, {{ interval }}) = date_trunc(transaction_date_day, {{ interval }}) 
                     {% endif %}
                 then person_id
             end
@@ -146,10 +146,10 @@ with base as (
 
             /* active and lapsed donor counts */
         count(
-            distinct case when person_and_transaction.donor_engagement = 'active' then person_id end
+            distinct case when donor_engagement = 'active' then person_id end
         ) as active{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         count(
-            distinct case when person_and_transaction.donor_engagement = 'lapsed' then person_id end
+            distinct case when donor_engagement = 'lapsed' then person_id end
         ) as lapsed{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
     from base
