@@ -1,48 +1,48 @@
 ---
 version: 2
 models:
-  - name: stg_stitch_sfmc_audience_transaction_recur_donor_counts_daily
-    description: Contains daily transaction counts for recurring donors in the Salesforce
+  - name: stg_stitch_sfmc_audience_transaction_onetime_donor_counts_daily
+    description: Contains daily transaction counts for onetimering donors in the Salesforce
       Marketing Cloud audience
     tests:
       - dbt_arc_functions.assert_first_donation_ever:
           frequency: recurring
       - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: total_recur_donor_counts_cumulative
+          cumulative_column: total_onetime_donor_counts_cumulative
           partition_by: [interval_type, fiscal_year, donor_audience, channel]
           order_by: [date_day]
       - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: new_recur_donor_counts_cumulative
+          cumulative_column: new_onetime_donor_counts_cumulative
           partition_by: [interval_type, fiscal_year, donor_audience, channel]
           order_by: [date_day]
       - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: new_to_fy_recur_donor_counts_cumulative
+          cumulative_column: new_to_fy_onetime_donor_counts_cumulative
           partition_by: [interval_type, fiscal_year, donor_audience, channel]
           order_by: [date_day]
       - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: retained_recur_donor_counts_cumulative
+          cumulative_column: retained_onetime_donor_counts_cumulative
           partition_by: [interval_type, fiscal_year, donor_audience, channel]
           order_by: [date_day]
       - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: retained3_recur_donor_counts_cumulative
+          cumulative_column: retained3_onetime_donor_counts_cumulative
           partition_by: [interval_type, fiscal_year, donor_audience, channel]
           order_by: [date_day]
       - dbt_arc_functions.cumulative_column_values:
-          cumulative_column: reinstated_recur_donor_counts_cumulative
+          cumulative_column: reinstated_onetime_donor_counts_cumulative
           partition_by: [interval_type, fiscal_year, donor_audience, channel]
           order_by: [date_day]
       - dbt_expectations.expect_multicolumn_sum_to_equal:
           column_list:
-            - new_to_fy_recur_donor_counts
-            - retained_recur_donor_counts
-            - retained3_recur_donor_counts
-            - reinstated_recur_donor_counts
-          sum_total: sum(total_recur_donor_counts)
+            - new_to_fy_onetime_donor_counts
+            - retained_onetime_donor_counts
+            - retained3_onetime_donor_counts
+            - reinstated_onetime_donor_counts
+          sum_total: sum(total_onetime_donor_counts)
           group_by: [date_day, interval_type]
           severity: warn
       - dbt_expectations.expect_multicolumn_sum_to_equal:
-          column_list: [active_recur_donor_counts, lapsed_recur_donor_counts]
-          sum_total: sum(total_recur_donor_counts)
+          column_list: [active_onetime_donor_counts, lapsed_onetime_donor_counts]
+          sum_total: sum(total_onetime_donor_counts)
           group_by: [date_day, interval_type]
           severity: warn
     columns:
@@ -67,15 +67,15 @@ models:
           - not_null:
               config:
                 severity: warn
-      - name: total_recur_donor_counts
-        description: Total count of recurring donors
-      - name: new_recur_donor_counts
-        description: Count of new recurring donors
-      - name: retained_recur_donor_counts
-        description: Count of retained recurring donors
-      - name: retained3_recur_donor_counts
-        description: Count of recurring donors retained for at least 3 intervals
-      - name: active_recur_donor_counts
-        description: Count of active recurring donors
-      - name: lapsed_recur_donor_counts
-        description: Count of lapsed recurring donors
+      - name: total_onetime_donor_counts
+        description: Total count of onetimering donors
+      - name: new_onetime_donor_counts
+        description: Count of new onetimering donors
+      - name: retained_onetime_donor_counts
+        description: Count of retained onetimering donors
+      - name: retained3_onetime_donor_counts
+        description: Count of onetimering donors retained for at least 3 intervals
+      - name: active_onetime_donor_counts
+        description: Count of active onetimering donors
+      - name: lapsed_onetime_donor_counts
+        description: Count of lapsed onetimering donors
