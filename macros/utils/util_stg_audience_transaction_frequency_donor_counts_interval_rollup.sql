@@ -79,9 +79,9 @@ with base as (
             case
                 when
                     {% if interval == 'day'%}
-                    join_date = date_spine_with_audience_and_channel.date_day
+                    join_date = date_day
                     {% else %}
-                    date_trunc(join_date, {{ interval }}) = date_trunc(date_spine_with_audience_and_channel.date_day, {{ interval }}) 
+                    date_trunc(join_date, {{ interval }}) = date_trunc(date_day, {{ interval }}) 
                     {% endif %}
                 then person_id
             end
