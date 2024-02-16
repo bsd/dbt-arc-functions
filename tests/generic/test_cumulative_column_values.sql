@@ -1,17 +1,23 @@
-{% test cumulative_column_values(model, cumulative_column, partition_by, order_by) %}
+{% test cumulative_column_values(model, cumulative_column, partition_by = [], order_by = []) %}
 
 {{ config(severity="warn") }}
 
-{% if partition_by is string %} {% set partition_by = [partition_by] %} {% endif %}
-{% if order_by is string %} {% set order_by = [order_by] %} {% endif %}
+{% if partition_by|length() > 0 %}
+  {% set partition_by_clause = group_by|join(',') %}
+{% endif %}
+
+{% if order_by|length() > 0 %}
+  {% set order_by_clause = group_by|join(',') %}
+{% endif %}
+
 
 with
     validating as (
         select
             *,
             lag({{ cumulative_column }}) over (
-                partition by {{ partition_by | join(", ") }}
-                order by {{ order_by | join(", ") }}
+                partition by {{ partition_by_clause }}
+                order by {{ order_by_clause }}
             ) as prev_value
         from {{ model }}
     )
