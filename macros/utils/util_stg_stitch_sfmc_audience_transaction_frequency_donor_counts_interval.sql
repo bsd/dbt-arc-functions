@@ -71,7 +71,7 @@ distinct_channels as (
 
 distinct_days as (
     select distinct date_day from base
-)
+),
 
 cross_join as (
     select 
