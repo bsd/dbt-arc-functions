@@ -76,7 +76,12 @@ cross_join as (
     select 
         date_day,
         donor_audience,
-        channel 
+        channel,
+        {{
+            dbt_arc_functions.get_fiscal_year(
+                "date_day", var("fiscal_year_start")
+            )
+        }} as fiscal_year
     from distinct_days 
     cross join distinct_channels
     cross join distinct_audiences
@@ -85,11 +90,7 @@ cross_join as (
 true_cumulative as (
     select 
         cross_join.date_day,
-        {{
-            dbt_arc_functions.get_fiscal_year(
-                "cross_join.date_day", var("fiscal_year_start")
-            )
-        }} as fiscal_year,
+        cross_join.fiscal_year,
         cross_join.donor_audience,
         cross_join.channel,
         sum(base.unique_totalFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
