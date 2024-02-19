@@ -91,7 +91,7 @@ models:
       - name: channel
         data_type: string
         description: The channel used for transactions.
-        tests: [not_null]
+        tests: [not_null, dbt_arc_functions.assert_field_is_initcap]
       - name: total_recur_donor_counts
         data_type: int64
         description: all distinct donors

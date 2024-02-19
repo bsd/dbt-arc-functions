@@ -14,7 +14,7 @@ models:
       - name: channel
         data_type: string
         description: what channel this status is for
-        tests: [not_null]
+        tests: [not_null, dbt_arc_functions.assert_field_is_initcap]
       - name: start_date
         data_type: date
         description: first date of engagement status

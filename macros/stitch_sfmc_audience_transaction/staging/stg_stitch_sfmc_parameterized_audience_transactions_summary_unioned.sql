@@ -46,7 +46,7 @@ select
     transaction_date_day,
     person_id,
     recurring,
-    {{ channel }} as channel,
+    initcap({{ channel }}) as channel,
     appeal_business_unit,
     amount
 from dedupe
