@@ -87,7 +87,7 @@ true_cumulative as (
     select 
         cross_join.date_day,
         base.fiscal_year,
-        base.interval,
+        base.interval_type,
         cross_join.donor_audience,
         cross_join.channel,
         sum(base.unique_totalFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
