@@ -12,7 +12,7 @@ models:
         data_type: string
         description: The channel through which the donor was acquired or made their
           first donation.
-        tests: [not_null]
+        tests: [not_null, dbt_arc_functions.assert_field_is_initcap]
       - name: active_donors
         data_type: integer
         description: The number of donors who were active within the last 13 months
