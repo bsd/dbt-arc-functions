@@ -24,6 +24,11 @@
 with base as (
     select 
     date_day,
+    {{
+            dbt_arc_functions.get_fiscal_year(
+                "date_day", var("fiscal_year_start")
+            )
+        }} as fiscal_year,
     donor_audience,
     channel,
     total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
@@ -116,7 +121,7 @@ true_cumulative as (
     select
         coalesce(true_cumulative.date_day, base.date_day) as date_day,
         true_cumulative.interval_type,
-        true_cumulative.fiscal_year,
+        coalesce(true_cumulative.fiscal_year, base.fiscal_year) as fiscal_year,
         coalesce(true_cumulative.donor_audience, base.donor_audience) as donor_audience,
         coalesce(true_cumulative.channel, base.channel) as channel,
         base.total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts, 
