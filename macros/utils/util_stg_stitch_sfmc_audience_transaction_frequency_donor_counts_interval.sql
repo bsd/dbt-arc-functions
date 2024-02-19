@@ -115,8 +115,8 @@ true_cumulative as (
 
     select
         coalesce(true_cumulative.date_day, base.date_day) as date_day,
-        coalesce(true_cumulative.interval_type) as interval_type,
-        coalesce(true_cumulative.fiscal_year, base.fiscal_year) as fiscal_year,
+        true_cumulative.interval_type,
+        true_cumulative.fiscal_year,
         coalesce(true_cumulative.donor_audience, base.donor_audience) as donor_audience,
         coalesce(true_cumulative.channel, base.channel) as channel,
         base.total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts, 
