@@ -14,7 +14,7 @@ select
     safe_cast({{ message_id }} as int) as message_id,
     transaction_date,
     amount,
-    appeal,
+    initcap(appeal) as appeal,
     safe_cast(null as string) as appeal_business_unit,
     cast({{ recurring }} as boolean) as recurring,
     cast({{ recurring }} as boolean) as recurring_revenue,
