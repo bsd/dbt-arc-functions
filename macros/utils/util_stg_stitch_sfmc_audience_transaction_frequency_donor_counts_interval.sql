@@ -103,7 +103,11 @@ true_cumulative as (
     from cross_join 
     full outer join base using (date_day, donor_audience, channel)
     window w as (
-        partition by fiscal_year, donor_audience, channel
+        partition by {{
+            dbt_arc_functions.get_fiscal_year(
+                "cross_join.date_day", var("fiscal_year_start")
+            )
+        }}, donor_audience, channel
         order by date_day
     )
 )
