@@ -90,13 +90,6 @@ true_cumulative as (
                 "cross_join.date_day", var("fiscal_year_start")
             )
         }} as fiscal_year,
-        {% if interval == 'day' %}
-        'daily' as interval_type,
-        {% elif interval == 'month' %}
-        'monthly' as interval_type,
-        {% elif interval == 'year' %}
-        'yearly' as interval_type,
-        {% endif %}
         cross_join.donor_audience,
         cross_join.channel,
         sum(base.unique_totalFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
@@ -120,7 +113,13 @@ true_cumulative as (
 
     select
         coalesce(true_cumulative.date_day, base.date_day) as date_day,
-        true_cumulative.interval_type,
+        {% if interval == 'day' %}
+        'daily' as interval_type,
+        {% elif interval == 'month' %}
+        'monthly' as interval_type,
+        {% elif interval == 'year' %}
+        'yearly' as interval_type,
+        {% endif %}
         coalesce(true_cumulative.fiscal_year, base.fiscal_year) as fiscal_year,
         coalesce(true_cumulative.donor_audience, base.donor_audience) as donor_audience,
         coalesce(true_cumulative.channel, base.channel) as channel,
