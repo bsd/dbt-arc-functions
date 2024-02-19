@@ -2,9 +2,11 @@
 
 {{ config(severity="warn") }}
 
-with distinct_values as (select distinct {{column}} as actual_value from {{model}})
+with actual_values as (select distinct {{column}} as actual_value from {{model}}),
 
-select * from distinct_values 
-where actual_value != initcap(actual_value)
+expected_values as (select distinct initcap({{column}} as expected_value from {{model}}))
+
+select * from actual_values 
+where actual_value not in expected_values
 
 {% endtest %}
