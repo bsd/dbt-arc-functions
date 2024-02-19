@@ -27,7 +27,7 @@ with base as (
     select 
         person_and_transaction.transaction_date_day,
         person_and_transaction.person_id,
-        person_and_transaction.channel,
+        initcap(person_and_transaction.channel) as channel,
         person_and_transaction.donor_audience,
         person_and_transaction.donor_engagement,
         person_and_transaction.donor_loyalty,

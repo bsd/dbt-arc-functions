@@ -66,6 +66,7 @@ models:
           - not_null:
               config:
                 severity: warn
+          - dbt_arc_functions.assert_field_is_initcap
       - name: total_recur_donor_counts
         description: The total number of recurring donors for the specified audience,
           interval, and platform

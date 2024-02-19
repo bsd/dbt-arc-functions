@@ -19,7 +19,7 @@ models:
         tests: [not_null]
       - name: channel
         description: the source channel of each transaction
-        tests: [not_null]
+        tests: [not_null, dbt_arc_functions.assert_field_is_initcap]
       - name: join_amount_string_recur
         description: the gift size category of the fist gift
       - name: join_amount_string_recur_sort

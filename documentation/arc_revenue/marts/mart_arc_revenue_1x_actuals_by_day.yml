@@ -25,7 +25,7 @@ models:
         description: This is a grouping of channel values
       - name: channel
         description: the source channel of each transaction
-        tests: [not_null]
+        tests: [not_null, dbt_arc_functions.assert_field_is_initcap]
       - name: gift_size_string
         description: the size of each gift sorted into categories represented as a
           string

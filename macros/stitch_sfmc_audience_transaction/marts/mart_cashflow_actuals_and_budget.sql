@@ -29,7 +29,7 @@ with
             coalesce(
                 base.donor_audience, budget_revenue.donor_audience
             ) as donor_audience,
-            coalesce(base.channel, lower(budget_revenue.platform)) as channel,
+            coalesce(base.channel, initcap(budget_revenue.platform)) as channel,
             coalesce(base.total_revenue_actuals, 0) as total_revenue_actuals,
             coalesce(base.total_gifts_actuals, 0) as total_gifts_actuals,
             budget_revenue.total_revenue_budget_by_day as total_revenue_budget_by_day,
