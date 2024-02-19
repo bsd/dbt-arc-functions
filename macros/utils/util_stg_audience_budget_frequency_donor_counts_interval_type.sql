@@ -48,7 +48,7 @@ distinct_audiences as (
     select distinct donor_audience from base
 ),
 
-distinct_channels as (
+distinct_join_sources as (
     select distinct join_source from base
 ),
 
@@ -60,9 +60,9 @@ cross_join as (
     select 
         date_day,
         donor_audience,
-        channel 
+        join_source
     from distinct_days 
-    cross join distinct_channels
+    cross join distinct_join_sources
     cross join distinct_audiences
 ),
 
@@ -73,7 +73,7 @@ true_cumulative as (
         base.fiscal_year,
         base.interval_type,
         cross_join.donor_audience,
-        cross_join.channel,
+        cross_join.join_source,
         sum({{recur_onetime}}_donor_count_budget) over (
             partition by
                 donor_audience,
@@ -97,7 +97,7 @@ true_cumulative as (
             order by date_day
         ) as {{recur_onetime}}_new_donor_count_budget_cumulative
     from cross_join 
-    full outer join base using (date_day, donor_audience, channel)
+    full outer join base using (date_day, donor_audience, join_source)
 )
 
 
@@ -112,6 +112,6 @@ true_cumulative as (
         true_cumulative.{{recur_onetime}}_donor_count_budget_cumulative,
         true_cumulative.{{recur_onetime}}_new_donor_count_budget_cumulative  
     from true_cumulative 
-    full outer join base using (date_day, donor_audience, channel)
+    full outer join base using (date_day, donor_audience, join_source)
 
 {% endmacro %}
