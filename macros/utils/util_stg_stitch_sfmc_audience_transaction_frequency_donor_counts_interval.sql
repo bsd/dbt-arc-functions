@@ -100,24 +100,25 @@ true_cumulative as (
         sum(base.unique_retainedFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
         sum(base.unique_retained3FY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative,
         sum(base.unique_reinstatedFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts) over w as reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative
-    from cross_join 
-    full outer join base using (date_day, donor_audience, channel)
+    from cross_join
+    left join base
+     using (date_day, donor_audience, channel)
     window w as (
         partition by {{
             dbt_arc_functions.get_fiscal_year(
                 "cross_join.date_day", var("fiscal_year_start")
             )
-        }}, donor_audience, channel
-        order by date_day
+        }}, cross_join.donor_audience, cross_join.channel
+        order by cross_join.date_day asc
     )
 )
 
     select
-        true_cumulative.date_day,
-        true_cumulative.interval_type,
-        true_cumulative.fiscal_year,
-        true_cumulative.donor_audience,
-        true_cumulative.channel,
+        coalesce(true_cumulative.date_day, base.date_day) as date_day,
+        coalesce(true_cumulative.interval_type, base.interval_type) as interval_type,
+        coalesce(true_cumulative.fiscal_year, base.fiscal_year) as fiscal_year,
+        coalesce(true_cumulative.donor_audience, base.donor_audience) as donor_audience,
+        coalesce(true_cumulative.channel, base.channel) as channel,
         base.total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts, 
         base.new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
         base.new_to_fy{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
