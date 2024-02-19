@@ -1,4 +1,4 @@
-{% test cumulative_column_values(model, cumulative_column, partition_by, order_by) %}
+{% test cumulative_column_values(model, cumulative_column, partition_by, order_by, group_by) %}
 
 {{ config(severity="warn") }}
 
@@ -14,6 +14,7 @@ with
                 order by {{ order_by | join(", ") }}
             ) as prev_value
         from {{ model }}
+        group by {{group_by | join(", ")}}
     )
 
 select *
