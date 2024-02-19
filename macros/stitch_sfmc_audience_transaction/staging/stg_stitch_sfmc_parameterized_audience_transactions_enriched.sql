@@ -22,7 +22,7 @@ with
             person_id,
             transaction_date_day,
             cast(amount as float64) as amount,
-            {{ channel }} as channel,
+            initcap({{ channel }}) as channel,
             appeal_business_unit,
             recurring,
             (

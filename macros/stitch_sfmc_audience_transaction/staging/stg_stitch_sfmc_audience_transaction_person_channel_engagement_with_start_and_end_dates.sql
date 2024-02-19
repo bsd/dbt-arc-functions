@@ -83,7 +83,7 @@ with
     )
 select
     person_id,
-    channel,
+    initcap(channel) as channel,
     donor_engagement,
     start_date,
     lead(start_date) over (partition by person_id, channel order by start_date)
