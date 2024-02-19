@@ -28,6 +28,7 @@
                 date(extract (year from date_day), 1, 1) as date_day,
                 'yearly' as interval_type,
     {% endif %}
+                
                 donor_audience,
                 platform as join_source,
                 sum(total_revenue_budget_by_day) as {{recur_onetime}}_donor_count_budget,
@@ -70,7 +71,6 @@ cross_join as (
 true_cumulative as (
     select 
         cross_join.date_day,
-        base.fiscal_year,
         base.interval_type,
         cross_join.donor_audience,
         cross_join.join_source,
@@ -104,7 +104,6 @@ true_cumulative as (
  select
         true_cumulative.date_day,
         true_cumulative.interval_type,
-        true_cumulative.fiscal_year,
         true_cumulative.donor_audience,
         true_cumulative.join_source,
         base.{{recur_onetime}}_donor_count_budget,
