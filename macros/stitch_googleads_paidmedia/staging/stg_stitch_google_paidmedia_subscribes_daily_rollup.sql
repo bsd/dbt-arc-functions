@@ -3,10 +3,10 @@
     source_table="ad_performance_report"
 ) %}
 
-select distinct
-    cast(id as string) as message_id,
-    cast(date as timestamp) as date_timestamp,
-    cast(null as int64) as subscribes
-from {{ source(source_name, source_table) }}
-where campaign_status = 'ENABLED'
+    select distinct
+        cast(id as string) as message_id,
+        cast(date as timestamp) as date_timestamp,
+        cast(null as int64) as subscribes
+    from {{ source(source_name, source_table) }}
+    where campaign_status = 'ENABLED'
 {% endmacro %}
