@@ -11,7 +11,7 @@ with
 if_group_by as (
     select 
    {{group_by | join(", ")}},
-   sum({{cumulative_column}}) as cumulative_column
+   sum({{cumulative_column}}) as {{cumulative_column}}
    from {{model}}
    group by {{group_by | join(", ")}}
 ),
