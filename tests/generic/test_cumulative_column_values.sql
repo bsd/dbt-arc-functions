@@ -8,7 +8,7 @@
 with
 
 {% if group_by != [] %}
-grouping as (
+if_group_by as (
     select 
    {{group_by | join(", ")}},
    sum({{cumulative_column}}) as cumulative_column
@@ -23,7 +23,7 @@ validating as (
                 partition by {{ partition_by | join(", ") }}
                 order by {{ order_by | join(", ") }}
             ) as prev_value
-        from grouping
+        from if_group_by
     )
 
 {% else %}
