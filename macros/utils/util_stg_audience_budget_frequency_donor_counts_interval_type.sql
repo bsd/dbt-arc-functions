@@ -28,7 +28,7 @@
                 date(extract (year from date_day), 1, 1) as date_day,
                 'yearly' as interval_type,
     {% endif %}
-                
+
                 donor_audience,
                 platform as join_source,
                 sum(total_revenue_budget_by_day) as {{recur_onetime}}_donor_count_budget,
