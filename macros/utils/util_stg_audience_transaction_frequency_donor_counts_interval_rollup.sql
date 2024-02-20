@@ -42,7 +42,7 @@ with base as (
             on person_and_transaction.person_id = first_gift.person_id
         where recurring{% if frequency == 'recurring' %}= true{% else %} = false{% endif %}
 )
- 
+
     select
             /* dimensions: date_day, interval_type, donor_audience, channel */
         {% if interval == 'day' %} transaction_date_day as date_day,
