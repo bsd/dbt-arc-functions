@@ -4,19 +4,19 @@
     recurring="NULL"
 ) %}
 
-select
-    revenue_id as transaction_id,
-    bbcrmlookupid as person_id,
-    initial_market_source as source_code,
-    safe_cast('sfmc_bbcrm' as string) as crm,
-    safe_cast('sfmc_bbcrm' as string) as crm_entity,
-    safe_cast({{ message_id }} as int) as message_id,
-    transaction_date,
-    amount,
-    initcap(appeal) as appeal,
-    initcap(appeal_business_unit) as appeal_business_unit,
-    safe_cast({{ recurring }} as boolean) as recurring_revenue,
-    safe_cast({{ recurring }} as boolean) as recurring,
-from {{ ref(reference_name) }}
+    select
+        revenue_id as transaction_id,
+        bbcrmlookupid as person_id,
+        initial_market_source as source_code,
+        safe_cast('sfmc_bbcrm' as string) as crm,
+        safe_cast('sfmc_bbcrm' as string) as crm_entity,
+        safe_cast({{ message_id }} as int) as message_id,
+        transaction_date,
+        amount,
+        initcap(appeal) as appeal,
+        initcap(appeal_business_unit) as appeal_business_unit,
+        safe_cast({{ recurring }} as boolean) as recurring_revenue,
+        safe_cast({{ recurring }} as boolean) as recurring,
+    from {{ ref(reference_name) }}
 
 {% endmacro %}
