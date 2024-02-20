@@ -21,10 +21,10 @@
     {% endfor %}
     {{ relation_names }}
     {% for relation_name in relation_names %}
-        {% do relations.append(
-            ref(relation_name)
-        ) if not is_source else relations.append(
-            source(source_name, relation_name)
+        {% do (
+            relations.append(ref(relation_name))
+            if not is_source
+            else relations.append(source(source_name, relation_name))
         ) %}
     {% endfor %}
     {% do return(relations) %}
