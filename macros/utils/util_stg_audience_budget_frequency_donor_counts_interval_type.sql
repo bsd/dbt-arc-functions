@@ -15,7 +15,7 @@
      {% set recur_onetime = "recur" if frequency == "recurring" else "onetime" %}
 
     with
-        sums as (
+        base as (
             select
 
     {% if interval == 'day' %}
@@ -28,6 +28,7 @@
                 date(extract (year from date_day), 1, 1) as date_day,
                 'yearly' as interval_type,
     {% endif %}
+                
                 donor_audience,
                 platform as join_source,
                 sum(total_revenue_budget_by_day) as {{recur_onetime}}_donor_count_budget,
@@ -42,15 +43,37 @@
                 or lower(donor_audience) = 'monthly'
     {% endif %}
             group by 1, 2, 3, 4
-        )
+        ),
 
-    select
+distinct_audiences as (
+    select distinct donor_audience from base
+),
+
+distinct_join_sources as (
+    select distinct join_source from base
+),
+
+distinct_days as (
+    select distinct date_day from base
+),
+
+cross_join as (
+    select 
         date_day,
-        interval_type,
         donor_audience,
-        join_source,
-        {{recur_onetime}}_donor_count_budget,
-        {{recur_onetime}}_new_donor_count_budget,
+        join_source
+    from distinct_days 
+    cross join distinct_join_sources
+    cross join distinct_audiences
+),
+
+
+true_cumulative as (
+    select 
+        cross_join.date_day,
+        base.interval_type,
+        cross_join.donor_audience,
+        cross_join.join_source,
         sum({{recur_onetime}}_donor_count_budget) over (
             partition by
                 donor_audience,
@@ -72,7 +95,22 @@
                     )
                 }}
             order by date_day
-        ) as {{recur_onetime}}_new_donor_count_cumulative
-    from sums
+        ) as {{recur_onetime}}_new_donor_count_budget_cumulative
+    from cross_join 
+    full outer join base using (date_day, donor_audience, join_source)
+)
+
+
+ select
+        true_cumulative.date_day,
+        true_cumulative.interval_type,
+        true_cumulative.donor_audience,
+        true_cumulative.join_source,
+        base.{{recur_onetime}}_donor_count_budget,
+        base.{{recur_onetime}}_new_donor_count_budget,
+        true_cumulative.{{recur_onetime}}_donor_count_budget_cumulative,
+        true_cumulative.{{recur_onetime}}_new_donor_count_budget_cumulative  
+    from true_cumulative 
+    full outer join base using (date_day, donor_audience, join_source)
 
 {% endmacro %}

@@ -47,7 +47,7 @@
         audience_budget.{{ recur_onetime }}_donor_count_budget, 
         audience_budget.{{ recur_onetime }}_new_donor_count_budget,
         audience_budget.{{ recur_onetime }}_donor_count_budget_cumulative,
-        audience_budget.{{ recur_onetime }}_new_donor_count_cumulative
+        audience_budget.{{ recur_onetime }}_new_donor_count_budget_cumulative
 
     {% if recur_status == "onetime" %}
         from {{ ref(onetime_donor_counts_table) }} as donor_counts

@@ -52,11 +52,6 @@ with base as (
         {% elif interval == 'year' %}
         date(extract(year from transaction_date_day), 1, 1) as date_day,
         {% endif %}
-        {% if interval == 'day' %} 'daily' as interval_type,
-        {% elif interval == 'week' %} 'weekly' as interval_type,
-        {% elif interval == 'month' %} 'monthly' as interval_type,
-        {% elif interval == 'year' %} 'yearly' as interval_type,
-        {% endif %}
         donor_audience,
         channel, 
             /* total donor counts */
@@ -153,7 +148,7 @@ with base as (
         ) as lapsed{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
     from base
-    group by 1, 2, 3, 4
+    group by 1, 2, 3
 
 
 {% endmacro %}

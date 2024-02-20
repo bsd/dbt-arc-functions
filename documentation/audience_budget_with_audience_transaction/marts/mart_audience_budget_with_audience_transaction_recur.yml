@@ -4,6 +4,7 @@ models:
   - name: mart_audience_budget_with_audience_transaction_recur
     description: ''
     tests:
+    # testing that cumulative growth occurs when grouped by all dimensions
       - dbt_arc_functions.cumulative_column_values:
           cumulative_column: total_recur_donor_counts_cumulative
           partition_by: [interval_type, fiscal_year, donor_audience, channel]
@@ -27,6 +28,31 @@ models:
       - dbt_arc_functions.cumulative_column_values:
           cumulative_column: reinstated_recur_donor_counts_cumulative
           partition_by: [interval_type, fiscal_year, donor_audience, channel]
+          order_by: [date_day]
+    # testing that cumulative growth occurs when grouped by day
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: total_recur_donor_counts_cumulative
+          partition_by: [interval_type, fiscal_year]
+          order_by: [date_day]
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: new_recur_donor_counts_cumulative
+          partition_by: [interval_type, fiscal_year]
+          order_by: [date_day]
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: new_to_fy_recur_donor_counts_cumulative
+          partition_by: [interval_type, fiscal_year]
+          order_by: [date_day]
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: retained_recur_donor_counts_cumulative
+          partition_by: [interval_type, fiscal_year]
+          order_by: [date_day]
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: retained3_recur_donor_counts_cumulative
+          partition_by: [interval_type, fiscal_year]
+          order_by: [date_day]
+      - dbt_arc_functions.cumulative_column_values:
+          cumulative_column: reinstated_recur_donor_counts_cumulative
+          partition_by: [interval_type, fiscal_year]
           order_by: [date_day]
       - dbt_expectations.expect_multicolumn_sum_to_equal:
           column_list:
