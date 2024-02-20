@@ -61,18 +61,29 @@
                 and rev_by_cohort.month_diff_int = first_gift_explode.month_diff_int
         )
 
-    select
-        *,
-        case
-            when retention_int < 10
-            then 'Ret' || lpad(cast(retention_int as string), 2, '0')
-            else 'Ret' || cast(retention_int as string)
-        end as retention_str,
-        sum(total_amount) over (
-            partition by
-                join_month_year_str, join_source, join_gift_size, join_donor_audience
-            order by retention_int asc
-        ) as cumulative_amount
-    from big_join
+select
+    join_month_year_str,
+    join_source,
+    join_gift_size,
+    join_donor_audience,
+    retention_int,
+    join_month_year_date,
+    total_amount,
+    donors_in_cohort,
+    case 
+        when retention_int = 0 then donors_in_cohort
+        else donors_retained 
+    end as donors_retained,
+    case
+        when retention_int < 10
+        then 'Ret' || lpad(cast(retention_int as string), 2, '0')
+        else 'Ret' || cast(retention_int as string)
+    end as retention_str,
+    sum(total_amount) over (
+        partition by
+            join_month_year_str, join_source, join_gift_size, join_donor_audience
+        order by retention_int asc
+    ) as cumulative_amount
+from big_join
 
 {% endmacro %}
