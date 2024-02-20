@@ -7,7 +7,7 @@
 
 with
 
-{% if group_by == [] %}
+{% if group_by !== [] %}
 grouping as (
     select 
    {{group_by | join(", ")}},
