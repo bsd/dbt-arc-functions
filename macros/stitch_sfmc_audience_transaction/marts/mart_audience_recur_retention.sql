@@ -62,7 +62,17 @@
         )
 
     select
-        *,
+        join_month_year_str,
+        join_source,
+        join_gift_size,
+        join_donor_audience,
+        retention_int,
+        join_month_year_date,
+        total_amount,
+        donors_in_cohort,
+        case
+            when retention_int = 0 then donors_in_cohort else donors_retained
+        end as donors_retained,
         case
             when retention_int < 10
             then 'Ret' || lpad(cast(retention_int as string), 2, '0')
