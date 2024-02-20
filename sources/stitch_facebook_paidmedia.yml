@@ -512,3 +512,172 @@ sources:
               Conversion specs allow Facebook to surface the ad to users most likely to perform a desired decision. For example: adding to a shopping cart, viewing a particular page, or completing a form.
               Click to expand conversion_specs
               ads (table), conversion_specs (attribute)
+      - name: campaigns
+        description: The ads table contains info about the campaigns in your Facebook
+          Ads account.
+        columns:
+          - name: id
+            data_type: numeric
+            description: |
+              Campaign's ID
+          - name: account_id
+            data_type: numeric
+            description: |
+              ID of the ad account that owns this campaign
+          - name: adlabels
+            data_type: list
+            description: |
+              Ad Labels associated with this campaign
+          - name: bid_strategy
+            data_type: enum
+            description: |
+              Bid strategy for this campaign when you enable campaign budget optimization and when you use AUCTION as your buying type:
+              LOWEST_COST_WITHOUT_CAP: Designed to get the most results for your budget based on your ad set optimization_goal without limiting your bid amount. This is the best strategy to select if you care most about cost efficiency. However, note that it may be harder to get stable average costs as you spend. Note: this strategy is also known as automatic bidding. Learn more in Ads Help Center, About bid strategies: Lowest cost.
+              LOWEST_COST_WITH_BID_CAP: Designed to get the most results for your budget based on your ad set optimization_goal while limiting actual bid to a specified amount. Get specified bid cap in the bid_amount field for each ad set in this ad campaign. This strategy is known as manual maximum-cost bidding. Learn more in Ads Help Center, About bid strategies: Lowest cost.
+              COST_CAP: Designed to get the most results for your budget based on your ad set optimization_goal while limiting actual average cost per optimization event to a specified amount. Get specified cost cap in the bid_amount field for each ad set in this ad campaign. Learn more in Ads Help Center, About bid strategies: Cost Cap.
+              Notes: If you do not enable campaign budget optimization, you should get bid_strategy at the ad set level.
+              TARGET_COST bidding strategy has been deprecated with Marketing API v9.
+          - name: boosted_object_id
+            data_type: numeric
+            description: |
+              The Boosted Object this campaign has associated, if any
+          - name: brand_lift_studies
+            data_type: list
+            description: |
+              Automated Brand Lift V2 studies for this ad set.
+          - name: budget_rebalance_flag
+            data_type: bool
+            description: |
+              Whether to automatically rebalance budgets daily for all the adsets under this campaign. This has been deprecated on Marketing API V7.0.
+          - name: budget_remaining
+            data_type: numeric
+            description: |
+              Remaining budget
+          - name: buying_type
+            data_type: string
+            description: |
+              Buying type, possible values are:
+              AUCTION: default
+              RESERVED: for reach and frequency ads.
+              Reach and Frequency is disabled for housing, employment and credit ads.
+          - name: campaign_group_active_time
+            data_type: numeric
+            description: |
+              campaign_group_active_time this is only for Internal, This will have the active running length of Campaign Groups
+          - name: can_create_brand_lift_study
+            data_type: bool
+            description: |
+              If we can create a new automated brand lift study for the ad set.
+          - name: can_use_spend_cap
+            data_type: bool
+            description: |
+              Whether the campaign can set the spend cap
+          - name: configured_status
+            data_type: enum
+            description: |
+              If this status is PAUSED, all its active ad sets and ads will be paused and have an effective status CAMPAIGN_PAUSED. Prefer using 'status' instead of this.
+          - name: created_time
+            data_type: datetime
+            description: |
+              Created Time
+          - name: daily_budget
+            data_type: numeric
+            description: |
+              The daily budget of the campaign
+          - name: effective_status
+            data_type: enum
+            description: |
+              IN_PROCESS is available for version 4.0 or higher
+          - name: has_secondary_skadnetwork_reporting
+            data_type: bool
+            description: |
+              has_secondary_skadnetwork_reporting
+          - name: is_budget_schedule_enabled
+            data_type: bool
+            description: |
+              Whether budget scheduling is enabled for the campaign group
+          - name: is_skadnetwork_attribution
+            data_type: bool
+            description: |
+              When set to true Indicates that the campaign will include SKAdNetwork, iOS 14+.
+          - name: issues_info
+            data_type: list
+            description: |
+              Issues for this campaign that prevented it from deliverying
+          - name: last_budget_toggling_time
+            data_type: datetime
+            description: |
+              Last budget toggling time
+          - name: lifetime_budget
+            data_type: numeric
+            description: |
+              The lifetime budget of the campaign
+          - name: name
+            data_type: string
+            description: |
+              Campaign's name
+          - name: objective
+            data_type: string
+            description: |
+              Campaign's objective
+              See the Outcome Ad-Driven Experience Objective Validation section below for more information.
+          - name: pacing_type
+            data_type: list
+            description: |
+              Defines pacing type of the campaign. The value is an array of options: "standard".
+          - name: primary_attribution
+            data_type: enum
+            description: |
+              primary_attribution
+          - name: promoted_object
+            data_type: AdPromotedObject
+            description: |
+              The object this campaign is promoting across all its ads
+          - name: smart_promotion_type
+            data_type: enum
+            description: |
+              Smart Promotion Type. guided_creation or smart_app_promotion(the choice under APP_INSTALLS objective).
+          - name: source_campaign
+            data_type: Campaign
+            description: |
+              The source campaign that this campaign is copied from
+          - name: source_campaign_id
+            data_type: numeric
+            description: |
+              The source campaign id that this campaign is copied from
+          - name: special_ad_categories
+            data_type: list
+            description: |
+              special ad categories
+          - name: special_ad_category
+            data_type: enum
+            description: |
+              The campaign's Special Ad Category. One of HOUSING, EMPLOYMENT, CREDIT, or NONE.
+          - name: special_ad_category_country
+            data_type: list
+            description: |
+              Country field for Special Ad Category.
+          - name: spend_cap
+            data_type: numeric
+            description: |
+              A spend cap for the campaign, such that it will not spend more than this cap. Expressed as integer value of the subunit in your currency.
+          - name: start_time
+            data_type: datetime
+            description: |
+              Merging of start_times for the ad sets belonging to this campaign. At the campaign level, start_time is a read only field. You can setup start_time at the ad set level.
+          - name: status
+            data_type: enum
+            description: |
+              If this status is PAUSED, all its active ad sets and ads will be paused and have an effective status CAMPAIGN_PAUSED. The field returns the same value as 'configured_status', and is the suggested one to use.
+          - name: stop_time
+            data_type: datetime
+            description: |
+              Merging of stop_times for the ad sets belonging to this campaign, if available. At the campaign level, stop_time is a read only field. You can setup stop_time at the ad set level.
+          - name: topline_id
+            data_type: numeric
+            description: |
+              Topline ID
+          - name: updated_time
+            data_type: datetime
+            description: |-
+              Updated Time. If you update spend_cap or daily budget or lifetime budget, this will not automatically update this field.
