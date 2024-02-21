@@ -1,0 +1,18 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_arc_donor_loyalty_scd
+    description: A slowly changing dimension table capturing changes in donor loyalty
+      for each person
+    columns:
+      - name: person_id
+        description: unique identifier for each person record
+      - name: fiscal_year
+        description: fiscal year for each record
+      - name: start_date
+        description: the start date of the value for the person record
+      - name: end_date
+        description: the end date of the value for the person record
+      - name: donor_loyalty
+        description: the donor loyalty value
+        tests: [not_null]
