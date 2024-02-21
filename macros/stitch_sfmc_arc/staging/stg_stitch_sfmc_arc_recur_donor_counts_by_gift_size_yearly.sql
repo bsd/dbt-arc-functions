@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_arc_recur_donor_counts_by_gift_size_yearly(
-    audience_transaction="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched"
+    audience_transaction="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched_digital"
 ) %}
 
 with

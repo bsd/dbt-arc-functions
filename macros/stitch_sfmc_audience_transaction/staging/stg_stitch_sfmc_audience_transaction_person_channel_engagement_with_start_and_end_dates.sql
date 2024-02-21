@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_audience_transaction_person_channel_engagement_with_start_and_end_dates(
-    stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched"
+    stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched_digital="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched_digital"
 ) %}
 
 with
@@ -56,7 +56,7 @@ with
                 from
                     {{
                         ref(
-                            stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched
+                            stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched_digital
                         )
                     }}
             ) as person_with_all_transaction_date_days

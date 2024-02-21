@@ -2,7 +2,7 @@
 {% macro util_stg_audience_transaction_frequency_donor_counts_interval_rollup(
     frequency,
     interval,
-    person_and_transaction="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
+    person_and_transaction="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched_digital",
     first_gift="stg_stitch_sfmc_parameterized_audience_transaction_first_gift"
 ) %}
     {% if frequency not in ['recurring', 'onetime'] %}
