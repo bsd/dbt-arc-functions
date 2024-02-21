@@ -77,7 +77,6 @@ and the last donation date.
             group by person_id, fiscal_year
         )
 
-        , arc_donor_loyalty as (
         /*
 Based on the data from donor_loyalty_counts and donation_history,
 arc_donor_loyalty determines the donor's loyalty status for each fiscal year.
