@@ -1,0 +1,43 @@
+---
+version: 2
+models:
+  - name: stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched_digital
+    description: ''
+    columns:
+      - name: transaction_date_day
+        description: Date of transaction in Day format
+      - name: fiscal_year
+        description: The fiscal year value as defined by the client
+      - name: person_id
+        description: The unique identifier of each person record
+      - name: donor_engagement
+        description: The donor engagement value of each person by day and date
+        tests: [not_null]
+      - name: donor_loyalty
+        description: the donor loyalty value of each person by day and date
+        tests: [not_null]
+      - name: channel_category
+        description: This is a grouping of channel values
+      - name: channel
+        description: the source channel of each transaction
+        tests: [not_null]
+      - name: gift_size_string
+        description: the size of each gift sorted into categories represented as a
+          string
+      - name: recurring
+        description: If the transaction is part of a recurring donation
+      - name: amount
+        description: Amount of the transaction
+      - name: gift_count
+        description: the number of cumulative gifts for each person_id, This number
+          increases with every donation.
+      - name: donor_audience
+        description: The audience unioned values coalesced with the audience calculated
+          values to fill in any nulls that are present
+        tests:
+          - dbt_arc_functions.has_same_distinct_values_as:
+              other_model: ref('stg_adhoc_google_spreadsheets_audience_monthly_budget')
+              other_column_name: donor_audience
+          - not_null
+      - name: source_column
+        description: The source of the values in the coalesced_audience column
