@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_arc_donor_loyalty_scd(
-    donor_transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched",
+    donor_transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched"
 ) %}
 
     with audience_union_transaction_joined as (
@@ -113,3 +113,6 @@ or reactivated donors.
         on donor_loyalty_counts.person_id = donation_history.person_id
         and donor_loyalty_counts.fiscal_year = donation_history.fiscal_year
     order by donor_loyalty_counts.person_id, donor_loyalty_counts.fiscal_year
+
+
+{% endmacro %}
