@@ -4,13 +4,13 @@
     yearly="stg_audience_budget_recur_donor_count_yearly"
 ) %}
 
-select *
-from {{ ref(daily) }}
-union all
-select *
-from {{ ref(monthly) }}
-union all
-select *
-from {{ ref(yearly) }}
+    select *
+    from {{ ref(daily) }}
+    union all
+    select *
+    from {{ ref(monthly) }}
+    union all
+    select *
+    from {{ ref(yearly) }}
 
 {% endmacro %}

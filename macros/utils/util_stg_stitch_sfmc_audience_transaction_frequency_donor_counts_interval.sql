@@ -139,5 +139,5 @@ true_cumulative as (
         true_cumulative.reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts_cumulative
     from true_cumulative 
     full outer join base using (date_day, donor_audience, channel)
-    
+
 {% endmacro %}

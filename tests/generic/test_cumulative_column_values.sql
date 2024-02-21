@@ -1,49 +1,51 @@
-{% test cumulative_column_values(model, cumulative_column, partition_by, order_by, group_by=[]) %}
+{% test cumulative_column_values(
+    model, cumulative_column, partition_by, order_by, group_by=[]
+) %}
 
-{{ config(severity="warn") }}
+    {{ config(severity="warn") }}
 
-{% if partition_by is string %} {% set partition_by = [partition_by] %} {% endif %}
-{% if order_by is string %} {% set order_by = [order_by] %} {% endif %}
+    {% if partition_by is string %} {% set partition_by = [partition_by] %} {% endif %}
+    {% if order_by is string %} {% set order_by = [order_by] %} {% endif %}
 
-with
+    with
 
-{% if group_by != [] %}
-if_group_by as (
-    select 
-   {{group_by | join(", ")}},
-   sum({{cumulative_column}}) as {{cumulative_column}}
-   from {{model}}
-   group by {{group_by | join(", ")}}
-),
+        {% if group_by != [] %}
+            if_group_by as (
+                select
+                    {{ group_by | join(", ") }},
+                    sum({{ cumulative_column }}) as {{ cumulative_column }}
+                from {{ model }}
+                group by {{ group_by | join(", ") }}
+            ),
 
-validating as (
-        select
-            *,
-            lag({{ cumulative_column }}) over (
-                partition by {{ partition_by | join(", ") }}
-                order by {{ order_by | join(", ") }}
-            ) as prev_value
-        from if_group_by
-    )
+            validating as (
+                select
+                    *,
+                    lag({{ cumulative_column }}) over (
+                        partition by {{ partition_by | join(", ") }}
+                        order by {{ order_by | join(", ") }}
+                    ) as prev_value
+                from if_group_by
+            )
 
-{% else %}
+        {% else %}
 
-    validating as (
-        select
-            *,
-            lag({{ cumulative_column }}) over (
-                partition by {{ partition_by | join(", ") }}
-                order by {{ order_by | join(", ") }}
-            ) as prev_value
-        from {{ model }}
-    )
+            validating as (
+                select
+                    *,
+                    lag({{ cumulative_column }}) over (
+                        partition by {{ partition_by | join(", ") }}
+                        order by {{ order_by | join(", ") }}
+                    ) as prev_value
+                from {{ model }}
+            )
 
-{% endif %}
+        {% endif %}
 
-select *
-from validating
-where
-    {{ cumulative_column }} < prev_value
-    or ({{ cumulative_column }} is null and prev_value is not null)
+    select *
+    from validating
+    where
+        {{ cumulative_column }} < prev_value
+        or ({{ cumulative_column }} is null and prev_value is not null)
 
 {% endtest %}
