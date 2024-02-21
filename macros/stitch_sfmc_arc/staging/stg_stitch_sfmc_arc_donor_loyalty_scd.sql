@@ -46,7 +46,7 @@ and organizes the data for further analysis.
                 fiscal_year,
                 min(transaction_date_day) as start_date,
                 date_sub(
-                    date(concat(fiscal_year, '-', '{{ var(' fiscal_year_start ') }}')),
+                    date(concat(fiscal_year, '-', '{{ var("fiscal_year_start") }}')),
                     interval 1 day
                 ) as end_date,
 
