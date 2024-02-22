@@ -6,7 +6,7 @@ SELECT
     date(cast(createddate as datetime)) as date_created
 
 
-    from {{ source("stitch_sfmc_arc", "arc_person") }}
+    from {{ source("src_stitch_sfmc_arc", "arc_person") }}
  where person_type = 'Individual'
 
 
