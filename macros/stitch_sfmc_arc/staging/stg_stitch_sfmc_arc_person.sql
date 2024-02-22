@@ -3,7 +3,7 @@
 
 SELECT
     subscriberkey as person_id,
-    date(cast(createddate as datetime)) as date_created,
+    date(cast(createddate as datetime)) as date_created
 
 
     from {{ source("stitch_sfmc_arc", "arc_person") }}
