@@ -30,9 +30,8 @@ WITH
         SELECT
             p.person_id,
             p.date_created,
-            fg.first_transaction_date
+            p.first_transaction_date
         FROM {{ ref(arc_person) }} p
-        LEFT JOIN {{ ref(first_gift) }} fg ON p.person_id = fg.person_id
     ),
     day_person_rollup AS (
         SELECT
