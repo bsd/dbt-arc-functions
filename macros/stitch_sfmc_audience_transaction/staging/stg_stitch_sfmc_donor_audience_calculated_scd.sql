@@ -70,15 +70,17 @@
             where prev_donor_audience is null or donor_audience != prev_donor_audience
 
         )
-     select
-    person_id,
-    -- Adjust start_date to be the day after the transaction_date_day to reflect the new classification starts the day after
-    MIN(transaction_date_day) + 1 as start_date,
-    -- Adjust end_date calculation to accommodate the shift in start_date; use the same logic for determining the last date if no next_date is available
-    IFNULL(MAX(next_date) - 1, (SELECT MAX(date) FROM date_spine)) as end_date,
-    donor_audience
-from filtered_changes
-group by person_id, donor_audience, next_date
-order by person_id, start_date
+    select
+        person_id,
+        -- Adjust start_date to be the day after the transaction_date_day to reflect
+        -- the new classification starts the day after
+        min(transaction_date_day) + 1 as start_date,
+        -- Adjust end_date calculation to accommodate the shift in start_date; use the
+        -- same logic for determining the last date if no next_date is available
+        ifnull(max(next_date) - 1, (select max(date) from date_spine)) as end_date,
+        donor_audience
+    from filtered_changes
+    group by person_id, donor_audience, next_date
+    order by person_id, start_date
 
 {% endmacro %}
