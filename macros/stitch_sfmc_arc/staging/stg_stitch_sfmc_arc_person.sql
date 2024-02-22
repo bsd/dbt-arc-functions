@@ -7,7 +7,7 @@ SELECT
 
 
     from {{ source("src_stitch_sfmc_arc", "arc_person") }}
- where person_type = 'Individual'
+ where persontype = 'Individual'
 
 
 {% endmacro %}
