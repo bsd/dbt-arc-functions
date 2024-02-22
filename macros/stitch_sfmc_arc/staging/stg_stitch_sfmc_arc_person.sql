@@ -27,7 +27,7 @@ first_gift_transactions = "stg_stitch_sfmc_parameterized_audience_transactions_s
 
     SELECT
     person.subscriberkey as person_id,
-    person.date(cast(createddate as datetime)) as date_created
+    date(cast(person.createddate as datetime)) as date_created,
     first_transactions.first_transaction_date
     from {{ source("src_stitch_sfmc_arc", "arc_person") }} person
     left join first_transactions on person.subscriberkey = first_transactions.person_id
