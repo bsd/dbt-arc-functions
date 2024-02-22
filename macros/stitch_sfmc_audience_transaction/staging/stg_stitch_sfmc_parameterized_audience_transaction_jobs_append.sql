@@ -47,8 +47,12 @@ WITH
                 ORDER BY UNIX_SECONDS(TIMESTAMP(c.transaction_date_day))
                 RANGE BETWEEN 7776000 PRECEDING AND CURRENT ROW
             ) AS cumulative_amount_90_days_recur,
-            jd.date_created,
-            jd.first_transaction_date
+            SUM(c.total_amount) OVER (
+                PARTITION BY c.person_id
+                ORDER BY c.transaction_date_day
+            ) as cumlative_amount_all_time,
+            jd.first_transaction_date,
+            jd.date_created
         FROM calculations c
         LEFT JOIN join_dates jd ON c.person_id = jd.person_id
         GROUP BY c.transaction_date_day, c.person_id, c.total_amount, c.recur_amount, jd.date_created, jd.first_transaction_date
