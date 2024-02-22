@@ -1,5 +1,5 @@
 {% macro create_stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned(
-    where_clause_1, channel="NULL"
+    channel="NULL", digital_status="NULL"
 ) %}
     {% set relations = dbt_arc_functions.relations_that_match_regex(
         "^stg_stitch_.*_transactions$"
@@ -47,9 +47,11 @@
         person_id,
         recurring,
         initcap({{ channel }}) as channel,
+        cast({{ digital_status }} as boolean) as is_digital,
         appeal_business_unit,
+        appeal,
         amount
     from dedupe
-    where row_number = 1 {{ where_clause_1 }}
+    where row_number = 1
 
 {% endmacro %}

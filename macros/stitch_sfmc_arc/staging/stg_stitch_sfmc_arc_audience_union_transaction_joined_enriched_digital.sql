@@ -1,9 +1,9 @@
 -- fmt: off
-{% macro create_stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched(
+{% macro create_stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched_digital(
     donor_audience_unioned="stg_stitch_sfmc_arc_audience_unioned",
     donor_engagement_by_day="stg_stitch_sfmc_donor_engagement_by_date_day",
     donor_transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched",
-    donor_loyalty_scd = "stg_stitch_sfmc_arc_donor_loyalty_scd",
+    donor_loyalty_scd="stg_stitch_sfmc_arc_donor_loyalty_scd",
     jobs_append="stg_stitch_sfmc_parameterized_audience_transaction_jobs_append"
 ) %}
 
@@ -52,7 +52,7 @@ with audience_union_transaction_joined as (
         {{ ref(donor_engagement_by_day) }} donor_engagement
         on transaction_enriched.transaction_date_day = donor_engagement.date_day
         and transaction_enriched.person_id = donor_engagement.person_id
-
+        where transaction_enriched.is_digital = true
 ),
 dedupe as (
 

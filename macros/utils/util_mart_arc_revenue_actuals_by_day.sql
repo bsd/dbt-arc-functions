@@ -1,7 +1,7 @@
 -- fmt: off
 {% macro util_mart_arc_revenue_actuals_by_day(
     recur_status,
-    audience_transactions_table="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched",
+    audience_transactions_table="stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched_digital",
     first_gift_table="stg_stitch_sfmc_parameterized_audience_transaction_first_gift"
 ) %}
 

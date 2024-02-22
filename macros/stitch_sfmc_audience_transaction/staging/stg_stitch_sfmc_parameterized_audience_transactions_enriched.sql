@@ -24,6 +24,8 @@
                 cast(amount as float64) as amount,
                 initcap({{ channel }}) as channel,
                 appeal_business_unit,
+                appeal,
+                is_digital,
                 recurring,
                 (
                     case
