@@ -22,7 +22,8 @@
                 transaction_date_day,
                 person_id,
                 sum(amount) as total_amount,
-                sum(case when recurring = true then amount else 0 end) as recur_amount
+                sum(case when recurring = true then amount else 0 end) as recur_amount,
+                count(amount) as num_transactions
             from {{ ref(reference_name) }}
             group by 1, 2
         ),
@@ -47,6 +48,9 @@
                 sum(c.total_amount) over (
                     partition by c.person_id order by c.transaction_date_day
                 ) as cumlative_amount_all_time,
+                sum(c.num_transactions) over (partition by c.person_id
+                    order by c.transaction_date_day
+                ) as cumulative_num_transactions_all_time,
                 jd.first_transaction_date,
                 jd.date_created
             from calculations c
@@ -56,6 +60,7 @@
                 c.person_id,
                 c.total_amount,
                 c.recur_amount,
+                c.num_transactions
                 jd.date_created,
                 jd.first_transaction_date
         ),
