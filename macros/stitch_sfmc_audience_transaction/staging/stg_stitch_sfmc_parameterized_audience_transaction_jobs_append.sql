@@ -60,7 +60,7 @@
                 c.person_id,
                 c.total_amount,
                 c.recur_amount,
-                c.num_transactions
+                c.num_transactions,
                 jd.date_created,
                 jd.first_transaction_date
         ),
