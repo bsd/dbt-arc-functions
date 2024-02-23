@@ -77,7 +77,7 @@
         min(transaction_date_day) + 1 as start_date,
         -- Adjust end_date calculation to accommodate the shift in start_date; use the
         -- same logic for determining the last date if no next_date is available
-        ifnull(max(next_date) - 1, (select max(date) from date_spine)) as end_date,
+        ifnull(max(next_date), (select max(date) from date_spine)) as end_date,
         donor_audience
     from filtered_changes
     group by person_id, donor_audience, next_date
