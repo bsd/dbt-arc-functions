@@ -24,7 +24,7 @@ with
         where first_gift_recur_status = False
         group by 1
 
-    )
+    ),
 
     issues as (
 
