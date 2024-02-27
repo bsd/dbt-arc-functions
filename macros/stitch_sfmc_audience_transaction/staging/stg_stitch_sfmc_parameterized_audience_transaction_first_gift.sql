@@ -108,6 +108,7 @@ and pulls attributes from that first gift.
         */
         cast({{ first_gift_recur_status }} as boolean) as first_gift_recur_status,
         audience.donor_audience as first_gift_donor_audience,
+        audience.recurring as transaction_recur_status,
         audience.amount
     from first_transactions
     left join
