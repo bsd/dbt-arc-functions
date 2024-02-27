@@ -17,13 +17,18 @@ onetime_donors as (
     where lower(interval_type) = 'monthly'
     and new_onetime_donor_counts > 0
     group by 1
-)
+),
+
+issues as (
 
 select 
 join_date, activation_mart.new_donors as activation_new_donors, onetime_donors.new_donors as onetime_new_donors
 from activation_mart 
 full join onetime_donors using (join_date)
 where activation_mart.new_donors != onetime_donors.new_donors
+)
+
+select join_date, count(*) from issues group by 1
 
 
 
