@@ -35,6 +35,7 @@ with
             source_of_truth.new_donors as actual_new_donors
         from activation_mart
         full join onetime_donors using (join_date)
+        full join source_of_truth using (join_date)
         where activation_mart.new_donors != source_of_truth.new_donors
         or onetime_donors.new_donors != source_of_truth.new_donors
     )
