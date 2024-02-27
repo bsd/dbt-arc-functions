@@ -48,8 +48,8 @@
                 sum(c.total_amount) over (
                     partition by c.person_id order by c.transaction_date_day
                 ) as cumlative_amount_all_time,
-                sum(c.num_transactions) over (partition by c.person_id
-                    order by c.transaction_date_day
+                sum(c.num_transactions) over (
+                    partition by c.person_id order by c.transaction_date_day
                 ) as cumulative_num_transactions_all_time,
                 row_number()
                     over (
