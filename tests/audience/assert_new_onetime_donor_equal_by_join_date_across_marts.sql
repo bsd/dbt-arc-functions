@@ -9,11 +9,12 @@ with activation_mart as (
 
 onetime_donors as (
     select
-    date_day as join_date
+    date_day as join_date,
     sum(new_onetime_donor_counts) as new_donors
     from {{ref("mart_audience_budget_with_audience_transaction")}}
     where lower(interval_type) = 'monthly'
     and new_onetime_donor_counts > 0
+    group by 1
 )
 
 select 
