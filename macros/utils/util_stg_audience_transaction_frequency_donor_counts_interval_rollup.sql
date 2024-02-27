@@ -36,15 +36,15 @@ base as (
         person_and_transaction.donor_engagement,
         person_and_transaction.donor_loyalty,
         person_and_transaction.is_first_transaction_this_fy,
-        relevant_first_gift.first_gift_join_source as join_source,
-        relevant_first_gift.join_gift_size_string as join_amount_str,
-        relevant_first_gift.join_gift_size_string_recur as join_amount_str_recur,
-        relevant_first_gift.join_month_year_date as join_month_year_str,
-        relevant_first_gift.first_transaction_date as join_date
+        relevant_first_gifts.first_gift_join_source as join_source,
+        relevant_first_gifts.join_gift_size_string as join_amount_str,
+        relevant_first_gifts.join_gift_size_string_recur as join_amount_str_recur,
+        relevant_first_gifts.join_month_year_date as join_month_year_str,
+        relevant_first_gifts.first_transaction_date as join_date
         from {{ref(person_and_transaction)}} person_and_transaction
         left join
             relevant_first_gifts
-            on person_and_transaction.person_id = relevant_first_gift.person_id
+            on person_and_transaction.person_id = relevant_first_gifts.person_id
         where recurring{% if frequency == 'recurring' %}= true{% else %} = false{% endif %}
 )
 
