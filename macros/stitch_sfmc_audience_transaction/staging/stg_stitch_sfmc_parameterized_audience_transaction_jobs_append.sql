@@ -51,11 +51,9 @@
                 sum(c.num_transactions) over (
                     partition by c.person_id order by c.transaction_date_day
                 ) as cumulative_num_transactions_all_time,
-                row_number()
-                    over (
-                        partition by c.person_id order by c.transaction_date_day
-                    )
-                    as cumulative_num_transaction_days_all_time,
+                row_number() over (
+                    partition by c.person_id order by c.transaction_date_day
+                ) as cumulative_num_transaction_days_all_time,
                 jd.first_transaction_date,
                 jd.date_created
             from calculations c
