@@ -22,7 +22,12 @@
 )}}
 
 
-with base as (
+with relevant_first_gifts as (
+        select * from {{ ref(first_gift) }}
+        where first_gift_recur_status{% if frequency == 'recurring' %}= true{% else %} = false{% endif %}
+),
+
+base as (
     select 
         person_and_transaction.transaction_date_day,
         person_and_transaction.person_id,
@@ -31,15 +36,15 @@ with base as (
         person_and_transaction.donor_engagement,
         person_and_transaction.donor_loyalty,
         person_and_transaction.is_first_transaction_this_fy,
-        first_gift.first_gift_join_source as join_source,
-        first_gift.join_gift_size_string as join_amount_str,
-        first_gift.join_gift_size_string_recur as join_amount_str_recur,
-        first_gift.join_month_year_date as join_month_year_str,
-        first_gift.first_transaction_date as join_date
+        relevant_first_gift.first_gift_join_source as join_source,
+        relevant_first_gift.join_gift_size_string as join_amount_str,
+        relevant_first_gift.join_gift_size_string_recur as join_amount_str_recur,
+        relevant_first_gift.join_month_year_date as join_month_year_str,
+        relevant_first_gift.first_transaction_date as join_date
         from {{ref(person_and_transaction)}} person_and_transaction
         left join
-            {{ ref(first_gift) }} as first_gift
-            on person_and_transaction.person_id = first_gift.person_id
+            relevant_first_gifts
+            on person_and_transaction.person_id = relevant_first_gift.person_id
         where recurring{% if frequency == 'recurring' %}= true{% else %} = false{% endif %}
 )
 
