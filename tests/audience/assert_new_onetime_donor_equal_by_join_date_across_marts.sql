@@ -3,8 +3,10 @@
 with activation_mart as (
     select distinct 
     join_month_year_date as join_date,
-    donors_in_cohort as new_donors
+    sum(donors_in_cohort) as new_donors
     from {{ref("mart_audience_1x_activation")}}
+    where activation_int = 0
+    group by 1
 ),
 
 onetime_donors as (
