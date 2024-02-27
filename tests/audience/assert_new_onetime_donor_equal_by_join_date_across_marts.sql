@@ -21,7 +21,7 @@ with
 
     source_of_truth as (
         select 
-        join_month_year_date as join_date, 
+        date_trunc(first_transaction_date, month) as join_date, 
         count(distinct person_id) as new_donors
         from {{ref('stg_stitch_sfmc_parameterized_audience_transaction_first_gift')}}
         where first_gift_recur_status = False
