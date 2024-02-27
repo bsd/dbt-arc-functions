@@ -2,7 +2,7 @@
     model, column_name, other_model, other_column_name
 ) %}
 
-{{ config(severity="warn") }}
+    {{ config(severity="warn") }}
 
     with
         this_model as (
