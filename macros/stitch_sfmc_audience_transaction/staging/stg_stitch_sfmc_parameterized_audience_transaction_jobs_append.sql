@@ -10,7 +10,7 @@
             materialized="table",
             partition_by={
                 "field": "transaction_date_day",
-                "data_type": "date",
+                "data_type": "month",
                 "granularity": "day",
             },
         )

@@ -8,7 +8,7 @@
             materialized="table",
             partition_by={
                 "field": "first_transaction_date",
-                "data_type": "date",
+                "data_type": "month",
                 "granularity": "day",
             },
             cluster_by=["first_gift_recur_status"],
