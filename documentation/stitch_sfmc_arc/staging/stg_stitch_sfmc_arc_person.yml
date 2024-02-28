@@ -1,18 +1,15 @@
+---
 version: 2
-
 models:
   - name: stg_stitch_sfmc_arc_person
-    description: "table hold person records and first transaction dates"
+    description: table hold person records and first transaction dates
     columns:
       - name: person_id
         data_type: string
-        description: "Unique ID of the individual"
-
+        description: Unique ID of the individual
       - name: date_created
         data_type: date
-        description: "The date a person record was added to the crm"
-
+        description: The date a person record was added to the crm
       - name: first_transaction_date
         data_type: date
-        description: "the date of a person's first transaction"
-
+        description: the date of a person's first transaction
