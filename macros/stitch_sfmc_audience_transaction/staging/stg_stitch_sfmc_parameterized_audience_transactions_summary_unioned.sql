@@ -29,10 +29,7 @@
                     partition by transaction_id order by transaction_date asc
                 ) as row_number
             from base
-            where
-                transaction_date is not null
-                and person_id is not null
-                and amount > 0
+            where transaction_date is not null and person_id is not null and amount > 0
         )
 
     select
