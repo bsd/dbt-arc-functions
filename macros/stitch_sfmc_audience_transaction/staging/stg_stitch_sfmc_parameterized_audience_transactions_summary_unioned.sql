@@ -33,10 +33,6 @@
                 transaction_date is not null
                 and person_id is not null
                 and amount > 0
-                -- and only the last 10 years of transactions because we won't go
-                -- further for
-                -- audience data
-                and transaction_date >= date_sub(current_date(), interval 10 year)
         )
 
     select
