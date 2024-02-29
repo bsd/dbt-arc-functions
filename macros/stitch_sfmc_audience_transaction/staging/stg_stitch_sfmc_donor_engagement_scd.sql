@@ -48,12 +48,12 @@
                 prev_donor_engagement is null
                 or donor_engagement != prev_donor_engagement
         ) filtered_changes
+    group by person_id, donor_engagement, next_date
     {% if is_incremental() %}
         having
             ifnull(max(next_date) - 1, (select max(date) from date_spine))
             >= (select max(end_date) from {{ this }})
     {% endif %}
-    group by person_id, donor_engagement, next_date
     order by person_id, start_date
 
 {% endmacro %}
