@@ -9,7 +9,7 @@
             partition_by={
                 "field": "first_transaction_date",
                 "data_type": "month",
-                "granularity": "day",
+                "granularity": "month",
             },
             cluster_by=["first_gift_recur_status"],
         )

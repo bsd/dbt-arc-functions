@@ -9,7 +9,7 @@
             partition_by={
                 "field": "transaction_date_day",
                 "data_type": "month",
-                "granularity": "day",
+                "granularity": "month",
             },
             cluster_by=["recurring", "person_id"],
         )
