@@ -1,6 +1,7 @@
 {% macro create_stg_stitch_sfmc_donor_engagement_scd(
     donor_engagement="stg_stitch_sfmc_audience_transaction_person_engagement_with_start_and_end_dates"
 ) %}
+    {{ config(materialized="incremental", unique_key=["person_id", "start_date"]) }}
 
     with
         changes as (
@@ -47,6 +48,9 @@
                 prev_donor_engagement is null
                 or donor_engagement != prev_donor_engagement
         ) filtered_changes
+    {% if is_incremental() %}
+        where end_date >= (select max(end_date) from {{ this }})
+    {% endif %}
     group by person_id, donor_engagement, next_date
     order by person_id, start_date
 
