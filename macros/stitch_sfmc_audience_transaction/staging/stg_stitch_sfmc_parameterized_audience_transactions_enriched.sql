@@ -8,8 +8,8 @@
             materialized="table",
             partition_by={
                 "field": "transaction_date_day",
-                "data_type": "date",
-                "granularity": "day",
+                "data_type": "month",
+                "granularity": "month",
             },
             cluster_by=["recurring", "person_id"],
         )

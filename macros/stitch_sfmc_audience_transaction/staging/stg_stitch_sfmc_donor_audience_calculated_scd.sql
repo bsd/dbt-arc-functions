@@ -72,11 +72,22 @@
         )
     select
         person_id,
-        min(transaction_date_day) as start_date,
-        ifnull(max(next_date) - 1, (select max(date) from date_spine)) as end_date,
+        min(transaction_date_day) + 1 as start_date,
+        case
+            when donor_audience in ('Prospect Existing', 'Prospect New')
+            then
+                -- For 'Prospect Existing' and 'Prospect New', adjust end_date to be
+                -- the day before the next transaction
+                -- Ensure this logic applies correctly by adjusting it to work with
+                -- the grouped dataset
+                ifnull(min(next_date) - 1, (select max(date) from date_spine))
+            else
+                -- For all other values, use the existing logic
+                ifnull(max(next_date), (select max(date) from date_spine))
+        end as end_date,
         donor_audience
     from filtered_changes
-    group by person_id, donor_audience, next_date
+    group by person_id, donor_audience
     order by person_id, start_date
 
 {% endmacro %}

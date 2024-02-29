@@ -9,8 +9,8 @@
             materialized="table",
             partition_by={
                 "field": "transaction_date_day",
-                "data_type": "date",
-                "granularity": "day",
+                "data_type": "month",
+                "granularity": "month",
             },
         )
     }}
@@ -29,14 +29,7 @@
                     partition by transaction_id order by transaction_date asc
                 ) as row_number
             from base
-            where
-                transaction_date is not null
-                and person_id is not null
-                and amount > 0
-                -- and only the last 10 years of transactions because we won't go
-                -- further for
-                -- audience data
-                and transaction_date >= date_sub(current_date(), interval 10 year)
+            where transaction_date is not null and person_id is not null and amount > 0
         )
 
     select

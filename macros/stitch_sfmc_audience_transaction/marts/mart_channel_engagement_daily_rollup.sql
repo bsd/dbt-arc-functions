@@ -1,6 +1,12 @@
 {% macro create_mart_channel_engagement_daily_rollup(
     person_channel_engagement_with_start_and_end_dates="stg_stitch_sfmc_audience_transaction_person_channel_engagement_with_start_and_end_dates"
 ) %}
+    {{
+        config(
+            materialized="incremental",
+            unique_key=["channel", "date_day"],
+        )
+    }}
     with
         date_spine as (
             select date_day
@@ -47,6 +53,9 @@
         on channel_date_spine.date_day >= engagement.start_date
         and channel_date_spine.date_day <= coalesce(engagement.end_date, current_date())
         and channel_date_spine.channel = engagement.channel
+    {% if is_incremental() %}
+        where channel_date_spine.date_day >= (select max(date_day) from {{ this }})
+    {% endif %}
     group by 1, 2
 
 {% endmacro %}
