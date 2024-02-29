@@ -32,6 +32,5 @@
         first_transactions.first_transaction_date
     from {{ source("src_stitch_sfmc_arc", "arc_person") }} person
     left join first_transactions on person.subscriberkey = first_transactions.person_id
-    where persontype = 'Individual'
 
 {% endmacro %}
