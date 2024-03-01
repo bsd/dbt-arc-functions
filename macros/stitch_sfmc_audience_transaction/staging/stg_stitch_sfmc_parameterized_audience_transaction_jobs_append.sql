@@ -149,7 +149,7 @@
         filtered_base as (
             select * from base 
             where donor_audience is not null
-        )
+        ),
 
         dedupe as (
             select
