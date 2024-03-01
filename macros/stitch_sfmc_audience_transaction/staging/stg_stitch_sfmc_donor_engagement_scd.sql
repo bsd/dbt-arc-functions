@@ -26,7 +26,9 @@
                     )
                 ) as date
 
-        )
+        ),
+
+final as (
 
     select
         person_id,
@@ -48,6 +50,11 @@
                 or donor_engagement != prev_donor_engagement
         ) filtered_changes
     group by person_id, donor_engagement, next_date
-    order by person_id, start_date
+    order by person_id, start_date)
+
+    select * from final 
+    {% if target.name != 'prod' %}
+        where transaction_date_day >= date_sub(current_date(), interval 2 year)
+    {% endif %}
 
 {% endmacro %}
