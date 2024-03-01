@@ -145,8 +145,12 @@
                 /* parameterized field? */
                 cast({{ client_donor_audience }} as string) as donor_audience
             from day_person_rollup
-            qualify donor_audience is not null
         ),
+        filtered_base as (
+            select * from base 
+            where donor_audience is not null
+        )
+
         dedupe as (
             select
                 transaction_date_day,
@@ -156,7 +160,7 @@
                     partition by transaction_date_day, person_id, donor_audience
                     order by transaction_date_day desc
                 ) as row_number
-            from base
+            from filtered_base
         )
     select transaction_date_day, person_id, donor_audience
     from dedupe
