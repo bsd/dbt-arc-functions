@@ -26,28 +26,39 @@
                     )
                 ) as date
 
-        )
+        ),
 
-    select
-        person_id,
-        min(transaction_date_day) as start_date,
-        ifnull(max(next_date) - 1, (select max(date) from date_spine)) as end_date,
-        donor_engagement
-    from
-        (
+        final as (
+
             select
                 person_id,
-                transaction_date_day,
-                donor_engagement,
-                lead(transaction_date_day) over (
-                    partition by person_id order by transaction_date_day
-                ) as next_date
-            from changes
-            where
-                prev_donor_engagement is null
-                or donor_engagement != prev_donor_engagement
-        ) filtered_changes
-    group by person_id, donor_engagement, next_date
-    order by person_id, start_date
+                min(transaction_date_day) as start_date,
+                ifnull(
+                    max(next_date) - 1, (select max(date) from date_spine)
+                ) as end_date,
+                donor_engagement
+            from
+                (
+                    select
+                        person_id,
+                        transaction_date_day,
+                        donor_engagement,
+                        lead(transaction_date_day) over (
+                            partition by person_id order by transaction_date_day
+                        ) as next_date
+                    from changes
+                    where
+                        prev_donor_engagement is null
+                        or donor_engagement != prev_donor_engagement
+                ) filtered_changes
+            group by person_id, donor_engagement, next_date
+            order by person_id, start_date
+        )
+
+    select *
+    from final
+    {% if target.name != "prod" %}
+        where start_date >= date_sub(current_date(), interval 2 year)
+    {% endif %}
 
 {% endmacro %}

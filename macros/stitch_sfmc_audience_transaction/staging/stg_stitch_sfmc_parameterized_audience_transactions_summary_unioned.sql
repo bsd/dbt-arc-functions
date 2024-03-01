@@ -30,7 +30,9 @@
                 ) as row_number
             from base
             where transaction_date is not null and person_id is not null and amount > 0
-        )
+        ),
+
+    final as (
 
     select
         _dbt_source_relation,
@@ -45,6 +47,8 @@
         appeal,
         amount
     from dedupe
-    where row_number = 1
+    where row_number = 1)
+
+    select * from final 
 
 {% endmacro %}
