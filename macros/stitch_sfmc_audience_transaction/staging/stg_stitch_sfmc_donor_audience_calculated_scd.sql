@@ -69,7 +69,9 @@
             from changes
             where prev_donor_audience is null or donor_audience != prev_donor_audience
 
-        )
+        ),
+
+final as (
     select
         person_id,
         min(transaction_date_day) + 1 as start_date,
@@ -88,6 +90,11 @@
         donor_audience
     from filtered_changes
     group by person_id, donor_audience
-    order by person_id, start_date
+    order by person_id, start_date)
+
+select * from final 
+{% if target.name != 'prod' %}
+where transaction_date_day >= date_sub(current_date(), interval 2 year)
+{% endif %}
 
 {% endmacro %}

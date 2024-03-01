@@ -68,7 +68,7 @@ final as (
 
 select * from final 
 
-{% if target.name !== 'prod' %}
+{% if target.name != 'prod' %}
 where date_day >= date_sub(current_date(), interval 2 year)
 {% endif %}
 
