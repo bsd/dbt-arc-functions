@@ -63,17 +63,19 @@
             select
                 transaction_date_day,
                 person_id,
+                1 as is_real_transaction,
                 sum(amount) as total_amount,
                 sum(case when recurring = true then amount else 0 end) as recur_amount,
                 count(distinct transaction_id) as num_transactions
             from transactions
-            group by 1, 2
+            group by 1, 2, 3
         ),
 
         zero_transaction_days as (
             select
                 date_day as transaction_date_day,
                 person_id,
+                0 as is_real_transaction,
                 0 as total_amount,
                 0 as recur_amount,
                 0 as num_transactions
@@ -104,11 +106,11 @@
                 ) as cumulative_amount_90_days_recur,
                 sum(c.total_amount) over (
                     partition by c.person_id order by c.transaction_date_day
-                ) as cumlative_amount_all_time,
+                ) as cumulative_amount_all_time,
                 sum(c.num_transactions) over (
                     partition by c.person_id order by c.transaction_date_day
                 ) as cumulative_num_transactions_all_time,
-                row_number() over (
+                sum(is_real_transaction) over (
                     partition by c.person_id order by c.transaction_date_day
                 ) as cumulative_num_transaction_days_all_time,
                 jd.first_transaction_date,
@@ -128,18 +130,21 @@
             select distinct
                 transaction_date_day,
                 person_id,
-                case
-                    when cumulative_amount_24_months >= 25000
-                    then 'Major'
-                    when cumulative_amount_24_months between 1000 and 24999.99
-                    then 'Leadership Giving'
-                    when cumulative_amount_90_days_recur > 0
-                    then 'Monthly'
-                    else 'Mass'
-                end as bluestate_donor_audience,  -- modeled after UUSA
+                CASE
+                    WHEN (date_created = first_transaction_date or first_transaction_date < date_created) and cumulative_num_transaction_days_all_time = 1
+                    THEN 'Prospect New'
+                    WHEN (date_created < first_transaction_date) and cumulative_num_transaction_days_all_time = 1 THEN 'Prospect Existing'
+                    WHEN cumulative_amount_24_months >= 25000 THEN 'Major'
+                    WHEN cumulative_amount_24_months BETWEEN 1000 AND 24999.99 THEN 'Leadership Giving'
+                    WHEN cumulative_amount_90_days_recur > 0 THEN 'Monthly'
+                    WHEN cumulative_amount_all_time > 0  Then 'Mass'
+                    WHEN cumulative_num_transaction_days_all_time = 0 then NULL
+                ELSE 'Investigate'
+                END as bluestate_donor_audience,  -- modeled after UUSA
                 /* parameterized field? */
                 cast({{ client_donor_audience }} as string) as donor_audience
             from day_person_rollup
+            where donor_audience is not null
         ),
         dedupe as (
             select
