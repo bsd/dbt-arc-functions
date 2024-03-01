@@ -38,10 +38,7 @@
                     generate_date_array(
                         (select min(transaction_date_day), from transactions),
                         ifnull(
-                            (
-                                select max(transaction_date_day)
-                                from transactions
-                            ),
+                            (select max(transaction_date_day) from transactions),
                             current_date()
                         )
                     )
