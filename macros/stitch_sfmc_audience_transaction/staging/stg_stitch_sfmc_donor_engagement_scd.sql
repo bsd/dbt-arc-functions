@@ -58,7 +58,7 @@
     select *
     from final
     {% if target.name != "prod" %}
-        where end_date >= date_sub(current_date(), interval 2 year)
+        where start_date >= date_sub(current_date(), interval 2 year)
     {% endif %}
 
 {% endmacro %}
