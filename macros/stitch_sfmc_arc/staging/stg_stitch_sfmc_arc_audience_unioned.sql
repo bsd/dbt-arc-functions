@@ -35,4 +35,11 @@
     select *
     from unioned_audience
 
+{% if target.name !== 'prod' %}
+
+where date_day >= date_sub(current_date(), interval 2 year)
+
+{% endif %}
+
+
 {% endmacro %}
