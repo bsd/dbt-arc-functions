@@ -110,7 +110,7 @@
                 sum(c.num_transactions) over (
                     partition by c.person_id order by c.transaction_date_day
                 ) as cumulative_num_transactions_all_time,
-                sum(is_real_transaction) over (
+                sum(c.is_real_transaction) over (
                     partition by c.person_id order by c.transaction_date_day
                 ) as cumulative_num_transaction_days_all_time,
                 jd.first_transaction_date,
@@ -120,6 +120,7 @@
             group by
                 c.transaction_date_day,
                 c.person_id,
+                c.is_real_transaction,
                 c.total_amount,
                 c.recur_amount,
                 c.num_transactions,
