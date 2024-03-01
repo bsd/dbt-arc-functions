@@ -1,6 +1,6 @@
 {% macro create_stg_stitch_sfmc_arc_audience_unioned(
     arc_audience="stg_stitch_sfmc_arc_audience_by_date_day",
-    calculated_audience="stg_stitch_sfmc_arc_calculated_audience_by_date_day"
+    calculated_audience="stg_stitch_sfmc_parameterized_audience_transaction_jobs_append"
 ) %}
 
     {{
