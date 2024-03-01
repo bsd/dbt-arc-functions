@@ -131,25 +131,35 @@
             select distinct
                 transaction_date_day,
                 person_id,
-                CASE
-                    WHEN (date_created = first_transaction_date or first_transaction_date < date_created) and cumulative_num_transaction_days_all_time = 1
-                    THEN 'Prospect New'
-                    WHEN (date_created < first_transaction_date) and cumulative_num_transaction_days_all_time = 1 THEN 'Prospect Existing'
-                    WHEN cumulative_amount_24_months >= 25000 THEN 'Major'
-                    WHEN cumulative_amount_24_months BETWEEN 1000 AND 24999.99 THEN 'Leadership Giving'
-                    WHEN cumulative_amount_90_days_recur > 0 THEN 'Monthly'
-                    WHEN cumulative_amount_all_time > 0  Then 'Mass'
-                    WHEN cumulative_num_transaction_days_all_time = 0 then NULL
-                ELSE 'Investigate'
-                END as bluestate_donor_audience,  -- modeled after UUSA
+                case
+                    when
+                        (
+                            date_created = first_transaction_date
+                            or first_transaction_date < date_created
+                        )
+                        and cumulative_num_transaction_days_all_time = 1
+                    then 'Prospect New'
+                    when
+                        (date_created < first_transaction_date)
+                        and cumulative_num_transaction_days_all_time = 1
+                    then 'Prospect Existing'
+                    when cumulative_amount_24_months >= 25000
+                    then 'Major'
+                    when cumulative_amount_24_months between 1000 and 24999.99
+                    then 'Leadership Giving'
+                    when cumulative_amount_90_days_recur > 0
+                    then 'Monthly'
+                    when cumulative_amount_all_time > 0
+                    then 'Mass'
+                    when cumulative_num_transaction_days_all_time = 0
+                    then null
+                    else 'Investigate'
+                end as bluestate_donor_audience,  -- modeled after UUSA
                 /* parameterized field? */
                 cast({{ client_donor_audience }} as string) as donor_audience
             from day_person_rollup
         ),
-        filtered_base as (
-            select * from base 
-            where donor_audience is not null
-        ),
+        filtered_base as (select * from base where donor_audience is not null),
 
         dedupe as (
             select
