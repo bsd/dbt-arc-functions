@@ -24,21 +24,30 @@
 
         ),
 
+        transactions_10_year as (
+            select person_id, transaction_date_day, amount, recurring, transaction_id
+            from {{ ref(reference_name) }}
+            where transaction_date_day >= date_sub(current_date(), interval 10 year)
+        ),
+
         join_dates as (
             select person_id, date_created, first_transaction_date
             from {{ ref(arc_person) }}
         ),
 
-        distinct_persons as (select distinct person_id from transactions),
+        distinct_persons as (select distinct person_id from transactions_10_year),
 
         date_spine as (
             select date_day
             from
                 unnest(
                     generate_date_array(
-                        (select min(transaction_date_day), from transactions),
+                        (select min(transaction_date_day), from transactions_10_year),
                         ifnull(
-                            (select max(transaction_date_day) from transactions),
+                            (
+                                select max(transaction_date_day)
+                                from transactions_10_year
+                            ),
                             current_date()
                         )
                     )
