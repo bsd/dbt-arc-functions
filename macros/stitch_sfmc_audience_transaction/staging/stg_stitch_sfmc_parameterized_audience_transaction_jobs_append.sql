@@ -40,7 +40,7 @@
                         ifnull(
                             (
                                 select max(transaction_date_day)
-                                from transactions
+                                from transactions_10_year
                             ),
                             current_date()
                         )
