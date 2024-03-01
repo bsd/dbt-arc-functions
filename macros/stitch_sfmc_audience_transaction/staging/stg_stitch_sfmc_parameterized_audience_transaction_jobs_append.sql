@@ -145,7 +145,7 @@
                 /* parameterized field? */
                 cast({{ client_donor_audience }} as string) as donor_audience
             from day_person_rollup
-            where donor_audience is not null
+            qualify donor_audience is not null
         ),
         dedupe as (
             select
