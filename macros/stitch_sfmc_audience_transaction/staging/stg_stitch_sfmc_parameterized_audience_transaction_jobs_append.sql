@@ -188,7 +188,9 @@
             transaction_date_day,
             donor_audience,
             CASE
-                WHEN donor_audience NOT LIKE '%prospect%' THEN LAG(donor_audience) OVER (PARTITION BY person_id ORDER BY transaction_date_day ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING)
+                WHEN donor_audience NOT LIKE '%prospect%' 
+                THEN LAG(donor_audience) OVER (PARTITION BY person_id ORDER BY transaction_date_day ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING)
+            ELSE donor_audience  -- Keep the value as "prospect" if the current audience is also "prospect"
             END AS previous_audience
         FROM result
 ), 
@@ -197,9 +199,11 @@ final as (
     select
         transaction_date_day,
         person_id,
-        case when donor_audience like '%prospect%' then donor_audience 
-        when  donor_audience != previous_audience THEN previous_audience
-        ELSE COALESCE(LAG(donor_audience) OVER (PARTITION BY person_id ORDER BY transaction_date_day), donor_audience) end as donor_audience
+        CASE
+            WHEN donor_audience LIKE '%prospect%' THEN donor_audience
+            WHEN donor_audience != previous_audience AND previous_audience NOT LIKE '%prospect%' THEN previous_audience
+            ELSE COALESCE(LAG(donor_audience) OVER (PARTITION BY person_id ORDER BY transaction_date_day), donor_audience)
+        END AS donor_audience
     from audience_change
 )
 
