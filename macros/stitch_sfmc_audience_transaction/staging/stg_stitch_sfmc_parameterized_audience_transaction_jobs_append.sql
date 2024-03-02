@@ -146,7 +146,7 @@
                         (date_created < first_transaction_date)
                         and cumulative_num_transaction_days_all_time = 1
                     then 'Prospect Existing'
-                    when cumulative_amount_24_months >= 25000 
+                    when cumulative_amount_24_months >= 25000
                     then 'Major'
                     when cumulative_amount_24_months between 1000 and 24999.99
                     then 'Leadership Giving'
@@ -182,27 +182,40 @@
             where row_number = 1
         ),
 
-        audience_change AS (
-        SELECT
-            person_id,
-            transaction_date_day,
-            donor_audience,
-            LAG(donor_audience) OVER (PARTITION BY person_id ORDER BY transaction_date_day) AS previous_audience
-        FROM result
-), 
+        audience_change as (
+            select
+                person_id,
+                transaction_date_day,
+                donor_audience,
+                lag(donor_audience) over (
+                    partition by person_id order by transaction_date_day
+                ) as previous_audience
+            from result
+        ),
 
-final as (
-    select
-        transaction_date_day,
-        person_id,
-        CASE
-            WHEN donor_audience LIKE '%prospect%' THEN donor_audience
-            WHEN donor_audience != previous_audience AND previous_audience NOT LIKE '%prospect%' THEN previous_audience
-            ELSE COALESCE(LAG(donor_audience) OVER (PARTITION BY person_id ORDER BY transaction_date_day), donor_audience)
-        END AS donor_audience
-    from audience_change
-)
+        final as (
+            select
+                transaction_date_day,
+                person_id,
+                case
+                    when donor_audience like '%prospect%'
+                    then donor_audience
+                    when
+                        donor_audience != previous_audience
+                        and previous_audience not like '%prospect%'
+                    then previous_audience
+                    else
+                        coalesce(
+                            lag(donor_audience) over (
+                                partition by person_id order by transaction_date_day
+                            ),
+                            donor_audience
+                        )
+                end as donor_audience
+            from audience_change
+        )
 
-select * from final
+    select *
+    from final
 
 {% endmacro %}
