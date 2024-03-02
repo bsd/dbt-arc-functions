@@ -187,11 +187,7 @@
             person_id,
             transaction_date_day,
             donor_audience,
-            CASE
-                WHEN donor_audience NOT LIKE '%prospect%' 
-                THEN LAG(donor_audience) OVER (PARTITION BY person_id ORDER BY transaction_date_day ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING)
-            ELSE donor_audience  -- Keep the value as "prospect" if the current audience is also "prospect"
-            END AS previous_audience
+            LAG(donor_audience) OVER (PARTITION BY person_id ORDER BY transaction_date_day) AS previous_audience
         FROM result
 ), 
 
