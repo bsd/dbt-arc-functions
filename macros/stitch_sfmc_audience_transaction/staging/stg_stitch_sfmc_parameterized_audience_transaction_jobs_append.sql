@@ -94,6 +94,7 @@
             select
                 c.transaction_date_day,
                 c.person_id,
+                sum(c.total_amount) as total_amount_today,
                 sum(c.total_amount) over (
                     partition by c.person_id
                     order by unix_seconds(timestamp(c.transaction_date_day))
@@ -127,6 +128,7 @@
                 jd.date_created,
                 jd.first_transaction_date
         ),
+
         base as (
             select distinct
                 transaction_date_day,
@@ -144,7 +146,7 @@
                         (date_created < first_transaction_date)
                         and cumulative_num_transaction_days_all_time = 1
                     then 'Prospect Existing'
-                    when cumulative_amount_24_months >= 25000
+                    when cumulative_amount_24_months >= 25000 
                     then 'Major'
                     when cumulative_amount_24_months between 1000 and 24999.99
                     then 'Leadership Giving'
@@ -174,13 +176,73 @@
             from filtered_base
         ),
 
-        final as (
+        result as (
             select transaction_date_day, person_id, donor_audience
             from dedupe
             where row_number = 1
+        ),
+
+        lagged_audience as (
+            select 
+                transaction_date_day, 
+                person_id,
+                CASE
+                 WHEN donor_audience != '%prospect%' 
+                AND donor_audience <> LAG(donor_audience, 1) OVER (
+                ORDER BY person_id, transaction_date_day) THEN LAG(donor_audience, 1) OVER (ORDER BY person_id, transaction_date_day)
+                else donor_audience
+                END AS donor_audience
+            from result 
         )
 
-    select *
-    from final
+        select * from lagged_audience
+
+/*
+
+-- old code that made the previous day the assignment 
+
+changes as (
+            select
+                person_id,
+                transaction_date_day,
+                donor_audience,
+                lag(donor_audience) over (
+                    partition by person_id order by transaction_date_day
+                ) as prev_donor_audience
+            from calculated_with_date_spine
+        ),
+        filtered_changes as (
+            select
+                person_id,
+                transaction_date_day,
+                donor_audience,
+                lead(transaction_date_day) over (
+                    partition by person_id order by transaction_date_day
+                ) as next_date
+            from changes
+            where prev_donor_audience is null or donor_audience != prev_donor_audience
+
+        )
+    select
+        person_id,
+        min(transaction_date_day) + 1 as start_date,
+        case
+            when donor_audience in ('Prospect Existing', 'Prospect New')
+            then
+                -- For 'Prospect Existing' and 'Prospect New', adjust end_date to be
+                -- the day before the next transaction
+                -- Ensure this logic applies correctly by adjusting it to work with
+                -- the grouped dataset
+                ifnull(min(next_date) - 1, (select max(date) from date_spine))
+            else
+                -- For all other values, use the existing logic
+                ifnull(max(next_date), (select max(date) from date_spine))
+        end as end_date,
+        donor_audience
+    from filtered_changes
+    group by person_id, donor_audience
+    order by person_id, start_date
+
+*/
 
 {% endmacro %}
