@@ -24,13 +24,20 @@
                 transaction_id,
                 transaction_date_day as first_transaction_date
             from dedupe
+        ),
+        person as (
+            select 
+            subscriber_key as person_id, 
+            date(cast(createddate as datetime)) as date_created
+            from
+             {{ source("src_stitch_sfmc_arc", "arc_person") }} 
         )
 
     select
-        person.subscriberkey as person_id,
-        date(cast(person.createddate as datetime)) as date_created,
+        coalesce(person.person_id, first_transactions.person_id) as person_id,
+        person.date_created,
         first_transactions.first_transaction_date
-    from {{ source("src_stitch_sfmc_arc", "arc_person") }} person
-    left join first_transactions on person.subscriberkey = first_transactions.person_id
+    from person
+    full join first_transactions using (person_id)
 
 {% endmacro %}
