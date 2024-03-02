@@ -26,13 +26,14 @@
             from dedupe
         ),
         person as (
-            select 
-            subscriberkey as person_id, 
-            date(cast(createddate as datetime)) as date_created
-            from
-             {{ source("src_stitch_sfmc_arc", "arc_person") }} 
-             {% if target.name != "prod" %}
-            where cast(createddate as datetime) >= date_sub(current_date(), interval 5 year)
+            select
+                subscriberkey as person_id,
+                date(cast(createddate as datetime)) as date_created
+            from {{ source("src_stitch_sfmc_arc", "arc_person") }}
+            {% if target.name != "prod" %}
+                where
+                    cast(createddate as datetime)
+                    >= date_sub(current_date(), interval 5 year)
             {% endif %}
         )
 

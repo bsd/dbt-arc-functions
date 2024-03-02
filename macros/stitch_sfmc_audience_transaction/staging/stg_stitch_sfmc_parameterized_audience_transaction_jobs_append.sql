@@ -174,11 +174,13 @@
             from filtered_base
         ),
 
-    final as (
-    select transaction_date_day, person_id, donor_audience
-    from dedupe
-    where row_number = 1)
+        final as (
+            select transaction_date_day, person_id, donor_audience
+            from dedupe
+            where row_number = 1
+        )
 
-    select * from final 
+    select *
+    from final
 
 {% endmacro %}

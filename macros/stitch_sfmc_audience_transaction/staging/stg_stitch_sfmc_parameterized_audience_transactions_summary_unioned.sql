@@ -32,23 +32,25 @@
             where transaction_date is not null and person_id is not null and amount > 0
         ),
 
-    final as (
+        final as (
 
-    select
-        _dbt_source_relation,
-        transaction_id,
-        transaction_date,
-        transaction_date_day,
-        person_id,
-        recurring,
-        initcap({{ channel }}) as channel,
-        cast({{ digital_status }} as boolean) as is_digital,
-        appeal_business_unit,
-        appeal,
-        amount
-    from dedupe
-    where row_number = 1)
+            select
+                _dbt_source_relation,
+                transaction_id,
+                transaction_date,
+                transaction_date_day,
+                person_id,
+                recurring,
+                initcap({{ channel }}) as channel,
+                cast({{ digital_status }} as boolean) as is_digital,
+                appeal_business_unit,
+                appeal,
+                amount
+            from dedupe
+            where row_number = 1
+        )
 
-    select * from final 
+    select *
+    from final
 
 {% endmacro %}
