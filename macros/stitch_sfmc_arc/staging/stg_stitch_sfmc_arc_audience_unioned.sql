@@ -3,17 +3,17 @@
     calculated_audience="stg_stitch_sfmc_parameterized_audience_transaction_jobs_append"
 ) %}
 
-   {{
-    config(
-        materialized="incremental",
-        unique_key=["date_day", "person_id"],
-        partition_by={
-            "field": "date_day",
-            "data_type": "month",
-            "granularity": "month",
-        },
-    )
-}}
+    {{
+        config(
+            materialized="incremental",
+            unique_key=["date_day", "person_id"],
+            partition_by={
+                "field": "date_day",
+                "data_type": "month",
+                "granularity": "month",
+            },
+        )
+    }}
 
     with
         arc_audience as (
@@ -23,7 +23,9 @@
         ),
 
         calculated_audience as (
-            select transaction_date_day as date_day, person_id, donor_audience from {{ ref(calculated_audience) }}),
+            select transaction_date_day as date_day, person_id, donor_audience
+            from {{ ref(calculated_audience) }}
+        ),
 
         unioned_audience as (
             select *
@@ -32,7 +34,7 @@
             select *
             from calculated_audience
             {% if is_incremental() %}
-            where date_day >= (select max(date_day) from {{ this }})
+                where date_day >= (select max(date_day) from {{ this }})
             {% endif %}
 
         )

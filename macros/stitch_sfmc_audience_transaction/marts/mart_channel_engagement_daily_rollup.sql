@@ -53,7 +53,7 @@
         on channel_date_spine.date_day >= engagement.start_date
         and channel_date_spine.date_day <= coalesce(engagement.end_date, current_date())
         and channel_date_spine.channel = engagement.channel
-    {% if is_incremental()  %}
+    {% if is_incremental() %}
         where channel_date_spine.date_day >= (select max(date_day) from {{ this }})
     {% endif %}
     group by 1, 2

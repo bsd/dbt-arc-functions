@@ -115,9 +115,11 @@
 
     select *
     from final
-    where cast(transaction_date as datetime) < current_datetime()
-      {% if target.name != "prod" %}
-        and cast(transaction_date as datetime) >= date_sub(current_date(), interval 5 year)
+    where
+        cast(transaction_date as datetime) < current_datetime()
+        {% if target.name != "prod" %}
+            and cast(transaction_date as datetime)
+            >= date_sub(current_date(), interval 5 year)
         {% endif %}
 
 {% endmacro %}
