@@ -58,10 +58,16 @@
                 ) as row_num
             from engagement_by_date_day
 
+        ),
+
+        final as (
+
+            select date_day, person_id, donor_engagement
+            from deduplicated_table
+            where row_num = 1
         )
 
-    select date_day, person_id, donor_engagement
-    from deduplicated_table
-    where row_num = 1
+    select *
+    from final
 
 {% endmacro %}

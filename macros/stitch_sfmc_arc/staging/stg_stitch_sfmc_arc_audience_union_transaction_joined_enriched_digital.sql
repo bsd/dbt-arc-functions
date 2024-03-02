@@ -52,7 +52,7 @@ with audience_union_transaction_joined as (
         {{ ref(donor_engagement_by_day) }} donor_engagement
         on transaction_enriched.transaction_date_day = donor_engagement.date_day
         and transaction_enriched.person_id = donor_engagement.person_id
-        where transaction_enriched.is_digital = true
+    where transaction_enriched.is_digital = true
 ),
 dedupe as (
 

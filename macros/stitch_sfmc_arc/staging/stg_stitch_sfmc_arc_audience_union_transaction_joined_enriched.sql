@@ -111,4 +111,5 @@ case
 where transaction_date_day >= (select date_sub(max(transaction_date_day), interval 7 day) from {{ this }})
 {% endif %}
 
+
 {% endmacro %}
