@@ -53,10 +53,8 @@
         on channel_date_spine.date_day >= engagement.start_date
         and channel_date_spine.date_day <= coalesce(engagement.end_date, current_date())
         and channel_date_spine.channel = engagement.channel
-    {% if is_incremental() and target.name == 'prod' %}
+    {% if is_incremental()  %}
         where channel_date_spine.date_day >= (select max(date_day) from {{ this }})
-    {% else %}
-        where channel_date_spine.date_day > date_sub(current_date(), interval 2 year)
     {% endif %}
     group by 1, 2
 

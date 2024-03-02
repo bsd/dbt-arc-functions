@@ -106,11 +106,9 @@ case
     when nth_transaction_this_fiscal_year = 1 then true else false
     end as is_first_transaction_this_fy
  from final 
-{% if is_incremental() and target.name == 'prod'%}
+{% if is_incremental() %}
 -- pulls in all records within 7 days of max transaction date day
 where transaction_date_day >= (select date_sub(max(transaction_date_day), interval 7 day) from {{ this }})
-{% else %}
-where transaction_date_day >= date_sub(current_date(), interval 2 year)
 {% endif %}
 
 

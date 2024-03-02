@@ -6,9 +6,7 @@ select
     first_transaction_date,
     concat(person_id,first_transaction_date) as field_1
 from {{ref("stg_stitch_sfmc_arc_person")}}
-{% if target.name != 'prod' %}
-where first_transaction_date >= date_sub(current_date(), interval 2 year)
-{% endif %}
+
 ),
 
 first_gift as (
@@ -17,9 +15,6 @@ select
     first_transaction_date,
     concat(person_id,first_transaction_date) as field_2
 from {{ref("stg_stitch_sfmc_parameterized_audience_transaction_first_gift")}}
-{% if target.name != 'prod' %}
-where first_transaction_date >= date_sub(current_date(), interval 2 year)
-{% endif %}
 ),
 
 first_issue as (
