@@ -16,6 +16,34 @@
         )
     }}
 
+/* DOCUMENTATION OF MODEL
+
+    Data Selection & Filtering:
+        - Selects relevant transaction data (past 10 years) and joins with 
+        person information. 
+        - Identifies distinct donors and generates a date range 
+        spanning all transactions. 
+    Person-Date Combination & Aggregation:
+        - Creates all possible person-date combinations.
+        - Aggregates transaction metrics (amount, recurring amount, number) for each combination. 
+        - Adds "no transaction" days with zero values.
+    Cumulative Metrics Calculation:
+        - Combines transaction and "no transaction" days.
+        - Calculates various rolling and cumulative metrics 
+        for each person-date (e.g., 24-month rolling total, all-time cumulative).
+    Donor Audience Assignment:
+        - Assigns audience segments based on pre-defined criteria 
+        using calculated metrics and join dates 
+    Dedupe & Result:
+        - Removes duplicates and selects the latest record for each person-date.
+    Lagged Audience Change:
+        - Calculates the previous day's assigned audience for each record.
+        - Updates the final output to consider the previous day's audience 
+        under certain conditions (non-"prospect" and differs from the previous day).
+    Client-specified Audience:
+        - Allows an optional parameter to pre-assign a specific audience to all records.
+*/
+
     with
 
         transactions as (
