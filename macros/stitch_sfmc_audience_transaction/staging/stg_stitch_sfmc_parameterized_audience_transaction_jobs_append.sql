@@ -182,20 +182,28 @@
             where row_number = 1
         ),
 
-        lagged_audience as (
-            select 
-                transaction_date_day, 
-                person_id,
-                CASE
-                 WHEN donor_audience != '%prospect%' 
-                AND donor_audience <> LAG(donor_audience, 1) OVER (
-                ORDER BY person_id, transaction_date_day) THEN LAG(donor_audience, 1) OVER (ORDER BY person_id, transaction_date_day)
-                else donor_audience
-                END AS donor_audience
-            from result 
-        )
+        audience_change AS (
+        SELECT
+            person_id,
+            transaction_date_day,
+            donor_audience,
+            CASE
+                WHEN donor_audience NOT LIKE '%prospect%' THEN LAG(donor_audience) OVER (PARTITION BY person_id ORDER BY transaction_date_day ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING)
+            END AS previous_audience
+        FROM result
+), 
 
-        select * from lagged_audience
+final as (
+    select
+        transaction_date_day,
+        person_id,
+        case when donor_audience like '%prospect%' then donor_audience 
+        when  donor_audience != previous_audience THEN previous_audience
+        ELSE COALESCE(LAG(donor_audience) OVER (PARTITION BY person_id ORDER BY transaction_date_day), donor_audience) end as donor_audience
+    from audience_change
+)
+
+select * from final
 
 /*
 
