@@ -27,7 +27,7 @@
         ),
         person as (
             select 
-            subscriber_key as person_id, 
+            subscriberkey as person_id, 
             date(cast(createddate as datetime)) as date_created
             from
              {{ source("src_stitch_sfmc_arc", "arc_person") }} 
