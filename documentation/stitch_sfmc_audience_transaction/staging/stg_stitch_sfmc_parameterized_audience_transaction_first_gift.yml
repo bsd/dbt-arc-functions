@@ -23,4 +23,4 @@ models:
         tests:
           - not_null
           - accepted_values:
-              values: ['Prospect New', 'Prospect']
+              values: [Prospect New, Prospect]
