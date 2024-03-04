@@ -35,7 +35,7 @@ models:
         tests:
           - not_null
           - accepted_values:
-              values: ['Prospect New', 'Prospect']
+              values: [Prospect New, Prospect]
       - name: retention_str
         data_type: string
         description: A string representing the distance from join month year
