@@ -230,15 +230,9 @@
                     then donor_audience
                     when
                         donor_audience != previous_audience
-                        and previous_audience not like '%prospect%'
+                        and previous_audience is not null
                     then previous_audience
-                    else
-                        coalesce(
-                            lag(donor_audience) over (
-                                partition by person_id order by transaction_date_day
-                            ),
-                            donor_audience
-                        )
+                    else donor_audience
                 end as donor_audience
             from audience_change
         )
