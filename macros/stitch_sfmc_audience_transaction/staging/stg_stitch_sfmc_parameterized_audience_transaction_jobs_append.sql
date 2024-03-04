@@ -119,7 +119,6 @@
                 c.is_real_transaction,
                 c.total_amount,
                 c.recur_amount,
-                c.num_transactions,
                 jd.date_created,
                 jd.first_transaction_date
         ),
