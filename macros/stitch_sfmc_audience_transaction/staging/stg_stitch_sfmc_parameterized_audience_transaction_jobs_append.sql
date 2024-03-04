@@ -65,8 +65,7 @@
                 person_id,
                 1 as is_real_transaction,
                 sum(amount) as total_amount,
-                sum(case when recurring = true then amount else 0 end) as recur_amount,
-                --count(distinct transaction_id) as num_transactions
+                sum(case when recurring = true then amount else 0 end) as recur_amount
             from transactions
             group by 1, 2, 3
         ),
@@ -77,8 +76,7 @@
                 person_id,
                 0 as is_real_transaction,
                 0 as total_amount,
-                0 as recur_amount,
-                --0 as num_transactions
+                0 as recur_amount
             from cross_join
         ),
 
