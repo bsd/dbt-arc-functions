@@ -88,7 +88,8 @@
 
         calculations as (
             select
-                transaction_date_day,
+                -- add one day to the transactions so that this value shows up the next day in audience
+                date_add(transaction_date_day, interval 1 day) as transaction_date_day,
                 person_id,
                 1 as is_real_transaction,
                 sum(amount) as total_amount,
@@ -203,37 +204,10 @@
             from filtered_base
         ),
 
-        result as (
+        final as (
             select transaction_date_day, person_id, donor_audience
             from dedupe
             where row_number = 1
-        ),
-
-        audience_change as (
-            select
-                person_id,
-                transaction_date_day,
-                donor_audience,
-                lag(donor_audience) over (
-                    partition by person_id order by transaction_date_day
-                ) as previous_audience
-            from result
-        ),
-
-        final as (
-            select
-                transaction_date_day,
-                person_id,
-                case
-                    when donor_audience like '%prospect%'
-                    then donor_audience
-                    when
-                        donor_audience != previous_audience
-                        and previous_audience is not null
-                    then previous_audience
-                    else donor_audience
-                end as donor_audience
-            from audience_change
         )
 
     select *
