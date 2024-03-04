@@ -16,3 +16,11 @@ models:
         description: the amount of the first gift as an integer
       - name: join_gift_size_string
         description: The gift size of the first gift as a category string
+      - name: first_gift_donor_audience
+        data_type: string
+        description: The classification of the donor based on their audience segment
+          or type at the time of joining.
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Prospect New', 'Prospect']
