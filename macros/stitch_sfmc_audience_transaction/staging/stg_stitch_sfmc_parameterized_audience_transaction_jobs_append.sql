@@ -1,5 +1,7 @@
 {% macro create_stg_stitch_sfmc_parameterized_audience_transaction_jobs_append(
     reference_name="stg_stitch_sfmc_parameterized_audience_transactions_summary_unioned",
+    arc_person="stg_stitch_sfmc_arc_person",
+    first_gift="stg_stitch_sfmc_parameterized_audience_transaction_first_gift",
     client_donor_audience="NULL"
 ) %}
 
@@ -8,59 +10,154 @@
             materialized="table",
             partition_by={
                 "field": "transaction_date_day",
-                "data_type": "date",
-                "granularity": "day",
+                "data_type": "month",
+                "granularity": "month",
             },
         )
     }}
 
     with
+
+        transactions as (
+            select person_id, transaction_date_day, amount, recurring, transaction_id
+            from {{ ref(reference_name) }}
+
+        ),
+
+        transactions_10_year as (
+            select person_id, transaction_date_day, amount, recurring, transaction_id
+            from {{ ref(reference_name) }}
+            where transaction_date_day >= date_sub(current_date(), interval 10 year)
+        ),
+
+        join_dates as (
+            select person_id, date_created, first_transaction_date
+            from {{ ref(arc_person) }}
+        ),
+
+        distinct_persons as (select distinct person_id from transactions_10_year),
+
+        date_spine as (
+            select date_day
+            from
+                unnest(
+                    generate_date_array(
+                        (select min(transaction_date_day), from transactions_10_year),
+                        ifnull(
+                            (
+                                select max(transaction_date_day)
+                                from transactions_10_year
+                            ),
+                            current_date()
+                        )
+                    )
+                ) as date_day
+
+        ),
+
+        cross_join as (
+            select date_day, person_id from date_spine cross join distinct_persons
+        ),
+
         calculations as (
             select
                 transaction_date_day,
                 person_id,
+                1 as is_real_transaction,
                 sum(amount) as total_amount,
                 sum(case when recurring = true then amount else 0 end) as recur_amount
-            from {{ ref(reference_name) }}
-            group by 1, 2
+            from transactions
+            group by 1, 2, 3
         ),
+
+        zero_transaction_days as (
+            select
+                date_day as transaction_date_day,
+                person_id,
+                0 as is_real_transaction,
+                0 as total_amount,
+                0 as recur_amount
+            from cross_join
+        ),
+
+        union_all as (
+            select *
+            from calculations
+            union all
+            select *
+            from zero_transaction_days
+        ),
+
         day_person_rollup as (
             select
-                transaction_date_day,
-                person_id,
-                -- Calculate cumulative recur and 1x amount for the past 24 months
-                sum(total_amount) over (
-                    partition by person_id
-                    order by unix_seconds(timestamp(transaction_date_day))  -- Convert date to Unix timestamp
-                    range between 63113904 preceding and current row  -- 63,113,904 seconds in 24 months
+                c.transaction_date_day,
+                c.person_id,
+                sum(c.total_amount) over (
+                    partition by c.person_id
+                    order by unix_seconds(timestamp(c.transaction_date_day))
+                    range between 63113904 preceding and 1 preceding
                 ) as cumulative_amount_24_months,
-                -- Calculate cumulative recurring amount over past 90 days
-                sum(recur_amount) over (
-                    partition by person_id
-                    order by unix_seconds(timestamp(transaction_date_day))  -- Convert date to Unix timestamp
-                    range between 7776000 preceding and current row  -- unix seconds in 90 days
-                ) as cumulative_amount_90_days_recur
-            from calculations
-            group by transaction_date_day, person_id, total_amount, recur_amount
+                sum(c.recur_amount) over (
+                    partition by c.person_id
+                    order by unix_seconds(timestamp(c.transaction_date_day))
+                    range between 7776000 preceding and 1 preceding
+                ) as cumulative_amount_90_days_recur,
+                sum(c.total_amount) over (
+                    partition by c.person_id
+                    order by c.transaction_date_day
+                    rows between unbounded preceding and 1 preceding
+                ) as cumulative_amount_all_time,
+                sum(c.is_real_transaction) over (
+                    partition by c.person_id order by c.transaction_date_day
+                ) as cumulative_num_transaction_days_all_time,
+                jd.first_transaction_date,
+                jd.date_created
+            from union_all c
+            left join join_dates jd on c.person_id = jd.person_id
+            group by
+                c.transaction_date_day,
+                c.person_id,
+                c.is_real_transaction,
+                c.total_amount,
+                c.recur_amount,
+                jd.date_created,
+                jd.first_transaction_date
         ),
-        base as
-
-        (
+        base as (
             select distinct
                 transaction_date_day,
                 person_id,
                 case
+                    when
+                        (
+                            date_created = first_transaction_date
+                            or first_transaction_date < date_created
+                            or date_created is null
+                        )
+                        and cumulative_num_transaction_days_all_time = 1
+                    then 'Prospect New'
+                    when
+                        (date_created < first_transaction_date)
+                        and cumulative_num_transaction_days_all_time = 1
+                    then 'Prospect Existing'
                     when cumulative_amount_24_months >= 25000
                     then 'Major'
                     when cumulative_amount_24_months between 1000 and 24999.99
                     then 'Leadership Giving'
                     when cumulative_amount_90_days_recur > 0
                     then 'Monthly'
-                    else 'Mass'
+                    when cumulative_amount_all_time > 0
+                    then 'Mass'
+                    when cumulative_num_transaction_days_all_time = 0
+                    then null
+                    else 'Investigate'
                 end as bluestate_donor_audience,  -- modeled after UUSA
-                {{ client_donor_audience }} as donor_audience
+                /* parameterized field? */
+                cast({{ client_donor_audience }} as string) as donor_audience
             from day_person_rollup
         ),
+        filtered_base as (select * from base where donor_audience is not null),
+
         dedupe as (
             select
                 transaction_date_day,
@@ -70,11 +167,16 @@
                     partition by transaction_date_day, person_id, donor_audience
                     order by transaction_date_day desc
                 ) as row_number
-            from base
+            from filtered_base
+        ),
+
+        final as (
+            select transaction_date_day, person_id, donor_audience
+            from dedupe
+            where row_number = 1
         )
 
-    select transaction_date_day, person_id, donor_audience
-    from dedupe
-    where row_number = 1
+    select *
+    from final
 
 {% endmacro %}

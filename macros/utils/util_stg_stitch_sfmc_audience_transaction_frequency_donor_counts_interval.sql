@@ -15,7 +15,7 @@
     partition_by={
       "field": "date_day",
       "data_type": "date",
-      "granularity": "day"
+      "granularity": "month"
     },
     cluster_by = ["interval_type"]
 )}}
