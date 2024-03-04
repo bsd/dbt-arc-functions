@@ -40,7 +40,10 @@ models:
         data_type: string
         description: The classification of the donor based on their audience segment
           or type at the time of joining.
-        tests: [not_null]
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Prospect New', 'Prospect']
       - name: activation_str
         data_type: string
         description: A string representing the distance from join month year
