@@ -88,7 +88,8 @@
 
         calculations as (
             select
-                -- add one day to the transactions so that this value shows up the next day in audience
+                -- add one day to the transactions so that this value shows up the
+                -- next day in audience
                 date_add(transaction_date_day, interval 1 day) as transaction_date_day,
                 person_id,
                 1 as is_real_transaction,
