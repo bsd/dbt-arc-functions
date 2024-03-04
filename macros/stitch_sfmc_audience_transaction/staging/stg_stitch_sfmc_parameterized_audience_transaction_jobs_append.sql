@@ -103,7 +103,8 @@
                     range between 7776000 preceding and 1 preceding
                 ) as cumulative_amount_90_days_recur,
                 sum(c.total_amount) over (
-                    partition by c.person_id order by c.transaction_date_day 
+                    partition by c.person_id
+                    order by c.transaction_date_day
                     rows between unbounded preceding and 1 preceding
                 ) as cumulative_amount_all_time,
                 sum(c.is_real_transaction) over (
