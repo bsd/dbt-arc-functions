@@ -16,7 +16,7 @@
         )
     }}
 
-/* DOCUMENTATION OF MODEL
+    /* DOCUMENTATION OF MODEL
 
     Data Selection & Filtering:
         - Selects relevant transaction data (past 10 years) and joins with 
@@ -43,7 +43,6 @@
     Client-specified Audience:
         - Allows an optional parameter to pre-assign a specific audience to all records.
 */
-
     with
 
         transactions as (
