@@ -65,8 +65,7 @@
                 person_id,
                 1 as is_real_transaction,
                 sum(amount) as total_amount,
-                sum(case when recurring = true then amount else 0 end) as recur_amount,
-                count(distinct transaction_id) as num_transactions
+                sum(case when recurring = true then amount else 0 end) as recur_amount
             from transactions
             group by 1, 2, 3
         ),
@@ -77,8 +76,7 @@
                 person_id,
                 0 as is_real_transaction,
                 0 as total_amount,
-                0 as recur_amount,
-                0 as num_transactions
+                0 as recur_amount
             from cross_join
         ),
 
@@ -97,19 +95,18 @@
                 sum(c.total_amount) over (
                     partition by c.person_id
                     order by unix_seconds(timestamp(c.transaction_date_day))
-                    range between 63113904 preceding and current row
+                    range between 63113904 preceding and 1 preceding
                 ) as cumulative_amount_24_months,
                 sum(c.recur_amount) over (
                     partition by c.person_id
                     order by unix_seconds(timestamp(c.transaction_date_day))
-                    range between 7776000 preceding and current row
+                    range between 7776000 preceding and 1 preceding
                 ) as cumulative_amount_90_days_recur,
                 sum(c.total_amount) over (
-                    partition by c.person_id order by c.transaction_date_day
+                    partition by c.person_id
+                    order by c.transaction_date_day
+                    rows between unbounded preceding and 1 preceding
                 ) as cumulative_amount_all_time,
-                sum(c.num_transactions) over (
-                    partition by c.person_id order by c.transaction_date_day
-                ) as cumulative_num_transactions_all_time,
                 sum(c.is_real_transaction) over (
                     partition by c.person_id order by c.transaction_date_day
                 ) as cumulative_num_transaction_days_all_time,
@@ -123,7 +120,6 @@
                 c.is_real_transaction,
                 c.total_amount,
                 c.recur_amount,
-                c.num_transactions,
                 jd.date_created,
                 jd.first_transaction_date
         ),
