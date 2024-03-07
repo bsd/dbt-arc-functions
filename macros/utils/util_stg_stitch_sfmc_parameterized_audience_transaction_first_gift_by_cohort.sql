@@ -84,6 +84,7 @@ filter the whole table to only those transaction values occuring up to today's d
 select 
 join_month_year_str,
 join_month_year_date,
+transaction_date,
 first_gift_join_source,
 join_gift_size_string{{ recur_suffix }},
 first_gift_donor_audience,
