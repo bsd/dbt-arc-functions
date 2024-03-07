@@ -15,7 +15,7 @@ with
         group by 1
     ),
 
-    source_of_truth_all as (
+    source_of_truth as (
         select
             date_trunc(first_transaction_date, month) as join_date,
             count(distinct person_id) as new_donors
