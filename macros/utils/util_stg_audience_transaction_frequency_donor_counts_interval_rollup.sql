@@ -24,6 +24,7 @@
 
 with base as (
     select 
+        person_and_transaction.transaction_id,
         person_and_transaction.transaction_date_day,
         person_and_transaction.person_id,
         initcap(person_and_transaction.channel) as channel,
@@ -35,7 +36,11 @@ with base as (
         first_gift.join_gift_size_string as join_amount_str,
         first_gift.join_gift_size_string_recur as join_amount_str_recur,
         first_gift.join_month_year_date as join_month_year_str,
-        first_gift.first_transaction_date as join_date
+        first_gift.first_transaction_date as join_date,
+        case 
+            when person_and_transaction.transaction_id = first_gift.transaction_id then True 
+            else False
+        end as is_first_gift_ever
         from {{ref(person_and_transaction)}} person_and_transaction
         left join
             {{ ref(first_gift) }} as first_gift
@@ -55,12 +60,14 @@ with base as (
         channel, 
             /* total donor counts */
         count(distinct person_id) as total{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+
+        /* unique total donor counts -- used for cumulative calculations downstream */
         count(distinct 
             case when is_first_transaction_this_fy then
             person_id end
         ) as unique_totalFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
-            /* new donor counts */
+            /* new donor counts (as a loyalty), unique values used for cumulative count downstream */
         count(
             distinct case
                 when
@@ -69,6 +76,8 @@ with base as (
                 then person_id
             end
         ) as unique_newFY{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+
+        /* first ever NEW donor counts */
         count(distinct 
             case
                 when
@@ -77,11 +86,13 @@ with base as (
                     {% else %}
                     date_trunc(join_date, {{ interval }}) = date_trunc(transaction_date_day, {{ interval }}) 
                     {% endif %}
+                and is_first_gift_ever
                 then person_id
             end
         ) as new{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
 
-            /* new donors */
+
+        /* new donor (with new donor loyalty) */
         count(
             distinct case
                 when
@@ -98,6 +109,7 @@ with base as (
                 then person_id
             end
         ) as retained{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        -- unique value below used for cumulative
         count(
             distinct case
                 when
@@ -114,6 +126,7 @@ with base as (
                 then person_id
             end
         ) as retained3{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        -- unique value used for cumulative
         count(
             distinct case
                 when
@@ -130,6 +143,7 @@ with base as (
                 then person_id
             end
         ) as reinstated{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        -- unique value used for cumulative
          count(
             distinct case
                 when
@@ -142,6 +156,7 @@ with base as (
         count(
             distinct case when donor_engagement = 'active' then person_id end
         ) as active{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
+        -- unique value used for cumulative
         count(
             distinct case when donor_engagement = 'lapsed' then person_id end
         ) as lapsed{% if frequency == 'recurring' %}_recur_{% else %}_onetime_{% endif %}donor_counts,
