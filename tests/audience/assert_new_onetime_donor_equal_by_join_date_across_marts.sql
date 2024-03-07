@@ -26,12 +26,21 @@ with
     ),
 
     source_of_truth_digital as (
-        select 
+        select
             date_trunc(first_transaction_date, month) as join_date,
             count(distinct person_id) as new_donors
         from {{ ref("stg_stitch_sfmc_parameterized_audience_transaction_first_gift") }}
-        where first_gift_recur_status = false
-        and transaction_id in (select distinct transaction_id from {{ref("stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched_digital")}})
+        where
+            first_gift_recur_status = false
+            and transaction_id in (
+                select distinct transaction_id
+                from
+                    {{
+                        ref(
+                            "stg_stitch_sfmc_arc_audience_union_transaction_joined_enriched_digital"
+                        )
+                    }}
+            )
         group by 1
     ),
 
