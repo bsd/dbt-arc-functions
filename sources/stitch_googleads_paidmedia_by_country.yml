@@ -6,7 +6,7 @@ sources:
     loader: stitch - sftp
     schema: src_stitch
     tables:
-      - name: src_google_ad_performance_conversions
+      - name: ad_performance_conversions
         description: ""
         freshness:
           warn_after:
@@ -84,7 +84,7 @@ sources:
             data_type: string
             description: ""
 
-      - name: src_google_ad_performance_report
+      - name: ad_performance_report
         description: ""
         freshness:
           warn_after:
@@ -162,7 +162,7 @@ sources:
             data_type: string
             description: ""
 
-      - name: src_google_geo_performance_conversion
+      - name: geo_performance_conversion
         description: ""
         freshness:
           warn_after:
@@ -234,7 +234,7 @@ sources:
             data_type: timestamp
             description: ""
 
-      - name: src_google_geo_performance_report
+      - name: geo_performance_report
         description: ""
         freshness:
           warn_after:
