@@ -1,10 +1,10 @@
 {% macro create_mart_paidmedia_daily_revenue_performance(
-    campaigns="stg_paidmedia_campaigns_unioned",
-    impressions="stg_paidmedia_impressions_daily_rollup_unioned",
-    clicks="stg_paidmedia_clicks_daily_rollup_unioned",
-    spends="stg_paidmedia_spends_daily_rollup_unioned",
-    transactions="stg_paidmedia_transactions_sourced_daily_rollup_unioned",
-    subscribes="stg_paidmedia_subscribes_daily_rollup_unioned"
+    campaigns="stg_paidmedia_campaigns_unioned_by_country",
+    impressions="stg_paidmedia_impressions_daily_rollup_unioned_by_country",
+    clicks="stg_paidmedia_clicks_daily_rollup_unioned_by_country",
+    spends="stg_paidmedia_spends_daily_rollup_unioned_by_country",
+    transactions="stg_paidmedia_transactions_sourced_daily_rollup_unioned_by_country",
+    subscribes="stg_paidmedia_subscribes_daily_rollup_unioned_by_country"
 ) %}
     select
         coalesce(campaigns.message_id, impressions.message_id) as message_id,

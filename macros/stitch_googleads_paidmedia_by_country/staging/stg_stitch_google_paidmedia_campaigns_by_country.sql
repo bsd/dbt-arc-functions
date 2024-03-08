@@ -1,5 +1,5 @@
-{% macro create_stg_stitch_google_paidmedia_campaigns(
-    source_name="src_stitch_googleads_paidmedia",
+{% macro create_stg_stitch_google_paidmedia_campaigns_by_country(
+    source_name="src_stitch_googleads_paidmedia_by_country",
     source_table="ad_performance_report"
 ) %}
     select distinct
