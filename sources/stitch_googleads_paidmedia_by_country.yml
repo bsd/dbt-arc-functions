@@ -1,0 +1,313 @@
+---
+version: 2
+sources:
+  - name: src_stitch_googleads_paidmedia_by_country
+    description: Stitch data connector for Google Ads Paid Media
+    loader: stitch - sftp
+    schema: src_stitch
+    tables:
+      - name: src_google_ad_performance_conversions
+        description: ""
+        freshness:
+          warn_after:
+            count: 2
+            period: day
+          error_after:
+            count: 14
+            period: day
+        loaded_at_field: _sdc_received_at
+        columns:
+          - name: all_conversions
+            data_type: numeric
+            description: ""
+          - name: conversion_action
+            data_type: string
+            description: ""
+          - name: ad_group_name
+            data_type: string
+            description: ""
+          - name: campaign_id
+            data_type: int64
+            description: ""
+          - name: all_conversions_value
+            data_type: numeric
+            description: ""
+          - name: campaign_name
+            data_type: string
+            description: ""
+          - name: conversions_value
+            data_type: numeric
+            description: ""
+          - name: id
+            data_type: int64
+            description: ""
+          - name: conversions
+            data_type: numeric
+            description: ""
+          - name: _sdc_table_version
+            data_type: int64
+            description: ""
+          - name: _sdc_record_hash
+            data_type: string
+            description: ""
+          - name: ad_group_id
+            data_type: int64
+            description: ""
+          - name: conversion_action_name
+            data_type: string
+            description: ""
+          - name: _sdc_received_at
+            data_type: timestamp
+            description: ""
+          - name: _sdc_sequence
+            data_type: int64
+            description: ""
+          - name: campaign_status
+            data_type: string
+            description: ""
+          - name: type
+            data_type: string
+            description: ""
+          - name: date
+            data_type: timestamp
+            description: ""
+          - name: final_urls
+            data_type: string
+            description: ""
+          - name: conversion_action_category
+            data_type: string
+            description: ""
+          - name: _sdc_batched_at
+            data_type: timestamp
+            description: ""
+          - name: tracking_url_template
+            data_type: string
+            description: ""
+
+      - name: src_google_ad_performance_report
+        description: ""
+        freshness:
+          warn_after:
+            count: 2
+            period: day
+          error_after:
+            count: 14
+            period: day
+        loaded_at_field: _sdc_received_at
+        columns:
+          - name: ad_group_name
+            data_type: string
+            description: ""
+          - name: impressions
+            data_type: int64
+            description: ""
+          - name: campaign_id
+            data_type: int64
+            description: ""
+          - name: campaign_name
+            data_type: string
+            description: ""
+          - name: cost_micros
+            data_type: int64
+            description: ""
+          - name: conversions_value
+            data_type: numeric
+            description: ""
+          - name: clicks
+            data_type: int64
+            description: ""
+          - name: id
+            data_type: int64
+            description: ""
+          - name: conversions
+            data_type: numeric
+            description: ""
+          - name: _sdc_table_version
+            data_type: int64
+            description: ""
+          - name: _sdc_record_hash
+            data_type: string
+            description: ""
+          - name: ad_group_id
+            data_type: int64
+            description: ""
+          - name: _sdc_received_at
+            data_type: timestamp
+            description: ""
+          - name: _sdc_sequence
+            data_type: int64
+            description: ""
+          - name: interactions
+            data_type: int64
+            description: ""
+          - name: campaign_status
+            data_type: string
+            description: ""
+          - name: type
+            data_type: string
+            description: ""
+          - name: date
+            data_type: timestamp
+            description: ""
+          - name: final_urls
+            data_type: string
+            description: ""
+          - name: _sdc_batched_at
+            data_type: timestamp
+            description: ""
+          - name: engagements
+            data_type: int64
+            description: ""
+          - name: tracking_url_template
+            data_type: string
+            description: ""
+
+      - name: src_google_geo_performance_conversion
+        description: ""
+        freshness:
+          warn_after:
+            count: 2
+            period: day
+          error_after:
+            count: 14
+            period: day
+        loaded_at_field: _sdc_received_at
+        columns:
+          - name: all_conversions
+            data_type: numeric
+            description: ""
+          - name: conversion_action
+            data_type: string
+            description: ""
+          - name: ad_group_name
+            data_type: string
+            description: ""
+          - name: campaign_id
+            data_type: int64
+            description: ""
+          - name: all_conversions_value
+            data_type: numeric
+            description: ""
+          - name: campaign_name
+            data_type: string
+            description: ""
+          - name: conversions_value
+            data_type: numeric
+            description: ""
+          - name: conversions
+            data_type: numeric
+            description: ""
+          - name: _sdc_table_version
+            data_type: int64
+            description: ""
+          - name: _sdc_record_hash
+            data_type: string
+            description: ""
+          - name: ad_group_id
+            data_type: int64
+            description: ""
+          - name: conversion_action_name
+            data_type: string
+            description: ""
+          - name: _sdc_received_at
+            data_type: timestamp
+            description: ""
+          - name: _sdc_sequence
+            data_type: int64
+            description: ""
+          - name: campaign_status
+            data_type: string
+            description: ""
+          - name: geographic_view_location_type
+            data_type: string
+            description: ""
+          - name: date
+            data_type: timestamp
+            description: ""
+          - name: geographic_view_country_criterion_id
+            data_type: int64
+            description: ""
+          - name: conversion_action_category
+            data_type: string
+            description: ""
+          - name: _sdc_batched_at
+            data_type: timestamp
+            description: ""
+
+      - name: src_google_geo_performance_report
+        description: ""
+        freshness:
+          warn_after:
+            count: 2
+            period: day
+          error_after:
+            count: 14
+            period: day
+        loaded_at_field: _sdc_received_at
+        columns:
+          - name: all_conversions
+            data_type: numeric
+            description: ""
+          - name: ad_group_name
+            data_type: string
+            description: ""
+          - name: impressions
+            data_type: int64
+            description: ""
+          - name: ad_network_type
+            data_type: string
+            description: ""
+          - name: campaign_id
+            data_type: int64
+            description: ""
+          - name: all_conversions_value
+            data_type: numeric
+            description: ""
+          - name: campaign_name
+            data_type: string
+            description: ""
+          - name: cost_micros
+            data_type: int64
+            description: ""
+          - name: conversions_value
+            data_type: numeric
+            description: ""
+          - name: clicks
+            data_type: int64
+            description: ""
+          - name: conversions
+            data_type: numeric
+            description: ""
+          - name: _sdc_table_version
+            data_type: int64
+            description: ""
+          - name: _sdc_record_hash
+            data_type: string
+            description: ""
+          - name: ad_group_id
+            data_type: int64
+            description: ""
+          - name: _sdc_received_at
+            data_type: timestamp
+            description: ""
+          - name: _sdc_sequence
+            data_type: int64
+            description: ""
+          - name: interactions
+            data_type: int64
+            description: ""
+          - name: campaign_status
+            data_type: string
+            description: ""
+          - name: geographic_view_location_type
+            data_type: string
+            description: ""
+          - name: date
+            data_type: timestamp
+            description: ""
+          - name: geographic_view_country_criterion_id
+            data_type: int64
+            description: ""
+          - name: _sdc_batched_at
+            data_type: timestamp
+            description: ""
