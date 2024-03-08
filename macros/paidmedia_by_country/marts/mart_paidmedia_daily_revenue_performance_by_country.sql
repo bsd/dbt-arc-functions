@@ -1,4 +1,4 @@
-{% macro create_mart_paidmedia_daily_revenue_performance(
+{% macro create_mart_paidmedia_daily_revenue_performance_by_country(
     campaigns="stg_paidmedia_campaigns_unioned_by_country",
     impressions="stg_paidmedia_impressions_daily_rollup_unioned_by_country",
     clicks="stg_paidmedia_clicks_daily_rollup_unioned_by_country",
