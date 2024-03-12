@@ -1,9 +1,26 @@
 {% macro create_stg_stitch_google_paidmedia_transactions_sourced_rollup_by_country(
     source_name="src_stitch_googleads_paidmedia",
-    source_table="ad_performance_report"
+    source_table="geo_performance_conversions"
 ) %}
+
+Select
+    ad_group_id as message_id,
+    cast(date as timestamp) as date_timestamp,
+    geographic_view_country_criterion_id as country,
+
+     from {{ source(source_name, source_table) }}
+
+
+
+
+
+
+
+
+
+
     select
-        cast(id as string) as message_id,
+        cast(ad_group_id as string) as message_id,
         cast(date as timestamp) as date_timestamp,
         cast(null as int) as total_revenue,
         cast(null as int) as total_gifts,

@@ -5,9 +5,10 @@
     select
         cast(id as string) as message_id,
         cast(date as timestamp) as date_timestamp,
+        geographic_view_country_criterion_id as country,
         sum(impressions) as total_impressions,
         sum(impressions) as unique_impressions
     from {{ source(source_name, source_table) }}
     where campaign_status = 'ENABLED'
-    group by 1, 2
+    group by 1, 2, 3
 {% endmacro %}

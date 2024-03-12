@@ -311,3 +311,60 @@ sources:
           - name: _sdc_batched_at
             data_type: timestamp
             description: ""
+
+      - name: google_ads
+        description: ""
+        freshness:
+          warn_after:
+            count: 2
+            period: day
+          error_after:
+            count: 14
+            period: day
+        loaded_at_field: _sdc_received_at
+        columns:
+          - name: campaign_id
+            data_type: int64
+            description: ""
+          - name: id
+            data_type: int64
+            description: ""
+          - name: name
+            data_type: string
+            description: ""
+          - name: display_url
+            data_type: string
+            description: ""
+          - name: _sdc_table_version
+            data_type: int64
+            description: ""
+          - name: status
+            data_type: string
+            description: ""
+          - name: ad_group_id
+            data_type: int64
+            description: ""
+          - name: _sdc_received_at
+            data_type: timestamp
+            description: ""
+          - name: customer_id
+            data_type: int64
+            description: ""
+          - name: _sdc_sequence
+            data_type: int64
+            description: ""
+          - name: type
+            data_type: string
+            description: ""
+          - name: ad_group
+            data_type: string
+            description: ""
+          - name: final_urls
+            data_type: string
+            description: ""
+          - name: _sdc_batched_at
+            data_type: timestamp
+            description: ""
+          - name: tracking_url_template
+            data_type: string
+            description: ""
