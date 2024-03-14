@@ -62,6 +62,8 @@ That said, you can use the utils after initial set up at any time if you need to
 
 ### Before you start
 
+First thing's first, go to the `Settings` page of your new dbt repo, the hit `Collaborators and teams`, then under `Manage Access` hit `Add Teams`, then add the `ARC Engineering` team as an admin.
+
 You'll need to install the required packages to run these scripts. This can be accomplished by running:
 
 I recommend [pipenv](https://pipenv.pypa.io/en/latest/) for this as ruamel doesn't play nicely with Anaconda. 
