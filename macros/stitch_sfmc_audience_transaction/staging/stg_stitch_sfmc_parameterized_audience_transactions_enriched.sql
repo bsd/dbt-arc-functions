@@ -21,6 +21,11 @@
                 transaction_id,
                 person_id,
                 transaction_date_day,
+                {{dbt_arc_functions.get_fiscal_year(
+                "transaction_date_day",
+                var("fiscal_year_start"),
+                )
+                }} as fiscal_year,
                 cast(amount as float64) as amount,
                 initcap({{ channel }}) as channel,
                 appeal_business_unit,
@@ -76,7 +81,8 @@
                 ) as row_number
             from {{ ref(reference_name) }}
 
-        )
+        ),
+    add_gift_count as (
 
     select
         *,
@@ -85,5 +91,21 @@
         ) as gift_count
     from base
     where row_number = 1
+    ),
+
+    final as (
+    select 
+    *, 
+    row_number() over (
+    partition by person_id, fiscal_year order by transaction_date_day
+    ) as nth_transaction_this_fiscal_year 
+    from add_gift_count
+)
+
+select *,
+case
+    when nth_transaction_this_fiscal_year = 1 then true else false
+    end as is_first_transaction_this_fy
+ from final 
 
 {% endmacro %}

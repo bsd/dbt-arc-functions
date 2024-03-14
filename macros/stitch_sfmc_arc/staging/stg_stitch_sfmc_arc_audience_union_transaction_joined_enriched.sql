@@ -3,7 +3,7 @@
     donor_audience_unioned="stg_stitch_sfmc_arc_audience_unioned",
     donor_engagement_by_day="stg_stitch_sfmc_donor_engagement_by_date_day",
     donor_transaction_enriched="stg_stitch_sfmc_parameterized_audience_transactions_enriched",
-    donor_loyalty_scd = "stg_stitch_sfmc_arc_donor_loyalty_scd",
+    donor_loyalty_scd="stg_stitch_sfmc_arc_donor_loyalty_scd",
     jobs_append="stg_stitch_sfmc_parameterized_audience_transaction_jobs_append"
 ) %}
 
@@ -23,12 +23,7 @@ with audience_union_transaction_joined as (
 */
     select
         transaction_enriched.transaction_date_day,
-        {{
-            dbt_arc_functions.get_fiscal_year(
-                "transaction_enriched.transaction_date_day",
-                var("fiscal_year_start"),
-            )
-        }} as fiscal_year,
+        transaction_enriched.fiscal_year,
         transaction_enriched.person_id,
         transaction_enriched.transaction_id,
         coalesce(audience_unioned.donor_audience, calculated_audience.donor_audience) as donor_audience,
@@ -38,7 +33,8 @@ with audience_union_transaction_joined as (
         transaction_enriched.gift_size_string,
         transaction_enriched.recurring,
         transaction_enriched.amount,
-        transaction_enriched.gift_count
+        transaction_enriched.gift_count,
+        transaction_enriched.is_first_transaction_this_fy
     from {{ ref(donor_transaction_enriched) }} transaction_enriched
     left join
         {{ ref(donor_audience_unioned) }} audience_unioned
@@ -52,9 +48,8 @@ with audience_union_transaction_joined as (
         {{ ref(donor_engagement_by_day) }} donor_engagement
         on transaction_enriched.transaction_date_day = donor_engagement.date_day
         and transaction_enriched.person_id = donor_engagement.person_id
-
 ),
-dedupe as (
+final as (
 
         /*
 the code selects data from audience_union_transaction_joined, 
@@ -78,6 +73,7 @@ making sure to finally dedupe on transaction_id.
         audience_union_transaction_joined.gift_size_string,
         audience_union_transaction_joined.recurring,
         audience_union_transaction_joined.amount,
+        audience_union_transaction_joined.is_first_transaction_this_fy,
         1 as gift_count,
         row_number() over (partition by audience_union_transaction_joined.transaction_id order by audience_union_transaction_joined.transaction_date_day asc) as row_number
     from
@@ -89,27 +85,12 @@ making sure to finally dedupe on transaction_id.
         between arc_donor_loyalty.start_date and arc_donor_loyalty.end_date
     qualify row_number = 1
 
-), 
-
-final as (
-
-select 
-    *, 
-    row_number() over (
-    partition by person_id, fiscal_year order by transaction_date_day
-    ) as nth_transaction_this_fiscal_year 
-from dedupe 
 )
 
-select *,
-case
-    when nth_transaction_this_fiscal_year = 1 then true else false
-    end as is_first_transaction_this_fy
- from final 
+select * from final
 {% if is_incremental() %}
 -- pulls in all records within 7 days of max transaction date day
 where transaction_date_day >= (select date_sub(max(transaction_date_day), interval 7 day) from {{ this }})
 {% endif %}
-
 
 {% endmacro %}
