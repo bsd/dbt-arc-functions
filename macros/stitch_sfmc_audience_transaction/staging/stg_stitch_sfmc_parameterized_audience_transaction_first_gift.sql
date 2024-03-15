@@ -62,7 +62,7 @@ and pulls attributes from that first gift.
 
             select
                 first_transactions.person_id,
-                transactions.transaction_id,
+                first_transactions.transaction_id,
                 first_transactions.first_transaction_date,
                 cast(
                     timestamp_trunc(
