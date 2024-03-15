@@ -24,7 +24,7 @@ and pulls attributes from that first gift.
 */
     with
         transactions as (
-            select person_id, transaction_id, transaction_date, amount
+            select person_id, transaction_id, transaction_date, amount, recurring
             from {{ ref(transactions) }}
         ),
 
