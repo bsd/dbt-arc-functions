@@ -24,12 +24,12 @@ and pulls attributes from that first gift.
 */
     with
         transactions as (
-            select person_id, transaction_id, transaction_date, amount, recurring
+            select person_id, transaction_id, transaction_date, amount, recurring, channel
             from {{ ref(transactions) }}
         ),
 
         audience as (
-            select transaction_id, donor_audience, channel from {{ ref(audience) }}
+            select transaction_id, donor_audience from {{ ref(audience) }}
         ),
 
         dedupe as (
@@ -74,7 +74,7 @@ and pulls attributes from that first gift.
                     '%b %Y',
                     timestamp_trunc(first_transactions.first_transaction_date, month)
                 ) as join_month_year_str,
-                audience.channel as first_gift_join_source,
+                transactions.channel as first_gift_join_source,
                 (
                     case
                         when transactions.amount between 0 and 25.99
