@@ -39,10 +39,11 @@
                 transaction_id,
                 transaction_date,
                 transaction_date_day,
-                {{dbt_arc_functions.get_fiscal_year(
-                "transaction_date_day",
-                var("fiscal_year_start"),
-                )
+                {{
+                    dbt_arc_functions.get_fiscal_year(
+                        "transaction_date_day",
+                        var("fiscal_year_start"),
+                    )
                 }} as fiscal_year,
                 person_id,
                 recurring,
@@ -56,10 +57,12 @@
         ),
 
         final as (
-            select recasting.*,
-             row_number() over (
-                partition by person_id, fiscal_year order by transaction_date
-                )= 1 as is_first_transaction_this_fy
+            select
+                recasting.*,
+                row_number() over (
+                    partition by person_id, fiscal_year order by transaction_date
+                )
+                = 1 as is_first_transaction_this_fy
             from recasting
         )
 
