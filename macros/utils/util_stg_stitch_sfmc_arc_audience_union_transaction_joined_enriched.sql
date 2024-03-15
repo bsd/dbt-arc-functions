@@ -13,10 +13,10 @@
     unique_key='transaction_id'
 )}}
 
- {% if is_digital not in ["true", "false", "TRUE", "FALSE", "True", "False"] %}
+ {% if is_digital not in ["True", "False"] %}
         {{
             exceptions.raise_compiler_error(
-                "'is_digital' argument to must be 'true' or 'false', got "
+                "'is_digital' argument to must be 'True' or 'False', got "
                 ~ is_digital
             )
         }}
@@ -59,8 +59,11 @@ with audience_union_transaction_joined as (
         {{ ref(donor_engagement_by_day) }} donor_engagement
         on transaction_enriched.transaction_date_day = donor_engagement.date_day
         and transaction_enriched.person_id = donor_engagement.person_id
+    {% if is_digital == 'True'%}
     -- THIS IS WHERE WE FILTER TO DIGITAL TRANSACTIONS --
     where transaction_enriched.is_digital = {{is_digital}}
+    {% else%}
+    {% endif %}
 ),
 final as (
 
