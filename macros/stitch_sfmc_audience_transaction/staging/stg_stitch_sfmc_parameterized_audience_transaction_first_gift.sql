@@ -24,13 +24,12 @@ and pulls attributes from that first gift.
 */
     with
         transactions as (
-            select person_id, transaction_id, transaction_date, amount, recurring, channel
+            select
+                person_id, transaction_id, transaction_date, amount, recurring, channel
             from {{ ref(transactions) }}
         ),
 
-        audience as (
-            select transaction_id, donor_audience from {{ ref(audience) }}
-        ),
+        audience as (select transaction_id, donor_audience from {{ ref(audience) }}),
 
         dedupe as (
             select person_id, transaction_id, transaction_date
