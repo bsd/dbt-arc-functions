@@ -32,13 +32,19 @@
             where transaction_date is not null and person_id is not null and amount > 0
         ),
 
-        final as (
+        recasting as (
 
             select
                 _dbt_source_relation,
                 transaction_id,
                 transaction_date,
                 transaction_date_day,
+                {{
+                    dbt_arc_functions.get_fiscal_year(
+                        "transaction_date_day",
+                        var("fiscal_year_start"),
+                    )
+                }} as fiscal_year,
                 person_id,
                 recurring,
                 initcap({{ channel }}) as channel,
@@ -48,6 +54,16 @@
                 amount
             from dedupe
             where row_number = 1
+        ),
+
+        final as (
+            select
+                recasting.*,
+                row_number() over (
+                    partition by person_id, fiscal_year order by transaction_date
+                )
+                = 1 as is_first_transaction_this_fy
+            from recasting
         )
 
     select *

@@ -21,12 +21,14 @@
                 transaction_id,
                 person_id,
                 transaction_date_day,
+                fiscal_year,
                 cast(amount as float64) as amount,
                 initcap({{ channel }}) as channel,
                 appeal_business_unit,
                 appeal,
                 is_digital,
                 recurring,
+                is_first_transaction_this_fy,
                 (
                     case
                         when amount between 0 and 25.99
@@ -75,15 +77,19 @@
                     partition by transaction_id order by transaction_date_day
                 ) as row_number
             from {{ ref(reference_name) }}
+            qualify row_number = 1
 
+        ),
+        final as (
+            select
+                *,
+                row_number() over (
+                    partition by person_id order by transaction_date_day
+                ) as gift_count
+            from base
         )
 
-    select
-        *,
-        row_number() over (
-            partition by person_id order by transaction_date_day
-        ) as gift_count
-    from base
-    where row_number = 1
+    select *
+    from final
 
 {% endmacro %}

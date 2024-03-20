@@ -16,6 +16,7 @@ models:
       - name: first_gift_donor_audience
         data_type: string
         description: ''
+        tests: [not_null]
       - name: month_diff_str
         data_type: string
         description: ''
