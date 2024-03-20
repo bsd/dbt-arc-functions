@@ -34,3 +34,18 @@ sources:
           - name: projected_revenue
             data_type: INT64
             description: Projected revenue for the goal.
+          - name: monthly_revenue_target
+            data_type: INT64
+            description: Projected recurring revenue target for the goal.
+          - name: monthly_gifts_target
+            data_type: INT64
+            description: Projected recurring number of gifts target for the goal.
+          - name: 1x_donor_target
+            data_type: INT64
+            description: Projected one time donor count target for the goal.
+          - name: 1x_donor_revenue_target
+            data_type: INT64
+            description: Projected one time revenue target for the goal.
+          - name: total_gifts_target
+            data_type: INT64
+            description: Projected total gifts target for the goal.
