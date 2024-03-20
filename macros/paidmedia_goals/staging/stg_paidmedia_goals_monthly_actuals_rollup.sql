@@ -15,7 +15,12 @@
         safe_cast(lower(channel) as string) as platform,
         safe_cast(sum(spend_amount) as float64) as actual_spend,
         safe_cast(sum(total_revenue) as float64) as actual_revenue,
-        safe_cast(sum(total_gifts) as float64) as actual_donations
+        safe_cast(sum(total_gifts) as float64) as actual_donations,
+        safe_cast(sum(one_time_revenue) as float64) as actual_1x_revenue,
+        safe_cast(sum(one_time_gifts) as float64) as actual_1x_gifts,
+        safe_cast(sum(total_monthly_revenue) as float64) as actual_monthly_revenue,
+        safe_cast(sum(total_monthly_gifts) as float64) as actual_monthly_gifts,
+        
     from {{ ref(reference_name) }}
     group by 1, 2, 3, 4
 {% endmacro %}
