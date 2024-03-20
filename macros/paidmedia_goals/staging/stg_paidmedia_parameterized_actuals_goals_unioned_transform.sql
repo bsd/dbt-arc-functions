@@ -63,10 +63,20 @@
         -- else platform end
         {{ platform }} as platform,
         sum(actual_spend) as actual_spend,
-        sum(actual_revenue) as actual_revenue,
+        sum(actual_revenue) as actual_revenue, 
         sum(actual_donations) as actual_donations,
+        sum(actual_1x_revenue) as actual_1x_revenue,  
+        sum(actual_1x_spend) as actual_1x_spend,
+        sum(actual_1x_gifts) as actual_1x_gifts,
+        sum(actual_monthly_revenue) as actual_monthly_revenue,
+        sum(actual_monthly_gifts) as actual_monthly_gifts,
         sum(projected_revenue) as projected_revenue,
-        sum(projected_spend) as projected_spend
+        sum(projected_spend) as projected_spend,
+        sum(monthly_revenue_target) as monthly_revenue_target,
+        sum(monthly_gifts_target) as monthly_gifts_target,
+        sum(one_donor_target) as onetime_donor_target,
+        sum(one_donor_revenue_target) as onetime_donor_revenue_target,
+        sum(total_gifts_target) as total_gifts_target
     from {{ ref(reference_name) }}
     group by 1, 2, 3, 4, 5
 {% endmacro %}
