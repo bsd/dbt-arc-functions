@@ -10,7 +10,7 @@
         safe_cast(monthly_gifts_target as float64) as monthly_gifts_target,
         safe_cast(1x_donor_target as float64) as 1x_donor_target,
         safe_cast(1x_donor_revenue_target as float64) as 1x_donor_revenue_target,
-        safe_cast(total_gifts_target as float64) as total_gifts_target
+        safe_cast(total_gifts_target as float64) as total_gifts_target,
     from
         {{
             source(
