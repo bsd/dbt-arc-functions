@@ -5,7 +5,12 @@
         initcap(safe_cast(channel as string)) as channel,
         initcap(safe_cast(platform as string)) as platform,
         safe_cast(projected_spend as float64) as projected_spend,
-        safe_cast(projected_revenue as float64) as projected_revenue
+        safe_cast(projected_revenue as float64) as projected_revenue,
+        safe_cast(monthly_revenue_target as float64) as monthly_revenue_target,
+        safe_cast(monthly_gifts_target as float64) as monthly_gifts_target,
+        safe_cast(1x_donor_targets as float64) as 1x_donor_targets,
+        safe_cast(1x_donor_revenue_target as float64) as 1x_donor_revenue_target,
+        safe_cast(total_gifts_target as float64) as total_gifts_target
     from
         {{
             source(
