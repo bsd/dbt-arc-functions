@@ -19,7 +19,7 @@
         safe_cast(sum(one_time_revenue) as float64) as actual_1x_revenue,
         safe_cast(sum(one_time_gifts) as float64) as actual_1x_gifts,
         safe_cast(sum(total_monthly_revenue) as float64) as actual_monthly_revenue,
-        safe_cast(sum(total_monthly_gifts) as float64) as actual_monthly_gifts,
+        safe_cast(sum(total_monthly_gifts) as float64) as actual_monthly_gifts
         
     from {{ ref(reference_name) }}
     group by 1, 2, 3, 4
