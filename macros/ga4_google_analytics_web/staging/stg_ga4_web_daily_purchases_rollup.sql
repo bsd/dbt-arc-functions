@@ -4,9 +4,9 @@
     select
         session_partition_date as session_date,
         session_key,
-        sum(session_partition_count_purchases) as purchases
-    from {{ ref(reference_name) }}
+        sum(cast(NULL as int64)) as purchases
+    from {{ ref(reference_name) }} --value is now missing from ga4 models
     group by 1, 2
-    having purchases > 0
+    --having purchases > 0
 
 {% endmacro %}
