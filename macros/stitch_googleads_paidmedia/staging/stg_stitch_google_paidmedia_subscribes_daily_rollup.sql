@@ -8,5 +8,4 @@
         cast(date as timestamp) as date_timestamp,
         cast(null as int64) as subscribes
     from {{ source(source_name, source_table) }}
-    where campaign_status = 'ENABLED'
 {% endmacro %}

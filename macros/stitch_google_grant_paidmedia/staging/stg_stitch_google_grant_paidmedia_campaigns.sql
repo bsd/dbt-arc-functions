@@ -20,5 +20,4 @@
             else 'No Source Code'
         end as source_code_entity
     from {{ source(source_name, source_table) }}
-    where campaign_status = 'ENABLED'
 {% endmacro %}
