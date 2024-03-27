@@ -8,6 +8,5 @@
         sum(clicks) as total_clicks,
         sum(clicks) as unique_clicks
     from {{ source(source_name, source_table) }}
-
     group by 1, 2
 {% endmacro %}
